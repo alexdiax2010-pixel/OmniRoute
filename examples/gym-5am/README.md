@@ -41,7 +41,8 @@ consola. Puedes cambiarlo después en **Administración → Ajustes**.
 | **Avisos**             | Lista de quienes vencen pronto o vencieron hace menos de 30 días, con el mensaje listo para WhatsApp. Al enviarlo queda marcado como avisado.                                                     |
 | **Dar de baja**        | El código deja de funcionar y el historial de cobros se conserva.                                                                                                                                 |
 
-En **Ajustes** puedes cambiar el nombre del gimnasio, la moneda, el código de país para WhatsApp
+El sistema arranca con un plan **Mensual de $549 MXN** y el código de país de México (`52`) para
+WhatsApp. En **Ajustes** puedes cambiar el nombre del gimnasio, la moneda, el código de país para WhatsApp
 (por ejemplo `52` para México), los días de antelación del aviso, el texto del recordatorio y los
 planes con sus precios.
 

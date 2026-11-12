@@ -75,17 +75,14 @@ CREATE INDEX IF NOT EXISTS idx_sales_sold_on ON sales(sold_on);
 export const DEFAULT_SETTINGS = {
   gymName: "Wellness Fitness 5AM",
   currency: "$",
-  countryCode: "",
+  countryCode: "52",
   warnDays: "5",
   reminderTemplate:
     "Hola {nombre}, te saluda {gimnasio}. Te recordamos que tu mensualidad {estado} el {fecha}. Puedes renovarla en recepción o respondiendo a este mensaje. ¡Nos vemos a las 5AM!",
 };
 
-const DEFAULT_PLANS = [
-  ["Mensual", 1, 3900],
-  ["Trimestral", 3, 10500],
-  ["Anual", 12, 39900],
-];
+// Mensualidad de Wellness Fitness 5AM: $549 MXN. Otros planes se añaden en Administración → Ajustes.
+const DEFAULT_PLANS = [["Mensual", 1, 54900]];
 
 export const PAYMENT_METHODS = ["Efectivo", "Tarjeta", "Transferencia", "Otro"];
 
