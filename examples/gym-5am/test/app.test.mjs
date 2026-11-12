@@ -37,13 +37,29 @@ describe("store", () => {
     for (const c of codes) assert.match(c, /^\d{4}$/);
   });
 
-  test("un cobro mensual deja al socio activo hasta un día antes del mismo día del mes siguiente", () => {
+  test("un cobro mensual vence el mismo día del mes siguiente", () => {
     const plan = store.listPlans().find((p) => p.months === 1);
     const m = store.createMember({ name: "Laura Gómez" });
     const today = todayStr();
     const updated = store.registerPayment(m.id, { planId: plan.id, method: "Efectivo" });
-    assert.equal(updated.end_date, addDays(addMonths(today, 1), -1));
+    assert.equal(updated.end_date, addMonths(today, 1));
     assert.equal(updated.status, "activo");
+  });
+
+  test("pagar el 11 de noviembre vence el 11 de diciembre y admite códigos con cero inicial", () => {
+    const plan = store.listPlans().find((p) => p.months === 1);
+    const m = store.createMember({ name: "Alejandro Díaz", code: "06417" });
+    assert.equal(m.code, "06417");
+    const paid = store.registerPayment(m.id, {
+      planId: plan.id,
+      method: "Efectivo",
+      startDate: "2026-11-11",
+    });
+    assert.equal(paid.end_date, "2026-12-11");
+    const detail = store.memberDetail(m.id);
+    assert.equal(detail.payments[0].paid_on <= todayStr(), true);
+    assert.equal(store.checkIn("06417").firstName, "Alejandro");
+    assert.equal(store.checkIn("6417"), null, "el cero inicial forma parte del código");
   });
 
   test("renovar antes de vencer acumula desde el vencimiento actual", () => {
@@ -51,7 +67,7 @@ describe("store", () => {
     const m = store.createMember({ name: "Renueva Pronto" });
     const first = store.registerPayment(m.id, { planId: plan.id, method: "Tarjeta" });
     const second = store.registerPayment(m.id, { planId: plan.id, method: "Tarjeta" });
-    assert.equal(second.end_date, addDays(addMonths(addDays(first.end_date, 1), 1), -1));
+    assert.equal(second.end_date, addMonths(first.end_date, 1));
   });
 
   test("renovar después de vencer empieza hoy", () => {
@@ -60,7 +76,7 @@ describe("store", () => {
     store.registerPayment(m.id, { planId: plan.id, method: "Efectivo", startDate: "2020-01-01" });
     assert.equal(store.getMember(m.id).status, "vencido");
     const renewed = store.registerPayment(m.id, { planId: plan.id, method: "Efectivo" });
-    assert.equal(renewed.end_date, addDays(addMonths(todayStr(), 1), -1));
+    assert.equal(renewed.end_date, addMonths(todayStr(), 1));
   });
 
   test("estados según días restantes", () => {

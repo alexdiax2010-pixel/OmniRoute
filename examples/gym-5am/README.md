@@ -33,13 +33,13 @@ consola. Puedes cambiarlo después en **Administración → Ajustes**.
 
 ## Cómo funciona
 
-| Acción                 | Resultado                                                                                                                                                                                         |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Nuevo socio**        | Se genera un código único de 4 dígitos (o uno elegido de 4 a 8 dígitos). Puedes enviárselo por WhatsApp desde el mismo panel.                                                                     |
-| **Cobrar**             | Registra el monto, el método y el plan. Si la mensualidad sigue vigente, el nuevo periodo empieza al día siguiente del vencimiento; si ya venció, empieza hoy. Ejemplo: 12 nov → vence el 11 dic. |
-| **Entrada con código** | _Activo_: pasa. _Por vencer_ (5 días o menos, configurable): pasa y se le avisa. _Vencido_ o _sin pago_: acceso denegado.                                                                         |
-| **Avisos**             | Lista de quienes vencen pronto o vencieron hace menos de 30 días, con el mensaje listo para WhatsApp. Al enviarlo queda marcado como avisado.                                                     |
-| **Dar de baja**        | El código deja de funcionar y el historial de cobros se conserva.                                                                                                                                 |
+| Acción                 | Resultado                                                                                                                                                                                                                                                   |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Nuevo socio**        | Se genera un código único de 4 dígitos (o uno elegido de 4 a 8 dígitos). Puedes enviárselo por WhatsApp desde el mismo panel.                                                                                                                               |
+| **Cobrar**             | Registra el monto, el método y el plan. La mensualidad vence el mismo día del mes siguiente (pago el 11 nov → vence el 11 dic). Si se renueva antes de vencer, el nuevo periodo parte del vencimiento actual y conserva ese día; si ya venció, empieza hoy. |
+| **Entrada con código** | _Activo_: pasa. _Por vencer_ (5 días o menos, configurable): pasa y se le avisa. _Vencido_ o _sin pago_: acceso denegado.                                                                                                                                   |
+| **Avisos**             | Lista de quienes vencen pronto o vencieron hace menos de 30 días, con el mensaje listo para WhatsApp. Al enviarlo queda marcado como avisado.                                                                                                               |
+| **Dar de baja**        | El código deja de funcionar y el historial de cobros se conserva.                                                                                                                                                                                           |
 
 El sistema arranca con un plan **Mensual de $549 MXN** y el código de país de México (`52`) para
 WhatsApp. En **Ajustes** puedes cambiar el nombre del gimnasio, la moneda, el código de país para WhatsApp

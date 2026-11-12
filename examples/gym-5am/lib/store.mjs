@@ -308,14 +308,17 @@ export function createStore(path = ":memory:") {
       }
       const today = todayStr();
       let start = startDate || today;
-      if (!startDate && member.end_date && member.end_date >= today)
-        start = addDays(member.end_date, 1);
-      const end = addDays(addMonths(start, plan.months), -1);
+      // La mensualidad vence el mismo día del mes siguiente (pago el 11 → vence el 11).
+      // Renovar antes de vencer conserva ese día: el nuevo periodo parte del vencimiento actual.
+      if (!startDate && member.end_date && member.end_date >= today) start = member.end_date;
+      const end = addMonths(start, plan.months);
+      // Un cobro con fecha de inicio pasada se registra en esa fecha (pago capturado después).
+      const paidOn = startDate && startDate <= today ? startDate : today;
       const amount = amountCents ?? plan.price_cents;
       q(
         `INSERT INTO payments (member_id, plan_id, plan_name, months, amount_cents, method, period_start, period_end, note, paid_on)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-      ).run(memberId, plan.id, plan.name, plan.months, amount, method, start, end, note, today);
+      ).run(memberId, plan.id, plan.name, plan.months, amount, method, start, end, note, paidOn);
       q("UPDATE members SET end_date = ?, plan_id = ?, reminder_sent_at = NULL WHERE id = ?").run(
         end,
         plan.id,

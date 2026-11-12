@@ -71,9 +71,8 @@
   const periodFor = (member, plan, startDate) => {
     const today = state.meta.today;
     let start = startDate || today;
-    if (!startDate && member?.end_date && member.end_date >= today)
-      start = addDays(member.end_date, 1);
-    return { start, end: addDays(addMonths(start, plan.months), -1) };
+    if (!startDate && member?.end_date && member.end_date >= today) start = member.end_date;
+    return { start, end: addMonths(start, plan.months) };
   };
 
   // ---------- WhatsApp ----------
