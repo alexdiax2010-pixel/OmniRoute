@@ -1,0 +1,37 @@
+# Despliegue en Fly.io. Cambia "app" por un nombre libre antes de `fly launch`.
+app = "wellness-fitness-5am"
+primary_region = "qro"   # Querétaro, México
+
+[build]
+
+[env]
+  PORT = "8080"
+  DATA_DIR = "/data"
+  TZ = "America/Mexico_City"
+  SECURE_COOKIES = "1"
+  TRUST_PROXY = "1"
+
+# Disco persistente para la base de datos (SQLite) y las copias de seguridad.
+[mounts]
+  source = "gym_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  # Una sola máquina siempre encendida: SQLite no se comparte entre máquinas
+  # y la pantalla de entrada debe responder a las 5:00 sin arranque en frío.
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    path = "/api/health"
+    timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

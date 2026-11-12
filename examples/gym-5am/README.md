@@ -10,6 +10,9 @@ Sistema para la recepción del gimnasio:
 
 No tiene dependencias: solo necesita **Node.js 22.5 o superior** (usa el SQLite integrado de Node).
 
+> **¿Quieres publicarlo en internet con tu propio dominio?** Sigue la guía [`DEPLOY.md`](DEPLOY.md)
+> (Fly.io o servidor propio con HTTPS automático).
+
 ## Puesta en marcha
 
 ```bash

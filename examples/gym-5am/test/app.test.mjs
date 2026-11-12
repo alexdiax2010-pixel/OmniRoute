@@ -199,6 +199,12 @@ describe("API HTTP", () => {
     store.close();
   });
 
+  test("el endpoint de salud responde sin sesión", async () => {
+    const r = await call("/api/health", { auth: false });
+    assert.equal(r.status, 200);
+    assert.deepEqual(r.data, { ok: true });
+  });
+
   test("las rutas de administración exigen sesión", async () => {
     assert.equal((await call("/api/admin/members", { auth: false })).status, 401);
     assert.equal(

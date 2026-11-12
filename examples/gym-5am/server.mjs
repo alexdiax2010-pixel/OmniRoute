@@ -190,6 +190,9 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
   };
 
   // --- Público: entrada con código ---
+  // Comprobación de salud para el hosting (no expone datos).
+  route("GET", "/api/health", () => ({ ok: true }));
+
   route("GET", "/api/kiosk", async () => ({
     gymName: store.getSettings().gymName,
     hasPhoto: await access(join(PUBLIC, "img", "kiosk.jpg")).then(
@@ -616,7 +619,7 @@ if (isMain) {
 
   const port = Number(process.env.PORT) || 5050;
   const host = process.env.HOST || "0.0.0.0";
-  createServer(
+  const server = createServer(
     createApp({
       store,
       secureCookies: process.env.SECURE_COOKIES === "1",
@@ -625,4 +628,16 @@ if (isMain) {
   ).listen(port, host, () => {
     console.log(`Wellness Fitness 5AM en http://localhost:${port}  (administración: /admin)`);
   });
+
+  // Apagado ordenado: el hosting envía SIGTERM al reiniciar o desplegar una versión nueva.
+  const shutdown = (signal) => {
+    console.log(`${signal} recibido: cerrando el servidor…`);
+    server.close(() => {
+      store.close();
+      process.exit(0);
+    });
+    setTimeout(() => process.exit(0), 8000).unref();
+  };
+  process.on("SIGTERM", () => shutdown("SIGTERM"));
+  process.on("SIGINT", () => shutdown("SIGINT"));
 }

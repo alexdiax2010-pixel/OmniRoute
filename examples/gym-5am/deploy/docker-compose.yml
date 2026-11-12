@@ -1,0 +1,32 @@
+# Opción servidor propio (VPS): la app + Caddy, que obtiene y renueva el certificado HTTPS solo.
+# Uso: define DOMINIO y ADMIN_PIN en deploy/.env y ejecuta `docker compose up -d --build` en esta carpeta.
+services:
+  app:
+    build: ..
+    restart: unless-stopped
+    environment:
+      ADMIN_PIN: ${ADMIN_PIN:?Define ADMIN_PIN en deploy/.env}
+    volumes:
+      - gym_data:/data
+    expose:
+      - "8080"
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMINIO: ${DOMINIO:?Define DOMINIO en deploy/.env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  gym_data:
+  caddy_data:
+  caddy_config:
