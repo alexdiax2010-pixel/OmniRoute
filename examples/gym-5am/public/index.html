@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Entrada — Wellness Fitness 5AM</title>
+    <meta name="theme-color" content="#0c0d0b" />
+    <meta name="robots" content="noindex" />
+    <link
+      rel="preload"
+      href="fonts/Switzer-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/kiosk.css" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="kiosk">
+    <main class="stage">
+      <div class="stage__photo" aria-hidden="true">
+        <svg class="stage__barbell" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <radialGradient id="plate" cx="40%" cy="35%" r="70%">
+              <stop offset="0" stop-color="#2b2e29" />
+              <stop offset="1" stop-color="#0b0c0a" />
+            </radialGradient>
+          </defs>
+          <line x1="-60" y1="690" x2="1000" y2="250" stroke="#30332d" stroke-width="18" />
+          <line x1="-60" y1="690" x2="1000" y2="250" stroke="#4a4e45" stroke-width="3" />
+          <g transform="translate(190 610) rotate(-22)">
+            <ellipse rx="74" ry="190" fill="url(#plate)" stroke="#1c1e1a" stroke-width="6" />
+            <ellipse rx="46" ry="124" fill="none" stroke="#252822" stroke-width="4" />
+            <ellipse rx="14" ry="38" fill="#3a3d36" />
+          </g>
+          <g transform="translate(800 335) rotate(-22)">
+            <ellipse rx="64" ry="168" fill="url(#plate)" stroke="#1c1e1a" stroke-width="6" />
+            <ellipse rx="40" ry="106" fill="none" stroke="#252822" stroke-width="4" />
+            <ellipse rx="12" ry="32" fill="#3a3d36" />
+          </g>
+        </svg>
+        <div class="grain"></div>
+      </div>
+
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand__5am">5AM<b>.</b></span>
+          <span class="brand__sub">Wellness<br />Fitness</span>
+        </div>
+        <div class="clock" aria-live="off">
+          <span class="clock__time" data-clock>--:--</span>
+          <span class="clock__date" data-date></span>
+        </div>
+      </header>
+
+      <p class="vertical" aria-hidden="true">Alcanza tus metas de bienestar</p>
+
+      <h1 class="title">
+        <span>Entra</span>
+        <span class="title__mid">
+          <svg class="arrow" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M0 22 L0 0 L100 0 L100 100 L78 100 L78 38 L16 100 L0 84 L62 22 Z" />
+          </svg>
+          <span class="outline">con tu</span>
+        </span>
+        <span>código</span>
+      </h1>
+
+      <section class="pad" aria-labelledby="pad-label">
+        <p class="pad__label" id="pad-label">Escribe tu código de socio</p>
+        <form data-form autocomplete="off">
+          <label class="sr-only" for="code">Código de socio</label>
+          <input
+            id="code"
+            class="pad__input"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="8"
+            autocomplete="off"
+            data-code
+          />
+          <div class="pad__display" aria-hidden="true" data-display></div>
+          <div class="keys">
+            <button type="button" class="key" data-key="1">1</button>
+            <button type="button" class="key" data-key="2">2</button>
+            <button type="button" class="key" data-key="3">3</button>
+            <button type="button" class="key" data-key="4">4</button>
+            <button type="button" class="key" data-key="5">5</button>
+            <button type="button" class="key" data-key="6">6</button>
+            <button type="button" class="key" data-key="7">7</button>
+            <button type="button" class="key" data-key="8">8</button>
+            <button type="button" class="key" data-key="9">9</button>
+            <button type="button" class="key key--soft" data-key="del" aria-label="Borrar">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 5H9l-6 7 6 7h12V5ZM17 9l-6 6M11 9l6 6" />
+              </svg>
+            </button>
+            <button type="button" class="key" data-key="0">0</button>
+            <button type="submit" class="key key--go" aria-label="Entrar">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <div class="result" role="status" aria-live="assertive" hidden data-result>
+        <div class="result__inner">
+          <span class="result__icon" aria-hidden="true" data-result-icon></span>
+          <p class="result__kicker" data-result-kicker></p>
+          <h2 class="result__title" data-result-title></h2>
+          <p class="result__detail" data-result-detail></p>
+          <div class="result__bar"><span></span></div>
+        </div>
+      </div>
+
+      <a class="admin-link" href="/admin">Administración</a>
+    </main>
+    <script src="js/kiosk.js" defer></script>
+  </body>
+</html>

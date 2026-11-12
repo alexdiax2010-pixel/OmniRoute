@@ -1,0 +1,303 @@
+/* Wellness Fitness 5AM — estilos compartidos (entrada + administración).
+ * Tipografías: Anton (Google Fonts, OFL) para titulares; Switzer (Fontshare FFL, fonts/FFL.txt),
+ * la fuente autoalojada del UI kit de OmniRoute, para la interfaz. */
+
+@font-face {
+  font-family: "Switzer";
+  src: url("../fonts/Switzer-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #0c0d0b;
+  --surface: #141613;
+  --surface-2: #1b1d19;
+  --surface-3: #232620;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --text: #f4f5ef;
+  --muted: #a3a79b;
+  --faint: #6c7066;
+  --lime: #c8f53c;
+  --lime-ink: #121a00;
+  --lime-soft: rgba(200, 245, 60, 0.12);
+  --amber: #ffb547;
+  --amber-soft: rgba(255, 181, 71, 0.12);
+  --red: #ff5d4d;
+  --red-soft: rgba(255, 93, 77, 0.12);
+  --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --ui: "Switzer", "Helvetica Neue", Arial, sans-serif;
+  --radius: 14px;
+  --radius-lg: 28px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--ui);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+a {
+  color: inherit;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+[hidden] {
+  display: none !important;
+}
+:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 2px;
+}
+::selection {
+  background: var(--lime);
+  color: var(--lime-ink);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px currentColor;
+  -webkit-text-stroke-color: var(--text);
+}
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Marca ---------- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.brand__5am {
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.brand__5am b {
+  color: var(--lime);
+  font-weight: inherit;
+}
+.brand__sub {
+  font-size: 10px;
+  line-height: 1.15;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  font-size: 14px;
+  font-weight: 560;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    color 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+.btn:hover {
+  border-color: var(--text);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn--lime {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--lime-ink);
+}
+.btn--lime:hover {
+  background: #d6ff5c;
+  border-color: #d6ff5c;
+}
+.btn--danger {
+  color: var(--red);
+  border-color: rgba(255, 93, 77, 0.4);
+}
+.btn--danger:hover {
+  border-color: var(--red);
+}
+.btn--sm {
+  padding: 7px 12px;
+  font-size: 13px;
+}
+.btn--block {
+  width: 100%;
+}
+.btn--icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
+/* ---------- Campos ---------- */
+.field {
+  display: grid;
+  gap: 6px;
+}
+.field label,
+.field > span {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.input,
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  font-size: 15px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.input:focus,
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--lime);
+  box-shadow: 0 0 0 3px var(--lime-soft);
+}
+.field select option {
+  background: var(--surface);
+}
+.hint {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+/* ---------- Estados ---------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 560;
+  white-space: nowrap;
+}
+.pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.pill--activo {
+  color: var(--lime);
+  background: var(--lime-soft);
+}
+.pill--por_vencer {
+  color: var(--amber);
+  background: var(--amber-soft);
+}
+.pill--vencido {
+  color: var(--red);
+  background: var(--red-soft);
+}
+.pill--sin_pago {
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 200;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 560;
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.8);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease);
+  pointer-events: none;
+  max-width: calc(100vw - 32px);
+}
+.toast.is-on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.toast--error {
+  background: var(--red);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

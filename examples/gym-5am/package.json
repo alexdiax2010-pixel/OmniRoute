@@ -1,0 +1,14 @@
+{
+  "name": "wellness-fitness-5am",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Entrada con código, cobros y avisos de vencimiento para Wellness Fitness 5AM",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "start": "node --no-warnings server.mjs",
+    "test": "node --no-warnings --test test/*.test.mjs"
+  }
+}
