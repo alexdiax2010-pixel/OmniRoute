@@ -51,6 +51,25 @@ CREATE TABLE IF NOT EXISTS visits (
 CREATE INDEX IF NOT EXISTS idx_visits_day ON visits(day);
 CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS sessions (token TEXT PRIMARY KEY, expires_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS products (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  price_cents INTEGER NOT NULL CHECK (price_cents >= 0),
+  stock INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),
+  archived INTEGER NOT NULL DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS sales (
+  id INTEGER PRIMARY KEY,
+  product_id INTEGER NOT NULL REFERENCES products(id),
+  product_name TEXT NOT NULL,
+  qty INTEGER NOT NULL CHECK (qty > 0),
+  unit_cents INTEGER NOT NULL,
+  total_cents INTEGER NOT NULL,
+  method TEXT NOT NULL,
+  sold_on TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime'))
+);
+CREATE INDEX IF NOT EXISTS idx_sales_sold_on ON sales(sold_on);
 `;
 
 export const DEFAULT_SETTINGS = {
@@ -347,11 +366,95 @@ export function createStore(path = ":memory:") {
     q("UPDATE members SET reminder_sent_at = datetime('now', 'localtime') WHERE id = ?").run(id)
       .changes > 0;
 
+  // ---------- Tienda ----------
+  const listProducts = () =>
+    q(
+      "SELECT id, name, price_cents, stock FROM products WHERE archived = 0 ORDER BY name COLLATE NOCASE"
+    ).all();
+  const getProduct = (id) =>
+    q("SELECT id, name, price_cents, stock FROM products WHERE id = ? AND archived = 0").get(id);
+  const createProduct = ({ name, priceCents, stock }) => {
+    const r = q("INSERT INTO products (name, price_cents, stock) VALUES (?, ?, ?)").run(
+      name,
+      priceCents,
+      stock
+    );
+    return getProduct(Number(r.lastInsertRowid));
+  };
+  const updateProduct = (id, { name, priceCents, stock }) => {
+    const p = getProduct(id);
+    if (!p) return null;
+    q("UPDATE products SET name = ?, price_cents = ?, stock = ? WHERE id = ?").run(
+      name ?? p.name,
+      priceCents ?? p.price_cents,
+      stock ?? p.stock,
+      id
+    );
+    return getProduct(id);
+  };
+  const archiveProduct = (id) =>
+    q("UPDATE products SET archived = 1 WHERE id = ?").run(id).changes > 0;
+
+  // Vender descuenta existencias en la misma transacción: nunca se vende más de lo que hay.
+  const sellProduct = (id, { qty, method }) =>
+    tx(() => {
+      const p = getProduct(id);
+      if (!p) return null;
+      if (p.stock < qty) {
+        const err = new Error(`Solo quedan ${p.stock} en existencia`);
+        err.status = 409;
+        throw err;
+      }
+      q("UPDATE products SET stock = stock - ? WHERE id = ?").run(qty, id);
+      q(
+        "INSERT INTO sales (product_id, product_name, qty, unit_cents, total_cents, method, sold_on) VALUES (?, ?, ?, ?, ?, ?, ?)"
+      ).run(id, p.name, qty, p.price_cents, p.price_cents * qty, method, todayStr());
+      return getProduct(id);
+    });
+  const listSales = (month = todayStr().slice(0, 7)) =>
+    q("SELECT * FROM sales WHERE substr(sold_on, 1, 7) = ? ORDER BY id DESC").all(month);
+
+  // ---------- Estadísticas ----------
+  const stats = (monthsBack = 6) => {
+    const [y, m] = todayStr().split("-").map(Number);
+    const months = [];
+    for (let i = monthsBack - 1; i >= 0; i--) {
+      const d = new Date(Date.UTC(y, m - 1 - i, 1));
+      const key = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+      months.push({
+        month: key,
+        memberships: q(
+          "SELECT COALESCE(SUM(amount_cents), 0) s FROM payments WHERE substr(paid_on, 1, 7) = ?"
+        ).get(key).s,
+        shop: q(
+          "SELECT COALESCE(SUM(total_cents), 0) s FROM sales WHERE substr(sold_on, 1, 7) = ?"
+        ).get(key).s,
+      });
+    }
+    const byHour = q(
+      "SELECT CAST(substr(at, 12, 2) AS INTEGER) h, COUNT(*) n FROM visits WHERE day = ? AND allowed = 1 GROUP BY h"
+    ).all(todayStr());
+    const hours = Array.from({ length: 24 }, (_, h) => ({
+      hour: h,
+      n: byHour.find((r) => r.h === h)?.n || 0,
+    }));
+    return { months, hours };
+  };
+
+  // ---------- Copia de seguridad ----------
+  const backupTo = (file) => q("VACUUM INTO ?").run(file);
+
   // ---------- Resumen ----------
   const summary = () => {
     const members = listMembers();
     const count = (s) => members.filter((m) => m.status === s).length;
     const month = todayStr().slice(0, 7);
+    const membresiasMes = q(
+      "SELECT COALESCE(SUM(amount_cents), 0) s FROM payments WHERE substr(paid_on, 1, 7) = ?"
+    ).get(month).s;
+    const tiendaMes = q(
+      "SELECT COALESCE(SUM(total_cents), 0) s FROM sales WHERE substr(sold_on, 1, 7) = ?"
+    ).get(month).s;
     return {
       total: members.length,
       activos: count("activo"),
@@ -360,9 +463,9 @@ export function createStore(path = ":memory:") {
       sinPago: count("sin_pago"),
       entradasHoy: q("SELECT COUNT(*) n FROM visits WHERE day = ? AND allowed = 1").get(todayStr())
         .n,
-      ingresosMes: q(
-        "SELECT COALESCE(SUM(amount_cents), 0) s FROM payments WHERE substr(paid_on, 1, 7) = ?"
-      ).get(month).s,
+      ingresosMes: membresiasMes + tiendaMes,
+      membresiasMes,
+      tiendaMes,
       cobrosMes: q("SELECT COUNT(*) n FROM payments WHERE substr(paid_on, 1, 7) = ?").get(month).n,
     };
   };
@@ -394,6 +497,14 @@ export function createStore(path = ":memory:") {
     reminders,
     markReminderSent,
     summary,
+    listProducts,
+    createProduct,
+    updateProduct,
+    archiveProduct,
+    sellProduct,
+    listSales,
+    stats,
+    backupTo,
     close: () => db.close(),
   };
 }

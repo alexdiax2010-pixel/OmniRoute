@@ -208,6 +208,213 @@
   color: rgba(18, 26, 0, 0.7);
 }
 
+.kpi__sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(18, 26, 0, 0.75);
+}
+
+/* ---------- Gráficas ----------
+ * Paleta categórica validada para la superficie oscura con el validador de la skill dataviz:
+ * serie 1 #6f9412 (membresías) y serie 2 #3987e5 (tienda). El texto usa siempre los tokens de texto. */
+.viz {
+  --series-1: #6f9412;
+  --series-2: #3987e5;
+  overflow: visible;
+}
+.viz-row {
+  margin-bottom: 16px;
+}
+.viz__legend {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.viz__legend li,
+.viz__tip span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.viz__sw {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
+.viz__sw--1 {
+  background: var(--series-1);
+}
+.viz__sw--2 {
+  background: var(--series-2);
+}
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  height: 200px;
+  border-bottom: 1px solid var(--line-strong);
+  margin-bottom: 22px;
+}
+.bars--thin {
+  gap: 4px;
+}
+.bars__col {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  outline-offset: 4px;
+}
+.bars__stack {
+  width: 100%;
+  max-width: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.bars__seg {
+  display: block;
+  width: 100%;
+}
+.bars__seg:first-child {
+  border-radius: 4px 4px 0 0;
+}
+.bars__seg--1 {
+  background: var(--series-1);
+}
+.bars__seg--2 {
+  background: var(--series-2);
+}
+.bars__zero {
+  display: block;
+  height: 2px;
+  background: var(--line);
+}
+.bars__col:hover .bars__seg,
+.bars__col:focus-visible .bars__seg {
+  filter: brightness(1.25);
+}
+.bars__val {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 560;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.bars__x {
+  position: absolute;
+  top: calc(100% + 6px);
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.viz__tip {
+  position: absolute;
+  bottom: calc(100% - 20px);
+  left: 50%;
+  z-index: 5;
+  transform: translateX(-50%);
+  display: none;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface-3);
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.8);
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.viz__tip strong {
+  color: var(--text);
+  text-transform: capitalize;
+}
+.bars__col:hover .viz__tip,
+.bars__col:focus-visible .viz__tip {
+  display: grid;
+}
+.bars__col:first-child .viz__tip {
+  left: 0;
+  transform: none;
+}
+.bars__col:last-child .viz__tip {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+/* ---------- Tienda ---------- */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.product {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.product__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 10px;
+}
+.product h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.product__price {
+  font-family: var(--display);
+  font-size: 34px;
+  line-height: 1;
+}
+
+/* ---------- Recibo ---------- */
+.receipt {
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  padding: 6px 16px;
+  margin-bottom: 14px;
+}
+.receipt__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 14px;
+}
+.receipt__row span {
+  color: var(--muted);
+}
+.receipt__row:last-child {
+  border-bottom: 0;
+}
+.receipt__row--total strong {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--lime);
+}
+
 /* ---------- Tarjetas y tablas ---------- */
 .grid-2 {
   display: grid;

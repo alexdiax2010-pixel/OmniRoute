@@ -45,10 +45,22 @@ En **Ajustes** puedes cambiar el nombre del gimnasio, la moneda, el código de p
 (por ejemplo `52` para México), los días de antelación del aviso, el texto del recordatorio y los
 planes con sus precios.
 
+## Tienda, recibos y gráficas
+
+- **Tienda**: da de alta productos (agua, suplementos, ropa…) con precio y existencias. Cada venta
+  descuenta existencias, nunca permite vender más de lo que hay y suma a los ingresos del mes.
+- **Recibo**: al registrar un cobro aparece el recibo con el periodo pagado y un botón para
+  enviarlo por WhatsApp con la nueva fecha de vencimiento.
+- **Resumen**: ingresos de los últimos 6 meses (membresías y tienda) y entradas del día por hora.
+- **Pantalla de entrada**: muestra en grande los días restantes y emite un sonido distinto para
+  acceso permitido, aviso y acceso denegado.
+
 ## Datos y copias de seguridad
 
-Todo se guarda en `data/gym.db` (o en la carpeta que indiques con `DATA_DIR`). Para hacer una copia
-de seguridad, copia ese archivo con el servidor detenido o usa **Exportar socios (CSV)**.
+Todo se guarda en `data/gym.db` (o en la carpeta que indiques con `DATA_DIR`). El servidor crea una
+**copia de seguridad automática cada día** en `data/backups/gym-AAAA-MM-DD.db` y conserva las 14 más
+recientes. Para restaurar una, detén el servidor y copia ese archivo sobre `data/gym.db`. Conviene
+guardar además una copia fuera del ordenador de recepción (USB o nube).
 
 ## Variables de entorno
 

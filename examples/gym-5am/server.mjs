@@ -1,7 +1,7 @@
 // Wellness Fitness 5AM — servidor de entrada y administración.
 // Sin dependencias: node:http + node:sqlite (Node >= 22.5). Uso: node --no-warnings server.mjs
 import { createServer } from "node:http";
-import { readFile, mkdir, access } from "node:fs/promises";
+import { readFile, mkdir, access, readdir, unlink } from "node:fs/promises";
 import { randomInt } from "node:crypto";
 import { extname, join, normalize, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -417,6 +417,73 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
     { admin: true }
   );
 
+  // --- Tienda ---
+  const productInput = (b, partial = false) => ({
+    name:
+      partial && b.name === undefined
+        ? undefined
+        : str(b.name, "nombre", { required: true, max: 60 }),
+    priceCents:
+      partial && b.price === undefined
+        ? undefined
+        : (money(b.price, "precio") ?? fail(400, "El precio es obligatorio")),
+    stock:
+      partial && b.stock === undefined
+        ? undefined
+        : int(b.stock, "existencias", { min: 0, max: 100000 }),
+  });
+  route("GET", "/api/admin/products", () => store.listProducts(), { admin: true });
+  route(
+    "POST",
+    "/api/admin/products",
+    async ({ req }) => store.createProduct(productInput(await readJson(req))),
+    {
+      admin: true,
+    }
+  );
+  route(
+    "PATCH",
+    "/api/admin/products/:id",
+    async ({ req, params }) =>
+      store.updateProduct(params.id, productInput(await readJson(req), true)) ||
+      fail(404, "Producto no encontrado"),
+    { admin: true }
+  );
+  route(
+    "DELETE",
+    "/api/admin/products/:id",
+    ({ params }) => ({
+      ok: store.archiveProduct(params.id) || fail(404, "Producto no encontrado"),
+    }),
+    { admin: true }
+  );
+  route(
+    "POST",
+    "/api/admin/products/:id/sell",
+    async ({ req, params }) => {
+      const b = await readJson(req);
+      if (!PAYMENT_METHODS.includes(b.method)) fail(400, "Método de pago no válido");
+      return (
+        store.sellProduct(params.id, {
+          qty: int(b.qty, "cantidad", { min: 1, max: 1000 }),
+          method: b.method,
+        }) || fail(404, "Producto no encontrado")
+      );
+    },
+    { admin: true }
+  );
+  route(
+    "GET",
+    "/api/admin/sales",
+    ({ url }) => {
+      const month = url.searchParams.get("month") || todayStr().slice(0, 7);
+      if (!/^\d{4}-\d{2}$/.test(month)) fail(400, "Mes no válido");
+      return store.listSales(month);
+    },
+    { admin: true }
+  );
+  route("GET", "/api/admin/stats", () => store.stats(), { admin: true });
+
   route(
     "GET",
     "/api/admin/export/members.csv",
@@ -524,6 +591,28 @@ if (isMain) {
         : `\n  PIN de administración inicial: ${pin}\n  Cámbialo en Administración → Ajustes.\n`
     );
   }
+
+  // Copia de seguridad diaria en data/backups (se conservan las 14 más recientes).
+  const backupDir = join(dataDir, "backups");
+  await mkdir(backupDir, { recursive: true });
+  const backup = async () => {
+    try {
+      const file = join(backupDir, `gym-${todayStr()}.db`);
+      const exists = await access(file).then(
+        () => true,
+        () => false
+      );
+      if (!exists) store.backupTo(file);
+      const old = (await readdir(backupDir))
+        .filter((f) => /^gym-\d{4}-\d{2}-\d{2}\.db$/.test(f))
+        .sort();
+      for (const f of old.slice(0, Math.max(0, old.length - 14))) await unlink(join(backupDir, f));
+    } catch (err) {
+      console.error("[backup] no se pudo crear la copia de seguridad:", err.message);
+    }
+  };
+  await backup();
+  setInterval(backup, 60 * 60 * 1000).unref();
 
   const port = Number(process.env.PORT) || 5050;
   const host = process.env.HOST || "0.0.0.0";

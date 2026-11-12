@@ -307,6 +307,23 @@
   margin-bottom: 28px;
   box-shadow: 0 0 0 14px color-mix(in srgb, var(--result-accent) 18%, transparent);
 }
+.result__icon--days {
+  width: 150px;
+  height: 150px;
+  font-size: 84px;
+  margin-bottom: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.result__days {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(244, 245, 239, 0.7);
+  margin-bottom: 22px;
+}
+.result__days:empty {
+  display: none;
+}
 .result__kicker {
   font-size: 14px;
   letter-spacing: 0.22em;

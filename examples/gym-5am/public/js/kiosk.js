@@ -109,10 +109,43 @@
       (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]
     );
 
-  const show = ({ tone, icon, kicker, title, detail }) => {
+  // Sonido corto de confirmación (Web Audio, sin archivos). Se activa tras la primera pulsación.
+  let audio;
+  const beep = (tone) => {
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      const notes = tone === "ok" ? [660, 990] : tone === "warn" ? [660, 660] : [220, 165];
+      notes.forEach((freq, i) => {
+        const osc = audio.createOscillator();
+        const gain = audio.createGain();
+        const t = audio.currentTime + i * 0.14;
+        osc.type = tone === "deny" ? "square" : "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(0.18, t + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.13);
+        osc.connect(gain).connect(audio.destination);
+        osc.start(t);
+        osc.stop(t + 0.14);
+      });
+    } catch {
+      /* sin audio disponible: la pantalla funciona igual */
+    }
+  };
+
+  const show = ({ tone, icon, kicker, title, detail, daysLeft }) => {
+    beep(tone);
     result.className = `result result--${tone}`;
     result.style.setProperty("--result-ms", `${RESULT_MS}ms`);
-    $("[data-result-icon]").textContent = icon;
+    const iconEl = $("[data-result-icon]");
+    const hasDays = Number.isInteger(daysLeft) && daysLeft >= 0;
+    iconEl.classList.toggle("result__icon--days", hasDays);
+    iconEl.textContent = hasDays ? daysLeft : icon;
+    $("[data-result-days]").textContent = hasDays
+      ? daysLeft === 1
+        ? "día restante"
+        : "días restantes"
+      : "";
     $("[data-result-kicker]").textContent = kicker;
     $("[data-result-title]").textContent = title;
     $("[data-result-detail]").innerHTML = detail;
@@ -171,6 +204,7 @@
         show({
           tone: "ok",
           icon: "↗",
+          daysLeft: data.daysLeft,
           kicker: "Acceso permitido",
           title: `¡Vamos, ${data.firstName}!`,
           detail: `Tu mensualidad está activa hasta el <strong>${fmtDate(data.endDate)}</strong>.`,
@@ -179,6 +213,7 @@
         show({
           tone: "warn",
           icon: "!",
+          daysLeft: data.daysLeft,
           kicker: "Acceso permitido · Renueva pronto",
           title: `Hola, ${data.firstName}`,
           detail:

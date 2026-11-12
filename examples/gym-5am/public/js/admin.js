@@ -178,6 +178,7 @@
     resumen: "Resumen",
     socios: "Socios",
     cobros: "Cobros",
+    tienda: "Tienda",
     avisos: "Avisos",
     entradas: "Entradas",
     ajustes: "Ajustes",
@@ -232,21 +233,174 @@
           <tbody>${rows.map(memberRow).join("")}</tbody></table></div>`
       : `<p class="empty">No hay socios que mostrar.</p>`;
 
+  // ---------- Gráficas (HTML/CSS, sin librerías) ----------
+  const monthLabel = (key) => fmtDate(`${key}-01`, { month: "short" }).replace(".", "");
+  const PLOT = 150; // alto del área de barras en px
+  function incomeChart(months) {
+    const max = Math.max(...months.map((m) => m.memberships + m.shop), 1);
+    const px = (v) => (v ? Math.max(Math.round((v / max) * PLOT), 3) : 0);
+    return `
+      <div class="bars" role="img" aria-label="Ingresos por mes, membresías y tienda">
+        ${months
+          .map((m) => {
+            const total = m.memberships + m.shop;
+            return `<div class="bars__col" tabindex="0">
+              <span class="bars__val">${total ? money(total) : ""}</span>
+              <div class="bars__stack">
+                ${m.shop ? `<span class="bars__seg bars__seg--2" style="height:${px(m.shop)}px"></span>` : ""}
+                ${m.memberships ? `<span class="bars__seg bars__seg--1" style="height:${px(m.memberships)}px"></span>` : ""}
+                ${total ? "" : `<span class="bars__zero"></span>`}
+              </div>
+              <span class="bars__x">${esc(monthLabel(m.month))}</span>
+              <div class="viz__tip"><strong>${esc(fmtDate(`${m.month}-01`, { month: "long", year: "numeric" }))}</strong>
+                <span><i class="viz__sw viz__sw--1"></i>Membresías ${money(m.memberships)}</span>
+                <span><i class="viz__sw viz__sw--2"></i>Tienda ${money(m.shop)}</span>
+                <span>Total ${money(total)}</span></div>
+            </div>`;
+          })
+          .join("")}
+      </div>
+      <table class="sr-only"><caption>Ingresos por mes</caption><thead><tr><th>Mes</th><th>Membresías</th><th>Tienda</th></tr></thead>
+        <tbody>${months.map((m) => `<tr><td>${esc(m.month)}</td><td>${money(m.memberships)}</td><td>${money(m.shop)}</td></tr>`).join("")}</tbody></table>`;
+  }
+  function hoursChart(hours) {
+    const open = hours.filter((h) => h.hour >= 5 && h.hour <= 22);
+    const max = Math.max(...open.map((h) => h.n), 1);
+    const peak = open.reduce((a, h) => (h.n > a.n ? h : a), open[0]);
+    return `
+      <div class="bars bars--thin" role="img" aria-label="Entradas permitidas por hora">
+        ${open
+          .map(
+            (h) => `<div class="bars__col" tabindex="0">
+              <span class="bars__val">${h.n && h.hour === peak.hour ? h.n : ""}</span>
+              <div class="bars__stack">${
+                h.n
+                  ? `<span class="bars__seg bars__seg--1" style="height:${Math.max(Math.round((h.n / max) * PLOT), 3)}px"></span>`
+                  : `<span class="bars__zero"></span>`
+              }</div>
+              <span class="bars__x">${h.hour % 3 === 2 ? `${h.hour}h` : ""}</span>
+              <div class="viz__tip"><strong>${h.hour}:00–${h.hour}:59</strong><span>${h.n} ${h.n === 1 ? "entrada" : "entradas"}</span></div>
+            </div>`
+          )
+          .join("")}
+      </div>
+      <table class="sr-only"><caption>Entradas por hora</caption><thead><tr><th>Hora</th><th>Entradas</th></tr></thead>
+        <tbody>${open.map((h) => `<tr><td>${h.hour}:00</td><td>${h.n}</td></tr>`).join("")}</tbody></table>`;
+  }
+
+  const receiptText = (m, p) =>
+    `Hola ${m.name.split(/\s+/)[0]}, recibimos tu pago de ${money(p.amount_cents)} (${p.plan_name}, ${p.method.toLowerCase()}) en ${state.meta.settings.gymName}. Tu mensualidad queda activa del ${fmtDate(p.period_start, { day: "numeric", month: "long" })} al ${fmtDate(p.period_end, { day: "numeric", month: "long", year: "numeric" })}. ¡Gracias y nos vemos a las 5AM!`;
+
+  function receiptModal(m, p) {
+    const text = receiptText(m, p);
+    const link = waLink(m.phone, text);
+    openModal(`
+      <h2>Cobro registrado</h2>
+      <div class="receipt">
+        <div class="receipt__row"><span>Socio</span><strong>${esc(m.name)}</strong></div>
+        <div class="receipt__row"><span>Plan</span><strong>${esc(p.plan_name)}</strong></div>
+        <div class="receipt__row"><span>Método</span><strong>${esc(p.method)}</strong></div>
+        <div class="receipt__row"><span>Periodo</span><strong>${fmtDate(p.period_start)} → ${fmtDate(p.period_end)}</strong></div>
+        <div class="receipt__row receipt__row--total"><span>Total cobrado</span><strong>${money(p.amount_cents)}</strong></div>
+      </div>
+      <p class="preview">Activo/a hasta el <strong>${fmtDate(m.end_date, { day: "numeric", month: "long", year: "numeric" })}</strong></p>
+      <div class="modal__foot">
+        <button type="button" class="btn" data-copy="${esc(text)}">Copiar recibo</button>
+        ${link ? `<a class="btn wa" href="${esc(link)}" target="_blank" rel="noopener">Enviar recibo por WhatsApp</a>` : ""}
+        <button type="button" class="btn btn--lime" data-close-modal>Listo</button>
+      </div>`);
+  }
+
+  function productModal(p) {
+    openModal(`
+      <h2>${p ? "Editar producto" : "Nuevo producto"}</h2>
+      <form data-product class="stack">
+        <div class="form-grid">
+          <label class="field full"><span>Nombre</span><input name="name" required maxlength="60" value="${esc(p?.name || "")}" autocomplete="off" /></label>
+          <label class="field"><span>Precio</span><input name="price" type="number" min="0" step="0.01" required value="${p ? p.price_cents / 100 : ""}" /></label>
+          <label class="field"><span>Existencias</span><input name="stock" type="number" min="0" step="1" required value="${p ? p.stock : 0}" /></label>
+        </div>
+        <div class="modal__foot">
+          ${p ? `<button type="button" class="btn btn--danger" data-action="del-product" data-id="${p.id}" style="margin-right:auto">Eliminar</button>` : ""}
+          <button type="button" class="btn" data-close-modal>Cancelar</button>
+          <button class="btn btn--lime" type="submit">Guardar</button></div>
+      </form>`);
+    $("[data-product]", modal).addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      try {
+        const body = { name: f.name.value, price: f.price.value, stock: f.stock.value };
+        await api(p ? `/api/admin/products/${p.id}` : "/api/admin/products", {
+          method: p ? "PATCH" : "POST",
+          body,
+        });
+        closeModal();
+        toast("Producto guardado");
+        render();
+      } catch (ex) {
+        toast(ex.message, true);
+      }
+    });
+  }
+
+  function sellModal(p) {
+    openModal(`
+      <h2>Vender</h2>
+      <div class="detail-head"><div><p><strong>${esc(p.name)}</strong></p><p class="muted" style="font-size:14px">${money(p.price_cents)} c/u · ${p.stock} en existencia</p></div></div>
+      <form data-sell class="stack">
+        <div class="form-grid">
+          <label class="field"><span>Cantidad</span><input name="qty" type="number" min="1" max="${p.stock}" step="1" value="1" required /></label>
+          <label class="field"><span>Método de pago</span><select name="method">${methodOptions()}</select></label>
+        </div>
+        <p class="preview" data-sell-total></p>
+        <div class="modal__foot"><button type="button" class="btn" data-close-modal>Cancelar</button>
+          <button class="btn btn--lime" type="submit">Registrar venta</button></div>
+      </form>`);
+    const form = $("[data-sell]", modal);
+    const upd = () =>
+      ($("[data-sell-total]", form).innerHTML =
+        `Total: <strong>${money(p.price_cents * (Number(form.qty.value) || 0))}</strong>`);
+    form.qty.addEventListener("input", upd);
+    upd();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      try {
+        await api(`/api/admin/products/${p.id}/sell`, {
+          method: "POST",
+          body: { qty: form.qty.value, method: form.method.value },
+        });
+        closeModal();
+        toast(`Venta registrada: ${form.qty.value} × ${p.name}`);
+        render();
+      } catch (ex) {
+        toast(ex.message, true);
+      }
+    });
+  }
+
   // ---------- Vistas ----------
   const VIEWS = {
     async resumen() {
-      const [s, rem, visits] = await Promise.all([
+      const [s, rem, visits, st] = await Promise.all([
         api("/api/admin/summary"),
         api("/api/admin/reminders"),
         api(`/api/admin/visits?day=${state.meta.today}`),
+        api("/api/admin/stats"),
       ]);
       panel.innerHTML = `
         <div class="kpis">
-          <button class="kpi kpi--feature" data-goto="cobros"><span class="kpi__label">Ingresos del mes</span><span class="kpi__value">${money(s.ingresosMes)}</span></button>
+          <button class="kpi kpi--feature" data-goto="cobros"><span class="kpi__label">Ingresos del mes</span><span class="kpi__value">${money(s.ingresosMes)}</span><span class="kpi__sub">Membresías ${money(s.membresiasMes)} · Tienda ${money(s.tiendaMes)}</span></button>
           <button class="kpi kpi--lime" data-goto="socios" data-filter="activo"><span class="kpi__label">Activos</span><span class="kpi__value">${s.activos}</span></button>
           <button class="kpi kpi--amber" data-goto="socios" data-filter="por_vencer"><span class="kpi__label">Por vencer</span><span class="kpi__value">${s.porVencer}</span></button>
           <button class="kpi kpi--red" data-goto="socios" data-filter="vencido"><span class="kpi__label">Vencidos</span><span class="kpi__value">${s.vencidos}</span></button>
           <button class="kpi" data-goto="entradas"><span class="kpi__label">Entradas hoy</span><span class="kpi__value">${s.entradasHoy}</span></button>
+        </div>
+        <div class="grid-2 viz-row">
+          <div class="card viz"><div class="card__head"><h2>Ingresos de los últimos 6 meses</h2>
+            <ul class="viz__legend"><li><i class="viz__sw viz__sw--1"></i>Membresías</li><li><i class="viz__sw viz__sw--2"></i>Tienda</li></ul></div>
+            <div class="card__body">${incomeChart(st.months)}</div></div>
+          <div class="card viz"><div class="card__head"><h2>Entradas de hoy por hora</h2><span class="muted">${s.entradasHoy} en total</span></div>
+            <div class="card__body">${hoursChart(st.hours)}</div></div>
         </div>
         <div class="grid-2">
           <div class="card">
@@ -320,6 +474,54 @@
         `/api/admin/members?filter=${state.filter}&q=${encodeURIComponent(state.search)}`
       );
       $("[data-members]", panel).innerHTML = membersTable(rows);
+    },
+
+    async tienda() {
+      const [products, sales] = await Promise.all([
+        api("/api/admin/products"),
+        api(`/api/admin/sales?month=${state.month}`),
+      ]);
+      panel._products = products;
+      const total = sales.reduce((a, v) => a + v.total_cents, 0);
+      panel.innerHTML = `
+        <div class="toolbar">
+          <p class="muted">Vende agua, suplementos, ropa o accesorios. Cada venta descuenta existencias y suma a los ingresos del mes.</p>
+          <span class="toolbar__spacer"></span>
+          <button class="btn" data-action="new-product">+ Producto</button>
+        </div>
+        ${
+          products.length
+            ? `<div class="products">${products
+                .map(
+                  (p) => `<article class="product">
+                    <div class="product__top"><h3>${esc(p.name)}</h3>
+                      <button class="btn btn--sm" data-action="edit-product" data-id="${p.id}">Editar</button></div>
+                    <p class="product__price">${money(p.price_cents)}</p>
+                    <p class="product__stock"><span class="pill ${p.stock === 0 ? "pill--vencido" : p.stock <= 3 ? "pill--por_vencer" : "pill--sin_pago"}">${
+                      p.stock === 0 ? "Agotado" : `${p.stock} en existencia`
+                    }</span></p>
+                    <button class="btn btn--lime btn--block" data-action="sell" data-id="${p.id}" ${p.stock === 0 ? "disabled" : ""}>Vender</button>
+                  </article>`
+                )
+                .join("")}</div>`
+            : `<div class="card"><p class="empty">Aún no hay productos. Pulsa <strong>+ Producto</strong> para añadir el primero.</p></div>`
+        }
+        <div class="card" style="margin-top:20px">
+          <div class="card__head"><h2>Ventas de ${esc(fmtDate(`${state.month}-01`, { month: "long", year: "numeric" }))}</h2><span class="total">${money(total)}</span></div>
+          ${
+            sales.length
+              ? `<div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Producto</th><th class="num">Cant.</th><th>Método</th><th class="num">Total</th></tr></thead>
+                <tbody>${sales
+                  .map(
+                    (
+                      v
+                    ) => `<tr><td>${fmtDateTime(v.created_at)}</td><td>${esc(v.product_name)}</td><td class="num">${v.qty}</td>
+                      <td>${esc(v.method)}</td><td class="num"><strong>${money(v.total_cents)}</strong></td></tr>`
+                  )
+                  .join("")}</tbody></table></div>`
+              : `<p class="empty">Sin ventas este mes.</p>`
+          }
+        </div>`;
     },
 
     async cobros() {
@@ -670,10 +872,8 @@
             startDate: getStart(),
           },
         });
-        closeModal();
-        toast(
-          `Cobro registrado. ${updated.name.split(/\s+/)[0]} queda activo/a hasta el ${fmtDate(updated.end_date)}.`
-        );
+        const detail = await api(`/api/admin/members/${id}`);
+        receiptModal(updated, detail.payments[0]);
         render();
       } catch (ex) {
         toast(ex.message, true);
@@ -806,6 +1006,19 @@
           await api(`/api/admin/members/${id}/reminded`, { method: "POST", body: {} });
           setTimeout(render, 400);
           return;
+        }
+        case "new-product":
+          return productModal(null);
+        case "edit-product":
+          return productModal((panel._products || []).find((p) => p.id === id));
+        case "sell":
+          return sellModal((panel._products || []).find((p) => p.id === id));
+        case "del-product": {
+          if (!confirm("¿Eliminar este producto? El historial de ventas se conserva.")) return;
+          await api(`/api/admin/products/${id}`, { method: "DELETE" });
+          closeModal();
+          toast("Producto eliminado");
+          return render();
         }
         case "copy-reminder": {
           const m = (panel._reminders || []).find((r) => r.id === id);

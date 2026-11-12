@@ -95,6 +95,46 @@ describe("store", () => {
     assert.ok(visits.some((v) => v.name === "Pedro Vencido" && v.allowed === 0));
   });
 
+  test("la tienda descuenta existencias y no vende más de lo que hay", () => {
+    const p = store.createProduct({ name: "Proteína 1 kg", priceCents: 4500, stock: 3 });
+    assert.equal(store.sellProduct(p.id, { qty: 2, method: "Efectivo" }).stock, 1);
+    assert.throws(() => store.sellProduct(p.id, { qty: 2, method: "Efectivo" }), /Solo quedan 1/);
+    assert.equal(
+      store.listProducts().find((x) => x.id === p.id).stock,
+      1,
+      "una venta rechazada no cambia existencias"
+    );
+    const sales = store.listSales();
+    assert.equal(sales.length, 1);
+    assert.equal(sales[0].total_cents, 9000);
+    assert.equal(store.sellProduct(999999, { qty: 1, method: "Efectivo" }), null);
+  });
+
+  test("el resumen y las estadísticas suman membresías y tienda", () => {
+    const s = store.summary();
+    assert.equal(s.tiendaMes, 9000);
+    assert.equal(s.ingresosMes, s.membresiasMes + s.tiendaMes);
+    const st = store.stats();
+    assert.equal(st.months.length, 6);
+    assert.equal(st.months.at(-1).month, todayStr().slice(0, 7));
+    assert.equal(st.months.at(-1).shop, 9000);
+    assert.equal(st.hours.length, 24);
+    assert.ok(st.hours.reduce((a, h) => a + h.n, 0) >= 1);
+  });
+
+  test("la copia de seguridad genera una base de datos legible", async () => {
+    const { mkdtemp, rm } = await import("node:fs/promises");
+    const { tmpdir } = await import("node:os");
+    const { join } = await import("node:path");
+    const dir = await mkdtemp(join(tmpdir(), "gym5am-"));
+    const file = join(dir, "copia.db");
+    store.backupTo(file);
+    const copy = createStore(file);
+    assert.equal(copy.listMembers().length, store.listMembers().length);
+    copy.close();
+    await rm(dir, { recursive: true, force: true });
+  });
+
   test("el PIN se guarda con hash y se verifica", () => {
     store.setPin("4321");
     assert.ok(store.checkPin("4321"));
@@ -198,6 +238,37 @@ describe("API HTTP", () => {
     });
     assert.equal(r.status, 400);
     assert.equal((await call("/api/admin/members")).data.length, before);
+  });
+
+  test("tienda por HTTP: alta, venta y existencias insuficientes", async () => {
+    const p = await call("/api/admin/products", {
+      method: "POST",
+      body: { name: "Agua 600 ml", price: "1.5", stock: 2 },
+    });
+    assert.equal(p.status, 200);
+    assert.equal(p.data.price_cents, 150);
+    const sold = await call(`/api/admin/products/${p.data.id}/sell`, {
+      method: "POST",
+      body: { qty: 2, method: "Tarjeta" },
+    });
+    assert.equal(sold.data.stock, 0);
+    const over = await call(`/api/admin/products/${p.data.id}/sell`, {
+      method: "POST",
+      body: { qty: 1, method: "Tarjeta" },
+    });
+    assert.equal(over.status, 409);
+    assert.equal(
+      (
+        await call(`/api/admin/products/${p.data.id}/sell`, {
+          method: "POST",
+          body: { qty: 0, method: "Tarjeta" },
+        })
+      ).status,
+      400
+    );
+    assert.equal((await call("/api/admin/products", { auth: false })).status, 401);
+    const stats = await call("/api/admin/stats");
+    assert.equal(stats.data.months.at(-1).shop, 300);
   });
 
   test("validación de entradas", async () => {
