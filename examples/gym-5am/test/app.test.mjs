@@ -267,6 +267,55 @@ describe("store", () => {
     assert.equal(r.streak, undefined, "a un acceso denegado no se le muestran estadísticas");
   });
 
+  test("ranking de rachas y frases motivadoras", () => {
+    const t = todayStr();
+    const plan = store.listPlans()[0];
+    const ins = store.db.prepare("INSERT INTO visits (member_id, day, allowed) VALUES (?, ?, ?)");
+    const mk = (name, days, allowed = 1) => {
+      const m = store.createMember({ name });
+      store.registerPayment(m.id, { planId: plan.id, method: "Efectivo" });
+      days.forEach((d) => ins.run(m.id, addDays(t, d), allowed));
+      return m;
+    };
+    mk("Zoe Constante Uno", [0, -1, -2, -3, -4]);
+    mk("Yago Ayer Dos", [-1, -2, -3]);
+    mk("Xime Rota Tres", [0, -2, -3]);
+    mk("Walter Denegado", [0, -1, -2], 0);
+    const board = store.streakBoard();
+    const byName = Object.fromEntries(board.map((m) => [m.name, m]));
+    assert.equal(byName["Zoe Constante Uno"].streak, 5);
+    assert.equal(byName["Zoe Constante Uno"].cameToday, true);
+    assert.equal(byName["Yago Ayer Dos"].streak, 3, "una racha que termina ayer sigue viva");
+    assert.equal(
+      byName["Xime Rota Tres"],
+      undefined,
+      "un día sin venir rompe la racha; 1 día no entra al ranking"
+    );
+    assert.equal(byName["Walter Denegado"], undefined, "las entradas denegadas no cuentan");
+    const zoeIdx = board.findIndex((m) => m.name === "Zoe Constante Uno");
+    const yagoIdx = board.findIndex((m) => m.name === "Yago Ayer Dos");
+    assert.ok(zoeIdx < yagoIdx, "ordenado de mayor a menor");
+
+    const pub = store.publicContent();
+    assert.ok(
+      pub.streaks.some((m) => m.name === "Zoe C." && m.streak === 5),
+      "en público solo nombre e inicial"
+    );
+    assert.ok(!JSON.stringify(pub.streaks).includes("Constante Uno"));
+    store.updateSettings({ showStreaks: "0" });
+    assert.deepEqual(store.publicContent().streaks, []);
+    store.updateSettings({ showStreaks: "1" });
+
+    const phrases = store.listPhrases();
+    assert.ok(phrases.length >= 20, "trae frases iniciales");
+    const added = store.savePhrase(null, { text: "Hoy también cuenta." });
+    store.savePhrase(phrases[0].id, { active: false });
+    const pubPhrases = store.publicContent().phrases;
+    assert.ok(pubPhrases.includes("Hoy también cuenta."));
+    assert.ok(!pubPhrases.includes(phrases[0].text), "las frases desactivadas no se muestran");
+    assert.ok(store.deletePhrase(added.id));
+  });
+
   test("el PIN se guarda con hash y se verifica", () => {
     store.setPin("4321");
     assert.ok(store.checkPin("4321"));
@@ -483,6 +532,33 @@ describe("API HTTP", () => {
         })
       ).status,
       400
+    );
+  });
+
+  test("motivación por HTTP: frases y rachas", async () => {
+    assert.equal((await call("/api/admin/phrases", { auth: false })).status, 401);
+    const added = await call("/api/admin/phrases", {
+      method: "POST",
+      body: { text: "A las 5AM se construye el día." },
+    });
+    assert.equal(added.status, 200);
+    assert.equal(
+      (await call("/api/admin/phrases", { method: "POST", body: { text: "" } })).status,
+      400
+    );
+    let kiosk = await call("/api/kiosk", { auth: false });
+    assert.ok(kiosk.data.phrases.includes("A las 5AM se construye el día."));
+    assert.ok(Array.isArray(kiosk.data.streaks));
+    await call(`/api/admin/phrases/${added.data.id}`, { method: "PATCH", body: { active: false } });
+    kiosk = await call("/api/kiosk", { auth: false });
+    assert.ok(!kiosk.data.phrases.includes("A las 5AM se construye el día."));
+    const streaks = await call("/api/admin/streaks");
+    assert.equal(streaks.status, 200);
+    const off = await call("/api/admin/settings", { method: "PUT", body: { showStreaks: false } });
+    assert.equal(off.data.settings.showStreaks, "0");
+    assert.equal(
+      (await call(`/api/admin/phrases/${added.data.id}`, { method: "DELETE" })).status,
+      200
     );
   });
 

@@ -408,6 +408,7 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
           b.warnDays === undefined
             ? undefined
             : String(int(b.warnDays, "días de aviso", { min: 1, max: 30 })),
+        showStreaks: b.showStreaks === undefined ? undefined : b.showStreaks ? "1" : "0",
       };
       if (patch.countryCode && !/^\d{1,4}$/.test(patch.countryCode))
         fail(400, "Código de país no válido");
@@ -464,6 +465,39 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
         "Content-Disposition": 'attachment; filename="plantilla-socios.csv"',
       },
     }),
+    { admin: true }
+  );
+
+  // --- Motivación: rachas y frases ---
+  route("GET", "/api/admin/streaks", () => store.streakBoard(50), { admin: true });
+  route("GET", "/api/admin/phrases", () => store.listPhrases(), { admin: true });
+  const phraseInput = (b, partial = false) => ({
+    text:
+      partial && b.text === undefined
+        ? undefined
+        : str(b.text, "frase", { required: true, max: 160 }),
+    active: b.active === undefined ? undefined : Boolean(b.active),
+  });
+  route(
+    "POST",
+    "/api/admin/phrases",
+    async ({ req }) => store.savePhrase(null, phraseInput(await readJson(req))),
+    {
+      admin: true,
+    }
+  );
+  route(
+    "PATCH",
+    "/api/admin/phrases/:id",
+    async ({ req, params }) =>
+      store.savePhrase(params.id, phraseInput(await readJson(req), true)) ||
+      fail(404, "Frase no encontrada"),
+    { admin: true }
+  );
+  route(
+    "DELETE",
+    "/api/admin/phrases/:id",
+    ({ params }) => ({ ok: store.deletePhrase(params.id) || fail(404, "Frase no encontrada") }),
     { admin: true }
   );
 

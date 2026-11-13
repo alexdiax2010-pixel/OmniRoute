@@ -58,6 +58,11 @@ CREATE TABLE IF NOT EXISTS products (
   stock INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),
   archived INTEGER NOT NULL DEFAULT 0
 );
+CREATE TABLE IF NOT EXISTS phrases (
+  id INTEGER PRIMARY KEY,
+  text TEXT NOT NULL,
+  active INTEGER NOT NULL DEFAULT 1
+);
 CREATE TABLE IF NOT EXISTS sales (
   id INTEGER PRIMARY KEY,
   product_id INTEGER NOT NULL REFERENCES products(id),
@@ -96,12 +101,37 @@ export const DEFAULT_SETTINGS = {
   currency: "$",
   countryCode: "52",
   warnDays: "5",
+  showStreaks: "1",
   reminderTemplate:
     "Hola {nombre}, te saluda {gimnasio}. Te recordamos que tu mensualidad {estado} el {fecha}. Puedes renovarla en recepción o respondiendo a este mensaje. ¡Nos vemos a las 5AM!",
 };
 
 // Mensualidad de Wellness Fitness 5AM: $549 MXN. Otros planes se añaden en Administración → Ajustes.
 const DEFAULT_PLANS = [["Mensual", 1, 54900]];
+
+// Frases iniciales; el dueño las edita en Administración → Motivación.
+const DEFAULT_PHRASES = [
+  "El mejor entrenamiento es el que sí haces.",
+  "Llegaste. Eso ya es ganarle al día.",
+  "La constancia vence al talento cuando el talento no es constante.",
+  "Hoy duele, mañana es tu fuerza.",
+  "No tienes que ser extremo, solo constante.",
+  "Cada repetición cuenta, incluso la que nadie ve.",
+  "Tu único rival es quien fuiste ayer.",
+  "La disciplina es elegir lo que quieres a largo plazo sobre lo que quieres ahora.",
+  "Mientras otros duermen, tú construyes.",
+  "Un día más, una versión mejor.",
+  "No pares cuando estés cansado; para cuando termines.",
+  "El progreso es lento, pero rendirse no lo acelera.",
+  "Suda hoy, sonríe mañana.",
+  "Tu cuerpo logra lo que tu mente cree.",
+  "Los resultados llegan a quien no falta.",
+  "Empieza donde estás, usa lo que tienes, da lo que puedas.",
+  "Fuerte no es el que no cae, sino el que vuelve cada día.",
+  "La motivación te trae, el hábito te mantiene.",
+  "Hoy entrenas por la persona que quieres ser.",
+  "Pequeños pasos todos los días hacen grandes cambios.",
+];
 
 export const PAYMENT_METHODS = ["Efectivo", "Tarjeta", "Transferencia", "Otro"];
 
@@ -149,6 +179,10 @@ export function createStore(path = ":memory:") {
   if (q("SELECT COUNT(*) n FROM plans").get().n === 0) {
     const ins = q("INSERT INTO plans (name, months, price_cents) VALUES (?, ?, ?)");
     DEFAULT_PLANS.forEach((p) => ins.run(...p));
+  }
+  if (q("SELECT COUNT(*) n FROM phrases").get().n === 0) {
+    const insPhrase = q("INSERT INTO phrases (text) VALUES (?)");
+    DEFAULT_PHRASES.forEach((t) => insPhrase.run(t));
   }
   const insSetting = q("INSERT OR IGNORE INTO settings (key, value) VALUES (?, ?)");
   Object.entries(DEFAULT_SETTINGS).forEach(([k, v]) => insSetting.run(k, v));
@@ -554,6 +588,76 @@ export function createStore(path = ":memory:") {
     return { months, hours };
   };
 
+  // ---------- Rachas ----------
+  // Racha viva: días seguidos con entrada permitida que terminan hoy o ayer (aún puede venir hoy).
+  const streakBoard = (limit = 50) => {
+    const today = todayStr();
+    const since = addDays(today, -400);
+    const rows = q(
+      `SELECT v.member_id, v.day, m.name, m.code FROM visits v JOIN members m ON m.id = v.member_id
+       WHERE v.allowed = 1 AND m.archived = 0 AND v.day >= ? AND v.day <= ?
+       GROUP BY v.member_id, v.day ORDER BY v.member_id, v.day DESC`
+    ).all(since, today);
+    const byMember = new Map();
+    for (const r of rows) {
+      if (!byMember.has(r.member_id))
+        byMember.set(r.member_id, { id: r.member_id, name: r.name, code: r.code, days: [] });
+      byMember.get(r.member_id).days.push(r.day);
+    }
+    const out = [];
+    for (const m of byMember.values()) {
+      let expected = m.days[0] === today ? today : addDays(today, -1);
+      let streak = 0;
+      for (const d of m.days) {
+        if (d !== expected) break;
+        streak += 1;
+        expected = addDays(expected, -1);
+      }
+      if (streak >= 2)
+        out.push({
+          id: m.id,
+          name: m.name,
+          code: m.code,
+          streak,
+          cameToday: m.days[0] === today,
+          lastDay: m.days[0],
+        });
+    }
+    return out
+      .sort((a, b) => b.streak - a.streak || a.name.localeCompare(b.name, "es"))
+      .slice(0, limit);
+  };
+  // En la pantalla pública solo se muestra el nombre de pila y la inicial del apellido.
+  const publicName = (name) => {
+    const [first, last] = name.trim().split(/\s+/);
+    return last ? `${first} ${last[0].toUpperCase()}.` : first;
+  };
+
+  // ---------- Frases motivadoras ----------
+  const decoPhrase = (p) => (p ? { ...p, active: Boolean(p.active) } : p);
+  const listPhrases = () =>
+    q("SELECT id, text, active FROM phrases ORDER BY id").all().map(decoPhrase);
+  const savePhrase = (id, { text, active }) => {
+    if (id) {
+      const p = q("SELECT * FROM phrases WHERE id = ?").get(id);
+      if (!p) return null;
+      q("UPDATE phrases SET text = ?, active = ? WHERE id = ?").run(
+        text ?? p.text,
+        active === undefined ? p.active : active ? 1 : 0,
+        id
+      );
+      return decoPhrase(q("SELECT id, text, active FROM phrases WHERE id = ?").get(id));
+    }
+    const r = q("INSERT INTO phrases (text, active) VALUES (?, ?)").run(
+      text,
+      active === false ? 0 : 1
+    );
+    return decoPhrase(
+      q("SELECT id, text, active FROM phrases WHERE id = ?").get(Number(r.lastInsertRowid))
+    );
+  };
+  const deletePhrase = (id) => q("DELETE FROM phrases WHERE id = ?").run(id).changes > 0;
+
   // ---------- Promociones ----------
   // Estado calculado: "programada" (aún no empieza), "vigente", "terminada" u "oculta".
   const promoState = (p, today = todayStr()) => {
@@ -657,6 +761,13 @@ export function createStore(path = ":memory:") {
     instructors: listInstructors()
       .filter((i) => i.published)
       .map(({ id, name, specialty, schedule }) => ({ id, name, specialty, schedule })),
+    phrases: listPhrases()
+      .filter((p) => p.active)
+      .map((p) => p.text),
+    streaks:
+      getSettings().showStreaks === "0"
+        ? []
+        : streakBoard(5).map((m) => ({ name: publicName(m.name), streak: m.streak })),
   });
 
   // ---------- Copia de seguridad ----------
@@ -731,6 +842,10 @@ export function createStore(path = ":memory:") {
     saveInstructor,
     archiveInstructor,
     publicContent,
+    streakBoard,
+    listPhrases,
+    savePhrase,
+    deletePhrase,
     close: () => db.close(),
   };
 }

@@ -19,7 +19,8 @@
       .then((r) => (r.ok ? r.json() : {}))
       .then((cfg) => {
         if (cfg.hasPhoto) document.body.classList.add("has-photo");
-        renderBoard(cfg.promotions || [], cfg.instructors || []);
+        phrases = cfg.phrases || [];
+        renderBoard(cfg.promotions || [], cfg.instructors || [], cfg.streaks || [], phrases);
       })
       .catch(() => {});
 
@@ -49,7 +50,8 @@
       .querySelectorAll("[data-board-dots] span")
       .forEach((d, j) => d.classList.toggle("is-on", j === slideIdx));
   };
-  function renderBoard(promos, coaches) {
+  let phrases = [];
+  function renderBoard(promos, coaches, streaks = [], quotes = []) {
     slides = [
       ...promos.map(
         (p) => `<span class="board__tag">Promoción</span>
@@ -64,6 +66,23 @@
           ${c.specialty ? `<p class="board__text">${escB(c.specialty)}</p>` : ""}
           ${c.schedule ? `<p class="board__meta">${escB(c.schedule)}</p>` : ""}`
       ),
+      ...(streaks.length
+        ? [
+            `<span class="board__tag">Rachas</span>
+          <h2 class="board__title">Los más constantes</h2>
+          <ol class="board__rank">${streaks
+            .map((m, i) => `<li><span>${i + 1}</span>${escB(m.name)}<b>${m.streak} días</b></li>`)
+            .join("")}</ol>`,
+          ]
+        : []),
+      ...quotes
+        .slice()
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3)
+        .map(
+          (q) => `<span class="board__tag board__tag--coach">Frase del día</span>
+          <p class="board__quote">“${escB(q)}”</p>`
+        ),
     ];
     board.hidden = !slides.length;
     board.querySelector("[data-board-dots]").innerHTML =
@@ -223,7 +242,10 @@
     return out.join("");
   };
 
-  const show = ({ tone, icon, kicker, title, detail, daysLeft, stats = "" }) => {
+  const randomPhrase = () =>
+    phrases.length ? phrases[Math.floor(Math.random() * phrases.length)] : "";
+
+  const show = ({ tone, icon, kicker, title, detail, daysLeft, stats = "", quote = "" }) => {
     beep(tone);
     result.className = `result result--${tone}`;
     result.style.setProperty("--result-ms", `${RESULT_MS}ms`);
@@ -240,6 +262,7 @@
     $("[data-result-title]").textContent = title;
     $("[data-result-detail]").innerHTML = detail;
     $("[data-result-stats]").innerHTML = stats;
+    $("[data-result-quote]").textContent = quote ? `“${quote}”` : "";
     result.hidden = false;
     // reinicia la animación de la barra
     const bar = result.querySelector(".result__bar span");
@@ -297,6 +320,7 @@
           icon: "↗",
           daysLeft: data.daysLeft,
           stats: statsFor(data),
+          quote: randomPhrase(),
           kicker: "Acceso permitido",
           title: `¡Vamos, ${data.firstName}!`,
           detail: `Tu mensualidad está activa hasta el <strong>${fmtDate(data.endDate)}</strong>.`,
@@ -307,6 +331,7 @@
           icon: "!",
           daysLeft: data.daysLeft,
           stats: statsFor(data),
+          quote: randomPhrase(),
           kicker: "Acceso permitido · Renueva pronto",
           title: `Hola, ${data.firstName}`,
           detail:

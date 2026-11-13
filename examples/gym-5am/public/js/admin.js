@@ -197,6 +197,7 @@
     tienda: "Tienda",
     promociones: "Promociones",
     instructores: "Instructores",
+    motivacion: "Motivación",
     avisos: "Avisos",
     entradas: "Entradas",
     ajustes: "Ajustes",
@@ -665,6 +666,103 @@
                 .join("")}</div>`
             : `<div class="card"><p class="empty">Aún no hay instructores. Pulsa <strong>+ Instructor</strong> para añadir el primero.</p></div>`
         }`;
+    },
+
+    async motivacion() {
+      const [streaks, phrases, meta] = await Promise.all([
+        api("/api/admin/streaks"),
+        api("/api/admin/phrases"),
+        api("/api/admin/meta"),
+      ]);
+      state.meta = meta;
+      panel._phrases = phrases;
+      const showing = meta.settings.showStreaks !== "0";
+      const activeCount = phrases.filter((p) => p.active).length;
+      const rank = (i) => `<span class="rank ${i < 3 ? `rank--${i + 1}` : ""}">${i + 1}</span>`;
+      panel.innerHTML = `
+        <div class="grid-2 motivation">
+          <section class="card">
+            <div class="card__head"><h2>Ranking de rachas</h2>
+              <label class="check" style="font-size:13px"><input type="checkbox" data-show-streaks ${showing ? "checked" : ""} /> Mostrar en la entrada</label></div>
+            <p class="card__body muted" style="padding-bottom:0;font-size:14px">Días seguidos que cada socio ha venido. La racha sigue viva si vino hoy o ayer.
+              En la pantalla de entrada se ven los 5 primeros solo con nombre e inicial (por ejemplo "Laura G.").</p>
+            ${
+              streaks.length
+                ? `<ol class="streaks">${streaks
+                    .map(
+                      (m, i) => `<li>
+                        ${rank(i)}
+                        <div class="list__main"><p><button class="link" data-action="detail" data-id="${m.id}">${esc(m.name)}</button></p>
+                          <p class="list__sub">${m.cameToday ? "Vino hoy" : "Vino ayer · si viene hoy, sigue la racha"}</p></div>
+                        <span class="streak-count"><b>${m.streak}</b> días</span>
+                      </li>`
+                    )
+                    .join("")}</ol>`
+                : `<p class="empty">Todavía nadie lleva 2 días seguidos. Las rachas aparecen solas cuando los socios entran con su código.</p>`
+            }
+          </section>
+          <section class="card">
+            <div class="card__head"><h2>Frases motivadoras</h2><span class="muted">${activeCount} activas</span></div>
+            <form class="phrase-add" data-phrase-add>
+              <label class="sr-only" for="new-phrase">Nueva frase</label>
+              <input class="input" id="new-phrase" name="text" maxlength="160" placeholder="Escribe una frase nueva…" autocomplete="off" required />
+              <button class="btn btn--lime" type="submit">Añadir</button>
+            </form>
+            <p class="card__body muted" style="padding-top:0;font-size:14px">Al entrar, cada socio ve una frase activa al azar. También rotan en la pantalla de entrada.</p>
+            <ul class="phrases">${phrases
+              .map(
+                (p) => `<li class="${p.active ? "" : "is-off"}">
+                  <label class="switch" title="${p.active ? "Desactivar" : "Activar"}"><input type="checkbox" data-phrase-toggle="${p.id}" ${p.active ? "checked" : ""} /><span></span>
+                    <span class="sr-only">${p.active ? "Activa" : "Inactiva"}</span></label>
+                  <p class="phrase-text">“${esc(p.text)}”</p>
+                  <div class="row-actions">
+                    <button class="btn btn--sm" data-action="edit-phrase" data-id="${p.id}">Editar</button>
+                    <button class="btn btn--sm btn--danger" data-action="del-phrase" data-id="${p.id}" aria-label="Eliminar frase">×</button>
+                  </div>
+                </li>`
+              )
+              .join("")}</ul>
+          </section>
+        </div>`;
+      $("[data-show-streaks]", panel).addEventListener("change", async (e) => {
+        try {
+          await api("/api/admin/settings", {
+            method: "PUT",
+            body: { showStreaks: e.target.checked },
+          });
+          toast(
+            e.target.checked
+              ? "El ranking se muestra en la entrada"
+              : "El ranking ya no se muestra en la entrada"
+          );
+        } catch (ex) {
+          toast(ex.message, true);
+          e.target.checked = !e.target.checked;
+        }
+      });
+      $("[data-phrase-add]", panel).addEventListener("submit", async (e) => {
+        e.preventDefault();
+        try {
+          await api("/api/admin/phrases", { method: "POST", body: { text: e.target.text.value } });
+          toast("Frase añadida");
+          VIEWS.motivacion();
+        } catch (ex) {
+          toast(ex.message, true);
+        }
+      });
+      $$("[data-phrase-toggle]", panel).forEach((cb) =>
+        cb.addEventListener("change", async () => {
+          try {
+            await api(`/api/admin/phrases/${cb.dataset.phraseToggle}`, {
+              method: "PATCH",
+              body: { active: cb.checked },
+            });
+            VIEWS.motivacion();
+          } catch (ex) {
+            toast(ex.message, true);
+          }
+        })
+      );
     },
 
     async tienda() {
@@ -1461,6 +1559,37 @@
           await api(`/api/admin/members/${id}/reminded`, { method: "POST", body: {} });
           setTimeout(render, 400);
           return;
+        }
+        case "edit-phrase": {
+          const ph = (panel._phrases || []).find((x) => x.id === id);
+          openModal(`
+            <h2>Editar frase</h2>
+            <form data-phrase-edit class="stack">
+              <label class="field"><span>Frase</span><textarea name="text" maxlength="160" rows="3" required>${esc(ph.text)}</textarea></label>
+              <div class="modal__foot"><button type="button" class="btn" data-close-modal>Cancelar</button>
+                <button class="btn btn--lime" type="submit">Guardar</button></div>
+            </form>`);
+          $("[data-phrase-edit]", modal).addEventListener("submit", async (ev) => {
+            ev.preventDefault();
+            try {
+              await api(`/api/admin/phrases/${id}`, {
+                method: "PATCH",
+                body: { text: ev.target.text.value },
+              });
+              closeModal();
+              toast("Frase guardada");
+              render();
+            } catch (ex) {
+              toast(ex.message, true);
+            }
+          });
+          return;
+        }
+        case "del-phrase": {
+          if (!confirm("¿Eliminar esta frase?")) return;
+          await api(`/api/admin/phrases/${id}`, { method: "DELETE" });
+          toast("Frase eliminada");
+          return render();
         }
         case "new-promo":
           return promoModal(null);

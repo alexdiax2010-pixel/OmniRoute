@@ -66,6 +66,16 @@ planes con sus precios.
   tiempo lleva y, al entrar, el socio ve sus visitas del mes, su racha de días seguidos y su
   antigüedad.
 
+## Motivación: rachas y frases
+
+- **Ranking de rachas** (Administración → Motivación): los socios con más días seguidos viniendo.
+  La racha sigue viva si el socio vino hoy o ayer, y solo cuentan las entradas permitidas. En la
+  pantalla de entrada se muestran los 5 primeros solo con nombre de pila e inicial del apellido
+  (por ejemplo "Laura G."); el dueño puede ocultar el ranking con un interruptor.
+- **Frases motivadoras**: el sistema arranca con 20 frases que el dueño puede editar, desactivar,
+  eliminar o ampliar. Al entrar, cada socio ve una frase activa al azar, y algunas rotan también en
+  el recuadro de la pantalla de entrada.
+
 ## Promociones e instructores
 
 - **Promociones**: el dueño las crea con título, descripción, precio o descuento y fechas
