@@ -195,6 +195,7 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
 
   route("GET", "/api/kiosk", async () => ({
     gymName: store.getSettings().gymName,
+    ...store.publicContent(),
     hasPhoto: await access(join(PUBLIC, "img", "kiosk.jpg")).then(
       () => true,
       () => false
@@ -417,6 +418,93 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
       }
       return { settings, plans };
     },
+    { admin: true }
+  );
+
+  // --- Promociones ---
+  const dateOrNull = (v, field) => {
+    if (v === undefined) return undefined;
+    if (v === null || v === "") return null;
+    if (!isDateStr(v)) fail(400, `La fecha de ${field} no es válida`);
+    return v;
+  };
+  const bool = (v) => (v === undefined ? undefined : Boolean(v));
+  const promoInput = (b, partial = false) => ({
+    title:
+      partial && b.title === undefined
+        ? undefined
+        : str(b.title, "título", { required: true, max: 80 }),
+    description:
+      b.description === undefined
+        ? undefined
+        : str(b.description, "descripción", { max: 300 }) || "",
+    priceText:
+      b.priceText === undefined
+        ? undefined
+        : str(b.priceText, "precio o descuento", { max: 40 }) || "",
+    startsOn: dateOrNull(b.startsOn, "inicio"),
+    endsOn: dateOrNull(b.endsOn, "fin"),
+    published: bool(b.published),
+  });
+  route("GET", "/api/admin/promotions", () => store.listPromotions(), { admin: true });
+  route(
+    "POST",
+    "/api/admin/promotions",
+    async ({ req }) => store.savePromotion(null, promoInput(await readJson(req))),
+    {
+      admin: true,
+    }
+  );
+  route(
+    "PATCH",
+    "/api/admin/promotions/:id",
+    async ({ req, params }) =>
+      store.savePromotion(params.id, promoInput(await readJson(req), true)) ||
+      fail(404, "Promoción no encontrada"),
+    { admin: true }
+  );
+  route(
+    "DELETE",
+    "/api/admin/promotions/:id",
+    ({ params }) => ({
+      ok: store.deletePromotion(params.id) || fail(404, "Promoción no encontrada"),
+    }),
+    { admin: true }
+  );
+
+  // --- Instructores ---
+  const instructorInput = (b, partial = false) => ({
+    name:
+      partial && b.name === undefined
+        ? undefined
+        : str(b.name, "nombre", { required: true, max: 60 }),
+    specialty:
+      b.specialty === undefined ? undefined : str(b.specialty, "especialidad", { max: 60 }) || "",
+    schedule: b.schedule === undefined ? undefined : str(b.schedule, "horario", { max: 120 }) || "",
+    bio: b.bio === undefined ? undefined : str(b.bio, "descripción", { max: 300 }) || "",
+    published: bool(b.published),
+  });
+  route("GET", "/api/admin/instructors", () => store.listInstructors(), { admin: true });
+  route(
+    "POST",
+    "/api/admin/instructors",
+    async ({ req }) => store.saveInstructor(null, instructorInput(await readJson(req))),
+    { admin: true }
+  );
+  route(
+    "PATCH",
+    "/api/admin/instructors/:id",
+    async ({ req, params }) =>
+      store.saveInstructor(params.id, instructorInput(await readJson(req), true)) ||
+      fail(404, "Instructor no encontrado"),
+    { admin: true }
+  );
+  route(
+    "DELETE",
+    "/api/admin/instructors/:id",
+    ({ params }) => ({
+      ok: store.archiveInstructor(params.id) || fail(404, "Instructor no encontrado"),
+    }),
     { admin: true }
   );
 

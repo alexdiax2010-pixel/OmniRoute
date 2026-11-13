@@ -178,6 +178,8 @@
     socios: "Socios",
     cobros: "Cobros",
     tienda: "Tienda",
+    promociones: "Promociones",
+    instructores: "Instructores",
     avisos: "Avisos",
     entradas: "Entradas",
     ajustes: "Ajustes",
@@ -309,6 +311,114 @@
         <button type="button" class="btn btn--lime" data-close-modal>Listo</button>
       </div>`);
   }
+
+  const PROMO_STATE = {
+    vigente: ["pill--activo", "Publicada"],
+    programada: ["pill--por_vencer", "Programada"],
+    terminada: ["pill--sin_pago", "Terminada"],
+    oculta: ["pill--sin_pago", "Oculta"],
+  };
+  const promoPill = (p) =>
+    `<span class="pill ${PROMO_STATE[p.state][0]}">${PROMO_STATE[p.state][1]}</span>`;
+  const promoDates = (p) => {
+    const f = (d) => fmtDate(d, { day: "numeric", month: "short" });
+    if (p.starts_on && p.ends_on) return `Del ${f(p.starts_on)} al ${f(p.ends_on)}`;
+    if (p.ends_on) return `Hasta el ${f(p.ends_on)}`;
+    if (p.starts_on) return `Desde el ${f(p.starts_on)}`;
+    return "Sin fecha de fin";
+  };
+
+  function promoModal(p) {
+    openModal(`
+      <h2>${p ? "Editar promoción" : "Nueva promoción"}</h2>
+      <form data-promo class="stack">
+        <div class="form-grid">
+          <label class="field full"><span>Título</span><input name="title" required maxlength="80" value="${esc(p?.title || "")}" placeholder="Ej. Inscripción gratis en noviembre" autocomplete="off" /></label>
+          <label class="field full"><span>Descripción</span><textarea name="description" maxlength="300" rows="3" placeholder="Qué incluye y cómo aprovecharla">${esc(p?.description || "")}</textarea></label>
+          <label class="field"><span>Precio o descuento (opcional)</span><input name="priceText" maxlength="40" value="${esc(p?.price_text || "")}" placeholder="Ej. $449 o 2×1" /></label>
+          <span></span>
+          <label class="field"><span>Empieza (opcional)</span><input name="startsOn" type="date" value="${esc(p?.starts_on || "")}" /></label>
+          <label class="field"><span>Termina (opcional)</span><input name="endsOn" type="date" value="${esc(p?.ends_on || "")}" /></label>
+        </div>
+        <label class="check"><input type="checkbox" name="published" ${!p || p.published ? "checked" : ""} /> Publicar en la pantalla de entrada</label>
+        <p class="hint">Se muestra a los socios solo mientras esté publicada y dentro de sus fechas.</p>
+        <div class="modal__foot">
+          ${p ? `<button type="button" class="btn btn--danger" data-action="del-promo" data-id="${p.id}" style="margin-right:auto">Eliminar</button>` : ""}
+          <button type="button" class="btn" data-close-modal>Cancelar</button>
+          <button class="btn btn--lime" type="submit">Guardar</button></div>
+      </form>`);
+    $("[data-promo]", modal).addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      try {
+        const body = {
+          title: f.title.value,
+          description: f.description.value,
+          priceText: f.priceText.value,
+          startsOn: f.startsOn.value || null,
+          endsOn: f.endsOn.value || null,
+          published: f.published.checked,
+        };
+        await api(p ? `/api/admin/promotions/${p.id}` : "/api/admin/promotions", {
+          method: p ? "PATCH" : "POST",
+          body,
+        });
+        closeModal();
+        toast(body.published ? "Promoción guardada y publicada" : "Promoción guardada (oculta)");
+        render();
+      } catch (ex) {
+        toast(ex.message, true);
+      }
+    });
+  }
+
+  function instructorModal(i) {
+    openModal(`
+      <h2>${i ? "Editar instructor" : "Nuevo instructor"}</h2>
+      <form data-instructor class="stack">
+        <div class="form-grid">
+          <label class="field full"><span>Nombre</span><input name="name" required maxlength="60" value="${esc(i?.name || "")}" autocomplete="off" /></label>
+          <label class="field"><span>Especialidad</span><input name="specialty" maxlength="60" value="${esc(i?.specialty || "")}" placeholder="Ej. Fuerza, Yoga, Cycling" /></label>
+          <label class="field"><span>Horario</span><input name="schedule" maxlength="120" value="${esc(i?.schedule || "")}" placeholder="Ej. Lun a Vie 5:00–9:00" /></label>
+          <label class="field full"><span>Descripción (solo la ve el dueño)</span><textarea name="bio" maxlength="300" rows="3" placeholder="Certificaciones, experiencia, contacto…">${esc(i?.bio || "")}</textarea></label>
+        </div>
+        <label class="check"><input type="checkbox" name="published" ${!i || i.published ? "checked" : ""} /> Mostrar en la pantalla de entrada</label>
+        <div class="modal__foot">
+          ${i ? `<button type="button" class="btn btn--danger" data-action="del-instructor" data-id="${i.id}" style="margin-right:auto">Eliminar</button>` : ""}
+          <button type="button" class="btn" data-close-modal>Cancelar</button>
+          <button class="btn btn--lime" type="submit">Guardar</button></div>
+      </form>`);
+    $("[data-instructor]", modal).addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const f = e.target;
+      try {
+        const body = {
+          name: f.name.value,
+          specialty: f.specialty.value,
+          schedule: f.schedule.value,
+          bio: f.bio.value,
+          published: f.published.checked,
+        };
+        await api(i ? `/api/admin/instructors/${i.id}` : "/api/admin/instructors", {
+          method: i ? "PATCH" : "POST",
+          body,
+        });
+        closeModal();
+        toast("Instructor guardado");
+        render();
+      } catch (ex) {
+        toast(ex.message, true);
+      }
+    });
+  }
+
+  const initials = (name) =>
+    name
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((w) => w[0].toUpperCase())
+      .join("");
 
   function productModal(p) {
     openModal(`
@@ -473,6 +583,69 @@
         `/api/admin/members?filter=${state.filter}&q=${encodeURIComponent(state.search)}`
       );
       $("[data-members]", panel).innerHTML = membersTable(rows);
+    },
+
+    async promociones() {
+      const list = await api("/api/admin/promotions");
+      panel._promos = list;
+      const live = list.filter((p) => p.state === "vigente").length;
+      panel.innerHTML = `
+        <div class="toolbar">
+          <p class="muted">Las promociones publicadas y vigentes aparecen en la pantalla de entrada. ${live ? `Ahora se muestran <strong>${live}</strong>.` : "Ahora no se muestra ninguna."}</p>
+          <span class="toolbar__spacer"></span>
+          <button class="btn btn--lime" data-action="new-promo">+ Promoción</button>
+        </div>
+        ${
+          list.length
+            ? `<div class="promos">${list
+                .map(
+                  (p) => `<article class="promo ${p.state === "vigente" ? "promo--live" : ""}">
+                    <div class="promo__top">${promoPill(p)}<span class="muted promo__dates">${promoDates(p)}</span></div>
+                    <h3>${esc(p.title)}</h3>
+                    ${p.price_text ? `<p class="promo__price">${esc(p.price_text)}</p>` : ""}
+                    ${p.description ? `<p class="promo__desc">${esc(p.description)}</p>` : ""}
+                    <div class="promo__actions">
+                      <button class="btn btn--sm" data-action="edit-promo" data-id="${p.id}">Editar</button>
+                      <button class="btn btn--sm" data-action="toggle-promo" data-id="${p.id}">${p.published ? "Ocultar" : "Publicar"}</button>
+                    </div>
+                  </article>`
+                )
+                .join("")}</div>`
+            : `<div class="card"><p class="empty">Aún no hay promociones. Pulsa <strong>+ Promoción</strong> para publicar la primera.</p></div>`
+        }`;
+    },
+
+    async instructores() {
+      const list = await api("/api/admin/instructors");
+      panel._instructors = list;
+      panel.innerHTML = `
+        <div class="toolbar">
+          <p class="muted">Los instructores marcados como visibles aparecen en la pantalla de entrada con su especialidad y horario.</p>
+          <span class="toolbar__spacer"></span>
+          <button class="btn btn--lime" data-action="new-instructor">+ Instructor</button>
+        </div>
+        ${
+          list.length
+            ? `<div class="coaches-grid">${list
+                .map(
+                  (i) => `<article class="coach-card">
+                    <div class="coach-card__head">
+                      <span class="coach-card__avatar" aria-hidden="true">${esc(initials(i.name))}</span>
+                      <div class="list__main"><h3>${esc(i.name)}</h3><p class="muted">${esc(i.specialty || "Sin especialidad")}</p></div>
+                    </div>
+                    <p class="coach-card__row"><span>Horario</span>${esc(i.schedule || "—")}</p>
+                    ${i.bio ? `<p class="coach-card__bio">${esc(i.bio)}</p>` : ""}
+                    <div class="promo__actions">
+                      <span class="pill ${i.published ? "pill--activo" : "pill--sin_pago"}">${i.published ? "Visible" : "Oculto"}</span>
+                      <span class="toolbar__spacer"></span>
+                      <button class="btn btn--sm" data-action="toggle-instructor" data-id="${i.id}">${i.published ? "Ocultar" : "Mostrar"}</button>
+                      <button class="btn btn--sm" data-action="edit-instructor" data-id="${i.id}">Editar</button>
+                    </div>
+                  </article>`
+                )
+                .join("")}</div>`
+            : `<div class="card"><p class="empty">Aún no hay instructores. Pulsa <strong>+ Instructor</strong> para añadir el primero.</p></div>`
+        }`;
     },
 
     async tienda() {
@@ -1005,6 +1178,46 @@
           await api(`/api/admin/members/${id}/reminded`, { method: "POST", body: {} });
           setTimeout(render, 400);
           return;
+        }
+        case "new-promo":
+          return promoModal(null);
+        case "edit-promo":
+          return promoModal((panel._promos || []).find((p) => p.id === id));
+        case "toggle-promo": {
+          const p = (panel._promos || []).find((x) => x.id === id);
+          await api(`/api/admin/promotions/${id}`, {
+            method: "PATCH",
+            body: { published: !p.published },
+          });
+          toast(p.published ? "Promoción oculta" : "Promoción publicada");
+          return render();
+        }
+        case "del-promo": {
+          if (!confirm("¿Eliminar esta promoción?")) return;
+          await api(`/api/admin/promotions/${id}`, { method: "DELETE" });
+          closeModal();
+          toast("Promoción eliminada");
+          return render();
+        }
+        case "new-instructor":
+          return instructorModal(null);
+        case "edit-instructor":
+          return instructorModal((panel._instructors || []).find((i) => i.id === id));
+        case "toggle-instructor": {
+          const i = (panel._instructors || []).find((x) => x.id === id);
+          await api(`/api/admin/instructors/${id}`, {
+            method: "PATCH",
+            body: { published: !i.published },
+          });
+          toast(i.published ? "Instructor oculto" : "Instructor visible");
+          return render();
+        }
+        case "del-instructor": {
+          if (!confirm("¿Eliminar a este instructor?")) return;
+          await api(`/api/admin/instructors/${id}`, { method: "DELETE" });
+          closeModal();
+          toast("Instructor eliminado");
+          return render();
         }
         case "new-product":
           return productModal(null);

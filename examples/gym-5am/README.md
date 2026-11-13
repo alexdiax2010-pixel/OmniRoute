@@ -49,6 +49,16 @@ WhatsApp. En **Ajustes** puedes cambiar el nombre del gimnasio, la moneda, el c�
 (por ejemplo `52` para México), los días de antelación del aviso, el texto del recordatorio y los
 planes con sus precios.
 
+## Promociones e instructores
+
+- **Promociones**: el dueño las crea con título, descripción, precio o descuento y fechas
+  opcionales de inicio y fin. Se muestran en la pantalla de entrada solo mientras están publicadas y
+  vigentes; las futuras quedan como _programadas_ y las pasadas como _terminadas_.
+- **Instructores**: nombre, especialidad y horario, más una descripción interna que solo ve el
+  dueño. Los marcados como visibles aparecen en la pantalla de entrada.
+- La pantalla de entrada rota promociones e instructores cada 7 segundos y vuelve a consultar lo
+  publicado cada 10 minutos.
+
 ## Tienda, recibos y gráficas
 
 - **Tienda**: da de alta productos (agua, suplementos, ropa…) con precio y existencias. Cada venta

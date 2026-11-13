@@ -59,16 +59,28 @@
 
       <p class="vertical" aria-hidden="true">Alcanza tus metas de bienestar</p>
 
-      <h1 class="title">
-        <span>Entra</span>
-        <span class="title__mid">
-          <svg class="arrow" viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M0 22 L0 0 L100 0 L100 100 L78 100 L78 38 L16 100 L0 84 L62 22 Z" />
-          </svg>
-          <span class="outline">con tu</span>
-        </span>
-        <span>código</span>
-      </h1>
+      <div class="left">
+        <section
+          class="board"
+          aria-label="Promociones e instructores"
+          aria-live="polite"
+          hidden
+          data-board
+        >
+          <div class="board__slide" data-board-slide></div>
+          <div class="board__dots" data-board-dots></div>
+        </section>
+        <h1 class="title">
+          <span>Entra</span>
+          <span class="title__mid">
+            <svg class="arrow" viewBox="0 0 100 100" aria-hidden="true">
+              <path d="M0 22 L0 0 L100 0 L100 100 L78 100 L78 38 L16 100 L0 84 L62 22 Z" />
+            </svg>
+            <span class="outline">con tu</span>
+          </span>
+          <span>código</span>
+        </h1>
+      </div>
 
       <section class="pad" aria-labelledby="pad-label">
         <p class="pad__label" id="pad-label">Escribe tu código de socio</p>

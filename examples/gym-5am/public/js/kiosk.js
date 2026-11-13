@@ -13,10 +13,70 @@
   let resetTimer;
 
   // Foto opcional: si existe public/img/kiosk.jpg, el servidor lo indica y sustituye la composición SVG.
-  fetch("/api/kiosk")
-    .then((r) => (r.ok ? r.json() : {}))
-    .then((cfg) => cfg.hasPhoto && document.body.classList.add("has-photo"))
-    .catch(() => {});
+  // También trae las promociones vigentes y los instructores que el dueño publicó.
+  const loadKiosk = () =>
+    fetch("/api/kiosk")
+      .then((r) => (r.ok ? r.json() : {}))
+      .then((cfg) => {
+        if (cfg.hasPhoto) document.body.classList.add("has-photo");
+        renderBoard(cfg.promotions || [], cfg.instructors || []);
+      })
+      .catch(() => {});
+
+  // ---------- Promociones e instructores ----------
+  const board = document.querySelector("[data-board]");
+  let slides = [];
+  let slideIdx = 0;
+  let slideTimer;
+  const escB = (v) =>
+    String(v ?? "").replace(
+      /[&<>"']/g,
+      (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]
+    );
+  const untilText = (d) =>
+    d
+      ? `Válida hasta el ${new Date(`${d}T12:00:00`).toLocaleDateString("es", { day: "numeric", month: "long" })}`
+      : "";
+  const showSlide = (i) => {
+    if (!slides.length) return;
+    slideIdx = (i + slides.length) % slides.length;
+    const el = board.querySelector("[data-board-slide]");
+    el.innerHTML = slides[slideIdx];
+    el.style.animation = "none";
+    void el.offsetWidth;
+    el.style.animation = "";
+    board
+      .querySelectorAll("[data-board-dots] span")
+      .forEach((d, j) => d.classList.toggle("is-on", j === slideIdx));
+  };
+  function renderBoard(promos, coaches) {
+    slides = [
+      ...promos.map(
+        (p) => `<span class="board__tag">Promoción</span>
+          <h2 class="board__title">${escB(p.title)}</h2>
+          ${p.price_text ? `<p class="board__price">${escB(p.price_text)}</p>` : ""}
+          ${p.description ? `<p class="board__text">${escB(p.description)}</p>` : ""}
+          ${p.ends_on ? `<p class="board__meta">${escB(untilText(p.ends_on))}</p>` : ""}`
+      ),
+      ...coaches.map(
+        (c) => `<span class="board__tag board__tag--coach">Instructor</span>
+          <h2 class="board__title">${escB(c.name)}</h2>
+          ${c.specialty ? `<p class="board__text">${escB(c.specialty)}</p>` : ""}
+          ${c.schedule ? `<p class="board__meta">${escB(c.schedule)}</p>` : ""}`
+      ),
+    ];
+    board.hidden = !slides.length;
+    board.querySelector("[data-board-dots]").innerHTML =
+      slides.length > 1 ? slides.map(() => "<span></span>").join("") : "";
+    clearInterval(slideTimer);
+    showSlide(0);
+    if (slides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      slideTimer = setInterval(() => showSlide(slideIdx + 1), 7000);
+    }
+  }
+  loadKiosk();
+  // La pantalla de entrada se queda abierta todo el día: refresca lo publicado cada 10 minutos.
+  setInterval(loadKiosk, 10 * 60 * 1000);
 
   // ---------- Reloj ----------
   const clock = $("[data-clock]");

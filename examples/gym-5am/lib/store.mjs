@@ -70,6 +70,25 @@ CREATE TABLE IF NOT EXISTS sales (
   created_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime'))
 );
 CREATE INDEX IF NOT EXISTS idx_sales_sold_on ON sales(sold_on);
+CREATE TABLE IF NOT EXISTS promotions (
+  id INTEGER PRIMARY KEY,
+  title TEXT NOT NULL,
+  description TEXT NOT NULL DEFAULT '',
+  price_text TEXT NOT NULL DEFAULT '',
+  starts_on TEXT,
+  ends_on TEXT,
+  published INTEGER NOT NULL DEFAULT 1,
+  created_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime'))
+);
+CREATE TABLE IF NOT EXISTS instructors (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  specialty TEXT NOT NULL DEFAULT '',
+  schedule TEXT NOT NULL DEFAULT '',
+  bio TEXT NOT NULL DEFAULT '',
+  published INTEGER NOT NULL DEFAULT 1,
+  archived INTEGER NOT NULL DEFAULT 0
+);
 `;
 
 export const DEFAULT_SETTINGS = {
@@ -441,6 +460,111 @@ export function createStore(path = ":memory:") {
     return { months, hours };
   };
 
+  // ---------- Promociones ----------
+  // Estado calculado: "programada" (aún no empieza), "vigente", "terminada" u "oculta".
+  const promoState = (p, today = todayStr()) => {
+    if (!p.published) return "oculta";
+    if (p.starts_on && p.starts_on > today) return "programada";
+    if (p.ends_on && p.ends_on < today) return "terminada";
+    return "vigente";
+  };
+  const decoPromo = (p) =>
+    p ? { ...p, published: Boolean(p.published), state: promoState(p) } : p;
+  const listPromotions = () =>
+    q("SELECT * FROM promotions ORDER BY COALESCE(ends_on, '9999-12-31') DESC, id DESC")
+      .all()
+      .map(decoPromo);
+  const getPromotion = (id) => decoPromo(q("SELECT * FROM promotions WHERE id = ?").get(id));
+  const savePromotion = (id, { title, description, priceText, startsOn, endsOn, published }) => {
+    if (startsOn && endsOn && endsOn < startsOn) {
+      const err = new Error("La fecha de fin no puede ser anterior a la de inicio");
+      err.status = 400;
+      throw err;
+    }
+    if (id) {
+      const p = q("SELECT * FROM promotions WHERE id = ?").get(id);
+      if (!p) return null;
+      q(
+        "UPDATE promotions SET title = ?, description = ?, price_text = ?, starts_on = ?, ends_on = ?, published = ? WHERE id = ?"
+      ).run(
+        title ?? p.title,
+        description ?? p.description,
+        priceText ?? p.price_text,
+        startsOn === undefined ? p.starts_on : startsOn,
+        endsOn === undefined ? p.ends_on : endsOn,
+        published === undefined ? p.published : published ? 1 : 0,
+        id
+      );
+      return getPromotion(id);
+    }
+    const r = q(
+      "INSERT INTO promotions (title, description, price_text, starts_on, ends_on, published) VALUES (?, ?, ?, ?, ?, ?)"
+    ).run(
+      title,
+      description || "",
+      priceText || "",
+      startsOn || null,
+      endsOn || null,
+      published === false ? 0 : 1
+    );
+    return getPromotion(Number(r.lastInsertRowid));
+  };
+  const deletePromotion = (id) => q("DELETE FROM promotions WHERE id = ?").run(id).changes > 0;
+
+  // ---------- Instructores ----------
+  const decoInstructor = (i) => (i ? { ...i, published: Boolean(i.published) } : i);
+  const listInstructors = () =>
+    q(
+      "SELECT id, name, specialty, schedule, bio, published FROM instructors WHERE archived = 0 ORDER BY name COLLATE NOCASE"
+    )
+      .all()
+      .map(decoInstructor);
+  const getInstructor = (id) =>
+    decoInstructor(
+      q(
+        "SELECT id, name, specialty, schedule, bio, published FROM instructors WHERE id = ? AND archived = 0"
+      ).get(id)
+    );
+  const saveInstructor = (id, { name, specialty, schedule, bio, published }) => {
+    if (id) {
+      const i = getInstructor(id);
+      if (!i) return null;
+      q(
+        "UPDATE instructors SET name = ?, specialty = ?, schedule = ?, bio = ?, published = ? WHERE id = ?"
+      ).run(
+        name ?? i.name,
+        specialty ?? i.specialty,
+        schedule ?? i.schedule,
+        bio ?? i.bio,
+        published === undefined ? (i.published ? 1 : 0) : published ? 1 : 0,
+        id
+      );
+      return getInstructor(id);
+    }
+    const r = q(
+      "INSERT INTO instructors (name, specialty, schedule, bio, published) VALUES (?, ?, ?, ?, ?)"
+    ).run(name, specialty || "", schedule || "", bio || "", published === false ? 0 : 1);
+    return getInstructor(Number(r.lastInsertRowid));
+  };
+  const archiveInstructor = (id) =>
+    q("UPDATE instructors SET archived = 1 WHERE id = ?").run(id).changes > 0;
+
+  // Lo que ve el público en la pantalla de entrada: solo promociones vigentes e instructores publicados.
+  const publicContent = () => ({
+    promotions: listPromotions()
+      .filter((p) => p.state === "vigente")
+      .map(({ id, title, description, price_text, ends_on }) => ({
+        id,
+        title,
+        description,
+        price_text,
+        ends_on,
+      })),
+    instructors: listInstructors()
+      .filter((i) => i.published)
+      .map(({ id, name, specialty, schedule }) => ({ id, name, specialty, schedule })),
+  });
+
   // ---------- Copia de seguridad ----------
   const backupTo = (file) => q("VACUUM INTO ?").run(file);
 
@@ -505,6 +629,13 @@ export function createStore(path = ":memory:") {
     listSales,
     stats,
     backupTo,
+    listPromotions,
+    savePromotion,
+    deletePromotion,
+    listInstructors,
+    saveInstructor,
+    archiveInstructor,
+    publicContent,
     close: () => db.close(),
   };
 }

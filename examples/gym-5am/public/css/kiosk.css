@@ -108,14 +108,103 @@
   color: var(--muted);
 }
 
+/* Columna izquierda: promociones e instructores arriba, titular abajo */
+.left {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+.board {
+  align-self: flex-start;
+  width: min(100%, 460px);
+  padding: 18px 20px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--line-strong);
+  background: rgba(20, 22, 19, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.board__slide {
+  display: grid;
+  gap: 6px;
+  min-height: 112px;
+  align-content: start;
+  animation: boardIn 0.5s var(--ease) both;
+}
+@keyframes boardIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.board__tag {
+  justify-self: start;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--lime-ink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.board__tag--coach {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+.board__title {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 30px;
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+}
+.board__price {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1;
+  color: var(--lime);
+}
+.board__text {
+  font-size: 14px;
+  color: rgba(244, 245, 239, 0.78);
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.board__meta {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.board__dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.board__dots span {
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line-strong);
+}
+.board__dots span.is-on {
+  background: var(--lime);
+}
+
 /* Titular */
 .title {
-  align-self: end;
+  align-self: flex-start;
   display: grid;
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
-  font-size: clamp(64px, 10.5vw, 176px);
+  font-size: clamp(56px, min(10.5vw, 17vh), 176px);
   line-height: 0.98;
   letter-spacing: 0.005em;
 }
@@ -388,6 +477,16 @@
 
 /* Tabletas en vertical y móviles */
 @media (max-width: 900px) {
+  .left {
+    display: contents;
+  }
+  .board {
+    order: 3;
+    width: 100%;
+    max-width: 440px;
+    justify-self: center;
+    margin-bottom: 30px;
+  }
   .stage {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;

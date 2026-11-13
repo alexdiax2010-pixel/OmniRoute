@@ -151,6 +151,54 @@ describe("store", () => {
     await rm(dir, { recursive: true, force: true });
   });
 
+  test("solo se publican las promociones vigentes y los instructores visibles", () => {
+    const t = todayStr();
+    const live = store.savePromotion(null, {
+      title: "Inscripción gratis",
+      priceText: "$0",
+      endsOn: addDays(t, 10),
+    });
+    store.savePromotion(null, { title: "Futura", startsOn: addDays(t, 3) });
+    store.savePromotion(null, { title: "Pasada", endsOn: addDays(t, -1) });
+    store.savePromotion(null, { title: "Oculta", published: false });
+    assert.equal(live.state, "vigente");
+    const states = Object.fromEntries(store.listPromotions().map((p) => [p.title, p.state]));
+    assert.deepEqual(states, {
+      "Inscripción gratis": "vigente",
+      Futura: "programada",
+      Pasada: "terminada",
+      Oculta: "oculta",
+    });
+    assert.throws(
+      () => store.savePromotion(null, { title: "X", startsOn: t, endsOn: addDays(t, -2) }),
+      /anterior/
+    );
+
+    const ana = store.saveInstructor(null, {
+      name: "Ana Paredes",
+      specialty: "Yoga",
+      schedule: "Lun–Vie 5:00",
+      bio: "Tel. privado 555",
+    });
+    store.saveInstructor(null, { name: "Oculto", published: false });
+    const pub = store.publicContent();
+    assert.deepEqual(
+      pub.promotions.map((p) => p.title),
+      ["Inscripción gratis"]
+    );
+    assert.deepEqual(
+      pub.instructors.map((i) => i.name),
+      ["Ana Paredes"]
+    );
+    assert.equal(pub.instructors[0].bio, undefined, "la descripción interna no se publica");
+
+    store.saveInstructor(ana.id, { published: false });
+    assert.equal(store.publicContent().instructors.length, 0);
+    assert.ok(store.archiveInstructor(ana.id));
+    assert.ok(!store.listInstructors().some((i) => i.id === ana.id));
+    assert.ok(store.deletePromotion(live.id));
+  });
+
   test("el PIN se guarda con hash y se verifica", () => {
     store.setPin("4321");
     assert.ok(store.checkPin("4321"));
@@ -291,6 +339,53 @@ describe("API HTTP", () => {
     assert.equal((await call("/api/admin/products", { auth: false })).status, 401);
     const stats = await call("/api/admin/stats");
     assert.equal(stats.data.months.at(-1).shop, 300);
+  });
+
+  test("promociones e instructores por HTTP y en la pantalla de entrada", async () => {
+    assert.equal((await call("/api/admin/promotions", { auth: false })).status, 401);
+    const promo = await call("/api/admin/promotions", {
+      method: "POST",
+      body: { title: "2×1 en noviembre", description: "Trae a un amigo", priceText: "2×1" },
+    });
+    assert.equal(promo.status, 200);
+    assert.equal(promo.data.state, "vigente");
+    const coach = await call("/api/admin/instructors", {
+      method: "POST",
+      body: {
+        name: "Carlos Rivera",
+        specialty: "Fuerza",
+        schedule: "5:00–9:00",
+        bio: "nota interna",
+      },
+    });
+    assert.equal(coach.status, 200);
+    let kiosk = await call("/api/kiosk", { auth: false });
+    assert.ok(kiosk.data.promotions.some((p) => p.title === "2×1 en noviembre"));
+    assert.ok(
+      kiosk.data.instructors.some((i) => i.name === "Carlos Rivera" && i.bio === undefined)
+    );
+
+    await call(`/api/admin/promotions/${promo.data.id}`, {
+      method: "PATCH",
+      body: { published: false },
+    });
+    kiosk = await call("/api/kiosk", { auth: false });
+    assert.ok(!kiosk.data.promotions.some((p) => p.id === promo.data.id));
+
+    assert.equal(
+      (await call("/api/admin/promotions", { method: "POST", body: { title: "" } })).status,
+      400
+    );
+    assert.equal(
+      (
+        await call("/api/admin/promotions", {
+          method: "POST",
+          body: { title: "X", endsOn: "2026-02-30" },
+        })
+      ).status,
+      400
+    );
+    assert.equal((await call("/api/admin/instructors/99999", { method: "DELETE" })).status, 404);
   });
 
   test("validación de entradas", async () => {

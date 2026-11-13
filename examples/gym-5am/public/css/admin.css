@@ -385,6 +385,91 @@
   line-height: 1;
 }
 
+/* ---------- Promociones e instructores ---------- */
+.promos,
+.coaches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.promo,
+.coach-card {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  min-width: 0;
+}
+.promo--live {
+  border-color: rgba(200, 245, 60, 0.45);
+  background: radial-gradient(120% 80% at 100% 0%, rgba(200, 245, 60, 0.08), transparent 60%),
+    var(--surface);
+}
+.promo__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.promo__dates {
+  font-size: 13px;
+}
+.promo h3,
+.coach-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.promo__price {
+  font-family: var(--display);
+  font-size: 34px;
+  line-height: 1;
+  color: var(--lime);
+}
+.promo__desc,
+.coach-card__bio {
+  font-size: 14px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.promo__actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.coach-card__head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.coach-card__avatar {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--lime-soft);
+  color: var(--lime);
+  font-family: var(--display);
+  font-size: 20px;
+}
+.coach-card__row {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+}
+.coach-card__row span {
+  color: var(--faint);
+  min-width: 60px;
+}
+
 /* ---------- Recibo ---------- */
 .receipt {
   border-radius: 14px;
