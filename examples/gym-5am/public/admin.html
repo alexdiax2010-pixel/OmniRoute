@@ -30,22 +30,35 @@
           <span class="brand__sub">Wellness<br />Fitness</span>
         </div>
         <h1 class="login__title">Panel <span class="outline">de</span> control</h1>
-        <div class="field">
-          <label for="pin">PIN de administración</label>
-          <input
-            id="pin"
-            name="pin"
-            type="password"
-            inputmode="numeric"
-            autocomplete="current-password"
-            required
-          />
+        <div class="login__step" data-step="password">
+          <p class="login__note">
+            Código especial aceptado. Escribe la contraseña en los próximos 3 minutos.
+          </p>
+          <div class="field">
+            <label for="password">Contraseña</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          <p class="login__error" role="alert" data-login-error></p>
+          <button class="btn btn--lime btn--block" type="submit">
+            Entrar <span aria-hidden="true">↗</span>
+          </button>
         </div>
-        <p class="login__error" role="alert" data-login-error></p>
-        <button class="btn btn--lime btn--block" type="submit">
-          Entrar <span aria-hidden="true">↗</span>
-        </button>
-        <a class="login__back" href="/">← Volver a la pantalla de entrada</a>
+        <div class="login__step" data-step="locked" hidden>
+          <p class="login__lock">
+            Para abrir el panel, escribe el <strong>código especial</strong> en el teclado de la
+            pantalla de entrada. Después te pediremos la contraseña.
+          </p>
+          <a class="btn btn--lime btn--block" data-kiosk-link href="/"
+            >Ir a la pantalla de entrada</a
+          >
+        </div>
+        <a class="login__back" data-kiosk-link href="/">← Volver a la pantalla de entrada</a>
       </form>
     </main>
 

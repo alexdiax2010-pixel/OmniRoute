@@ -44,6 +44,21 @@
 .login__error:empty {
   display: none;
 }
+.login__step {
+  display: grid;
+  gap: 18px;
+}
+.login__note {
+  font-size: 13px;
+  color: var(--lime);
+}
+.login__lock {
+  font-size: 15px;
+  color: var(--muted);
+}
+.login__lock strong {
+  color: var(--text);
+}
 .login__back {
   justify-self: center;
   font-size: 13px;

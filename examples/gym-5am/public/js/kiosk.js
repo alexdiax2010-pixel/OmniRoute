@@ -293,6 +293,13 @@
         body: JSON.stringify({ code }),
       });
       const data = await res.json().catch(() => ({}));
+      // Código especial del dueño: el servidor entrega un pase de 3 minutos y se abre la contraseña.
+      if (res.ok && data.admin) {
+        setValue("");
+        busy = false;
+        location.href = window.GYM_ADMIN_URL || "/admin";
+        return;
+      }
       if (!res.ok) {
         if (res.status === 404 || res.status === 400) {
           show({

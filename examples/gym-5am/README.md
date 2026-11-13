@@ -4,7 +4,7 @@ Sistema para la recepción del gimnasio:
 
 - **Pantalla de entrada** (`/`): el socio escribe su código y ve al instante si puede pasar,
   cuántos días le quedan y cuándo vence su mensualidad. Cada intento queda registrado.
-- **Administración** (`/admin`, protegida con PIN): alta de socios con código de acceso,
+- **Administración** (protegida con código especial + contraseña): alta de socios con código de acceso,
   registro de cobros que renuevan la mensualidad automáticamente, avisos de vencimiento por
   WhatsApp, historial de entradas, ingresos del mes y exportación a CSV.
 
@@ -17,14 +17,26 @@ No tiene dependencias: solo necesita **Node.js 22.5 o superior** (usa el SQLite 
 
 ```bash
 cd examples/gym-5am
-ADMIN_PIN=123456 npm start        # elige tu propio PIN
+ADMIN_CODE=246810 ADMIN_PASSWORD='elige-una-contraseña' npm start
 ```
 
 - Pantalla de entrada: `http://localhost:5050`
-- Administración: `http://localhost:5050/admin`
 
-Si no defines `ADMIN_PIN` la primera vez, el servidor genera un PIN aleatorio y lo muestra en la
-consola. Puedes cambiarlo después en **Administración → Ajustes**.
+### Cómo entra el dueño al panel
+
+La pantalla de entrada **no tiene botón de administración**. El acceso es en dos pasos:
+
+1. **Código especial**: el dueño lo escribe en el mismo teclado donde los socios ponen su código.
+   No registra ninguna entrada y, para quien esté mirando, no muestra nada especial.
+2. **Contraseña**: al aceptar el código, se abre el panel pidiendo la contraseña. Hay 3 minutos para
+   escribirla; después hay que volver a poner el código.
+
+Si alguien abre `/admin` directamente sin haber puesto el código, no ve el campo de contraseña.
+Cinco contraseñas incorrectas bloquean los intentos durante 5 minutos.
+
+Si no defines `ADMIN_CODE` y `ADMIN_PASSWORD` la primera vez, el servidor los genera al azar y los
+muestra en la consola. Los dos se cambian después en **Administración → Ajustes**. El código especial
+nunca puede coincidir con el de un socio.
 
 ### En el gimnasio
 
@@ -110,15 +122,19 @@ guardar además una copia fuera del ordenador de recepción (USB o nube).
 | `PORT`           | `5050`      | Puerto del servidor                                                 |
 | `HOST`           | `0.0.0.0`   | Interfaz de red                                                     |
 | `DATA_DIR`       | `./data`    | Carpeta de la base de datos                                         |
-| `ADMIN_PIN`      | aleatorio   | PIN inicial (solo se usa si todavía no hay PIN)                     |
+| `ADMIN_CODE`     | aleatorio   | Código especial inicial, 4 a 8 dígitos (solo si aún no hay uno)     |
+| `ADMIN_PASSWORD` | aleatoria   | Contraseña inicial, mínimo 6 caracteres (solo si aún no hay una)    |
 | `TZ`             | del sistema | Zona horaria para calcular vencimientos (ej. `America/Mexico_City`) |
 | `SECURE_COOKIES` | `0`         | Pon `1` si el sistema se sirve por HTTPS                            |
 | `TRUST_PROXY`    | `0`         | Pon `1` detrás de un proxy inverso (Nginx, Caddy…)                  |
 
 ## Seguridad
 
-- El PIN se guarda con hash (scrypt), y la sesión usa una cookie `HttpOnly` y `SameSite=Strict` que dura 12 horas.
-- Límite de intentos: 20 códigos por minuto y 5 intentos de PIN cada 5 minutos por IP.
+- Acceso al panel en dos pasos: código especial en la entrada (entrega un pase de un solo uso
+  que dura 3 minutos) y contraseña. La contraseña se guarda con hash (scrypt).
+- La sesión usa una cookie `HttpOnly` y `SameSite=Strict` que dura 12 horas.
+- Límite de intentos por IP: 20 códigos por minuto (incluido el código especial) y 5 contraseñas
+  incorrectas cada 5 minutos.
 - La pantalla de entrada solo muestra el nombre de pila y la fecha de vencimiento: nunca el teléfono ni el email.
 - Todas las consultas a SQLite son sentencias preparadas, y el CSV neutraliza las fórmulas.
 - Lleva cabeceras CSP, `X-Frame-Options` y `nosniff`, y los errores no exponen detalles internos.

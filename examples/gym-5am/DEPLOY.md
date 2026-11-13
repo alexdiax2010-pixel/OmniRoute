@@ -54,10 +54,11 @@ disco) suele ser de pocos dólares al mes. Consulta el precio actual en su pági
    fly volumes create gym_data --region qro --size 1
    ```
 
-6. **Define el PIN del dueño** (elige uno de 6 dígitos o más; no uses el de la demo):
+6. **Define el acceso del dueño**: un código especial de 4 a 8 dígitos (el que escribirá en el
+   teclado de la entrada) y una contraseña de al menos 6 caracteres. No uses los de la demo:
 
    ```bash
-   fly secrets set ADMIN_PIN=xxxxxx
+   fly secrets set ADMIN_CODE=xxxxxx ADMIN_PASSWORD='tu-contraseña'
    ```
 
 7. **Despliega:**
@@ -103,7 +104,7 @@ Sirve cualquier VPS con Ubuntu o Debian (DigitalOcean, Hetzner, Vultr, Linode…
    ```bash
    cd examples/gym-5am/deploy
    cp .env.example .env
-   nano .env        # escribe tu DOMINIO y tu ADMIN_PIN
+   nano .env        # escribe tu DOMINIO, tu ADMIN_CODE y tu ADMIN_PASSWORD
    ```
 
 4. **Arranca:**
@@ -125,7 +126,8 @@ docker compose cp app:/data/backups ./backups
 
 ## 3. Después de publicar
 
-1. Entra en `/admin` con tu PIN y revisa **Ajustes**: nombre del gimnasio, plan Mensual de $549,
+1. Escribe tu código especial en el teclado de la pantalla de entrada, pon tu contraseña y revisa
+   **Ajustes**: nombre del gimnasio, plan Mensual de $549,
    código de país `52` y texto del recordatorio.
 2. Da de alta a los socios (o pásame el archivo con nombres, códigos y fechas para importarlo).
 3. En la tableta de recepción abre la dirección del sistema y ponla en pantalla completa (modo
@@ -134,13 +136,13 @@ docker compose cp app:/data/backups ./backups
 
 ## Qué incluye la configuración
 
-| Archivo                     | Para qué sirve                                                                  |
-| --------------------------- | ------------------------------------------------------------------------------- |
-| `Dockerfile`                | Imagen de producción: Node 22, usuario sin privilegios, hora de México, HTTPS   |
-| `fly.toml`                  | Fly.io: una máquina siempre encendida, disco en `/data`, HTTPS forzado, chequeo |
-| `deploy/docker-compose.yml` | VPS: la app más Caddy con certificado HTTPS automático                          |
-| `deploy/Caddyfile`          | Proxy HTTPS hacia la app                                                        |
-| `deploy/.env.example`       | Plantilla con `DOMINIO` y `ADMIN_PIN` (el `.env` real no se sube a GitHub)      |
+| Archivo                     | Para qué sirve                                                                       |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| `Dockerfile`                | Imagen de producción: Node 22, usuario sin privilegios, hora de México, HTTPS        |
+| `fly.toml`                  | Fly.io: una máquina siempre encendida, disco en `/data`, HTTPS forzado, chequeo      |
+| `deploy/docker-compose.yml` | VPS: la app más Caddy con certificado HTTPS automático                               |
+| `deploy/Caddyfile`          | Proxy HTTPS hacia la app                                                             |
+| `deploy/.env.example`       | Plantilla con `DOMINIO`, `ADMIN_CODE` y `ADMIN_PASSWORD` (el `.env` real no se sube) |
 
 La imagen expone `/api/health` para los chequeos del hosting y cierra la base de datos de forma
 ordenada al reiniciarse o desplegar una versión nueva.

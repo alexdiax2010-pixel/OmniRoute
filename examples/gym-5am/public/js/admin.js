@@ -21,7 +21,10 @@
       credentials: "same-origin",
     });
     const data = await res.json().catch(() => ({}));
-    if (res.status === 401 && path !== "/api/admin/login" && path !== "/api/admin/pin") {
+    if (
+      res.status === 401 &&
+      !["/api/admin/login", "/api/admin/password", "/api/admin/code"].includes(path)
+    ) {
       showLogin();
       throw new Error("Sesión expirada");
     }
@@ -150,11 +153,19 @@
   modal.addEventListener("click", (e) => e.target === modal && closeModal());
 
   // ---------- Vistas: login / app ----------
-  function showLogin() {
+  const KIOSK_URL = window.GYM_KIOSK_URL || "/";
+  $$("[data-kiosk-link]").forEach((a) => (a.href = KIOSK_URL));
+  // Sin el pase del código especial no se muestra el campo de contraseña.
+  function showLogin(hasTicket = false) {
     $("[data-view=app]").hidden = true;
     $("[data-view=login]").hidden = false;
+    $("[data-step=password]").hidden = !hasTicket;
+    $("[data-step=locked]").hidden = hasTicket;
+    $(".login__back").hidden = !hasTicket;
+    $("#password").required = hasTicket;
+    $("[data-login-error]").textContent = "";
     closeModal();
-    setTimeout(() => $("#pin").focus(), 50);
+    if (hasTicket) setTimeout(() => $("#password").focus(), 50);
   }
   async function showApp() {
     state.meta = await api("/api/admin/meta");
@@ -175,17 +186,23 @@
     const err = $("[data-login-error]");
     err.textContent = "";
     try {
-      await api("/api/admin/login", { method: "POST", body: { pin: e.target.pin.value } });
+      await api("/api/admin/login", {
+        method: "POST",
+        body: { password: e.target.password.value },
+      });
       e.target.reset();
       await showApp();
     } catch (ex) {
       err.textContent = ex.message;
+      // Pase vencido (más de 3 minutos): hay que volver a escribir el código especial.
+      const s = await api("/api/admin/session").catch(() => ({}));
+      if (!s.ticket) showLogin(false);
     }
   });
 
   const logout = async () => {
     await api("/api/admin/logout", { method: "POST", body: {} }).catch(() => {});
-    showLogin();
+    location.href = KIOSK_URL;
   };
   $("[data-logout]").addEventListener("click", logout);
 
@@ -943,19 +960,28 @@
             </div>
           </form>
           <div class="stack">
-            <form class="card" data-pin-form>
-              <div class="card__head"><h2>Cambiar PIN</h2></div>
+            <form class="card" data-password-form>
+              <div class="card__head"><h2>Cambiar contraseña</h2></div>
               <div class="card__body stack">
-                <label class="field"><span>PIN actual</span><input name="current" type="password" inputmode="numeric" autocomplete="current-password" required /></label>
-                <label class="field"><span>Nuevo PIN (4–12 dígitos)</span><input name="next" type="password" inputmode="numeric" autocomplete="new-password" pattern="\\d{4,12}" required /></label>
-                <button class="btn" type="submit">Actualizar PIN</button>
+                <label class="field"><span>Contraseña actual</span><input name="current" type="password" autocomplete="current-password" required /></label>
+                <label class="field"><span>Nueva contraseña (mínimo 6 caracteres)</span><input name="next" type="password" autocomplete="new-password" minlength="6" maxlength="64" required /></label>
+                <button class="btn" type="submit">Actualizar contraseña</button>
+              </div>
+            </form>
+            <form class="card" data-code-form>
+              <div class="card__head"><h2>Cambiar código especial</h2></div>
+              <div class="card__body stack">
+                <p class="hint">Es el código que escribes en el teclado de la entrada para abrir el panel. No puede coincidir con el de ningún socio.</p>
+                <label class="field"><span>Nuevo código (4 a 8 dígitos)</span><input name="code" inputmode="numeric" maxlength="8" pattern="\\d{4,8}" autocomplete="off" required /></label>
+                <label class="field"><span>Tu contraseña</span><input name="password" type="password" autocomplete="current-password" required /></label>
+                <button class="btn" type="submit">Actualizar código especial</button>
               </div>
             </form>
             <div class="card">
               <div class="card__head"><h2>Datos</h2></div>
               <div class="card__body stack">
                 <a class="btn" href="/api/admin/export/members.csv">Exportar socios (CSV)</a>
-                <a class="btn" href="/" target="_blank" rel="noopener">Abrir pantalla de entrada ↗</a>
+                <a class="btn" href="/" target="_blank" rel="noopener" data-kiosk-link>Abrir pantalla de entrada ↗</a>
                 <button class="btn btn--danger" type="button" data-logout-2>Cerrar sesión</button>
               </div>
             </div>
@@ -997,15 +1023,29 @@
           toast(ex.message, true);
         }
       });
-      $("[data-pin-form]", panel).addEventListener("submit", async (e) => {
+      $$("[data-kiosk-link]", panel).forEach((a) => (a.href = KIOSK_URL));
+      $("[data-password-form]", panel).addEventListener("submit", async (e) => {
         e.preventDefault();
         try {
-          await api("/api/admin/pin", {
+          await api("/api/admin/password", {
             method: "POST",
             body: { current: e.target.current.value, next: e.target.next.value },
           });
           e.target.reset();
-          toast("PIN actualizado");
+          toast("Contraseña actualizada");
+        } catch (ex) {
+          toast(ex.message, true);
+        }
+      });
+      $("[data-code-form]", panel).addEventListener("submit", async (e) => {
+        e.preventDefault();
+        try {
+          await api("/api/admin/code", {
+            method: "POST",
+            body: { code: e.target.code.value, password: e.target.password.value },
+          });
+          e.target.reset();
+          toast("Código especial actualizado");
         } catch (ex) {
           toast(ex.message, true);
         }
@@ -1656,7 +1696,11 @@
   });
 
   // ---------- Arranque ----------
-  api("/api/admin/session")
-    .then((s) => (s.authenticated ? showApp() : showLogin()))
-    .catch(() => showLogin());
+  const boot = () =>
+    api("/api/admin/session")
+      .then((s) => (s.authenticated ? showApp() : showLogin(Boolean(s.ticket))))
+      .catch(() => showLogin(false));
+  // Para cuando el panel se muestra sin recargar la página (por ejemplo, en la demo).
+  window.gymAdminRefresh = boot;
+  boot();
 })();

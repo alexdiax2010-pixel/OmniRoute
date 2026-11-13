@@ -1,11 +1,12 @@
 # Opción servidor propio (VPS): la app + Caddy, que obtiene y renueva el certificado HTTPS solo.
-# Uso: define DOMINIO y ADMIN_PIN en deploy/.env y ejecuta `docker compose up -d --build` en esta carpeta.
+# Uso: define DOMINIO, ADMIN_CODE y ADMIN_PASSWORD en deploy/.env y ejecuta `docker compose up -d --build`.
 services:
   app:
     build: ..
     restart: unless-stopped
     environment:
-      ADMIN_PIN: ${ADMIN_PIN:?Define ADMIN_PIN en deploy/.env}
+      ADMIN_CODE: ${ADMIN_CODE:?Define ADMIN_CODE en deploy/.env}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Define ADMIN_PASSWORD en deploy/.env}
     volumes:
       - gym_data:/data
     expose:

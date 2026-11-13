@@ -2,7 +2,7 @@
 // Sin dependencias: node:http + node:sqlite (Node >= 22.5). Uso: node --no-warnings server.mjs
 import { createServer } from "node:http";
 import { readFile, mkdir, access, readdir, unlink } from "node:fs/promises";
-import { randomInt } from "node:crypto";
+import { randomInt, randomBytes } from "node:crypto";
 import { extname, join, normalize, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createStore, PAYMENT_METHODS } from "./lib/store.mjs";
@@ -76,9 +76,14 @@ const email = (v) => {
   if (s && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s)) fail(400, "El email no es válido");
   return s;
 };
-const pinValue = (v) => {
-  const s = str(v, "PIN", { max: 12, required: true });
-  if (!/^\d{4,12}$/.test(s)) fail(400, "El PIN debe tener entre 4 y 12 dígitos");
+const passwordValue = (v) => {
+  if (typeof v !== "string" || v.length < 6 || v.length > 64)
+    fail(400, "La contraseña debe tener entre 6 y 64 caracteres");
+  return v;
+};
+const adminCodeValue = (v) => {
+  const s = str(v, "código especial", { max: 8, required: true });
+  if (!/^\d{4,8}$/.test(s)) fail(400, "El código especial debe tener entre 4 y 8 dígitos");
   return s;
 };
 
@@ -101,6 +106,31 @@ const paymentInput = (p) => {
     startDate,
   };
 };
+
+// Bloqueo por fallos: solo cuentan los intentos fallidos (p. ej., contraseñas incorrectas).
+function failureLimiter(maxFails, windowMs) {
+  const fails = new Map();
+  return {
+    blocked(key) {
+      const e = fails.get(key);
+      if (!e) return false;
+      if (e.reset < Date.now()) {
+        fails.delete(key);
+        return false;
+      }
+      return e.count >= maxFails;
+    },
+    hit(key) {
+      const now = Date.now();
+      const e = fails.get(key);
+      if (!e || e.reset < now) fails.set(key, { count: 1, reset: now + windowMs });
+      else e.count += 1;
+    },
+    clear(key) {
+      fails.delete(key);
+    },
+  };
+}
 
 // ---------- Límite de intentos por IP ----------
 function rateLimiter(limit, windowMs) {
@@ -184,10 +214,25 @@ const csvCell = (v) => {
 // ---------- Aplicación ----------
 export function createApp({ store, secureCookies = false, trustProxy = false } = {}) {
   const checkinLimit = rateLimiter(20, 60_000);
-  const loginLimit = rateLimiter(5, 5 * 60_000);
+  const loginFails = failureLimiter(5, 5 * 60_000);
   const SID = "sid";
-  const sessionCookie = (token, maxAge) =>
-    `${SID}=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${secureCookies ? "; Secure" : ""}`;
+  const TICKET = "aticket";
+  const cookie = (name, value, maxAge) =>
+    `${name}=${value}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${secureCookies ? "; Secure" : ""}`;
+  const sessionCookie = (token, maxAge) => cookie(SID, token, maxAge);
+
+  // Pase de un solo uso que se entrega al escribir el código especial en la entrada.
+  // Dura 3 minutos y es imprescindible para que aparezca y funcione el formulario de contraseña.
+  const TICKET_MS = 3 * 60 * 1000;
+  const tickets = new Map();
+  const issueTicket = () => {
+    const now = Date.now();
+    for (const [k, exp] of tickets) if (exp < now) tickets.delete(k);
+    const t = randomBytes(24).toString("hex");
+    tickets.set(t, now + TICKET_MS);
+    return t;
+  };
+  const validTicket = (t) => Boolean(t) && (tickets.get(t) || 0) > Date.now();
 
   const routes = [];
   const route = (method, pattern, handler, { admin = false } = {}) => {
@@ -214,19 +259,36 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
     const { code } = await readJson(req);
     const c = str(code, "código", { max: 8, required: true });
     if (!/^\d{4,8}$/.test(c)) fail(400, "Código no válido");
+    // Código especial del dueño: no registra una entrada, abre el paso de la contraseña.
+    if (store.isAdminCode(c)) {
+      return { admin: true, _cookie: cookie(TICKET, issueTicket(), TICKET_MS / 1000) };
+    }
     const result = store.checkIn(c);
     if (!result) fail(404, "Código no encontrado");
     return result;
   });
 
   // --- Sesión de administración ---
-  route("GET", "/api/admin/session", ({ authed }) => ({ authenticated: authed }));
+  route("GET", "/api/admin/session", ({ authed, cookies: c }) => ({
+    authenticated: authed,
+    ticket: validTicket(c[TICKET]),
+  }));
 
-  route("POST", "/api/admin/login", async ({ req, ip }) => {
-    if (!loginLimit(ip)) fail(429, "Demasiados intentos. Espera unos minutos.");
-    const { pin } = await readJson(req);
-    if (!store.checkPin(String(pin ?? ""))) fail(401, "PIN incorrecto");
-    return { ok: true, _cookie: sessionCookie(store.createSession(), 12 * 3600) };
+  route("POST", "/api/admin/login", async ({ req, ip, cookies: c }) => {
+    if (loginFails.blocked(ip)) fail(429, "Demasiados intentos fallidos. Espera unos minutos.");
+    if (!validTicket(c[TICKET]))
+      fail(403, "Primero escribe el código especial en la pantalla de entrada.");
+    const { password } = await readJson(req);
+    if (!store.checkPassword(String(password ?? ""))) {
+      loginFails.hit(ip);
+      fail(401, "Contraseña incorrecta");
+    }
+    loginFails.clear(ip);
+    tickets.delete(c[TICKET]);
+    return {
+      ok: true,
+      _cookie: [sessionCookie(store.createSession(), 12 * 3600), cookie(TICKET, "", 0)],
+    };
   });
 
   route("POST", "/api/admin/logout", ({ token }) => {
@@ -236,13 +298,26 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
 
   route(
     "POST",
-    "/api/admin/pin",
+    "/api/admin/password",
     async ({ req }) => {
       const { current, next } = await readJson(req);
-      if (!store.checkPin(String(current ?? ""))) fail(401, "El PIN actual no es correcto");
-      store.setPin(pinValue(next));
+      if (!store.checkPassword(String(current ?? "")))
+        fail(401, "La contraseña actual no es correcta");
+      store.setPassword(passwordValue(next));
       store.destroyAllSessions();
       return { ok: true, _cookie: sessionCookie(store.createSession(), 12 * 3600) };
+    },
+    { admin: true }
+  );
+
+  route(
+    "POST",
+    "/api/admin/code",
+    async ({ req }) => {
+      const { password, code } = await readJson(req);
+      if (!store.checkPassword(String(password ?? ""))) fail(401, "La contraseña no es correcta");
+      store.setAdminCode(adminCodeValue(code));
+      return { ok: true };
     },
     { admin: true }
   );
@@ -712,7 +787,8 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
           return send(res, 405, "Método no permitido");
         return await serveStatic(res, url.pathname);
       }
-      const token = cookies(req)[SID];
+      const jar = cookies(req);
+      const token = jar[SID];
       const authed = store.validSession(token);
       for (const r of routes) {
         if (r.method !== req.method) continue;
@@ -726,6 +802,7 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
           params,
           token,
           authed,
+          cookies: jar,
           ip: clientIp(req, trustProxy),
         });
         if (out && out._raw !== undefined) return send(res, 200, out._raw, out._headers);
@@ -755,13 +832,29 @@ if (isMain) {
   await mkdir(dataDir, { recursive: true });
   const store = createStore(join(dataDir, "gym.db"));
 
-  if (!store.hasPin()) {
-    const pin = process.env.ADMIN_PIN || String(randomInt(100000, 1000000));
-    store.setPin(pin);
+  // Acceso de administración: código especial (teclado de la entrada) + contraseña.
+  if (!store.hasPassword()) {
+    const fromEnv = process.env.ADMIN_PASSWORD || process.env.ADMIN_PIN;
+    const password = fromEnv || randomBytes(9).toString("base64url");
+    store.setPassword(passwordValue(password));
     console.log(
-      process.env.ADMIN_PIN
-        ? "PIN de administración configurado desde ADMIN_PIN."
-        : `\n  PIN de administración inicial: ${pin}\n  Cámbialo en Administración → Ajustes.\n`
+      fromEnv
+        ? "Contraseña de administración configurada desde ADMIN_PASSWORD."
+        : `\n  Contraseña de administración inicial: ${password}\n  Cámbiala en Administración → Ajustes.\n`
+    );
+  }
+  if (!store.getAdminCode()) {
+    let code = process.env.ADMIN_CODE;
+    if (code) adminCodeValue(code);
+    else {
+      do code = String(randomInt(100000, 1000000));
+      while (store.listMembers({ search: code }).some((m) => m.code === code));
+    }
+    store.setAdminCode(code);
+    console.log(
+      process.env.ADMIN_CODE
+        ? "Código especial de administración configurado desde ADMIN_CODE."
+        : `\n  Código especial de administración: ${code}\n  Escríbelo en el teclado de la pantalla de entrada para abrir el panel.\n`
     );
   }
 

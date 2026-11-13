@@ -190,7 +190,9 @@ export function createStore(path = ":memory:") {
   // ---------- Ajustes ----------
   const getSettings = () => {
     const out = {};
-    for (const row of q("SELECT key, value FROM settings WHERE key != 'adminPin'").all()) {
+    for (const row of q(
+      "SELECT key, value FROM settings WHERE key NOT IN ('adminPin', 'adminCode')"
+    ).all()) {
       out[row.key] = row.value;
     }
     return out;
@@ -205,14 +207,34 @@ export function createStore(path = ":memory:") {
     return getSettings();
   };
 
-  // ---------- PIN de administración y sesiones ----------
-  const hasPin = () => Boolean(q("SELECT value FROM settings WHERE key = 'adminPin'").get());
-  const setPin = (pin) =>
+  // ---------- Acceso de administración: código especial + contraseña ----------
+  // La contraseña se guarda con hash (scrypt) en la clave histórica 'adminPin'.
+  const hasPassword = () => Boolean(q("SELECT value FROM settings WHERE key = 'adminPin'").get());
+  const setPassword = (password) =>
     q(
       "INSERT INTO settings (key, value) VALUES ('adminPin', ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value"
-    ).run(hashPin(pin));
-  const checkPin = (pin) =>
-    verifyPin(pin, q("SELECT value FROM settings WHERE key = 'adminPin'").get()?.value);
+    ).run(hashPin(password));
+  const checkPassword = (password) =>
+    verifyPin(password, q("SELECT value FROM settings WHERE key = 'adminPin'").get()?.value);
+
+  // El código especial se escribe en el teclado de la entrada. Se guarda tal cual porque hay que
+  // compararlo con los códigos de los socios para que nunca coincidan; nunca sale en la API.
+  const getAdminCode = () =>
+    q("SELECT value FROM settings WHERE key = 'adminCode'").get()?.value || null;
+  const isAdminCode = (code) => {
+    const c = getAdminCode();
+    return Boolean(c) && String(code) === c;
+  };
+  const setAdminCode = (code) => {
+    if (q("SELECT 1 FROM members WHERE code = ? AND archived = 0").get(code)) {
+      const err = new Error("Ese código ya lo usa un socio: elige otro");
+      err.status = 409;
+      throw err;
+    }
+    q(
+      "INSERT INTO settings (key, value) VALUES ('adminCode', ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value"
+    ).run(String(code));
+  };
 
   const SESSION_MS = 12 * 60 * 60 * 1000;
   const createSession = () => {
@@ -277,7 +299,7 @@ export function createStore(path = ":memory:") {
     for (let digits = 4; digits <= 8; digits++) {
       for (let i = 0; i < 50; i++) {
         const code = String(randomInt(10 ** (digits - 1), 10 ** digits));
-        if (!exists.get(code)) return code;
+        if (!exists.get(code) && !isAdminCode(code)) return code;
       }
     }
     throw new Error("No se pudo generar un código único");
@@ -321,7 +343,7 @@ export function createStore(path = ":memory:") {
   };
 
   const createMember = ({ name, phone = "", email = "", notes = "", code, joinedOn }) => {
-    if (code && q("SELECT 1 FROM members WHERE code = ?").get(code)) {
+    if (code && (q("SELECT 1 FROM members WHERE code = ?").get(code) || isAdminCode(code))) {
       const err = new Error("Ese código ya está en uso");
       err.status = 409;
       throw err;
@@ -366,6 +388,7 @@ export function createStore(path = ":memory:") {
       if (!/^\d{4,8}$/.test(code)) add(`El código "${code}" debe tener entre 4 y 8 dígitos`);
       else if (seen.has(code)) add(`El código ${code} está repetido en el archivo`);
       else if (exists.get(code)) add(`El código ${code} ya pertenece a otro socio`);
+      else if (isAdminCode(code)) add(`El código ${code} está reservado`);
       seen.add(code);
       const phone = String(r.phone ?? "").trim();
       if (phone && !/^\+?[\d\s().-]{6,24}$/.test(phone)) add(`Teléfono no válido: ${phone}`);
@@ -803,9 +826,12 @@ export function createStore(path = ":memory:") {
     db,
     getSettings,
     updateSettings,
-    hasPin,
-    setPin,
-    checkPin,
+    hasPassword,
+    setPassword,
+    checkPassword,
+    getAdminCode,
+    isAdminCode,
+    setAdminCode,
     createSession,
     validSession,
     destroySession,

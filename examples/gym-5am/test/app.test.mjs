@@ -316,12 +316,29 @@ describe("store", () => {
     assert.ok(store.deletePhrase(added.id));
   });
 
-  test("el PIN se guarda con hash y se verifica", () => {
-    store.setPin("4321");
-    assert.ok(store.checkPin("4321"));
-    assert.ok(!store.checkPin("1234"));
+  test("la contraseña se guarda con hash y el código especial nunca choca con un socio", () => {
+    store.setPassword("Gym5am!2026");
+    assert.ok(store.checkPassword("Gym5am!2026"));
+    assert.ok(!store.checkPassword("gym5am!2026"));
     const raw = store.db.prepare("SELECT value FROM settings WHERE key = 'adminPin'").get().value;
-    assert.ok(!raw.includes("4321"));
+    assert.ok(!raw.includes("Gym5am"));
+
+    store.setAdminCode("909090");
+    assert.ok(store.isAdminCode("909090"));
+    assert.equal(
+      store.getSettings().adminCode,
+      undefined,
+      "el código especial no sale en los ajustes"
+    );
+    assert.equal(store.getSettings().adminPin, undefined);
+    assert.throws(() => store.createMember({ name: "Choque", code: "909090" }), /en uso/);
+    assert.match(
+      store.importMembers([{ name: "Choque", code: "909090" }]).errors[0].message,
+      /reservado/
+    );
+    const m = store.createMember({ name: "Dueña del código", code: "818181" });
+    assert.throws(() => store.setAdminCode("818181"), /lo usa un socio/);
+    assert.ok(store.archiveMember(m.id));
   });
 });
 
@@ -329,19 +346,28 @@ describe("API HTTP", () => {
   let server;
   let base;
   let store;
-  let cookie = "";
+  // Mini "navegador": guarda las cookies que envía el servidor (sesión y pase de acceso).
+  const jar = new Map();
+  const cookieHeader = () => [...jar].map(([k, v]) => `${k}=${v}`).join("; ");
+  const ADMIN_CODE = "246810";
+  const PASSWORD = "Wellness5am";
 
   const call = async (path, { method = "GET", body, auth = true } = {}) => {
     const res = await fetch(base + path, {
       method,
       headers: {
         ...(body ? { "Content-Type": "application/json" } : {}),
-        ...(auth && cookie ? { Cookie: cookie } : {}),
+        ...(auth && jar.size ? { Cookie: cookieHeader() } : {}),
       },
       body: body ? JSON.stringify(body) : undefined,
     });
-    const setCookie = res.headers.get("set-cookie");
-    if (setCookie) cookie = setCookie.split(";")[0];
+    for (const c of res.headers.getSetCookie()) {
+      const [pair] = c.split(";");
+      const i = pair.indexOf("=");
+      const [k, v] = [pair.slice(0, i), pair.slice(i + 1)];
+      if (v) jar.set(k, v);
+      else jar.delete(k);
+    }
     const text = await res.text();
     let data;
     try {
@@ -354,7 +380,8 @@ describe("API HTTP", () => {
 
   before(async () => {
     store = createStore(":memory:");
-    store.setPin("246810");
+    store.setPassword(PASSWORD);
+    store.setAdminCode(ADMIN_CODE);
     server = createServer(createApp({ store }));
     await new Promise((r) => server.listen(0, "127.0.0.1", r));
     base = `http://127.0.0.1:${server.address().port}`;
@@ -372,16 +399,91 @@ describe("API HTTP", () => {
 
   test("las rutas de administración exigen sesión", async () => {
     assert.equal((await call("/api/admin/members", { auth: false })).status, 401);
+  });
+
+  test("acceso en dos pasos: sin el código especial no se puede ni intentar la contraseña", async () => {
+    let s = await call("/api/admin/session");
+    assert.deepEqual(s.data, { authenticated: false, ticket: false });
+    const direct = await call("/api/admin/login", { method: "POST", body: { password: PASSWORD } });
+    assert.equal(direct.status, 403, "la contraseña correcta sola no basta");
+    assert.ok(!jar.has("sid"));
+
+    const visitsBefore = store.listVisits().length;
+    const code = await call("/api/checkin", { method: "POST", body: { code: ADMIN_CODE } });
+    assert.equal(code.status, 200);
+    assert.deepEqual(code.data, { admin: true }, "no revela nada más");
+    assert.ok(jar.has("aticket"));
     assert.equal(
-      (await call("/api/admin/login", { method: "POST", body: { pin: "000000" } })).status,
+      store.listVisits().length,
+      visitsBefore,
+      "el código especial no registra una entrada"
+    );
+    s = await call("/api/admin/session");
+    assert.deepEqual(s.data, { authenticated: false, ticket: true });
+
+    const wrong = await call("/api/admin/login", {
+      method: "POST",
+      body: { password: "otra-cosa" },
+    });
+    assert.equal(wrong.status, 401);
+    const ok = await call("/api/admin/login", { method: "POST", body: { password: PASSWORD } });
+    assert.equal(ok.status, 200);
+    assert.ok(jar.has("sid"));
+    assert.ok(!jar.has("aticket"), "el pase se consume al entrar");
+    assert.equal((await call("/api/admin/members")).status, 200);
+
+    // El pase es de un solo uso: reenviar uno ya usado no permite volver a intentar la contraseña.
+    await call("/api/admin/logout", { method: "POST", body: {} });
+    jar.set("aticket", "pase-viejo-o-inventado");
+    assert.equal(
+      (await call("/api/admin/login", { method: "POST", body: { password: PASSWORD } })).status,
+      403
+    );
+    jar.delete("aticket");
+  });
+
+  const loginAdmin = async () => {
+    await call("/api/checkin", { method: "POST", body: { code: ADMIN_CODE } });
+    const r = await call("/api/admin/login", { method: "POST", body: { password: PASSWORD } });
+    assert.equal(r.status, 200);
+  };
+
+  test("cambiar contraseña y código especial", async () => {
+    await loginAdmin();
+    assert.equal(
+      (
+        await call("/api/admin/password", {
+          method: "POST",
+          body: { current: "mala", next: "NuevaClave1" },
+        })
+      ).status,
       401
     );
+    assert.equal(
+      (
+        await call("/api/admin/password", {
+          method: "POST",
+          body: { current: PASSWORD, next: "corta" },
+        })
+      ).status,
+      400
+    );
+    assert.equal(
+      (await call("/api/admin/code", { method: "POST", body: { password: PASSWORD, code: "12" } }))
+        .status,
+      400
+    );
+    const changed = await call("/api/admin/code", {
+      method: "POST",
+      body: { password: PASSWORD, code: "551155" },
+    });
+    assert.equal(changed.status, 200);
+    assert.ok(store.isAdminCode("551155"));
+    store.setAdminCode(ADMIN_CODE);
   });
 
   test("flujo completo: login, alta con cobro, entrada, aviso y exportación", async () => {
-    const login = await call("/api/admin/login", { method: "POST", body: { pin: "246810" } });
-    assert.equal(login.status, 200);
-    assert.match(cookie, /^sid=/);
+    await loginAdmin();
 
     const meta = await call("/api/admin/meta");
     const plan = meta.data.plans[0];
@@ -604,6 +706,7 @@ describe("API HTTP", () => {
   });
 
   test("limita los intentos de código por IP", async () => {
+    // (también protege el código especial frente a quien intente adivinarlo)
     let last;
     for (let i = 0; i < 25; i++) {
       last = await call("/api/checkin", { method: "POST", body: { code: "1111" }, auth: false });
@@ -614,5 +717,42 @@ describe("API HTTP", () => {
   test("cerrar sesión invalida la cookie", async () => {
     await call("/api/admin/logout", { method: "POST", body: {} });
     assert.equal((await call("/api/admin/members")).status, 401);
+  });
+});
+
+describe("bloqueo por contraseñas incorrectas", () => {
+  test("5 fallos bloquean el acceso aunque luego se escriba la contraseña correcta", async () => {
+    const store = createStore(":memory:");
+    store.setPassword("Correcta123");
+    store.setAdminCode("123987");
+    const server = createServer(createApp({ store }));
+    await new Promise((r) => server.listen(0, "127.0.0.1", r));
+    const base = `http://127.0.0.1:${server.address().port}`;
+    const post = async (path, body, cookie = "") => {
+      const res = await fetch(base + path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...(cookie ? { Cookie: cookie } : {}) },
+        body: JSON.stringify(body),
+      });
+      const ticket = res.headers.getSetCookie().find((c) => c.startsWith("aticket="));
+      return { status: res.status, ticket: ticket ? ticket.split(";")[0] : "" };
+    };
+    try {
+      const { ticket } = await post("/api/checkin", { code: "123987" });
+      assert.ok(ticket);
+      for (let i = 0; i < 5; i++) {
+        assert.equal(
+          (await post("/api/admin/login", { password: `mala-${i}` }, ticket)).status,
+          401
+        );
+      }
+      assert.equal(
+        (await post("/api/admin/login", { password: "Correcta123" }, ticket)).status,
+        429
+      );
+    } finally {
+      await new Promise((r) => server.close(r));
+      store.close();
+    }
   });
 });
