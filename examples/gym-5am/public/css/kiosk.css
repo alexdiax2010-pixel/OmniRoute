@@ -535,19 +535,48 @@
   }
 }
 
-.admin-link {
-  position: absolute;
-  left: clamp(22px, 4vw, 56px);
-  bottom: 10px;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--faint);
-  text-decoration: none;
-  padding: 6px 0;
+/* Botón de administración: esquina superior derecha, junto al reloj */
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
-.admin-link:hover {
+.admin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(20, 22, 19, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+}
+.admin-link svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+.admin-link:hover,
+.admin-link:focus-visible {
+  color: var(--text);
+  border-color: var(--lime);
 }
 
 /* Tabletas en vertical y móviles */
@@ -560,7 +589,6 @@
     width: 100%;
     max-width: 440px;
     justify-self: center;
-    margin-bottom: 30px;
   }
   .stage {
     grid-template-columns: 1fr;
@@ -595,6 +623,27 @@
   }
   .clock__time {
     font-size: 26px;
+  }
+  .topbar__right {
+    gap: 10px;
+  }
+  .clock__date {
+    display: none;
+  }
+  .admin-link {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+  .admin-link span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
   .pad {
     padding: 18px 14px;
