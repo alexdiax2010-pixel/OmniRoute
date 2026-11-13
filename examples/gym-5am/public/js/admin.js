@@ -25,7 +25,11 @@
       showLogin();
       throw new Error("Sesión expirada");
     }
-    if (!res.ok) throw new Error(data.error || "Error inesperado");
+    if (!res.ok) {
+      const err = new Error(data.error || "Error inesperado");
+      err.details = data.details;
+      throw err;
+    }
     return data;
   }
 
@@ -47,6 +51,19 @@
     sin_pago: "Sin pago",
   };
   const pill = (m) => `<span class="pill pill--${m.status}">${STATUS[m.status]}</span>`;
+  // Antigüedad legible: "3 meses", "1 año", "2 años y 4 meses".
+  const tenure = (from, to = state.meta?.today) => {
+    if (!from || !to) return "";
+    const [y1, m1, d1] = from.split("-").map(Number);
+    const [y2, m2, d2] = to.split("-").map(Number);
+    let months = (y2 - y1) * 12 + (m2 - m1) - (d2 < d1 ? 1 : 0);
+    if (months < 1) return "menos de 1 mes";
+    const y = Math.floor(months / 12);
+    months %= 12;
+    const ys = y ? `${y} ${y === 1 ? "año" : "años"}` : "";
+    const ms = months ? `${months} ${months === 1 ? "mes" : "meses"}` : "";
+    return [ys, ms].filter(Boolean).join(" y ");
+  };
   const daysText = (m) => {
     if (m.daysLeft === null || m.daysLeft === undefined) return "";
     if (m.daysLeft === 0) return "vence hoy";
@@ -221,6 +238,7 @@
       <td>${esc(m.plan_name || "—")}</td>
       <td>${fmtDate(m.end_date)}<div class="muted">${daysText(m)}</div></td>
       <td>${pill(m)}</td>
+      <td>${m.joined_on ? esc(tenure(m.joined_on)) : "—"}<div class="muted">${m.joined_on ? `desde ${fmtDate(m.joined_on, { month: "short", year: "numeric" })}` : ""}</div></td>
       <td class="muted">${m.last_visit ? fmtDateTime(m.last_visit) : "—"}</td>
       <td><div class="row-actions">
         <button class="btn btn--sm btn--lime" data-action="pay" data-id="${m.id}">Cobrar</button>
@@ -230,7 +248,7 @@
   const membersTable = (rows) =>
     rows.length
       ? `<div class="table-wrap"><table>
-          <thead><tr><th>Código</th><th>Socio</th><th>Plan</th><th>Vence</th><th>Estado</th><th>Última entrada</th><th></th></tr></thead>
+          <thead><tr><th>Código</th><th>Socio</th><th>Plan</th><th>Vence</th><th>Estado</th><th>Antigüedad</th><th>Última entrada</th><th></th></tr></thead>
           <tbody>${rows.map(memberRow).join("")}</tbody></table></div>`
       : `<p class="empty">No hay socios que mostrar.</p>`;
 
@@ -564,6 +582,7 @@
               .map(([k, l]) => `<button class="chip" data-filter-chip="${k}">${l}</button>`)
               .join("")}</div>
             <span class="toolbar__spacer"></span>
+            <button class="btn btn--sm" data-action="import">Importar socios</button>
             <a class="btn btn--sm" href="/api/admin/export/members.csv">Exportar CSV</a>
           </div>
           <div class="card" data-members></div>`;
@@ -944,6 +963,262 @@
     return () => (userStart ? start.value : undefined);
   };
 
+  // ---------- Importar socios desde CSV ----------
+  // Lee CSV separado por comas, punto y coma o tabuladores (Excel en español usa punto y coma).
+  function parseCsv(text) {
+    text = text.replace(/^\uFEFF/, "");
+    const first = text.split(/\r?\n/, 1)[0] || "";
+    const delim = [";", ",", "\t"].sort((a, b) => first.split(b).length - first.split(a).length)[0];
+    const rows = [];
+    let row = [];
+    let cell = "";
+    let quoted = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (quoted) {
+        if (c === '"' && text[i + 1] === '"') {
+          cell += '"';
+          i++;
+        } else if (c === '"') quoted = false;
+        else cell += c;
+      } else if (c === '"') quoted = true;
+      else if (c === delim) {
+        row.push(cell);
+        cell = "";
+      } else if (c === "\n" || c === "\r") {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(cell);
+        rows.push(row);
+        row = [];
+        cell = "";
+      } else cell += c;
+    }
+    if (cell || row.length) {
+      row.push(cell);
+      rows.push(row);
+    }
+    return rows.filter((r) => r.some((c) => c.trim()));
+  }
+
+  const norm = (h) =>
+    h
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z ]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  // Reconoce las columnas aunque se llamen distinto.
+  const COLUMN_RULES = [
+    ["name", /^(nombre|nombre completo|socio|cliente|name)$/],
+    ["code", /(codigo|pin|clave|numero de socio|id socio|code)/],
+    ["phone", /(telefono|celular|whatsapp|movil|tel|phone)/],
+    ["email", /(email|correo|mail)/],
+    ["tenure", /(antiguedad|tiempo|cuanto tiempo)/],
+    ["joinedOn", /(inscripcion|alta|ingreso|socio desde|desde|registro|fecha de inicio|inicio)/],
+    ["endDate", /(vence|vencimiento|pagado hasta|hasta|fin|expira|proximo pago)/],
+    ["plan", /^(plan|membresia|tipo)$/],
+  ];
+  const mapColumns = (headers) => {
+    const map = {};
+    headers.forEach((h, i) => {
+      const n = norm(h);
+      const hit = COLUMN_RULES.find(([key, re]) => map[key] === undefined && re.test(n));
+      if (hit) map[hit[0]] = i;
+    });
+    return map;
+  };
+  const LABELS = {
+    name: "Nombre",
+    code: "Código",
+    phone: "Teléfono",
+    email: "Email",
+    tenure: "Antigüedad",
+    joinedOn: "Socio desde",
+    endDate: "Vence",
+    plan: "Plan",
+  };
+
+  // Fechas: 15/03/2024, 15-03-24, 2024-03-15.
+  const parseDate = (v) => {
+    v = String(v || "").trim();
+    if (!v) return null;
+    let m = v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    let y, mo, d;
+    if (m) [, y, mo, d] = m.map(Number);
+    else if ((m = v.match(/^(\d{1,2})[/.-](\d{1,2})[/.-](\d{2,4})$/))) {
+      [, d, mo, y] = m.map(Number);
+      if (y < 100) y += 2000;
+    } else return "invalid";
+    const dt = new Date(Date.UTC(y, mo - 1, d));
+    return dt.getUTCMonth() === mo - 1 && dt.getUTCDate() === d ? ymd(dt) : "invalid";
+  };
+  // "2 años", "1 año y 3 meses", "6 meses" → fecha de inscripción aproximada.
+  const tenureToDate = (v) => {
+    // Conserva los números: "1 año y 2 meses" → "1 ano y 2 meses".
+    const t = String(v || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+    if (!t) return null;
+    const y = Number((t.match(/(\d+) ano/) || [])[1] || 0);
+    const mo = Number((t.match(/(\d+) mes/) || [])[1] || 0);
+    if (!y && !mo) return "invalid";
+    return addMonths(state.meta.today, -(y * 12 + mo));
+  };
+
+  function buildImport(rows, existing = new Set()) {
+    const [headers, ...body] = rows;
+    const map = mapColumns(headers);
+    const items = body.map((r, i) => {
+      const get = (k) => (map[k] === undefined ? "" : String(r[map[k]] ?? "").trim());
+      const errors = [];
+      const code = get("code").replace(/\s/g, "");
+      const joined = get("joinedOn") ? parseDate(get("joinedOn")) : tenureToDate(get("tenure"));
+      const end = parseDate(get("endDate"));
+      if (!get("name")) errors.push("Falta el nombre");
+      if (!/^\d{4,8}$/.test(code))
+        errors.push(code ? `Código "${code}" no válido (4 a 8 dígitos)` : "Falta el código");
+      if (joined === "invalid") errors.push("Fecha de inscripción no válida");
+      else if (joined && joined > state.meta.today) errors.push("Inscripción en el futuro");
+      if (end === "invalid") errors.push("Fecha de vencimiento no válida");
+      const plan = get("plan");
+      if (plan && !state.meta.plans.some((p) => p.name.toLowerCase() === plan.toLowerCase()))
+        errors.push(`Plan "${plan}" no existe`);
+      return {
+        line: i + 2,
+        data: {
+          name: get("name"),
+          code,
+          phone: get("phone"),
+          email: get("email"),
+          joinedOn: joined && joined !== "invalid" ? joined : null,
+          endDate: end && end !== "invalid" ? end : null,
+          plan: plan || null,
+        },
+        errors,
+      };
+    });
+    const counts = {};
+    items.forEach((it) => (counts[it.data.code] = (counts[it.data.code] || 0) + 1));
+    items.forEach(
+      (it) =>
+        it.data.code &&
+        counts[it.data.code] > 1 &&
+        it.errors.push(`Código ${it.data.code} repetido en el archivo`)
+    );
+    items.forEach(
+      (it) =>
+        existing.has(it.data.code) &&
+        it.errors.push(`El código ${it.data.code} ya pertenece a otro socio`)
+    );
+    return { map, items };
+  }
+
+  function importModal() {
+    openModal(`
+      <h2>Importar socios</h2>
+      <p class="muted" style="font-size:14px">Sube un archivo <strong>CSV</strong> con una fila por socio. Desde Excel: <em>Archivo → Guardar como → CSV</em>.
+        Columnas que se reconocen: nombre, código, teléfono, email, fecha de inscripción (o antigüedad, por ejemplo "2 años"), vencimiento y plan.</p>
+      <div class="dropzone" data-dropzone>
+        <input type="file" id="import-file" accept=".csv,.txt,text/csv" data-import-file />
+        <label for="import-file"><strong>Elige el archivo</strong> o arrástralo aquí</label>
+      </div>
+      <p class="hint"><a href="/api/admin/import/plantilla.csv" data-template>Descargar plantilla de ejemplo</a></p>
+      <div data-import-preview></div>`);
+    const zone = $("[data-dropzone]", modal);
+    const input = $("[data-import-file]", modal);
+    const read = (file) => {
+      if (!file) return;
+      if (file.size > 2 * 1024 * 1024)
+        return toast("El archivo es demasiado grande (máximo 2 MB)", true);
+      const r = new FileReader();
+      r.onload = async () => {
+        // Códigos ya registrados, para marcarlos en la vista previa antes de importar.
+        const members = await api("/api/admin/members").catch(() => []);
+        previewImport(file.name, String(r.result), new Set(members.map((m) => m.code)));
+      };
+      r.readAsText(file, "utf-8");
+    };
+    input.addEventListener("change", () => read(input.files[0]));
+    zone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      zone.classList.add("is-over");
+    });
+    zone.addEventListener("dragleave", () => zone.classList.remove("is-over"));
+    zone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      zone.classList.remove("is-over");
+      read(e.dataTransfer.files[0]);
+    });
+  }
+
+  function previewImport(fileName, text, existing) {
+    const box = $("[data-import-preview]", modal);
+    const rows = parseCsv(text);
+    if (rows.length < 2) {
+      box.innerHTML = `<p class="import-error">El archivo no tiene filas de socios.</p>`;
+      return;
+    }
+    const { map, items } = buildImport(rows, existing);
+    if (map.name === undefined || map.code === undefined) {
+      box.innerHTML = `<p class="import-error">No encontré las columnas de <strong>nombre</strong> y <strong>código</strong>. Revisa que la primera fila tenga los títulos de las columnas.</p>`;
+      return;
+    }
+    const ok = items.filter((it) => !it.errors.length);
+    const bad = items.length - ok.length;
+    const detected = Object.keys(map)
+      .map((k) => `<span class="chip is-active">${LABELS[k]}</span>`)
+      .join(" ");
+    const noEnd = ok.filter((it) => !it.data.endDate).length;
+    box.innerHTML = `
+      <p class="section-title">${esc(fileName)} · ${items.length} filas</p>
+      <div class="chips" style="margin-bottom:10px">${detected}</div>
+      <div class="import-summary">
+        <span class="pill pill--activo">${ok.length} listos</span>
+        ${bad ? `<span class="pill pill--vencido">${bad} con errores</span>` : ""}
+        ${noEnd ? `<span class="pill pill--sin_pago">${noEnd} sin fecha de vencimiento</span>` : ""}
+      </div>
+      ${noEnd ? `<p class="hint">Los socios sin fecha de vencimiento entran como <em>sin pago</em>: el acceso se les deniega hasta registrar su primer cobro.</p>` : ""}
+      <div class="table-wrap import-table"><table class="mini-table">
+        <thead><tr><th>Fila</th><th>Nombre</th><th>Código</th><th>Socio desde</th><th>Vence</th><th>Estado</th></tr></thead>
+        <tbody>${items
+          .slice(0, 200)
+          .map(
+            (
+              it
+            ) => `<tr><td class="muted">${it.line}</td><td>${esc(it.data.name || "—")}</td><td class="code" style="font-size:15px">${esc(it.data.code || "—")}</td>
+              <td>${it.data.joinedOn ? fmtDate(it.data.joinedOn) : "—"}</td><td>${it.data.endDate ? fmtDate(it.data.endDate) : "—"}</td>
+              <td>${it.errors.length ? `<span class="import-error">${esc(it.errors.join(" · "))}</span>` : `<span class="pill pill--activo">Listo</span>`}</td></tr>`
+          )
+          .join("")}</tbody></table></div>
+      ${items.length > 200 ? `<p class="hint">Se muestran las primeras 200 filas.</p>` : ""}
+      <div class="modal__foot">
+        <button type="button" class="btn" data-close-modal>Cancelar</button>
+        <button type="button" class="btn btn--lime" data-do-import ${ok.length ? "" : "disabled"}>Importar ${ok.length} ${ok.length === 1 ? "socio" : "socios"}${bad ? ` (omitir ${bad})` : ""}</button>
+      </div>`;
+    $("[data-do-import]", box).addEventListener("click", async (e) => {
+      e.target.disabled = true;
+      try {
+        const r = await api("/api/admin/import", {
+          method: "POST",
+          body: { rows: ok.map((it) => it.data) },
+        });
+        closeModal();
+        toast(`Se importaron ${r.created} socios`);
+        state.filter = "all";
+        go("socios");
+      } catch (ex) {
+        e.target.disabled = false;
+        const extra = ex.details
+          ? ` Ejemplo: fila ${ok[ex.details[0].row - 1]?.line ?? ex.details[0].row} — ${ex.details[0].message}.`
+          : "";
+        toast(ex.message + extra, true);
+      }
+    });
+  }
+
   function newMemberModal() {
     openModal(`
       <h2>Nuevo socio</h2>
@@ -954,7 +1229,9 @@
           <label class="field"><span>Email (opcional)</span><input name="email" type="email" maxlength="120" /></label>
           <label class="field"><span>Código de acceso</span><input name="code" inputmode="numeric" maxlength="8" pattern="\\d{4,8}" placeholder="Automático" />
             <span class="hint">Déjalo vacío para generar uno al azar.</span></label>
-          <label class="field"><span>Notas (opcional)</span><input name="notes" maxlength="500" /></label>
+          <label class="field"><span>Socio desde</span><input name="joinedOn" type="date" value="${state.meta.today}" max="${state.meta.today}" />
+            <span class="hint">Cámbiala si ya era socio antes de usar el sistema.</span></label>
+          <label class="field full"><span>Notas (opcional)</span><input name="notes" maxlength="500" /></label>
         </div>
         <label class="check"><input type="checkbox" name="withPayment" checked data-with-payment /> Registrar el primer cobro ahora</label>
         <div class="fieldset" data-payment-fields>${paymentFields(null)}</div>
@@ -980,6 +1257,7 @@
             phone: f.phone.value,
             email: f.email.value,
             notes: f.notes.value,
+            joinedOn: f.joinedOn.value || undefined,
             code: f.code.value || undefined,
             payment: f.withPayment.checked
               ? {
@@ -1059,7 +1337,8 @@
     openModal(`
       <h2>${esc(m.name)}</h2>
       <div class="detail-head">
-        <div><p class="muted" style="font-size:12px;letter-spacing:.12em;text-transform:uppercase">Código de acceso</p><p class="code">${esc(m.code)}</p></div>
+        <div><p class="muted" style="font-size:12px;letter-spacing:.12em;text-transform:uppercase">Código de acceso</p><p class="code">${esc(m.code)}</p>
+          ${m.joined_on ? `<p class="muted" style="font-size:13px">Socio desde ${fmtDate(m.joined_on, { day: "numeric", month: "long", year: "numeric" })} · <strong style="color:var(--text)">${esc(tenure(m.joined_on))}</strong></p>` : ""}</div>
         <div style="text-align:right">${pill(m)}<p class="muted" style="font-size:14px;margin-top:6px">${m.end_date ? `Vence el ${fmtDate(m.end_date)} · ${daysText(m)}` : "Sin cobros"}</p></div>
       </div>
       <form data-edit class="stack">
@@ -1067,7 +1346,8 @@
           <label class="field full"><span>Nombre</span><input name="name" value="${esc(m.name)}" required maxlength="80" /></label>
           <label class="field"><span>Teléfono</span><input name="phone" type="tel" value="${esc(m.phone)}" maxlength="24" /></label>
           <label class="field"><span>Email</span><input name="email" type="email" value="${esc(m.email)}" maxlength="120" /></label>
-          <label class="field full"><span>Notas</span><input name="notes" value="${esc(m.notes)}" maxlength="500" /></label>
+          <label class="field"><span>Socio desde</span><input name="joinedOn" type="date" value="${esc(m.joined_on || "")}" max="${state.meta.today}" /></label>
+          <label class="field"><span>Notas</span><input name="notes" value="${esc(m.notes)}" maxlength="500" /></label>
         </div>
         <div class="modal__foot" style="margin-top:0;justify-content:space-between">
           <div class="row-actions" style="justify-content:flex-start">
@@ -1114,6 +1394,7 @@
             phone: f.phone.value,
             email: f.email.value,
             notes: f.notes.value,
+            joinedOn: f.joinedOn.value || undefined,
           },
         });
         toast("Datos guardados");
@@ -1147,6 +1428,8 @@
       switch (el.dataset.action) {
         case "new-member":
           return newMemberModal();
+        case "import":
+          return importModal();
         case "pay":
           return await paymentModal(id);
         case "detail":

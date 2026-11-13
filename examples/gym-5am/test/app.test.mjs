@@ -199,6 +199,74 @@ describe("store", () => {
     assert.ok(store.deletePromotion(live.id));
   });
 
+  test("importar socios: valida todo y no importa nada si hay errores", () => {
+    const before = store.listMembers().length;
+    const bad = store.importMembers([
+      { name: "Uno", code: "0101", joinedOn: "2024-03-15" },
+      { name: "", code: "0102" },
+      { name: "Tres", code: "0101" },
+      { name: "Cuatro", code: "12", endDate: "2026-02-30" },
+      { name: "Cinco", code: "0105", plan: "Platino" },
+    ]);
+    assert.equal(bad.created, 0);
+    assert.deepEqual(
+      bad.errors.map((e) => e.row),
+      [2, 3, 4, 4, 5]
+    );
+    assert.equal(
+      store.listMembers().length,
+      before,
+      "una importación con errores no deja registros"
+    );
+
+    const ok = store.importMembers([
+      {
+        name: "Rosa Núñez",
+        code: "0201",
+        phone: "+52 55 1000 2000",
+        joinedOn: "2023-08-01",
+        endDate: addDays(todayStr(), 20),
+        plan: "mensual",
+      },
+      { name: "Luis Ortega", code: "0202" },
+    ]);
+    assert.equal(ok.created, 2);
+    const rosa = store.listMembers({ search: "Rosa" })[0];
+    assert.equal(rosa.code, "0201", "conserva el cero inicial");
+    assert.equal(rosa.joined_on, "2023-08-01");
+    assert.equal(rosa.status, "activo");
+    assert.equal(rosa.plan_name, "Mensual");
+    assert.equal(store.memberDetail(rosa.id).payments.length, 0, "no inventa cobros históricos");
+    const luis = store.listMembers({ search: "Luis" })[0];
+    assert.equal(luis.status, "sin_pago");
+    assert.equal(luis.joined_on, todayStr());
+    assert.equal(
+      store.importMembers([{ name: "Otra", code: "0201" }]).errors[0].message,
+      "El código 0201 ya pertenece a otro socio"
+    );
+  });
+
+  test("la entrada informa visitas del mes, racha y antigüedad", () => {
+    const plan = store.listPlans()[0];
+    const m = store.createMember({ name: "Racha Larga", joinedOn: "2025-01-10" });
+    store.registerPayment(m.id, { planId: plan.id, method: "Efectivo" });
+    const t = todayStr();
+    const ins = store.db.prepare("INSERT INTO visits (member_id, day, allowed) VALUES (?, ?, 1)");
+    ins.run(m.id, addDays(t, -1));
+    ins.run(m.id, addDays(t, -2));
+    ins.run(m.id, addDays(t, -4));
+    const first = store.checkIn(m.code);
+    assert.equal(first.streak, 3);
+    assert.equal(first.joinedOn, "2025-01-10");
+    const second = store.checkIn(m.code);
+    assert.equal(second.streak, 3, "dos entradas el mismo día no alargan la racha");
+    assert.equal(second.visitsThisMonth, first.visitsThisMonth, "ni cuentan como dos visitas");
+    const denied = store.createMember({ name: "Sin Pago" });
+    const r = store.checkIn(denied.code);
+    assert.equal(r.allowed, false);
+    assert.equal(r.streak, undefined, "a un acceso denegado no se le muestran estadísticas");
+  });
+
   test("el PIN se guarda con hash y se verifica", () => {
     store.setPin("4321");
     assert.ok(store.checkPin("4321"));
@@ -386,6 +454,36 @@ describe("API HTTP", () => {
       400
     );
     assert.equal((await call("/api/admin/instructors/99999", { method: "DELETE" })).status, 404);
+  });
+
+  test("importación por HTTP: devuelve los errores por fila", async () => {
+    const bad = await call("/api/admin/import", {
+      method: "POST",
+      body: { rows: [{ name: "X", code: "1" }] },
+    });
+    assert.equal(bad.status, 422);
+    assert.equal(bad.data.details[0].row, 1);
+    const ok = await call("/api/admin/import", {
+      method: "POST",
+      body: { rows: [{ name: "Importado Uno", code: "07001", joinedOn: "2024-01-15" }] },
+    });
+    assert.equal(ok.status, 200);
+    assert.equal(ok.data.created, 1);
+    const tpl = await call("/api/admin/import/plantilla.csv");
+    assert.match(tpl.data, /Fecha de inscripción/);
+    assert.equal(
+      (await call("/api/admin/import", { method: "POST", body: { rows: [] } })).status,
+      400
+    );
+    assert.equal(
+      (
+        await call("/api/admin/members", {
+          method: "POST",
+          body: { name: "Futuro", joinedOn: "2999-01-01" },
+        })
+      ).status,
+      400
+    );
   });
 
   test("validación de entradas", async () => {

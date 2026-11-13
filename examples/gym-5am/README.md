@@ -49,6 +49,23 @@ WhatsApp. En **Ajustes** puedes cambiar el nombre del gimnasio, la moneda, el c�
 (por ejemplo `52` para México), los días de antelación del aviso, el texto del recordatorio y los
 planes con sus precios.
 
+## Importar socios y antigüedad
+
+- **Importar** (Socios → Importar socios): sube un archivo CSV. Desde Excel: _Archivo → Guardar
+  como → CSV_. Acepta comas, punto y coma o tabuladores, y fechas como `15/03/2024` o
+  `2024-03-15`. Reconoce las columnas aunque tengan otros nombres (nombre, código o PIN, teléfono o
+  celular, email, fecha de inscripción o antigüedad, vencimiento y plan).
+- La **vista previa** marca cada fila con problemas (falta el nombre, código inválido o repetido,
+  código que ya pertenece a otro socio, fechas imposibles, plan inexistente) antes de importar. El
+  servidor vuelve a validar todo y, si algo falla, no importa ninguna fila.
+- Se conserva el código de cada socio tal cual, **incluido el cero inicial** (`06417`). Excel suele
+  borrar esos ceros: da formato de texto a la columna antes de guardar el CSV.
+- La importación no inventa cobros: guarda la fecha de vencimiento que ya tenía cada socio. Quien no
+  tenga fecha entra como _sin pago_ hasta registrar su primer cobro.
+- **Antigüedad**: cada socio tiene su fecha de inscripción ("Socio desde"). El panel muestra cuánto
+  tiempo lleva y, al entrar, el socio ve sus visitas del mes, su racha de días seguidos y su
+  antigüedad.
+
 ## Promociones e instructores
 
 - **Promociones**: el dueño las crea con título, descripción, precio o descuento y fechas

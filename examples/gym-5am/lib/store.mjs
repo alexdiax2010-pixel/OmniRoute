@@ -2,7 +2,7 @@
 // Todas las consultas usan sentencias preparadas: nunca se interpola texto del usuario en SQL.
 import { DatabaseSync } from "node:sqlite";
 import { randomInt, randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
-import { addMonths, addDays, daysBetween, todayStr } from "./dates.mjs";
+import { addMonths, addDays, daysBetween, isDateStr, todayStr } from "./dates.mjs";
 
 const SCHEMA = `
 CREATE TABLE IF NOT EXISTS plans (
@@ -120,6 +120,17 @@ export function createStore(path = ":memory:") {
   const db = new DatabaseSync(path);
   db.exec("PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON;");
   db.exec(SCHEMA);
+
+  // Migración: fecha de inscripción (antigüedad). Las bases creadas antes no tenían la columna.
+  if (
+    !db
+      .prepare("PRAGMA table_info(members)")
+      .all()
+      .some((c) => c.name === "joined_on")
+  ) {
+    db.exec("ALTER TABLE members ADD COLUMN joined_on TEXT");
+    db.exec("UPDATE members SET joined_on = date(created_at) WHERE joined_on IS NULL");
+  }
 
   const q = (sql) => db.prepare(sql);
   const tx = (fn) => {
@@ -239,7 +250,7 @@ export function createStore(path = ":memory:") {
   };
 
   const MEMBER_COLS = `m.id, m.code, m.name, m.phone, m.email, m.plan_id, p.name AS plan_name,
-    m.end_date, m.notes, m.reminder_sent_at, m.created_at,
+    m.end_date, m.notes, m.reminder_sent_at, m.created_at, m.joined_on,
     (SELECT MAX(at) FROM visits v WHERE v.member_id = m.id AND v.allowed = 1) AS last_visit`;
 
   const listMembers = ({ search = "", filter = "all" } = {}) => {
@@ -275,33 +286,85 @@ export function createStore(path = ":memory:") {
     };
   };
 
-  const createMember = ({ name, phone = "", email = "", notes = "", code }) => {
+  const createMember = ({ name, phone = "", email = "", notes = "", code, joinedOn }) => {
     if (code && q("SELECT 1 FROM members WHERE code = ?").get(code)) {
       const err = new Error("Ese código ya está en uso");
       err.status = 409;
       throw err;
     }
-    const r = q("INSERT INTO members (code, name, phone, email, notes) VALUES (?, ?, ?, ?, ?)").run(
-      code || generateCode(),
-      name,
-      phone,
-      email,
-      notes
-    );
+    const r = q(
+      "INSERT INTO members (code, name, phone, email, notes, joined_on) VALUES (?, ?, ?, ?, ?, ?)"
+    ).run(code || generateCode(), name, phone, email, notes, joinedOn || todayStr());
     return getMember(Number(r.lastInsertRowid));
   };
 
-  const updateMember = (id, { name, phone, email, notes }) => {
+  const updateMember = (id, { name, phone, email, notes, joinedOn }) => {
     const m = getMember(id);
     if (!m) return null;
-    q("UPDATE members SET name = ?, phone = ?, email = ?, notes = ? WHERE id = ?").run(
+    q(
+      "UPDATE members SET name = ?, phone = ?, email = ?, notes = ?, joined_on = ? WHERE id = ?"
+    ).run(
       name ?? m.name,
       phone ?? m.phone,
       email ?? m.email,
       notes ?? m.notes,
+      joinedOn ?? m.joined_on,
       id
     );
     return getMember(id);
+  };
+
+  // Importación en bloque: valida todas las filas y, si alguna falla, no importa ninguna.
+  // Las filas traen la fecha de vencimiento ya pagada; no se inventan cobros históricos.
+  const importMembers = (rows) => {
+    const today = todayStr();
+    const plans = listPlans();
+    const errors = [];
+    const seen = new Set();
+    const exists = q("SELECT 1 FROM members WHERE code = ?");
+    const clean = rows.map((r, i) => {
+      const row = i + 1;
+      const name = String(r.name ?? "").trim();
+      const code = String(r.code ?? "").trim();
+      const add = (msg) => errors.push({ row, message: msg });
+      if (!name) add("Falta el nombre");
+      if (name.length > 80) add("El nombre es demasiado largo");
+      if (!/^\d{4,8}$/.test(code)) add(`El código "${code}" debe tener entre 4 y 8 dígitos`);
+      else if (seen.has(code)) add(`El código ${code} está repetido en el archivo`);
+      else if (exists.get(code)) add(`El código ${code} ya pertenece a otro socio`);
+      seen.add(code);
+      const phone = String(r.phone ?? "").trim();
+      if (phone && !/^\+?[\d\s().-]{6,24}$/.test(phone)) add(`Teléfono no válido: ${phone}`);
+      const joinedOn = r.joinedOn || today;
+      if (!isDateStr(joinedOn)) add("Fecha de inscripción no válida");
+      else if (joinedOn > today) add("La fecha de inscripción está en el futuro");
+      const endDate = r.endDate || null;
+      if (endDate && !isDateStr(endDate)) add("Fecha de vencimiento no válida");
+      const plan = r.plan
+        ? plans.find((p) => p.name.toLowerCase() === String(r.plan).trim().toLowerCase())
+        : null;
+      if (r.plan && !plan) add(`El plan "${r.plan}" no existe (créalo antes en Ajustes)`);
+      return {
+        name,
+        code,
+        phone,
+        email: String(r.email ?? "")
+          .trim()
+          .slice(0, 120),
+        joinedOn,
+        endDate,
+        planId: plan?.id ?? (endDate ? plans[0]?.id : null),
+      };
+    });
+    if (errors.length) return { created: 0, errors };
+    tx(() => {
+      const ins = q(
+        "INSERT INTO members (code, name, phone, email, joined_on, end_date, plan_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
+      );
+      for (const m of clean)
+        ins.run(m.code, m.name, m.phone, m.email, m.joinedOn, m.endDate, m.planId ?? null);
+    });
+    return { created: clean.length, errors: [] };
   };
 
   const regenerateCode = (id) => {
@@ -353,10 +416,27 @@ export function createStore(path = ":memory:") {
     ).all(month);
 
   // ---------- Entrada con código ----------
+  // Racha: días seguidos con al menos una entrada permitida, contando hasta hoy.
+  const streakFor = (memberId, today) => {
+    const days = q(
+      "SELECT DISTINCT day FROM visits WHERE member_id = ? AND allowed = 1 AND day <= ? ORDER BY day DESC LIMIT 400"
+    )
+      .all(memberId, today)
+      .map((r) => r.day);
+    let streak = 0;
+    let expected = today;
+    for (const d of days) {
+      if (d !== expected) break;
+      streak += 1;
+      expected = addDays(expected, -1);
+    }
+    return streak;
+  };
+
   const checkIn = (code) => {
-    const m = q("SELECT id, name, end_date FROM members WHERE code = ? AND archived = 0").get(
-      String(code)
-    );
+    const m = q(
+      "SELECT id, name, end_date, joined_on FROM members WHERE code = ? AND archived = 0"
+    ).get(String(code));
     if (!m) return null;
     const today = todayStr();
     const st = statusOf(m.end_date, today);
@@ -366,7 +446,21 @@ export function createStore(path = ":memory:") {
       today,
       allowed ? 1 : 0
     );
-    return { firstName: m.name.trim().split(/\s+/)[0], endDate: m.end_date, allowed, ...st };
+    const out = {
+      firstName: m.name.trim().split(/\s+/)[0],
+      endDate: m.end_date,
+      joinedOn: m.joined_on,
+      allowed,
+      ...st,
+    };
+    if (allowed) {
+      // Varias entradas el mismo día cuentan como una sola visita.
+      out.visitsThisMonth = q(
+        "SELECT COUNT(DISTINCT day) n FROM visits WHERE member_id = ? AND allowed = 1 AND substr(day, 1, 7) = ?"
+      ).get(m.id, today.slice(0, 7)).n;
+      out.streak = streakFor(m.id, today);
+    }
+    return out;
   };
 
   const listVisits = (day = todayStr()) =>
@@ -611,6 +705,7 @@ export function createStore(path = ":memory:") {
     getMember,
     memberDetail,
     createMember,
+    importMembers,
     updateMember,
     regenerateCode,
     archiveMember,

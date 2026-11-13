@@ -82,6 +82,13 @@ const pinValue = (v) => {
   return s;
 };
 
+const joinedOn = (v) => {
+  if (v === undefined || v === null || v === "") return undefined;
+  if (!isDateStr(v)) fail(400, "La fecha de inscripción no es válida");
+  if (v > todayStr()) fail(400, "La fecha de inscripción no puede estar en el futuro");
+  return v;
+};
+
 const paymentInput = (p) => {
   const startDate = str(p.startDate, "fecha de inicio", { max: 10 });
   if (startDate && !isDateStr(startDate)) fail(400, "Fecha de inicio no válida");
@@ -125,7 +132,7 @@ const send = (res, status, body, headers = {}) => {
   res.end(isJson ? JSON.stringify(body) : body);
 };
 
-const readJson = (req) =>
+const readJson = (req, limit = 32 * 1024) =>
   new Promise((resolve, reject) => {
     if (!String(req.headers["content-type"] || "").includes("application/json")) {
       return reject(new HttpError(415, "Se esperaba JSON"));
@@ -134,7 +141,7 @@ const readJson = (req) =>
     const chunks = [];
     req.on("data", (c) => {
       size += c.length;
-      if (size > 32 * 1024) {
+      if (size > limit) {
         reject(new HttpError(413, "Solicitud demasiado grande"));
         req.destroy();
       } else chunks.push(c);
@@ -286,6 +293,7 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
         email: email(b.email) || "",
         notes: str(b.notes, "notas", { max: 500 }) || "",
         code,
+        joinedOn: joinedOn(b.joinedOn),
       };
       // Se valida el primer cobro antes de crear al socio para no dejar registros a medias.
       const payment = b.payment ? paymentInput(b.payment) : null;
@@ -319,6 +327,7 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
           phone: b.phone === undefined ? undefined : phone(b.phone) || "",
           email: b.email === undefined ? undefined : email(b.email) || "",
           notes: b.notes === undefined ? undefined : str(b.notes, "notas", { max: 500 }) || "",
+          joinedOn: b.joinedOn === undefined ? undefined : joinedOn(b.joinedOn) || todayStr(),
         }) || fail(404, "Socio no encontrado")
       );
     },
@@ -418,6 +427,43 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
       }
       return { settings, plans };
     },
+    { admin: true }
+  );
+
+  // --- Importar socios ---
+  route(
+    "POST",
+    "/api/admin/import",
+    async ({ req }) => {
+      const b = await readJson(req, 2 * 1024 * 1024);
+      if (!Array.isArray(b.rows) || !b.rows.length)
+        fail(400, "El archivo no tiene filas para importar");
+      if (b.rows.length > 5000) fail(400, "Máximo 5000 socios por importación");
+      const result = store.importMembers(b.rows);
+      if (result.errors.length) {
+        const err = new HttpError(
+          422,
+          `Hay ${result.errors.length} errores: no se importó ningún socio`
+        );
+        err.details = result.errors.slice(0, 50);
+        throw err;
+      }
+      return result;
+    },
+    { admin: true }
+  );
+  route(
+    "GET",
+    "/api/admin/import/plantilla.csv",
+    () => ({
+      _raw:
+        "\uFEFFNombre,Código,Teléfono,Fecha de inscripción,Vence,Plan\n" +
+        "Laura Gómez,1234,+52 55 1234 5678,15/03/2024,11/12/2026,Mensual\n",
+      _headers: {
+        "Content-Type": "text/csv; charset=utf-8",
+        "Content-Disposition": 'attachment; filename="plantilla-socios.csv"',
+      },
+    }),
     { admin: true }
   );
 
@@ -661,7 +707,9 @@ export function createApp({ store, secureCookies = false, trustProxy = false } =
       const status = err instanceof HttpError || Number.isInteger(err.status) ? err.status : 500;
       if (status === 500) console.error("[error]", req.method, url.pathname, err);
       // Nunca se devuelve el stack ni mensajes internos al cliente.
-      send(res, status, { error: status === 500 ? "Error interno del servidor" : err.message });
+      const body = { error: status === 500 ? "Error interno del servidor" : err.message };
+      if (status !== 500 && Array.isArray(err.details)) body.details = err.details;
+      send(res, status, body);
     }
   };
 }

@@ -193,7 +193,37 @@
     }
   };
 
-  const show = ({ tone, icon, kicker, title, detail, daysLeft }) => {
+  // Antigüedad legible para el socio: "1 año y 3 meses".
+  const tenureText = (from) => {
+    if (!from) return "";
+    const now = new Date();
+    const [y, m, d] = from.split("-").map(Number);
+    let months =
+      (now.getFullYear() - y) * 12 + (now.getMonth() + 1 - m) - (now.getDate() < d ? 1 : 0);
+    if (months < 1) return "";
+    const yy = Math.floor(months / 12);
+    months %= 12;
+    return [
+      yy ? `${yy} ${yy === 1 ? "año" : "años"}` : "",
+      months ? `${months} ${months === 1 ? "mes" : "meses"}` : "",
+    ]
+      .filter(Boolean)
+      .join(" y ");
+  };
+  const statsFor = (data) => {
+    const out = [];
+    if (data.visitsThisMonth)
+      out.push(
+        `<li><b>${data.visitsThisMonth}</b> ${data.visitsThisMonth === 1 ? "visita" : "visitas"} este mes</li>`
+      );
+    if (data.streak >= 2) out.push(`<li>Racha de <b>${data.streak}</b> días seguidos</li>`);
+    const t = tenureText(data.joinedOn);
+    if (t) out.push(`<li>Socio desde hace <b>${t}</b></li>`);
+    else if (data.joinedOn) out.push(`<li><b>¡Bienvenido!</b> Tu primer mes con nosotros</li>`);
+    return out.join("");
+  };
+
+  const show = ({ tone, icon, kicker, title, detail, daysLeft, stats = "" }) => {
     beep(tone);
     result.className = `result result--${tone}`;
     result.style.setProperty("--result-ms", `${RESULT_MS}ms`);
@@ -209,6 +239,7 @@
     $("[data-result-kicker]").textContent = kicker;
     $("[data-result-title]").textContent = title;
     $("[data-result-detail]").innerHTML = detail;
+    $("[data-result-stats]").innerHTML = stats;
     result.hidden = false;
     // reinicia la animación de la barra
     const bar = result.querySelector(".result__bar span");
@@ -265,6 +296,7 @@
           tone: "ok",
           icon: "↗",
           daysLeft: data.daysLeft,
+          stats: statsFor(data),
           kicker: "Acceso permitido",
           title: `¡Vamos, ${data.firstName}!`,
           detail: `Tu mensualidad está activa hasta el <strong>${fmtDate(data.endDate)}</strong>.`,
@@ -274,6 +306,7 @@
           tone: "warn",
           icon: "!",
           daysLeft: data.daysLeft,
+          stats: statsFor(data),
           kicker: "Acceso permitido · Renueva pronto",
           title: `Hola, ${data.firstName}`,
           detail:
