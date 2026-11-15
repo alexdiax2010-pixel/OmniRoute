@@ -7,9 +7,12 @@
 #   image-to-code          Leonxlnx/imagegen-skills        (MIT)        design image first, then implement it
 #   playwright-cli         microsoft/playwright-cli        (Apache-2.0) drive a browser to check what was built
 #   design-md              (local)  pulls a DESIGN.md from VoltAgent/awesome-design-md into a project
+#   emil-design-eng, animate, review-animations, improve-animations, find-animation-opportunities,
+#   animation-vocabulary, animation-performance, choreograph
+#                          emilkowalski/skills             (MIT)        Emil Kowalski's animation/UI craft
 #
 # .claude/ is gitignored in this repo, so the skills stay local and are never committed.
-# The MCP servers (Perplexity, Firecrawl, Playwright) live in the tracked .mcp.json instead.
+# The MCP servers (Perplexity, Firecrawl, Playwright, Figma) live in the tracked .mcp.json instead.
 #
 # Usage: scripts/dev/install-claude-design-skills.sh [--global] [--force]
 set -euo pipefail
@@ -21,7 +24,7 @@ for arg in "$@"; do
     --global) TARGET_ROOT="${HOME}/.claude/skills" ;;
     --force) FORCE=1 ;;
     -h | --help)
-      sed -n '2,15p' "$0" | sed 's/^# \{0,1\}//'
+      sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'
       exit 0
       ;;
     *)
@@ -37,6 +40,14 @@ SKILLS=(
   "web-design-guidelines|vercel-labs/agent-skills|1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62|skills/web-design-guidelines"
   "image-to-code|Leonxlnx/imagegen-skills|beb16b0d0f4dae9a6f5cb04ea41e97b93a54ab8e|skills/image-to-code"
   "playwright-cli|microsoft/playwright-cli|b21724888b8100b05ef8dee3a92f2bb03bf4dcde|skills/playwright-cli"
+  "emil-design-eng|emilkowalski/skills|64eb3deb9a5fbfa041faf783e0bc3fd635872e9c|skills/emil-design-eng"
+  "animate|emilkowalski/skills|64eb3deb9a5fbfa041faf783e0bc3fd635872e9c|skills/animate"
+  "review-animations|emilkowalski/skills|64eb3deb9a5fbfa041faf783e0bc3fd635872e9c|skills/review-animations"
+  "improve-animations|emilkowalski/skills|64eb3deb9a5fbfa041faf783e0bc3fd635872e9c|skills/improve-animations"
+  "find-animation-opportunities|emilkowalski/skills|64eb3deb9a5fbfa041faf783e0bc3fd635872e9c|skills/find-animation-opportunities"
+  "animation-vocabulary|emilkowalski/skills|64eb3deb9a5fbfa041faf783e0bc3fd635872e9c|skills/animation-vocabulary"
+  "animation-performance|emilkowalski/skills|64eb3deb9a5fbfa041faf783e0bc3fd635872e9c|skills/animation-performance"
+  "choreograph|emilkowalski/skills|64eb3deb9a5fbfa041faf783e0bc3fd635872e9c|skills/choreograph"
 )
 DESIGN_MD_COMMIT="fcc70284932276d085f01ef9f83edde90b1258cb"
 
@@ -106,3 +117,5 @@ echo "Installed into ${TARGET_ROOT}. Restart Claude Code to load them."
 if ! command -v playwright-cli >/dev/null 2>&1; then
   echo "playwright-cli is not on PATH: npm install -g @playwright/cli@0.1.24"
 fi
+echo "Figma: the figma server in .mcp.json asks you to log in to Figma on first use (/mcp)."
+echo "       For Figma's extra skills too: claude plugin install figma@claude-plugins-official"
