@@ -35,3 +35,10 @@
 - Lancé el **Verificador** sobre los 80 negocios: duplicados, cadenas, datos sin fuente → "no encontrado", alertas de contradicciones.
 - **Cambio de estrategia (Ronda 2 adelantada):** no esperé al minuto 60. Salud es el giro de mayor ticket ($4,500), pero solo 5 de 15 tenían teléfono. Lancé en paralelo un agente que busca **dentistas con teléfono** en colonias sin cubrir (Providencia, Chapalita, Ciudad Granja, Las Águilas, Santa Margarita, Tesistán, Jardines Universidad, Ciudad del Sol). Sus resultados entran directo al Analista.
 - Comida queda como el giro más débil para prospectar en frío (2 de 16 con teléfono). Para ese giro conviene la visita en persona más que el WhatsApp.
+
+## 15:53 UTC — Termina el Verificador
+- 80 → **76 prospectos** (0 duplicados reales, 4 descartados: La Zapopana y Poltrone da Barbiere por ser cadenas; Transmisiones Federalismo y Bloom por no tener una URL que respalde el nombre).
+- 5 negocios de belleza perdieron dirección o teléfono porque venían de texto sin URL → ahora dicen "no encontrado" (regla de no inventar).
+- 43 registros con alerta "verificar en Maps". **Sorpresa:** El Barbero Co y Eagle Man aparecen en la misma dirección (Aviación 4455), así que podría ser una plaza con varias barberías, una buena parada para la ruta.
+- Taller de Espresso podría tener web (un agregador cita tallerdeespresso.com). Lo marco para que el Analista lo baje.
+- Siguiente: Analista con la rúbrica, incluyendo los dentistas de la Ronda 2.

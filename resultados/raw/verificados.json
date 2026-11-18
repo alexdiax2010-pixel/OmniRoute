@@ -1,0 +1,2224 @@
+{
+  "revisados": 80,
+  "notas_proceso": [
+    "Entrada: 80 registros en bruto (salud 15, automotriz 18, belleza 16, servicios 15, comida 16).",
+    "Duplicados: 0. Se compararon teléfonos normalizados (10 dígitos) y nombres/direcciones; ningún teléfono se repite entre registros. Coincidencias parciales (El Barbero Co y Eagle Man con Aviación 4455; CORE y JMA en San Juan Bosco 1332) son negocios distintos y se anotaron como alertas.",
+    "Descartes: 4 (1 cadena grande, 1 cadena local de barberías, 2 sin URL fuente para el nombre). Ninguno parecía cerrado ni fuera de la ZMG, y ninguno con web propia buena confirmada.",
+    "Regla de fuentes: se revisó que nombre, dirección y teléfono tengan URL fuente; Nail & Dreams (dirección, tel.), Karina Nails 69 (tel.), Tattoo Arte Antiguo (dirección, tel.), Nine Spa (dirección, tel.) y MASARA (tel.) tenían como fuente un texto de búsqueda y esos datos se reemplazaron por 'no encontrado'.",
+    "Todos los datos de los agentes vienen de fragmentos de WebSearch (WebFetch bloqueado por la red); las URL fuente son de listados de directorio, no fichas abiertas. Todo debe confirmarse en Google Maps antes de contactar.",
+    "tiene_web normalizado: 'no encontrada' = la búsqueda no mostró dominio propio (no confirma que no exista); 'mala/caída' solo para Laminado y Pintura JV (dominio citado pero no indexado). Ningún prospecto quedó con 'sí (buena)'.",
+    "Avanti Guadalajara se mantiene con alerta: el WebSearch del verificador no confirmó que sea franquicia (solo ficha de Doctoralia como clínica de nutrición/obesidad). Confirmar antes de contactar.",
+    "Multisucursales chicas que se mantienen con alerta (no son franquicias confirmadas): PhysioCare, CORE, Kyma Life, True Barber Shop (4 sedes), Chachis, Masa Madre, Horno de José.",
+    "WebSearch del verificador (10 búsquedas): Avanti, Poltrone, Kyma Life, Taller de Espresso, Doña Gabina, Unbreakable, HUNThöhle, Horno de José, Ohlala, True Barber Shop. No se encontraron avisos de cierre; solo Taller de Espresso tiene un posible dominio (tallerdeespresso.com, no verificado).",
+    "No se modificaron los archivos de entrada. No se contactó a nadie."
+  ],
+  "prospectos": [
+    {
+      "nombre": "Dental Prados",
+      "giro": "salud",
+      "subgiro": "dentista (estética, rehabilitación, ortodoncia)",
+      "direccion": "Av. Manuel J. Clouthier 133, Zapopan 45039",
+      "colonia": "Prados Vallarta",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "odontología general, estética, rehabilitación bucal, odontología restauradora, ortodoncia; consulta desde $500-$600 según el listado",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "la búsqueda solo arrojó fichas de Doctoralia, sin web propia",
+      "resenas": "73 opiniones en Doctoralia (en el perfil de una de sus dentistas); reseñas mayormente positivas",
+      "num_doctores_empleados": "al menos 3 dentistas asociados en Doctoralia",
+      "señales": [
+        "varios doctores",
+        "solo directorio",
+        "buenas reseñas",
+        "tratamientos estéticos"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/perfil/magaly-mendoza-de-la-mora",
+        "direccion": "https://www.doctoralia.com.mx/perfil/magaly-mendoza-de-la-mora",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"Dental Prados\" Zapopan Clouthier"
+      },
+      "giro_categoria": "Salud",
+      "alertas": [
+        "Nombre y dirección vienen del perfil de una dentista en Doctoralia, no de una ficha del consultorio: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Gama Dental",
+      "giro": "salud",
+      "subgiro": "dentista / ortodoncia e implantes",
+      "direccion": "Avenida Copalita 123, Zapopan 45134",
+      "colonia": "no encontrado (verificar en Maps)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "brackets cerámicos, carillas de porcelana, coronas estéticas, diseño de sonrisa, implantes",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Doctoralia",
+      "resenas": "9 opiniones en Doctoralia",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "tratamientos caros (implantes, ortodoncia, carillas)",
+        "solo directorio",
+        "pocas reseñas"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/nestor-alonso-garcia-martinez/dentista-odontologo/zapopan",
+        "direccion": "https://www.doctoralia.com.mx/nestor-alonso-garcia-martinez/dentista-odontologo/zapopan",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"Gama Dental\" Zapopan Copalita"
+      },
+      "giro_categoria": "Salud",
+      "alertas": []
+    },
+    {
+      "nombre": "Saba Dental",
+      "giro": "salud",
+      "subgiro": "dentista (odontología integral)",
+      "direccion": "Pablo Neruda 4341, Plaza Universidad local J 3, Zapopan 45110",
+      "colonia": "Plaza Universidad / Villa Universitaria (verificar en Maps)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "odontología integral; primera visita desde $638",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Doctoralia",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "local en plaza comercial"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/clinicas/saba-dental",
+        "direccion": "https://www.doctoralia.com.mx/clinicas/saba-dental",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"Saba Dental\" Zapopan Plaza Universidad"
+      },
+      "giro_categoria": "Salud",
+      "alertas": []
+    },
+    {
+      "nombre": "Odontokids & Adultos",
+      "giro": "salud",
+      "subgiro": "odontopediatría / ortodoncia",
+      "direccion": "Av. Patria 5003, Local 4B y 6B (Plaza Inglaterra), Zapopan 45027",
+      "colonia": "no encontrado (verificar en Maps)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "odontopediatría, ortopedia dentofacial, ortodoncia, aclaramiento ($3,800), resinas ($1,000)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Doctoralia (el encabezado de la ficha dice Tlajomulco, la dirección es de Zapopan)",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "ortodoncia (ticket alto)",
+        "nicho familiar/infantil",
+        "solo directorio"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/clinicas/odontokids-adultos",
+        "direccion": "https://www.doctoralia.com.mx/clinicas/odontokids-adultos",
+        "telefono": "no encontrado",
+        "web": "búsqueda: doctoralia clinicas odontokids adultos Zapopan"
+      },
+      "giro_categoria": "Salud",
+      "alertas": [
+        "La ficha de Doctoralia dice Tlajomulco en el encabezado pero la dirección es de Zapopan: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Ortoklinic",
+      "giro": "salud",
+      "subgiro": "ortodoncia / odontología",
+      "direccion": "Av. Empresarios 150, Piso 16, Int. 1605, Zapopan 45116",
+      "colonia": "Puerta de Hierro",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "odontología (enfocada en ortodoncia según el nombre; detalle no encontrado)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Doctoralia",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "zona premium (Puerta de Hierro)",
+        "ortodoncia",
+        "solo directorio"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/clinicas/ortoklinic",
+        "direccion": "https://www.doctoralia.com.mx/clinicas/ortoklinic",
+        "telefono": "no encontrado",
+        "web": "búsqueda: doctoralia clinicas ortoklinic Zapopan dirección"
+      },
+      "giro_categoria": "Salud",
+      "alertas": []
+    },
+    {
+      "nombre": "Hospital Veterinario Vetpets",
+      "giro": "salud",
+      "subgiro": "veterinaria",
+      "direccion": "Víctor Hugo 552, Zapopan 45110",
+      "colonia": "Jardines Universidad",
+      "telefono": "(33) 3682-2817",
+      "whatsapp": "no encontrado",
+      "servicios": "hospital veterinario (MVZ); horario 09:00-21:00 según el directorio",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Sección Amarilla; sin web, redes ni reseñas encontradas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "hospital (servicio de mayor ticket)",
+        "horario extendido"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/veterinarias/11",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/veterinarios/4",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/veterinarios/4",
+        "web": "búsqueda: \"Vetpets\" hospital veterinario Zapopan Víctor Hugo"
+      },
+      "giro_categoria": "Salud",
+      "alertas": []
+    },
+    {
+      "nombre": "PhysioCare Fisioterapia, Rehabilitación y Entrenamiento deportivo",
+      "giro": "salud",
+      "subgiro": "fisioterapia",
+      "direccion": "La Giralda 107A, Local 1, Zapopan 45088",
+      "colonia": "La Giralda",
+      "telefono": "+52 33 2172 2961",
+      "whatsapp": "no encontrado",
+      "servicios": "fisioterapia, rehabilitación, entrenamiento deportivo",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Fresha (directorio de reservas)",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "varias sucursales en Fresha (Vallarta Universidad, Unidad Médica Universidad, Loma Bonita Ejidal)",
+      "señales": [
+        "multisucursal sin web encontrada",
+        "depende de un directorio de reservas"
+      ],
+      "fuentes": {
+        "nombre": "https://fresha.com/lp/en/tt/physiotherapists/in/mx-guadalajara/la-gloria-del-colli",
+        "direccion": "https://fresha.com/lp/en/tt/physiotherapists/in/mx-guadalajara/la-gloria-del-colli",
+        "telefono": "https://fresha.com/lp/en/tt/physiotherapists/in/mx-guadalajara/la-gloria-del-colli",
+        "web": "búsqueda: \"PhysioCare\" fisioterapia La Giralda Zapopan"
+      },
+      "giro_categoria": "Salud",
+      "alertas": [
+        "Multisucursal según Fresha (cadena chica, no franquicia): confirmar número de sedes; verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "CORE - Núcleo de Fisioterapia y Osteopatía",
+      "giro": "salud",
+      "subgiro": "fisioterapia / osteopatía",
+      "direccion": "C. Comerciantes 5389, Zapopan 45037",
+      "colonia": "Arcos de Guadalupe",
+      "telefono": "+52 33 1065 9633",
+      "whatsapp": "no encontrado",
+      "servicios": "fisioterapia, osteopatía, masaje deportivo",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Fresha; aparece en otras direcciones (Av. Beethoven 4589, Lomas de Guadalupe, Zapopan; Firmamento 888, GDL) y posiblemente con datos desactualizados",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "multisucursal sin web encontrada",
+        "datos inconsistentes entre directorios"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/arcos-de-guadalupe",
+        "direccion": "https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/arcos-de-guadalupe",
+        "telefono": "https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/arcos-de-guadalupe",
+        "web": "búsqueda: \"CORE\" Núcleo de Fisioterapia y Osteopatía Zapopan Arcos de Guadalupe"
+      },
+      "giro_categoria": "Salud",
+      "alertas": [
+        "Varias direcciones en directorios (Comerciantes 5389, Av. Beethoven 4589, Firmamento 888) y comparte dirección San Juan Bosco 1332 con otro negocio (JMA) en otro directorio: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Kyma Life - Clínica de rehabilitación y acondicionamiento físico",
+      "giro": "salud",
+      "subgiro": "fisioterapia / rehabilitación",
+      "direccion": "Av. de las Rosas 171A, Zapopan 45040",
+      "colonia": "Chapalita Sur",
+      "telefono": "+52 33 1172 7536",
+      "whatsapp": "no encontrado",
+      "servicios": "rehabilitación, acondicionamiento físico",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Fresha; otras sedes en Colomos Providencia (GDL) y Las Águilas (Zapopan)",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "multisucursal sin web encontrada",
+        "marca con nombre propio (le serviría una landing)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/chapalita-sur",
+        "direccion": "https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/chapalita-sur",
+        "telefono": "https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/chapalita-sur",
+        "web": "búsqueda: \"Kyma Life\" rehabilitación Zapopan Chapalita"
+      },
+      "giro_categoria": "Salud",
+      "alertas": [
+        "Multisucursal (Chapalita Sur, Colomos Providencia GDL, Las Águilas); un listado da Calle Luis Pérez Verdía 572, Ladrón de Guevara, GDL (WebSearch verificador sin web oficial: https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/jardines-vallarta): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Recupera-T Fisioterapia - Rehabilitación",
+      "giro": "salud",
+      "subgiro": "fisioterapia",
+      "direccion": "Av. Adolfo López Mateos 5880, Local 8, Zapopan 45070",
+      "colonia": "Las Fuentes",
+      "telefono": "(33) 3632 5891",
+      "whatsapp": "no encontrado",
+      "servicios": "fisioterapia, rehabilitación física",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Sección Amarilla; sin reseñas ni horarios",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "presencia digital mínima"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/clinica-hospital/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/clinica-hospital/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/clinica-hospital/jalisco/zapopan/1",
+        "web": "búsqueda: \"Recupera-T\" fisioterapia Zapopan López Mateos Las Fuentes"
+      },
+      "giro_categoria": "Salud",
+      "alertas": []
+    },
+    {
+      "nombre": "Centro de Vínculo Psicológico",
+      "giro": "salud",
+      "subgiro": "psicología",
+      "direccion": "Calle Juan Manuel 77, Zapopan",
+      "colonia": "Zapopan Centro",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "terapia para niños, adolescentes, adultos y adultos mayores; duelo, TCC, psicología infantil, terapia sistémica familiar; presencial y en línea; primera visita $500",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Doctoralia",
+      "resenas": "192 opiniones (Doctoralia)",
+      "num_doctores_empleados": "al menos 4 psicólogos listados",
+      "señales": [
+        "muchas reseñas pero solo directorio",
+        "equipo de varios terapeutas",
+        "servicio en línea (le serviría una landing)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/clinicas/centro-de-vinculo-psicologico",
+        "direccion": "https://www.doctoralia.com.mx/clinicas/centro-de-vinculo-psicologico",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"Centro de Vínculo Psicológico\" Zapopan"
+      },
+      "giro_categoria": "Salud",
+      "alertas": []
+    },
+    {
+      "nombre": "Scire Atención Psicológica",
+      "giro": "salud",
+      "subgiro": "psicología",
+      "direccion": "Av. Venustiano Carranza 773-B, Zapopan 45180",
+      "colonia": "no encontrado (verificar en Maps)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "atención psicológica (detalle no encontrado)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Doctoralia (no se hizo una búsqueda dedicada de su web)",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/clinicas/scire",
+        "direccion": "https://www.doctoralia.com.mx/clinicas/scire",
+        "telefono": "no encontrado",
+        "web": "búsqueda: centro de psicología Zapopan consultorio terapia dirección"
+      },
+      "giro_categoria": "Salud",
+      "alertas": []
+    },
+    {
+      "nombre": "Salud Mental Para Todos",
+      "giro": "salud",
+      "subgiro": "psicología",
+      "direccion": "Av. Tesistán 245, Zapopan 45138",
+      "colonia": "La Tuzania",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "adicciones, ansiedad, niños y adolescentes, impulsividad, depresión",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo aparece en Psicologiaymente",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "zona periférica con menos competencia digital"
+      ],
+      "fuentes": {
+        "nombre": "https://psicologiaymente.com/psicologos/2077898/salud-mental-para-todos",
+        "direccion": "https://psicologiaymente.com/psicologos/2077898/salud-mental-para-todos",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"Salud Mental Para Todos\" Zapopan Tesistán Tuzania"
+      },
+      "giro_categoria": "Salud",
+      "alertas": []
+    },
+    {
+      "nombre": "Avanti Guadalajara",
+      "giro": "salud",
+      "subgiro": "nutrición (clínica)",
+      "direccion": "Nicolás Copérnico 3835, Zapopan 45170",
+      "colonia": "Arboledas",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "clínica de nutrición (detalle no encontrado)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "solo vi la ficha de Doctoralia; no se hizo búsqueda dedicada (podría ser franquicia con web corporativa)",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "verificar si es franquicia antes de prospectar"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/clinicas/avanti-guadalajara",
+        "direccion": "https://www.doctoralia.com.mx/clinicas/avanti-guadalajara",
+        "telefono": "no encontrado",
+        "web": "búsqueda: clínica de nutrición Zapopan consultorio nutriólogos dirección teléfono"
+      },
+      "giro_categoria": "Salud",
+      "alertas": [
+        "Posible franquicia/red con web corporativa: no confirmado. WebSearch del verificador solo halló la ficha de Doctoralia (clínica de nutrición/obesidad, Arboledas 45170) y ninguna web oficial: https://www.doctoralia.com.mx/clinicas/avanti-guadalajara . Confirmar si es franquicia antes de contactar"
+      ]
+    },
+    {
+      "nombre": "Laminado y Pintura Automotriz Alex",
+      "giro": "automotriz",
+      "subgiro": "hojalatería y pintura",
+      "direccion": "Calle Frijol 6-A, C.P. 45189, Zapopan, Jal.",
+      "colonia": "Mesa Colorada Poniente",
+      "telefono": "(33) 1442 9331",
+      "whatsapp": "no encontrado",
+      "servicios": "laminado y pintura automotriz",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo aparece en directorio",
+        "servicio de ticket alto (hojalatería)",
+        "el resultado lo lista también bajo Guadalajara: dato a confirmar"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "web": "búsqueda: 'Laminado y Pintura Alex Zapopan' - sin web"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": [
+        "El directorio lo lista también bajo Guadalajara: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Laminado y Pintura Profesional Gómez",
+      "giro": "automotriz",
+      "subgiro": "hojalatería y pintura",
+      "direccion": "Calle Puerto Salinas Cruz 278, C.P. 45060, Zapopan, Jal.",
+      "colonia": "Miramar",
+      "telefono": "(33) 1833 2121",
+      "whatsapp": "no encontrado",
+      "servicios": "laminado y pintura",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "ticket alto (hojalatería)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "web": "búsqueda por nombre + Zapopan: sin web"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": []
+    },
+    {
+      "nombre": "Laminados Pintura y Modificaciones Charly",
+      "giro": "automotriz",
+      "subgiro": "hojalatería, pintura y modificaciones",
+      "direccion": "Privada Pescadores 15, C.P. 45185, Zapopan, Jal. (otra búsqueda lo ubicó en Calle Santa Mercedes 1651, Valle Esmeralda: dirección inconsistente)",
+      "colonia": "La Martinica",
+      "telefono": "(33) 2074 1799",
+      "whatsapp": "no encontrado",
+      "servicios": "laminado, pintura, modificaciones",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "servicio de personalización/modificaciones (buen material visual para landing)",
+        "dirección inconsistente entre resultados"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "web": "búsqueda por nombre + Zapopan: sin web"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": [
+        "Dos direcciones distintas (Privada Pescadores 15 vs Calle Santa Mercedes 1651): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Gral Car",
+      "giro": "automotriz",
+      "subgiro": "hojalatería y pintura (listado en esa categoría)",
+      "direccion": "Av. Patria 411, C.P. 45110, Zapopan, Jal.",
+      "colonia": "Jardines de la Patria",
+      "telefono": "(33) 3673 2535",
+      "whatsapp": "no encontrado",
+      "servicios": "no encontrado",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "búsqueda por nombre no arrojó ninguna presencia"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "web": "búsqueda '\"Gral Car\" Patria 411 Zapopan': 0 resultados relevantes"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": []
+    },
+    {
+      "nombre": "Laminado y Pintura JV",
+      "giro": "automotriz",
+      "subgiro": "hojalatería y pintura",
+      "direccion": "C. Felipe Ruvalcaba 5966, C.P. 45070, Zapopan, Jal.",
+      "colonia": "Colli Urbano",
+      "telefono": "33 3157 6318",
+      "whatsapp": "no encontrado",
+      "servicios": "laminado y pintura",
+      "tiene_web": "mala/caída",
+      "url_web": "laminadojv.com (mencionado en directorio, NO verificado)",
+      "estado_web": "no se pudo abrir (WebFetch bloqueado); búsqueda del dominio no devolvió resultados",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "dominio citado en directorio pero no indexado: posible web caída o abandonada",
+        "ticket alto"
+      ],
+      "fuentes": {
+        "nombre": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "direccion": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "telefono": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "web": "búsqueda '\"Laminado y Pintura JV\" Zapopan laminadojv.com': sin resultados del dominio"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": [
+        "Directorio cita el dominio laminadojv.com, pero no está indexado ni se pudo abrir: posible web caída/abandonada, verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Hojalatería \"El Tin\"",
+      "giro": "automotriz",
+      "subgiro": "hojalatería",
+      "direccion": "Av. Manuel M. Diéguez 438-A, C.P. 45180, Zapopan, Jal.",
+      "colonia": "Constitución",
+      "telefono": "33 1835 5484",
+      "whatsapp": "no encontrado",
+      "servicios": "hojalatería",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "búsqueda por nombre sin resultados: presencia online mínima"
+      ],
+      "fuentes": {
+        "nombre": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "direccion": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "telefono": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "web": "búsqueda '\"Hojalateria El Tin\" Zapopan': sin resultados"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": []
+    },
+    {
+      "nombre": "MR11 Garage",
+      "giro": "automotriz",
+      "subgiro": "hojalatería y pintura (chapa y pintura)",
+      "direccion": "Calle Volcán Cofre de Perote 5309A, C.P. 45070, Zapopan, Jal.",
+      "colonia": "Colli Urbano",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "chapa y pintura",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo en un directorio de nicho",
+        "sin teléfono público encontrado"
+      ],
+      "fuentes": {
+        "nombre": "https://chapapinturamx.com/jalisco/mr11-garage-zapopan/",
+        "direccion": "https://chapapinturamx.com/jalisco/mr11-garage-zapopan/",
+        "telefono": "no encontrado",
+        "web": "búsqueda '\"MR11 Garage\" Zapopan hojalatería': sin web"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": []
+    },
+    {
+      "nombre": "Transmisiones Automáticas Euroalemanas de Zapopan",
+      "giro": "automotriz",
+      "subgiro": "taller de transmisiones automáticas",
+      "direccion": "Calle Felipe Ruvalcaba 5358, C.P. 45070 (directorio lo etiqueta como Guadalajara; CP corresponde a Zapopan)",
+      "colonia": "El Colli 1a Sección",
+      "telefono": "(33) 1204 3275",
+      "whatsapp": "no encontrado",
+      "servicios": "transmisiones automáticas (autos europeos/alemanes, según nombre)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "servicio caro (transmisiones)",
+        "solo directorio",
+        "nicho europeo = cliente de ticket alto"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27 (probable; vía resumen de búsqueda)",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27 (probable)",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27 (probable)",
+        "web": "búsqueda '\"Transmisiones Automáticas Euroalemanas\" Zapopan': solo directorio"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": [
+        "Directorio lo etiqueta como Guadalajara aunque el CP 45070 es de Zapopan: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Taller Mecánico Industrial Macías",
+      "giro": "automotriz",
+      "subgiro": "taller mecánico",
+      "direccion": "Calz. Olímpica 761, C.P. 45110, Zapopan, Jal.",
+      "colonia": "Jardines Universidad",
+      "telefono": "(33) 3650 2990",
+      "whatsapp": "no encontrado",
+      "servicios": "mecánica automotriz",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no verificado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-turbo/jalisco/guadalajara/2",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-turbo/jalisco/guadalajara/2",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-turbo/jalisco/guadalajara/2",
+        "web": "no se hizo búsqueda dedicada por nombre (tiempo)"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": []
+    },
+    {
+      "nombre": "Servicios Automotrices Europa",
+      "giro": "automotriz",
+      "subgiro": "taller mecánico",
+      "direccion": "Calle Emiliano Zapata 75, C.P. 45018, Zapopan, Jal.",
+      "colonia": "Santa María del Pueblito",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "talleres mecánicos (categoría)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin teléfono público encontrado"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/7",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/7",
+        "telefono": "no encontrado",
+        "web": "búsqueda por nombre + colonia: solo directorio; homónimo en Cancún no relacionado"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": []
+    },
+    {
+      "nombre": "Llantera y Vulcanizadora Flomar",
+      "giro": "automotriz",
+      "subgiro": "llantera / vulcanizadora",
+      "direccion": "Calle José Guadalupe Gallo 1354, Zapopan, Jal.",
+      "colonia": "El Campanario",
+      "telefono": "+52 33 1336 8325",
+      "whatsapp": "no encontrado",
+      "servicios": "llantera, vulcanizado; L-V 8:00-20:00, S 8:00-16:00 (según fuente de ~2 años)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "4.6 estrellas, 63 opiniones (según la fuente; probablemente de Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "buenas reseñas pero presencia online mínima",
+        "única fuente es un foro (JustAnswer): verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.justanswer.es/informatica-es/mzwhj-solicito-un-servicio-en-ciudad-del-sol-zapopan-jalisco.html",
+        "direccion": "https://www.justanswer.es/informatica-es/mzwhj-solicito-un-servicio-en-ciudad-del-sol-zapopan-jalisco.html",
+        "telefono": "https://www.justanswer.es/informatica-es/mzwhj-solicito-un-servicio-en-ciudad-del-sol-zapopan-jalisco.html",
+        "web": "búsqueda '\"Flomar\" llantera vulcanizadora Zapopan': solo foro"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": [
+        "Única fuente es un foro (JustAnswer): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Auto Lavado Splash",
+      "giro": "automotriz",
+      "subgiro": "autolavado",
+      "direccion": "Av. Juan Pablo II 545, C.P. 45147, Zapopan, Jal.",
+      "colonia": "El Vigía",
+      "telefono": "+52 33 2541 4494",
+      "whatsapp": "no encontrado",
+      "servicios": "lavado de autos",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no verificado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio"
+      ],
+      "fuentes": {
+        "nombre": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-lavado-splash/",
+        "direccion": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-lavado-splash/",
+        "telefono": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-lavado-splash/",
+        "web": "no se hizo búsqueda dedicada por nombre (tiempo)"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": []
+    },
+    {
+      "nombre": "Autolavado H2o",
+      "giro": "automotriz",
+      "subgiro": "autolavado",
+      "direccion": "Av. Valle de Atemajac 2316, Zapopan, Jal.",
+      "colonia": "Jardines del Valle",
+      "telefono": "+52 33 1561 0453",
+      "whatsapp": "no encontrado",
+      "servicios": "lavado de autos",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no verificado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio"
+      ],
+      "fuentes": {
+        "nombre": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-h2o/",
+        "direccion": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-h2o/",
+        "telefono": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-h2o/",
+        "web": "no se hizo búsqueda dedicada por nombre (tiempo)"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": []
+    },
+    {
+      "nombre": "Autolavado Las Torres",
+      "giro": "automotriz",
+      "subgiro": "autolavado",
+      "direccion": "Av. Tepeyac 2666, C.P. 45060, Zapopan, Jal.",
+      "colonia": "Miramar",
+      "telefono": "+52 33 2834 1535",
+      "whatsapp": "no encontrado",
+      "servicios": "lavado de autos",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "búsqueda por nombre sin resultados propios"
+      ],
+      "fuentes": {
+        "nombre": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-las-torres/",
+        "direccion": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-las-torres/",
+        "telefono": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-las-torres/",
+        "web": "búsqueda '\"Autolavado Las Torres\" Tepeyac Zapopan': sin web"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": []
+    },
+    {
+      "nombre": "Auto Baño San Rafael",
+      "giro": "automotriz",
+      "subgiro": "autolavado",
+      "direccion": "no encontrado (verificar en Maps)",
+      "colonia": "Constitución (según resumen del directorio)",
+      "telefono": "+52 33 1700 7997",
+      "whatsapp": "no encontrado",
+      "servicios": "lavado de autos; L-S 9:00-19:00, domingo cerrado",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "búsqueda por nombre sin resultados"
+      ],
+      "fuentes": {
+        "nombre": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-bano-san-rafael/",
+        "direccion": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-bano-san-rafael/",
+        "telefono": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-bano-san-rafael/",
+        "web": "búsqueda '\"Auto Baño San Rafael\" Zapopan': sin resultados"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": [
+        "Sin dirección: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Motorcycles Unlimited SA de CV",
+      "giro": "automotriz",
+      "subgiro": "motos: refacciones y accesorios",
+      "direccion": "Calle Ramón Corona 49, C.P. 45190, Zapopan, Jal. (otro listado: Ramón Corona 5857, Jocotán, mismo teléfono)",
+      "colonia": "Atemajac del Valle",
+      "telefono": "(33) 3160 0971",
+      "whatsapp": "no encontrado",
+      "servicios": "refacciones y accesorios para motocicletas",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "existe homónimo en Morelia: confirmar que es independiente"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/motocicletas-refacciones-y-accesorios-para/jalisco/guadalajara/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/motocicletas-refacciones-y-accesorios-para/jalisco/guadalajara/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/motocicletas-refacciones-y-accesorios-para/jalisco/guadalajara/1",
+        "web": "búsqueda por nombre + dirección: sin web"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": [
+        "Dos direcciones con el mismo teléfono (Ramón Corona 49 vs Ramón Corona 5857, Jocotán) y homónimo en Morelia: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Refaccionaria Rogelio",
+      "giro": "automotriz",
+      "subgiro": "refaccionaria",
+      "direccion": "Av. 18 de Marzo 3463, Zapopan, Jal.",
+      "colonia": "Las Águilas",
+      "telefono": "(33) 3801-9156 (asociación nombre-teléfono poco clara en la fuente)",
+      "whatsapp": "no encontrado",
+      "servicios": "refacciones automotrices",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no verificado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "dato de teléfono incierto"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/refaccionaria-de-autopartes/jalisco/1 (vía resumen de búsqueda)",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/refaccionaria-de-autopartes/jalisco/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/refaccionaria-de-autopartes/jalisco/1",
+        "web": "no se hizo búsqueda dedicada por nombre (tiempo)"
+      },
+      "giro_categoria": "Automotriz",
+      "alertas": [
+        "Asociación nombre-teléfono poco clara en la fuente (teléfono dudoso): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "El Barbero Co (Aviación)",
+      "giro": "barbería",
+      "subgiro": "barbería masculina",
+      "direccion": "Avenida Aviación 4455, Zapopan, Jal.",
+      "colonia": "San Juan de Ocotán (según listado de Fresha con la misma dirección); verificar en Maps",
+      "telefono": "posible +52 33 1531 6900 (Fresha lo da para 'El Barbero' en Aviación 4455; el nombre no coincide exactamente, VERIFICAR)",
+      "whatsapp": "no encontrado",
+      "servicios": "corte y barba (precios no encontrados en el fragmento); AgendaPro reporta un rango general de $100 a $3,250 MXN para barberías de Zapopan, no de este negocio",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "La búsqueda '\"El Barbero Co\" Guadalajara sitio web instagram' no devolvió dominio propio ni Instagram",
+      "resenas": "4.9 con más de 190 reseñas (AgendaPro)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo perfil en AgendaPro/Fresha",
+        "muchas reseñas (190+) con 4.9",
+        "PRIORIDAD ALTA: barbería consolidada sin web aparente"
+      ],
+      "fuentes": {
+        "nombre": "https://agendapro.com/mp/mx/barba-zapopan",
+        "direccion": "https://agendapro.com/mp/mx/barba-zapopan",
+        "telefono": "https://www.fresha.com/lp/en/bt/barbershops/in/mx-guadalajara/el-triángulo",
+        "web": "búsqueda: \"El Barbero Co\" Guadalajara sitio web instagram (sin dominio propio)"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "Teléfono tomado de un listado de Fresha a nombre de 'El Barbero' (nombre no idéntico); Eagle Man también aparece en un listado con Aviación 4455: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Ignis House Barber Studio",
+      "giro": "barbería",
+      "subgiro": "barber studio",
+      "direccion": "Avenida Mariano Otero 2436, Zapopan, Jal.",
+      "colonia": "no encontrado (verificar en Maps)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "servicio de barbero 30 min $250 MXN; barba y tinte 45 min $350 MXN; paquete corte+barba+tinte (otro listado da 120 min $790 MXN; los precios difieren entre páginas de AgendaPro)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Búsquedas 'Ignis House Barber Studio Mariano Otero Zapopan' e '\"Ignis House\" barber Zapopan instagram facebook' solo devolvieron AgendaPro",
+      "resenas": "5.0 con 35-36 reseñas (AgendaPro)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo AgendaPro",
+        "calificación perfecta 5.0",
+        "paquetes premium hasta $790",
+        "PRIORIDAD ALTA"
+      ],
+      "fuentes": {
+        "nombre": "https://agendapro.com/mp/mx/diseno-de-barba-zapopan",
+        "direccion": "https://agendapro.com/mp/mx/barba-jalisco",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"Ignis House\" barber Zapopan instagram facebook (sin dominio propio)"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": []
+    },
+    {
+      "nombre": "DonBarbas Barbería & Spa",
+      "giro": "barbería",
+      "subgiro": "barbería y spa masculino",
+      "direccion": "Dos direcciones en AgendaPro: Avenida la Cima 845, Zapopan / Avenida Rafael Sanzio 197, Zapopan (no se sabe si son sucursales o una está desactualizada)",
+      "colonia": "no encontrado (verificar en Maps)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "barbería y spa; precios no encontrados",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "La búsqueda 'DonBarbas Barbería Spa Zapopan dirección teléfono' solo devolvió AgendaPro/Fresha",
+      "resenas": "4.9 con 11-12 reseñas (AgendaPro)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo AgendaPro",
+        "concepto barbería + spa (ticket más alto)",
+        "pocas reseñas: una landing ayudaría a captar más"
+      ],
+      "fuentes": {
+        "nombre": "https://agendapro.com/mp/mx/barba-zapopan",
+        "direccion": "https://agendapro.com/mp/mx/barba-jalisco",
+        "telefono": "no encontrado",
+        "web": "búsqueda: DonBarbas Barbería Spa Zapopan dirección teléfono"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "Dos direcciones en AgendaPro (Av. la Cima 845 / Av. Rafael Sanzio 197): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "El salón de la fama Barbershop",
+      "giro": "barbería",
+      "subgiro": "barbería con faciales",
+      "direccion": "Avenida Venustiano Carranza 779, Zapopan, Jal.",
+      "colonia": "Constitución",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "barba; paquete 'HOMBRE' 120 min $790 MXN (exfoliación facial, mascarilla hidrogel, ácido hialurónico, crema hidratante)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "La búsqueda no devolvió sitio oficial ni redes",
+      "resenas": "5.0 con 35 reseñas (AgendaPro)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo AgendaPro",
+        "5.0 estrellas",
+        "servicios premium ($790)",
+        "PRIORIDAD ALTA"
+      ],
+      "fuentes": {
+        "nombre": "https://agendapro.com/mp/mx/barba-zapopan",
+        "direccion": "https://agendapro.com/mp/mx/diseno-de-barba-zapopan",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"El salón de la fama\" Barbershop Venustiano Carranza Zapopan"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": []
+    },
+    {
+      "nombre": "Mexa Cuts Barber shop",
+      "giro": "barbería",
+      "subgiro": "barbería masculina",
+      "direccion": "No coincide entre listados: C. Fuente Brillante 8614-A, 45200 Zapopan / Av. Guadalupe Victoria 167, 45130 Zapopan",
+      "colonia": "La Cuchilla (Fuente Brillante) / Arroyo Hondo (Guadalupe Victoria); verificar en Maps",
+      "telefono": "+52 33 2915 9689 (listado Fuente Brillante) / +52 33 2513 4683 (listado Arroyo Hondo); verificar",
+      "whatsapp": "no encontrado",
+      "servicios": "corte de caballero, arreglo de barba, rapado (precios no encontrados)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo aparece en listados de Fresha",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo Fresha",
+        "posiblemente 2 locales (o dirección desactualizada)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/da/tt/herreklip/mx-guadalajara/zapopan",
+        "direccion": "https://www.fresha.com/lp/en/tt/men's-haircuts/in/mx-guadalajara/la-cuchilla ; https://www.fresha.com/lp/en/tt/men%27s-haircuts/in/mx-guadalajara/arroyo-hondo",
+        "telefono": "https://www.fresha.com/lp/en/tt/men's-haircuts/in/mx-guadalajara/la-cuchilla ; https://www.fresha.com/lp/en/tt/men%27s-haircuts/in/mx-guadalajara/arroyo-hondo",
+        "web": "búsqueda: Mexa Cuts barbería Zapopan (sin dominio propio)"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "Dos direcciones y dos teléfonos distintos entre listados: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Eagle Man, The Family Barber Shop",
+      "giro": "barbería",
+      "subgiro": "barbería familiar",
+      "direccion": "Av. Aviación 3000, 45019 Zapopan (la mayoría de listados); un listado da Av. Aviación 4455",
+      "colonia": "San Juan de Ocotán",
+      "telefono": "+52 33 3805 4355 (Aviación 3000); verificar",
+      "whatsapp": "no encontrado",
+      "servicios": "corte de caballero, afeitado, arreglo de barba, rapado (precios no encontrados)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "La búsqueda no encontró web propia ni perfil de Google verificado",
+      "resenas": "4.0 con 4 reseñas en Fresha (una de sept. 2025)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo Fresha",
+        "pocas reseñas",
+        "PRIORIDAD MEDIA-BAJA"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/tt/men%27s-haircuts/in/mx-guadalajara/san-juan-de-ocotán",
+        "direccion": "https://www.fresha.com/lp/en/tt/men's-haircuts/in/mx-guadalajara/san-juan-de-ocotán",
+        "telefono": "https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/san-juan-de-ocotán",
+        "web": "búsqueda: Eagle Man The Family Barber Shop San Juan de Ocotán Zapopan"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "Un listado da Av. Aviación 4455 (misma dirección que El Barbero Co) en vez de Aviación 3000: verificar en Maps",
+        "Teléfono marcado como dudoso por el agente: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "True Barber Shop",
+      "giro": "barbería",
+      "subgiro": "barbería con varias sucursales",
+      "direccion": "Av. del Servidor Público 3870, 45136 Zapopan; otras sucursales listadas: Av. Inglaterra 6765 (Villas de Asís) y Oasis 1648 (Las Palmas)",
+      "colonia": "Poniente / Nuevo México (Servidor Público); Villas de Asís; Las Palmas",
+      "telefono": "+52 33 1657 1779 (Servidor Público); +52 33 1657 1309 (Inglaterra); +52 33 2087 2045 (Oasis)",
+      "whatsapp": "no encontrado",
+      "servicios": "corte de caballero, arreglo de barba, afeitado con toalla caliente (precios no encontrados)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "La búsqueda '\"True Barber Shop\" Zapopan sitio web' solo devolvió Fresha",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado (3 sucursales sugieren varios barberos)",
+      "señales": [
+        "3 sucursales sin web aparente",
+        "solo Fresha",
+        "puede pagar más que el paquete básico"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/poniente",
+        "direccion": "https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/villas-de-asis",
+        "telefono": "https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/poniente",
+        "web": "búsqueda: \"True Barber Shop\" Zapopan sitio web (sin dominio propio)"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "Cadena chica: WebSearch del verificador encontró al menos 4 sedes en Fresha (Servidor Público 3870, Inglaterra 6765, Oasis 16, Dr. Luis Farah 463 con tel. +52 33 1763 3324), sin web propia: https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/villas-de-asis ; https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/villas-belenes . Confirmar si es un solo dueño; verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Nail & Dreams Studio",
+      "giro": "uñas",
+      "subgiro": "estudio de uñas",
+      "direccion": "no encontrado",
+      "colonia": "Lomas de Zapopan",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "uñas (precios no encontrados)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No se hizo búsqueda específica de dominio; solo aparece en Fresha",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo Fresha"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/tt/manicures/in/mx-guadalajara/jardines-del-tepeyac",
+        "direccion": "búsqueda: estudio de uñas Zapopan instagram dirección teléfono (listados de Fresha)",
+        "telefono": "búsqueda: estudio de uñas Zapopan instagram dirección teléfono (listados de Fresha)",
+        "web": "no verificado"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "direccion original descartado por no tener URL fuente (fuente: 'búsqueda: estudio de uñas Zapopan instagram dirección teléfono (listados de Fres'): verificar en Maps",
+        "telefono original descartado por no tener URL fuente (fuente: 'búsqueda: estudio de uñas Zapopan instagram dirección teléfono (listados de Fres'): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Karina Nails 69 (Uñas y Pestañas)",
+      "giro": "uñas",
+      "subgiro": "uñas y pestañas",
+      "direccion": "Camino a Bosque de San Isidro 1847, Plaza Punta Centinela, 45133 Zapopan, Jal.",
+      "colonia": "no encontrado (zona San Isidro / Centinela; verificar en Maps)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "uñas y extensiones de pestañas (precios no encontrados)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No se hizo búsqueda específica de dominio; solo aparece en Fresha",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo Fresha",
+        "dos servicios (uñas + pestañas)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/tt/eyelash-extensions/in/mx-guadalajara/centinela-i",
+        "direccion": "https://www.fresha.com/lp/en/tt/eyelash-extensions/in/mx-guadalajara/centinela-i",
+        "telefono": "búsqueda: estudio de uñas Zapopan instagram dirección teléfono (listados de Fresha)",
+        "web": "no verificado"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "telefono original descartado por no tener URL fuente (fuente: 'búsqueda: estudio de uñas Zapopan instagram dirección teléfono (listados de Fres'): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Tattoo Arte Antiguo",
+      "giro": "tatuajes",
+      "subgiro": "estudio de tatuajes",
+      "direccion": "no encontrado",
+      "colonia": "Vallarta la Patria",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "tatuajes (precios no encontrados)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No se hizo búsqueda específica de dominio; solo aparece en Fresha",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo Fresha",
+        "tatuajes = ticket alto, les sirve un portafolio en landing"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/tt/tattoo-shops/in/mx-guadalajara",
+        "direccion": "búsqueda: estudio de tatuajes Zapopan dirección teléfono (listados de Fresha)",
+        "telefono": "búsqueda: estudio de tatuajes Zapopan dirección teléfono (listados de Fresha)",
+        "web": "no verificado"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "direccion original descartado por no tener URL fuente (fuente: 'búsqueda: estudio de tatuajes Zapopan dirección teléfono (listados de Fresha)'): verificar en Maps",
+        "telefono original descartado por no tener URL fuente (fuente: 'búsqueda: estudio de tatuajes Zapopan dirección teléfono (listados de Fresha)'): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Nine Spa",
+      "giro": "spa",
+      "subgiro": "spa / masajes",
+      "direccion": "no encontrado",
+      "colonia": "La Cima",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "masajes (precios no encontrados)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No se hizo búsqueda específica de dominio; solo aparece en Fresha",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo Fresha"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/fr/bt/massage/mx-guadalajara/zapopan",
+        "direccion": "búsqueda: spa independiente Zapopan masajes dirección teléfono Fresha",
+        "telefono": "búsqueda: spa independiente Zapopan masajes dirección teléfono Fresha",
+        "web": "no verificado"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "direccion original descartado por no tener URL fuente (fuente: 'búsqueda: spa independiente Zapopan masajes dirección teléfono Fresha'): verificar en Maps",
+        "telefono original descartado por no tener URL fuente (fuente: 'búsqueda: spa independiente Zapopan masajes dirección teléfono Fresha'): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "MASARA Cosmetología & Masajes",
+      "giro": "spa",
+      "subgiro": "cosmetología y masajes",
+      "direccion": "Burgos Bugambilias 1350-C, 45130 Zapopan, Jal.",
+      "colonia": "Santa Margarita",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "cosmetología y masajes (precios no encontrados)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No se hizo búsqueda específica de dominio; solo aparece en Fresha",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo Fresha",
+        "tratamientos faciales = ticket medio-alto"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/bt/massage/in/mx-guadalajara/santa-margarita1a-sección",
+        "direccion": "https://www.fresha.com/lp/en/bt/massage/in/mx-guadalajara/santa-margarita1a-sección",
+        "telefono": "búsqueda: spa independiente Zapopan masajes dirección teléfono Fresha",
+        "web": "no verificado"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "telefono original descartado por no tener URL fuente (fuente: 'búsqueda: spa independiente Zapopan masajes dirección teléfono Fresha'): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "HUNThöhle CrossFit",
+      "giro": "gimnasio",
+      "subgiro": "box de CrossFit",
+      "direccion": "C. Primo Feliciano Velázquez 668, 45040 Zapopan, Jal.",
+      "colonia": "Jardín de San Ignacio",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "CrossFit (precios no encontrados; afiliado a Wellhub)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No se hizo búsqueda específica de dominio; aparece en Wellhub",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo perfil en Wellhub encontrado",
+        "membresías recurrentes = buen cliente para landing de captación"
+      ],
+      "fuentes": {
+        "nombre": "https://wellhub.com/es-mx/search/partners/hunthohle-crossfit-jardin-de-san-ignacio/",
+        "direccion": "https://wellhub.com/es-mx/search/partners/hunthohle-crossfit-jardin-de-san-ignacio/",
+        "telefono": "no encontrado",
+        "web": "no verificado"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "WebSearch del verificador: solo Wellhub (4.85, 34 reseñas), sin web propia ni página en CrossFit.com: https://wellhub.com/es-mx/search/partners/hunthohle-crossfit-jardin-de-san-ignacio/"
+      ]
+    },
+    {
+      "nombre": "Unbreakable Crossfit",
+      "giro": "gimnasio",
+      "subgiro": "CrossFit e Hyrox",
+      "direccion": "Mariano Otero 3001, 45659 Zapopan, Jal.",
+      "colonia": "Santa Ana Tepetitlán",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "CrossFit, Hyrox (precios no encontrados)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No se hizo búsqueda específica de dominio; aparece en Wellhub",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo perfil en Wellhub encontrado"
+      ],
+      "fuentes": {
+        "nombre": "https://wellhub.com/es-mx/search/partners/unbreakable-crossfit/",
+        "direccion": "https://wellhub.com/es-mx/search/partners/unbreakable-crossfit/",
+        "telefono": "no encontrado",
+        "web": "no verificado"
+      },
+      "giro_categoria": "Belleza",
+      "alertas": [
+        "CP 45659 (Santa Ana Tepetitlán, Zapopan, dentro de la ZMG); WebSearch solo halló Wellhub (5.0, 12 reseñas), sin web propia: https://wellhub.com/es-mx/search/partners/unbreakable-crossfit/"
+      ]
+    },
+    {
+      "nombre": "Alcaraz Leal Abogados",
+      "giro": "servicios profesionales",
+      "subgiro": "despacho de abogados",
+      "direccion": "Calle Joaquín Fernández de Lizardi 7004, CP 45016, Zapopan (otro listado: Av. del Tule 461, Puertas del Tule, CP 45017)",
+      "colonia": "Lomas Universidad",
+      "telefono": "(33) 3811 8004",
+      "whatsapp": "no encontrado",
+      "servicios": "no encontrado",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "ticket alto (abogados)",
+        "dos direcciones en directorio: posible dato viejo"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/despachos-de-abogados/jalisco/4",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/3",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/3",
+        "web": "WebSearch: \"Alcaraz Leal Abogados\" Zapopan (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": [
+        "Dos direcciones (Fernández de Lizardi 7004 vs Av. del Tule 461): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "EFD Abogados SC",
+      "giro": "servicios profesionales",
+      "subgiro": "despacho de abogados",
+      "direccion": "Av. de las Rosas 164, CP 45040, Zapopan",
+      "colonia": "Chapalita Sur",
+      "telefono": "(33) 3854 5585",
+      "whatsapp": "no encontrado",
+      "servicios": "no encontrado",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "ticket alto (abogados)",
+        "zona Chapalita"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/8",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/8",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/8",
+        "web": "WebSearch: \"EFD Abogados\" Zapopan Chapalita (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": []
+    },
+    {
+      "nombre": "Azteca Abogados",
+      "giro": "servicios profesionales",
+      "subgiro": "despacho de abogados",
+      "direccion": "Selección Jalisco 692, CP 45180, Zapopan (otro listado: Av. de la Calma 4113, La Calma, CP 45070, tel. (33) 1070-1286)",
+      "colonia": "Jardines del Auditorio",
+      "telefono": "(33) 2610-4666",
+      "whatsapp": "no encontrado",
+      "servicios": "no encontrado",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "ticket alto (abogados)",
+        "posiblemente 2 oficinas"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/2",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/2",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/2",
+        "web": "WebSearch: \"Azteca Abogados\" Zapopan (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": [
+        "Dos direcciones y dos teléfonos (Selección Jalisco 692 / Av. de la Calma 4113, (33) 1070-1286): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Cerrajería Chapalita",
+      "giro": "oficios",
+      "subgiro": "cerrajería",
+      "direccion": "Av. de las Rosas 555, CP 45040, Zapopan",
+      "colonia": "Chapalita",
+      "telefono": "(33) 3121-7273",
+      "whatsapp": "no encontrado",
+      "servicios": "servicio 24 horas (según directorio)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "servicio 24h: le sirve captar urgencias por búsqueda local"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/cerrajerías/9",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/cerrajerías/9",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/cerrajerías/9",
+        "web": "WebSearch: \"Cerrajería Chapalita\" Zapopan Av. de las Rosas (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": []
+    },
+    {
+      "nombre": "Cerrajerías JR",
+      "giro": "oficios",
+      "subgiro": "cerrajería",
+      "direccion": "Calle Felipe Ruvalcaba 5710-A, CP 45079, Zapopan",
+      "colonia": "Paseos del Sol",
+      "telefono": "(33) 3630-8726",
+      "whatsapp": "no encontrado",
+      "servicios": "cerrajería; horario 9:00-18:00 (según directorio)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/cerrajería/7",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/cerrajería/7",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/cerrajería/7",
+        "web": "WebSearch: \"Cerrajerías JR\" Paseos del Sol Zapopan (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": []
+    },
+    {
+      "nombre": "Despacho Contable Balbaneda",
+      "giro": "servicios profesionales",
+      "subgiro": "contadores / despacho contable",
+      "direccion": "Calle Ópalo 102, CP 45066, Zapopan (otro listado: Río Tepalcatepec 1581, Las Águilas)",
+      "colonia": "Arenales Tapatíos",
+      "telefono": "(33) 1950 4265",
+      "whatsapp": "no encontrado",
+      "servicios": "contadores, auditores y asuntos fiscales (categoría del directorio)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "dos direcciones: posible dato viejo"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/despacho-contable-fiscal/13",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/despacho-contable-fiscal/13",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/despacho-contable-fiscal/13",
+        "web": "WebSearch: \"Despacho Contable Balbaneda\" Zapopan (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": [
+        "Dos direcciones (Ópalo 102 vs Río Tepalcatepec 1581): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Asesoría Fiscal y Contable Galarza",
+      "giro": "servicios profesionales",
+      "subgiro": "contadores / despacho contable",
+      "direccion": "Calle Hacienda de las Azaleas 64, CP 45133, Zapopan",
+      "colonia": "Haciendas del Valle",
+      "telefono": "(33) 1022 2631",
+      "whatsapp": "no encontrado",
+      "servicios": "despacho contable (categoría del directorio)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "otro listado con mismo nombre en Jardines del Country, GDL"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/contadores,-auditores-y-asuntos-fiscales/jalisco/28",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/contadores,-auditores-y-asuntos-fiscales/jalisco/28",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/contadores,-auditores-y-asuntos-fiscales/jalisco/28",
+        "web": "WebSearch: \"Asesoría Contable y Fiscal Galarza\" Zapopan (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": [
+        "Otro listado con el mismo nombre en Jardines del Country, Guadalajara (¿Zapopan o Guadalajara?): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Despacho Padilla Villarruel y Cía",
+      "giro": "servicios profesionales",
+      "subgiro": "contadores / despacho contable",
+      "direccion": "Lázaro Cárdenas 4135, CP 45040, Zapopan",
+      "colonia": "Camino Real",
+      "telefono": "(33) 3647 1730",
+      "whatsapp": "no encontrado",
+      "servicios": "contadores, auditores y asuntos fiscales (categoría del directorio)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se hizo búsqueda dedicada del nombre (falta de tiempo)",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio en lo revisado",
+        "falta verificar si tiene web"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/despacho-contable-fiscal/7",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/despacho-contable-fiscal/7",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/despacho-contable-fiscal/13",
+        "web": "no verificado"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": []
+    },
+    {
+      "nombre": "Despacho Contable Salas",
+      "giro": "servicios profesionales",
+      "subgiro": "contadores / despacho contable",
+      "direccion": "Av. de la Calma 3312, Zapopan",
+      "colonia": "La Calma",
+      "telefono": "(33) 1562-5066",
+      "whatsapp": "no encontrado",
+      "servicios": "contadores, auditores y asuntos fiscales (categoría del directorio)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se hizo búsqueda dedicada del nombre",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "la misma dirección aparece en otro listado como 'Abogados Laborales': posible despacho compartido"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/despacho-contable-fiscal/7",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/despacho-contable-fiscal/7",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/despacho-contable-fiscal/13",
+        "web": "no verificado"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": [
+        "La misma dirección aparece en otro listado como 'Abogados Laborales': verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Guardería Rehilete",
+      "giro": "educación / cuidado infantil",
+      "subgiro": "guardería",
+      "direccion": "Av. Sierra de Tapalpa 5821, CP 45080, Zapopan",
+      "colonia": "La Calma 2A Sección",
+      "telefono": "(33) 3135 3776",
+      "whatsapp": "no encontrado",
+      "servicios": "guardería infantil",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio ni redes",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "colegiaturas recurrentes"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/guarderia/24",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/guarderia/24",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/guarderia/24",
+        "web": "WebSearch: \"Guardería Rehilete\" Zapopan La Calma (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": []
+    },
+    {
+      "nombre": "Guardería Ángeles de la Guarda",
+      "giro": "educación / cuidado infantil",
+      "subgiro": "guardería",
+      "direccion": "Av. Juan Sebastián Bach 4856, CP 45030, Zapopan",
+      "colonia": "Prados de Guadalupe",
+      "telefono": "(33) 3629 0610",
+      "whatsapp": "no encontrado",
+      "servicios": "guardería infantil",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "colegiaturas recurrentes"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "web": "WebSearch: \"Guardería Ángeles de la Guarda\" Prados de Guadalupe Zapopan (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": []
+    },
+    {
+      "nombre": "Centro Infantil Domino SC",
+      "giro": "educación / cuidado infantil",
+      "subgiro": "guardería",
+      "direccion": "Calle Cantera Morada 1825, CP 45180, Zapopan",
+      "colonia": "Jardines de la Esperanza",
+      "telefono": "(33) 3366 5627",
+      "whatsapp": "no encontrado",
+      "servicios": "guardería infantil",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "colegiaturas recurrentes"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "web": "WebSearch: \"Centro Infantil Domino\" Zapopan (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": []
+    },
+    {
+      "nombre": "Inmobiliaria Sandoval",
+      "giro": "bienes raíces",
+      "subgiro": "inmobiliaria",
+      "direccion": "Av. Guadalajara 2581, CP 45160, Zapopan",
+      "colonia": "Agraria",
+      "telefono": "no encontrado (el snippet dice que la página muestra teléfono, pero no lo trae)",
+      "whatsapp": "no encontrado",
+      "servicios": "bienes raíces",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "ticket alto (inmobiliaria)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/inmobiliarias/jalisco/guadalajara/28",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/inmobiliarias/jalisco/guadalajara/28",
+        "telefono": "no encontrado",
+        "web": "WebSearch: \"Inmobiliaria Sandoval\" Zapopan Agraria (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": []
+    },
+    {
+      "nombre": "Smart Ways",
+      "giro": "educación",
+      "subgiro": "escuela de idiomas",
+      "direccion": "no encontrado (solo CP 45040, Zapopan)",
+      "colonia": "no encontrado",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "escuela de idiomas, sector privado; 0-9 empleados (Kompass)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "búsqueda sin dominio propio",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "0-9 empleados (Kompass)",
+      "señales": [
+        "solo directorio",
+        "sin web propia encontrada",
+        "negocio pequeño",
+        "faltan datos de contacto"
+      ],
+      "fuentes": {
+        "nombre": "https://es.kompass.com/c/smart-ways/mx858262/",
+        "direccion": "https://es.kompass.com/c/smart-ways/mx858262/",
+        "telefono": "no encontrado",
+        "web": "WebSearch: \"Smart Ways\" escuela de idiomas Zapopan (sin dominio propio)"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": [
+        "Sin dirección ni teléfono: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Notaría Pública No. 30 de Zapopan",
+      "giro": "servicios profesionales",
+      "subgiro": "notaría",
+      "direccion": "Calle San Juan Bosco, Chapalita, Guadalajara (número no encontrado; el directorio la ubica en GDL aunque es notaría de Zapopan)",
+      "colonia": "Chapalita",
+      "telefono": "(33) 3121-1067",
+      "whatsapp": "no encontrado",
+      "servicios": "notaría pública",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se hizo búsqueda dedicada del nombre",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio en lo revisado",
+        "ticket alto",
+        "dato inconsistente: hay que verificarlo con el Colegio de Notarios de Jalisco"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/notaria-48/jalisco/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/notaria-48/jalisco/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/notaria-48/jalisco/1",
+        "web": "no verificado"
+      },
+      "giro_categoria": "Servicios",
+      "alertas": [
+        "El directorio la ubica en Chapalita, Guadalajara, aunque es notaría de Zapopan; verificar con el Colegio de Notarios y verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Taquería MS",
+      "giro": "restaurante",
+      "subgiro": "taquería (asada, adobada, tripa, chorizo)",
+      "direccion": "Av. del Servidor Público 1262, 45136 Zapopan, Jal.",
+      "colonia": "no encontrado",
+      "telefono": "+52 33 1241 8651 (según agregador pos.do; verificar)",
+      "whatsapp": "no encontrado",
+      "servicios": "tacos de carne asada, adobada, chorreadas, tripa, chorizo",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Ficha pos.do enlaza a página de Facebook; sin dominio propio en resultados. Ficha no reclamada.",
+      "resenas": "4.0 en Google, ~392 reseñas (según pos.do)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "sin web propia",
+        "solo Facebook",
+        "muchas reseñas",
+        "ficha de directorio sin reclamar",
+        "menú no disponible en línea"
+      ],
+      "fuentes": {
+        "nombre": "https://pos.do/ca/zapopan/restaurant/taqueria-ms",
+        "direccion": "https://pos.do/pt/zapopan/restaurant/taqueria-ms",
+        "telefono": "https://pos.do/pt/zapopan/restaurant/taqueria-ms",
+        "web": "búsqueda WebSearch 'Taquería MS Av. del Servidor Público 1262 Zapopan teléfono'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": [
+        "Teléfono y reseñas de un agregador no reclamado (pos.do): verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Taquería Los Alteños",
+      "giro": "restaurante",
+      "subgiro": "taquería",
+      "direccion": "no encontrado (verificar en Maps)",
+      "colonia": "no encontrado",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "tacos; ambiente familiar",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No apareció dominio propio; solo mención en México Desconocido",
+      "resenas": "México Desconocido la describe como una de las taquerías más reconocidas de la ZMG, ~12 años en Zapopan",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "buena fama en guía",
+        "sin web propia",
+        "datos de contacto difíciles de encontrar en línea"
+      ],
+      "fuentes": {
+        "nombre": "https://escapadas.mexicodesconocido.com.mx/restaurantes/taqueria-los-altenos/",
+        "direccion": "no encontrado",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'Taquería Los Alteños Zapopan dirección teléfono'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": [
+        "Sin dirección ni teléfono: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Tacos al Vapor Amigo Beto",
+      "giro": "restaurante",
+      "subgiro": "taquería (tacos al vapor, desayuno)",
+      "direccion": "Calle Santa Lucía 59, 45100 Zapopan, Jal.",
+      "colonia": "no encontrado (CP 45100, zona Zapopan Centro)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "tacos al vapor; horario lunes 7:30-13:00 (según Reservándonos); rango de precio $11-$25",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo ficha en Reservándonos (0 reseñas en la plataforma, no acepta reservas automáticas)",
+      "resenas": "0 reseñas en Reservándonos; nota de Azteca Jalisco sobre 'famosos tacos al vapor en Zapopan que te regalan el café' (no confirmado que sea el mismo negocio)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "sin web propia",
+        "presencia digital mínima",
+        "menú no disponible en línea"
+      ],
+      "fuentes": {
+        "nombre": "https://reservandonos.com/en/place/tacos-al-vapor-amigo-beto-zapopan",
+        "direccion": "https://reservandonos.com/en/place/tacos-al-vapor-amigo-beto-zapopan",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'reservandonos Tacos al vapor Amigo Beto Zapopan'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": []
+    },
+    {
+      "nombre": "Menudería La Güera",
+      "giro": "restaurante",
+      "subgiro": "menudería / almuerzos",
+      "direccion": "Prol. Río Blanco 665, Mirador San Isidro, 45130 Zapopan, Jal.",
+      "colonia": "Mirador San Isidro / Misión San Isidro",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "menudo; horario dom-mié 7:30-13:00 (según Reservándonos, listado incompleto)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo fichas en Reservándonos y Wanderlog",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "sin web propia",
+        "presencia digital mínima",
+        "menú no disponible en línea"
+      ],
+      "fuentes": {
+        "nombre": "https://reservandonos.com/en/place/local-flavors-menuderia-la-guera-zapopan",
+        "direccion": "https://reservandonos.com/en/place/local-flavors-menuderia-la-guera-zapopan",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'reservandonos Menudería La Güera Zapopan dirección teléfono'; también https://wanderlog.com/place/details/9890861/menuder%C3%ADa-la-g%C3%BCera"
+      },
+      "giro_categoria": "Comida",
+      "alertas": []
+    },
+    {
+      "nombre": "Tortas Patria",
+      "giro": "restaurante",
+      "subgiro": "tortas ahogadas / tacos de carnitas",
+      "direccion": "Av. Patria 419, Zapopan, Jal. (según Food & Pleasure)",
+      "colonia": "Jardines de la Patria / Jardines Universidad (la fuente menciona ambas)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "tortas ahogadas de carnitas en birote salado, tacos de carnitas; diario 9:00-15:00",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No apareció dominio propio; fotos en el artículo atribuidas a una cuenta 'tortaspatria' (red social no confirmada)",
+      "resenas": "Recomendada por Food & Pleasure como un clásico; operando desde 1997",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "buena fama en guía gastronómica",
+        "negocio con trayectoria (desde 1997)",
+        "sin web propia",
+        "posiblemente solo redes sociales"
+      ],
+      "fuentes": {
+        "nombre": "https://foodandpleasure.com/?p=255435",
+        "direccion": "https://foodandpleasure.com/?p=255435",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'Tortas Patria Jardines Universidad Zapopan dirección teléfono facebook'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": []
+    },
+    {
+      "nombre": "El Bigos Tortas Ahogadas",
+      "giro": "restaurante",
+      "subgiro": "tortas ahogadas / tacos dorados",
+      "direccion": "C. López Cotilla 593, 45100 Zapopan, Jal.",
+      "colonia": "no encontrado (CP 45100)",
+      "telefono": "no encontrado (pos.do tiene campo de teléfono pero no se pudo leer)",
+      "whatsapp": "no encontrado",
+      "servicios": "tortas ahogadas, tacos, carnitas, tacos dorados; comer ahí y para llevar",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo ficha de agregador pos.do",
+      "resenas": "4.4, ~100 reseñas (según pos.do)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "sin web propia",
+        "buenas reseñas",
+        "menú no disponible en línea"
+      ],
+      "fuentes": {
+        "nombre": "https://pos.do/en/zapopan/restaurant/el-bigos-tortas-ahogadas",
+        "direccion": "https://pos.do/en/zapopan/restaurant/el-bigos-tortas-ahogadas",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch '\"El Bigos\" tortas ahogadas López Cotilla 593 Zapopan teléfono'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": []
+    },
+    {
+      "nombre": "Tortas Ahogadas Chachis (sucursal Zapopan)",
+      "giro": "restaurante",
+      "subgiro": "tortas ahogadas",
+      "direccion": "Av. Mariano Bárcena 1412, Zapopan, Jal. (según Rappi)",
+      "colonia": "Auditorio",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "tortas ahogadas de carnitas, res, pancita, lengua; 9:00-16:00; entrega por Rappi",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo ficha de Rappi en resultados; 'sucursal Zapopan' sugiere más de un local (verificar si es pequeña cadena)",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "depende de app de delivery",
+        "sin web propia en resultados"
+      ],
+      "fuentes": {
+        "nombre": "https://www.rappi.com.mx/restaurantes/1923300924-tortas-ahogadas-chachis-zapopan",
+        "direccion": "https://www.rappi.com.mx/restaurantes/1923300924-tortas-ahogadas-chachis-zapopan",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'foodandpleasure tortas ahogadas de carnitas birote Zapopan'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": [
+        "'Sucursal Zapopan' sugiere varios locales: verificar si es cadena chica; verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Horno de José",
+      "giro": "panadería",
+      "subgiro": "panadería artesanal / masas laminadas / brunch",
+      "direccion": "Sta. Esther 241, Santa Margarita 1a Secc., 45140 Zapopan, Jal.",
+      "colonia": "Santa Margarita 1a Sección",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "pan dulce (roles, croissants), brunch; lun-sáb 8:00-20:00 (según nota de temporada); otra sucursal en Arcos Vallarta, Guadalajara",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo Instagram https://www.instagram.com/hornodejose/ (según guía); búsqueda de sitio oficial no arrojó dominio",
+      "resenas": "no encontrado (verificar en Maps); recomendada en guía de pan de muerto",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo Instagram",
+        "sin web propia",
+        "buena fama en guías",
+        "2 sucursales (negocio en crecimiento)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.tusbuenasnoticias.com/noticias/mexico/2025/10/23/52160-donde-comer-el-mejor-pan-de-muerto-en-guadalajara",
+        "direccion": "https://www.americanexpress.com/mx/beneficios/shop-small/directorio/index4/recomendaciones3351.html",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch '\"Horno de José\" sitio web oficial pan' (sin resultados propios)"
+      },
+      "giro_categoria": "Comida",
+      "alertas": [
+        "Dirección contradictoria: un directorio de American Express la ubica en Av. Miguel Hidalgo 2178-A, Arcos Vallarta, Guadalajara (y menciona Providencia) vs Sta. Esther 241, Zapopan: https://www.americanexpress.com/mx/beneficios/shop-small/directorio/index4/recomendaciones3351.html . ¿Zapopan o Guadalajara? verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Masa Madre (sucursal Solares)",
+      "giro": "panadería",
+      "subgiro": "panadería de masa madre",
+      "direccion": "P.º Solares 88, Int. 4, Solares Residencial, 45019 Zapopan, Jal.",
+      "colonia": "Solares Residencial",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "pan de masa madre, pan de muerto de temporada; diario 8:00-20:30 (dato inconsistente en la fuente); otra sucursal en Ottawa 1301, Providencia, GDL",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No apareció sitio oficial en resultados",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "sin web propia en resultados",
+        "mencionada en guía de pan de muerto",
+        "2 sucursales"
+      ],
+      "fuentes": {
+        "nombre": "https://www.tusbuenasnoticias.com/noticias/mexico/2025/10/23/52160-donde-comer-el-mejor-pan-de-muerto-en-guadalajara",
+        "direccion": "https://www.tusbuenasnoticias.com/noticias/mexico/2025/10/23/52160-donde-comer-el-mejor-pan-de-muerto-en-guadalajara",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'Masa Madre panadería Paseo Solares 88 Zapopan'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": []
+    },
+    {
+      "nombre": "Ohlala Panadería Bistrot",
+      "giro": "panadería",
+      "subgiro": "panadería-bistró francesa / brunch",
+      "direccion": "Sebastián Bach 5074 (entre Patria y Miguel Ángel), Zapopan, Jal.",
+      "colonia": "no encontrado",
+      "telefono": "(33) 1562 6995 (artículo antiguo de The Guadalajara Reporter; verificar vigencia)",
+      "whatsapp": "no encontrado",
+      "servicios": "pan francés, brunch",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No apareció sitio oficial; solo correo antiguo de Hotmail en artículo",
+      "resenas": "Incluida en lista 'The 10 Best Restaurants in Zapopan' de Culture Trip; Tablejourney 4.4 (no claro si corresponde)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "sin web propia",
+        "buena fama en guías internacionales",
+        "contacto desactualizado en línea"
+      ],
+      "fuentes": {
+        "nombre": "https://theculturetrip.com/north-america/mexico/articles/the-10-best-restaurants-in-zapopan-guadalajara",
+        "direccion": "https://tablejourney.com/mexico/guadalajara/brunch/ohlala-panaderia-bistro/",
+        "telefono": "https://theguadalajarareporter.net/index.php/featured/31350-bakers-bring-craft-from-france-to-city-suburbs",
+        "web": "búsqueda WebSearch 'Ohlala Panadería Bistrot Zapopan dirección teléfono sitio web'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": [
+        "Teléfono de un artículo antiguo; una guía la sitúa en Real Vallarta (Guadalajara) y una reseña sugiere más de una sucursal (https://wanderlog.com/place/details/2903987/ohlala-panadería-bistró). No se encontró aviso de cierre: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Estampida Café de especialidad",
+      "giro": "cafetería",
+      "subgiro": "café de especialidad / brew bar",
+      "direccion": "Calle Vicente Guerrero 148A, 45100 Zapopan, Jal.",
+      "colonia": "Zapopan Centro",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "café de especialidad, flat white, matcha frappé ($63-$125 MXN según Rappi); horarios inconsistentes en Rappi",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo Rappi y ficha no reclamada en pulled.coffee",
+      "resenas": "no encontrado (verificar en Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "sin web propia",
+        "ficha de directorio sin reclamar",
+        "horarios inconsistentes en línea"
+      ],
+      "fuentes": {
+        "nombre": "https://www.rappi.com.mx/restaurantes/1930239792-estampida-caf",
+        "direccion": "https://www.rappi.com.mx/restaurantes/1930239792-estampida-caf",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'Estampida Café Vicente Guerrero 148 Zapopan instagram web'; https://www.pulled.coffee/shop/estampida-cafe-cafe-de-especialidad-y-brew-bar-guadalajara"
+      },
+      "giro_categoria": "Comida",
+      "alertas": [
+        "Horarios inconsistentes en línea: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Taller de Espresso",
+      "giro": "cafetería",
+      "subgiro": "café de especialidad / tostador",
+      "direccion": "Calle Gómez Farías 7A, Loma Blanca, Zapopan (según pos.do; dato en conflicto: otras guías ubican el local principal en Av. Hidalgo 1586, Col. Americana, Guadalajara)",
+      "colonia": "Loma Blanca (no confirmado)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "café de especialidad, tueste propio",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No apareció sitio oficial en resultados",
+      "resenas": "4.6 en Google, 62 reseñas (según pos.do); clientes mencionan horarios inconsistentes",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "buenas reseñas",
+        "horarios inconsistentes en línea",
+        "ubicación ambigua en directorios (oportunidad de landing con info clara)"
+      ],
+      "fuentes": {
+        "nombre": "https://pos.do/en/zapopan/restaurant/taller-de-espresso",
+        "direccion": "https://pos.do/en/zapopan/restaurant/taller-de-espresso ; https://thatch.co/places/298544/taller-de-espresso",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'Taller de Espresso Zapopan dirección reseñas'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": [
+        "Ubicación ambigua: local principal en Hidalgo 1586, Col. Americana (Guadalajara) vs Gómez Farías 7A, Zapopan. Un agregador cita el dominio tallerdeespresso.com (no verificado, podría tener web): https://pos.do/en/zapopan/restaurant/taller-de-espresso . verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Banquetes En Su Punto",
+      "giro": "catering",
+      "subgiro": "banquetes y catering para eventos",
+      "direccion": "no encontrado (perfil indica Zapopan)",
+      "colonia": "no encontrado",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "menús en tiempos, buffets, cocina italiana y mexicana, parrilladas, taquizas, bocadillos, mesas de quesos y postres; eventos sociales y empresariales en ZMG",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo perfil en Cronoshare",
+      "resenas": "Sin valoraciones en Cronoshare",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "catering/eventos (ticket alto)",
+        "sin web propia",
+        "depende de directorio de cotizaciones"
+      ],
+      "fuentes": {
+        "nombre": "https://www.cronoshare.com.mx/croner-742781-banquetes-en-su-punto",
+        "direccion": "https://www.cronoshare.com.mx/croner-742781-banquetes-en-su-punto",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch '\"Banquetes En Su Punto\" Zapopan'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": [
+        "Sin dirección física: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Banquetes La Casa de los Eventos",
+      "giro": "catering",
+      "subgiro": "banquetes para bodas y eventos",
+      "direccion": "no encontrado (perfil indica Zapopan)",
+      "colonia": "no encontrado",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "banquetes; acompañamiento desde planeación hasta ejecución del evento",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo perfil en WeddingWire en resultados",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "catering/eventos (ticket alto)",
+        "sin web propia en resultados"
+      ],
+      "fuentes": {
+        "nombre": "https://www.weddingwire.com/biz/la-casa-de-los-eventos/72bc2d45ae777090.html",
+        "direccion": "https://www.weddingwire.com/biz/la-casa-de-los-eventos/72bc2d45ae777090.html",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'catering para eventos Zapopan banquetes taquizas teléfono'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": [
+        "Sin dirección física: verificar en Maps"
+      ]
+    },
+    {
+      "nombre": "Petit Dessert",
+      "giro": "repostería",
+      "subgiro": "repostería / pastelería / café",
+      "direccion": "Torre La Vega 847, Lomas de Zapopan (según ficha bonusqr)",
+      "colonia": "Lomas de Zapopan",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "repostería, pastelería, café",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo ficha de programa de lealtad (app.bonusqr.com)",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "sin web propia en resultados",
+        "ya usa herramienta QR de lealtad (receptivo a lo digital)"
+      ],
+      "fuentes": {
+        "nombre": "https://app.bonusqr.com/54897/info",
+        "direccion": "https://app.bonusqr.com/54897/info",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'repostería pastelería artesanal Zapopan pasteles por encargo instagram dirección'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": []
+    },
+    {
+      "nombre": "Fonda Doña Gabina Escolástica",
+      "giro": "restaurante",
+      "subgiro": "cocina tradicional mexicana / fonda (pozole, tostadas)",
+      "direccion": "no encontrado con certeza (fuentes en conflicto: Culture Trip/Lonely Planet la sitúan cerca de la Basílica de Zapopan; Tablejourney la ubica en Mexicaltzingo, Guadalajara)",
+      "colonia": "no confirmado",
+      "telefono": "no encontrado (el +52 33 3633 7449 de Culture Trip no se puede atribuir con certeza)",
+      "whatsapp": "no encontrado",
+      "servicios": "pozole, tostada de pollo; mar-sáb 14:00-23:00, dom 9:00-18:00 (según Culinary Backstreets)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No apareció sitio oficial en resultados",
+      "resenas": "Reseñada por Fodor's, Lonely Planet, Culture Trip, Culinary Backstreets; Tablejourney 4.0",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "alta fama internacional",
+        "información de ubicación contradictoria en línea (oportunidad de landing)",
+        "sin web propia en resultados"
+      ],
+      "fuentes": {
+        "nombre": "https://theculturetrip.com/north-america/mexico/articles/the-10-best-restaurants-in-zapopan-guadalajara",
+        "direccion": "https://www.culinarybackstreets.com/stories/guadalajara/dona-gabina-escolastica-where-tradition-is-always-on-the-menu ; https://tablejourney.com/neighborhood/guadalajara/centro-historico/",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch 'La Fonda de Doña Gabina Escolástica Zapopan dirección teléfono'"
+      },
+      "giro_categoria": "Comida",
+      "alertas": [
+        "Ubicación contradictoria (cerca de la Basílica de Zapopan vs Mexicaltzingo, Guadalajara) y teléfono no atribuible; WebSearch del verificador no halló aviso de cierre ni web: verificar en Maps"
+      ]
+    }
+  ],
+  "descartados": [
+    {
+      "nombre": "Clínica Dental La Zapopana (sucursal Basílica 2)",
+      "giro_categoria": "Salud",
+      "motivo": "Cadena con ~20 sucursales en Jalisco (nota del agente de salud); no es negocio independiente."
+    },
+    {
+      "nombre": "Transmisiones Automáticas Federalismo",
+      "giro_categoria": "Automotriz",
+      "motivo": "Sin URL fuente para nombre, dirección y teléfono (la fuente es solo 'seccionamarilla.com.mx ... vía resumen de búsqueda' e 'idem'); no se puede identificar el negocio sin inventar datos."
+    },
+    {
+      "nombre": "Poltrone da Barbiere Zona Real",
+      "giro_categoria": "Belleza",
+      "motivo": "Cadena local: además de Zona Real hay sucursales Casa Blend (Pablo Casals 628), Matriz Sur (Rubén Darío 1435), Zona Andares (Patria 1501) y San Agustín (López Mateos Sur 5565) según AgendaPro/Fresha (WebSearch verificador: https://agendapro.com/mp/mx/barba-y-bigote-guadalajara ; https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/provenza-residencial)."
+    },
+    {
+      "nombre": "Bloom studio de uñas",
+      "giro_categoria": "Belleza",
+      "motivo": "Sin URL fuente para nombre, dirección y teléfono (solo texto de una búsqueda); no se puede identificar el negocio sin inventar datos."
+    }
+  ]
+}
