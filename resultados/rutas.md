@@ -49,3 +49,20 @@
 | 5 | Recupera-T Fisioterapia - Rehabilitación | Av. Adolfo López Mateos 5880, Local 8, Zapopan 45070 | 64 | (33) 3632 5891 | 64 pts, mismo CP 45070 sobre Av. López Mateos. Cerrar aquí la mañana (~10-11am, cuando ya abrió). Ofrecer landing + agendamiento. |
 
 **Nota:** Las 3 primeras van sobre C. Felipe Ruvalcaba en orden de numeración (5358, 5710-A, 5966). Extensión opcional en Miramar (CP 45060): Laminado y Pintura Profesional Gómez y Autolavado Las Torres; no se sabe qué tan cerca quedan. Ruta alterna automotriz: Constitución (Hojalatería "El Tin" 75 pts, El salón de la fama Barbershop y Scire en Av. Venustiano Carranza). Confirmar recorrido en Maps.
+
+
+---
+
+## Paradas extra (Ronda 3)
+
+Se agregaron al final de las rutas 1 y 2. Son opcionales y el orden no está optimizado: acomódalas en Maps.
+
+| Ruta | Negocio | Dirección | Pts | Teléfono | Nota |
+|---|---|---|---|---|---|
+| 1 Las Águilas | Barber Shop (Barbería - Corte de Cabello hombre - Peluquería) | Av. 18 de Marzo 1625, Las Águilas, Zapopan, Jal., CP 45080 | 70 | +52 33 1998 2043 | Av. 18 de Marzo; extra si sobra tiempo. Fuente: https://www.fresha.com/lp/en/tt/men's-haircuts/in/mx-guadalajara/echeverría |
+| 1 Las Águilas | LIZAOLA SPA & BARBER shop | Av. Valle de Atemajac 1650, Local 9, Las Águilas, Zapopan, Jal., CP 45080 | 63 | +52 33 2728 8805 | Dirección contradictoria: confirmar en Maps. Fuente: https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/lópez-de-legaspi |
+| 1 Las Águilas | Taller Mecánico Frenos Frescos | López Mateos Sur 5597, Las Águilas, Zapopan, Jal., CP 45080 | 71 | (33) 3855 8371 | Sobre López Mateos Sur; mejor al inicio (abre temprano). Fuente: https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/4 |
+| 1 Las Águilas | Okrasa | Av. Adolfo López Mateos 5003, Las Águilas, Zapopan, Jal., CP 45080 | 70 | (33) 3632 3630 | López Mateos 5003; confirmar que sea taller. Fuente: https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/1 |
+| 2 Chapalita | Quioco Barber Shop | 12 de Diciembre 1370, Chapalita Oriente, Zapopan, Jal., CP 45040 | 70 | +52 33 3121 6348 | 12 de Diciembre, Chapalita Oriente. Fuente: https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/circunvalación-americas |
+| 2 Chapalita | Consultorio dental Dra. Monserrat Gallegos Maldonado | Av. de las Rosas 2947 interior A, Chapalita Sur, Zapopan, Jal., CP 45046 | 70 | no encontrado (Doctoralia no lo mostró en el resumen) | Sin teléfono: solo visita en persona. Fuente: no encontrado |
+| 2 Chapalita | Dental del Real | Av. Guadalupe 4354, Zapopan, Jal., CP 45040 | 65 | no encontrado | Av. Guadalupe 4354; sin teléfono; dirección por confirmar. Fuente: no encontrado |

@@ -80,3 +80,9 @@
 ## 16:18 UTC — Reporte publicado y Ronda 3 lanzada
 - Publiqué el dashboard como Artifact privado (https://claude.ai/artifact/HforWV1wYy7L4wVMvDCjrC) para que no dependa de este contenedor.
 - Quedan ~15 min del presupuesto. **Ronda 3:** en vez de abrir otro giro, refuerzo las dos rutas con más densidad (Las Águilas y Chapalita) con barberías, talleres y dentistas que tengan teléfono. Más paradas por mañana significa más visitas por viaje.
+
+## 16:24 UTC — Termina la Ronda 3 e integración final
+- 8 negocios nuevos (4 en Las Águilas, 4 en Chapalita/Av. Guadalupe). 5 tienen teléfono; los 2 dentistas y Don Rufino sirven solo para visita en persona.
+- **Ajuste del director:** Frenos Frescos (76) y Okrasa (75) habrían entrado al top 10 desplazando a Kyma Life. Pero los dos tienen una sola fuente, que no confirma que sigan operando ni qué giro son (Okrasa "según directorio"). Les resté 5 (→71 y 70), con el mismo criterio que el Analista aplicó a datos dudosos. El top 10 queda igual y todos llevan mensaje.
+- Agregué las paradas nuevas al final de las rutas 1 y 2 como opcionales.
+- **Total final:** 101 negocios revisados, 96 prospectos, 50 con 60 puntos o más.

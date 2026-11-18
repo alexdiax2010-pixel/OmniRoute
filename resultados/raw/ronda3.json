@@ -1,0 +1,195 @@
+{
+  "notas_proceso": [
+    "Ronda 3: 17 búsquedas WebSearch (sin WebFetch); todos los datos salen de resúmenes de búsqueda y deben verificarse en Google Maps antes de la visita.",
+    "Se comparó contra scored.json: Dental Infante (Río Cuixtle 5784) y el consultorio de Av. de las Rosas 430 ya existían, así que se excluyeron.",
+    "Se excluyeron listados de Sección Amarilla registrados a nombre de personas físicas (Las Águilas), para no manejar datos personales.",
+    "En los listados de Fresha, el resumen de búsqueda no siempre dice de qué página exacta sale cada teléfono; se pone la URL más probable y se avisa en 'alertas'.",
+    "No se encontró web propia de ninguno buscando por nombre y Zapopan; eso no descarta que tengan Facebook o Instagram."
+  ],
+  "prospectos": [
+    {
+      "puntuacion": 76,
+      "nombre": "Taller Mecánico Frenos Frescos",
+      "giro": "Taller mecánico (frenos)",
+      "giro_categoria": "Automotriz",
+      "subgiro": "mecánico",
+      "direccion": "López Mateos Sur 5597, Las Águilas, Zapopan, Jal., CP 45080",
+      "colonia": "Las Águilas",
+      "telefono": "(33) 3855 8371",
+      "whatsapp": "no encontrado",
+      "tiene_web": "no encontrada",
+      "resenas": "no encontrado",
+      "señales": ["Sobre Av. López Mateos Sur, mucho tráfico", "Listado en directorio, sin presencia digital propia visible"],
+      "alertas": ["verificar en Maps", "El mismo directorio lista otro Frenos Frescos en López Portillo (Guadalajara); puede ser otra sucursal", "No se confirmó que siga operando"],
+      "razon_puntuacion": "Sin web (+30), mecánico (+15), sin datos de reseñas, zona transitada (+6), teléfono con fuente (+15), Las Águilas (+10)",
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/4",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/4",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/4",
+        "web": "búsqueda: \"Frenos Frescos\" taller Zapopan López Mateos"
+      },
+      "origen": "ronda3"
+    },
+    {
+      "puntuacion": 75,
+      "nombre": "Okrasa",
+      "giro": "Taller mecánico (según directorio)",
+      "giro_categoria": "Automotriz",
+      "subgiro": "mecánico",
+      "direccion": "Av. Adolfo López Mateos 5003, Las Águilas, Zapopan, Jal., CP 45080",
+      "colonia": "Las Águilas",
+      "telefono": "(33) 3632 3630",
+      "whatsapp": "no encontrado",
+      "tiene_web": "no encontrada",
+      "resenas": "no encontrado",
+      "señales": ["Sobre Av. López Mateos, mucho tráfico", "Al buscar 'Okrasa Zapopan' no salió web ni otros listados"],
+      "alertas": ["verificar en Maps", "Solo hay una fuente; confirmar que sea taller y que siga abierto"],
+      "razon_puntuacion": "Sin web (+30), mecánico (+15), sin datos de reseñas, zona transitada (+5), teléfono con fuente (+15), Las Águilas (+10)",
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/1",
+        "web": "búsqueda: Okrasa taller Zapopan López Mateos 5003"
+      },
+      "origen": "ronda3"
+    },
+    {
+      "puntuacion": 70,
+      "nombre": "Barber Shop (Barbería - Corte de Cabello hombre - Peluquería)",
+      "giro": "Barbería",
+      "giro_categoria": "Belleza",
+      "subgiro": "barbería normal",
+      "direccion": "Av. 18 de Marzo 1625, Las Águilas, Zapopan, Jal., CP 45080",
+      "colonia": "Las Águilas",
+      "telefono": "+52 33 1998 2043",
+      "whatsapp": "no encontrado",
+      "tiene_web": "no encontrada",
+      "resenas": "no encontrado",
+      "señales": ["Nombre genérico y sin marca: una landing con marca propia le daría valor claro", "Aparece en Fresha (corte y rasurado de cabeza)"],
+      "alertas": ["verificar en Maps", "Nombre comercial genérico; confirmarlo en el local", "No se identificó la página exacta de Fresha que muestra el teléfono"],
+      "razon_puntuacion": "Sin web (+30), barbería (+10), sin datos de reseñas (+5), teléfono con fuente (+15), Las Águilas (+10)",
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/tt/men's-haircuts/in/mx-guadalajara/echeverría",
+        "direccion": "https://www.fresha.com/lp/en/tt/men's-haircuts/in/mx-guadalajara/echeverría",
+        "telefono": "https://www.fresha.com/lp/en/tt/men's-haircuts/in/mx-guadalajara/echeverría",
+        "web": "búsqueda: barber shop Mariano Otero Las Águilas 45080 Zapopan fresha"
+      },
+      "origen": "ronda3"
+    },
+    {
+      "puntuacion": 70,
+      "nombre": "Quioco Barber Shop",
+      "giro": "Barbería",
+      "giro_categoria": "Belleza",
+      "subgiro": "barbería normal",
+      "direccion": "12 de Diciembre 1370, Chapalita Oriente, Zapopan, Jal., CP 45040",
+      "colonia": "Chapalita Oriente",
+      "telefono": "+52 33 3121 6348",
+      "whatsapp": "no encontrado",
+      "tiene_web": "no encontrada",
+      "resenas": "no encontrado",
+      "señales": ["Fresha: rasurado, corte y arreglo de barba", "Hay otro listado con el mismo nombre en Av. Enrique Díaz de León Nte 2316, Guadalajara (tel. +52 33 2226 3169); podrían ser dos sucursales"],
+      "alertas": ["verificar en Maps", "Confirmar cuál sucursal es la de Chapalita", "No se identificó la página exacta de Fresha que muestra el teléfono"],
+      "razon_puntuacion": "Sin web (+30), barbería (+10), sin datos de reseñas (+5), teléfono con fuente (+15), Chapalita (+10)",
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/circunvalación-americas",
+        "direccion": "https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/circunvalación-americas",
+        "telefono": "https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/circunvalación-americas",
+        "web": "búsqueda: \"Quioco Barber Shop\" Zapopan"
+      },
+      "origen": "ronda3"
+    },
+    {
+      "puntuacion": 70,
+      "nombre": "Consultorio dental Dra. Monserrat Gallegos Maldonado",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "dentista",
+      "direccion": "Av. de las Rosas 2947 interior A, Chapalita Sur, Zapopan, Jal., CP 45046",
+      "colonia": "Chapalita Sur",
+      "telefono": "no encontrado (Doctoralia no lo mostró en el resumen)",
+      "whatsapp": "no encontrado",
+      "tiene_web": "no encontrada",
+      "resenas": "no encontrado",
+      "señales": ["Consultorio privado en Av. de las Rosas, Chapalita", "Solo se encontró su perfil de Doctoralia"],
+      "alertas": ["verificar en Maps", "Sin teléfono: es para visita en persona", "Es un perfil profesional; usar solo el contacto del consultorio"],
+      "razon_puntuacion": "Sin web (+30), dentista (+25), sin datos de reseñas (+5), sin teléfono (0), Chapalita (+10)",
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/perfil/monserrat-gallegos-maldonado",
+        "direccion": "https://www.doctoralia.com.mx/perfil/monserrat-gallegos-maldonado",
+        "telefono": "no encontrado",
+        "web": "búsqueda: consultorio dental Av. de las Rosas Chapalita Zapopan teléfono"
+      },
+      "origen": "ronda3"
+    },
+    {
+      "puntuacion": 65,
+      "nombre": "Dental del Real",
+      "giro": "Clínica dental",
+      "giro_categoria": "Salud",
+      "subgiro": "dentista (estética, periodoncia, implantes, urgencias)",
+      "direccion": "Av. Guadalupe 4354, Zapopan, Jal., CP 45040",
+      "colonia": "no encontrado (CP 45040, zona Chapalita / Av. Guadalupe)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "tiene_web": "no encontrada",
+      "resenas": "no encontrado",
+      "señales": ["Sobre Av. Guadalupe", "Ofrece implantes y estética (ticket alto)"],
+      "alertas": ["verificar en Maps", "Datos contradictorios: el encabezado de Doctoralia dice Tlajomulco y hay otro 'Dental del Real' en Av. San Luis Gonzaga 5427, Chapalita", "Sin teléfono"],
+      "razon_puntuacion": "Sin web (+30), dentista (+25), sin datos de reseñas (+5), sin teléfono (0), Chapalita (+10), datos contradictorios (-5)",
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/clinicas/dental-del-real",
+        "direccion": "https://www.doctoralia.com.mx/clinicas/dental-del-real",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"Dental del Real\" Av. Guadalupe 4354 Zapopan"
+      },
+      "origen": "ronda3"
+    },
+    {
+      "puntuacion": 63,
+      "nombre": "LIZAOLA SPA & BARBER shop",
+      "giro": "Barbería y spa",
+      "giro_categoria": "Belleza",
+      "subgiro": "barbería normal",
+      "direccion": "Av. Valle de Atemajac 1650, Local 9, Las Águilas, Zapopan, Jal., CP 45080",
+      "colonia": "Las Águilas",
+      "telefono": "+52 33 2728 8805",
+      "whatsapp": "no encontrado",
+      "tiene_web": "no encontrada",
+      "resenas": "no encontrado",
+      "señales": ["Junta barbería y spa, así que hay más servicios que mostrar en una landing"],
+      "alertas": ["verificar en Maps", "Datos contradictorios: otro listado de Fresha lo pone en Lomas de Polanco, Guadalajara, con otro teléfono (+52 33 3144 4015); una búsqueda anterior asoció la dirección de Valle de Atemajac con 'Legendario Barber Shop'"],
+      "razon_puntuacion": "Sin web (+30), barbería (+10), sin datos de reseñas (+3), teléfono con fuente (+15), Las Águilas (+10), datos contradictorios (-5)",
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/lópez-de-legaspi",
+        "direccion": "https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/lópez-de-legaspi",
+        "telefono": "https://www.fresha.com/lp/en/tt/men's-shaves/in/mx-guadalajara/lópez-de-legaspi",
+        "web": "búsqueda: \"Lizaola\" spa barber Zapopan"
+      },
+      "origen": "ronda3"
+    },
+    {
+      "puntuacion": 46,
+      "nombre": "Don Rufino - barbería de barrio",
+      "giro": "Barbería",
+      "giro_categoria": "Belleza",
+      "subgiro": "barbería normal",
+      "direccion": "Av. Guadalupe 5057 (interior), Zapopan, Jal.",
+      "colonia": "no encontrado",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "tiene_web": "no encontrada",
+      "resenas": "5.0 de 7 reseñas (AgendaPro)",
+      "señales": ["Usa AgendaPro para citas pero no tiene web propia", "Calificación perfecta, aunque con pocas reseñas"],
+      "alertas": ["verificar en Maps", "Sin teléfono: es para visita en persona", "Fresha lista otro negocio (un salón) en la misma dirección, local 9"],
+      "razon_puntuacion": "Sin web (+30), barbería (+10), reseñas 5.0/7 en Av. Guadalupe (+6), sin teléfono (0), colonia no confirmada como Chapalita (0)",
+      "fuentes": {
+        "nombre": "https://agendapro.com/mp/mx/diseno-de-barba-zapopan",
+        "direccion": "https://agendapro.com/mp/mx/diseno-de-barba-zapopan",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"Don Rufino\" barbería Av. Guadalupe 5057 Zapopan"
+      },
+      "origen": "ronda3"
+    }
+  ]
+}
