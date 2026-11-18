@@ -119,3 +119,15 @@
 - Zapopan Centro suma 2 más (Farías Chávez, Cordero Núñez) y Tabachines 1 de endodoncia. Esto abre la posibilidad de una **4ª ruta: Puerta de Hierro → Zapopan Centro**.
 - Vacíos confirmados: Seattle, Royal Country, Ciudad Granja y Andares no dieron consultorios independientes. Lo que hay ahí son clínicas grandes o en torres médicas, que no son tu cliente.
 - **Sorpresa:** Biodentaq (Arcos) ofrece primera consulta gratis e implantes, un perfil agresivo en marketing pero sin web. Buen argumento: "ya invierten en atraer pacientes".
+
+## 2026-11-18 16:02 UTC — Termina Salud B (especialidades)
+- 13 negocios: 5 veterinarias, 5 de fisioterapia o quiropráctica, 3 de dermatología o estética. 10 con teléfono.
+- **Ciudad del Sol se vuelve zona fuerte:** Spine Center, CRNQ/Vita, SKiNHOME y una veterinaria de especialidades, sumados a lo que trajo el Agente Rutas. Ya hay masa para la ruta de Ciudad del Sol.
+- Psicología, podología y ópticas: solo aparecieron profesionales individuales o cadenas. Los descarto como giro para buscar en frío.
+- Alertas: 3 teléfonos contradictorios. El número de Centropiel es de otra sucursal (Valdepeñas). The Glow podría ser cadena con web.
+
+## 2026-11-18 16:03 UTC — Fase 1 de la sesión 2 completa
+- Servicios: 13 negocios (7 abogados, 4 guarderías, 1 contable, 1 escuela de idiomas). Román Abogados Rincón Mayorga en Puerta de Hierro es el más prometedor.
+- **Totales en bruto de la sesión 2:** Rutas 13 + Automotriz 10 + Salud A 15 + Salud B 13 + Servicios 13 = **64**.
+- **Duplicado entre agentes detectado:** Procesum García Godínez Abogados lo trajeron tanto Rutas como Servicios. Junto con Ambriz y Federalismo son los casos que le paso explícitamente al Verificador.
+- Notarías e inmobiliarias pequeñas no dieron candidatos con dirección y teléfono en ninguna de las dos sesiones. Lo anoto como giro poco visible en directorios.
