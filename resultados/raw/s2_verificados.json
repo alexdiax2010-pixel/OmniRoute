@@ -1,0 +1,1945 @@
+{
+  "revisados": 64,
+  "notas_proceso": [
+    "Entrada: 64 registros en bruto (rutas 13, automotriz 10, salud_a 15, salud_b 13, servicios 13).",
+    "Duplicados internos: Procesum García Godínez Abogados = Procesum García Godínez Abogados (fusionados; se conservan las fuentes de ambos en \"fuentes\" y \"fuentes_adicionales\", y \"origen\" lista los dos agentes).",
+    "Duplicados contra scored.json (nombre parecido o teléfono igual, 10 dígitos): 0.",
+    "Descartados: 2 (cadenas/multisucursales). Ninguno con web propia buena y todos los nombres traen URL fuente.",
+    "Dirección/teléfono sin URL fuente reemplazados por \"no encontrado\": Auto Laminado y Pintura Santa Esther: telefono; Leend Dental: telefono; Clínica Dental Diente Sano: telefono; Dental Valle Real: telefono; Dental Palacios: telefono; Biodentaq: telefono; Veterinaria House: direccion; Veterinaria House: telefono; Barragán Contadores: telefono.",
+    "Fichas a nombre de persona física renombradas con descripción del negocio y dirección (Felipe Ruvalcaba 1011, Naciones Unidas 5179, Empresarios 150, Condominio Médico Puerta de Hierro, Tabachines 1207, 20 de Noviembre 188, Benito Juárez 151). Se conservan \"Brenda Olvera Fisioterapia\" y \"Román Abogados Litigantes Rincón Mayorga\" porque así es su nombre comercial publicado.",
+    "Transmisiones Automáticas Federalismo: ahora trae URL (Sección Amarilla) para nombre, dirección y teléfono; se conserva con alerta.",
+    "Ambriz Laminado y Pintura: se conserva (datos de Rutas con URL) con alerta de datos contradictorios y \"verificar en Maps\".",
+    "Dental Estetic, Rehabilitación Física Siglo XXI y Multiservicios Cruz: confianza baja, fuente probable no confirmada.",
+    "Paudent Dental Center: el teléfono se dedujo por coincidir la dirección con la ficha de una odontopediatra; se deja marcado como posible.",
+    "Spine Center y CRNQ comparten domicilio (Tizoc 595-B) pero tienen teléfonos distintos: se mantienen separados con alerta.",
+    "tiene_web normalizado: todos quedaron \"no encontrada\" (búsqueda por nombre sin dominio propio; no confirma que no exista).",
+    "Todos los datos vienen de resúmenes de WebSearch sobre directorios; nada se contactó. Confirmar en Google Maps antes de visitar."
+  ],
+  "prospectos": [
+    {
+      "nombre": "Consultorio dental Av. Felipe Ruvalcaba 1011 (nombre comercial no encontrado)",
+      "giro": "Dentista",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología general / endodoncia",
+      "direccion": "Av. Felipe Ruvalcaba 1011, CP 45079",
+      "colonia": "Paseos del Sol",
+      "telefono": "(33) 1152-8066",
+      "whatsapp": "no encontrado",
+      "servicios": "Dentista (categoría endodoncia en directorio); abre 09:00 según ficha",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Sobre Av. Felipe Ruvalcaba: encaja directo en ruta El Colli/Ruvalcaba",
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+        "Listado a nombre de persona física; nombre comercial no encontrado"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/3",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/3",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/3",
+        "web": "búsqueda: 'consultorio dental Av. Felipe Ruvalcaba Zapopan' y 'dentista Paseos del Sol Zapopan' (sin web propia en resultados)"
+      },
+      "origen": "sesion2_rutas",
+      "nombre_directorio_nota": "Listado de directorio a nombre de persona física; se usa una descripción del negocio como nombre."
+    },
+    {
+      "nombre": "Dental Estetic",
+      "giro": "Dentista",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología estética",
+      "direccion": "Av. Mariano Otero 4297, CP 45070",
+      "colonia": "El Colli 2a Sección (directorio dice Guadalajara)",
+      "telefono": "(33) 3631-8327",
+      "whatsapp": "no encontrado",
+      "servicios": "verificar en Maps",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Sobre Av. Mariano Otero en El Colli, a pocos metros de Rehabilitación Física Siglo XXI (Otero 4289)"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+        "La URL fuente es la que más probablemente contiene el listado según el resumen de búsqueda; una 2a búsqueda por nombre no lo confirmó: VERIFICAR antes de usar",
+        "fuente probable, no confirmada"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/dentista-de-urgencia/jalisco/12",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/dentista-de-urgencia/jalisco/12",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/dentista-de-urgencia/jalisco/12",
+        "web": "búsqueda: 'dentista El Colli Zapopan teléfono'; búsqueda por nombre+dirección sin resultados"
+      },
+      "origen": "sesion2_rutas",
+      "confianza": "baja"
+    },
+    {
+      "nombre": "Rehabilitación Física Siglo XXI",
+      "giro": "Fisioterapia / rehabilitación",
+      "giro_categoria": "Salud",
+      "subgiro": "Rehabilitación física",
+      "direccion": "Av. Mariano Otero 4289, CP 45070",
+      "colonia": "El Colli 2a Sección (directorio dice Guadalajara)",
+      "telefono": "(33) 3631-3722",
+      "whatsapp": "no encontrado",
+      "servicios": "verificar en Maps (listado bajo categoría de rehabilitación bucal)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Vecino de Dental Estetic: 2 paradas en una"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+        "Categoría del directorio ambigua (dental vs. física); 2a búsqueda por nombre no lo confirmó",
+        "fuente probable, no confirmada",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/dentistas-en-rehabilitación-bucal/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/dentistas-en-rehabilitación-bucal/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/dentistas-en-rehabilitación-bucal/jalisco/zapopan/1",
+        "web": "búsqueda: '\"Rehabilitación Física Siglo XXI\" Guadalajara Otero' sin web propia"
+      },
+      "origen": "sesion2_rutas",
+      "confianza": "baja"
+    },
+    {
+      "nombre": "Fisioterapia Malena",
+      "giro": "Fisioterapia",
+      "giro_categoria": "Salud",
+      "subgiro": "Fisioterapia / masaje terapéutico",
+      "direccion": "C. Puerto Matamoros 3133, CP 45060",
+      "colonia": "Miramar",
+      "telefono": "+52 33 3139 7681",
+      "whatsapp": "no encontrado",
+      "servicios": "Fisioterapia (Fresha la lista en categoría masajes)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Miramar: cerca de la ruta de talleres",
+        "Solo ficha en directorio de reservas"
+      ],
+      "alertas": [
+        "Dato de Fresha (snapshot de directorio): verificar"
+      ],
+      "fuentes": {
+        "nombre": "https://fresha.com/lp/en/bt/massage/in/mx-guadalajara/miramar",
+        "direccion": "https://fresha.com/lp/en/bt/massage/in/mx-guadalajara/miramar",
+        "telefono": "https://fresha.com/lp/en/bt/massage/in/mx-guadalajara/miramar",
+        "web": "búsqueda: '\"Fisioterapia Malena\" Zapopan' sin web propia"
+      },
+      "origen": "sesion2_rutas"
+    },
+    {
+      "nombre": "Brenda Olvera Fisioterapia",
+      "giro": "Fisioterapia",
+      "giro_categoria": "Salud",
+      "subgiro": "Fisioterapia",
+      "direccion": "C. Andrómeda 3554, CP 45070",
+      "colonia": "La Calma",
+      "telefono": "+52 33 3407 7004 (en conflicto: otro listado da +52 33 2825 5582)",
+      "whatsapp": "no encontrado",
+      "servicios": "Fisioterapia",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "La Calma, ruta Ciudad del Sol/López Mateos"
+      ],
+      "alertas": [
+        "Teléfonos en conflicto entre listados de Fresha; el +52 33 3407 7004 también aparece para Livet Wellness Center en la misma dirección",
+        "Otras fichas con el mismo nombre en La Estancia y Las Flores: confirmar sede",
+        "Nombre comercial contiene nombre de persona",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/la-calma",
+        "direccion": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/la-calma",
+        "telefono": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/la-calma",
+        "web": "búsqueda: '\"Brenda Olvera\" fisioterapia Zapopan' sin web propia"
+      },
+      "origen": "sesion2_rutas"
+    },
+    {
+      "nombre": "Ambriz Laminado y Pintura",
+      "giro": "Hojalatería y pintura",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Laminado y pintura",
+      "direccion": "Av. Manuel J. Clouthier 2448, CP 45070",
+      "colonia": "El Colli Urbano",
+      "telefono": "(33) 3620-8547",
+      "whatsapp": "no encontrado",
+      "servicios": "Hojalatería y pintura",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "El Colli Urbano: densifica ruta de talleres"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+        "Listado aparece en páginas de resultados de Sección Amarilla (/6 o /26); verificar URL exacta",
+        "datos contradictorios entre agentes",
+        "El agente Automotriz lo excluyó: encontró dos direcciones y teléfonos distintos (una en Guadalajara); el agente Rutas lo trae en Av. Manuel J. Clouthier 2448",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalaterÃƒÂ­a-y-pintura/6",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalaterÃƒÂ­a-y-pintura/6",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalaterÃƒÂ­a-y-pintura/6",
+        "web": "búsqueda: '\"Ambriz Laminado y Pintura\" Clouthier' sin web propia"
+      },
+      "origen": "sesion2_rutas"
+    },
+    {
+      "nombre": "Hangar 17",
+      "giro": "Hojalatería y pintura",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Hojalatería y pintura",
+      "direccion": "Av. López Mateos 4327, CP 45070",
+      "colonia": "La Calma",
+      "telefono": "(33) 3634-9432",
+      "whatsapp": "no encontrado",
+      "servicios": "Hojalatería y pintura",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Sobre López Mateos en La Calma: refuerza ruta Ciudad del Sol"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-carroceria/jalisco/guadalajara/21",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-carroceria/jalisco/guadalajara/21",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-carroceria/jalisco/guadalajara/21",
+        "web": "búsqueda: '\"Hangar 17\" hojalatería La Calma Zapopan' sin web propia"
+      },
+      "origen": "sesion2_rutas"
+    },
+    {
+      "nombre": "Auto Express Centauro SA de CV",
+      "giro": "Taller mecánico",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Mecánica general",
+      "direccion": "Av. Mariano Otero 3660, CP 45070",
+      "colonia": "El Colli Urbano 2a Sección",
+      "telefono": "(33) 3628-1848",
+      "whatsapp": "no encontrado",
+      "servicios": "Taller mecánico",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Sobre Mariano Otero, cerca de Dental Estetic/Siglo XXI"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+        "Es SA de CV: confirmar que sea negocio independiente (no cadena)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/2",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/2",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/2",
+        "web": "búsqueda: '\"Auto Express Centauro\" Zapopan' sin web propia"
+      },
+      "origen": "sesion2_rutas"
+    },
+    {
+      "nombre": "Servikar Diésel",
+      "giro": "Taller mecánico diésel",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Inyección diésel",
+      "direccion": "Av. Mariano Otero 5664, CP 45079",
+      "colonia": "Paseos del Sol",
+      "telefono": "(33) 4259-0498",
+      "whatsapp": "no encontrado",
+      "servicios": "Especialistas en inyección diésel; refacciones diésel",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Paseos del Sol sobre Mariano Otero"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+        "El teléfono aparece en la entrada de Mariano Otero 5664 pero el snippet no muestra el nombre junto al número; otro listado ubica Servikar en Calz. Olímpica 761 (Jardines Universidad): confirmar sede y teléfono",
+        "Empresa SA de CV (1-20 empleados según dunsguide)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/27",
+        "web": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/27 (búsqueda; sin web propia)"
+      },
+      "origen": "sesion2_rutas"
+    },
+    {
+      "nombre": "Multiservicios Cruz",
+      "giro": "Taller mecánico",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Mecánica general",
+      "direccion": "Av. Felipe Zetter 3454, CP 45079",
+      "colonia": "Paseos del Sol",
+      "telefono": "(33) 3133-3134",
+      "whatsapp": "no encontrado",
+      "servicios": "verificar en Maps",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Paseos del Sol"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+        "2a búsqueda por nombre no lo confirmó; URL fuente según resumen de búsqueda 'taller mecánico Ciudad del Sol Zapopan': verificar",
+        "fuente probable, no confirmada"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/4",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/4",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/4",
+        "web": "búsqueda: '\"Multiservicios Cruz\" Felipe Zeter Zapopan' sin resultados"
+      },
+      "origen": "sesion2_rutas",
+      "confianza": "baja"
+    },
+    {
+      "nombre": "SD Contadores y Auditores",
+      "giro": "Despacho contable",
+      "giro_categoria": "Servicios",
+      "subgiro": "Contabilidad y auditoría",
+      "direccion": "C. Pierre Simon Laplace 5536, CP 45070",
+      "colonia": "El Colli 2a Sección (directorio dice Guadalajara)",
+      "telefono": "(33) 3632-6085",
+      "whatsapp": "no encontrado",
+      "servicios": "Contabilidad, auditoría",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "El Colli: se suma a la ruta"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/1",
+        "web": "búsqueda: '\"SD Contadores\" Guadalajara Laplace' sin web propia"
+      },
+      "origen": "sesion2_rutas"
+    },
+    {
+      "nombre": "Procesum García Godínez Abogados",
+      "giro": "Despacho de abogados",
+      "giro_categoria": "Servicios",
+      "subgiro": "Abogados",
+      "direccion": "Calle Xóchitl 231, Jardines del Sol, Zapopan, Jal., CP 45050",
+      "colonia": "Jardines del Sol",
+      "telefono": "(33) 3616-6916",
+      "whatsapp": "no encontrado",
+      "servicios": "Servicios legales",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Jardines del Sol, entre ambas rutas"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+        "Colonia vecina de Ciudad del Sol",
+        "Ficha de directorio: verificar que siga activo"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/8",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/8",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/8",
+        "web": "búsqueda: '\"Procesum\" abogados Zapopan' sin web propia"
+      },
+      "origen": "sesion2_rutas + sesion2_servicios",
+      "fuentes_adicionales": [
+        {
+          "origen": "sesion2_servicios",
+          "fuentes": {
+            "nombre": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/8",
+            "direccion": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/8",
+            "telefono": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/8",
+            "web": "búsqueda WebSearch: \"Procesum\" abogados Zapopan"
+          }
+        }
+      ]
+    },
+    {
+      "nombre": "Despacho contable Av. Naciones Unidas 5179 (nombre comercial no encontrado)",
+      "giro": "Contador",
+      "giro_categoria": "Servicios",
+      "subgiro": "Contabilidad y asuntos fiscales",
+      "direccion": "Av. Naciones Unidas 5179, CP 45110",
+      "colonia": "Jardines Universidad",
+      "telefono": "(33) 3165-0389",
+      "whatsapp": "no encontrado",
+      "servicios": "Contadores, auditores y asuntos fiscales",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "no se encontró web propia en búsqueda por nombre",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Jardines Universidad: refuerza ruta débil"
+      ],
+      "alertas": [
+        "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+        "Listado a nombre de persona física; nombre comercial no encontrado"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/11",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/11",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/11",
+        "web": "búsqueda: 'contadores Jardines Universidad Zapopan seccionamarilla' sin web propia"
+      },
+      "origen": "sesion2_rutas",
+      "nombre_directorio_nota": "Listado de directorio a nombre de persona física; se usa una descripción del negocio como nombre."
+    },
+    {
+      "nombre": "Central de Transmisiones Automáticas de Zapopan",
+      "giro": "Taller de transmisiones automáticas",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Transmisiones automáticas",
+      "direccion": "Juan Gil Preciado 3441, Nuevo México, Zapopan, Jal., CP 45138",
+      "colonia": "Nuevo México (corredor Juan Gil Preciado, cerca de Arcos de Zapopan)",
+      "telefono": "(33) 3624 1212",
+      "whatsapp": "no encontrado",
+      "servicios": "Reparación de transmisiones automáticas automotrices",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "",
+      "resenas": "verificar en Maps",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Servicio de ticket alto (reparación de transmisión)",
+        "Solo presencia en directorio",
+        "Sobre avenida principal rumbo a Tesistán"
+      ],
+      "alertas": [
+        "Una búsqueda por nombre exacto devolvió la ficha sin teléfono; el teléfono sale de otro resumen de la misma categoría. Verificar",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27",
+        "web": "búsqueda WebSearch: \"Central de Transmisiones Automáticas de Zapopan\""
+      },
+      "origen": "sesion2_automotriz"
+    },
+    {
+      "nombre": "Transmisiones Automáticas Federalismo",
+      "giro": "Taller de transmisiones automáticas",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Transmisiones automáticas",
+      "direccion": "José Luis Pérez Verdía 77-A, Ejido de Zoquiapan, Zapopan, Jal., CP 45170",
+      "colonia": "Ejido de Zoquiapan (cerca de Zapopan Centro)",
+      "telefono": "(33) 3823 2719",
+      "whatsapp": "no encontrado",
+      "servicios": "Reparación de transmisiones automáticas automotrices",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "",
+      "resenas": "verificar en Maps",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Servicio de ticket alto",
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Ficha de directorio, puede estar desactualizada",
+        "descartado en sesión 1 por falta de fuente; ahora con fuente"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27",
+        "web": "búsqueda WebSearch: \"Transmisiones Automáticas Federalismo\" Zapopan"
+      },
+      "origen": "sesion2_automotriz"
+    },
+    {
+      "nombre": "Auto Climas de Zapopan",
+      "giro": "Aire acondicionado automotriz",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Aire acondicionado automotriz",
+      "direccion": "Calle Industria 170, Centro, Zapopan, Jal., CP 45100",
+      "colonia": "Zapopan Centro",
+      "telefono": "(33) 3656 7679",
+      "whatsapp": "no encontrado",
+      "servicios": "Servicio y reparación de aire acondicionado para automóviles",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "",
+      "resenas": "verificar en Maps",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "En zona prioritaria (Zapopan Centro)",
+        "Servicio estacional de buen ticket",
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Hay otros negocios 'Auto Climas' en Guadalajara; confirmar que sea el de Zapopan"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/aire-acondicionado-automotriz/jalisco/11",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/aire-acondicionado-automotriz/jalisco/11",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/aire-acondicionado-automotriz/jalisco/11",
+        "web": "búsqueda WebSearch: \"Auto Climas de Zapopan\" Industria 170"
+      },
+      "origen": "sesion2_automotriz"
+    },
+    {
+      "nombre": "Auto Laminado y Pintura Santa Esther",
+      "giro": "Hojalatería y pintura",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Hojalatería y pintura",
+      "direccion": "Av. Santa Esther 87, Santa Margarita 1a Secc., CP 45140 (el directorio dice Guadalajara; el CP 45140 corresponde a Zapopan)",
+      "colonia": "Santa Margarita",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "Laminado y pintura automotriz",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "",
+      "resenas": "verificar en Maps",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "En zona prioritaria (Santa Margarita)",
+        "Hojalatería = ticket alto"
+      ],
+      "alertas": [
+        "Sin teléfono publicado en los resultados",
+        "Municipio inconsistente en la ficha",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalatera-y-pintura/30",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalatera-y-pintura/30",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch: hojalatería y pintura Santa Margarita Zapopan teléfono"
+      },
+      "origen": "sesion2_automotriz"
+    },
+    {
+      "nombre": "Radiadores Yeyis",
+      "giro": "Taller de radiadores",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Radiadores, fabricación y reparación",
+      "direccion": "Calle Amapola 2285-77, Parques de Tesistán, Zapopan, Jal.",
+      "colonia": "Parques de Tesistán",
+      "telefono": "(33) 1371 2169",
+      "whatsapp": "no encontrado (el número es celular de 10 dígitos, posible WhatsApp; verificar)",
+      "servicios": "Fabricación y reparación de radiadores",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "",
+      "resenas": "verificar en Maps",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "En zona prioritaria (Tesistán)",
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Ficha de directorio, confirmar que siga operando"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-radiadores/jalisco/6",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-radiadores/jalisco/6",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-radiadores/jalisco/6",
+        "web": "búsqueda WebSearch: \"Radiadores Yeyis\" Tesistán"
+      },
+      "origen": "sesion2_automotriz"
+    },
+    {
+      "nombre": "Radiadores Unidos",
+      "giro": "Taller de radiadores",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Radiadores, fabricación y reparación",
+      "direccion": "Av. Vallarta 4991, Prados Vallarta, Zapopan, Jal.",
+      "colonia": "Prados Vallarta (Av. Vallarta poniente)",
+      "telefono": "(33) 3629 3118",
+      "whatsapp": "no encontrado",
+      "servicios": "Fabricación y reparación de radiadores",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "",
+      "resenas": "verificar en Maps",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Sobre Av. Vallarta (zona prioritaria)",
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Ficha de directorio, confirmar que siga operando"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/talleres-de-radiadores/jalisco/5",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/talleres-de-radiadores/jalisco/5",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/talleres-de-radiadores/jalisco/5",
+        "web": "búsqueda WebSearch: \"Radiadores Unidos\" Avenida Vallarta 4991"
+      },
+      "origen": "sesion2_automotriz"
+    },
+    {
+      "nombre": "Chicotes Automotrices Gómez",
+      "giro": "Frenos y chicotes automotrices",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Frenos / chicotes",
+      "direccion": "Juan Gil Preciado 3501-A, Nuevo México, Zapopan, Jal.",
+      "colonia": "Nuevo México (corredor Juan Gil Preciado, cerca de Arcos de Zapopan)",
+      "telefono": "(33) 1981 0604",
+      "whatsapp": "no encontrado (número celular de 10 dígitos, verificar)",
+      "servicios": "Chicotes y servicio de frenos (categoría de frenos en el directorio)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "",
+      "resenas": "verificar en Maps",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Sobre avenida principal",
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Puede ser más fabricante/refaccionario que taller; confirmar giro"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/clutch-y-frenosclutch-y-frenos/27",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/clutch-y-frenosclutch-y-frenos/27",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/clutch-y-frenosclutch-y-frenos/27",
+        "web": "búsqueda WebSearch: seccionamarilla frenos clutch Zapopan"
+      },
+      "origen": "sesion2_automotriz"
+    },
+    {
+      "nombre": "Diesel Mecánica",
+      "giro": "Taller mecánico diésel",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Mecánica diésel",
+      "direccion": "Calle San José 2276, Los Cajetes, Zapopan, Jal., CP 45234",
+      "colonia": "Los Cajetes",
+      "telefono": "(33) 1188 2444",
+      "whatsapp": "no encontrado (número celular de 10 dígitos, verificar)",
+      "servicios": "Taller mecánico diésel",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "",
+      "resenas": "verificar en Maps",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Diésel = servicio caro",
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Fuera de las colonias prioritarias (Los Cajetes, poniente de Zapopan)",
+        "Un resumen asocia otra ficha de nombre parecido en Mariano Otero 5664; esta es la de San José 2276",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/1",
+        "web": "búsqueda WebSearch: \"Diesel Mecánica\" Los Cajetes Zapopan"
+      },
+      "origen": "sesion2_automotriz"
+    },
+    {
+      "nombre": "Taller automotriz en José María Gil 3611 (nombre por confirmar: 'Automotriz Rivera' / 'Ingeniería Automotriz García')",
+      "giro": "Taller mecánico",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Mecánica general / afinación",
+      "direccion": "José María Gil 3611, Residencial Poniente, Zapopan, Jal.",
+      "colonia": "Residencial Poniente (junto a Ciudad Granja / Av. Vallarta poniente)",
+      "telefono": "(33) 2015 3782",
+      "whatsapp": "no encontrado",
+      "servicios": "Mecánica automotriz (detalle no encontrado)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "",
+      "resenas": "verificar en Maps",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Zona prioritaria (Ciudad Granja / Vallarta poniente)",
+        "Identidad confusa en directorios = no tiene presencia digital clara"
+      ],
+      "alertas": [
+        "El nombre comercial difiere entre fichas; confirmar en Maps antes de contactar",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-turbo/jalisco/10",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-turbo/jalisco/10",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-turbo/jalisco/10",
+        "web": "búsqueda WebSearch: seccionamarilla afinaciones taller Zapopan Ciudad Granja Vallarta poniente"
+      },
+      "origen": "sesion2_automotriz"
+    },
+    {
+      "nombre": "Afinaciones y Servicios Baja 1000",
+      "giro": "Taller mecánico",
+      "giro_categoria": "Automotriz",
+      "subgiro": "Afinación y servicio",
+      "direccion": "Calle Felipe Rubalcava 5958, El Colli Urbano 1a Secc., Zapopan, Jal., CP 45070",
+      "colonia": "El Colli Urbano",
+      "telefono": "(33) 1543 6640",
+      "whatsapp": "no encontrado (número celular de 10 dígitos, verificar)",
+      "servicios": "Afinaciones y servicio mecánico",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "",
+      "resenas": "verificar en Maps",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Fuera de las colonias prioritarias (El Colli)",
+        "Servicio de ticket medio"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-turbo/jalisco/10",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-turbo/jalisco/10",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-turbo/jalisco/10",
+        "web": "búsqueda WebSearch: seccionamarilla afinaciones taller Zapopan"
+      },
+      "origen": "sesion2_automotriz"
+    },
+    {
+      "nombre": "AM Smile Care Center",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología general / urgencias",
+      "direccion": "Av. Real Acueducto 160 Loc. 4, CP 45116, Zapopan, Jal.",
+      "colonia": "Puerta de Hierro",
+      "telefono": "(33) 1652 7733",
+      "whatsapp": "no encontrado",
+      "servicios": "Dentistas (listado en categoría dentista de urgencia); detalle verificar en Maps",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Busqué '\"AM Smile Care\" Zapopan Real Acueducto' y no apareció ni un dominio ni otra ficha.",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado como del negocio",
+        "Zona premium (Puerta de Hierro / Real Acueducto)",
+        "Sin presencia web detectable"
+      ],
+      "alertas": [
+        "Fuente única (Sección Amarilla); confirmar que siga operando"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "web": "búsqueda WebSearch: \"AM Smile Care\" Zapopan Real Acueducto"
+      },
+      "origen": "sesion2_salud_a"
+    },
+    {
+      "nombre": "Consultorio dental Av. Empresarios 150 No. 12 (nombre comercial no encontrado)",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología general",
+      "direccion": "Av. Empresarios 150 No. 12, CP 45116, Zapopan, Jal. (Centro Médico Puerta de Hierro)",
+      "colonia": "Puerta de Hierro",
+      "telefono": "(33) 3615 3877",
+      "whatsapp": "no encontrado",
+      "servicios": "Dentista (detalle verificar en Maps)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo aparecen fichas de directorio (Sección Amarilla, TocDoc)",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Dentro del Centro Médico Puerta de Hierro (pacientes de alto poder adquisitivo)"
+      ],
+      "alertas": [
+        "El nombre de directorio es el de un doctor; se usa solo como nombre del consultorio"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "web": "búsqueda WebSearch: \"Castellanos\" Puerta de Hierro Zapopan"
+      },
+      "origen": "sesion2_salud_a",
+      "nombre_directorio_nota": "Listado de directorio a nombre de persona física; se usa una descripción del negocio como nombre."
+    },
+    {
+      "nombre": "Consultorio de ortodoncia, Condominio Médico Puerta de Hierro (nombre comercial no encontrado)",
+      "giro": "Consultorio de ortodoncia",
+      "giro_categoria": "Salud",
+      "subgiro": "Ortodoncia",
+      "direccion": "Blvd. Puerta de Hierro 5150, 5-A, Condominio Médico Puerta de Hierro, CP 45116, Zapopan, Jal.",
+      "colonia": "Puerta de Hierro",
+      "telefono": "33 3813 3509",
+      "whatsapp": "no encontrado",
+      "servicios": "Ortodoncia (ortodoncista certificado según el directorio de la AAO)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo aparece la ficha del localizador de la AAO; no apareció ningún dominio propio",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Ortodoncia = ticket alto",
+        "Teléfono publicado en un directorio profesional",
+        "Zona premium"
+      ],
+      "alertas": [
+        "Fuente única (AAO); confirmar el número"
+      ],
+      "fuentes": {
+        "nombre": "https://aaoinfo.org/locator/dr-eduardo-castellanos/",
+        "direccion": "https://aaoinfo.org/locator/dr-eduardo-castellanos/",
+        "telefono": "https://aaoinfo.org/locator/dr-eduardo-castellanos/",
+        "web": "búsqueda WebSearch: \"Castellanos\" ortodoncia Puerta de Hierro 5150 Zapopan"
+      },
+      "origen": "sesion2_salud_a",
+      "nombre_directorio_nota": "Listado de directorio a nombre de persona física; se usa una descripción del negocio como nombre."
+    },
+    {
+      "nombre": "Leend Dental",
+      "giro": "Clínica dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología estética y general",
+      "direccion": "Av. Empresarios 150, Torre Elite, Piso 12, Consultorio 1206, CP 45116, Zapopan, Jal.",
+      "colonia": "Puerta de Hierro",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "Odontología general, prevención, ortodoncia, estética, endodoncia, implantes; atiende en inglés y español; acepta tarjeta y planes de pago",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Busqué 'Leend Dental Spa Zapopan sitio web' y solo salieron fichas de WhatClinic",
+      "resenas": "WhatClinic: sin calificación todavía",
+      "num_doctores_empleados": "1 dentista nombrado en el directorio",
+      "señales": [
+        "Atiende pacientes extranjeros (inglés): una landing bilingüe es buen argumento",
+        "Zona premium"
+      ],
+      "alertas": [
+        "Hay una segunda ficha, 'Leend Dental Spa', en Av. Obsidiana 2783, Residencial Victoria; puede ser otra sucursal",
+        "Sin teléfono visible",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.whatclinic.com/dentists/mexico/zapopan/leend-dental",
+        "direccion": "https://www.whatclinic.com/dentists/mexico/zapopan/leend-dental",
+        "telefono": "no encontrado",
+        "web": "https://www.whatclinic.com/dentists/mexico/zapopan/leend-dental-spa (búsqueda: Leend Dental Spa Zapopan sitio web)"
+      },
+      "origen": "sesion2_salud_a"
+    },
+    {
+      "nombre": "Clínica Dental Diente Sano",
+      "giro": "Clínica dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología general, estética e implantes",
+      "direccion": "Av. Central Guillermo González Camarena 911, Piso 9, Consultorio 4A, CP 45136, Zapopan, Jal.",
+      "colonia": "Residencial Poniente (zona Puerta de Hierro / Andares). Verificar.",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "Blanqueamiento, implantes, carillas, coronas, resinas, brackets",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No apareció dominio propio",
+      "resenas": "WhatClinic: 5.0 (1 reseña verificada); ServiceScore 8.8 (15 interacciones)",
+      "num_doctores_empleados": "1 dentista nombrado en el directorio",
+      "señales": [
+        "Ofrece implantes y carillas (ticket alto)",
+        "Ficha de directorio descuidada"
+      ],
+      "alertas": [
+        "La descripción en WhatClinic menciona Barcelona (error de plantilla)",
+        "Sin teléfono visible",
+        "La colonia se dedujo de otra ficha de Doctoralia con la misma dirección",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.whatclinic.com/dentists/mexico/zapopan/clinica-dental-diente-sano",
+        "direccion": "https://www.whatclinic.com/dentists/mexico/zapopan/clinica-dental-diente-sano",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch: \"Diente Sano\" clínica dental Guillermo González Camarena 911 Zapopan"
+      },
+      "origen": "sesion2_salud_a"
+    },
+    {
+      "nombre": "Dental Valle Real",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología general",
+      "direccion": "Av. Santa Margarita 4750, Zapopan, Jal.",
+      "colonia": "Valle Real / Santa Margarita (verificar)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "Primera visita de odontología (sin precio publicado)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Busqué '\"Dental Valle Real\" Santa Margarita 4750 Zapopan' y solo apareció Doctoralia",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "El nombre coincide con una zona premium (Valle Real)",
+        "Presencia digital mínima"
+      ],
+      "alertas": [
+        "Sin teléfono",
+        "Fuente única (Doctoralia)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/dentista-odontologo/zapopan/valle-real2",
+        "direccion": "https://www.doctoralia.com.mx/dentista-odontologo/zapopan/valle-real2",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch: \"Dental Valle Real\" Santa Margarita 4750 Zapopan"
+      },
+      "origen": "sesion2_salud_a"
+    },
+    {
+      "nombre": "Dental Palacios",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología general",
+      "direccion": "Paseo de las Araucarias 1089, CP 45188, Zapopan, Jal.",
+      "colonia": "Tabachines",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "Consulta dental, limpiezas, coronas, extracción de terceros molares",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Busqué 'Dental Palacios Tabachines Zapopan' y no apareció web propia",
+      "resenas": "Doctoralia: reseñas mayormente positivas (puntualidad, limpieza, buena explicación de los tratamientos, seguimiento por teléfono)",
+      "num_doctores_empleados": "1 (según Doctoralia)",
+      "señales": [
+        "Buenas reseñas sin web propia: puede convertir reseñas en una landing",
+        "No ofrece agenda en línea en Doctoralia"
+      ],
+      "alertas": [
+        "Sin teléfono visible"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/febe-palacios-solis/dentista-odontologo/zapopan",
+        "direccion": "https://www.doctoralia.com.mx/febe-palacios-solis/dentista-odontologo/zapopan",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch: Dental Palacios Tabachines Zapopan Araucarias"
+      },
+      "origen": "sesion2_salud_a"
+    },
+    {
+      "nombre": "Consultorio de endodoncia Av. de los Tabachines 1207 (nombre comercial no encontrado)",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Endodoncia",
+      "direccion": "Av. de los Tabachines 1207, CP 45188, Zapopan, Jal.",
+      "colonia": "Lomas del Vergel (colinda con Tabachines)",
+      "telefono": "(33) 3672 8175",
+      "whatsapp": "no encontrado",
+      "servicios": "Endodoncia",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No apareció dominio propio",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Especialidad (endodoncia)",
+        "Teléfono publicado"
+      ],
+      "alertas": [
+        "Nombre de directorio a título de una doctora; usado solo como nombre del consultorio",
+        "Fuente única"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/3",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/3",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/3",
+        "web": "búsqueda WebSearch: seccionamarilla dentistas Zapopan centro Arcos de Zapopan Tabachines"
+      },
+      "origen": "sesion2_salud_a",
+      "nombre_directorio_nota": "Listado de directorio a nombre de persona física; se usa una descripción del negocio como nombre."
+    },
+    {
+      "nombre": "Consultorio dental Arco Vespaciano 1114 (nombre comercial no encontrado)",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología general",
+      "direccion": "Arco Vespaciano 1114, CP 45130, Zapopan, Jal.",
+      "colonia": "Arcos de Zapopan 1a. Sección",
+      "telefono": "(33) 3656 1823",
+      "whatsapp": "no encontrado",
+      "servicios": "Dentistas (detalle verificar en Maps)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin nombre comercial no se puede buscar una web",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Zona pedida (Arcos de Zapopan)",
+        "Sin identidad digital: ni siquiera nombre comercial visible"
+      ],
+      "alertas": [
+        "Falta el nombre comercial: verificar en Maps",
+        "Puede ser un dato viejo"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "web": "búsqueda WebSearch: \"Arco Vespaciano 1114\" Zapopan dentista"
+      },
+      "origen": "sesion2_salud_a"
+    },
+    {
+      "nombre": "Biodentaq",
+      "giro": "Clínica dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología biológica, implantes y cirugía oral",
+      "direccion": "Arco de Tito 1012, CP 45130, Zapopan, Jal.",
+      "colonia": "Arcos de Zapopan (por CP 45130; verificar)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "Implantes, coronas, brackets, endodoncia, puentes, blanqueamiento; primera consulta gratis; planes de pago; L-V 08:00-18:00",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Busqué 'Biodentaq Zapopan dental' y solo apareció WhatClinic",
+      "resenas": "WhatClinic ServiceScore 6.2 'Good' (16 interacciones)",
+      "num_doctores_empleados": "2 (cirujano oral y dentista, según WhatClinic)",
+      "señales": [
+        "Hace implantes y cirugía (ticket alto)",
+        "Marca propia sin web",
+        "Ofrece primera consulta gratis: buen gancho para una landing"
+      ],
+      "alertas": [
+        "Sin teléfono visible"
+      ],
+      "fuentes": {
+        "nombre": "https://www.whatclinic.com/dentists/mexico/zapopan/biodentaq",
+        "direccion": "https://www.whatclinic.com/dentists/mexico/zapopan/biodentaq",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch: Biodentaq Zapopan dental"
+      },
+      "origen": "sesion2_salud_a"
+    },
+    {
+      "nombre": "Consultorio dental 20 de Noviembre 188 (nombre comercial no encontrado)",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología general",
+      "direccion": "20 de Noviembre 188, CP 45100, Zapopan, Jal.",
+      "colonia": "Zapopan Centro",
+      "telefono": "(33) 3633 2267",
+      "whatsapp": "no encontrado",
+      "servicios": "Dentista (detalle verificar en Maps)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No apareció dominio",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono fijo publicado",
+        "Consultorio tradicional del centro, probablemente sin presencia digital"
+      ],
+      "alertas": [
+        "Nombre de directorio a título de un doctor; usado solo como nombre del consultorio",
+        "Puede ser un dato viejo"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "web": "búsqueda WebSearch: seccionamarilla dentistas Zapopan centro"
+      },
+      "origen": "sesion2_salud_a",
+      "nombre_directorio_nota": "Listado de directorio a nombre de persona física; se usa una descripción del negocio como nombre."
+    },
+    {
+      "nombre": "Consultorio dental Benito Juárez 151 (nombre comercial no encontrado)",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología general",
+      "direccion": "Benito Juárez 151, CP 45100, Zapopan, Jal.",
+      "colonia": "Zapopan Centro",
+      "telefono": "(33) 3633 0023",
+      "whatsapp": "no encontrado",
+      "servicios": "Dentista (detalle verificar en Maps)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "No apareció dominio",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono fijo publicado",
+        "Consultorio tradicional del centro"
+      ],
+      "alertas": [
+        "Nombre de directorio a título de un doctor; usado solo como nombre del consultorio",
+        "Puede ser un dato viejo"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1",
+        "web": "búsqueda WebSearch: seccionamarilla dentistas Zapopan centro"
+      },
+      "origen": "sesion2_salud_a",
+      "nombre_directorio_nota": "Listado de directorio a nombre de persona física; se usa una descripción del negocio como nombre."
+    },
+    {
+      "nombre": "Paudent Dental Center",
+      "giro": "Clínica dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Odontología general y odontopediatría",
+      "direccion": "Av. La Calma 3279-5, CP 45070, Zapopan, Jal.",
+      "colonia": "La Calma",
+      "telefono": "(33) 3634 0811 (posible, no confirmado)",
+      "whatsapp": "no encontrado",
+      "servicios": "Limpieza, endodoncia, consulta, implantes, blanqueamiento; sábado abierto, domingo cerrado",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Solo aparecen fichas de WhatClinic",
+      "resenas": "WhatClinic: sin calificaciones",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Hace implantes",
+        "Marca comercial sin web"
+      ],
+      "alertas": [
+        "FUERA de las colonias pedidas (La Calma)",
+        "Teléfono deducido porque la dirección coincide; no está confirmado",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.whatclinic.com/dentists/mexico/zapopan/paudent-dental-center",
+        "direccion": "https://www.whatclinic.com/dentists/mexico/zapopan/paudent-dental-center",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/dentistas-especialistas-en-niños-paidodoncia/jalisco/zapopan/1",
+        "web": "búsqueda WebSearch: Paudent Dental Center La Calma Zapopan teléfono"
+      },
+      "origen": "sesion2_salud_a"
+    },
+    {
+      "nombre": "Smile District Consultorio Dental",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Implantología",
+      "direccion": "Av. Paseo del Alba 44 Int. 17, CP 45019, Zapopan, Jal.",
+      "colonia": "Solares",
+      "telefono": "(33) 1653 8372",
+      "whatsapp": "no encontrado",
+      "servicios": "Implantología",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Busqué '\"Smile District\" consultorio dental Zapopan' y solo apareció Sección Amarilla",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Implantes (ticket alto)",
+        "Nombre de marca moderno sin web"
+      ],
+      "alertas": [
+        "FUERA de las colonias pedidas (Solares)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/dentistas-en-odontogeriatria/3",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/dentistas-en-odontogeriatria/3",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/dentistas-en-odontogeriatria/3",
+        "web": "búsqueda WebSearch: \"Smile District\" consultorio dental Zapopan Paseo del Alba"
+      },
+      "origen": "sesion2_salud_a"
+    },
+    {
+      "nombre": "Dentovi",
+      "giro": "Consultorio dental",
+      "giro_categoria": "Salud",
+      "subgiro": "Endodoncia",
+      "direccion": "Av. La Calma (número verificar en Maps), Zapopan, Jal.",
+      "colonia": "La Calma",
+      "telefono": "(33) 3496 8895",
+      "whatsapp": "no encontrado",
+      "servicios": "Endodoncia",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Busqué 'Dentovi La Calma Zapopan dental' y no salió nada fuera de Sección Amarilla",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Marca comercial sin ninguna presencia web"
+      ],
+      "alertas": [
+        "FUERA de las colonias pedidas (La Calma)",
+        "Fuente única; falta el número exterior"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/1",
+        "web": "búsqueda WebSearch: Dentovi La Calma Zapopan dental"
+      },
+      "origen": "sesion2_salud_a"
+    },
+    {
+      "nombre": "Veterinaria Franquez",
+      "giro": "veterinaria",
+      "giro_categoria": "Salud",
+      "subgiro": "veterinaria",
+      "direccion": "Av. Tesistán 670-11, Arcos de Zapopan, 45130 Zapopan, Jal.",
+      "colonia": "Arcos de Zapopan",
+      "telefono": "33 9688 3513",
+      "whatsapp": "no encontrado",
+      "servicios": "Veterinario / clínica para animales; el directorio también lo clasifica como albergue animal",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Solo aparece en directorio (Cybo); sin web ni redes localizadas",
+        "Búsqueda por nombre exacto no devuelve ninguna otra presencia"
+      ],
+      "alertas": [
+        "Dato de directorio, verificar en Maps antes de contactar"
+      ],
+      "fuentes": {
+        "nombre": "https://es.cybo.com/MX-biz/veterinaria-franquez",
+        "direccion": "https://es.cybo.com/MX-biz/veterinaria-franquez",
+        "telefono": "https://es.cybo.com/MX-biz/veterinaria-franquez",
+        "web": "búsqueda: \"Veterinaria Franquez\" Zapopan (sin resultados de web propia)"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "Especialidades Veterinarias de Guadalajara",
+      "giro": "veterinaria (especialidades)",
+      "giro_categoria": "Salud",
+      "subgiro": "veterinaria (especialidades)",
+      "direccion": "Av. Patria 1150, local 10F, Ciudad del Sol, 45050 Zapopan, Jal.",
+      "colonia": "Ciudad del Sol",
+      "telefono": "(33) 3628 3868",
+      "whatsapp": "no encontrado",
+      "servicios": "Médicos veterinarios zootecnistas / especialidades veterinarias",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Sin web localizada al buscar nombre + dirección",
+        "Listado en Sección Amarilla (veterinarias y MVZ Zapopan)"
+      ],
+      "alertas": [
+        "Verificar en Maps que siga operando en el local 10F"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/veterinarias/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/veterinarias/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/veterinarias/jalisco/zapopan/1",
+        "web": "búsqueda: \"Especialidades Veterinarias de Guadalajara\" Patria 1150 (sin web)"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "Spine Center - Centro Quiropráctico de Descompresión Espinal (Clínica Especializada en Hernia de Disco)",
+      "giro": "quiropráctica / fisioterapia de columna",
+      "giro_categoria": "Salud",
+      "subgiro": "quiropráctica / fisioterapia de columna",
+      "direccion": "Av. Tizoc 595-B, Cd. del Sol, 45050 Zapopan, Jal.",
+      "colonia": "Ciudad del Sol",
+      "telefono": "+52 33 3615 6676",
+      "whatsapp": "no encontrado",
+      "servicios": "Quiropráctica, descompresión espinal, fisioterapia para hernia de disco",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "Doctoralia: reseñas generalmente positivas (cifra no obtenida)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Depende de Fresha y Doctoralia para reservas; no se encontró dominio propio",
+        "Reseñas positivas en Doctoralia según resumen"
+      ],
+      "alertas": [
+        "Teléfono en conflicto: otra ficha Fresha da +52 33 3615 9912",
+        "En Doctoralia aparece ligado a un solo quiropráctico; confirmar que sea clínica con equipo",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+        "direccion": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+        "telefono": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+        "web": "búsqueda: Spine Center Zapopan Ciudad del Sol quiropráctica sitio web (sin web propia); https://www.doctoralia.com.mx/perfil/cary-rothenberg"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "CRNQ Clínica de Rodilla No Quirúrgica / Vita Fisioterapia",
+      "giro": "fisioterapia y rehabilitación (rodilla)",
+      "giro_categoria": "Salud",
+      "subgiro": "fisioterapia y rehabilitación (rodilla)",
+      "direccion": "Av. Tizoc 595-B, Cd. del Sol, 45050 Zapopan, Jal.",
+      "colonia": "Ciudad del Sol",
+      "telefono": "+52 33 3610 2724",
+      "whatsapp": "no encontrado",
+      "servicios": "Fisioterapia, tratamiento no quirúrgico de rodilla",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Varias fichas duplicadas en Fresha (CRNQ, Centro de la Rodilla No Quirúrgico, Vita Fisioterapia) = presencia desordenada",
+        "Sin web localizada por nombre"
+      ],
+      "alertas": [
+        "Mismo domicilio que Spine Center: posible grupo/consultorio compartido",
+        "Fichas Fresha antiguas (480-1,280 días)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+        "direccion": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+        "telefono": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+        "web": "búsqueda: \"Clínica de Rodilla No Quirúrgica\" Zapopan (sin resultados)"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "Quiroprácticos OB",
+      "giro": "quiropráctica y fisioterapia",
+      "giro_categoria": "Salud",
+      "subgiro": "quiropráctica y fisioterapia",
+      "direccion": "Av. Tesistán 670-14 F, Arcos de Zapopan, 45130 Zapopan, Jal.",
+      "colonia": "Arcos de Zapopan",
+      "telefono": "+52 33 3178 6594",
+      "whatsapp": "no encontrado",
+      "servicios": "Quiropráctica, terapia física",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Solo fichas Fresha (algunas como QuiroJuárez)",
+        "Sin web localizada"
+      ],
+      "alertas": [
+        "Nombre comercial inconsistente (Quiroprácticos OB / QuiroJuárez)",
+        "Fichas de 1-2 años; confirmar que siga activo",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/es/bt/centros-de-terapia/mx-guadalajara/arcos-de-zapopan",
+        "direccion": "https://www.fresha.com/lp/es/bt/centros-de-terapia/mx-guadalajara/arcos-de-zapopan",
+        "telefono": "https://www.fresha.com/lp/es/bt/centros-de-terapia/mx-guadalajara/arcos-de-zapopan",
+        "web": "búsqueda: fresha therapy centers Arcos de Zapopan Tesistán 670 (sin web)"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "Servicios Veterinarios Ahued",
+      "giro": "veterinaria",
+      "giro_categoria": "Salud",
+      "subgiro": "veterinaria",
+      "direccion": "Jazmín 98, Fracc. Real Cantabria, 45138 Zapopan, Jal.",
+      "colonia": "Real Cantabria (CP 45138, zona Santa Margarita/La Tuzania)",
+      "telefono": "33 3842 5910",
+      "whatsapp": "no encontrado",
+      "servicios": "Servicios veterinarios; horario listado diario 10:00-20:00",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Sin presencia fuera de Cybo; búsqueda por nombre exacto no devuelve web"
+      ],
+      "alertas": [
+        "Colonia limítrofe a la zona pedida; verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://es.cybo.com/MX-biz/servicios-veterinarios-ahued",
+        "direccion": "https://es.cybo.com/MX-biz/servicios-veterinarios-ahued",
+        "telefono": "https://es.cybo.com/MX-biz/servicios-veterinarios-ahued",
+        "web": "búsqueda: \"Servicios Veterinarios Ahued\" Zapopan (sin resultados)"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "Veterinaria House",
+      "giro": "veterinaria / farmacia veterinaria",
+      "giro_categoria": "Salud",
+      "subgiro": "veterinaria / farmacia veterinaria",
+      "direccion": "no encontrado",
+      "colonia": "Parques de Tesistán (Tesistán)",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "El directorio la clasifica como tienda de medicinas veterinarias",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Sin web localizada"
+      ],
+      "alertas": [
+        "Puede ser farmacia y no clínica: verificar servicios",
+        "URL de la ficha exacta no capturada; resumen de búsqueda restringida a Sección Amarilla/Cybo/InfoisInfo. Verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/veterinaria/jalisco/zapopan/1",
+        "direccion": "verificar en Maps",
+        "telefono": "verificar en Maps",
+        "web": "búsqueda: veterinaria Tesistán Zapopan dirección"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "Veterinaria Amiguitos",
+      "giro": "veterinaria",
+      "giro_categoria": "Salud",
+      "subgiro": "veterinaria",
+      "direccion": "Calzada Norte 50, Ciudad Granja, Zapopan, Jal.",
+      "colonia": "Ciudad Granja",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "Médicos veterinarios",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Ficha mínima en InfoisInfo sin teléfono ni horario: fuerte señal de nula presencia digital"
+      ],
+      "alertas": [
+        "Teléfono no encontrado: verificar en Maps",
+        "Un directorio de MVZ lista el número (33) 3627 3483 en Calzada Norte 50-2, Ciudad Granja, bajo otro nombre registrado; confirmar si es el mismo negocio"
+      ],
+      "fuentes": {
+        "nombre": "https://zapopan.infoisinfo.com.mx/busqueda/medicos_veterinarios/b/ciudad-granja",
+        "direccion": "https://zapopan.infoisinfo.com.mx/busqueda/medicos_veterinarios/b/ciudad-granja",
+        "telefono": "no encontrado",
+        "web": "búsqueda: médicos veterinarios Ciudad Granja Zapopan Veterinaria Amiguitos"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "Fisioterapia Profesionales Rehabilitando",
+      "giro": "fisioterapia",
+      "giro_categoria": "Salud",
+      "subgiro": "fisioterapia",
+      "direccion": "Cerrada Marina Vallarta, Santa Margarita Residencial, Zapopan 45138, Jal.",
+      "colonia": "Santa Margarita",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "Fisioterapia",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Ficha de clínica en Doctoralia sin teléfono, horario ni opiniones visibles",
+        "Sin web localizada"
+      ],
+      "alertas": [
+        "Teléfono no encontrado: verificar en Maps / perfil Doctoralia",
+        "Número exterior no publicado"
+      ],
+      "fuentes": {
+        "nombre": "https://www.doctoralia.com.mx/clinicas/fisioterapia-profesionales-rehabilitando",
+        "direccion": "https://www.doctoralia.com.mx/clinicas/fisioterapia-profesionales-rehabilitando",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"Fisioterapia Profesionales Rehabilitando\" Zapopan"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "RYO Rehabilitación y Traumatología",
+      "giro": "rehabilitación / traumatología",
+      "giro_categoria": "Salud",
+      "subgiro": "rehabilitación / traumatología",
+      "direccion": "C. Tesistán, Arcos de Zapopan, 45130 Zapopan, Jal.",
+      "colonia": "Arcos de Zapopan",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "Rehabilitación física y traumatología",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Ficha Fresha sin teléfono ni número exterior",
+        "Sin web localizada"
+      ],
+      "alertas": [
+        "Teléfono no encontrado: verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/es/bt/centros-de-terapia/mx-guadalajara/arcos-de-zapopan",
+        "direccion": "https://www.fresha.com/lp/es/bt/centros-de-terapia/mx-guadalajara/arcos-de-zapopan",
+        "telefono": "no encontrado",
+        "web": "búsqueda: \"RYO Rehabilitación y Traumatología\" Zapopan"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "SKiNHOME",
+      "giro": "clínica estética / cuidado de la piel",
+      "giro_categoria": "Salud",
+      "subgiro": "clínica estética / cuidado de la piel",
+      "direccion": "C. Cuitláhuac 237, int. 4, Cd. del Sol, Zapopan, Jal.",
+      "colonia": "Ciudad del Sol",
+      "telefono": "+52 33 1479 4737",
+      "whatsapp": "no encontrado",
+      "servicios": "Faciales para acné / tratamientos de piel",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "sin dominio propio localizado en búsquedas",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Solo encontrada en Fresha"
+      ],
+      "alertas": [
+        "Otro número en ficha distinta: +52 33 3388 7217",
+        "No confirmado que sea clínica médica (podría ser cosmetología); no se revisó web propia por falta de tiempo",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.fresha.com/lp/en/tt/acne-facials/in/mx-guadalajara/ciudad-del-sol",
+        "direccion": "https://www.fresha.com/lp/en/tt/acne-facials/in/mx-guadalajara/ciudad-del-sol",
+        "telefono": "https://www.fresha.com/lp/en/tt/acne-facials/in/mx-guadalajara/ciudad-del-sol",
+        "web": "no verificada (pendiente buscar \"SKiNHOME Zapopan\")"
+      },
+      "origen": "sesion2_salud_b"
+    },
+    {
+      "nombre": "Frías Abogados",
+      "giro": "Despacho de abogados",
+      "giro_categoria": "Servicios",
+      "subgiro": "Abogados (materia no especificada)",
+      "direccion": "Cubilete 2953, Jardines del Sol, Zapopan, Jal., CP 45050",
+      "colonia": "Jardines del Sol",
+      "telefono": "(33) 3901-5206",
+      "whatsapp": "no encontrado",
+      "servicios": "Abogados (el directorio no detalla materias)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web propia en la búsqueda \"Frías Abogados\" Zapopan; solo aparece en directorios",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono fijo publicado",
+        "Presencia solo en directorio",
+        "Zona de ticket medio-alto (Ciudad del Sol / Jardines del Sol)"
+      ],
+      "alertas": [
+        "Colonia vecina de Ciudad del Sol, no exactamente en ella",
+        "Ficha de directorio: verificar que siga activo"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/abogado/15",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/abogado/15",
+        "web": "búsqueda WebSearch: \"Frías Abogados\" Zapopan"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Corporativo RIVSA",
+      "giro": "Despacho de abogados",
+      "giro_categoria": "Servicios",
+      "subgiro": "Abogados / corporativo",
+      "direccion": "Iztaccíhuatl 2058, Jardines del Sol, Zapopan, Jal., CP 45050",
+      "colonia": "Jardines del Sol",
+      "telefono": "(33) 9627-5583",
+      "whatsapp": "no encontrado",
+      "servicios": "Abogados; horario publicado L-V 09:00-18:00",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "La búsqueda \"Corporativo RIVSA\" Zapopan no devolvió web propia",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Horario publicado (negocio activo en directorio)"
+      ],
+      "alertas": [
+        "Colonia vecina de Ciudad del Sol",
+        "Hay otra ficha 'Corporativo RIVSA' con otra dirección en Guadalajara (Vazco Abogados): puede ser otra sede",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/abogados/jalisco/guadalajara/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/abogados/jalisco/guadalajara/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/abogados/jalisco/guadalajara/1",
+        "web": "búsqueda WebSearch: \"Corporativo RIVSA\" Zapopan"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Alio Abogados",
+      "giro": "Despacho de abogados",
+      "giro_categoria": "Servicios",
+      "subgiro": "Abogados (materia no especificada)",
+      "direccion": "Calle Cuitláhuac 215, Jardines del Sol, Zapopan, Jal., CP 45050",
+      "colonia": "Jardines del Sol",
+      "telefono": "(33) 3121 4209",
+      "whatsapp": "no encontrado",
+      "servicios": "Abogados",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web ni reseñas en la búsqueda \"Alio Abogados\" Zapopan",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Colonia vecina de Ciudad del Sol",
+        "Ficha de directorio: verificar que siga activo"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/despachos-de-abogados/jalisco/4",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/despachos-de-abogados/jalisco/4",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/despachos-de-abogados/jalisco/4",
+        "web": "búsqueda WebSearch: \"Alio Abogados\" Zapopan"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Román Abogados Litigantes Rincón Mayorga",
+      "giro": "Despacho de abogados",
+      "giro_categoria": "Servicios",
+      "subgiro": "Abogados litigantes",
+      "direccion": "Paseo Royal Country 4650, Puerta de Hierro, Zapopan, Jal., CP 45116",
+      "colonia": "Puerta de Hierro",
+      "telefono": "(33) 3826 5144",
+      "whatsapp": "no encontrado",
+      "servicios": "Litigio (materias no detalladas)",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web ni perfiles en Best Lawyers/Chambers en la búsqueda \"Rincón Mayorga Román\" abogados Zapopan",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Puerta de Hierro: zona de ticket alto",
+        "Teléfono publicado",
+        "Despacho litigante pequeño sin web"
+      ],
+      "alertas": [
+        "El nombre del despacho incluye apellidos: usar solo como nombre comercial",
+        "Ficha de directorio: verificar que siga activo"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/10",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/10 (o /resultados/despachos-de-abogados/jalisco/guadalajara/8)",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/10 (o /resultados/despachos-de-abogados/jalisco/guadalajara/8)",
+        "web": "búsqueda WebSearch: \"Rincón Mayorga Román\" abogados Zapopan"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Despacho Jurídico Abogados",
+      "giro": "Despacho de abogados",
+      "giro_categoria": "Servicios",
+      "subgiro": "Abogados (también en categorías administrativo y penalista)",
+      "direccion": "Av. Ignacio L. Vallarta 123, Centro, Zapopan, Jal., CP 45100",
+      "colonia": "Zapopan Centro",
+      "telefono": "(33) 1755-8869",
+      "whatsapp": "no encontrado",
+      "servicios": "Abogados; aparece en las categorías abogado administrativo y abogado penalista",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web propia en la búsqueda \"Despacho Jurídico\" abogados \"Ignacio L. Vallarta 123\" Zapopan",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Anuncia en varias categorías del directorio (busca clientes)",
+        "Zapopan Centro, cerca de juzgados y oficinas municipales"
+      ],
+      "alertas": [
+        "Nombre genérico: difícil de encontrar en Google, así que una landing con marca le serviría, pero confirmar el nombre comercial real",
+        "Horarios contradictorios entre fichas",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/despachos-de-abogados/jalisco/guadalajara/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/abogado-administrativo/7",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/abogado-administrativo/7",
+        "web": "búsqueda WebSearch: \"Despacho Jurídico\" abogados \"Ignacio L. Vallarta 123\" Zapopan"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Abogados García Maldonado",
+      "giro": "Despacho de abogados",
+      "giro_categoria": "Servicios",
+      "subgiro": "Abogados (materia no especificada)",
+      "direccion": "Calle G. Leroux 745, Paseos Universidad, Zapopan, Jal., CP 45016",
+      "colonia": "Paseos Universidad",
+      "telefono": "(33) 3658 2498",
+      "whatsapp": "no encontrado",
+      "servicios": "Abogados",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web ni áreas de práctica en la búsqueda \"Abogados García Maldonado\" Zapopan Leroux",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Paseos Universidad no está en la lista de colonias objetivo (zona sur de Zapopan): confirmar si interesa",
+        "En una de las páginas la ficha aparece junto a otra dirección y teléfono (Tonantzin); el teléfono de arriba es el que va con el nombre en ambas",
+        "verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/despachos-de-abogados/jalisco/guadalajara/2",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/despachos-de-abogados/jalisco/guadalajara/2",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/despachos-de-abogados/jalisco/guadalajara/2",
+        "web": "búsqueda WebSearch: \"Abogados García Maldonado\" Zapopan Leroux"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Barragán Contadores",
+      "giro": "Despacho contable",
+      "giro_categoria": "Servicios",
+      "subgiro": "Contadores, auditores y asuntos fiscales",
+      "direccion": "Calle Coliman 151, Jardines del Sol, Zapopan, Jal., CP 45050",
+      "colonia": "Jardines del Sol",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "Contabilidad y asuntos fiscales",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web propia en la búsqueda \"Barragán Contadores\" Zapopan teléfono",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Despacho contable pequeño sin web",
+        "Zona Ciudad del Sol / Jardines del Sol"
+      ],
+      "alertas": [
+        "Teléfono no encontrado en el resumen de la ficha",
+        "Colonia vecina de Ciudad del Sol"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/2",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/2",
+        "telefono": "no encontrado",
+        "web": "búsqueda WebSearch: \"Barragán Contadores\" Zapopan teléfono"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Mi Solecito",
+      "giro": "Guardería",
+      "giro_categoria": "Servicios",
+      "subgiro": "Guardería infantil",
+      "direccion": "Calle Moctezuma 449, Jardines del Sol, Zapopan, Jal., CP 45050",
+      "colonia": "Jardines del Sol",
+      "telefono": "(33) 3180 3132",
+      "whatsapp": "no encontrado",
+      "servicios": "Guardería infantil",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web ni reseñas en la búsqueda \"Mi Solecito\" guardería Moctezuma 449 Zapopan",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Guardería privada en zona de ingreso medio-alto",
+        "Una landing con instalaciones, horarios y cupo ayuda a captar a los padres"
+      ],
+      "alertas": [
+        "Colonia vecina de Ciudad del Sol",
+        "Ficha posiblemente antigua: verificar que opere"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "web": "búsqueda WebSearch: \"Mi Solecito\" guardería Moctezuma 449 Zapopan"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Centro Estancia Temprana Naciones Unidas",
+      "giro": "Guardería",
+      "giro_categoria": "Servicios",
+      "subgiro": "Estancia infantil / estimulación temprana",
+      "direccion": "Av. Naciones Unidas 5122, Jardines de la Patria, Zapopan, Jal.",
+      "colonia": "Jardines de la Patria",
+      "telefono": "(33) 3673 2604 / (33) 3673 2606",
+      "whatsapp": "no encontrado",
+      "servicios": "Guardería / estancia temprana",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web propia en la búsqueda \"Centro Estancia Temprana Naciones Unidas\" Zapopan",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Dos teléfonos publicados",
+        "Sobre Av. Naciones Unidas, colindante con Jardines Universidad"
+      ],
+      "alertas": [
+        "No se pudo confirmar si es privada o pública",
+        "Jardines de la Patria es vecina de Jardines Universidad, no está en la lista exacta",
+        "El nombre aparece abreviado en el directorio ('Centro Est Temprana Nac Unidas')"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "web": "búsqueda WebSearch: \"Centro Estancia Temprana Naciones Unidas\" Zapopan"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Centro Educativo Nueva Era AC",
+      "giro": "Guardería",
+      "giro_categoria": "Servicios",
+      "subgiro": "Guardería infantil / centro educativo",
+      "direccion": "Prados de los Cedros 209, Prados Tepeyac, Zapopan, Jal., CP 45050",
+      "colonia": "Prados Tepeyac",
+      "telefono": "(33) 3647 7228",
+      "whatsapp": "no encontrado",
+      "servicios": "Guardería infantil",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web, horarios ni reseñas en la búsqueda \"Centro Educativo Nueva Era\" Prados Tepeyac Zapopan",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Zona Ciudad del Sol / Prados Tepeyac (CP 45050)"
+      ],
+      "alertas": [
+        "Es una asociación civil (AC): presupuesto posiblemente bajo",
+        "Prados Tepeyac es vecina de Ciudad del Sol, no está en la lista exacta"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/guarderías-infantiles/jalisco/zapopan/3",
+        "web": "búsqueda WebSearch: \"Centro Educativo Nueva Era\" Prados Tepeyac Zapopan"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Guardería Sagrado Corazón de Jesús",
+      "giro": "Guardería",
+      "giro_categoria": "Servicios",
+      "subgiro": "Guardería infantil",
+      "direccion": "Av. Federalistas 2123, Jardines del Valle, Zapopan, Jal., CP 45138",
+      "colonia": "Jardines del Valle",
+      "telefono": "(33) 1561 2851",
+      "whatsapp": "no encontrado",
+      "servicios": "Guardería infantil",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web ni reseñas en la búsqueda \"Guardería Sagrado Corazón de Jesús\" Jardines del Valle Zapopan",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Solo presencia en directorio"
+      ],
+      "alertas": [
+        "Jardines del Valle está fuera de las colonias objetivo (norte de Zapopan, hacia Santa Margarita): prioridad baja"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/guarderia/25",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/guarderia/25",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/guarderia/25",
+        "web": "búsqueda WebSearch: \"Guardería Sagrado Corazón de Jesús\" Jardines del Valle Zapopan"
+      },
+      "origen": "sesion2_servicios"
+    },
+    {
+      "nombre": "Centro Lingüístico Zapopan",
+      "giro": "Escuela de idiomas",
+      "giro_categoria": "Servicios",
+      "subgiro": "Escuela de idiomas",
+      "direccion": "Av. Patria 607, Jacarandas, Zapopan, Jal., CP 45110",
+      "colonia": "Jacarandas",
+      "telefono": "(33) 3629 8214",
+      "whatsapp": "no encontrado",
+      "servicios": "Enseñanza de idiomas",
+      "tiene_web": "no encontrada",
+      "url_web": "",
+      "estado_web": "Sin web propia en la búsqueda \"Centro Lingüístico Zapopan\" Patria 607",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "Teléfono publicado",
+        "Escuela independiente (no franquicia)",
+        "Las escuelas de idiomas captan alumnos en línea por temporadas: una landing con promociones de inscripción encaja bien"
+      ],
+      "alertas": [
+        "Jacarandas no está en la lista exacta (zona Av. Patria, cerca de Zapopan Centro)",
+        "Ficha de directorio: verificar que siga activo"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/centro-tornillero/jalisco/zapopan/6",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/centro-tornillero/jalisco/zapopan/6",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/centro-tornillero/jalisco/zapopan/6",
+        "web": "búsqueda WebSearch: \"Centro Lingüístico Zapopan\" Patria 607"
+      },
+      "origen": "sesion2_servicios"
+    }
+  ],
+  "descartados": [
+    {
+      "nombre": "The Glow Skin Clinic (sucursal Naciones Unidas)",
+      "giro_categoria": "Salud",
+      "motivo": "Multisucursal (Naciones Unidas, Bugambilias, Victoria según la propia ficha) y varios teléfonos distintos; se trata como cadena, no negocio independiente."
+    },
+    {
+      "nombre": "Centropiel 2",
+      "giro_categoria": "Salud",
+      "motivo": "Opera con al menos dos sucursales (Santa Margarita y Av. Valdepeñas; el teléfono sale de la otra sucursal): se trata como cadena."
+    }
+  ]
+}

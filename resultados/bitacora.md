@@ -131,3 +131,8 @@
 - **Totales en bruto de la sesión 2:** Rutas 13 + Automotriz 10 + Salud A 15 + Salud B 13 + Servicios 13 = **64**.
 - **Duplicado entre agentes detectado:** Procesum García Godínez Abogados lo trajeron tanto Rutas como Servicios. Junto con Ambriz y Federalismo son los casos que le paso explícitamente al Verificador.
 - Notarías e inmobiliarias pequeñas no dieron candidatos con dirección y teléfono en ninguna de las dos sesiones. Lo anoto como giro poco visible en directorios.
+
+## 2026-11-18 16:05 UTC — Termina el Verificador (sesión 2)
+- 64 → **61 prospectos nuevos**. 1 duplicado interno (Procesum, fusionado) y 0 coincidencias con el CSV: las zonas asignadas sí evitaron repetir negocios. 2 descartados por cadena (The Glow Skin Clinic y Centropiel).
+- 8 negocios perdieron dirección o teléfono por no tener URL (regla de no inventar). 7 fichas a nombre de persona se renombraron por tipo de negocio y dirección.
+- **Decisión para el Analista:** los 3 negocios de "confianza baja" llevan -5 extra y no pueden entrar al top 10. Además pido **recalcular la cercanía para los 157 prospectos**, porque ahora Ciudad del Sol, Puerta de Hierro y El Colli tienen más vecinos y sería injusto dejar los puntajes viejos con menos cercanía.
