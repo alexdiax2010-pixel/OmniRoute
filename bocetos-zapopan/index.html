@@ -34,6 +34,7 @@
   .links a.main{background:#17181c;color:#fff;border-color:#17181c}
   .tag{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:.1rem .55rem;background:#fff4c2;border:1px solid #e0c25a;color:#5c4400;width:fit-content}
   footer{padding:var(--space-7) 0;color:var(--muted);font-size:var(--step--1)}
+  .chips a.cat{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 </style>
 </head>
 <body>
@@ -43,7 +44,7 @@
     <p class="eyebrow">Uso interno</p>
     <h1>Bocetos y materiales para WhatsApp · Zapopan</h1>
     <p>Por negocio: el boceto en línea, el mockup combo (imagen principal para enviar), los mockups de celular y escritorio, y la propuesta en PDF. Para regenerar los materiales después de cambiar una página: <code>node generar.mjs &lt;negocio&gt;</code>.</p>
-    <nav class="chips" aria-label="Giros"><a href="#g-dent">4 dentistas</a><a href="#g-tall">7 talleres</a><a href="#g-barb">2 barberías</a></nav>
+    <nav class="chips" aria-label="Giros"><a href="#g-dent">4 dentistas</a><a href="#g-tall">7 talleres</a><a href="#g-barb">2 barberías</a><a class="cat" href="catalogo-servicios.pdf">Catálogo de servicios (PDF)</a></nav>
   </div>
 </header>
 
@@ -61,7 +62,7 @@
     <div class="grid" data-giro="barberias"></div>
   </div></section>
 </main>
-<footer><div class="container">Uso interno. Los bocetos usan solo los datos proporcionados; lo marcado en amarillo debe confirmarse con cada negocio. Los precios de la propuesta están como marcadores.</div></footer>
+<footer><div class="container">Uso interno. Los bocetos usan solo los datos proporcionados; lo marcado en amarillo debe confirmarse con cada negocio. Los precios de los paquetes de página web están como marcadores; los servicios extra y los combos ya tienen precio. El catálogo de servicios no lleva nombre de cliente: sirve para cualquier prospecto nuevo.</div></footer>
 
 <script>
   // Lista de negocios: [giro, carpeta, nombre, dirección, colores, etiqueta opcional]
