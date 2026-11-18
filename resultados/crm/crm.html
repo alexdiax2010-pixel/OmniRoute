@@ -1,0 +1,284 @@
+<title>CRM Zapopan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: barra de control fija + resumen del embudo + vista (lista o tablero) + panel de detalle lateral */
+:root{
+  --bg:#f4f6f3; --surface:#ffffff; --sunk:#eef1ed; --ink:#17221e; --muted:#5b6a63; --line:#dbe2dc;
+  --agave:#1f6b52; --agave-soft:#e1eee8; --marigold:#c98404; --marigold-soft:#faefd7;
+  --s-nuevo:#7a8781; --s-contactado:#2f6fb0; --s-boceto:#8a5cc2; --s-negociacion:#c98404; --s-ganado:#1f7a4d; --s-perdido:#b5483d;
+  --danger:#b5483d;
+  --f-display:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101614; --surface:#17201d; --sunk:#131b18; --ink:#e4ece8; --muted:#97a8a0; --line:#28342f;
+  --agave:#5cc39b; --agave-soft:#1b2e27; --marigold:#f0b23e; --marigold-soft:#31281a;
+  --s-nuevo:#8f9c96; --s-contactado:#6aa6e6; --s-boceto:#b08ae6; --s-negociacion:#f0b23e; --s-ganado:#5cc39b; --s-perdido:#e47c70;
+  --danger:#e47c70; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101614; --surface:#17201d; --sunk:#131b18; --ink:#e4ece8; --muted:#97a8a0; --line:#28342f;
+  --agave:#5cc39b; --agave-soft:#1b2e27; --marigold:#f0b23e; --marigold-soft:#31281a;
+  --s-nuevo:#8f9c96; --s-contactado:#6aa6e6; --s-boceto:#b08ae6; --s-negociacion:#f0b23e; --s-ganado:#5cc39b; --s-perdido:#e47c70;
+  --danger:#e47c70; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--f-body)}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 48px;display:flex;flex-direction:column;gap:14px}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.15;text-wrap:balance}
+h1{font-size:26px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+input,select,textarea,button{font:inherit;color:var(--ink)}
+input[type=search],input[type=text],input[type=tel],input[type=date],select,textarea{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0}
+textarea{width:100%;resize:vertical;min-height:64px}
+button{cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--surface);padding:7px 12px;font-weight:600}
+button.primary{background:var(--agave);border-color:var(--agave);color:var(--surface)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.row:focus-visible,.card:focus-visible{outline:2px solid var(--marigold);outline-offset:2px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;border-radius:0;background:var(--surface);font-weight:500}
+.seg button[aria-pressed=true]{background:var(--agave-soft);color:var(--agave);font-weight:700}
+.funnel{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+@media (max-width:820px){.funnel{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:480px){.funnel{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;text-align:left;font-weight:500;display:flex;flex-direction:column;gap:2px;border-top:3px solid var(--sc,var(--line))}
+.stage b{font:700 22px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.stage span{font-size:12px;color:var(--muted)}
+.stage[aria-pressed=true]{background:var(--agave-soft)}
+.stage.alert{--sc:var(--danger)}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--sc)}
+.chip{font-size:11px;font-weight:600;padding:0 6px;border-radius:5px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.chip.top{border-color:var(--marigold);color:var(--marigold)}
+.chip.boc{border-color:var(--agave);color:var(--agave)}
+.chip.late{border-color:var(--danger);color:var(--danger)}
+.score{display:inline-block;min-width:34px;text-align:center;font:600 12px var(--f-mono);padding:2px 6px;border-radius:999px;background:var(--sunk);color:var(--muted)}
+.score.hi{background:var(--agave-soft);color:var(--agave)}.score.mid{background:var(--marigold-soft);color:var(--marigold)}
+.tablebox{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:820px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font:600 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;user-select:none;white-space:nowrap;background:var(--surface)}
+th[aria-sort=ascending]::after{content:" ▲"}th[aria-sort=descending]::after{content:" ▼"}
+tr.row{cursor:pointer}tr.row:hover{background:var(--sunk)}
+td .name{font-weight:600}
+td .sub{font-size:12px;color:var(--muted)}
+.board{display:grid;grid-template-columns:repeat(6,minmax(220px,1fr));gap:10px;overflow-x:auto;padding-bottom:6px}
+.col{background:var(--sunk);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;min-height:240px;max-height:70vh}
+.col header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line);font-weight:700}
+.col .list{padding:8px;display:flex;flex-direction:column;gap:7px;overflow-y:auto;flex:1}
+.col.over{outline:2px dashed var(--agave);outline-offset:-4px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px 10px;cursor:grab;display:flex;flex-direction:column;gap:4px;border-left:3px solid var(--sc)}
+.card .t{font-weight:600;line-height:1.25;overflow-wrap:anywhere}
+.card .m{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}
+.empty{padding:28px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:12px}
+.panel{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--surface);border-left:1px solid var(--line);box-shadow:-12px 0 32px rgba(0,0,0,.12);display:flex;flex-direction:column;z-index:20;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.panel .ph{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:16px 18px;border-bottom:1px solid var(--line)}
+.panel .pb{padding:16px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid2>*{min-width:0}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:var(--muted)}
+dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:13px}
+dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere}
+.box{background:var(--sunk);border-radius:10px;padding:10px 12px;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}
+.sect{font:600 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.notes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.notes li{border-left:2px solid var(--agave);padding-left:10px;font-size:13px;overflow-wrap:anywhere}
+.notes time{display:block;font-size:11px;color:var(--muted)}
+.row-btns{display:flex;gap:8px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px;font-weight:600;z-index:30}
+.banner{padding:10px 14px;border-radius:10px;background:var(--marigold-soft);color:var(--ink);font-size:13px}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:19}
+@media (prefers-reduced-motion:no-preference){.panel{animation:slide .18s ease-out}@keyframes slide{from{transform:translateX(24px);opacity:.6}}}
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1>CRM Zapopan</h1>
+      <div class="muted" id="sub">Prospectos de landing pages · etapa, seguimiento y notas</div>
+    </div>
+    <div class="controls">
+      <input id="q" type="search" placeholder="Buscar negocio, colonia o teléfono" aria-label="Buscar">
+      <select id="fcat" aria-label="Giro"><option value="">Todos los giros</option><option>Salud</option><option>Automotriz</option><option>Servicios</option><option>Belleza</option><option>Comida</option></select>
+      <div class="seg" role="group" aria-label="Vista"><button id="vList" aria-pressed="true">Lista</button><button id="vBoard" aria-pressed="false">Tablero</button></div>
+      <button class="primary" id="addBtn">+ Prospecto</button>
+    </div>
+  </div>
+  <div id="banner" class="banner" hidden></div>
+  <div class="funnel" id="funnel"></div>
+  <div id="view"><div class="empty" id="loading">Cargando prospectos… Aquí aparecerán los negocios con su etapa del embudo. Si no tienes ninguno, usa “+ Prospecto” para agregar el primero.</div></div>
+</div>
+<div class="scrim" id="scrim" hidden></div>
+<aside class="panel" id="panel" hidden aria-label="Detalle del prospecto"></aside>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const STAGES=[["nuevo","Nuevo"],["contactado","Contactado"],["boceto","Boceto enviado"],["negociacion","Negociando"],["ganado","Ganado"],["perdido","Perdido"]];
+const SLABEL=Object.fromEntries(STAGES);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const state={rows:new Map(),view:"list",stage:"",late:false,sort:["puntaje",-1],open:null,canWrite:true,db:null,col:null};
+try{const v=localStorage.getItem("crm.view");if(v)state.view=v}catch(_){}
+
+function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2200)}
+function banner(t){const b=$("#banner");b.textContent=t||"";b.hidden=!t}
+function scoreCls(n){return n==null?"":n>=75?"hi":n>=60?"mid":""}
+function isLate(r){return r.seguimiento&&r.seguimiento<=today()&&!["ganado","perdido"].includes(r.etapa)}
+
+function filtered(){
+  const q=$("#q").value.trim().toLowerCase(),cat=$("#fcat").value;
+  return [...state.rows.values()].filter(r=>(!cat||r.categoria===cat)&&(!state.stage||r.etapa===state.stage)&&(!state.late||isLate(r))&&
+    (!q||[r.nombre,r.colonia,r.direccion,r.telefono,r.giro].join(" ").toLowerCase().includes(q)));
+}
+function renderFunnel(){
+  const all=[...state.rows.values()],cat=$("#fcat").value,base=all.filter(r=>!cat||r.categoria===cat);
+  const late=base.filter(isLate).length;
+  $("#funnel").innerHTML=STAGES.map(([k,l])=>`<button class="stage" style="--sc:var(--s-${k})" data-st="${k}" aria-pressed="${state.stage===k}"><b>${base.filter(r=>r.etapa===k).length}</b><span>${l}</span></button>`).join("")+
+    `<button class="stage alert" data-late="1" aria-pressed="${state.late}"><b>${late}</b><span>Seguimientos para hoy o vencidos</span></button>`;
+}
+function rowHTML(r){
+  const chips=(r.top10?'<span class="chip top">Top 10</span>':"")+(r.boceto?'<span class="chip boc">Boceto</span>':"")+(isLate(r)?'<span class="chip late">Seguimiento</span>':"");
+  return `<tr class="row" tabindex="0" data-id="${esc(r.id)}"><td><span class="score ${scoreCls(r.puntaje)}">${r.puntaje??"—"}</span></td>
+  <td><div class="name">${esc(r.nombre)} ${chips}</div><div class="sub">${esc(r.giro)}</div></td><td>${esc(r.categoria)}</td><td>${esc(r.colonia||"—")}</td>
+  <td class="mono" style="white-space:nowrap">${esc(r.telefono)}</td><td><span class="pill" style="--sc:var(--s-${r.etapa})"><i></i>${SLABEL[r.etapa]||r.etapa}</span></td>
+  <td class="mono">${esc(r.seguimiento||"—")}</td></tr>`;
+}
+function renderList(rows){
+  const [k,d]=state.sort;
+  rows.sort((a,b)=>{const x=a[k],y=b[k];if(x==null||x==="")return 1;if(y==null||y==="")return -1;return (typeof x==="number"?x-y:String(x).localeCompare(String(y),"es"))*d});
+  const cols=[["puntaje","Pts"],["nombre","Negocio"],["categoria","Giro"],["colonia","Colonia"],["telefono","Teléfono"],["etapa","Etapa"],["seguimiento","Seguimiento"]];
+  $("#view").innerHTML=rows.length?`<div class="tablebox"><table><thead><tr>${cols.map(([c,l])=>`<th tabindex="0" data-k="${c}" aria-sort="${k===c?(d>0?"ascending":"descending"):"none"}">${l}</th>`).join("")}</tr></thead><tbody>${rows.map(rowHTML).join("")}</tbody></table></div>`
+    :'<div class="empty">Ningún prospecto coincide con el filtro.</div>';
+}
+function renderBoard(rows){
+  rows.sort((a,b)=>(b.puntaje??-1)-(a.puntaje??-1));
+  $("#view").innerHTML=`<div class="board">${STAGES.map(([k,l])=>{const rs=rows.filter(r=>r.etapa===k);
+    return `<section class="col" data-st="${k}" aria-label="${l}"><header><span>${l}</span><span class="pill" style="--sc:var(--s-${k})"><i></i>${rs.length}</span></header><div class="list">${
+      rs.map(r=>`<div class="card" draggable="${state.canWrite}" tabindex="0" data-id="${esc(r.id)}" style="--sc:var(--s-${k})"><div class="t">${esc(r.nombre)}</div><div class="m"><span class="score ${scoreCls(r.puntaje)}">${r.puntaje??"—"}</span>${esc(r.colonia||r.categoria)}${r.top10?' <span class="chip top">Top 10</span>':""}${isLate(r)?' <span class="chip late">'+esc(r.seguimiento)+'</span>':""}</div></div>`).join("")||'<div class="muted" style="font-size:12px;padding:6px">Arrastra aquí</div>'}</div></section>`}).join("")}</div>`;
+}
+function render(){
+  renderFunnel();
+  const rows=filtered();
+  $("#sub").textContent=`${state.rows.size} prospectos · mostrando ${rows.length}`;
+  if(!state.rows.size){$("#view").innerHTML='<div class="empty">Todavía no hay prospectos. Usa “+ Prospecto” para agregar el primero.</div>';return}
+  state.view==="board"?renderBoard(rows):renderList(rows);
+  $("#vList").setAttribute("aria-pressed",state.view==="list");$("#vBoard").setAttribute("aria-pressed",state.view==="board");
+  if(state.open&&state.rows.has(state.open)&&!$("#panel").hidden)refreshPanelHead();
+}
+
+// ---------- panel ----------
+function copyBtn(label,text){return `<button data-copy="${esc(text)}">${label}</button>`}
+function openPanel(id){
+  const r=state.rows.get(id);if(!r)return;state.open=id;
+  const ro=state.canWrite?"":"disabled";
+  $("#panel").innerHTML=`<div class="ph"><div><div class="sect">${esc(r.categoria)} · ${esc(r.giro)}</div><h2 id="pTitle" style="font-size:20px;margin-top:4px">${esc(r.nombre)}</h2><div id="pHead" style="margin-top:6px"></div></div><button id="close" aria-label="Cerrar">✕</button></div>
+  <div class="pb">
+    <div class="grid2"><label class="f" for="pStage">Etapa<select id="pStage" ${ro}>${STAGES.map(([k,l])=>`<option value="${k}" ${r.etapa===k?"selected":""}>${l}</option>`).join("")}</select></label>
+    <label class="f" for="pFollow">Próximo seguimiento<input id="pFollow" type="date" value="${esc(r.seguimiento)}" ${ro}></label></div>
+    <dl><dt>Teléfono</dt><dd class="mono">${esc(r.telefono||"no encontrado")}</dd>${r.whatsapp?`<dt>WhatsApp</dt><dd class="mono">${esc(r.whatsapp)}</dd>`:""}
+    <dt>Dirección</dt><dd>${esc(r.direccion||"no encontrada")}</dd><dt>Colonia</dt><dd>${esc(r.colonia||"—")}</dd>
+    ${r.boceto?`<dt>Boceto</dt><dd class="mono" style="font-size:12px">${esc(r.boceto)}/</dd>`:""}
+    ${r.fuente?`<dt>Fuente</dt><dd><a href="${esc(r.fuente)}" target="_blank" rel="noopener" style="color:var(--agave)">ver ficha</a></dd>`:""}</dl>
+    <div class="row-btns">${r.telefono&&!/no encontrado/i.test(r.telefono)?copyBtn("Copiar teléfono",r.telefono):""}${r.mensaje?copyBtn("Copiar mensaje de WhatsApp",r.mensaje):""}</div>
+    ${r.alertas?`<div><div class="sect">Verificar antes de contactar</div><div class="box">${esc(r.alertas)}</div></div>`:""}
+    ${r.mensaje?`<div><div class="sect">Mensaje de WhatsApp</div><div class="box">${esc(r.mensaje)}</div></div>`:""}
+    ${r.guion?`<div><div class="sect">Guion de llamada</div><div class="box">${esc(r.guion)}</div></div>`:""}
+    <div><div class="sect">Notas</div><ul class="notes" id="pNotes"></ul></div>
+    <form id="noteForm" ${state.canWrite?"":"hidden"}><label class="f" for="noteTxt">Agregar nota<textarea id="noteTxt" placeholder="Ej. Hablé con recepción; pedir cita con el doctor el jueves."></textarea></label><div class="row-btns" style="margin-top:8px"><button class="primary" type="submit">Guardar nota</button></div></form>
+    ${r.razon?`<div><div class="sect">Por qué este puntaje</div><div class="muted" style="font-size:13px">${esc(r.razon)}</div></div>`:""}
+  </div>`;
+  $("#panel").hidden=false;$("#scrim").hidden=false;refreshPanelHead();$("#close").focus();
+}
+function refreshPanelHead(){
+  const r=state.rows.get(state.open);if(!r)return;
+  $("#pHead").innerHTML=`<span class="score ${scoreCls(r.puntaje)}">${r.puntaje??"—"}</span> <span class="pill" style="--sc:var(--s-${r.etapa})"><i></i>${SLABEL[r.etapa]}</span>${r.top10?' <span class="chip top">Top 10</span>':""}`;
+  const s=$("#pStage");if(s&&document.activeElement!==s)s.value=r.etapa;
+  const f=$("#pFollow");if(f&&document.activeElement!==f)f.value=r.seguimiento||"";
+  const notes=[...(r.notas||[])].reverse();
+  $("#pNotes").innerHTML=notes.length?notes.map(n=>`<li><time>${esc(new Date(n.t).toLocaleString("es-MX",{dateStyle:"medium",timeStyle:"short"}))}</time>${esc(n.txt)}</li>`).join(""):'<li class="muted" style="border:0;padding:0">Sin notas todavía.</li>';
+}
+function closePanel(){$("#panel").hidden=true;$("#scrim").hidden=true;state.open=null}
+
+// ---------- writes ----------
+const busy=new Map();
+async function save(id,patch,msg){
+  if(!state.col||!state.canWrite)return;
+  const prev=busy.get(id)||Promise.resolve();
+  const p=prev.then(()=>state.col.doc(id).update(patch)).then(()=>msg&&toast(msg)).catch(e=>{
+    toast(e&&e.code==="permission_denied"?"No tienes permiso para editar este CRM.":"No se pudo guardar. Revisa tu conexión e inténtalo de nuevo.");});
+  busy.set(id,p);return p;
+}
+function setStage(id,etapa){const r=state.rows.get(id);if(!r||r.etapa===etapa)return;r.etapa=etapa;render();save(id,{etapa},"Movido a "+SLABEL[etapa])}
+
+// ---------- events ----------
+document.addEventListener("click",e=>{
+  const t=e.target;
+  const st=t.closest(".stage");if(st){if(st.dataset.late){state.late=!state.late;state.stage=""}else{state.stage=state.stage===st.dataset.st?"":st.dataset.st;state.late=false}render();return}
+  const th=t.closest("th[data-k]");if(th){const k=th.dataset.k;state.sort=state.sort[0]===k?[k,-state.sort[1]]:[k,k==="puntaje"?-1:1];render();return}
+  const row=t.closest("[data-id]");if(row&&!t.closest(".panel")){openPanel(row.dataset.id);return}
+  const cp=t.closest("[data-copy]");if(cp){const txt=cp.dataset.copy;try{navigator.clipboard.writeText(txt).then(()=>toast("Copiado"),()=>toast("Selecciona el texto y cópialo"))}catch(_){toast("Selecciona el texto y cópialo")}return}
+  if(t.id==="close"||t.id==="scrim")closePanel();
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&!$("#panel").hidden)closePanel();
+  if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-id],th[data-k]")){e.preventDefault();e.target.click()}
+});
+document.addEventListener("change",e=>{
+  if(e.target.id==="pStage")setStage(state.open,e.target.value);
+  if(e.target.id==="pFollow"){const r=state.rows.get(state.open);const v=e.target.value;if(r&&r.seguimiento!==v){r.seguimiento=v;render();save(state.open,{seguimiento:v},v?"Seguimiento: "+v:"Seguimiento quitado")}}
+});
+document.addEventListener("submit",e=>{
+  if(e.target.id==="noteForm"){e.preventDefault();const r=state.rows.get(state.open);const txt=$("#noteTxt").value.trim();if(!r||!txt)return;
+    const notas=[...(r.notas||[]),{t:new Date().toISOString(),txt:txt.slice(0,2000)}];r.notas=notas;$("#noteTxt").value="";refreshPanelHead();save(state.open,{notas},"Nota guardada")}
+  if(e.target.id==="addForm"){e.preventDefault();addProspect()}
+});
+$("#q").addEventListener("input",render);$("#fcat").addEventListener("change",render);
+$("#vList").onclick=()=>{state.view="list";try{localStorage.setItem("crm.view","list")}catch(_){}render()};
+$("#vBoard").onclick=()=>{state.view="board";try{localStorage.setItem("crm.view","board")}catch(_){}render()};
+// drag & drop en el tablero
+document.addEventListener("dragstart",e=>{const c=e.target.closest(".card");if(c)e.dataTransfer.setData("text/plain",c.dataset.id)});
+document.addEventListener("dragover",e=>{const c=e.target.closest(".col");if(c){e.preventDefault();c.classList.add("over")}});
+document.addEventListener("dragleave",e=>{const c=e.target.closest(".col");if(c&&!c.contains(e.relatedTarget))c.classList.remove("over")});
+document.addEventListener("drop",e=>{const c=e.target.closest(".col");if(!c)return;e.preventDefault();c.classList.remove("over");setStage(e.dataTransfer.getData("text/plain"),c.dataset.st)});
+
+// nuevo prospecto
+$("#addBtn").onclick=()=>{
+  if(!state.canWrite){toast("Necesitas permiso de edición para agregar prospectos.");return}
+  state.open=null;
+  $("#panel").innerHTML=`<div class="ph"><h2 style="font-size:20px">Nuevo prospecto</h2><button id="close" aria-label="Cerrar">✕</button></div>
+  <form class="pb" id="addForm"><label class="f" for="nNombre">Nombre del negocio<input id="nNombre" type="text" required></label>
+  <div class="grid2"><label class="f" for="nCat">Giro<select id="nCat"><option>Salud</option><option>Automotriz</option><option>Belleza</option><option>Servicios</option><option>Comida</option></select></label>
+  <label class="f" for="nGiro">Especialidad<input id="nGiro" type="text" placeholder="Ej. Ortodoncia"></label></div>
+  <div class="grid2"><label class="f" for="nCol">Colonia<input id="nCol" type="text"></label><label class="f" for="nTel">Teléfono<input id="nTel" type="tel"></label></div>
+  <label class="f" for="nDir">Dirección<input id="nDir" type="text"></label>
+  <label class="f" for="nNota">Primera nota<textarea id="nNota" placeholder="Dónde lo encontraste, qué viste"></textarea></label>
+  <div class="row-btns"><button class="primary" type="submit">Agregar al CRM</button></div></form>`;
+  $("#panel").hidden=false;$("#scrim").hidden=false;$("#nNombre").focus();
+};
+async function addProspect(){
+  const nombre=$("#nNombre").value.trim();if(!nombre)return;
+  const id=("m-"+nombre.normalize("NFKD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")).slice(0,60)+"-"+Date.now().toString(36);
+  const nota=$("#nNota").value.trim();
+  const doc={nombre,giro:$("#nGiro").value.trim(),categoria:$("#nCat").value,colonia:$("#nCol").value.trim(),direccion:$("#nDir").value.trim(),telefono:$("#nTel").value.trim(),
+    whatsapp:"",puntaje:null,razon:"Agregado a mano desde el CRM.",alertas:"",sesion:0,top10:false,etapa:"nuevo",seguimiento:"",notas:nota?[{t:new Date().toISOString(),txt:nota}]:[],mensaje:"",guion:"",boceto:"",fuente:""};
+  try{await state.col.doc(id).set(doc);closePanel();toast("Prospecto agregado")}catch(e){toast("No se pudo agregar. Inténtalo de nuevo.")}
+}
+
+// ---------- datos ----------
+(async()=>{
+  const timer=setTimeout(()=>{if(!state.rows.size)banner("No se pudo conectar con los datos del CRM todavía. Revisa tu conexión; la página se actualiza sola cuando responda.")},10000);
+  const db=window.claude?await claude.use("db"):null;
+  if(!db){clearTimeout(timer);$("#view").innerHTML='<div class="empty">Este CRM guarda sus datos en tu cuenta de Claude. Ábrelo desde claude.ai con tu sesión iniciada para ver y editar los prospectos.</div>';return}
+  state.db=db;state.col=db.collection("prospectos");
+  const user=await claude.use("user");
+  if(user){const c=await user.can("data.write");if(c===false){state.canWrite=false;banner("Puedes ver el CRM, pero no editarlo. Pide acceso de edición a quien lo compartió.")}}
+  state.col.onSnapshot(snap=>{
+    if(!snap.metadata.fromCache){clearTimeout(timer);banner(state.canWrite?"":$("#banner").textContent)}
+    state.rows=new Map(snap.docs.map(d=>{const v=d.data()||{};return [d.id,{...v,id:d.id,notas:Array.isArray(v.notas)?v.notas:[]}]}));
+    render();
+  },err=>{clearTimeout(timer);banner("Se perdió la conexión con los datos del CRM. Recarga la página para volver a conectar.")});
+})();
+</script>
