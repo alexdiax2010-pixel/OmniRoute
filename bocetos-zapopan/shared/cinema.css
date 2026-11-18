@@ -5,7 +5,8 @@
    <html lang="es-MX" data-cine="potente" data-cine-nombre="Frenos Frescos">
      estilos: "luminoso" (dentistas) · "potente" (talleres) · "vintage" (barberías)
 
-   Variables (definir en el :root de la página):
+   Variables (definirlas en el <style> de la página con el selector html[data-cine]{...},
+   que gana a los valores por defecto de este archivo):
      --cine-bg      fondo de la intro        (luminoso: blanco; potente/vintage: negro)
      --cine-ink     color del nombre
      --cine-accent  acento (barrido de luz, líneas, destello)
@@ -69,7 +70,7 @@ html.cine-on:not(.cine-ready) body::after{
 @keyframes cine-grain{0%{transform:translate(0,0)}25%{transform:translate(-22px,14px)}50%{transform:translate(16px,-20px)}75%{transform:translate(-10px,-12px)}100%{transform:translate(0,0)}}
 
 /* Botón saltar */
-.cine-skip{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:6;min-height:44px;padding:0 18px;
+.cine-skip{position:absolute;left:50%;translate:-50% 0;bottom:calc(20px + env(safe-area-inset-bottom));z-index:6;min-height:44px;padding:0 18px;
   border-radius:999px;border:1px solid currentColor;background:rgba(0,0,0,.35);color:#fff;font:600 14px/1 system-ui,-apple-system,sans-serif;
   letter-spacing:.04em;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .cine-skip:focus-visible{outline:3px solid var(--cine-accent);outline-offset:3px}
@@ -149,3 +150,6 @@ html.cine-js[data-cine="luminoso"] [data-cine-reveal]{transition-duration:1.1s,1
 /* Al abrir el telón, los adornos de la intro SIEMPRE se retiran (aunque una página suba su opacidad con más especificidad) */
 .cine-intro.open .cine-title,.cine-intro.open .cine-frame,.cine-intro.open .cine-rule,.cine-intro.open .cine-flare,
 .cine-intro.open .cine-bars,.cine-intro.open .cine-skip,.cine-intro.open .cine-vignette{opacity:0!important;transition:opacity .35s ease!important}
+
+/* El nombre y sus adornos se retiran un instante antes de abrir el telón (no se enciman con el hero) */
+.cine-intro.out .cine-title,.cine-intro.out .cine-frame,.cine-intro.out .cine-rule{opacity:0!important;transition:opacity .26s ease!important}

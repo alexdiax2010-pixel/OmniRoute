@@ -277,6 +277,10 @@ html[data-cine] .cine-intro.sweep .cine-sweep{animation:macias-sweep .95s cubic-
 html[data-cine] .cine-rule{height:6px;width:min(260px,46vw);top:calc(50% + clamp(3rem,9vw,6.4rem));
   background:repeating-linear-gradient(-45deg,var(--cine-accent) 0 8px,#121519 8px 16px)}
 html[data-cine] .cine-grain{opacity:.05}
+/* el titular del hero espera a que el nombre de la intro se haya ido */
+html[data-cine].cine-on.cine-hero-in [data-cine="title"]{transition-delay:.15s}
+html[data-cine].cine-on.cine-hero-in [data-cine="subtitle"]{transition-delay:.3s}
+html[data-cine].cine-on.cine-hero-in [data-cine="actions"]{transition-delay:.45s}
 </style>
 </head>
 <body>

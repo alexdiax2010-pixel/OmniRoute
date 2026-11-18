@@ -244,11 +244,13 @@ html[data-cine] .cine-sweep{width:70vw;height:72vh;
   background:
     radial-gradient(ellipse 22% 16% at 58% 38%,rgba(255,246,200,.95),rgba(255,194,14,.35) 45%,transparent 75%),
     radial-gradient(ellipse 22% 16% at 58% 64%,rgba(255,246,200,.95),rgba(255,194,14,.35) 45%,transparent 75%),
-    linear-gradient(100deg,transparent 18%,rgba(255,159,26,.18) 36%,rgba(255,194,14,.5) 52%,rgba(255,159,26,.22) 62%,transparent 78%)}
+    linear-gradient(100deg,transparent 18%,rgba(255,159,26,.18) 36%,rgba(255,194,14,.5) 52%,rgba(255,159,26,.22) 62%,transparent 78%);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent)}
 /* línea bajo el nombre: franja de advertencia */
 html[data-cine] .cine-rule{height:10px;width:min(360px,62vw);top:calc(50% + clamp(3.4rem,11vw,6.8rem));
   background:repeating-linear-gradient(-45deg,var(--brand) 0 10px,#0b0b0b 10px 20px);outline:2px solid var(--brand)}
 html[data-cine] .cine-grain{opacity:.09}
+@media (max-width:700px){html[data-cine] .cine-rule{top:calc(50% + 4.7rem)}}
 /* Ken Burns del camión: se acerca desde los faros */
 html[data-cine] .truck[data-cine-kenburns]{transform-origin:88% 62%}
 /* conservar el hover de las tarjetas de servicio junto con la entrada escalonada */

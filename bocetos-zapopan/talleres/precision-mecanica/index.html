@@ -259,6 +259,9 @@ html[data-cine] .cine-sweep{top:0;height:100%;translate:none;width:26vw;min-widt
   background:linear-gradient(90deg,transparent 0%,rgba(255,196,20,.06) 30%,rgba(255,196,20,.28) 46%,#ffe27a 49.4%,#fff 50%,#ffe27a 50.6%,rgba(255,196,20,.28) 54%,rgba(255,196,20,.06) 70%,transparent 100%)}
 html[data-cine] .cine-intro.sweep .cine-sweep{animation:pm-scan .85s cubic-bezier(.6,.05,.3,1) forwards}
 @keyframes pm-scan{0%{transform:translateX(-30vw) skewX(-5deg);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateX(105vw) skewX(-5deg);opacity:0}}
+/* al abrir el telón el nombre se aleja y se apaga rápido, sin quedar encima del hero */
+html[data-cine] .cine-intro.open .cine-title{opacity:0;transform:scale(1.06);transition:opacity .22s ease,transform .5s var(--cine-ease)}
+html[data-cine] .cine-intro.open .cine-rule{opacity:0;transition:opacity .18s ease}
 /* el calibrador del hero hace Ken Burns dentro del plano */
 .plano{overflow:hidden}
 .plano::before{top:0;left:0}

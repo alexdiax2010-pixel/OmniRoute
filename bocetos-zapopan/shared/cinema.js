@@ -26,8 +26,6 @@
   function intro() {
     if (!d.classList.contains('cine-on')) return;           // ya expiró el failsafe o no aplica
     if (window.__cineT) clearTimeout(window.__cineT);
-    try { sessionStorage.setItem('cine-visto:' + location.pathname, '1'); } catch (e) {}
-
     var estilo = d.getAttribute('data-cine') || 'potente';
     var nombre = d.getAttribute('data-cine-nombre') || document.title.split('|')[0].trim();
     var lema = d.getAttribute('data-cine-lema') || '';
@@ -36,6 +34,12 @@
       potente:  { name: 100, open: 1400, close: 850 },
       vintage:  { name: 120, open: 1450, close: 900 }
     }[estilo] || { name: 100, open: 1400, close: 850 };
+    // Si arrancamos tarde (CSS/tipografías lentas), comprimimos para no pasar de ~3 s desde que abrió la página
+    var ya = (window.performance && performance.now()) || 0;
+    if (ya > 1800) { d.classList.remove('cine-on'); return; }
+    var k = Math.max(0.55, Math.min(1, (3100 - ya) / 2900));
+    T = { name: T.name * k, open: T.open * k, close: T.close * k };
+    try { sessionStorage.setItem('cine-visto:' + location.pathname, '1'); } catch (e) {}
 
     var ov = document.createElement('div');
     ov.className = 'cine-intro';
@@ -93,10 +97,11 @@
     function onSkip(e) {
       if (e.type === 'keydown' && (e.key === 'Tab' || e.key === 'Shift')) return; // permitir llegar al botón
       if (e.type === 'pointerdown' || e.type === 'touchmove') swallowClick();
+      if (e.type === 'keydown' && /^( |Spacebar|ArrowDown|ArrowUp|PageDown|PageUp|Home|End)$/.test(e.key) && e.target === document.body) e.preventDefault();
       finish(true);
     }
     skip.addEventListener('click', function (e) { e.stopPropagation(); finish(true); });
-    ['pointerdown', 'keydown', 'wheel', 'touchmove'].forEach(function (ev) { window.addEventListener(ev, onSkip, { capture: true, passive: true }); });
+    ['pointerdown', 'keydown', 'wheel', 'touchmove'].forEach(function (ev) { window.addEventListener(ev, onSkip, { capture: true, passive: ev !== 'keydown' }); });
 
     // Línea de tiempo (total < 3 s)
     requestAnimationFrame(function () {
@@ -105,9 +110,10 @@
         if (estilo === 'potente') { ov.classList.add('shake'); at(450, function () { ov.classList.add('sweep'); }); }
         if (estilo === 'vintage') ov.classList.add('flicker');
       });
+      at(T.open - 260 * k, function () { ov.classList.add('out'); });   // el nombre se va antes de abrir el telón
       at(T.open, function () { ov.classList.add('open'); heroIn(); });
       at(T.open + T.close, function () { finish(false); });
-      at(2900, function () { finish(false); });          // tope duro
+      at(Math.max(1200, 2900 - ya), function () { finish(false); });   // tope duro
     });
   }
 
@@ -167,7 +173,8 @@
         var r = el.getBoundingClientRect();
         if (r.bottom < -100 || r.top > vh + 100) return;
         var sp = parseFloat(el.getAttribute('data-cine-parallax')) || 0.08;
-        var off = ((r.top + r.height / 2) - vh / 2) * -sp;
+        var cur = parseFloat(el.style.getPropertyValue('--cine-py')) || 0;   // quita el desplazamiento ya aplicado
+        var off = ((r.top - cur + r.height / 2) - vh / 2) * -sp;
         el.style.setProperty('--cine-py', off.toFixed(1) + 'px');
       });
     }

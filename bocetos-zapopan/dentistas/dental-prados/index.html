@@ -287,6 +287,20 @@ html[data-cine]{
   --cine-bg:#fbf9f5;--cine-ink:#0f2340;--cine-accent:#6f9a8d;
   --cine-font:"Fraunces",Georgia,"Times New Roman",serif;--cine-weight:300;--cine-case:none;
 }
+/* Toques boutique: telón crema con costura salvia, halo elíptico, filete sobre el nombre */
+html[data-cine] .cine-panel.top{box-shadow:inset 0 -1px 0 rgba(111,154,141,.55)}
+html[data-cine] .cine-panel.bot{box-shadow:inset 0 1px 0 rgba(111,154,141,.55)}
+html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{background:#f3efe8;height:9vh}
+html[data-cine] .cine-flare{width:150vmax;height:90vmax;
+  background:radial-gradient(closest-side,rgba(111,154,141,.42) 0%,rgba(230,238,233,.55) 45%,rgba(251,249,245,0) 100%)}
+html[data-cine] .cine-intro.name .cine-flare{opacity:.9}
+html[data-cine] .cine-title{font-size:clamp(2.5rem,9vw,6rem);font-variation-settings:"opsz" 144;letter-spacing:.24em}
+html[data-cine] .cine-intro.name .cine-title{letter-spacing:.015em}
+html[data-cine] .cine-title::before{content:"";display:block;width:2.2em;height:1px;margin:0 auto .45em;background:#3f6f62;
+  transform:scaleX(0);transition:transform 1.2s cubic-bezier(.22,.61,.36,1) .35s}
+html[data-cine] .cine-intro.name .cine-title::before{transform:scaleX(1)}
+html[data-cine] .cine-title small{font-family:"Inter",system-ui,sans-serif;font-size:max(11px,.17em);font-weight:500;letter-spacing:.34em;
+  text-transform:uppercase;color:#3f6f62;opacity:.95;margin-top:1.1em}
 .opt-art{overflow:hidden}
 
 /* ---------- Micro-animaciones ---------- */
