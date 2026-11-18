@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Taller Mecánico Industrial Macías | Flotillas en Zapopan</title>
+<meta name="description" content="Taller mecánico para empresas y flotillas en Zapopan: mantenimiento preventivo y correctivo, diagnóstico y reparación mecánica. Cotiza por WhatsApp.">
+<meta property="og:title" content="Taller Mecánico Industrial Macías — Zapopan">
+<meta property="og:description" content="Mantenimiento, diagnóstico y reparación mecánica para empresas y flotillas en Zapopan, Jalisco.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../shared/base.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Taller Mecánico Industrial Macías",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calz. Olímpica 761, Jardines Universidad",
+    "addressLocality": "Zapopan",
+    "addressRegion": "Jalisco",
+    "postalCode": "45110",
+    "addressCountry": "MX"
+  },
+  "telephone": "+52 33 3650 2990",
+  "areaServed": "Zapopan",
+  "knowsAbout": ["Mantenimiento preventivo", "Mantenimiento correctivo", "Diagnóstico mecánico", "Reparación mecánica", "Servicio a flotillas"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios mecánicos para empresas",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mantenimiento preventivo"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mantenimiento correctivo"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Diagnóstico mecánico"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reparación mecánica"}}
+    ]
+  }
+}
+</script>
+<style>
+:root{
+  --font-display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --brand:#ff6a13;          /* naranja de seguridad */
+  --brand-dark:#c94a00;
+  --brand-ink:#1a1a1a;
+  --steel-900:#16191d;
+  --steel-800:#1f2429;
+  --steel-700:#2b3138;
+  --steel-600:#3b434c;
+  --steel-300:#a9b2bc;
+  --steel-100:#e7eaee;
+  --bg:#ffffff;
+  --surface:#f2f4f6;
+  --ink:#1b1f24;
+  --muted:#4d5661;
+  --border:#d8dde3;
+  --focus:#ffb000;
+  --radius:4px;
+  --tape:repeating-linear-gradient(-45deg,var(--brand) 0 14px,#16191d 14px 28px);
+}
+body{background:var(--bg)}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;letter-spacing:-.005em}
+.btn{border-radius:var(--radius);font-family:var(--font-display);font-weight:600;letter-spacing:.02em;font-size:1.02rem}
+.btn-primary{background:var(--brand);color:#141414}
+.btn-primary:hover{background:#ff7f33}
+.btn-ghost{border-color:var(--steel-300);color:#fff;background:transparent}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+.tape{height:10px;background:var(--tape)}
+.tape-thin{height:6px;background:var(--tape)}
+
+/* ----- Header ----- */
+.site-header{background:var(--steel-900);color:#fff;position:sticky;top:0;z-index:40;border-bottom:1px solid var(--steel-700)}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:64px}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;min-height:44px}
+.logo-mark{width:38px;height:38px;flex:none;display:grid;place-items:center;background:var(--brand);color:#141414;border-radius:3px}
+.logo-mark svg{width:22px;height:22px}
+.logo-text{font-family:var(--font-display);line-height:1.05}
+.logo-text strong{display:block;font-size:1.05rem;letter-spacing:.04em;text-transform:uppercase}
+.logo-text span{display:block;font-size:.74rem;color:var(--steel-300);letter-spacing:.14em;text-transform:uppercase}
+.nav{display:none}
+.nav ul{display:flex;gap:.25rem;list-style:none;margin:0;padding:0}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 .8rem;text-decoration:none;font-family:var(--font-display);font-weight:500;font-size:.98rem;color:var(--steel-100);border-bottom:2px solid transparent}
+.nav a:hover{color:#fff;border-bottom-color:var(--brand)}
+.header-cta{display:none}
+.header-tel{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;min-width:44px;justify-content:center;padding:0 .7rem;border:1px solid var(--steel-600);border-radius:var(--radius);text-decoration:none;font-family:var(--font-display);font-weight:600;color:#fff}
+.header-tel svg{width:18px;height:18px;color:var(--brand)}
+.header-tel .t{display:none}
+@media (min-width:600px){.header-tel .t{display:inline}}
+@media (min-width:980px){.nav{display:block}.header-cta{display:inline-flex;min-height:44px;padding:.55rem 1rem}}
+
+/* ----- Hero ----- */
+.hero{position:relative;background:var(--steel-800);color:#fff;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:
+  linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/48px 48px,
+  linear-gradient(0deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/48px 48px,
+  radial-gradient(120% 90% at 85% 10%,#3a424b 0%,var(--steel-800) 55%,var(--steel-900) 100%)}
+.hero-inner{display:grid;gap:var(--space-7);padding-block:var(--space-8) var(--space-7)}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:.6rem;color:var(--brand);font-family:var(--font-display);letter-spacing:.16em}
+.hero .eyebrow::before{content:"";width:28px;height:3px;background:var(--brand)}
+.hero h1{font-size:clamp(2.2rem,1.4rem + 4vw,4.4rem);line-height:1.02;margin-top:var(--space-4);text-transform:uppercase}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero-lead{margin-top:var(--space-5);font-size:var(--step-1);color:var(--steel-100);max-width:36ch;line-height:1.5}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:var(--space-6)}
+.hero-actions .btn{flex:1 1 220px}
+.hero-meta{margin-top:var(--space-5);display:flex;align-items:flex-start;gap:.5rem;color:var(--steel-300);font-size:var(--step--1)}
+.hero-meta svg{width:18px;height:18px;flex:none;margin-top:.15em;color:var(--brand)}
+.spec{background:#fff;color:var(--ink);border-radius:var(--radius);box-shadow:0 20px 50px rgba(0,0,0,.35);overflow:hidden;align-self:center}
+.spec-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;background:var(--steel-100);padding:.8rem 1.2rem;font-family:var(--font-display);font-weight:600;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel-700)}
+.spec-head span:last-child{color:var(--brand-dark)}
+.spec dl{display:grid;grid-template-columns:1fr;margin:0}
+.spec dl>div{padding:1rem 1.2rem;border-top:1px solid var(--border)}
+.spec dt{font-family:var(--font-display);font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.spec dd{margin-top:.2rem;font-weight:600}
+.spec dd a{color:var(--ink)}
+@media (min-width:960px){
+  .hero-inner{grid-template-columns:1.35fr 1fr;align-items:center;padding-block:var(--space-9)}
+}
+
+/* ----- Section titles ----- */
+.sec-head{max-width:720px}
+.sec-head .eyebrow{color:var(--brand-dark);font-family:var(--font-display);letter-spacing:.16em}
+.sec-head h2{font-size:var(--step-3);margin-top:.4rem;text-transform:uppercase;line-height:1.05}
+.sec-head p{margin-top:var(--space-4);color:var(--muted);font-size:var(--step-1);line-height:1.5}
+.num{font-family:var(--font-display);font-weight:700;color:var(--brand-dark);font-size:.95rem;letter-spacing:.08em}
+
+/* ----- Empresas ----- */
+.empresas{background:var(--surface)}
+.empresas-grid{display:grid;gap:var(--space-6);margin-top:var(--space-7)}
+.emp-list{display:grid;gap:1px;background:var(--border);border:1px solid var(--border);list-style:none;padding:0;margin:0}
+.emp-list li{background:#fff;padding:1.25rem 1.25rem 1.25rem 1.1rem;display:grid;grid-template-columns:44px 1fr;gap:1rem;align-items:start}
+.emp-list li svg{width:44px;height:44px;padding:10px;background:var(--steel-900);color:var(--brand);border-radius:3px}
+.emp-list h3{font-size:1.2rem}
+.emp-list p{color:var(--muted);margin-top:.25rem}
+.emp-side{background:var(--steel-900);color:#fff;padding:var(--space-6);border-radius:var(--radius);position:relative;overflow:hidden}
+.emp-side::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:var(--tape)}
+.emp-side h3{font-size:var(--step-2);text-transform:uppercase}
+.emp-side p{color:var(--steel-100);margin-top:var(--space-3)}
+.emp-side .marcador{margin-top:var(--space-3)}
+.emp-side ul{list-style:none;padding:0;margin:var(--space-5) 0 0;display:grid;gap:.6rem}
+.emp-side li{display:flex;gap:.6rem;align-items:flex-start}
+.emp-side li::before{content:"";width:10px;height:10px;margin-top:.5em;background:var(--brand);flex:none}
+@media (min-width:900px){.empresas-grid{grid-template-columns:1.4fr 1fr}}
+
+/* ----- Servicios ----- */
+.serv-grid{display:grid;gap:var(--space-5);margin-top:var(--space-7)}
+.serv{border:1px solid var(--border);border-top:4px solid var(--steel-800);padding:var(--space-5);border-radius:var(--radius);background:#fff;transition:border-color .15s ease}
+.serv:hover{border-top-color:var(--brand)}
+.serv-top{display:flex;justify-content:space-between;align-items:center}
+.serv svg{width:40px;height:40px;color:var(--steel-700)}
+.serv h3{font-size:1.35rem;margin-top:var(--space-4)}
+.serv p{color:var(--muted);margin-top:.4rem}
+.serv-note{margin-top:var(--space-6)}
+@media (min-width:640px){.serv-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.serv-grid{grid-template-columns:repeat(4,1fr)}}
+
+/* ----- Proceso ----- */
+.proceso{background:var(--steel-900);color:#fff}
+.proceso .sec-head p{color:var(--steel-300)}
+.proceso .sec-head .eyebrow{color:var(--brand)}
+.steps{list-style:none;padding:0;margin:var(--space-7) 0 0;display:grid;gap:0;counter-reset:step}
+.step{position:relative;padding:0 0 var(--space-6) 64px;counter-increment:step}
+.step::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:0;width:46px;height:46px;display:grid;place-items:center;background:var(--brand);color:#141414;font-family:var(--font-display);font-weight:700;font-size:1.1rem;border-radius:3px}
+.step::after{content:"";position:absolute;left:22px;top:52px;bottom:6px;width:2px;background:repeating-linear-gradient(180deg,var(--steel-600) 0 6px,transparent 6px 12px)}
+.step:last-child::after{display:none}
+.step h3{font-size:1.3rem;text-transform:uppercase;letter-spacing:.02em;padding-top:.45rem}
+.step p{color:var(--steel-300);margin-top:.3rem;max-width:42ch}
+@media (min-width:1000px){
+  .steps{grid-template-columns:repeat(5,1fr);gap:var(--space-5)}
+  .step{padding:64px 0 0}
+  .step::after{left:56px;right:-12px;top:22px;bottom:auto;width:auto;height:2px;background:repeating-linear-gradient(90deg,var(--steel-600) 0 6px,transparent 6px 12px)}
+}
+
+/* ----- Por qué ----- */
+.why-grid{display:grid;gap:var(--space-5);margin-top:var(--space-7)}
+.why{padding:var(--space-5) 0 0;border-top:2px solid var(--ink)}
+.why h3{font-size:1.25rem}
+.why p{color:var(--muted);margin-top:.4rem}
+@media (min-width:760px){.why-grid{grid-template-columns:repeat(3,1fr);gap:var(--space-6)}}
+
+/* ----- Cotización ----- */
+.cotizar{background:var(--surface)}
+.cot-grid{display:grid;gap:var(--space-6);margin-top:var(--space-7)}
+.form-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px rgba(22,25,29,.08)}
+.form-card form{padding:var(--space-5);display:grid;gap:var(--space-4)}
+.field{display:grid;gap:.35rem}
+.field label{font-family:var(--font-display);font-weight:600;font-size:.95rem;letter-spacing:.03em}
+.field label small{font-family:var(--font-body);font-weight:400;color:var(--muted)}
+.field input,.field textarea{width:100%;min-height:48px;padding:.7rem .85rem;border:1.5px solid #b9c1ca;border-radius:var(--radius);background:#fff;color:var(--ink)}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--steel-800);outline:3px solid var(--focus);outline-offset:1px}
+.row-2{display:grid;gap:var(--space-4)}
+@media (min-width:620px){.row-2{grid-template-columns:1fr 1fr}.form-card form{padding:var(--space-6)}}
+.form-card .btn{width:100%}
+.form-note{font-size:var(--step--1);color:var(--muted)}
+.contact-list{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.contact-list li{background:#fff;padding:1.1rem 1.2rem;display:grid;grid-template-columns:28px 1fr;gap:.9rem;align-items:start}
+.contact-list svg{width:24px;height:24px;color:var(--brand-dark);margin-top:.1rem}
+.contact-list .k{display:block;font-family:var(--font-display);font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.contact-list a{font-weight:600;color:var(--ink);text-decoration-color:var(--brand);text-underline-offset:3px;display:inline-flex;min-height:44px;align-items:center}
+@media (min-width:900px){.cot-grid{grid-template-columns:1.4fr 1fr;align-items:start}}
+
+/* ----- Ubicación ----- */
+.ubi-grid{display:grid;gap:var(--space-6);margin-top:var(--space-7)}
+.map-embed{border-radius:var(--radius);border:1px solid var(--border);background:linear-gradient(135deg,var(--steel-100),#cfd5dc)}
+.ubi-card{border:1px solid var(--border);border-left:6px solid var(--brand);padding:var(--space-5);border-radius:var(--radius)}
+.ubi-card h3{font-size:1.3rem;text-transform:uppercase}
+.ubi-card address{font-style:normal;margin-top:.5rem;color:var(--muted)}
+.ubi-card .btn{margin-top:var(--space-5);background:var(--steel-900);color:#fff}
+.ubi-card .btn:hover{background:var(--steel-700)}
+.horario-box{margin-top:var(--space-5);padding-top:var(--space-5);border-top:1px solid var(--border)}
+.horario-box h4{font-family:var(--font-display);font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em}
+.horario-box p{margin-top:.5rem}
+@media (min-width:900px){.ubi-grid{grid-template-columns:1.6fr 1fr;align-items:stretch}}
+
+/* ----- Testimonios ----- */
+.testi-grid{display:grid;gap:var(--space-5);margin-top:var(--space-6)}
+@media (min-width:760px){.testi-grid{grid-template-columns:1fr 1fr}}
+
+/* ----- CTA band ----- */
+.cta-band{background:var(--brand);color:#141414}
+.cta-band .container{display:grid;gap:var(--space-5);padding-block:var(--space-7);align-items:center}
+.cta-band h2{font-size:var(--step-3);text-transform:uppercase;line-height:1.05}
+.cta-band p{margin-top:.4rem;font-weight:500}
+.cta-band .actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.cta-band .btn-dark{background:#141414;color:#fff}
+.cta-band .btn-line{border-color:#141414;color:#141414}
+@media (min-width:900px){.cta-band .container{grid-template-columns:1.4fr auto}}
+
+/* ----- Footer ----- */
+.site-footer{background:var(--steel-900);color:var(--steel-300);padding-block:var(--space-7) calc(var(--space-7) + 80px);font-size:var(--step--1)}
+.site-footer .container{display:grid;gap:var(--space-5)}
+.site-footer strong{font-family:var(--font-display);color:#fff;font-size:1.15rem;letter-spacing:.04em;text-transform:uppercase}
+.site-footer a{color:#fff;display:inline-flex;min-height:44px;align-items:center}
+.site-footer .disclaimer{border-top:1px solid var(--steel-700);padding-top:var(--space-4)}
+@media (min-width:900px){.site-footer .container{grid-template-columns:1.2fr 1fr 1fr}.site-footer .disclaimer{grid-column:1/-1}}
+
+.fab-call{background:var(--brand);color:#141414;border:0}
+</style>
+</head>
+<body>
+<div class="franja-boceto" role="note">Propuesta de diseño — boceto no oficial</div>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="#inicio" aria-label="Taller Mecánico Industrial Macías, ir al inicio">
+      <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></span>
+      <span class="logo-text"><strong>Industrial Macías</strong><span>Taller mecánico · Zapopan</span></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <ul>
+        <li><a href="#empresas">Empresas</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#cotizar">Cotizar</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <a class="header-tel" href="tel:+523336502990" aria-label="Llamar al (33) 3650 2990"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span class="t">(33) 3650 2990</span></a>
+      <a class="btn btn-primary header-cta" href="#cotizar">Cotizar</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <div class="container hero-inner">
+      <div>
+        <p class="eyebrow">Servicio mecánico para empresas</p>
+        <h1 id="hero-title">Taller Mecánico Industrial Macías: <em>tus unidades de trabajo,</em> en ruta.</h1>
+        <p class="hero-lead">Mantenimiento preventivo y correctivo, diagnóstico y reparación mecánica para flotillas y vehículos de trabajo en Zapopan. Cotización formal antes de cualquier trabajo.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://wa.me/523336502990?text=Hola%2C%20represento%20a%20una%20empresa%20y%20quiero%20cotizar%20servicio%20mec%C3%A1nico%20para%20nuestras%20unidades." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.25-.12-1.47-.72-1.7-.8-.23-.09-.4-.13-.56.12-.17.25-.64.8-.79.97-.14.16-.29.18-.54.06a6.7 6.7 0 0 1-3.34-2.92c-.25-.43.25-.4.72-1.34.08-.16.04-.3-.02-.43l-.76-1.83c-.2-.48-.4-.41-.56-.42h-.48a.92.92 0 0 0-.66.31 2.8 2.8 0 0 0-.87 2.08 4.85 4.85 0 0 0 1.02 2.58 11.1 11.1 0 0 0 4.25 3.76c1.58.68 2.2.74 3 .62.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.17-.47-.29z"/></svg>
+            Solicitar cotización empresarial
+          </a>
+          <a class="btn btn-ghost" href="tel:+523336502990">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+            Llamar
+          </a>
+        </div>
+        <p class="hero-meta"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Calz. Olímpica 761, Jardines Universidad, Zapopan, Jal.</p>
+      </div>
+      <aside class="spec" aria-label="Ficha rápida del taller">
+        <div class="spec-head"><span>Ficha de servicio</span><span>B2B</span></div>
+        <div class="tape-thin" aria-hidden="true"></div>
+        <dl>
+          <div><dt>Enfoque</dt><dd>Empresas, flotillas y vehículos de trabajo</dd></div>
+          <div><dt>Atiende</dt><dd><span class="marcador">[Tipos de vehículos/equipos que atiende por confirmar]</span></dd></div>
+          <div><dt>Facturación</dt><dd><span class="marcador">[Facturación y crédito empresarial por confirmar]</span></dd></div>
+          <div><dt>Contacto directo</dt><dd><a href="tel:+523336502990">(33) 3650 2990</a></dd></div>
+        </dl>
+      </aside>
+    </div>
+    <div class="tape" aria-hidden="true"></div>
+  </section>
+
+  <section class="section empresas" id="empresas" aria-labelledby="emp-title">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow">Para empresas y flotillas</p>
+        <h2 id="emp-title">Un taller que habla el idioma de tu operación</h2>
+        <p>Cuando una unidad se detiene, se detiene el trabajo. Coordinamos el servicio contigo de forma ordenada, con información clara para quien autoriza el gasto.</p>
+      </div>
+      <div class="empresas-grid">
+        <ul class="emp-list" role="list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="6" width="14" height="10" rx="1"/><path d="M15 9h4l3 3v4h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+            <div><h3>Flotillas de reparto y servicio</h3><p>Seguimiento por unidad para que sepas qué se revisó y qué queda pendiente.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
+            <div><h3>Cotización formal por escrito</h3><p>Antes de trabajar, recibes el diagnóstico y la cotización para autorizarla internamente.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <div><h3>Un canal de contacto directo</h3><p>Coordinación por WhatsApp o teléfono con el responsable de tu flotilla.</p></div>
+          </li>
+        </ul>
+        <div class="emp-side">
+          <h3>Información para compras y administración</h3>
+          <p>Datos que tu empresa suele pedir a un proveedor:</p>
+          <ul>
+            <li><span class="marcador">[Facturación y crédito empresarial por confirmar]</span></li>
+            <li><span class="marcador">[Tipos de vehículos/equipos que atiende por confirmar]</span></li>
+            <li><span class="marcador">[Dato diferenciador por confirmar]</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="servicios" aria-labelledby="serv-title">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow">Servicios</p>
+        <h2 id="serv-title">Mantenimiento y reparación mecánica</h2>
+        <p>Categorías generales de servicio. El alcance específico se define en la cotización de cada unidad.</p>
+      </div>
+      <div class="serv-grid">
+        <article class="serv">
+          <div class="serv-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 15l2 2 4-4"/></svg><span class="num">01</span></div>
+          <h3>Mantenimiento preventivo</h3>
+          <p>Revisiones programadas para reducir paros inesperados de tus unidades.</p>
+        </article>
+        <article class="serv">
+          <div class="serv-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><span class="num">02</span></div>
+          <h3>Mantenimiento correctivo</h3>
+          <p>Atención a fallas detectadas para regresar la unidad a operación.</p>
+        </article>
+        <article class="serv">
+          <div class="serv-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v3l2 2"/></svg><span class="num">03</span></div>
+          <h3>Diagnóstico</h3>
+          <p>Revisión para identificar la causa de la falla antes de proponer un trabajo.</p>
+        </article>
+        <article class="serv">
+          <div class="serv-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span class="num">04</span></div>
+          <h3>Reparación mecánica</h3>
+          <p>Trabajos mecánicos autorizados según la cotización aprobada por tu empresa.</p>
+        </article>
+      </div>
+      <p class="serv-note marcador-bloque">[Servicios industriales por confirmar]</p>
+    </div>
+  </section>
+
+  <section class="section proceso" id="proceso" aria-labelledby="proc-title">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow">Proceso de trabajo</p>
+        <h2 id="proc-title">Cinco pasos, sin sorpresas</h2>
+        <p>Un flujo pensado para que el área de compras y el responsable de la flotilla tengan control en cada etapa.</p>
+      </div>
+      <ol class="steps">
+        <li class="step"><h3>Solicitud</h3><p>Nos escribes por WhatsApp o llamas con los datos de tu empresa y las unidades.</p></li>
+        <li class="step"><h3>Diagnóstico</h3><p>Revisamos la unidad para identificar qué necesita.</p></li>
+        <li class="step"><h3>Cotización formal</h3><p>Recibes el detalle del trabajo propuesto para tu autorización.</p></li>
+        <li class="step"><h3>Servicio</h3><p>Realizamos solo el trabajo que tu empresa aprobó.</p></li>
+        <li class="step"><h3>Entrega</h3><p>Te entregamos la unidad y te explicamos lo que se hizo.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="por-que" aria-labelledby="why-title">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow">Por qué Industrial Macías</p>
+        <h2 id="why-title">Razones para considerarnos</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why"><span class="num">A</span><h3>Ubicado en Zapopan</h3><p>Sobre Calzada Olímpica, en Jardines Universidad, con acceso para coordinar entregas y recolecciones.</p></div>
+        <div class="why"><span class="num">B</span><h3>Diagnóstico antes de trabajar</h3><p>Te explicamos lo que encontramos y no se hace nada sin tu autorización.</p></div>
+        <div class="why"><span class="num">C</span><h3>Diferenciador</h3><p><span class="marcador">[Dato diferenciador por confirmar]</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cotizar" id="cotizar" aria-labelledby="cot-title">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow">Cotización empresarial</p>
+        <h2 id="cot-title">Solicita una cotización para tu flotilla</h2>
+        <p>Llena los datos y se abrirá WhatsApp con tu mensaje listo para enviar. No guardamos la información en este sitio.</p>
+      </div>
+      <div class="cot-grid">
+        <div class="form-card">
+          <div class="tape-thin" aria-hidden="true"></div>
+          <form id="cot-form" novalidate>
+            <div class="row-2">
+              <div class="field"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" type="text" autocomplete="organization" required></div>
+              <div class="field"><label for="f-nombre">Nombre de contacto</label><input id="f-nombre" name="nombre" type="text" autocomplete="name" required></div>
+            </div>
+            <div class="field"><label for="f-unidades">Número de unidades <small>(aprox.)</small></label><input id="f-unidades" name="unidades" type="number" min="1" inputmode="numeric"></div>
+            <div class="field"><label for="f-mensaje">Mensaje <small>(tipo de unidades y servicio que necesitas)</small></label><textarea id="f-mensaje" name="mensaje"></textarea></div>
+            <button class="btn btn-primary" type="submit">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+              Enviar solicitud por WhatsApp
+            </button>
+            <p class="form-note">Se abrirá WhatsApp hacia el (33) 3650 2990. Tú decides si envías el mensaje.</p>
+          </form>
+        </div>
+        <ul class="contact-list" role="list">
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><div><span class="k">Teléfono</span><a href="tel:+523336502990">(33) 3650 2990</a></div></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg><div><span class="k">WhatsApp</span><a href="https://wa.me/523336502990?text=Hola%2C%20represento%20a%20una%20empresa%20y%20quiero%20cotizar%20servicio%20mec%C3%A1nico%20para%20nuestras%20unidades." target="_blank" rel="noopener">Escribir por WhatsApp</a></div></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><div><span class="k">Dirección</span><span>Calz. Olímpica 761, Jardines Universidad, Zapopan, Jalisco, CP 45110</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><span class="k">Horario</span><span class="marcador">[Horario por confirmar]</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ubicacion" aria-labelledby="ubi-title">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow">Ubicación</p>
+        <h2 id="ubi-title">Sobre Calzada Olímpica, Zapopan</h2>
+      </div>
+      <div class="ubi-grid">
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps?q=Calz.%20Ol%C3%ADmpica%20761%2C%20Jardines%20Universidad%2C%2045110%20Zapopan%2C%20Jalisco&output=embed" title="Mapa de ubicación de Taller Mecánico Industrial Macías" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <div class="ubi-card">
+          <h3>Taller Mecánico Industrial Macías</h3>
+          <address>Calz. Olímpica 761, Jardines Universidad<br>Zapopan, Jalisco, CP 45110</address>
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Calz.%20Ol%C3%ADmpica%20761%2C%20Jardines%20Universidad%2C%2045110%20Zapopan%2C%20Jalisco" target="_blank" rel="noopener">Cómo llegar</a>
+          <div class="horario-box">
+            <h4>Horario de atención</h4>
+            <p><span class="marcador">[Horario por confirmar]</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section empresas" id="testimonios" aria-labelledby="testi-title">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow">Testimonios</p>
+        <h2 id="testi-title">Lo que dicen las empresas</h2>
+      </div>
+      <div class="testi-grid">
+        <p class="marcador-bloque">[Testimonio del cliente aquí]</p>
+        <p class="marcador-bloque">[Testimonio del cliente aquí]</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-labelledby="cta-title">
+    <div class="tape" aria-hidden="true"></div>
+    <div class="container">
+      <div>
+        <h2 id="cta-title">¿Tienes unidades que atender?</h2>
+        <p>Envíanos los datos de tu flotilla y te respondemos con los siguientes pasos.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-dark" href="https://wa.me/523336502990?text=Hola%2C%20represento%20a%20una%20empresa%20y%20quiero%20cotizar%20servicio%20mec%C3%A1nico%20para%20nuestras%20unidades." target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+        <a class="btn btn-outline btn-line" href="tel:+523336502990">Llamar</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div><strong>Taller Mecánico Industrial Macías</strong><p>Mantenimiento, diagnóstico y reparación mecánica para empresas en Zapopan.</p></div>
+    <div><p>Calz. Olímpica 761, Jardines Universidad<br>Zapopan, Jalisco, CP 45110</p></div>
+    <div><a href="tel:+523336502990">(33) 3650 2990</a></div>
+    <p class="disclaimer">Boceto de propuesta. Datos sujetos a confirmación por el negocio.</p>
+  </div>
+</footer>
+
+<div class="fab">
+  <a class="fab-wa" href="https://wa.me/523336502990?text=Hola%2C%20represento%20a%20una%20empresa%20y%20quiero%20cotizar%20servicio%20mec%C3%A1nico%20para%20nuestras%20unidades." target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.25-.12-1.47-.72-1.7-.8-.23-.09-.4-.13-.56.12-.17.25-.64.8-.79.97-.14.16-.29.18-.54.06a6.7 6.7 0 0 1-3.34-2.92c-.25-.43.25-.4.72-1.34.08-.16.04-.3-.02-.43l-.76-1.83c-.2-.48-.4-.41-.56-.42h-.48a.92.92 0 0 0-.66.31 2.8 2.8 0 0 0-.87 2.08 4.85 4.85 0 0 0 1.02 2.58 11.1 11.1 0 0 0 4.25 3.76c1.58.68 2.2.74 3 .62.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.17-.47-.29z"/></svg>
+    <span class="fab-label">Cotizar</span>
+  </a>
+  <a class="fab-call" href="tel:+523336502990" aria-label="Llamar al (33) 3650 2990">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    <span class="fab-label">Llamar</span>
+  </a>
+</div>
+
+<script>
+(function(){
+  var f=document.getElementById('cot-form');
+  if(!f)return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return (document.getElementById(id).value||'').trim();};
+    var empresa=v('f-empresa'),nombre=v('f-nombre'),unidades=v('f-unidades'),msj=v('f-mensaje');
+    if(!empresa||!nombre){
+      (empresa?document.getElementById('f-nombre'):document.getElementById('f-empresa')).focus();
+      f.reportValidity&&f.reportValidity();
+      return;
+    }
+    var t='Hola, represento a una empresa y quiero cotizar servicio mecánico.\n'+
+      'Empresa: '+empresa+'\nContacto: '+nombre+
+      (unidades?'\nNúmero de unidades: '+unidades:'')+
+      (msj?'\nMensaje: '+msj:'');
+    window.open('https://wa.me/523336502990?text='+encodeURIComponent(t),'_blank','noopener');
+  });
+})();
+</script>
+</body>
+</html>

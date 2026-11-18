@@ -74,7 +74,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
 /* Header */
 .site-header{position:sticky;top:0;z-index:40;background:rgba(26,18,12,.94);backdrop-filter:blur(6px);border-bottom:3px solid var(--brand-2)}
 .hdr{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:64px}
-.logo{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-family:var(--font-display);font-size:1.15rem;text-transform:uppercase;letter-spacing:.02em;min-height:44px}
+.logo{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-family:var(--font-display);font-size:1.15rem;text-transform:uppercase;letter-spacing:.02em;min-height:44px;white-space:nowrap}
+@media (max-width:400px){.logo{font-size:1rem}.hero{padding-top:var(--space-5)}}
 .logo .crown{width:26px;height:26px}
 .nav ul{display:flex;gap:.25rem;list-style:none;padding:0;margin:0}
 .nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 .7rem;text-decoration:none;font-weight:600;font-size:.95rem;color:var(--muted);border-radius:4px}
@@ -202,7 +203,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
    repeating-linear-gradient(135deg,#21160e 0 22px,#1d130c 22px 44px)}
 .contact-grid{display:grid;gap:var(--space-6);margin-top:var(--space-6)}
 @media (min-width:960px){.contact-grid{grid-template-columns:1fr 1fr}}
-.contact-list{list-style:none;padding:0;margin:0;display:grid;gap:var(--space-3)}
+.contact-list{list-style:none;padding:0;margin:0;display:grid;gap:var(--space-3);align-content:start}
 .contact-list a,.contact-list .row{display:flex;gap:1rem;align-items:center;min-height:64px;padding:.8rem 1rem;border:1px solid var(--border);border-radius:4px;background:var(--surface);text-decoration:none}
 .contact-list a:hover{border-color:var(--brand)}
 .contact-list svg{width:26px;height:26px;flex:none;color:var(--brand)}
