@@ -60,6 +60,7 @@ td.who{min-width:200px;max-width:280px}
 .s-hi{background:var(--agave-soft);color:var(--good)} .s-mid{background:var(--marigold-soft);color:var(--warn)} .s-lo{background:var(--line);color:var(--low)}
 .chip{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin:2px 4px 2px 0}
 .chip.noweb{border-color:var(--marigold);color:var(--warn)}
+.chip.new{border-color:var(--agave);color:var(--agave)}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
 @media (max-width:420px){.cards{grid-template-columns:1fr}}
 .card{overflow-wrap:anywhere;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -157,7 +158,7 @@ P.forEach(p => { const g = p.giro_categoria || p.giro || "otro"; (giros[g] ||= [
 const kp = [
   [DATA.revisados, "negocios revisados"], [P.length, "prospectos verificados"],
   [califican, "con 60+ puntos"], [P.filter(noWeb).length, "sin web propia encontrada"],
-  [(DATA.oportunidades?.proyectos||[]).length, "proyectos freelance (abiertos sin confirmar)"]];
+  [P.filter(p=>p.sesion===2).length, "nuevos en la sesión 2"]];
 $("#kpis").innerHTML = kp.map(([n,l]) => `<div class="kpi"><b>${esc(n)}</b><span>${esc(l)}</span></div>`).join("");
 
 // chart
@@ -181,7 +182,7 @@ function srcLinks(f){ if(!f) return ""; const o = typeof f==="object" ? f : {fue
 
 $("#top10").innerHTML = (DATA.top10||[]).map((p,i)=>`
   <article class="card">
-    <div class="head"><div><div class="rank">#${i+1} · ${esc(p.giro)}</div><h3>${esc(p.nombre)}</h3></div><span class="score ${cls(+p.puntuacion)}">${esc(p.puntuacion)}</span></div>
+    <div class="head"><div><div class="rank">#${i+1} · ${esc(p.giro)}${p.sesion===2?' · <span class="chip new">nuevo</span>':''}</div><h3>${esc(p.nombre)}</h3></div><span class="score ${cls(+p.puntuacion)}">${esc(p.puntuacion)}</span></div>
     <dl class="facts"><dt>Dirección</dt><dd>${esc(p.direccion)}</dd><dt>Teléfono</dt><dd class="mono">${esc(p.telefono)}</dd><dt>Web</dt><dd>${esc(p.tiene_web)}</dd><dt>Por qué</dt><dd>${esc(p.razon_puntuacion)}</dd></dl>
     ${p.whatsapp_msg?`<div class="eyebrow">WhatsApp</div><div class="msg" id="m${i}">${esc(p.whatsapp_msg)}</div><button class="copy" data-t="m${i}">Copiar mensaje</button>`:""}
     ${p.guion?`<div class="eyebrow">Guion de llamada (30 s)</div><div class="guion">${esc(p.guion)}</div>`:""}
@@ -206,7 +207,7 @@ function renderTable(){
   rows.sort((a,b)=>{ const x=a[sortK], y=b[sortK]; const nx=+x, ny=+y;
     return (isNaN(nx)||isNaN(ny) ? String(x).localeCompare(String(y),"es") : nx-ny) * sortD; });
   $("#tabla tbody").innerHTML = rows.map(p=>`<tr><td><span class="score ${cls(+p.puntuacion)}">${esc(p.puntuacion)}</span></td>
-    <td class="who"><b>${esc(p.nombre)}</b><div class="muted" style="font-size:12px">${esc(p.direccion)}</div></td><td>${esc(p.giro)}</td><td>${esc(p.colonia)}</td>
+    <td class="who"><b>${esc(p.nombre)}</b>${p.sesion===2?' <span class="chip new">sesión 2</span>':''}<div class="muted" style="font-size:12px">${esc(p.direccion)}</div></td><td>${esc(p.giro)}</td><td>${esc(p.colonia)}</td>
     <td class="mono" style="white-space:nowrap">${esc(p.telefono)}</td><td>${noWeb(p)?'<span class="chip noweb">sin web</span>':esc(p.tiene_web)}</td><td class="why" style="font-size:13px">${esc(p.razon_puntuacion)}</td></tr>`).join("");
   document.querySelectorAll("#tabla th").forEach(th => th.setAttribute("aria-sort", th.dataset.k===sortK ? (sortD>0?"ascending":"descending") : "none"));
 }
