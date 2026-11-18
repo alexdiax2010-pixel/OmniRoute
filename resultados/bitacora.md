@@ -149,3 +149,9 @@
 - 5 mensajes nuevos (69–76 palabras) para los que entraron al top 10. Reutilicé sin cambios los 5 de la sesión 1 que siguen dentro.
 - Los mensajes de los 5 que salieron del top 10 se conservan en raw/mensajes.json, por si quieres contactarlos también.
 - En los consultorios sin nombre comercial, el mensaje se refiere al lugar ("su consultorio en Av. Empresarios 150") y no usa el nombre de ningún doctor.
+
+## 2026-11-18 16:13 UTC — Termina el Estratega (sesión 2)
+- Se confirman los mismos 3 giros top, ahora con más evidencia: **Salud** 47 de 59 con 60+ (promedio 69.9), **Servicios** 24 de 30 (68.5) y **Automotriz** 26 de 34 (65.4). **Sorpresa:** Servicios superó a Automotriz en promedio. Los abogados de Puerta de Hierro y Jardines del Sol jalaron el promedio hacia arriba.
+- Rutas nuevas: **Ruta 4, Puerta de Hierro → Zapopan Centro**, con dos edificios médicos donde conviene pedir en recepción el directorio de consultorios, y **Ruta 5, Jardines del Sol / Ciudad del Sol / Mariano Otero**. Las rutas 1 y 3 recibieron paradas de la sesión 2.
+- Ideas nuevas: "paquete edificio médico" (descuento por 3 consultorios del mismo edificio) y llevar una maqueta impresa para los consultorios sin nombre comercial.
+- Siguiente: regenerar el CSV y el dashboard.

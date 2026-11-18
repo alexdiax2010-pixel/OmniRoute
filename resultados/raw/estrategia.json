@@ -1,17 +1,17 @@
 {
- "resumen_ejecutivo": "Encontramos 88 negocios en Zapopan y ninguno mostró una página propia en la búsqueda. Los mejores blancos son los dentistas (21 de 26 en Salud pasan de 60 puntos y pagan el paquete de $4,500), sobre todo los 6 de Las Águilas, que se visitan en una mañana. Con $2,500 el cliente cobra menos que las agencias locales ($4,000-4,750), así que hay espacio para un paquete Pro y para vender mantenimiento.",
+ "resumen_ejecutivo": "Revisamos 165 negocios en Zapopan: quedaron 157 prospectos, 103 con 60+ puntos, y casi ninguno mostró una página propia en la búsqueda (solo una web caída y uno con Facebook). Salud sigue al frente (47 de 59 con 60+, paquete de $4,500) y la sesión 2 sumó dos rutas: Puerta de Hierro, donde varios dentistas comparten edificio médico y se visitan sin mover el coche, y Ciudad del Sol / Jardines del Sol, con abogados y clínicas. Tesistán, Tabachines y Belenes casi no aparecen en directorios, así que ahí habría que prospectar en persona.",
  "giros_top": [
   {
-   "giro": "Salud (dentistas, fisioterapia)",
-   "por_que": "Es el giro con mejor puntaje: 26 prospectos, 21 con 60+ y promedio 67.6. Tiene el ticket más alto ($4,500 por landing dental) y ninguno de los 26 mostró una web propia en la búsqueda. 13 tienen teléfono con fuente y Las Águilas concentra 6 dentistas en pocas calles, ideal para visitas. Además son los que más necesitan agendamiento, un extra que se cobra aparte."
+   "giro": "Salud (dentistas, fisioterapia, veterinarias)",
+   "por_que": "Se confirma en primer lugar: 59 prospectos, 47 con 60+ y promedio 69.9 (sesión 1: 26, 21 y 67.6). Tiene el ticket más alto ($4,500 por landing dental). La sesión 2 sumó dentistas en Puerta de Hierro (3 en el top 10, varios dentro de edificios médicos) y Zapopan Centro, y clínicas en Ciudad del Sol. 36 tienen teléfono anotado."
   },
   {
    "giro": "Automotriz (hojalatería, transmisiones, talleres)",
-   "por_que": "17 prospectos, 10 con 60+ (promedio 60.9) y el que mejor contacto tiene: 15 de 17 con teléfono con fuente. Ticket de $2,500, pero los talleres abren temprano y se pueden visitar antes que los consultorios. Laminado y Pintura JV tiene una web caída, venta directa de rediseño."
+   "por_que": "Se confirma en segundo lugar por volumen: 34 prospectos, 26 con 60+ y promedio 65.4 (sesión 1: 17, 10 y 60.9). Sigue siendo el de mejor contacto (31 de 34 con teléfono anotado). Ticket de $2,500, pero los talleres abren temprano y se visitan antes que los consultorios. El Colli / Felipe Ruvalcaba sumó Baja 1000 y Ambriz."
   },
   {
    "giro": "Servicios profesionales (abogados, notaría, contadores, guarderías, cerrajería)",
-   "por_que": "15 prospectos, 9 con 60+ (promedio 62.2), 13 con teléfono con fuente y ninguno con web propia encontrada. EFD Abogados SC (81) y la Notaría Pública No. 30 (77) están en el top 10. Chapalita concentra 5 en Av. de las Rosas. Un despacho puede pagar más que un taller, así que se puede cotizar entre $2,500 y $4,500 (sugerencia). Belleza (prom. 50.1, 3 con teléfono) y Comida (prom. 44.1, 0 con 60+) quedan atrás para landing."
+   "por_que": "Se confirma en tercer lugar, muy cerca de Automotriz: 30 prospectos, 24 con 60+ y promedio 68.5, más alto que Automotriz (sesión 1: 15, 9 y 62.2). La sesión 2 encontró un grupo de abogados en Jardines del Sol (Procesum, Frías, Alio, 81 pts cada uno) y Román Abogados en Puerta de Hierro (85). Un despacho puede pagar más que un taller: cotizar entre $2,500 y $4,500 (sugerencia). Belleza (6 con 60+, prom. 53.4) y Comida (0 con 60+, prom. 46.2) siguen atrás para landing."
   }
  ],
  "rutas": [
@@ -30,7 +30,7 @@
      "orden": 2,
      "nombre": "Dental Infante",
      "direccion": "Río Cuixtle 5784, Colinas de las Águilas, 45080 Zapopan, Jal.",
-     "nota": "85 pts. 85 pts, aparece en Doctoralia. ALERTA: comparte dirección (Río Cuixtle 5784) con Easy Dental; preguntar en recepción si son el mismo negocio antes de presentar dos propuestas."
+     "nota": "85 pts. aparece en Doctoralia. ALERTA: comparte dirección (Río Cuixtle 5784) con Easy Dental; preguntar en recepción si son el mismo negocio antes de presentar dos propuestas."
     },
     {
      "orden": 3,
@@ -42,19 +42,19 @@
      "orden": 4,
      "nombre": "SPA Dental",
      "direccion": "Av. Sierra de Tapalpa (número no encontrado), Las Águilas, Zapopan",
-     "nota": "85 pts. 85 pts, odontología estética: buen candidato a landing con galería antes/después. Alerta: número exterior no encontrado sobre Av. Sierra de Tapalpa; ubicar en Maps antes."
+     "nota": "85 pts. odontología estética: buen candidato a landing con galería antes/después. Alerta: número exterior no encontrado sobre Av. Sierra de Tapalpa; ubicar en Maps antes."
     },
     {
      "orden": 5,
      "nombre": "Guardería Rehilete",
      "direccion": "Av. Sierra de Tapalpa 5821, CP 45080, Zapopan",
-     "nota": "64 pts. Sobre la misma avenida (Sierra de Tapalpa 5821). No es dentista, pero aprovecha la vuelta: landing con formulario de inscripción y WhatsApp para papás. Paquete sugerido $2,500."
+     "nota": "74 pts. Sobre la misma avenida (Sierra de Tapalpa 5821). No es dentista, pero aprovecha la vuelta: landing con formulario de inscripción y WhatsApp para papás. Paquete sugerido $2,500."
     },
     {
      "orden": 6,
      "nombre": "Armando Núñez, dentista especialista en niños",
      "direccion": "Av. Nicolás Copérnico 3730 int. 108, Las Águilas, Zapopan, CP 45080",
-     "nota": "85 pts. 85 pts, odontopediatría en edificio médico (int. 108). Ángulo: papás buscan en Google 'dentista para niños Zapopan' (SEO local). Alerta: la colonia varía entre directorios (Las Águilas o Arboledas, MediCenter)."
+     "nota": "85 pts. odontopediatría en edificio médico (int. 108). Ángulo: papás buscan en Google 'dentista para niños Zapopan' (SEO local). Alerta: la colonia varía entre directorios (Las Águilas o Arboledas, MediCenter)."
     },
     {
      "orden": 7,
@@ -85,9 +85,21 @@
      "direccion": "Av. Adolfo López Mateos 5003, Las Águilas, Zapopan, Jal., CP 45080",
      "nota": "Ronda 3 · 70 pts · tel. (33) 3632 3630. López Mateos 5003; confirmar que sea taller.",
      "orden": 11
+    },
+    {
+     "orden": 12,
+     "nombre": "Paudent Dental Center",
+     "direccion": "Av. La Calma 3279-5, CP 45070, Zapopan, Jal.",
+     "nota": "(sesión 2) 72 pts. Av. La Calma 3279-5. Paquete dentista $4,500. Teléfono deducido por dirección, no confirmado: anotar el real. Dentovi (82 pts) también está sobre Av. La Calma pero sin número exterior: ubicarlo en Maps y sumarlo si queda de paso."
+    },
+    {
+     "orden": 13,
+     "nombre": "Hangar 17",
+     "direccion": "Av. López Mateos 4327, CP 45070",
+     "nota": "(sesión 2) 79 pts. Taller sobre Av. López Mateos 4327 (CP 45070, La Calma). Mejor visitarlo temprano junto con Frenos Frescos y Okrasa. Dato de directorio: verificar en Maps."
     }
    ],
-   "nota": "Agrupada por calles: Río Cihuatlán y Río Cuixtle, luego Av. Sierra de Tapalpa y al final Av. Nicolás Copérnico. El orden es tentativo: confirmar recorrido en Maps. Llevar en el celular un ejemplo de landing dental. Paradas añadidas en la Ronda 3 al final: son opcionales y su orden de recorrido no se optimizó; acomódalas en Maps."
+   "nota": "Agrupada por calles: Río Cihuatlán y Río Cuixtle, luego Av. Sierra de Tapalpa y al final Av. Nicolás Copérnico. El orden es tentativo: confirmar recorrido en Maps. Llevar en el celular un ejemplo de landing dental. Paradas añadidas en la Ronda 3 al final: son opcionales y su orden de recorrido no se optimizó; acomódalas en Maps. Sesión 2: se agregaron Paudent (La Calma) y Hangar 17 (López Mateos) al final, también sin orden optimizado."
   },
   {
    "nombre": "Ruta 2: Chapalita sobre Av. de las Rosas",
@@ -98,37 +110,37 @@
      "orden": 1,
      "nombre": "EFD Abogados SC",
      "direccion": "Av. de las Rosas 164, CP 45040, Zapopan",
-     "nota": "81 pts. 81 pts, el más alto fuera de Salud. Ángulo: landing de despacho con áreas de práctica, formulario de consulta y WhatsApp."
+     "nota": "83 pts. el más alto fuera de Salud. Ángulo: landing de despacho con áreas de práctica, formulario de consulta y WhatsApp."
     },
     {
      "orden": 2,
      "nombre": "Kyma Life - Clínica de rehabilitación y acondicionamiento físico",
      "direccion": "Av. de las Rosas 171A, Zapopan 45040",
-     "nota": "73 pts. Misma avenida, numeración cercana (171A). Alerta: multisucursal y un listado la ubica en GDL; preguntar quién decide (puede ser la matriz). Ofrecer agendamiento de citas."
+     "nota": "75 pts. Misma avenida, numeración cercana (171A). Alerta: multisucursal y un listado la ubica en GDL; preguntar quién decide (puede ser la matriz). Ofrecer agendamiento de citas."
     },
     {
      "orden": 3,
      "nombre": "Consultorio dental Av. De las Rosas 430 (nombre comercial no encontrado)",
      "direccion": "Av. De las Rosas 430, Chapalita Oriente, Zapopan, CP 45040",
-     "nota": "71 pts. 71 pts, 2 dentistas. Alertas: falta nombre comercial y el teléfono es dudoso; anotar nombre y número reales en la visita."
+     "nota": "73 pts. 2 dentistas. Alertas: falta nombre comercial y el teléfono es dudoso; anotar nombre y número reales en la visita."
     },
     {
      "orden": 4,
      "nombre": "Cerrajería Chapalita",
      "direccion": "Av. de las Rosas 555, CP 45040, Zapopan",
-     "nota": "68 pts. 68 pts, servicio 24h. Ángulo: botón de llamada y WhatsApp visible + SEO 'cerrajero Chapalita'. Paquete básico $2,500."
+     "nota": "70 pts. servicio 24h. Ángulo: botón de llamada y WhatsApp visible + SEO 'cerrajero Chapalita'. Paquete básico $2,500."
     },
     {
      "orden": 5,
      "nombre": "Notaría Pública No. 30 de Zapopan",
      "direccion": "Calle San Juan Bosco, Chapalita, Guadalajara (número no encontrado; el directorio la ubica en GDL aunque es notaría de Zapopan)",
-     "nota": "77 pts. 77 pts. Alerta: número exterior no encontrado en San Juan Bosco y el directorio la ubica en GDL; confirmar en Maps. Ticket potencial alto, pero decide el notario: pedir cita en vez de vender en mostrador."
+     "nota": "79 pts. Alerta: número exterior no encontrado en San Juan Bosco y el directorio la ubica en GDL; confirmar en Maps. Ticket potencial alto, pero decide el notario: pedir cita en vez de vender en mostrador."
     },
     {
      "orden": 6,
      "nombre": "Despacho Padilla Villarruel y Cía",
      "direccion": "Lázaro Cárdenas 4135, CP 45040, Zapopan",
-     "nota": "62 pts. 62 pts, contadores sobre Lázaro Cárdenas (mismo CP 45040). Ángulo: landing con servicios fiscales y formulario. Puede quedar más lejos: confirmar en Maps."
+     "nota": "62 pts. contadores sobre Lázaro Cárdenas (mismo CP 45040). Ángulo: landing con servicios fiscales y formulario. Puede quedar más lejos: confirmar en Maps."
     },
     {
      "nombre": "Quioco Barber Shop",
@@ -160,34 +172,152 @@
      "orden": 1,
      "nombre": "Transmisiones Automáticas Euroalemanas de Zapopan",
      "direccion": "Calle Felipe Ruvalcaba 5358, C.P. 45070 (directorio lo etiqueta como Guadalajara; CP corresponde a Zapopan)",
-     "nota": "72 pts. 72 pts, nicho europeo. Paquete taller $2,500 con WhatsApp y 'cotiza tu servicio'. Alerta: directorio la etiqueta como Guadalajara (CP 45070 es Zapopan)."
+     "nota": "76 pts. nicho europeo. Paquete taller $2,500 con WhatsApp y 'cotiza tu servicio'. Alerta: directorio la etiqueta como Guadalajara (CP 45070 es Zapopan)."
     },
     {
      "orden": 2,
      "nombre": "Cerrajerías JR",
      "direccion": "Calle Felipe Ruvalcaba 5710-A, CP 45079, Zapopan",
-     "nota": "57 pts. 57 pts, sobre la misma calle (Felipe Ruvalcaba 5710-A). Parada rápida de paso."
+     "nota": "67 pts. sobre la misma calle (Felipe Ruvalcaba 5710-A). Parada rápida de paso."
     },
     {
      "orden": 3,
      "nombre": "Laminado y Pintura JV",
      "direccion": "C. Felipe Ruvalcaba 5966, C.P. 45070, Zapopan, Jal.",
-     "nota": "65 pts. 65 pts. Ángulo fuerte: el directorio cita laminadojv.com pero no carga; ofrecer rehacer o recuperar su web + mantenimiento mensual."
+     "nota": "69 pts. Ángulo fuerte: el directorio cita laminadojv.com pero no carga; ofrecer rehacer o recuperar su web + mantenimiento mensual."
     },
     {
      "orden": 4,
      "nombre": "MR11 Garage",
      "direccion": "Calle Volcán Cofre de Perote 5309A, C.P. 45070, Zapopan, Jal.",
-     "nota": "60 pts. 60 pts, misma colonia que JV (Colli Urbano). Sin teléfono: conseguir número y WhatsApp en la visita."
+     "nota": "64 pts. misma colonia que JV (Colli Urbano). Sin teléfono: conseguir número y WhatsApp en la visita."
     },
     {
      "orden": 5,
      "nombre": "Recupera-T Fisioterapia - Rehabilitación",
      "direccion": "Av. Adolfo López Mateos 5880, Local 8, Zapopan 45070",
-     "nota": "64 pts. 64 pts, mismo CP 45070 sobre Av. López Mateos. Cerrar aquí la mañana (~10-11am, cuando ya abrió). Ofrecer landing + agendamiento."
+     "nota": "64 pts. mismo CP 45070 sobre Av. López Mateos. Cerrar aquí la mañana (~10-11am, cuando ya abrió). Ofrecer landing + agendamiento."
+    },
+    {
+     "orden": 6,
+     "nombre": "Afinaciones y Servicios Baja 1000",
+     "direccion": "Calle Felipe Rubalcava 5958, El Colli Urbano 1a Secc., Zapopan, Jal., CP 45070",
+     "nota": "(sesión 2) 72 pts. Calle Felipe Rubalcava 5958, a unos números de Laminado y Pintura JV (5966): conviene visitarlo junto a la parada 3. Paquete taller $2,500."
+    },
+    {
+     "orden": 7,
+     "nombre": "Ambriz Laminado y Pintura",
+     "direccion": "Av. Manuel J. Clouthier 2448, CP 45070",
+     "nota": "(sesión 2) 74 pts. Av. Manuel J. Clouthier 2448 (El Colli Urbano). Alerta: datos contradictorios entre agentes (otra dirección y teléfono en GDL); verificar en Maps antes."
+    },
+    {
+     "orden": 8,
+     "nombre": "SD Contadores y Auditores",
+     "direccion": "C. Pierre Simon Laplace 5536, CP 45070",
+     "nota": "(sesión 2) 66 pts. C. Pierre Simon Laplace 5536 (El Colli 2a Sección). Despacho: paquete sugerido $3,500. Verificar en Maps."
     }
    ],
-   "nota": "Las 3 primeras van sobre C. Felipe Ruvalcaba en orden de numeración (5358, 5710-A, 5966). Extensión opcional en Miramar (CP 45060): Laminado y Pintura Profesional Gómez y Autolavado Las Torres; no se sabe qué tan cerca quedan. Ruta alterna automotriz: Constitución (Hojalatería \"El Tin\" 75 pts, El salón de la fama Barbershop y Scire en Av. Venustiano Carranza). Confirmar recorrido en Maps."
+   "nota": "Las 3 primeras van sobre C. Felipe Ruvalcaba en orden de numeración (5358, 5710-A, 5966). Extensión opcional en Miramar (CP 45060): Laminado y Pintura Profesional Gómez y Autolavado Las Torres; no se sabe qué tan cerca quedan. Ruta alterna automotriz: Constitución (Hojalatería \"El Tin\" 75 pts, El salón de la fama Barbershop y Scire en Av. Venustiano Carranza). Confirmar recorrido en Maps. Sesión 2: Baja 1000 (Felipe Rubalcava 5958) va junto a JV; Ambriz y SD Contadores al final, sin orden optimizado."
+  },
+  {
+   "nombre": "Ruta 4: Puerta de Hierro → Zapopan Centro (dentistas y abogados)",
+   "zona": "Puerta de Hierro (CP 45116) y Zapopan Centro (CP 45100)",
+   "hora_inicio": "10:00 (consultorios y despachos abren ~10am)",
+   "paradas": [
+    {
+     "orden": 1,
+     "nombre": "Consultorio de ortodoncia, Condominio Médico Puerta de Hierro (nombre comercial no encontrado)",
+     "direccion": "Blvd. Puerta de Hierro 5150, 5-A, Condominio Médico Puerta de Hierro, CP 45116, Zapopan, Jal.",
+     "nota": "88 pts. Blvd. Puerta de Hierro 5150, consultorio 5-A. EDIFICIO MÉDICO: pedir en recepción el directorio de consultorios y anotar cuáles dentistas/especialistas hay. Alerta: número de fuente única (AAO), confirmar."
+    },
+    {
+     "orden": 2,
+     "nombre": "Consultorio dental Av. Empresarios 150 No. 12 (nombre comercial no encontrado)",
+     "direccion": "Av. Empresarios 150 No. 12, CP 45116, Zapopan, Jal. (Centro Médico Puerta de Hierro)",
+     "nota": "88 pts. Centro Médico Puerta de Hierro, Av. Empresarios 150. EDIFICIO MÉDICO: pedir el directorio en recepción. En el mismo número están Leend Dental (Torre Elite, piso 12, consultorio 1206, 68 pts, sin teléfono) y Ortoklinic (piso 16, int. 1605, 73 pts): visitarlos en la misma parada. Sin nombre comercial: presentarse como 'consultorio dental en Av. Empresarios 150'."
+    },
+    {
+     "orden": 3,
+     "nombre": "AM Smile Care Center",
+     "direccion": "Av. Real Acueducto 160 Loc. 4, CP 45116, Zapopan, Jal.",
+     "nota": "88 pts. Av. Real Acueducto 160 Loc. 4. Dentista de urgencias en zona premium. Alerta: fuente única (Sección Amarilla), confirmar que siga operando."
+    },
+    {
+     "orden": 4,
+     "nombre": "Román Abogados Litigantes Rincón Mayorga",
+     "direccion": "Paseo Royal Country 4650, Puerta de Hierro, Zapopan, Jal., CP 45116",
+     "nota": "85 pts. Paseo Royal Country 4650. Despacho: landing con áreas de práctica y formulario de consulta (paquete sugerido $3,500). Verificar que siga activo."
+    },
+    {
+     "orden": 5,
+     "nombre": "Despacho Jurídico Abogados",
+     "direccion": "Av. Ignacio L. Vallarta 123, Centro, Zapopan, Jal., CP 45100",
+     "nota": "80 pts. Av. Ignacio L. Vallarta 123, Centro. Nombre genérico: una landing con marca le ayuda a aparecer en Google. Confirmar el nombre comercial real; horarios contradictorios entre fichas."
+    },
+    {
+     "orden": 6,
+     "nombre": "Consultorio dental Benito Juárez 151 (nombre comercial no encontrado)",
+     "direccion": "Benito Juárez 151, CP 45100, Zapopan, Jal.",
+     "nota": "82 pts. Benito Juárez 151, Centro. Sin nombre comercial y puede ser dato viejo: confirmar en la visita."
+    },
+    {
+     "orden": 7,
+     "nombre": "Consultorio dental 20 de Noviembre 188 (nombre comercial no encontrado)",
+     "direccion": "20 de Noviembre 188, CP 45100, Zapopan, Jal.",
+     "nota": "82 pts. 20 de Noviembre 188, Centro. Sin nombre comercial y puede ser dato viejo: confirmar en la visita."
+    }
+   ],
+   "nota": "Primero los edificios médicos de Puerta de Hierro (Blvd. Puerta de Hierro 5150 y Av. Empresarios 150), luego Real Acueducto y Paseo Royal Country; después Zapopan Centro (Vallarta 123, Benito Juárez 151, 20 de Noviembre 188). En cada edificio médico, pedir en recepción el directorio de consultorios: ahí puede haber más dentistas que no aparecen en directorios en línea. Extras en Centro: Auto Climas de Zapopan (Calle Industria 170, 73 pts) y Centro de Vínculo Psicológico (Calle Juan Manuel 77, 74 pts, sin teléfono). El orden es tentativo: confirmar recorrido en Maps."
+  },
+  {
+   "nombre": "Ruta 5: Ciudad del Sol / Jardines del Sol / Mariano Otero",
+   "zona": "Ciudad del Sol / Jardines del Sol (CP 45050) y Av. Mariano Otero (CP 45070)",
+   "hora_inicio": "10:00 (despachos y clínicas abren ~10am)",
+   "paradas": [
+    {
+     "orden": 1,
+     "nombre": "Alio Abogados",
+     "direccion": "Calle Cuitláhuac 215, Jardines del Sol, Zapopan, Jal., CP 45050",
+     "nota": "81 pts. Calle Cuitláhuac 215, Jardines del Sol. Despacho: paquete sugerido $3,500. Verificar que siga activo."
+    },
+    {
+     "orden": 2,
+     "nombre": "SKiNHOME",
+     "direccion": "C. Cuitláhuac 237, int. 4, Cd. del Sol, Zapopan, Jal.",
+     "nota": "64 pts. C. Cuitláhuac 237 int. 4, misma calle que Alio. Alerta: no confirmado si es clínica médica o cosmetología; dos teléfonos distintos en fichas."
+    },
+    {
+     "orden": 3,
+     "nombre": "Procesum García Godínez Abogados",
+     "direccion": "Calle Xóchitl 231, Jardines del Sol, Zapopan, Jal., CP 45050",
+     "nota": "81 pts. Calle Xóchitl 231, Jardines del Sol. Despacho de abogados: landing con formulario de consulta. Dato de directorio: verificar en Maps."
+    },
+    {
+     "orden": 4,
+     "nombre": "CRNQ Clínica de Rodilla No Quirúrgica / Vita Fisioterapia",
+     "direccion": "Av. Tizoc 595-B, Cd. del Sol, 45050 Zapopan, Jal.",
+     "nota": "77 pts. Av. Tizoc 595-B, Ciudad del Sol. En el mismo domicilio está Spine Center (70 pts): preguntar si comparten dueño y ofrecer una sola propuesta o dos landings. Ofrecer agendamiento de citas."
+    },
+    {
+     "orden": 5,
+     "nombre": "Frías Abogados",
+     "direccion": "Cubilete 2953, Jardines del Sol, Zapopan, Jal., CP 45050",
+     "nota": "81 pts. Cubilete 2953, Jardines del Sol. Verificar que siga activo."
+    },
+    {
+     "orden": 6,
+     "nombre": "Especialidades Veterinarias de Guadalajara",
+     "direccion": "Av. Patria 1150, local 10F, Ciudad del Sol, 45050 Zapopan, Jal.",
+     "nota": "79 pts. Av. Patria 1150, local 10F, Ciudad del Sol. Landing con servicios y WhatsApp para urgencias. Verificar que siga en el local 10F."
+    },
+    {
+     "orden": 7,
+     "nombre": "Auto Express Centauro SA de CV",
+     "direccion": "Av. Mariano Otero 3660, CP 45070",
+     "nota": "73 pts. Av. Mariano Otero 3660. Taller: paquete $2,500. Es SA de CV: confirmar que no sea cadena."
+    }
+   ],
+   "nota": "Agrupada por calles: Cuitláhuac (215, 237) y Xóchitl en Jardines del Sol, luego Av. Tizoc y Cubilete, Av. Patria y al final Av. Mariano Otero 3660. Extras en la zona: Denticelis (Av. Cuauhtémoc 1192, 78 pts, teléfono incompleto), Corporativo RIVSA (Iztaccíhuatl 2058, 76), Mi Solecito (Moctezuma 449, 76), Dental Estetic (Mariano Otero 4297, 62, fuente no confirmada). El orden es tentativo: confirmar recorrido en Maps."
   }
  ],
  "ideas_venta": [
@@ -210,6 +340,14 @@
   {
    "titulo": "Alta y optimización de Google Business Profile",
    "detalle": "Casi todos los prospectos aparecen solo en directorios (Sección Amarilla, Doctoralia, Fresha) y en muchos los datos no coinciden (dos direcciones, teléfonos distintos: Alcaraz Leal Abogados, Azteca Abogados, Mexa Cuts). Servicio extra: dejar su ficha de Google con dirección, horario y teléfono correctos y ligada a la landing. Sugerencia: $800-1,200 una vez."
+  },
+  {
+   "titulo": "Paquete edificio médico",
+   "detalle": "En Puerta de Hierro hay varios consultorios en el mismo edificio (Av. Empresarios 150: Centro Médico y Torre Elite; Blvd. Puerta de Hierro 5150: Condominio Médico). Sugerencia: descuento si contratan 3 consultorios del mismo edificio (por ejemplo, 10-15% sobre $4,500 cada uno) y un mes de mantenimiento gratis por cada colega del edificio que refiera. Una sola visita sirve para varios cierres; pedir en recepción el directorio de consultorios."
+  },
+  {
+   "titulo": "Llegar con una maqueta hecha para consultorios sin nombre comercial",
+   "detalle": "3 de los dentistas nuevos del top 10 solo aparecen con su dirección (Av. Empresarios 150 No. 12, el consultorio de ortodoncia de Blvd. Puerta de Hierro 5150 y 20 de Noviembre 188; Benito Juárez 151, con 82 pts, queda justo fuera). No aparecer con nombre en Google es justo el problema que resuelve la landing. Sugerencia: llevar en el celular una maqueta genérica 'Consultorio dental en <dirección>' y completarla con el nombre real durante la visita."
   }
  ],
  "productos_nuevos": [
