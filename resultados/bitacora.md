@@ -60,3 +60,8 @@
 ## 16:05 UTC — Verificación propia del caso Río Cuixtle 5784
 - Busqué yo mismo la dirección. **Dental Infante sí queda respaldado:** su perfil de Doctoralia (https://www.doctoralia.com.mx/perfil/miriam-infante-taracena) lo ubica en Río Cuixtle 5784, Colinas de las Águilas, con 2 consultorios, primera visita desde $600, profilaxis $1,000 y acepta Seguros Monterrey. Esos datos sirven para personalizar el mensaje.
 - **Easy Dental Láser no se pudo corroborar:** una búsqueda directa no devolvió ninguna ficha con ese nombre. Mantengo la alerta. Si visitas Dental Infante, pregunta ahí mismo si "Easy Dental Láser" es su segunda marca; si lo es, cuentan como un solo prospecto.
+
+## 16:08 UTC — Termina el Redactor
+- 10 WhatsApp (67–74 palabras, contadas con código) y 10 guiones de 30 s. Usa "usted" en salud y legal, y "tú" en la hojalatería. Ninguno menciona precio y todos ofrecen un boceto sin costo.
+- Revisé dos al azar (Denti Mundo, Dental Infante): cada uno cita un dato que sí está en las fuentes (calle o perfil de Doctoralia) y dice "no encontré una página propia", no "no tienen web". Correcto.
+- Mejora posible para la siguiente sesión: los mensajes son algo genéricos porque los datos públicos son escasos. Cuando confirmes en Maps, mete una reseña real o un servicio concreto (ej. "vi que atienden con Seguros Monterrey").
