@@ -245,8 +245,8 @@ html[data-cine] .cine-intro.sweep .cine-sweep{animation-duration:.7s}
 /* destello de descarga en toda la pantalla, mientras pasa el arco */
 html[data-cine] .cine-intro::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;mix-blend-mode:screen;
   background:radial-gradient(60% 45% at 50% 50%,rgba(255,214,40,.55),rgba(255,176,0,.12) 55%,transparent 75%)}
-html[data-cine] .cine-intro.sweep::after{animation:pena-chispa .7s steps(1) forwards}
-@keyframes pena-chispa{0%{opacity:0}12%{opacity:.9}20%{opacity:.15}30%{opacity:.6}42%{opacity:0}58%{opacity:.35}70%,100%{opacity:0}}
+html[data-cine] .cine-intro.sweep::after{animation:pena-chispa .7s ease-out forwards}
+@keyframes pena-chispa{0%{opacity:0}22%{opacity:.75}100%{opacity:0}} /* un solo pulso: sin destellos repetidos (accesibilidad) */
 /* la línea bajo el nombre es una pista con corriente */
 html[data-cine] .cine-rule{height:2px;background:linear-gradient(90deg,transparent,#ffd21f 20%,#fffbe6 50%,#ffd21f 80%,transparent);box-shadow:0 0 12px rgba(255,210,31,.8)}
 html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{border-color:rgba(255,210,31,.55)}

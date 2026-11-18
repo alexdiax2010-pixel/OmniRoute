@@ -225,7 +225,7 @@ html[data-cine] .cine-frame::after{top:100%}
 html[data-cine] .cine-vignette{background:radial-gradient(ellipse at center,transparent 38%,rgba(0,0,0,.82) 100%)}
 html[data-cine] .cine-vignette::before{content:"";position:absolute;inset:0;mix-blend-mode:screen;opacity:0;
   background:radial-gradient(ellipse 55% 38% at 50% 50%,rgba(201,164,92,.16),transparent 70%)}
-html[data-cine] .cine-intro.name .cine-vignette::before{animation:dbb-proyector 1.3s steps(1) .1s both}
+html[data-cine] .cine-intro.name .cine-vignette::before{animation:dbb-proyector 1.3s linear .1s both}
 @keyframes dbb-proyector{0%{opacity:0}10%{opacity:.7}16%{opacity:.35}24%{opacity:1}40%{opacity:.8}46%{opacity:1}100%{opacity:1}}
 html[data-cine] .cine-intro.open .cine-vignette{opacity:0;transition:opacity .5s ease}
 /* bordes dorados del telón al abrirse */
