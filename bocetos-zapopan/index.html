@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Portafolio de bocetos — Negocios de Zapopan</title>
+<meta name="description" content="Portafolio interno de bocetos de landing page para negocios locales de Zapopan, Jalisco.">
+<link rel="stylesheet" href="shared/base.css">
+<style>
+  :root{--bg:#f6f5f2;--surface:#fff;--ink:#17181c;--muted:#5d6068;--border:#e4e2dc;--brand:#17181c;--maxw:1200px}
+  header.top{padding:var(--space-7) 0 var(--space-5)}
+  header.top h1{font-size:var(--step-3);letter-spacing:-.02em}
+  header.top p{color:var(--muted);max-width:60ch;margin-top:var(--space-3)}
+  .stats{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:var(--space-4)}
+  .stats span{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.3rem .8rem;font-size:var(--step--1);font-weight:600}
+  section.giro{padding-block:var(--space-6)}
+  section.giro h2{font-size:var(--step-2);display:flex;align-items:center;gap:.6rem}
+  section.giro h2 .dot{width:14px;height:14px;border-radius:50%;flex:none}
+  section.giro>.container>p{color:var(--muted);margin:.4rem 0 var(--space-5)}
+  .cards{display:grid;gap:var(--space-5);grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.08)}
+  .thumb{aspect-ratio:375/520;background:linear-gradient(135deg,var(--c1),var(--c2));overflow:hidden;position:relative}
+  .thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .thumb .fallback{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.3rem;text-align:center;padding:1rem}
+  .thumb img+.fallback{display:none}
+  .body{padding:var(--space-4);display:flex;flex-direction:column;gap:.35rem;flex:1}
+  .body h3{font-size:var(--step-1)}
+  .body .addr{color:var(--muted);font-size:var(--step--1)}
+  .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:auto;padding-top:.6rem}
+  .tag{font-size:12px;font-weight:600;border-radius:999px;padding:.15rem .6rem;background:var(--bg);border:1px solid var(--border)}
+  .tag.warn{background:#fff4c2;border-color:#e0c25a;color:#5c4400}
+  .tag.star{background:#17181c;color:#fff;border-color:#17181c}
+  footer{padding:var(--space-7) 0;color:var(--muted);font-size:var(--step--1)}
+</style>
+</head>
+<body>
+<div class="franja-boceto" role="note">Portafolio interno — bocetos no oficiales</div>
+<header class="top">
+  <div class="container">
+    <p class="eyebrow">Portafolio interno</p>
+    <h1>Bocetos de landing page · Zapopan</h1>
+    <p>Propuestas de diseño para 13 negocios locales. Toca una tarjeta para abrir el boceto. Todas las páginas llevan franja de “boceto no oficial”, <code>noindex</code> y marcadores amarillos donde falta información del negocio.</p>
+    <div class="stats"><span>4 dentistas</span><span>7 talleres</span><span>2 barberías</span></div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="giro" aria-labelledby="g-dent">
+    <div class="container">
+      <h2 id="g-dent"><span class="dot" style="background:#3b82c4" aria-hidden="true"></span>Dentistas</h2>
+      <p>Limpio, confiable y médico.</p>
+      <div class="cards">
+        <a class="card" href="dentistas/dental-prados/index.html" style="--c1:#1d3557;--c2:#6fa8a0">
+          <div class="thumb"><img src="capturas/dental-prados.png" alt="Vista móvil del boceto de Dental Prados" loading="lazy" onerror="this.remove()"><span class="fallback">Dental Prados</span></div>
+          <div class="body"><h3>Dental Prados</h3><p class="addr">Av. Manuel J. Clouthier 133, Prados Vallarta</p>
+          <div class="tags"><span class="tag star">Prospecto premium</span><span class="tag">Ortodoncia · Invisalign</span><span class="tag warn">Sin teléfono</span></div></div>
+        </a>
+        <a class="card" href="dentistas/dr-llamas/index.html" style="--c1:#2b7bd6;--c2:#8ccaf2">
+          <div class="thumb"><img src="capturas/dr-llamas.png" alt="Vista móvil del boceto de Dr. Llamas Dental Office" loading="lazy" onerror="this.remove()"><span class="fallback">Dr. Llamas</span></div>
+          <div class="body"><h3>Dr. Llamas Dental Office</h3><p class="addr">Av. Patria 1150, local J-10, Plaza Tepeyac</p>
+          <div class="tags"><span class="tag">Seguros Monterrey</span><span class="tag warn">Sin teléfono</span></div></div>
+        </a>
+        <a class="card" href="dentistas/cirugia-oral-bejar/index.html" style="--c1:#2f5d57;--c2:#9fd8c8">
+          <div class="thumb"><img src="capturas/cirugia-oral-bejar.png" alt="Vista móvil del boceto de Cirugía Oral Béjar" loading="lazy" onerror="this.remove()"><span class="fallback">Cirugía Oral Béjar</span></div>
+          <div class="body"><h3>Cirugía Oral Béjar</h3><p class="addr">Av. Beethoven 5229-7, La Estancia</p>
+          <div class="tags"><span class="tag">Cirugía oral</span><span class="tag warn">Sin teléfono</span></div></div>
+        </a>
+        <a class="card" href="dentistas/dr-mendivil/index.html" style="--c1:#21545e;--c2:#cfe7df">
+          <div class="thumb"><img src="capturas/dr-mendivil.png" alt="Vista móvil del boceto de Clínica Dental del Dr. Mendivil" loading="lazy" onerror="this.remove()"><span class="fallback">Dr. Mendivil</span></div>
+          <div class="body"><h3>Clínica Dental del Dr. Mendivil</h3><p class="addr">Av. Miguel Ángel 21</p>
+          <div class="tags"><span class="tag">Carillas Lumineers</span><span class="tag warn">Sin teléfono</span></div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="giro" aria-labelledby="g-tall">
+    <div class="container">
+      <h2 id="g-tall"><span class="dot" style="background:#e8590c" aria-hidden="true"></span>Talleres mecánicos</h2>
+      <p>Fuerte, industrial y con “Cotiza por WhatsApp”.</p>
+      <div class="cards">
+        <a class="card" href="talleres/frenos-frescos/index.html" style="--c1:#111;--c2:#d62828">
+          <div class="thumb"><img src="capturas/frenos-frescos.png" alt="Vista móvil del boceto de Taller Mecánico Frenos Frescos" loading="lazy" onerror="this.remove()"><span class="fallback">Frenos Frescos</span></div>
+          <div class="body"><h3>Frenos Frescos</h3><p class="addr">Av. López Mateos Sur 5597, Las Águilas</p>
+          <div class="tags"><span class="tag">Frenos</span><span class="tag">(33) 3855 8371</span></div></div>
+        </a>
+        <a class="card" href="talleres/precision-mecanica/index.html" style="--c1:#2a2d33;--c2:#f2c200">
+          <div class="thumb"><img src="capturas/precision-mecanica.png" alt="Vista móvil del boceto de Precisión Mecánica" loading="lazy" onerror="this.remove()"><span class="fallback">Precisión Mecánica</span></div>
+          <div class="body"><h3>Precisión Mecánica</h3><p class="addr">Av. Patria 347, Jardines de la Patria</p>
+          <div class="tags"><span class="tag">Mecánica general</span><span class="tag">(33) 3673 0074</span></div></div>
+        </a>
+        <a class="card" href="talleres/mecanica-pena/index.html" style="--c1:#0b1426;--c2:#ffcc00">
+          <div class="thumb"><img src="capturas/mecanica-pena.png" alt="Vista móvil del boceto de Mecánica Automotriz Peña" loading="lazy" onerror="this.remove()"><span class="fallback">Mecánica Peña</span></div>
+          <div class="body"><h3>Mecánica Automotriz Peña</h3><p class="addr">Puerto Manzanillo 21, Miramar</p>
+          <div class="tags"><span class="tag">Diagnóstico eléctrico</span><span class="tag">(33) 1197 7182</span></div></div>
+        </a>
+        <a class="card" href="talleres/mecanica-alta-calidad/index.html" style="--c1:#0d0d0d;--c2:#ff6b00">
+          <div class="thumb"><img src="capturas/mecanica-alta-calidad.png" alt="Vista móvil del boceto de Mecánica de Alta Calidad" loading="lazy" onerror="this.remove()"><span class="fallback">Alta Calidad</span></div>
+          <div class="body"><h3>Mecánica de Alta Calidad</h3><p class="addr">Quebrada 3913, Miramar</p>
+          <div class="tags"><span class="tag">Calidad y confianza</span><span class="tag">(33) 3631 5041</span></div></div>
+        </a>
+        <a class="card" href="talleres/industrial-macias/index.html" style="--c1:#33383f;--c2:#f26b1d">
+          <div class="thumb"><img src="capturas/industrial-macias.png" alt="Vista móvil del boceto de Taller Mecánico Industrial Macías" loading="lazy" onerror="this.remove()"><span class="fallback">Industrial Macías</span></div>
+          <div class="body"><h3>Industrial Macías</h3><p class="addr">Calz. Olímpica 761, Jardines Universidad</p>
+          <div class="tags"><span class="tag">B2B · Empresas</span><span class="tag">(33) 3650 2990</span></div></div>
+        </a>
+        <a class="card" href="talleres/diesel-mecanica/index.html" style="--c1:#111;--c2:#f5b700">
+          <div class="thumb"><img src="capturas/diesel-mecanica.png" alt="Vista móvil del boceto de Diesel Mecánica" loading="lazy" onerror="this.remove()"><span class="fallback">Diesel Mecánica</span></div>
+          <div class="body"><h3>Diesel Mecánica</h3><p class="addr">Calle San José 2276, Los Cajetes</p>
+          <div class="tags"><span class="tag">Diésel</span><span class="tag warn">Tel. por confirmar</span></div></div>
+        </a>
+        <a class="card" href="talleres/taller-coronado/index.html" style="--c1:#1e1712;--c2:#c8642c">
+          <div class="thumb"><img src="capturas/taller-coronado.png" alt="Vista móvil del boceto de Taller Coronado" loading="lazy" onerror="this.remove()"><span class="fallback">Taller Coronado</span></div>
+          <div class="body"><h3>Taller Coronado</h3><p class="addr">Av. Patria 1571, Mirador del Sol</p>
+          <div class="tags"><span class="tag">Mecánica general</span><span class="tag">(33) 3628 8465</span></div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="giro" aria-labelledby="g-barb">
+    <div class="container">
+      <h2 id="g-barb"><span class="dot" style="background:#b8913a" aria-hidden="true"></span>Barberías</h2>
+      <p>Con estilo y personalidad.</p>
+      <div class="cards">
+        <a class="card" href="barberias/olga-carrillo/index.html" style="--c1:#2a2420;--c2:#e9dcc3">
+          <div class="thumb"><img src="capturas/olga-carrillo.png" alt="Vista móvil del boceto de Olga Carrillo Estética Barbería" loading="lazy" onerror="this.remove()"><span class="fallback">Olga Carrillo</span></div>
+          <div class="body"><h3>Olga Carrillo Estética Barbería</h3><p class="addr">5 de Marzo #108A, Ejido Copalita</p>
+          <div class="tags"><span class="tag">Corte · Barba · Estética</span><span class="tag">WhatsApp</span></div></div>
+        </a>
+        <a class="card" href="barberias/donbarbas/index.html" style="--c1:#000;--c2:#b8913a">
+          <div class="thumb"><img src="capturas/donbarbas.png" alt="Vista móvil del boceto de DONBARBAS Barbería &amp; Spa" loading="lazy" onerror="this.remove()"><span class="fallback">DONBARBAS</span></div>
+          <div class="body"><h3>DONBARBAS Barbería &amp; Spa</h3><p class="addr">Zapopan · dirección por confirmar</p>
+          <div class="tags"><span class="tag">Agenda en línea</span><span class="tag warn">Sin teléfono ni dirección</span></div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="container">Uso interno. Los bocetos usan solo los datos proporcionados; lo marcado en amarillo debe confirmarse con cada negocio antes de publicar.</div></footer>
+</body>
+</html>
