@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" data-cine="potente" data-cine-nombre="Diesel Mecánica" data-cine-lema="Taller diésel · Zapopan">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../../shared/cinema.css">
+<script>(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('cine-visto:'+location.pathname))return;d.classList.add('cine-on');window.__cineT=setTimeout(function(){d.classList.remove('cine-on')},4000)}catch(e){}})();</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -214,6 +216,43 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
 /* Marcadores sobre fondo oscuro */
 .marcador-bloque{border-radius:0}
 .fab-call{background:var(--brand);color:#000;border-color:#000}
+/* ---------- Entrada cinematográfica: arranque diésel ---------- */
+html[data-cine]{--cine-bg:#0b0b0c;--cine-ink:#f3f1ea;--cine-accent:#ffc20e;--cine-font:var(--font-display);--cine-weight:900;--cine-case:uppercase}
+html[data-cine] .cine-title{font-size:clamp(2.7rem,13vw,8rem);line-height:.92;letter-spacing:.3em}
+html[data-cine] .cine-intro.name .cine-title{letter-spacing:.03em}
+html[data-cine] .cine-title small{font-family:var(--font-body);font-weight:700;color:var(--brand);opacity:.95;font-size:max(.17em,12px);letter-spacing:.38em;margin-top:1.3em}
+/* barras letterbox con franja de advertencia en el borde interior */
+html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{border:0;background:#000}
+html[data-cine] .cine-bars::before{background:repeating-linear-gradient(-45deg,var(--brand) 0 12px,#0b0b0b 12px 24px) bottom/100% 9px no-repeat,#000}
+html[data-cine] .cine-bars::after{background:repeating-linear-gradient(-45deg,var(--brand) 0 12px,#0b0b0b 12px 24px) top/100% 9px no-repeat,#000}
+/* el motor arranca: tirones fuertes del marcha y luego ralentí que se asienta */
+html[data-cine] .cine-intro.name.shake .cine-title{animation:diesel-arranque 1s linear .28s 1}
+html[data-cine] .cine-intro.name.shake .cine-bars{animation:diesel-retumbe 1s linear .28s 1}
+@keyframes diesel-arranque{
+  0%,100%{transform:translate(0,0)}
+  6%{transform:translate(-11px,4px) rotate(-.6deg)}12%{transform:translate(10px,-5px) rotate(.5deg)}
+  18%{transform:translate(-9px,3px)}24%{transform:translate(8px,-4px) rotate(-.4deg)}
+  30%{transform:translate(-6px,3px)}38%{transform:translate(5px,-2px)}
+  46%{transform:translate(-4px,2px)}54%{transform:translate(3px,-1px)}
+  62%{transform:translate(-2px,1px)}70%{transform:translate(2px,0)}
+  78%{transform:translate(-1px,1px)}86%{transform:translate(1px,0)}93%{transform:translate(-1px,0)}}
+@keyframes diesel-retumbe{
+  0%,100%{transform:translate(0,0)}8%{transform:translate(0,4px)}16%{transform:translate(0,-3px)}
+  24%{transform:translate(0,3px)}34%{transform:translate(0,-2px)}46%{transform:translate(0,1px)}60%{transform:translate(0,-1px)}76%{transform:translate(0,1px)}}
+/* barrido ámbar: par de faros de camión que cruzan la pantalla */
+html[data-cine] .cine-sweep{width:70vw;height:72vh;
+  background:
+    radial-gradient(ellipse 22% 16% at 58% 38%,rgba(255,246,200,.95),rgba(255,194,14,.35) 45%,transparent 75%),
+    radial-gradient(ellipse 22% 16% at 58% 64%,rgba(255,246,200,.95),rgba(255,194,14,.35) 45%,transparent 75%),
+    linear-gradient(100deg,transparent 18%,rgba(255,159,26,.18) 36%,rgba(255,194,14,.5) 52%,rgba(255,159,26,.22) 62%,transparent 78%)}
+/* línea bajo el nombre: franja de advertencia */
+html[data-cine] .cine-rule{height:10px;width:min(360px,62vw);top:calc(50% + clamp(3.4rem,11vw,6.8rem));
+  background:repeating-linear-gradient(-45deg,var(--brand) 0 10px,#0b0b0b 10px 20px);outline:2px solid var(--brand)}
+html[data-cine] .cine-grain{opacity:.09}
+/* Ken Burns del camión: se acerca desde los faros */
+html[data-cine] .truck[data-cine-kenburns]{transform-origin:88% 62%}
+/* conservar el hover de las tarjetas de servicio junto con la entrada escalonada */
+html.cine-js .svc-grid>.svc{transition:opacity .7s var(--cine-ease),translate .8s var(--cine-ease),transform .15s ease,border-color .15s ease;transition-delay:calc(var(--cine-i,0) * 90ms),calc(var(--cine-i,0) * 90ms),0s,0s}
 </style>
 </head>
 <body>
@@ -242,13 +281,13 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
 </header>
 
 <main id="main">
-  <section class="hero" id="inicio" aria-labelledby="hero-title">
+  <section class="hero" data-cine-hero id="inicio" aria-labelledby="hero-title">
     <div class="container">
       <div>
         <p class="hero-tag">Taller diésel · Los Cajetes, Zapopan</p>
-        <h1 id="hero-title"><span class="outline">Diésel</span><span>es lo</span><span class="y">nuestro</span></h1>
-        <p class="hero-lead"><strong>Diesel Mecánica</strong> es un taller especializado en motores diésel de <strong>camionetas y camiones</strong>. Cuéntanos qué le pasa a tu unidad y te cotizamos.</p>
-        <div class="hero-ctas">
+        <h1 id="hero-title" data-cine="title"><span class="outline">Diésel</span><span>es lo</span><span class="y">nuestro</span></h1>
+        <p class="hero-lead" data-cine="subtitle"><strong>Diesel Mecánica</strong> es un taller especializado en motores diésel de <strong>camionetas y camiones</strong>. Cuéntanos qué le pasa a tu unidad y te cotizamos.</p>
+        <div class="hero-ctas" data-cine="actions">
           <a class="btn btn-primary" href="https://wa.me/523311882444?text=Hola%20Diesel%20Mec%C3%A1nica%2C%20quiero%20cotizar%20un%20servicio%20para%20mi%20veh%C3%ADculo%20di%C3%A9sel." target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3Z"/></svg>
             Cotiza por WhatsApp
@@ -264,7 +303,7 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
       <div class="hero-art" aria-hidden="true">
         <div class="truck-wrap">
           <span class="hero-badge">Camionetas + Camiones</span>
-          <svg class="truck" viewBox="0 0 640 300">
+          <svg class="truck" data-cine-kenburns viewBox="0 0 640 300">
             <defs>
               <linearGradient id="tb" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2a2a2e"/><stop offset="1" stop-color="#151517"/></linearGradient>
               <pattern id="hz" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="11" height="22" fill="#ffc20e"/><rect x="11" width="11" height="22" fill="#0b0b0b"/></pattern>
@@ -300,21 +339,21 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
 
   <section class="section" id="vehiculos" aria-labelledby="veh-title">
     <div class="container">
-      <div class="sec-head">
-        <span class="sec-num">01 / Vehículos</span>
+      <div class="sec-head" data-cine-reveal>
+        <span class="sec-num" data-cine-count>01 / Vehículos</span>
         <h2 id="veh-title">Ligero o pesado, si es diésel, lo vemos</h2>
         <p>Trabajamos motores diésel en dos frentes. Escríbenos con los datos de tu unidad para revisar si podemos atenderla.</p>
       </div>
-      <div class="split">
+      <div class="split" data-cine-stagger>
         <article class="split-card">
           <span class="big" aria-hidden="true">01</span>
-          <svg class="veh" viewBox="0 0 300 120" aria-hidden="true"><path d="M10 84V52h128V28q0-6 6-6h54q6 0 10 6l20 24h52q10 0 10 10v22Z" fill="currentColor"/><path d="M150 30h44l16 20h-60Z" fill="#141416"/><rect x="18" y="58" width="112" height="4" fill="#141416"/><rect x="6" y="82" width="288" height="8" fill="currentColor"/><circle cx="70" cy="92" r="20" fill="#141416" stroke="currentColor" stroke-width="6"/><circle cx="236" cy="92" r="20" fill="#141416" stroke="currentColor" stroke-width="6"/></svg>
+          <svg class="veh" data-cine-parallax="0.08" viewBox="0 0 300 120" aria-hidden="true"><path d="M10 84V52h128V28q0-6 6-6h54q6 0 10 6l20 24h52q10 0 10 10v22Z" fill="currentColor"/><path d="M150 30h44l16 20h-60Z" fill="#141416"/><rect x="18" y="58" width="112" height="4" fill="#141416"/><rect x="6" y="82" width="288" height="8" fill="currentColor"/><circle cx="70" cy="92" r="20" fill="#141416" stroke="currentColor" stroke-width="6"/><circle cx="236" cy="92" r="20" fill="#141416" stroke="currentColor" stroke-width="6"/></svg>
           <h3>Camionetas</h3>
           <p>Camionetas con motor diésel para trabajo, reparto o uso diario: diagnóstico, mantenimiento y reparación.</p>
         </article>
         <article class="split-card">
           <span class="big" aria-hidden="true">02</span>
-          <svg class="veh" viewBox="0 0 300 120" aria-hidden="true"><rect x="8" y="14" width="170" height="70" rx="2" fill="currentColor"/><path d="M184 30h56c6 0 10 2 13 7l25 34c2 3 4 7 4 11v8H184Z" fill="currentColor"/><path d="M196 40h40l18 24h-58Z" fill="#18160f"/><rect x="6" y="84" width="288" height="8" fill="currentColor"/><circle cx="50" cy="96" r="18" fill="#18160f" stroke="currentColor" stroke-width="6"/><circle cx="96" cy="96" r="18" fill="#18160f" stroke="currentColor" stroke-width="6"/><circle cx="240" cy="96" r="18" fill="#18160f" stroke="currentColor" stroke-width="6"/></svg>
+          <svg class="veh" data-cine-parallax="0.08" viewBox="0 0 300 120" aria-hidden="true"><rect x="8" y="14" width="170" height="70" rx="2" fill="currentColor"/><path d="M184 30h56c6 0 10 2 13 7l25 34c2 3 4 7 4 11v8H184Z" fill="currentColor"/><path d="M196 40h40l18 24h-58Z" fill="#18160f"/><rect x="6" y="84" width="288" height="8" fill="currentColor"/><circle cx="50" cy="96" r="18" fill="#18160f" stroke="currentColor" stroke-width="6"/><circle cx="96" cy="96" r="18" fill="#18160f" stroke="currentColor" stroke-width="6"/><circle cx="240" cy="96" r="18" fill="#18160f" stroke="currentColor" stroke-width="6"/></svg>
           <h3>Camiones</h3>
           <p>Camiones y unidades de carga con motor diésel: revisamos el motor y te explicamos lo que encontramos antes de trabajar.</p>
         </article>
@@ -324,12 +363,12 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
 
   <section class="section services" id="servicios" aria-labelledby="svc-title">
     <div class="container">
-      <div class="sec-head">
-        <span class="sec-num">02 / Servicios</span>
+      <div class="sec-head" data-cine-reveal>
+        <span class="sec-num" data-cine-count>02 / Servicios</span>
         <h2 id="svc-title">Servicios para motores diésel</h2>
         <p>Categorías generales de trabajo en motores diésel. El detalle de cada servicio se confirma directamente con el taller.</p>
       </div>
-      <div class="svc-grid">
+      <div class="svc-grid" data-cine-stagger>
         <article class="svc">
           <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4M8 11h6M11 8v6"/></svg></span>
           <div><h3>Diagnóstico</h3><p>Revisión del motor diésel para identificar la falla y explicarte qué está pasando antes de cualquier reparación.</p></div>
@@ -347,17 +386,17 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
           <div><h3>Reparación de motor</h3><p>Reparación de motores diésel según el diagnóstico de tu unidad.</p></div>
         </article>
       </div>
-      <p class="svc-note"><span class="marcador-bloque">[Lista de servicios por confirmar con el taller]</span></p>
+      <p class="svc-note" data-cine-reveal><span class="marcador-bloque">[Lista de servicios por confirmar con el taller]</span></p>
     </div>
   </section>
 
   <section class="section" id="por-que" aria-labelledby="why-title">
     <div class="container">
-      <div class="sec-head">
-        <span class="sec-num">03 / Por qué nosotros</span>
+      <div class="sec-head" data-cine-reveal>
+        <span class="sec-num" data-cine-count>03 / Por qué nosotros</span>
         <h2 id="why-title">Directo y sin rodeos</h2>
       </div>
-      <div class="why-grid">
+      <div class="why-grid" data-cine-stagger>
         <div class="why"><h3>Solo diésel</h3><p>Nuestro enfoque son los motores diésel de camionetas y camiones.</p></div>
         <div class="why"><h3>Diagnóstico claro</h3><p>Te explicamos el diagnóstico antes de trabajar en tu unidad.</p></div>
         <div class="why"><h3>En Zapopan</h3><p>Estamos en Los Cajetes, Zapopan, Jalisco.</p></div>
@@ -368,7 +407,7 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
 
   <section class="cta-band" aria-labelledby="cta-title">
     <div class="hazard-thin" style="background:repeating-linear-gradient(-45deg,#0b0b0b 0 10px,#ffc20e 10px 20px)"></div>
-    <div class="container">
+    <div class="container" data-cine-stagger>
       <div>
         <h2 id="cta-title">¿Tu diésel no jala?</h2>
         <p>Mándanos por WhatsApp el tipo de vehículo y la falla que notas. Te respondemos con los siguientes pasos.</p>
@@ -382,11 +421,11 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
 
   <section class="section" id="testimonios" aria-labelledby="testi-title">
     <div class="container">
-      <div class="sec-head">
-        <span class="sec-num">04 / Clientes</span>
+      <div class="sec-head" data-cine-reveal>
+        <span class="sec-num" data-cine-count>04 / Clientes</span>
         <h2 id="testi-title">Lo que dicen</h2>
       </div>
-      <div class="testi-grid">
+      <div class="testi-grid" data-cine-stagger>
         <figure class="testi"><div class="q" aria-hidden="true">“</div><blockquote><p><span class="marcador">[Testimonio del cliente aquí]</span></p></blockquote></figure>
         <figure class="testi"><div class="q" aria-hidden="true">“</div><blockquote><p><span class="marcador">[Testimonio del cliente aquí]</span></p></blockquote></figure>
         <figure class="testi"><div class="q" aria-hidden="true">“</div><blockquote><p><span class="marcador">[Testimonio del cliente aquí]</span></p></blockquote></figure>
@@ -396,11 +435,11 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
 
   <section class="section" id="ubicacion" aria-labelledby="loc-title" style="padding-top:0">
     <div class="container">
-      <div class="sec-head">
-        <span class="sec-num">05 / Ubicación</span>
+      <div class="sec-head" data-cine-reveal>
+        <span class="sec-num" data-cine-count>05 / Ubicación</span>
         <h2 id="loc-title">Encuéntranos en Los Cajetes</h2>
       </div>
-      <div class="loc-grid">
+      <div class="loc-grid" data-cine-stagger>
         <div class="map-frame">
           <div class="map-embed">
             <iframe src="https://www.google.com/maps?q=Calle+San+Jos%C3%A9+2276%2C+Los+Cajetes%2C+45234+Zapopan%2C+Jalisco&output=embed" title="Mapa de ubicación de Diesel Mecánica" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
@@ -427,12 +466,12 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
 
   <section class="section contact" id="contacto" aria-labelledby="contact-title">
     <div class="container">
-      <div class="sec-head">
-        <span class="sec-num">06 / Contacto</span>
+      <div class="sec-head" data-cine-reveal>
+        <span class="sec-num" data-cine-count>06 / Contacto</span>
         <h2 id="contact-title">Cotiza tu servicio diésel</h2>
         <p>Escríbenos o llámanos. El formulario arma el mensaje y lo abre en WhatsApp; no se guarda ningún dato en esta página.</p>
       </div>
-      <div class="contact-grid">
+      <div class="contact-grid" data-cine-stagger>
         <ul class="contact-list">
           <li><a href="https://wa.me/523311882444?text=Hola%20Diesel%20Mec%C3%A1nica%2C%20quiero%20cotizar%20un%20servicio%20para%20mi%20veh%C3%ADculo%20di%C3%A9sel." target="_blank" rel="noopener"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3Z"/></svg></span><span><strong>WhatsApp</strong><span class="v">(33) 1188 2444</span> <span class="marcador">[Teléfono por confirmar]</span></span></a></li>
           <li><a href="tel:+523311882444"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg></span><span><strong>Llamar</strong><span class="v">(33) 1188 2444</span> <span class="marcador">[Teléfono por confirmar]</span></span></a></li>
@@ -511,5 +550,6 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
   });
 })();
 </script>
+<script src="../../shared/cinema.js" defer></script>
 </body>
 </html>

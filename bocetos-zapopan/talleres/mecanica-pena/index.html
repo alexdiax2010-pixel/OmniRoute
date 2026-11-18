@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" data-cine="potente" data-cine-nombre="Mecánica Peña" data-cine-lema="Taller electromecánico · Zapopan">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../../shared/cinema.css">
+<script>(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('cine-visto:'+location.pathname))return;d.classList.add('cine-on');window.__cineT=setTimeout(function(){d.classList.remove('cine-on')},4000)}catch(e){}})();</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -224,6 +226,34 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
 .site-footer p+p{margin-top:.4rem}
 .boceto-note{margin-top:var(--space-5);padding-top:var(--space-4);border-top:1px dashed var(--border);font-size:.85rem}
 
+
+/* ---------- Entrada cinematográfica: descarga eléctrica amarilla ---------- */
+html[data-cine]{--cine-bg:#05080f;--cine-ink:#f4f7fc;--cine-accent:#ffd21f;--cine-font:"Chakra Petch","Rajdhani",system-ui,sans-serif;--cine-weight:700;--cine-case:uppercase}
+html[data-cine] .cine-panel{background:linear-gradient(180deg,#05080f,#0a1222)}
+html[data-cine] .cine-panel.bot{background:linear-gradient(0deg,#05080f,#0a1222)}
+/* pistas de circuito en el telón */
+html[data-cine] .cine-panel::after{content:"";position:absolute;left:0;right:0;height:2px;opacity:.55;
+  background:repeating-linear-gradient(90deg,#1d3a66 0 120px,transparent 120px 150px,#1d3a66 150px 260px,transparent 260px 290px)}
+html[data-cine] .cine-panel.top::after{bottom:18%}
+html[data-cine] .cine-panel.bot::after{top:18%}
+html[data-cine] .cine-title{text-shadow:0 0 22px rgba(255,210,31,.28);font-size:clamp(1.9rem,8.4vw,5.6rem)}
+html[data-cine] .cine-title small{color:#ffd21f;opacity:.9;letter-spacing:.3em;font-size:.2em}
+/* barrido = arco de luz eléctrica: núcleo blanco con halo amarillo */
+html[data-cine] .cine-sweep{width:38vw;height:70vh;mix-blend-mode:screen;filter:blur(1.5px);
+  background:linear-gradient(100deg,transparent 30%,rgba(255,176,0,.18) 42%,rgba(255,210,31,.85) 48.5%,#fffbe6 50%,rgba(255,210,31,.85) 51.5%,rgba(255,176,0,.18) 58%,transparent 70%)}
+html[data-cine] .cine-intro.sweep .cine-sweep{animation-duration:.7s}
+/* destello de descarga en toda la pantalla, mientras pasa el arco */
+html[data-cine] .cine-intro::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;mix-blend-mode:screen;
+  background:radial-gradient(60% 45% at 50% 50%,rgba(255,214,40,.55),rgba(255,176,0,.12) 55%,transparent 75%)}
+html[data-cine] .cine-intro.sweep::after{animation:pena-chispa .7s steps(1) forwards}
+@keyframes pena-chispa{0%{opacity:0}12%{opacity:.9}20%{opacity:.15}30%{opacity:.6}42%{opacity:0}58%{opacity:.35}70%,100%{opacity:0}}
+/* la línea bajo el nombre es una pista con corriente */
+html[data-cine] .cine-rule{height:2px;background:linear-gradient(90deg,transparent,#ffd21f 20%,#fffbe6 50%,#ffd21f 80%,transparent);box-shadow:0 0 12px rgba(255,210,31,.8)}
+html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{border-color:rgba(255,210,31,.55)}
+/* Ken Burns propio del tablero: más suave para no recortarse en celular */
+html.cine-kb .dash{animation:pena-kb 6.5s cubic-bezier(.2,.6,.3,1) both}
+@keyframes pena-kb{from{scale:1.07;opacity:.6}35%{opacity:1}to{scale:1}}
+
 /* Marcadores sobre fondo oscuro: se conservan los de base.css (alto contraste) */
 .marcador-bloque{background:#fff8d9}
 </style>
@@ -275,8 +305,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
 
 <main id="main">
   <!-- HERO -->
-  <section class="hero" aria-labelledby="hero-title">
-    <svg class="hero-circuit" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <section class="hero" data-cine-hero aria-labelledby="hero-title">
+    <svg class="hero-circuit" data-cine-parallax="0.06" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
       <g fill="none" stroke="#1d3a66" stroke-width="1.5">
         <path d="M-10 120h260l40 40h220l30-30h180"/>
         <path d="M-10 600h180l50-50h300l40 40h160"/>
@@ -300,9 +330,9 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
     <div class="container hero-grid">
       <div>
         <p class="eyebrow">Taller electromecánico · Miramar, Zapopan</p>
-        <h1 id="hero-title">¿Se prendió un testigo? <span class="accent">Encontramos la falla.</span></h1>
-        <p class="hero-lead"><strong>Mecánica Automotriz Peña</strong> revisa el sistema eléctrico de tu auto —batería, alternador, marcha, sensores y testigos del tablero— y también se encarga de la mecánica general.</p>
-        <div class="hero-ctas">
+        <h1 id="hero-title" data-cine="title">¿Se prendió un testigo? <span class="accent">Encontramos la falla.</span></h1>
+        <p class="hero-lead" data-cine="subtitle"><strong>Mecánica Automotriz Peña</strong> revisa el sistema eléctrico de tu auto —batería, alternador, marcha, sensores y testigos del tablero— y también se encarga de la mecánica general.</p>
+        <div class="hero-ctas" data-cine="actions">
           <a class="btn btn-primary" href="https://wa.me/523311977182?text=Hola%2C%20quiero%20cotizar%20un%20diagn%C3%B3stico%20para%20mi%20auto.%20S%C3%ADntoma%3A%20">
             <svg aria-hidden="true"><use href="#i-wa"/></svg>Cotiza por WhatsApp
           </a>
@@ -314,7 +344,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
         </ul>
       </div>
 
-      <div class="dash" aria-hidden="true">
+      <div class="dash" data-cine-kenburns aria-hidden="true">
         <div class="dash-top"><span>Tablero</span><span class="live">Revisión</span></div>
         <div class="lights">
           <div class="light on"><svg><use href="#i-engine"/></svg></div>
@@ -337,7 +367,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
     </div>
   </section>
 
-  <div class="ticker">
+  <div class="ticker" data-cine-reveal>
     <ul>
       <li><svg aria-hidden="true"><use href="#i-bolt"/></svg>Fallas eléctricas</li>
       <li><svg aria-hidden="true"><use href="#i-bolt"/></svg>Testigos del tablero</li>
@@ -349,7 +379,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
 
   <!-- DIAGNÓSTICO ELÉCTRICO -->
   <section class="section diag" id="diagnostico" aria-labelledby="diag-title">
-    <svg class="diag-circuit" viewBox="0 0 520 420" aria-hidden="true" focusable="false">
+    <svg class="diag-circuit" data-cine-parallax="0.1" viewBox="0 0 520 420" aria-hidden="true" focusable="false">
       <g fill="none" stroke="#1d3a66" stroke-width="1.5">
         <path d="M0 40h160l40 40h120l40-40h160"/><path d="M60 40v120l30 30h200"/>
         <path d="M520 200H380l-40 40v120"/><path d="M200 80v240l40 40h280"/>
@@ -360,7 +390,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
       <g fill="#ffd21f"><circle cx="340" cy="240" r="3.5"/><circle cx="160" cy="40" r="3.5"/></g>
     </svg>
     <div class="container">
-      <div class="diag-hero">
+      <div class="diag-hero" data-cine-reveal>
         <div>
           <p class="eyebrow">Especialidad</p>
           <h2 id="diag-title">Diagnóstico <span class="accent">eléctrico</span> automotriz</h2>
@@ -369,7 +399,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
       </div>
 
       <h3 class="sr-only">Síntomas eléctricos comunes</h3>
-      <div class="symptoms">
+      <div class="symptoms" data-cine-stagger>
         <article class="symptom">
           <span class="ic" aria-hidden="true"><svg><use href="#i-engine"/></svg></span>
           <h3>Testigo de motor (check engine)</h3>
@@ -412,7 +442,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
         </article>
       </div>
 
-      <div class="diag-foot">
+      <div class="diag-foot" data-cine-reveal>
         <p class="disclaimer">Información general orientativa: cada síntoma puede tener distintas causas y solo una revisión en el vehículo confirma el origen. <span class="marcador">[Lista de servicios y equipo de diagnóstico por confirmar]</span></p>
         <a class="btn btn-primary" href="https://wa.me/523311977182?text=Hola%2C%20se%20me%20prendi%C3%B3%20un%20testigo%20en%20el%20tablero.%20Quiero%20cotizar%20un%20diagn%C3%B3stico.%20Mi%20auto%20es%3A%20">
           <svg aria-hidden="true"><use href="#i-wa"/></svg>Cuéntanos tu síntoma
@@ -424,11 +454,11 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
   <!-- CÓMO TRABAJAMOS -->
   <section class="section" aria-labelledby="proc-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Cómo funciona</p>
         <h2 id="proc-title">Del síntoma a la solución, paso a paso</h2>
       </div>
-      <ol class="steps">
+      <ol class="steps" data-cine-stagger>
         <li><h3>Nos escribes</h3><p>Por WhatsApp o teléfono nos cuentas el síntoma, qué testigo se encendió y qué auto tienes.</p></li>
         <li><h3>Revisamos</h3><p>Llevas el vehículo al taller en Miramar para revisar el sistema involucrado.</p></li>
         <li><h3>Te explicamos</h3><p>Te decimos qué encontramos y qué se recomienda antes de hacer cualquier trabajo.</p></li>
@@ -440,12 +470,12 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
   <!-- SERVICIOS -->
   <section class="section" id="servicios" aria-labelledby="svc-title" style="padding-top:0">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Servicios</p>
         <h2 id="svc-title">Electromecánica y mecánica general</h2>
         <p>Un solo taller para la parte eléctrica y la mecánica de tu auto.</p>
       </div>
-      <div class="services">
+      <div class="services" data-cine-stagger>
         <article class="svc feature">
           <span class="tag">Eléctrico</span>
           <h3>Diagnóstico de fallas eléctricas</h3>
@@ -469,18 +499,18 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
           <p>Atención a la parte mecánica de tu auto, además de la eléctrica.</p>
         </article>
       </div>
-      <p class="services-note"><span class="marcador">[Lista de servicios y equipo de diagnóstico por confirmar]</span></p>
+      <p class="services-note" data-cine-reveal><span class="marcador">[Lista de servicios y equipo de diagnóstico por confirmar]</span></p>
     </div>
   </section>
 
   <!-- POR QUÉ -->
   <section class="section why" aria-labelledby="why-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Por qué elegirnos</p>
         <h2 id="why-title">Claridad antes de reparar</h2>
       </div>
-      <div class="why-grid">
+      <div class="why-grid" data-cine-stagger>
         <div class="why-item"><h3>Enfoque electromecánico</h3><p>Parte eléctrica y mecánica en el mismo lugar, sin ir de un taller a otro.</p></div>
         <div class="why-item"><h3>Te explicamos el diagnóstico</h3><p>Sabes qué se encontró y qué se recomienda antes de autorizar el trabajo.</p></div>
         <div class="why-item"><h3>Atención en Zapopan</h3><p>Taller en la colonia Miramar, fácil de ubicar en el mapa.</p></div>
@@ -493,11 +523,11 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
   <!-- TESTIMONIOS -->
   <section class="section" aria-labelledby="test-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Clientes</p>
         <h2 id="test-title">Lo que dicen nuestros clientes</h2>
       </div>
-      <div class="testis">
+      <div class="testis" data-cine-stagger>
         <figure><blockquote><span class="marcador-bloque">[Testimonio del cliente aquí]</span></blockquote><figcaption><span class="marcador">[Nombre del cliente por confirmar]</span></figcaption></figure>
         <figure><blockquote><span class="marcador-bloque">[Testimonio del cliente aquí]</span></blockquote><figcaption><span class="marcador">[Nombre del cliente por confirmar]</span></figcaption></figure>
       </div>
@@ -507,11 +537,11 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
   <!-- UBICACIÓN -->
   <section class="section" id="ubicacion" aria-labelledby="loc-title" style="padding-top:0">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Ubicación</p>
         <h2 id="loc-title">Encuéntranos en Miramar, Zapopan</h2>
       </div>
-      <div class="loc-grid">
+      <div class="loc-grid" data-cine-reveal>
         <div class="map-embed">
           <iframe src="https://www.google.com/maps?q=Puerto+Manzanillo+21%2C+Miramar%2C+45060+Zapopan%2C+Jalisco&output=embed" title="Mapa de ubicación de Mecánica Automotriz Peña" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
@@ -537,7 +567,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
   <!-- CONTACTO -->
   <section class="section contact" id="contacto" aria-labelledby="contact-title" style="padding-top:0">
     <div class="container">
-      <div class="contact-box">
+      <div class="contact-box" data-cine-reveal>
         <div>
           <p class="eyebrow">Contacto</p>
           <h2 id="contact-title">Cotiza tu diagnóstico por WhatsApp</h2>
@@ -610,5 +640,6 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
   });
 })();
 </script>
+<script src="../../shared/cinema.js" defer></script>
 </body>
 </html>

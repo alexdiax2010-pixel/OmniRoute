@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" data-cine="potente" data-cine-nombre="Taller Coronado" data-cine-lema="Mecánica general · Zapopan">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../../shared/cinema.css">
+<script>(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('cine-visto:'+location.pathname))return;d.classList.add('cine-on');window.__cineT=setTimeout(function(){d.classList.remove('cine-on')},4000)}catch(e){}})();</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -229,6 +231,37 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
 .ft a{color:var(--ink)}
 
 .fab-wa{background:var(--wa);color:#063b1c}
+
+/* ---------- Intro cinematográfica: taller de barrio (cobre + crema) ---------- */
+html[data-cine]{--cine-bg:#120c08;--cine-ink:#f3e6cf;--cine-accent:#e07a3a;--cine-font:var(--font-display);--cine-weight:400;--cine-case:uppercase}
+html[data-cine] .cine-panel{background:
+  repeating-linear-gradient(90deg,rgba(243,230,207,.025) 0 2px,rgba(0,0,0,.05) 2px 4px),
+  radial-gradient(ellipse 70% 90% at 50% 100%,#2a1a10 0%,#120c08 70%)}
+html[data-cine] .cine-panel.top{box-shadow:inset 0 -3px 0 #b85a26}
+html[data-cine] .cine-panel.bot{background:
+  repeating-linear-gradient(90deg,rgba(243,230,207,.025) 0 2px,rgba(0,0,0,.05) 2px 4px),
+  radial-gradient(ellipse 70% 90% at 50% 0%,#2a1a10 0%,#120c08 70%);box-shadow:inset 0 3px 0 #b85a26}
+html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{background:#0a0604}
+html[data-cine] .cine-title{font-size:clamp(2.1rem,9vw,5.6rem);line-height:.98;
+  text-shadow:0 2px 0 #6b3a1c,0 0 34px rgba(224,122,58,.35)}
+html[data-cine] .cine-title small{font-family:var(--font-body);font-weight:700;color:#c98a5a;text-shadow:none;opacity:.95}
+html[data-cine] .cine-sweep{width:62vw;height:58vh;
+  background:linear-gradient(100deg,transparent 0%,rgba(201,138,90,0) 26%,rgba(255,196,140,.5) 44%,rgba(224,122,58,.7) 52%,rgba(184,90,38,.35) 60%,transparent 76%);
+  transform:translateX(-70vw) skewX(-22deg);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 28%,#000 72%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,#000 28%,#000 72%,transparent 100%)}
+html[data-cine] .cine-intro.sweep .cine-sweep{animation-name:coronado-sweep;animation-duration:1s}
+@keyframes coronado-sweep{0%{transform:translateX(-70vw) skewX(-22deg);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateX(125vw) skewX(-22deg);opacity:0}}
+html[data-cine] .cine-intro.open .cine-title{opacity:0;scale:1.07;transition:opacity .22s ease,scale .45s var(--cine-ease)}
+/* Ken Burns de la placa: más sutil y con el mismo pivote que su giro (-1.5deg) */
+.plate[data-cine-kenburns]{transform-origin:50% 50%}
+html.cine-kb .plate[data-cine-kenburns]{animation-name:coronado-kb;animation-duration:6s}
+@keyframes coronado-kb{from{scale:1.06}to{scale:1}}
+html[data-cine] .cine-rule{top:calc(50% + clamp(2.9rem,7.4vw,5.4rem));width:min(340px,58vw);height:8px;border-radius:2px;
+  background:
+   radial-gradient(circle at 6px 50%,#fff3e0 0 1px,#7a4320 2.6px,transparent 3.2px),
+   radial-gradient(circle at calc(100% - 6px) 50%,#fff3e0 0 1px,#7a4320 2.6px,transparent 3.2px),
+   linear-gradient(180deg,#e9a873,#b8693a 55%,#8a4622);
+  box-shadow:0 1px 0 rgba(0,0,0,.6)}
 </style>
 </head>
 <body>
@@ -263,13 +296,13 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
 </header>
 
 <main id="main">
-  <section class="hero" id="inicio" aria-labelledby="hero-title">
+  <section class="hero" data-cine-hero id="inicio" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div>
         <p class="hero-kicker">Taller mecánico general · Mirador del Sol, Zapopan</p>
-        <h1 id="hero-title">Tu auto en manos <em>del taller del barrio</em></h1>
-        <p class="lead">En Taller Coronado primero revisamos, luego te explicamos y solo reparamos lo que tú apruebes. Mándanos tu caso por WhatsApp y te respondemos con una cotización.</p>
-        <div class="hero-ctas">
+        <h1 id="hero-title" data-cine="title">Tu auto en manos <em>del taller del barrio</em></h1>
+        <p class="lead" data-cine="subtitle">En Taller Coronado primero revisamos, luego te explicamos y solo reparamos lo que tú apruebes. Mándanos tu caso por WhatsApp y te respondemos con una cotización.</p>
+        <div class="hero-ctas" data-cine="actions">
           <a class="btn btn-primary" href="https://wa.me/523336288465?text=Hola%20Taller%20Coronado%2C%20quiero%20cotizar%20una%20reparaci%C3%B3n.%20Mi%20auto%20es%3A%20" target="_blank" rel="noopener">
             <svg aria-hidden="true"><use href="#i-wa"/></svg> Cotiza por WhatsApp
           </a>
@@ -280,10 +313,10 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
         <p class="hero-addr"><svg aria-hidden="true"><use href="#i-pin"/></svg> Av. Patria 1571, Mirador del Sol, Zapopan, Jalisco, CP 45054</p>
       </div>
 
-      <div class="plate-wrap">
+      <div class="plate-wrap" data-cine-parallax="0.06">
         <div class="plate-col">
           <div class="hang" aria-hidden="true"><span></span><span></span></div>
-          <div class="plate" role="img" aria-label="Letrero metálico con el nombre Taller Coronado">
+          <div class="plate" data-cine-kenburns role="img" aria-label="Letrero metálico con el nombre Taller Coronado">
             <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
             <svg class="crown-big" aria-hidden="true"><use href="#i-crown"/></svg>
             <div class="plate-name"><span class="l1">Taller</span><span class="l2">Coronado</span></div>
@@ -296,7 +329,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
   </section>
 
   <div class="strip" aria-label="Lo esencial">
-    <ul>
+    <ul data-cine-stagger>
       <li><svg aria-hidden="true"><use href="#i-crown"/></svg>Diagnóstico antes de reparar</li>
       <li><svg aria-hidden="true"><use href="#i-crown"/></svg>Cotización por WhatsApp</li>
       <li><svg aria-hidden="true"><use href="#i-crown"/></svg>Mirador del Sol, Zapopan</li>
@@ -305,20 +338,20 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
 
   <section class="section" id="servicios" aria-labelledby="serv-title">
     <div class="container">
-      <p class="eyebrow">Servicios</p>
-      <h2 class="sec-title" id="serv-title">Lo que revisamos</h2>
-      <p class="lead">Taller mecánico general. Estas son categorías de trabajo habituales en un taller de este tipo; el detalle exacto lo confirma el taller.</p>
+      <p class="eyebrow" data-cine-reveal>Servicios</p>
+      <h2 class="sec-title" data-cine-reveal id="serv-title">Lo que revisamos</h2>
+      <p class="lead" data-cine-reveal>Taller mecánico general. Estas son categorías de trabajo habituales en un taller de este tipo; el detalle exacto lo confirma el taller.</p>
 
-      <div class="menu-board">
+      <div class="menu-board" data-cine-reveal>
         <span class="rivet tl"></span><span class="rivet tr"></span><span class="rivet bl"></span><span class="rivet br"></span>
         <p class="menu-head"><svg class="crown" aria-hidden="true"><use href="#i-crown"/></svg> Menú del taller <svg class="crown" aria-hidden="true"><use href="#i-crown"/></svg></p>
-        <ul class="menu-list" role="list">
-          <li><span class="menu-num" aria-hidden="true">01</span><h3>Diagnóstico general</h3><p>Revisamos el vehículo para ubicar la falla antes de proponer cualquier trabajo.</p></li>
-          <li><span class="menu-num" aria-hidden="true">02</span><h3>Mantenimiento preventivo</h3><p>Servicio de revisión y cambio de fluidos y piezas de desgaste.</p></li>
-          <li><span class="menu-num" aria-hidden="true">03</span><h3>Frenos</h3><p>Revisión y atención del sistema de frenado.</p></li>
-          <li><span class="menu-num" aria-hidden="true">04</span><h3>Suspensión y dirección</h3><p>Ruidos, vibraciones y manejo: revisamos lo que sientes al volante.</p></li>
-          <li><span class="menu-num" aria-hidden="true">05</span><h3>Sistema eléctrico</h3><p>Revisión de batería, arranque, carga y fallas eléctricas.</p></li>
-          <li><span class="menu-num" aria-hidden="true">06</span><h3>Enfriamiento</h3><p>Revisión de calentamiento, fugas y sistema de enfriamiento.</p></li>
+        <ul class="menu-list" role="list" data-cine-stagger>
+          <li><span class="menu-num" aria-hidden="true" data-cine-count>01</span><h3>Diagnóstico general</h3><p>Revisamos el vehículo para ubicar la falla antes de proponer cualquier trabajo.</p></li>
+          <li><span class="menu-num" aria-hidden="true" data-cine-count>02</span><h3>Mantenimiento preventivo</h3><p>Servicio de revisión y cambio de fluidos y piezas de desgaste.</p></li>
+          <li><span class="menu-num" aria-hidden="true" data-cine-count>03</span><h3>Frenos</h3><p>Revisión y atención del sistema de frenado.</p></li>
+          <li><span class="menu-num" aria-hidden="true" data-cine-count>04</span><h3>Suspensión y dirección</h3><p>Ruidos, vibraciones y manejo: revisamos lo que sientes al volante.</p></li>
+          <li><span class="menu-num" aria-hidden="true" data-cine-count>05</span><h3>Sistema eléctrico</h3><p>Revisión de batería, arranque, carga y fallas eléctricas.</p></li>
+          <li><span class="menu-num" aria-hidden="true" data-cine-count>06</span><h3>Enfriamiento</h3><p>Revisión de calentamiento, fugas y sistema de enfriamiento.</p></li>
         </ul>
         <p class="menu-note"><span class="marcador">[Lista de servicios por confirmar con el taller]</span></p>
       </div>
@@ -327,9 +360,9 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
 
   <section class="section pasos" id="como-trabajamos" aria-labelledby="pasos-title">
     <div class="container">
-      <p class="eyebrow">Cómo trabajamos</p>
-      <h2 class="sec-title" id="pasos-title">Sin sorpresas, paso a paso</h2>
-      <ol class="steps">
+      <p class="eyebrow" data-cine-reveal>Cómo trabajamos</p>
+      <h2 class="sec-title" data-cine-reveal id="pasos-title">Sin sorpresas, paso a paso</h2>
+      <ol class="steps" data-cine-stagger>
         <li class="step">
           <div class="step-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10.5 3a7.5 7.5 0 1 0 4.7 13.3L21 22M10.5 7v4l2.5 2"/></svg></div>
           <h3>Recibes diagnóstico</h3>
@@ -356,9 +389,9 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
 
   <section class="section" id="por-que" aria-labelledby="why-title">
     <div class="container">
-      <p class="eyebrow">Por qué Coronado</p>
-      <h2 class="sec-title" id="why-title">Confianza de taller de barrio</h2>
-      <div class="why-grid">
+      <p class="eyebrow" data-cine-reveal>Por qué Coronado</p>
+      <h2 class="sec-title" data-cine-reveal id="why-title">Confianza de taller de barrio</h2>
+      <div class="why-grid" data-cine-stagger>
         <div class="why"><svg aria-hidden="true"><use href="#i-pin"/></svg><div><h3>En Mirador del Sol, Zapopan</h3><p>Sobre Av. Patria, fácil de ubicar si vives o trabajas por la zona.</p></div></div>
         <div class="why"><svg aria-hidden="true"><use href="#i-wa"/></svg><div><h3>Cotiza sin moverte</h3><p>Cuéntanos qué le pasa a tu auto por WhatsApp y te orientamos sobre los siguientes pasos.</p></div></div>
         <div class="why"><svg aria-hidden="true"><use href="#i-crown"/></svg><div><h3>Tú decides antes de reparar</h3><p>Te explicamos el diagnóstico y la cotización antes de cualquier trabajo.</p></div></div>
@@ -369,9 +402,9 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
 
   <section class="section pasos" id="testimonios" aria-labelledby="testi-title">
     <div class="container">
-      <p class="eyebrow">Clientes</p>
-      <h2 class="sec-title" id="testi-title">Lo que dicen los vecinos</h2>
-      <div class="testi-grid">
+      <p class="eyebrow" data-cine-reveal>Clientes</p>
+      <h2 class="sec-title" data-cine-reveal id="testi-title">Lo que dicen los vecinos</h2>
+      <div class="testi-grid" data-cine-stagger>
         <figure class="testi"><span class="marcador-bloque">[Testimonio del cliente aquí]</span></figure>
         <figure class="testi"><span class="marcador-bloque">[Testimonio del cliente aquí]</span></figure>
         <figure class="testi"><span class="marcador-bloque">[Testimonio del cliente aquí]</span></figure>
@@ -381,9 +414,9 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
 
   <section class="section" id="ubicacion" aria-labelledby="loc-title">
     <div class="container">
-      <p class="eyebrow">Ubicación y horario</p>
-      <h2 class="sec-title" id="loc-title">Visítanos en Av. Patria</h2>
-      <div class="loc-grid">
+      <p class="eyebrow" data-cine-reveal>Ubicación y horario</p>
+      <h2 class="sec-title" data-cine-reveal id="loc-title">Visítanos en Av. Patria</h2>
+      <div class="loc-grid" data-cine-stagger>
         <div class="map-embed">
           <iframe src="https://www.google.com/maps?q=Av.%20Patria%201571%2C%20Mirador%20del%20Sol%2C%2045054%20Zapopan%2C%20Jalisco&output=embed" title="Mapa de ubicación de Taller Coronado" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
@@ -404,10 +437,10 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
 
   <section class="section contact" id="contacto" aria-labelledby="contact-title">
     <div class="container">
-      <p class="eyebrow">Contacto</p>
-      <h2 class="sec-title" id="contact-title">Cotiza por WhatsApp</h2>
-      <p class="lead">Escríbenos marca, modelo y qué notas en tu auto. Entre más detalle, mejor podemos orientarte.</p>
-      <div class="contact-grid">
+      <p class="eyebrow" data-cine-reveal>Contacto</p>
+      <h2 class="sec-title" data-cine-reveal id="contact-title">Cotiza por WhatsApp</h2>
+      <p class="lead" data-cine-reveal>Escríbenos marca, modelo y qué notas en tu auto. Entre más detalle, mejor podemos orientarte.</p>
+      <div class="contact-grid" data-cine-stagger>
         <ul class="contact-list" role="list">
           <li><a href="https://wa.me/523336288465?text=Hola%20Taller%20Coronado%2C%20quiero%20cotizar%20una%20reparaci%C3%B3n.%20Mi%20auto%20es%3A%20" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg><span><small>WhatsApp</small><strong>(33) 3628 8465</strong></span></a></li>
           <li><a href="tel:+523336288465"><svg aria-hidden="true"><use href="#i-phone"/></svg><span><small>Teléfono</small><strong>(33) 3628 8465</strong></span></a></li>
@@ -476,5 +509,6 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.01em}
   });
 })();
 </script>
+<script src="../../shared/cinema.js" defer></script>
 </body>
 </html>

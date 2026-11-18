@@ -85,8 +85,14 @@
       ov.classList.add('done');
       setTimeout(cleanup, 300);
     }
+    function swallowClick() {                             // el toque que salta la intro no debe activar lo de abajo
+      function eat(ev) { ev.preventDefault(); ev.stopPropagation(); }
+      window.addEventListener('click', eat, true);
+      setTimeout(function () { window.removeEventListener('click', eat, true); }, 700);
+    }
     function onSkip(e) {
       if (e.type === 'keydown' && (e.key === 'Tab' || e.key === 'Shift')) return; // permitir llegar al botón
+      if (e.type === 'pointerdown' || e.type === 'touchmove') swallowClick();
       finish(true);
     }
     skip.addEventListener('click', function (e) { e.stopPropagation(); finish(true); });

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" data-cine="luminoso" data-cine-nombre="Dr. Mendivil" data-cine-lema="Clínica dental · Zapopan">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../../shared/cinema.css">
+<script>(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('cine-visto:'+location.pathname))return;d.classList.add('cine-on');window.__cineT=setTimeout(function(){d.classList.remove('cine-on')},4000)}catch(e){}})();</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -212,6 +214,30 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
 .foot-links{list-style:none;padding:0;margin:0;display:grid;gap:.2rem}
 .foot-links a{display:inline-flex;min-height:44px;align-items:center;text-decoration:none}
 .foot-links a:hover{text-decoration:underline}
+
+/* Entrada cinematográfica (luminoso): crema cálido, nombre en petróleo, destello verde agua */
+html[data-cine]{
+  --cine-bg:#faf6ee;--cine-ink:#143642;--cine-accent:#6fb5a9;
+  --cine-font:"DM Serif Display",Georgia,"Times New Roman",serif;--cine-weight:400;--cine-case:none;
+}
+/* telón crema con un leve degradado hacia el centro */
+html[data-cine] .cine-panel.top{background:linear-gradient(180deg,#f3ece0 0%,#faf6ee 100%)}
+html[data-cine] .cine-panel.bot{background:linear-gradient(0deg,#f3ece0 0%,#faf6ee 100%)}
+html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{background:#f3ece0;height:9vh;border-color:rgba(47,127,120,.28)}
+/* destello: halo ovalado y cálido, como luz de lámpara de consultorio */
+html[data-cine] .cine-flare{width:150vmax;height:90vmax;
+  background:radial-gradient(ellipse at center,rgba(191,227,220,.95) 0%,rgba(217,236,232,.7) 18%,rgba(250,246,238,0) 46%)}
+html[data-cine] .cine-intro.name .cine-flare{opacity:.9}
+/* nombre: serif con espaciado sobrio, sonrisa que se dibuja bajo el nombre y lema en verde agua */
+html[data-cine] .cine-title{display:flex;flex-direction:column;align-items:center;font-size:clamp(2.3rem,10vw,6rem);letter-spacing:.22em}
+html[data-cine] .cine-intro.name .cine-title{letter-spacing:.015em}
+html[data-cine] .cine-title::after{content:"";order:1;width:1.9em;height:.42em;margin-top:.06em;
+  border:3px solid #2f7f78;border-top:0;border-radius:0 0 50% 50% / 0 0 100% 100%;
+  transform:scaleX(0);opacity:0;transition:transform 1s cubic-bezier(.22,.61,.36,1) .45s,opacity .5s ease .45s}
+html[data-cine] .cine-intro.name .cine-title::after{transform:scaleX(1);opacity:.85}
+html[data-cine] .cine-title small{order:2;margin-top:.8em;font-family:"DM Sans",system-ui,sans-serif;font-size:max(.17em,11px);
+  letter-spacing:.34em;text-transform:uppercase;font-weight:700;color:#2f7f78;opacity:1}
+html[data-cine] .cine-skip{color:#143642;background:rgba(250,246,238,.85)}
 </style>
 </head>
 <body>
@@ -241,14 +267,14 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
 </header>
 
 <main id="main">
-  <section class="hero" id="inicio" aria-labelledby="hero-title">
-    <img class="hero-img" src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1800&q=70" alt="Consultorio dental" width="1800" height="1200" fetchpriority="high">
+  <section class="hero" id="inicio" data-cine-hero aria-labelledby="hero-title">
+    <img class="hero-img" data-cine-kenburns src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1800&q=70" alt="Consultorio dental" width="1800" height="1200" fetchpriority="high">
     <div class="container">
       <div class="hero-inner">
         <p class="eyebrow">Clínica dental en Zapopan, Jalisco</p>
-        <h1 id="hero-title">Vuelve a sonreír, a masticar y a hablar <em>con confianza</em></h1>
-        <p class="lead">En la Clínica Dental del Dr. Mendivil te acompañamos con carillas Lumineers, dentaduras, coronas, puentes y endodoncias, explicándote cada paso con calma y en palabras claras.</p>
-        <div class="hero-ctas">
+        <h1 id="hero-title" data-cine="title">Vuelve a sonreír, a masticar y a hablar <em>con confianza</em></h1>
+        <p class="lead" data-cine="subtitle">En la Clínica Dental del Dr. Mendivil te acompañamos con carillas Lumineers, dentaduras, coronas, puentes y endodoncias, explicándote cada paso con calma y en palabras claras.</p>
+        <div class="hero-ctas" data-cine="actions">
           <a class="btn btn-wa" href="#" aria-label="Escribir por WhatsApp (teléfono por confirmar)">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
             Escribir por WhatsApp
@@ -265,7 +291,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
   </section>
 
   <section class="container" aria-label="Lo que buscamos para ti" style="padding-top:var(--space-6)">
-    <div class="promise">
+    <div class="promise" data-cine-stagger>
       <div class="promise-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg>
         <div><strong>Trato cercano</strong><span>Pensado para adultos y adultos mayores, sin prisas.</span></div>
@@ -283,8 +309,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
 
   <section class="section estrella" id="lumineers" aria-labelledby="lum-title" style="margin-top:var(--space-8)">
     <div class="container">
-      <div class="estrella-card">
-        <div class="estrella-visual" aria-hidden="true">
+      <div class="estrella-card" data-cine-reveal>
+        <div class="estrella-visual" aria-hidden="true" data-cine-parallax="0.07">
           <svg viewBox="0 0 240 160" fill="none">
             <path d="M20 58c30 52 170 52 200 0" stroke="#1d4a57" stroke-width="5" stroke-linecap="round"/>
             <g fill="#fff" stroke="#2f7f78" stroke-width="3">
@@ -318,15 +344,15 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
 
   <section class="section" id="servicios" aria-labelledby="srv-title">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-cine-reveal>
         <p class="eyebrow">Rehabilitación dental</p>
         <h2 id="srv-title">Tratamientos para recuperar tu sonrisa completa</h2>
         <p>Cuando falta un diente, una pieza está dañada o duele, comer y sonreír se vuelve incómodo. Estos son los tratamientos con los que podemos ayudarte.</p>
       </div>
       <ol class="srv-list">
-        <li class="srv">
+        <li class="srv" data-cine-reveal>
           <div class="srv-art" aria-hidden="true">
-            <span class="srv-num">01</span>
+            <span class="srv-num" data-cine-count>01</span>
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 26c6 18 42 18 48 0"/><path d="M10 26c6-6 38-6 44 0"/><path d="M18 24v8M26 22v11M34 22v11M42 22v11M48 24v8"/></svg>
           </div>
           <div>
@@ -335,9 +361,9 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
             <a class="tag" href="#contacto">Consultar por dentaduras →</a>
           </div>
         </li>
-        <li class="srv">
+        <li class="srv" data-cine-reveal>
           <div class="srv-art" aria-hidden="true">
-            <span class="srv-num">02</span>
+            <span class="srv-num" data-cine-count>02</span>
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20c0-6 6-8 14-8s14 2 14 8"/><path d="M18 20h28v4H18z"/><path d="M20 24c0 8 2 12 4 28 1 4 5 4 6-1l2-9 2 9c1 5 5 5 6 1 2-16 4-20 4-28"/></svg>
           </div>
           <div>
@@ -346,9 +372,9 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
             <a class="tag" href="#contacto">Consultar por coronas →</a>
           </div>
         </li>
-        <li class="srv">
+        <li class="srv" data-cine-reveal>
           <div class="srv-art" aria-hidden="true">
-            <span class="srv-num">03</span>
+            <span class="srv-num" data-cine-count>03</span>
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22h52"/><path d="M8 22c0 10 2 14 3 24 .5 3 4 3 4.5 0L17 38l1.5 8c.5 3 4 3 4.5 0 1-10 3-14 3-24"/><path d="M38 22c0 10 2 14 3 24 .5 3 4 3 4.5 0L47 38l1.5 8c.5 3 4 3 4.5 0 1-10 3-14 3-24"/><path d="M26 22c0 6 1 9 2 12h8c1-3 2-6 2-12"/></svg>
           </div>
           <div>
@@ -357,9 +383,9 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
             <a class="tag" href="#contacto">Consultar por puentes →</a>
           </div>
         </li>
-        <li class="srv">
+        <li class="srv" data-cine-reveal>
           <div class="srv-art" aria-hidden="true">
-            <span class="srv-num">04</span>
+            <span class="srv-num" data-cine-count>04</span>
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c-6 0-10 5-10 11 0 5 2 8 3.5 12.5C15 38 15.5 54 20 54c4 0 3.5-12 7.5-15.5 2-1.7 5-1.7 7 0C38.5 42 38 54 42 54c4.5 0 5-16 6.5-20.5C50 29 52 26 52 21c0-6-4-11-10-11-4.5 0-6.5 2.5-11 2.5S24.5 10 20 10z"/><path d="M27 22v18M37 22v18" stroke-dasharray="3 4"/></svg>
           </div>
           <div>
@@ -374,11 +400,11 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
 
   <section class="section why" id="por-que" aria-labelledby="why-title">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-cine-reveal>
         <p class="eyebrow">Por qué elegirnos</p>
         <h2 id="why-title">Una consulta donde te sientes escuchado</h2>
       </div>
-      <div class="why-grid">
+      <div class="why-grid" data-cine-stagger>
         <article class="why-card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <h3>Te explicamos antes de trabajar</h3>
@@ -405,8 +431,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
 
   <section class="section" id="doctor" aria-labelledby="doc-title">
     <div class="container doc">
-      <div class="doc-photo"><span class="marcador-bloque">[Foto del doctor por confirmar]</span></div>
-      <div>
+      <div class="doc-photo" data-cine-parallax="0.06"><span class="marcador-bloque">[Foto del doctor por confirmar]</span></div>
+      <div data-cine-reveal>
         <p class="eyebrow">Quién te atiende</p>
         <h2 id="doc-title">Dr. Mendivil</h2>
         <p>Nombre completo: <span class="marcador">[Nombre completo del doctor por confirmar]</span></p>
@@ -418,12 +444,12 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
 
   <section class="section testi" id="testimonios" aria-labelledby="testi-title">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-cine-reveal>
         <p class="eyebrow">Testimonios</p>
         <h2 id="testi-title">Lo que dicen nuestros pacientes</h2>
         <p>Espacio reservado para opiniones reales de pacientes de la clínica.</p>
       </div>
-      <div class="testi-grid">
+      <div class="testi-grid" data-cine-stagger>
         <blockquote><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 6C6.5 7 5 9.6 5 13v5h5v-5H7.6c0-2 .8-3.5 2.4-4.3zm9 0c-3 1-4.5 3.6-4.5 7v5h5v-5h-2.4c0-2 .8-3.5 2.4-4.3z"/></svg><p><span class="marcador">[Testimonio del cliente aquí]</span></p><cite><span class="marcador">[Nombre del paciente]</span></cite></blockquote>
         <blockquote><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 6C6.5 7 5 9.6 5 13v5h5v-5H7.6c0-2 .8-3.5 2.4-4.3zm9 0c-3 1-4.5 3.6-4.5 7v5h5v-5h-2.4c0-2 .8-3.5 2.4-4.3z"/></svg><p><span class="marcador">[Testimonio del cliente aquí]</span></p><cite><span class="marcador">[Nombre del paciente]</span></cite></blockquote>
         <blockquote><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 6C6.5 7 5 9.6 5 13v5h5v-5H7.6c0-2 .8-3.5 2.4-4.3zm9 0c-3 1-4.5 3.6-4.5 7v5h5v-5h-2.4c0-2 .8-3.5 2.4-4.3z"/></svg><p><span class="marcador">[Testimonio del cliente aquí]</span></p><cite><span class="marcador">[Nombre del paciente]</span></cite></blockquote>
@@ -433,11 +459,11 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
 
   <section class="section" id="ubicacion" aria-labelledby="loc-title">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-cine-reveal>
         <p class="eyebrow">Ubicación y horario</p>
         <h2 id="loc-title">Visítanos en Zapopan</h2>
       </div>
-      <div class="loc">
+      <div class="loc" data-cine-reveal>
         <div class="map-embed">
           <iframe src="https://www.google.com/maps?q=Av.+Miguel+%C3%81ngel+21%2C+Zapopan%2C+Jalisco%2C+45030&output=embed" title="Mapa de ubicación de Clínica Dental del Dr. Mendivil" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
@@ -458,7 +484,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
   </section>
 
   <section class="section contact" id="contacto" aria-labelledby="contact-title">
-    <div class="container contact-grid">
+    <div class="container contact-grid" data-cine-stagger>
       <div>
         <p class="eyebrow">Contacto</p>
         <h2 id="contact-title" style="font-size:var(--step-3);margin-top:.4rem">Agenda tu valoración</h2>
@@ -536,5 +562,6 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;
   });
 })();
 </script>
+<script src="../../shared/cinema.js" defer></script>
 </body>
 </html>

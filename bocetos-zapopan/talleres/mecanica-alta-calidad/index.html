@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" data-cine="potente" data-cine-nombre="Mecánica de Alta Calidad" data-cine-lema="Taller mecánico · Miramar, Zapopan">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../../shared/cinema.css">
+<script>(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('cine-visto:'+location.pathname))return;d.classList.add('cine-on');window.__cineT=setTimeout(function(){d.classList.remove('cine-on')},4000)}catch(e){}})();</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -223,6 +225,33 @@ a.canal:hover{background:var(--surface-2)}
 .footer-nota{margin-top:var(--space-6);padding-top:var(--space-5);border-top:1px solid var(--border);font-size:var(--step--1);color:var(--muted)}
 
 .fab-call{background:#111;color:#fff;border:2px solid var(--brand)}
+/* ---------- Entrada cinematográfica (cinema.css) ---------- */
+html[data-cine]{
+  --cine-bg:#0a0a0b;--cine-ink:#f4f1ec;--cine-accent:#ff6a00;
+  --cine-font:"Anton",Impact,"Arial Narrow",sans-serif;--cine-weight:400;--cine-case:uppercase;
+}
+html[data-cine] .cine-title{font-size:clamp(2.1rem,9vw,5.6rem);line-height:1}
+html[data-cine] .cine-title small{font-family:"Inter",system-ui,sans-serif;font-weight:800;color:var(--cine-accent);opacity:1;letter-spacing:.32em}
+/* Sello partido: el aro del emblema se abre en dos con el telón */
+html[data-cine] .cine-panel{overflow:hidden}
+html[data-cine] .cine-panel::after{content:"";position:absolute;left:50%;width:min(86vw,74vh,620px);aspect-ratio:1;border-radius:50%;
+  border:6px dashed var(--cine-accent);box-shadow:0 0 0 14px var(--cine-bg),0 0 0 17px rgba(255,106,0,.55),inset 0 0 60px rgba(255,106,0,.18);
+  opacity:0;transition:opacity .5s ease .1s;animation:mac-sello 3s linear both}
+html[data-cine] .cine-panel.top::after{top:50vh;translate:-50% -50%}
+html[data-cine] .cine-panel.bot::after{bottom:50vh;translate:-50% 50%}
+html[data-cine] .cine-intro.name .cine-panel::after{opacity:.9}
+@keyframes mac-sello{from{transform:rotate(-40deg) scale(.9)}to{transform:rotate(30deg) scale(1)}}
+/* Barrido naranja ancho y potente */
+html[data-cine] .cine-sweep{left:-10vw;width:120vw;height:160vh;
+  background:linear-gradient(100deg,transparent 0%,rgba(255,106,0,0) 26%,rgba(255,106,0,.55) 40%,rgba(255,190,120,.85) 48%,rgba(255,106,0,.7) 54%,rgba(255,106,0,0) 70%,transparent 100%)}
+html[data-cine] .cine-intro.sweep .cine-sweep{animation:mac-sweep .95s cubic-bezier(.55,.06,.35,1) forwards}
+@keyframes mac-sweep{0%{transform:translateX(-125vw) skewX(-18deg);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateX(125vw) skewX(-18deg);opacity:0}}
+html[data-cine] .cine-rule{height:5px;width:min(420px,62vw);top:calc(50% + clamp(3.4rem,13vw,6.6rem))}
+@media (min-width:900px){html[data-cine] .cine-rule{top:calc(50% + clamp(3rem,7vw,5.6rem))}}
+/* Ken Burns del emblema (en su contenedor: el engrane interior ya gira por su cuenta) */
+html.cine-kb .emblema-wrap[data-cine-kenburns]{transform-origin:50% 50%;animation:mac-kb 6s cubic-bezier(.2,.6,.3,1) both}
+@keyframes mac-kb{from{scale:1.18;rotate:-6deg}to{scale:1;rotate:0deg}}
+@media (prefers-reduced-motion:reduce){html.cine-kb .emblema-wrap[data-cine-kenburns]{animation:none!important}}
 </style>
 </head>
 <body>
@@ -258,16 +287,16 @@ a.canal:hover{background:var(--surface-2)}
 </header>
 
 <main id="main">
-  <section class="hero" id="inicio" aria-labelledby="hero-title">
+  <section class="hero" id="inicio" data-cine-hero aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div>
         <p class="eyebrow">Taller mecánico · Miramar, Zapopan</p>
-        <h1 id="hero-title" class="display" style="margin-top:1rem">
+        <h1 id="hero-title" class="display" data-cine="title" style="margin-top:1rem">
           <span class="linea">Alta calidad.</span>
           <span class="linea naranja">Cero <span class="tachado">sorpresas</span>.</span>
         </h1>
-        <p class="lead">En <strong style="color:var(--ink)">Mecánica de Alta Calidad</strong> la calidad está en el nombre: mantenimiento, afinación, frenos, suspensión y diagnóstico para tu auto, con trato directo y claro desde la primera llamada.</p>
-        <div class="hero-ctas">
+        <p class="lead" data-cine="subtitle">En <strong style="color:var(--ink)">Mecánica de Alta Calidad</strong> la calidad está en el nombre: mantenimiento, afinación, frenos, suspensión y diagnóstico para tu auto, con trato directo y claro desde la primera llamada.</p>
+        <div class="hero-ctas" data-cine="actions">
           <a class="btn btn-primary" href="https://wa.me/523336315041?text=Hola%2C%20Mec%C3%A1nica%20de%20Alta%20Calidad.%20Quiero%20cotizar%20un%20servicio%20para%20mi%20auto.%20Marca%2C%20modelo%20y%20a%C3%B1o%3A%20" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg>
             Cotiza por WhatsApp
@@ -283,8 +312,8 @@ a.canal:hover{background:var(--surface-2)}
         </div>
       </div>
 
-      <div class="emblema-wrap">
-        <svg class="emblema" viewBox="0 0 400 400" role="img" aria-labelledby="emblema-t">
+      <div class="emblema-wrap" data-cine-kenburns>
+        <svg class="emblema" data-cine-parallax="0.08" viewBox="0 0 400 400" role="img" aria-labelledby="emblema-t">
           <title id="emblema-t">Emblema circular: Alta Calidad · Zapopan</title>
           <defs>
             <path id="arco" d="M200,200 m-150,0 a150,150 0 1,1 300,0 a150,150 0 1,1 -300,0"/>
@@ -324,7 +353,7 @@ a.canal:hover{background:var(--surface-2)}
 
   <section class="section" id="servicios" aria-labelledby="serv-title">
     <div class="container">
-      <div class="servicios-head">
+      <div class="servicios-head" data-cine-reveal>
         <div>
           <p class="eyebrow">Servicios</p>
           <h2 id="serv-title" class="display" style="margin-top:.75rem">Lo que tu auto <span class="naranja">necesita</span></h2>
@@ -332,48 +361,48 @@ a.canal:hover{background:var(--surface-2)}
         <p class="lead">Atendemos las necesidades más comunes de tu vehículo. Escríbenos con la marca, modelo y año de tu auto y te orientamos sobre el servicio.</p>
       </div>
 
-      <div class="serv-grid">
+      <div class="serv-grid" data-cine-stagger>
         <article class="serv">
-          <span class="serv-num" aria-hidden="true">01</span>
+          <span class="serv-num" aria-hidden="true" data-cine-count>01</span>
           <div class="serv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg></div>
           <h3>Mantenimiento</h3>
           <p>Revisiones y servicios periódicos para mantener tu auto en buen estado.</p>
         </article>
         <article class="serv">
-          <span class="serv-num" aria-hidden="true">02</span>
+          <span class="serv-num" aria-hidden="true" data-cine-count>02</span>
           <div class="serv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
           <h3>Afinación</h3>
           <p>Atención al motor para que funcione de forma adecuada.</p>
         </article>
         <article class="serv">
-          <span class="serv-num" aria-hidden="true">03</span>
+          <span class="serv-num" aria-hidden="true" data-cine-count>03</span>
           <div class="serv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v3M21 12h-3M12 21v-3M3 12h3"/></svg></div>
           <h3>Frenos</h3>
           <p>Revisión y servicio del sistema de frenado.</p>
         </article>
         <article class="serv">
-          <span class="serv-num" aria-hidden="true">04</span>
+          <span class="serv-num" aria-hidden="true" data-cine-count>04</span>
           <div class="serv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3M8 5h8M8 19h8M9 8l6 2-6 2 6 2-6 2"/></svg></div>
           <h3>Suspensión</h3>
           <p>Revisión de los componentes de suspensión de tu vehículo.</p>
         </article>
         <article class="serv">
-          <span class="serv-num" aria-hidden="true">05</span>
+          <span class="serv-num" aria-hidden="true" data-cine-count>05</span>
           <div class="serv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
           <h3>Diagnóstico</h3>
           <p>Identificamos la causa del problema antes de recomendar una reparación.</p>
         </article>
       </div>
-      <p class="serv-nota"><span class="marcador">[Lista de servicios por confirmar con el taller]</span></p>
+      <p class="serv-nota" data-cine-reveal><span class="marcador">[Lista de servicios por confirmar con el taller]</span></p>
     </div>
   </section>
 
   <section class="compromiso" id="compromiso" aria-labelledby="comp-title">
     <div class="container">
-      <p class="eyebrow">La calidad está en el nombre</p>
-      <h2 id="comp-title" class="display" style="margin-top:.75rem">Nuestro compromiso de calidad</h2>
-      <p class="lead" style="margin-top:1rem">Un nombre así se tiene que cumplir. Estos son los principios con los que queremos atenderte.</p>
-      <div class="pilares">
+      <p class="eyebrow" data-cine-reveal>La calidad está en el nombre</p>
+      <h2 id="comp-title" class="display" style="margin-top:.75rem" data-cine-reveal>Nuestro compromiso de calidad</h2>
+      <p class="lead" style="margin-top:1rem" data-cine-reveal>Un nombre así se tiene que cumplir. Estos son los principios con los que queremos atenderte.</p>
+      <div class="pilares" data-cine-stagger>
         <article class="pilar">
           <h3>Te explicamos antes de reparar</h3>
           <p>Te decimos qué encontramos en tu auto y qué recomendamos, en palabras claras.</p>
@@ -398,9 +427,9 @@ a.canal:hover{background:var(--surface-2)}
 
   <section class="section" id="proceso" aria-labelledby="proc-title">
     <div class="container">
-      <p class="eyebrow">Cómo cotizar</p>
-      <h2 id="proc-title" class="display" style="margin-top:.75rem">Cuatro pasos, <span class="naranja">sin rodeos</span></h2>
-      <ol class="pasos">
+      <p class="eyebrow" data-cine-reveal>Cómo cotizar</p>
+      <h2 id="proc-title" class="display" style="margin-top:.75rem" data-cine-reveal>Cuatro pasos, <span class="naranja">sin rodeos</span></h2>
+      <ol class="pasos" data-cine-stagger>
         <li class="paso"><h3>Escríbenos</h3><p>Mándanos un WhatsApp o llámanos al (33) 3631 5041.</p></li>
         <li class="paso"><h3>Cuéntanos de tu auto</h3><p>Marca, modelo, año y qué síntoma o servicio necesitas.</p></li>
         <li class="paso"><h3>Agenda tu visita</h3><p>Te indicamos cuándo llevar tu auto al taller en Miramar.</p></li>
@@ -411,9 +440,9 @@ a.canal:hover{background:var(--surface-2)}
 
   <section class="section testimonios" id="testimonios" aria-labelledby="testi-title">
     <div class="container">
-      <p class="eyebrow">Clientes</p>
-      <h2 id="testi-title" class="display" style="margin-top:.75rem">Lo que dicen de nosotros</h2>
-      <div class="testi-grid">
+      <p class="eyebrow" data-cine-reveal>Clientes</p>
+      <h2 id="testi-title" class="display" style="margin-top:.75rem" data-cine-reveal>Lo que dicen de nosotros</h2>
+      <div class="testi-grid" data-cine-stagger>
         <figure class="testi">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 6H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2.5c0 2-1 3.5-3 4l.6 1.5C9 18.2 11 15.6 11 11V7.5A1.5 1.5 0 0 0 9.5 6zm11 0H16a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2.5c0 2-1 3.5-3 4l.6 1.5c3.9-1.3 5.9-3.9 5.9-8.5V7.5A1.5 1.5 0 0 0 20.5 6z"/></svg>
           <blockquote class="marcador-bloque">[Testimonio del cliente aquí]</blockquote>
@@ -435,13 +464,13 @@ a.canal:hover{background:var(--surface-2)}
 
   <section class="section" id="ubicacion" aria-labelledby="ubic-title">
     <div class="container">
-      <p class="eyebrow">Ubicación y horario</p>
-      <h2 id="ubic-title" class="display" style="margin-top:.75rem">Encuéntranos en <span class="naranja">Miramar</span></h2>
+      <p class="eyebrow" data-cine-reveal>Ubicación y horario</p>
+      <h2 id="ubic-title" class="display" style="margin-top:.75rem" data-cine-reveal>Encuéntranos en <span class="naranja">Miramar</span></h2>
       <div class="ubic-grid">
-        <div class="map-embed">
+        <div class="map-embed" data-cine-reveal>
           <iframe src="https://www.google.com/maps?q=Quebrada+3913%2C+Miramar%2C+Zapopan%2C+Jalisco%2C+45060&amp;output=embed" title="Mapa de ubicación de Mecánica de Alta Calidad" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
-        <div class="info-card">
+        <div class="info-card" data-cine-reveal>
           <div class="bloque">
             <h3>Dirección</h3>
             <address>Quebrada 3913, Miramar<br>Zapopan, Jalisco, CP 45060</address>
@@ -459,10 +488,10 @@ a.canal:hover{background:var(--surface-2)}
   <section class="section contacto" id="contacto" aria-labelledby="cont-title">
     <div class="container contacto-grid">
       <div>
-        <p class="eyebrow">Contacto</p>
-        <h2 id="cont-title" class="display" style="margin-top:.75rem">Cotiza hoy, <span class="naranja">directo</span> con el taller</h2>
-        <p class="lead" style="margin-top:1rem">Escríbenos por WhatsApp o llámanos. Tu mensaje llega directo al teléfono del taller.</p>
-        <ul class="canales">
+        <p class="eyebrow" data-cine-reveal>Contacto</p>
+        <h2 id="cont-title" class="display" style="margin-top:.75rem" data-cine-reveal>Cotiza hoy, <span class="naranja">directo</span> con el taller</h2>
+        <p class="lead" style="margin-top:1rem" data-cine-reveal>Escríbenos por WhatsApp o llámanos. Tu mensaje llega directo al teléfono del taller.</p>
+        <ul class="canales" data-cine-stagger>
           <li><a class="canal" href="https://wa.me/523336315041?text=Hola%2C%20Mec%C3%A1nica%20de%20Alta%20Calidad.%20Quiero%20cotizar%20un%20servicio%20para%20mi%20auto.%20Marca%2C%20modelo%20y%20a%C3%B1o%3A%20" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
             <span><small>WhatsApp</small><strong>(33) 3631 5041</strong></span></a></li>
@@ -475,7 +504,7 @@ a.canal:hover{background:var(--surface-2)}
         </ul>
       </div>
 
-      <form class="form" id="form-cotiza" novalidate>
+      <form class="form" id="form-cotiza" novalidate data-cine-reveal>
         <h3>Arma tu cotización</h3>
         <p class="form-desc">Llena los datos y se abrirá WhatsApp con tu mensaje listo para enviar.</p>
         <div class="campo"><label for="f-nombre">Tu nombre</label><input id="f-nombre" name="nombre" type="text" autocomplete="name"></div>
@@ -537,5 +566,6 @@ a.canal:hover{background:var(--surface-2)}
   });
 })();
 </script>
+<script src="../../shared/cinema.js" defer></script>
 </body>
 </html>

@@ -1,11 +1,10 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" data-cine="luminoso" data-cine-nombre="Dental Prados" data-cine-lema="Prados Vallarta · Zapopan">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Dentista en Prados Vallarta, Zapopan | Dental Prados</title>
-<script>document.documentElement.classList.add('js')</script>
 <meta name="description" content="Dental Prados, dentista en Prados Vallarta, Zapopan: odontología general, estética dental, rehabilitación bucal y ortodoncia con brackets e Invisalign.">
 <meta property="og:title" content="Dental Prados — Dentista en Zapopan">
 <meta property="og:description" content="Odontología general, estética, rehabilitación y ortodoncia (brackets e Invisalign) en Prados Vallarta, Zapopan.">
@@ -14,6 +13,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../../shared/cinema.css">
+<script>(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('cine-visto:'+location.pathname))return;d.classList.add('cine-on');window.__cineT=setTimeout(function(){d.classList.remove('cine-on')},4000)}catch(e){}})();</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -281,10 +282,15 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
 /* ---------- FAB tono ---------- */
 .fab-wa{background:#25d366}
 
+/* ---------- Entrada cinematográfica (cinema.css) ---------- */
+html[data-cine]{
+  --cine-bg:#fbf9f5;--cine-ink:#0f2340;--cine-accent:#6f9a8d;
+  --cine-font:"Fraunces",Georgia,"Times New Roman",serif;--cine-weight:300;--cine-case:none;
+}
+.opt-art{overflow:hidden}
+
 /* ---------- Micro-animaciones ---------- */
 @media (prefers-reduced-motion:no-preference){
-  .js .reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
-  .js .reveal.in{opacity:1;transform:none}
   .art-frame svg.smile path.draw{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 2.4s .3s ease forwards}
   @keyframes draw{to{stroke-dashoffset:0}}
 }
@@ -315,13 +321,13 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
 
 <main id="main">
   <!-- HERO -->
-  <section class="hero" id="inicio" aria-labelledby="hero-title">
+  <section class="hero" data-cine-hero id="inicio" aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div>
         <p class="hero-kicker"><i></i>Clínica dental en Zapopan</p>
-        <h1 id="hero-title">Una sonrisa sana, cuidada con <em>calma</em> y detalle.</h1>
-        <p class="hero-lead">En Dental Prados reunimos odontología general, estética, rehabilitación y ortodoncia —brackets e Invisalign— en un mismo lugar de Prados Vallarta.</p>
-        <div class="hero-actions">
+        <h1 id="hero-title" data-cine="title">Una sonrisa sana, cuidada con <em>calma</em> y detalle.</h1>
+        <p class="hero-lead" data-cine="subtitle">En Dental Prados reunimos odontología general, estética, rehabilitación y ortodoncia —brackets e Invisalign— en un mismo lugar de Prados Vallarta.</p>
+        <div class="hero-actions" data-cine="actions">
           <a class="btn btn-primary" href="#" aria-label="Escribir por WhatsApp (teléfono por confirmar)">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.5-.3Z"/></svg>
             Escríbenos por WhatsApp
@@ -334,10 +340,10 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
         </div>
       </div>
 
-      <div class="hero-art" aria-hidden="true">
+      <div class="hero-art" aria-hidden="true" data-cine-parallax="0.06">
         <div class="art-frame">
           <span class="arc a1"></span><span class="arc a2"></span>
-          <svg class="smile" viewBox="0 0 300 170" fill="none">
+          <svg class="smile" data-cine-kenburns viewBox="0 0 300 170" fill="none">
             <path class="draw" d="M20 52c40 62 220 62 260 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
             <path class="draw" d="M38 60c38 46 186 46 224 0" stroke="#3f6f62" stroke-width="1.2" stroke-linecap="round"/>
             <g stroke="currentColor" stroke-width="1.1" stroke-linejoin="round" fill="rgba(253,251,247,.75)">
@@ -367,39 +373,39 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
   <!-- SERVICIOS -->
   <section class="section" id="servicios" aria-labelledby="servicios-title">
     <div class="container">
-      <div class="sec-head split reveal">
+      <div class="sec-head split" data-cine-reveal>
         <div>
           <p class="sec-num"><span>01</span>Servicios</p>
           <h2 id="servicios-title">Todo el cuidado de tu boca, <em class="it">en un solo lugar</em>.</h2>
         </div>
         <p>Desde la revisión de rutina hasta tratamientos de rehabilitación y ortodoncia. Cada caso se valora de forma individual antes de proponer un plan.</p>
       </div>
-      <ol class="services-list" role="list">
-        <li class="svc reveal">
+      <ol class="services-list" role="list" data-cine-stagger>
+        <li class="svc">
           <span class="svc-n">i.</span>
           <h3>Odontología general</h3>
           <p>Revisiones, limpiezas y atención preventiva para mantener dientes y encías en buen estado y detectar a tiempo cualquier cambio.</p>
           <svg class="svc-ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="14" cy="14" r="8"/><path d="m20 20 7 7"/></svg>
         </li>
-        <li class="svc reveal">
+        <li class="svc">
           <span class="svc-n">ii.</span>
           <h3>Estética dental</h3>
           <p>Tratamientos enfocados en la apariencia de la sonrisa: color, forma y armonía, siempre a partir de una valoración previa.</p>
           <svg class="svc-ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M16 4l2.6 7.4L26 14l-7.4 2.6L16 24l-2.6-7.4L6 14l7.4-2.6Z"/><path d="M25 22l1 3 3 1-3 1-1 3-1-3-3-1 3-1Z"/></svg>
         </li>
-        <li class="svc reveal">
+        <li class="svc">
           <span class="svc-n">iii.</span>
           <h3>Rehabilitación bucal</h3>
           <p>Planes integrales para devolver función y comodidad al masticar cuando hay piezas dañadas o ausentes.</p>
           <svg class="svc-ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M5 16a11 11 0 0 1 19-7.5M27 16a11 11 0 0 1-19 7.5"/><path d="M24 4v5h-5M8 28v-5h5"/></svg>
         </li>
-        <li class="svc reveal">
+        <li class="svc">
           <span class="svc-n">iv.</span>
           <h3>Odontología restauradora</h3>
           <p>Reparación de dientes afectados por caries, desgaste o fracturas para recuperar su estructura y función.</p>
           <svg class="svc-ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M9 9c0-3 2.4-4.6 5-4 1 .2 1.4.8 2 .8s1-.6 2-.8c2.6-.6 5 1 5 4 0 3.5-1.3 5-1.9 8-.6 3-.9 8-2.6 8-1.6 0-1.5-5.2-3.5-5.2s-1.9 5.2-3.5 5.2c-1.7 0-2-5-2.6-8C10.3 14 9 12.5 9 9Z"/><path d="M13 12h6"/></svg>
         </li>
-        <li class="svc reveal">
+        <li class="svc">
           <span class="svc-n">v.</span>
           <h3>Ortodoncia</h3>
           <p>Corrección de la posición de los dientes y la mordida con brackets o con alineadores transparentes Invisalign.</p>
@@ -412,7 +418,7 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
   <!-- ORTODONCIA DESTACADA -->
   <section class="section ortho" id="ortodoncia" aria-labelledby="orto-title">
     <div class="container" style="position:relative">
-      <div class="sec-head split reveal">
+      <div class="sec-head split" data-cine-reveal>
         <div>
           <p class="sec-num"><span>02</span>Ortodoncia</p>
           <h2 id="orto-title">Brackets o alineadores: <em class="it">dos caminos</em> hacia una mordida alineada.</h2>
@@ -420,11 +426,11 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
         <p>Ambas opciones mueven los dientes de forma gradual. La más adecuada depende de tu caso, tus hábitos y lo que el especialista observe en la valoración.</p>
       </div>
 
-      <div class="compare reveal">
+      <div class="compare" data-cine-reveal>
         <span class="vs" aria-hidden="true">o</span>
         <article class="opt brackets" aria-labelledby="opt-b">
           <div class="opt-art" aria-hidden="true">
-            <svg viewBox="0 0 300 120" fill="none">
+            <svg viewBox="0 0 300 120" fill="none" data-cine-parallax="0.08">
               <path d="M10 40c50 50 230 50 280 0" stroke="#8fa0b8" stroke-width="1"/>
               <g fill="#e9edf3" opacity=".95">
                 <path d="M40 52c0-8 5-12 12-12s12 4 12 12-3 22-12 22-12-14-12-22Z"/>
@@ -453,7 +459,7 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
         </article>
         <article class="opt aligners" aria-labelledby="opt-a">
           <div class="opt-art" aria-hidden="true">
-            <svg viewBox="0 0 300 120" fill="none">
+            <svg viewBox="0 0 300 120" fill="none" data-cine-parallax="0.08">
               <path d="M10 40c50 50 230 50 280 0" stroke="#a9c8be" stroke-width="1"/>
               <g fill="#e9edf3" opacity=".95">
                 <path d="M40 52c0-8 5-12 12-12s12 4 12 12-3 22-12 22-12-14-12-22Z"/>
@@ -477,7 +483,7 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
         </article>
       </div>
 
-      <div class="ortho-note reveal">
+      <div class="ortho-note" data-cine-reveal>
         <p>No hay una opción "mejor" para todos. En la valoración te explicamos qué alternativa se ajusta a tu caso y resolvemos tus dudas antes de iniciar cualquier tratamiento.</p>
         <a class="btn btn-light" href="#contacto">Solicitar valoración de ortodoncia</a>
       </div>
@@ -487,27 +493,27 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
   <!-- POR QUÉ -->
   <section class="section" id="por-que" aria-labelledby="porque-title">
     <div class="container">
-      <div class="sec-head reveal">
+      <div class="sec-head" data-cine-reveal>
         <p class="sec-num"><span>03</span>Por qué Dental Prados</p>
         <h2 id="porque-title">Atención clara, <em class="it">sin prisas</em>.</h2>
       </div>
-      <div class="why-grid">
-        <div class="why reveal">
+      <div class="why-grid" data-cine-stagger>
+        <div class="why">
           <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M16 29s-9-8-9-15a9 9 0 0 1 18 0c0 7-9 15-9 15Z"/><circle cx="16" cy="14" r="3"/></svg>
           <h3>En Prados Vallarta</h3>
           <p>Sobre Av. Manuel J. Clouthier, una ubicación accesible dentro de Zapopan.</p>
         </div>
-        <div class="why reveal">
+        <div class="why">
           <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="5" y="6" width="22" height="20" rx="1"/><path d="M10 12h12M10 17h12M10 22h7"/></svg>
           <h3>Diagnóstico explicado</h3>
           <p>Te explicamos lo que encontramos y las opciones de tratamiento antes de trabajar.</p>
         </div>
-        <div class="why reveal">
+        <div class="why">
           <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="11" cy="12" r="4"/><circle cx="22" cy="12" r="4"/><path d="M4 26c0-4 3-7 7-7s7 3 7 7M15 26c0-4 3-7 7-7s7 3 7 7"/></svg>
           <h3>Varias especialidades</h3>
           <p>Un equipo de doctores que reúne distintas áreas de la odontología en un mismo lugar.</p>
         </div>
-        <div class="why reveal">
+        <div class="why">
           <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M16 4l3 7 7 .6-5.3 4.7 1.6 7.2L16 19.8 9.7 23.5l1.6-7.2L6 11.6l7-.6Z"/></svg>
           <h3>Lo que nos distingue</h3>
           <p><span class="marcador">[Dato diferenciador por confirmar]</span></p>
@@ -519,25 +525,25 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
   <!-- EQUIPO -->
   <section class="section team" id="equipo" aria-labelledby="equipo-title">
     <div class="container">
-      <div class="sec-head split reveal">
+      <div class="sec-head split" data-cine-reveal>
         <div>
           <p class="sec-num"><span>04</span>Nuestro equipo</p>
           <h2 id="equipo-title">Los especialistas <em class="it">detrás</em> de cada tratamiento.</h2>
         </div>
         <p>Espacio reservado para presentar a los doctores de la clínica con su foto, especialidad y cédula profesional.</p>
       </div>
-      <div class="team-grid">
-        <article class="member reveal">
+      <div class="team-grid" data-cine-stagger>
+        <article class="member">
           <div class="member-photo"><span class="marcador">[Foto del doctor]</span></div>
           <h3><span class="marcador">[Nombre del especialista]</span></h3>
           <p><span class="marcador">[Especialidad y cédula profesional por confirmar]</span></p>
         </article>
-        <article class="member reveal">
+        <article class="member">
           <div class="member-photo"><span class="marcador">[Foto del doctor]</span></div>
           <h3><span class="marcador">[Nombre del especialista]</span></h3>
           <p><span class="marcador">[Especialidad y cédula profesional por confirmar]</span></p>
         </article>
-        <article class="member reveal">
+        <article class="member">
           <div class="member-photo"><span class="marcador">[Foto del doctor]</span></div>
           <h3><span class="marcador">[Nombre del especialista]</span></h3>
           <p><span class="marcador">[Especialidad y cédula profesional por confirmar]</span></p>
@@ -549,14 +555,14 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
   <!-- PROCESO -->
   <section class="section" id="proceso" aria-labelledby="proceso-title">
     <div class="container">
-      <div class="sec-head reveal">
+      <div class="sec-head" data-cine-reveal>
         <p class="sec-num"><span>05</span>Tu primera visita</p>
         <h2 id="proceso-title">Así empezamos.</h2>
       </div>
-      <ol class="steps" role="list">
-        <li class="step reveal"><b>01</b><h3>Contacto</h3><p>Escríbenos o llámanos para agendar tu cita y contarnos el motivo de tu consulta.</p></li>
-        <li class="step reveal"><b>02</b><h3>Valoración</h3><p>Revisamos tu boca y te explicamos lo que observamos, con espacio para tus preguntas.</p></li>
-        <li class="step reveal"><b>03</b><h3>Plan de tratamiento</h3><p>Te presentamos las alternativas adecuadas para tu caso para que decidas con información.</p></li>
+      <ol class="steps" role="list" data-cine-stagger>
+        <li class="step"><b data-cine-count>01</b><h3>Contacto</h3><p>Escríbenos o llámanos para agendar tu cita y contarnos el motivo de tu consulta.</p></li>
+        <li class="step"><b data-cine-count>02</b><h3>Valoración</h3><p>Revisamos tu boca y te explicamos lo que observamos, con espacio para tus preguntas.</p></li>
+        <li class="step"><b data-cine-count>03</b><h3>Plan de tratamiento</h3><p>Te presentamos las alternativas adecuadas para tu caso para que decidas con información.</p></li>
       </ol>
     </div>
   </section>
@@ -564,14 +570,14 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
   <!-- TESTIMONIOS -->
   <section class="section" id="testimonios" aria-labelledby="testi-title" style="padding-top:0">
     <div class="container">
-      <div class="sec-head reveal">
+      <div class="sec-head" data-cine-reveal>
         <p class="sec-num"><span>06</span>Pacientes</p>
         <h2 id="testi-title">En palabras de quienes nos visitan.</h2>
       </div>
-      <div class="quotes">
-        <figure class="quote reveal"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M6 24v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H14v9Zm12 0v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H26v9Z"/></svg><blockquote><p><span class="marcador">[Testimonio del cliente aquí]</span></p></blockquote></figure>
-        <figure class="quote reveal"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M6 24v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H14v9Zm12 0v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H26v9Z"/></svg><blockquote><p><span class="marcador">[Testimonio del cliente aquí]</span></p></blockquote></figure>
-        <figure class="quote reveal"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M6 24v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H14v9Zm12 0v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H26v9Z"/></svg><blockquote><p><span class="marcador">[Testimonio del cliente aquí]</span></p></blockquote></figure>
+      <div class="quotes" data-cine-stagger>
+        <figure class="quote"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M6 24v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H14v9Zm12 0v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H26v9Z"/></svg><blockquote><p><span class="marcador">[Testimonio del cliente aquí]</span></p></blockquote></figure>
+        <figure class="quote"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M6 24v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H14v9Zm12 0v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H26v9Z"/></svg><blockquote><p><span class="marcador">[Testimonio del cliente aquí]</span></p></blockquote></figure>
+        <figure class="quote"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M6 24v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H14v9Zm12 0v-6c0-6 3-10 8-12l1 2c-3 1.5-4.5 4-4.5 7H26v9Z"/></svg><blockquote><p><span class="marcador">[Testimonio del cliente aquí]</span></p></blockquote></figure>
       </div>
     </div>
   </section>
@@ -579,18 +585,18 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
   <!-- UBICACIÓN -->
   <section class="section" id="ubicacion" aria-labelledby="ubi-title" style="background:var(--surface)">
     <div class="container">
-      <div class="sec-head reveal">
+      <div class="sec-head" data-cine-reveal>
         <p class="sec-num"><span>07</span>Visítanos</p>
         <h2 id="ubi-title">Ubicación y <em class="it">horario</em>.</h2>
       </div>
       <div class="visit-grid">
-        <dl class="visit-card reveal">
+        <dl class="visit-card" data-cine-reveal>
           <div class="info-row"><dt>Dirección</dt><dd>Av. Manuel J. Clouthier 133,<br>Prados Vallarta, Zapopan, Jalisco</dd></div>
           <div class="info-row"><dt>Horario</dt><dd><span class="marcador">[Horario por confirmar]</span></dd></div>
           <div class="info-row"><dt>Teléfono</dt><dd><span class="marcador">[Teléfono por confirmar]</span></dd></div>
           <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20Manuel%20J.%20Clouthier%20133%2C%20Prados%20Vallarta%2C%20Zapopan%2C%20Jalisco" target="_blank" rel="noopener">Cómo llegar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
         </dl>
-        <div class="map-embed reveal">
+        <div class="map-embed" data-cine-reveal>
           <iframe src="https://www.google.com/maps?q=Av.%20Manuel%20J.%20Clouthier%20133%2C%20Prados%20Vallarta%2C%20Zapopan%2C%20Jalisco&amp;output=embed" title="Mapa de ubicación de Dental Prados" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
       </div>
@@ -600,7 +606,7 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
   <!-- CONTACTO -->
   <section class="section contact" id="contacto" aria-labelledby="contacto-title">
     <div class="container contact-grid">
-      <div class="reveal">
+      <div data-cine-reveal>
         <p class="sec-num"><span>08</span>Contacto</p>
         <h2 id="contacto-title" style="margin-top:1rem">Agenda tu <em class="it">valoración</em>.</h2>
         <p style="color:var(--muted);margin-top:1rem;max-width:44ch">Cuéntanos qué necesitas y te ayudamos a encontrar un espacio para tu cita.</p>
@@ -610,7 +616,7 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
           <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20Manuel%20J.%20Clouthier%20133%2C%20Prados%20Vallarta%2C%20Zapopan%2C%20Jalisco" target="_blank" rel="noopener"><span><small>Dirección</small>Av. Manuel J. Clouthier 133, Prados Vallarta</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></a>
         </div>
       </div>
-      <form class="form reveal" id="form-cita" novalidate>
+      <form class="form" data-cine-reveal id="form-cita" novalidate>
         <h3>Solicitud de cita</h3>
         <div class="field"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" type="text" autocomplete="name" required></div>
         <div class="field"><label for="f-servicio">Motivo de consulta</label>
@@ -656,13 +662,6 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
 
 <script>
 (function(){
-  var els=document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-    },{rootMargin:'0px 0px -8% 0px'});
-    els.forEach(function(el){io.observe(el);});
-  }else{els.forEach(function(el){el.classList.add('in');});}
   var f=document.getElementById('form-cita');
   if(f){f.addEventListener('submit',function(ev){
     ev.preventDefault();
@@ -675,5 +674,6 @@ em.it{font-style:italic;color:var(--sage-deep);font-weight:300}
   });}
 })();
 </script>
+<script src="../../shared/cinema.js" defer></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" data-cine="vintage" data-cine-nombre="Olga Carrillo" data-cine-lema="Estética y barbería · Zapopan">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,800;1,500;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../../shared/cinema.css">
+<script>(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('cine-visto:'+location.pathname))return;d.classList.add('cine-on');window.__cineT=setTimeout(function(){d.classList.remove('cine-on')},4000)}catch(e){}})();</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -207,6 +209,44 @@ body{background:var(--bg);background-image:radial-gradient(rgba(120,90,40,.06) 1
 .site-footer b i{font-weight:500;color:#e0a184}
 .site-footer a{color:var(--paper)}
 .site-footer .disclaimer{font-size:.85rem;color:#b8ad98;border-top:1px solid #3a332a;padding-top:var(--space-4);grid-column:1/-1}
+/* ---- Entrada cinematográfica (vintage cálido de barrio) ---- */
+html[data-cine]{
+  --cine-bg:#1b1712;--cine-ink:#f4e6c8;--cine-accent:#c9a45c;
+  --cine-font:"Playfair Display",Georgia,"Times New Roman",serif;--cine-weight:500;--cine-case:none;
+}
+/* telón con luz de proyector cálida al centro */
+html[data-cine] .cine-panel.top{background:radial-gradient(ellipse 75% 85% at 50% 100%,#3b2b1c 0%,#241c15 45%,#1b1712 80%)}
+html[data-cine] .cine-panel.bot{background:radial-gradient(ellipse 75% 85% at 50% 0%,#3b2b1c 0%,#241c15 45%,#1b1712 80%)}
+html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{background:#120f0b;height:9vh}
+/* nombre en itálica de Playfair, como título de película clásica */
+html[data-cine] .cine-title{font-style:italic;font-size:clamp(2.7rem,12vw,6.4rem);line-height:1;letter-spacing:.2em;
+  text-shadow:0 2px 24px rgba(201,164,92,.25)}
+html[data-cine] .cine-intro.name .cine-title{letter-spacing:.01em}
+html[data-cine] .cine-title small{font-family:"Karla",system-ui,sans-serif;font-style:normal;font-weight:700;text-transform:uppercase;
+  font-size:max(.75rem,.17em);letter-spacing:.32em;margin-top:1.3em;color:#e0a184;opacity:.95}
+/* marco doble dorado con poste de barbería arriba y estrella abajo */
+html[data-cine] .cine-frame{inset:17vh 6vw;border-color:#c9a45c;outline-color:rgba(201,164,92,.55);outline-offset:7px}
+@media (min-width:900px){html[data-cine] .cine-frame{inset:18vh 18vw}}
+html[data-cine] .cine-frame::before{content:"";position:absolute;left:50%;top:-6px;width:92px;height:12px;translate:-50% 0;
+  background:repeating-linear-gradient(-55deg,#a4472a 0 7px,#f4e6c8 7px 12px,#1b1712 12px 15px,#f4e6c8 15px 19px);
+  border:1px solid #c9a45c;border-radius:6px;transform:scaleX(0);transition:transform .7s cubic-bezier(.22,.61,.36,1) .35s}
+html[data-cine] .cine-intro.name .cine-frame::before{transform:scaleX(1)}
+html[data-cine] .cine-frame::after{content:"";position:absolute;left:50%;bottom:-7px;width:13px;height:13px;translate:-50% 0;
+  background:#c9a45c;transform:rotate(45deg) scale(0);transition:transform .5s ease .6s}
+html[data-cine] .cine-intro.name .cine-frame::after{transform:rotate(45deg) scale(1)}
+html[data-cine] .cine-intro.name .cine-frame{opacity:.8}
+html[data-cine] .cine-intro.open .cine-frame{opacity:0;transform:scale(1.04);transition:opacity .35s ease,transform .6s ease}
+html[data-cine] .cine-vignette{background:radial-gradient(ellipse at center,transparent 40%,rgba(15,9,4,.8) 100%)}
+html[data-cine] .cine-grain{opacity:.16}
+html[data-cine] .cine-skip{font-family:"Karla",system-ui,sans-serif;color:#f4e6c8;border-color:#c9a45c;background:rgba(27,23,18,.55)}
+/* saludo y datos del hero también entran escalonados */
+html.cine-on [data-cine-hero] .greeting,html.cine-on [data-cine-hero] .hero-meta{opacity:0;translate:0 20px}
+html.cine-on.cine-hero-in [data-cine-hero] .greeting,html.cine-on.cine-hero-in [data-cine-hero] .hero-meta{opacity:1;translate:0 0;transition:opacity .7s ease,translate .8s ease}
+html.cine-on.cine-hero-in [data-cine-hero] .hero-meta{transition-delay:.42s}
+/* Ken Burns de la etiqueta: el marco recorta, las esquinas quedan visibles */
+.hero{overflow-x:clip}
+.label-card{overflow:clip;overflow-clip-margin:9px}
+.label-inner[data-cine-kenburns]{transform-origin:50% 40%}
 </style>
 </head>
 <body>
@@ -242,13 +282,13 @@ body{background:var(--bg);background-image:radial-gradient(rgba(120,90,40,.06) 1
 </header>
 
 <main id="main">
-  <section class="hero" id="inicio" aria-labelledby="hero-title">
+  <section class="hero" id="inicio" data-cine-hero aria-labelledby="hero-title">
     <div class="container hero-grid">
       <div>
         <p class="greeting">¡Hola, vecino! Pásale.</p>
-        <h1 id="hero-title">Tu corte, tu barba <em>y un rato a gusto.</em></h1>
-        <p class="lead">En Olga Carrillo Estética Barbería te atendemos como en casa, aquí en Ejido Copalita, Zapopan. Cuéntanos cómo te gusta y lo platicamos antes de empezar.</p>
-        <div class="hero-actions">
+        <h1 id="hero-title" data-cine="title">Tu corte, tu barba <em>y un rato a gusto.</em></h1>
+        <p class="lead" data-cine="subtitle">En Olga Carrillo Estética Barbería te atendemos como en casa, aquí en Ejido Copalita, Zapopan. Cuéntanos cómo te gusta y lo platicamos antes de empezar.</p>
+        <div class="hero-actions" data-cine="actions">
           <a class="btn btn-terra" href="https://wa.me/523335529380?text=Hola%20Olga%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Agenda por WhatsApp</a>
           <a class="btn btn-ink" href="tel:+523335529380"><svg aria-hidden="true"><use href="#i-phone"/></svg>Llámanos</a>
         </div>
@@ -260,7 +300,7 @@ body{background:var(--bg);background-image:radial-gradient(rgba(120,90,40,.06) 1
 
       <div class="label-card" aria-hidden="true">
         <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-        <div class="label-inner">
+        <div class="label-inner" data-cine-kenburns>
           <span class="est">Zapopan · Jalisco</span>
           <svg class="pole" viewBox="0 0 44 150">
             <defs>
@@ -286,45 +326,45 @@ body{background:var(--bg);background-image:radial-gradient(rgba(120,90,40,.06) 1
 
   <section class="section services" id="servicios" aria-labelledby="serv-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Lo que hacemos</p>
         <h2 class="section-title" id="serv-title">Servicios <em>de la casa</em></h2>
         <div class="flourish" aria-hidden="true"><svg><use href="#i-star4"/></svg></div>
       </div>
-      <ul class="tickets" role="list">
+      <ul class="tickets" role="list" data-cine-stagger>
         <li class="ticket">
-          <span class="num">N.º 01</span>
+          <span class="num" data-cine-count>N.º 01</span>
           <svg class="icon" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="36" r="6"/><circle cx="24" cy="38" r="6"/><path d="M16 31 38 8M20 33 40 14"/></svg>
           <h3>Corte</h3>
           <p>Corte de cabello a tu gusto. Nos dices cómo lo quieres y lo vamos ajustando contigo.</p>
           <div class="stub"><span>Corte</span><a href="https://wa.me/523335529380?text=Hola%20Olga%2C%20quiero%20agendar%20un%20corte." target="_blank" rel="noopener">Agendar →</a></div>
         </li>
         <li class="ticket">
-          <span class="num">N.º 02</span>
+          <span class="num" data-cine-count>N.º 02</span>
           <svg class="icon" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18c0 14 6 24 14 24s14-10 14-24"/><path d="M17 30c2 2 4 3 7 3s5-1 7-3"/><path d="M10 18c4-2 9-3 14-3s10 1 14 3"/></svg>
           <h3>Barba</h3>
           <p>Arreglo y perfilado de barba para que se vea pareja y cuidada.</p>
           <div class="stub"><span>Barba</span><a href="https://wa.me/523335529380?text=Hola%20Olga%2C%20quiero%20agendar%20un%20arreglo%20de%20barba." target="_blank" rel="noopener">Agendar →</a></div>
         </li>
         <li class="ticket">
-          <span class="num">N.º 03</span>
+          <span class="num" data-cine-count>N.º 03</span>
           <svg class="icon" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6h12v8H18zM16 14h16l2 6v20a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V20z"/><path d="M14 26h20"/></svg>
           <h3>Estética</h3>
           <p>Servicios de estética para consentirte. Pregúntanos por WhatsApp qué te podemos hacer.</p>
           <div class="stub"><span>Estética</span><a href="https://wa.me/523335529380?text=Hola%20Olga%2C%20quiero%20agendar%20un%20servicio%20de%20est%C3%A9tica." target="_blank" rel="noopener">Agendar →</a></div>
         </li>
       </ul>
-      <p class="note-small">Precios y detalles de cada servicio: <span class="marcador">[Precios por confirmar]</span></p>
+      <p class="note-small" data-cine-reveal>Precios y detalles de cada servicio: <span class="marcador">[Precios por confirmar]</span></p>
     </div>
   </section>
 
   <section class="section" id="porque" aria-labelledby="why-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Por qué venir</p>
         <h2 class="section-title" id="why-title">Como con <em>la de confianza</em></h2>
       </div>
-      <div class="reasons">
+      <div class="reasons" data-cine-stagger>
         <div class="reason"><span class="r-num">i.</span><h3>Aquí en tu colonia</h3><p>Estamos en Ejido Copalita, Zapopan: cerquita para que no batalles.</p></div>
         <div class="reason"><span class="r-num">ii.</span><h3>Primero platicamos</h3><p>Antes de empezar te preguntamos qué buscas, para que salgas como querías.</p></div>
         <div class="reason"><span class="r-num">iii.</span><h3>Agenda fácil</h3><p>Mándanos un WhatsApp y apartamos tu lugar, sin vueltas.</p></div>
@@ -335,8 +375,8 @@ body{background:var(--bg);background-image:radial-gradient(rgba(120,90,40,.06) 1
 
   <section class="section olga" id="olga" aria-labelledby="olga-title">
     <div class="container olga-grid">
-      <div class="photo-frame"><div class="marcador-bloque">[Foto de Olga]</div></div>
-      <div class="stack">
+      <div class="photo-frame" data-cine-parallax="0.08"><div class="marcador-bloque">[Foto de Olga]</div></div>
+      <div class="stack" data-cine-reveal>
         <p class="eyebrow">Detrás de las tijeras</p>
         <h2 class="section-title" id="olga-title">Conoce <em>a Olga</em></h2>
         <blockquote>Un negocio con nombre y apellido: el de Olga.</blockquote>
@@ -347,12 +387,12 @@ body{background:var(--bg);background-image:radial-gradient(rgba(120,90,40,.06) 1
 
   <section class="section" id="galeria" aria-labelledby="gal-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Trabajos</p>
         <h2 class="section-title" id="gal-title">De la silla <em>a la calle</em></h2>
         <p>Aquí irán fotos reales de cortes y barbas hechas en el local.</p>
       </div>
-      <div class="gallery">
+      <div class="gallery" data-cine-stagger>
         <figure class="g-item tall"><div class="ph"><svg aria-hidden="true"><use href="#i-camera"/></svg><span class="marcador">[Foto de trabajo real aquí]</span></div><figcaption>Corte</figcaption></figure>
         <figure class="g-item"><div class="ph"><svg aria-hidden="true"><use href="#i-camera"/></svg><span class="marcador">[Foto de trabajo real aquí]</span></div><figcaption>Barba</figcaption></figure>
         <figure class="g-item"><div class="ph"><svg aria-hidden="true"><use href="#i-camera"/></svg><span class="marcador">[Foto de trabajo real aquí]</span></div><figcaption>Estética</figcaption></figure>
@@ -365,11 +405,11 @@ body{background:var(--bg);background-image:radial-gradient(rgba(120,90,40,.06) 1
 
   <section class="section" id="testimonios" aria-labelledby="test-title" style="padding-top:0">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Lo que dicen</p>
         <h2 class="section-title" id="test-title">Palabra <em>de cliente</em></h2>
       </div>
-      <div class="testis">
+      <div class="testis" data-cine-stagger>
         <div class="testi"><span class="marcador">[Testimonio del cliente aquí]</span></div>
         <div class="testi"><span class="marcador">[Testimonio del cliente aquí]</span></div>
         <div class="testi"><span class="marcador">[Testimonio del cliente aquí]</span></div>
@@ -379,11 +419,11 @@ body{background:var(--bg);background-image:radial-gradient(rgba(120,90,40,.06) 1
 
   <section class="section visit" id="visitanos" aria-labelledby="visit-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Visítanos</p>
         <h2 class="section-title" id="visit-title">Aquí <em>nos encuentras</em></h2>
       </div>
-      <div class="visit-grid">
+      <div class="visit-grid" data-cine-stagger>
         <div class="map-embed">
           <iframe src="https://www.google.com/maps?q=5+de+Marzo+108A%2C+Ejido+Copalita%2C+Zapopan%2C+Jalisco+45200&output=embed" title="Mapa de ubicación de Olga Carrillo Estética Barbería" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
@@ -407,10 +447,10 @@ body{background:var(--bg);background-image:radial-gradient(rgba(120,90,40,.06) 1
 
   <section class="section cta-final" aria-labelledby="cta-title">
     <div class="container">
-      <div class="flourish" aria-hidden="true" style="margin-bottom:var(--space-5)"><svg><use href="#i-star4"/></svg></div>
-      <h2 class="section-title" id="cta-title">¿Te toca corte? <em>Escríbele a Olga.</em></h2>
-      <p>Mándanos un mensaje con el servicio que quieres y te respondemos para apartar tu lugar.</p>
-      <div class="hero-actions">
+      <div class="flourish" aria-hidden="true" style="margin-bottom:var(--space-5)" data-cine-parallax="0.1"><svg><use href="#i-star4"/></svg></div>
+      <h2 class="section-title" id="cta-title" data-cine-reveal>¿Te toca corte? <em>Escríbele a Olga.</em></h2>
+      <p data-cine-reveal>Mándanos un mensaje con el servicio que quieres y te respondemos para apartar tu lugar.</p>
+      <div class="hero-actions" data-cine-reveal>
         <a class="btn btn-terra" href="https://wa.me/523335529380?text=Hola%20Olga%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Agenda por WhatsApp</a>
         <a class="btn btn-ink" href="tel:+523335529380"><svg aria-hidden="true"><use href="#i-phone"/></svg>33 3552 9380</a>
       </div>
@@ -437,5 +477,6 @@ body{background:var(--bg);background-image:radial-gradient(rgba(120,90,40,.06) 1
   <a class="fab-wa" href="https://wa.me/523335529380?text=Hola%20Olga%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener" aria-label="Agendar por WhatsApp con Olga Carrillo"><svg aria-hidden="true"><use href="#i-wa"/></svg><span class="fab-label">WhatsApp</span></a>
   <a class="fab-call" href="tel:+523335529380" aria-label="Llamar a Olga Carrillo Estética Barbería"><svg aria-hidden="true"><use href="#i-phone"/></svg><span class="fab-label">Llamar</span></a>
 </div>
+<script src="../../shared/cinema.js" defer></script>
 </body>
 </html>

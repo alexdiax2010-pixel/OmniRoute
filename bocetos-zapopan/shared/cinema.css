@@ -74,7 +74,7 @@ html.cine-on:not(.cine-ready) body::after{
   letter-spacing:.04em;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .cine-skip:focus-visible{outline:3px solid var(--cine-accent);outline-offset:3px}
 .cine-intro.open .cine-skip{opacity:0;transition:opacity .3s}
-.cine-intro.done{opacity:0;transition:opacity .25s ease;pointer-events:none}
+.cine-intro.done{opacity:0;transition:opacity .25s ease} /* sigue capturando el toque hasta retirarse */
 
 /* ---------- LUMINOSO (dentistas): abre desde blanco, destello suave, lento ---------- */
 html[data-cine="luminoso"]{--cine-bg:#fff}
@@ -145,3 +145,7 @@ html.cine-js[data-cine="luminoso"] [data-cine-reveal]{transition-duration:1.1s,1
 }
 [data-cine="luminoso"] .cine-bars{display:block}
 [data-cine="luminoso"] .cine-bars::before,[data-cine="luminoso"] .cine-bars::after{background:color-mix(in srgb,var(--cine-accent) 12%,#fff)}
+
+/* Al abrir el telón, los adornos de la intro SIEMPRE se retiran (aunque una página suba su opacidad con más especificidad) */
+.cine-intro.open .cine-title,.cine-intro.open .cine-frame,.cine-intro.open .cine-rule,.cine-intro.open .cine-flare,
+.cine-intro.open .cine-bars,.cine-intro.open .cine-skip,.cine-intro.open .cine-vignette{opacity:0!important;transition:opacity .35s ease!important}

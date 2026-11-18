@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" data-cine="potente" data-cine-nombre="Frenos Frescos" data-cine-lema="Taller de frenos · Zapopan">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../../shared/cinema.css">
+<script>(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('cine-visto:'+location.pathname))return;d.classList.add('cine-on');window.__cineT=setTimeout(function(){d.classList.remove('cine-on')},4000)}catch(e){}})();</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -218,6 +220,25 @@ h2.display{font-size:clamp(2.6rem,1.8rem + 4vw,5rem)}
 .fab-call svg{color:var(--brand-hot)}
 
 /* Marcadores sobre fondo oscuro: se mantienen legibles (fondo claro propio de base.css) */
+
+/* ---------- Entrada cinematográfica (cinema.css/js) — luz de freno ---------- */
+html[data-cine]{--cine-bg:#060607;--cine-ink:#ffffff;--cine-accent:#ff2a33;--cine-font:"Bebas Neue",Impact,"Arial Narrow",sans-serif;--cine-weight:400;--cine-case:uppercase}
+html[data-cine] .cine-title{font-size:clamp(3.2rem,13vw,9rem);line-height:.9;text-shadow:0 0 28px rgba(255,42,51,.55),0 0 2px rgba(255,255,255,.4)}
+html[data-cine] .cine-title small{font-family:"Barlow",system-ui,sans-serif;font-size:.16em;letter-spacing:.38em;color:#c4c9d0;text-shadow:none;margin-top:1.1em}
+/* tercera luz de freno: barra roja que se enciende bajo el nombre */
+html[data-cine] .cine-rule{top:calc(50% + clamp(2.6rem,7vw,5.2rem));width:min(420px,62vw);height:6px;border-radius:3px;
+  background:linear-gradient(90deg,#7a0006,#ff2a33 20%,#ff6b70 50%,#ff2a33 80%,#7a0006);box-shadow:0 0 18px 3px rgba(255,42,51,.75),0 0 60px 10px rgba(227,18,27,.35)}
+/* barrido de faro: núcleo blanco con estela roja */
+html[data-cine] .cine-sweep{width:38vw;height:70vh;
+  background:linear-gradient(105deg,transparent 0%,rgba(227,18,27,0) 18%,rgba(227,18,27,.55) 38%,rgba(255,255,255,.85) 50%,rgba(255,120,124,.5) 58%,transparent 76%)}
+/* resplandor rojo detrás del nombre: dos pisadas de freno */
+html[data-cine] .cine-intro::before{content:"";position:absolute;left:50%;top:50%;width:120vmax;height:60vmax;translate:-50% -50%;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(255,42,51,.38) 0%,rgba(227,18,27,.12) 32%,transparent 60%);opacity:0}
+html[data-cine] .cine-intro.name::before{animation:ff-brake 1.25s ease-out .15s forwards}
+html[data-cine] .cine-intro.open::before{opacity:0;animation:none;transition:opacity .3s}
+@keyframes ff-brake{0%{opacity:0}14%{opacity:1}30%{opacity:.25}46%{opacity:1}100%{opacity:.55}}
+html[data-cine] .cine-bars::before{border-bottom-color:rgba(255,42,51,.6)}
+html[data-cine] .cine-bars::after{border-top-color:rgba(255,42,51,.6)}
 </style>
 </head>
 <body>
@@ -256,15 +277,15 @@ h2.display{font-size:clamp(2.6rem,1.8rem + 4vw,5rem)}
 </header>
 
 <main id="main">
-  <section class="hero" id="inicio" aria-labelledby="hero-title">
+  <section class="hero" data-cine-hero id="inicio" aria-labelledby="hero-title">
     <div class="hero-giant" aria-hidden="true">FRENOS</div>
     <div class="container">
       <div class="hero-copy">
         <p class="eyebrow">Taller Mecánico Frenos Frescos · Zapopan</p>
-        <h1 class="display" id="hero-title">Frena <span class="red">seguro.</span><br>Maneja tranquilo.
-          <small>Taller especializado en frenos en Las Águilas, Zapopan. Revisamos, te explicamos lo que encontramos y te cotizamos antes de trabajar.</small>
+        <h1 class="display" id="hero-title" data-cine="title">Frena <span class="red">seguro.</span><br>Maneja tranquilo.
+          <small data-cine="subtitle">Taller especializado en frenos en Las Águilas, Zapopan. Revisamos, te explicamos lo que encontramos y te cotizamos antes de trabajar.</small>
         </h1>
-        <div class="hero-ctas">
+        <div class="hero-ctas" data-cine="actions">
           <a class="btn btn-primary btn-xl" href="https://wa.me/523338558371?text=Hola%2C%20quiero%20cotizar%20una%20revisi%C3%B3n%20de%20frenos" target="_blank" rel="noopener">
             <svg aria-hidden="true"><use href="#i-wa"/></svg>Cotiza por WhatsApp
           </a>
@@ -277,8 +298,8 @@ h2.display{font-size:clamp(2.6rem,1.8rem + 4vw,5rem)}
           <li><svg aria-hidden="true"><use href="#i-clock"/></svg><span class="marcador">[Horario por confirmar]</span></li>
         </ul>
       </div>
-      <div class="hero-disc" aria-hidden="true">
-        <svg viewBox="0 0 400 400" role="presentation">
+      <div class="hero-disc" aria-hidden="true" data-cine-kenburns>
+        <svg viewBox="0 0 400 400" role="presentation" data-cine-parallax="0.08">
           <defs>
             <radialGradient id="g-disc" cx="50%" cy="45%" r="55%">
               <stop offset="0" stop-color="#d9dde2"/>
@@ -343,39 +364,39 @@ h2.display{font-size:clamp(2.6rem,1.8rem + 4vw,5rem)}
 
   <section class="section alertas" id="alertas" aria-labelledby="alertas-title">
     <div class="container">
-      <div class="alertas-head">
+      <div class="alertas-head" data-cine-reveal>
         <p class="eyebrow">Señales de alerta</p>
         <h2 class="display" id="alertas-title">¿Tu auto te avisa?</h2>
         <p class="lead">Los frenos casi siempre dan señales antes de fallar. Si notas alguna de estas, conviene revisarlos pronto.</p>
       </div>
-      <div class="alert-grid">
+      <div class="alert-grid" data-cine-stagger>
         <article class="alert">
-          <span class="alert-num">01</span>
+          <span class="alert-num" data-cine-count>01</span>
           <div class="alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg></div>
           <h3>Rechinido o chillido</h3>
           <p>Un sonido agudo o metálico al frenar puede indicar balatas gastadas o contacto metal con metal.</p>
         </article>
         <article class="alert">
-          <span class="alert-num">02</span>
+          <span class="alert-num" data-cine-count>02</span>
           <div class="alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="7" rx="1.5"/><path d="M12 10v7M8 21h8M9 17h6"/></svg></div>
           <h3>Pedal esponjoso</h3>
           <p>Si el pedal se siente suave o se hunde más de lo normal, puede haber aire o falta de líquido en el sistema.</p>
         </article>
         <article class="alert">
-          <span class="alert-num">03</span>
+          <span class="alert-num" data-cine-count>03</span>
           <div class="alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l2-5 3 10 3-12 3 10 2-3h4"/></svg></div>
           <h3>Vibración al frenar</h3>
           <p>Si el volante o el pedal vibran al frenar, los discos o tambores podrían estar deformados o desgastados.</p>
         </article>
         <article class="alert">
-          <span class="alert-num">04</span>
+          <span class="alert-num" data-cine-count>04</span>
           <div class="alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="6"/><path d="M12 9v3.5M12 15h.01M4.5 6.5a10 10 0 0 0 0 11M19.5 6.5a10 10 0 0 1 0 11"/></svg></div>
           <h3>Testigo encendido</h3>
           <p>La luz de frenos en el tablero puede avisar de nivel bajo de líquido u otra falla en el sistema.</p>
         </article>
       </div>
-      <p class="alertas-note"><svg aria-hidden="true"><use href="#i-info"/></svg>Información general de orientación. Solo una revisión en el taller puede confirmar la causa real de cada síntoma.</p>
-      <div class="alertas-cta">
+      <p class="alertas-note" data-cine-reveal><svg aria-hidden="true"><use href="#i-info"/></svg>Información general de orientación. Solo una revisión en el taller puede confirmar la causa real de cada síntoma.</p>
+      <div class="alertas-cta" data-cine-reveal>
         <p>¿Notaste alguna de estas señales? Cuéntanos qué hace tu auto.</p>
         <a class="btn btn-primary btn-xl" href="https://wa.me/523338558371?text=Hola%2C%20quiero%20cotizar%20una%20revisi%C3%B3n%20de%20frenos" target="_blank" rel="noopener">
           <svg aria-hidden="true"><use href="#i-wa"/></svg>Cotiza por WhatsApp
@@ -386,44 +407,44 @@ h2.display{font-size:clamp(2.6rem,1.8rem + 4vw,5rem)}
 
   <section class="section servicios" id="servicios" aria-labelledby="servicios-title">
     <div class="container">
-      <div class="servicios-head">
+      <div class="servicios-head" data-cine-reveal>
         <div>
           <p class="eyebrow">Servicios</p>
           <h2 class="display" id="servicios-title">Todo para tus frenos</h2>
         </div>
         <p class="lead">Trabajos comunes del sistema de frenado. Antes de cualquier reparación te explicamos lo que encontramos.</p>
       </div>
-      <ol class="serv-list" role="list">
+      <ol class="serv-list" role="list" data-cine-stagger>
         <li class="serv">
-          <span class="serv-n" aria-hidden="true">01</span>
+          <span class="serv-n" aria-hidden="true" data-cine-count>01</span>
           <h3>Revisión de frenos</h3>
           <p>Inspección del sistema: balatas, discos, tambores, mangueras y nivel de líquido para saber en qué estado está.</p>
         </li>
         <li class="serv">
-          <span class="serv-n" aria-hidden="true">02</span>
+          <span class="serv-n" aria-hidden="true" data-cine-count>02</span>
           <h3>Cambio de balatas</h3>
           <p>Sustitución de balatas delanteras o traseras cuando su desgaste ya lo requiere.</p>
         </li>
         <li class="serv">
-          <span class="serv-n" aria-hidden="true">03</span>
+          <span class="serv-n" aria-hidden="true" data-cine-count>03</span>
           <h3>Discos y tambores</h3>
           <p>Rectificado cuando aún es posible, o cambio de discos y tambores cuando el desgaste ya no lo permite.</p>
         </li>
         <li class="serv">
-          <span class="serv-n" aria-hidden="true">04</span>
+          <span class="serv-n" aria-hidden="true" data-cine-count>04</span>
           <h3>Líquido de frenos</h3>
           <p>Revisión de nivel y estado del líquido, y su cambio o purga del sistema cuando hace falta.</p>
         </li>
       </ol>
-      <p class="serv-pend"><span class="marcador">[Lista de servicios por confirmar con el taller]</span></p>
+      <p class="serv-pend" data-cine-reveal><span class="marcador">[Lista de servicios por confirmar con el taller]</span></p>
     </div>
   </section>
 
   <section class="section porque" id="porque" aria-labelledby="porque-title">
     <div class="container">
-      <p class="eyebrow">Por qué elegirnos</p>
-      <h2 class="display" id="porque-title">Frenos, sin rodeos</h2>
-      <div class="porque-grid">
+      <p class="eyebrow" data-cine-reveal>Por qué elegirnos</p>
+      <h2 data-cine-reveal class="display" id="porque-title">Frenos, sin rodeos</h2>
+      <div class="porque-grid" data-cine-stagger>
         <div class="razon">
           <h3><svg aria-hidden="true"><use href="#i-check"/></svg>Enfocados en frenos</h3>
           <p>Nuestra especialidad es el sistema de frenado, la pieza clave de tu seguridad al manejar.</p>
@@ -446,9 +467,9 @@ h2.display{font-size:clamp(2.6rem,1.8rem + 4vw,5rem)}
 
   <section class="section ubicacion" id="ubicacion" aria-labelledby="ubicacion-title">
     <div class="container">
-      <p class="eyebrow">Ubicación</p>
-      <h2 class="display" id="ubicacion-title">Encuéntranos</h2>
-      <div class="ubi-grid">
+      <p class="eyebrow" data-cine-reveal>Ubicación</p>
+      <h2 data-cine-reveal class="display" id="ubicacion-title">Encuéntranos</h2>
+      <div class="ubi-grid" data-cine-stagger>
         <div class="map-embed">
           <iframe src="https://www.google.com/maps?q=Av.+L%C3%B3pez+Mateos+Sur+5597,+Las+%C3%81guilas,+Zapopan,+Jalisco&output=embed" title="Mapa de ubicación de Taller Mecánico Frenos Frescos" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
@@ -471,9 +492,9 @@ h2.display{font-size:clamp(2.6rem,1.8rem + 4vw,5rem)}
 
   <section class="section testimonios" id="testimonios" aria-labelledby="testi-title">
     <div class="container">
-      <p class="eyebrow">Opiniones</p>
-      <h2 class="display" id="testi-title">Lo que dicen los clientes</h2>
-      <div class="testi-grid">
+      <p class="eyebrow" data-cine-reveal>Opiniones</p>
+      <h2 data-cine-reveal class="display" id="testi-title">Lo que dicen los clientes</h2>
+      <div class="testi-grid" data-cine-stagger>
         <figure class="testi"><blockquote><span class="marcador">[Testimonio del cliente aquí]</span></blockquote></figure>
         <figure class="testi"><blockquote><span class="marcador">[Testimonio del cliente aquí]</span></blockquote></figure>
         <figure class="testi"><blockquote><span class="marcador">[Testimonio del cliente aquí]</span></blockquote></figure>
@@ -482,7 +503,7 @@ h2.display{font-size:clamp(2.6rem,1.8rem + 4vw,5rem)}
   </section>
 
   <section class="section contacto" id="contacto" aria-labelledby="contacto-title">
-    <div class="container contacto-grid">
+    <div class="container contacto-grid" data-cine-stagger>
       <div>
         <p class="eyebrow">Contacto</p>
         <h2 class="display" id="contacto-title">No esperes a que <span class="red">rechinen</span></h2>
@@ -562,5 +583,6 @@ h2.display{font-size:clamp(2.6rem,1.8rem + 4vw,5rem)}
   });
 })();
 </script>
+<script src="../../shared/cinema.js" defer></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" data-cine="luminoso" data-cine-nombre="Cirugía Oral Béjar" data-cine-lema="Cirugía oral · La Estancia, Zapopan">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/base.css">
+<link rel="stylesheet" href="../../shared/cinema.css">
+<script>(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem('cine-visto:'+location.pathname))return;d.classList.add('cine-on');window.__cineT=setTimeout(function(){d.classList.remove('cine-on')},4000)}catch(e){}})();</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -234,6 +236,39 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
 .footer-legal{margin-top:var(--space-6);padding-top:var(--space-5);border-top:1px solid rgba(255,255,255,.12);font-size:var(--step--1);color:#9fb0af}
 
 .fab-call{color:var(--ink-strong)}
+
+/* ---------- Entrada cinematográfica (luminoso · precisión y calma) ---------- */
+html[data-cine]{
+  --cine-bg:#ffffff;--cine-ink:#1b252c;--cine-accent:#3fae94;
+  --cine-font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --cine-weight:800;--cine-case:none;
+}
+/* telón: blanco que se funde en menta, como el hero */
+html[data-cine] .cine-panel.top{background:linear-gradient(180deg,#ffffff 0%,#f6fcfa 100%)}
+html[data-cine] .cine-panel.bot{background:linear-gradient(180deg,#f6fcfa 0%,#ffffff 100%)}
+/* letterbox más fino y sereno */
+html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{height:6vh;background:#f1faf7;border-color:#c3e9dd}
+/* nombre: tracking preciso, sin dramatismo */
+html[data-cine] .cine-title{letter-spacing:.18em;font-size:clamp(1.9rem,7vw,4.4rem)}
+html[data-cine] .cine-intro.name .cine-title{letter-spacing:-.01em}
+html[data-cine] .cine-intro.open .cine-title{letter-spacing:-.01em}
+html[data-cine] .cine-title small{color:#0f7a68;font-weight:700;letter-spacing:.3em;text-transform:uppercase;font-size:.2em;opacity:.85}
+/* línea de precisión que se traza bajo el nombre */
+html[data-cine] .cine-title::after{content:"";display:block;width:min(220px,42vw);height:2px;margin:.38em auto 0;border-radius:2px;
+  background:linear-gradient(90deg,transparent,#3fae94 22%,#0f7a68 50%,#3fae94 78%,transparent);
+  transform:scaleX(0);transition:transform 1.1s cubic-bezier(.65,0,.35,1) .35s}
+html[data-cine] .cine-intro.name .cine-title::after{transform:scaleX(1)}
+html[data-cine] .cine-title{display:flex;flex-direction:column;align-items:center}
+html[data-cine] .cine-title small{order:2}
+html[data-cine] .cine-title::after{order:1}
+/* destello: halo menta suave con anillos concéntricos (eco de los anillos del hero) */
+html[data-cine] .cine-flare{background:radial-gradient(circle,rgba(195,233,221,.9) 0%,rgba(222,243,236,.5) 18%,rgba(255,255,255,0) 40%)}
+html[data-cine] .cine-flare::before,html[data-cine] .cine-flare::after{content:"";position:absolute;left:50%;top:50%;border-radius:50%;border:1px solid #c3e9dd;translate:-50% -50%}
+html[data-cine] .cine-flare::before{width:46vmin;height:46vmin;opacity:.9}
+html[data-cine] .cine-flare::after{width:70vmin;height:70vmin;opacity:.5}
+html[data-cine] .cine-intro.name .cine-flare{opacity:.9}
+html[data-cine] .cine-grain{opacity:.02}
+html[data-cine] .cine-skip{border-color:#c3e9dd;color:#0f7a68}
 </style>
 </head>
 <body>
@@ -264,9 +299,9 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
 <main id="main">
 
   <!-- HERO -->
-  <section class="hero" id="inicio" aria-labelledby="hero-title">
+  <section class="hero" id="inicio" data-cine-hero aria-labelledby="hero-title">
     <div class="container">
-      <div class="hero-icon" aria-hidden="true">
+      <div class="hero-icon" aria-hidden="true" data-cine-kenburns>
         <svg viewBox="0 0 80 80" fill="none">
           <circle cx="40" cy="40" r="36" fill="#f1faf7"/>
           <path d="M40 22c-3.6-2.8-7.6-4-11.2-3-4.8 1.4-6.6 6.2-5.8 11.8.7 4.4 2.2 7.8 3.1 12.2.9 4.4 1.4 10.6 4.9 10.6 4 0 3.6-9.2 9-9.2s5 9.2 9 9.2c3.5 0 4-6.2 4.9-10.6.9-4.4 2.4-7.8 3.1-12.2.8-5.6-1-10.4-5.8-11.8-3.6-1-7.6.2-11.2 3z" fill="#fff" stroke="#0f7a68" stroke-width="2.4" stroke-linejoin="round"/>
@@ -275,9 +310,9 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
         </svg>
       </div>
       <p class="eyebrow">Cirugía oral · La Estancia, Zapopan</p>
-      <h1 id="hero-title">Cirugía Oral Béjar: <em>precisión y calma</em> en cada paso</h1>
-      <p class="lead">Cirugía oral, apicectomía, blanqueamiento dental y coronas estéticas en Zapopan. Te explicamos tu caso con claridad antes de cualquier procedimiento, para que decidas con tranquilidad.</p>
-      <div class="hero-ctas">
+      <h1 id="hero-title" data-cine="title">Cirugía Oral Béjar: <em>precisión y calma</em> en cada paso</h1>
+      <p class="lead" data-cine="subtitle">Cirugía oral, apicectomía, blanqueamiento dental y coronas estéticas en Zapopan. Te explicamos tu caso con claridad antes de cualquier procedimiento, para que decidas con tranquilidad.</p>
+      <div class="hero-ctas" data-cine="actions">
         <a class="btn btn-wa" href="#" aria-label="Escribir por WhatsApp (teléfono por confirmar)">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.1c-.24.68-1.42 1.3-1.95 1.35-.5.05-.98.23-3.3-.69-2.8-1.1-4.56-3.95-4.7-4.13-.13-.18-1.12-1.49-1.12-2.85s.71-2.02.97-2.3c.25-.27.55-.34.73-.34l.53.01c.17 0 .4-.06.62.48.24.55.8 1.92.87 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46l-.41.48c-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.8.86-1.07.18-.27.36-.23.61-.14.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.11.07.66-.17 1.33z"/></svg>
           WhatsApp
@@ -299,7 +334,7 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
 
   <!-- BANDA CALMA -->
   <section class="calma" aria-label="Nuestro enfoque">
-    <div class="container calma-in">
+    <div class="container calma-in" data-cine-reveal>
       <p>Sabemos que la palabra <strong>“cirugía”</strong> puede imponer. Por eso cada consulta empieza con una conversación: qué vemos, qué opciones hay y qué puedes esperar.</p>
       <ul>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Resolvemos tus dudas antes de empezar.</li>
@@ -312,35 +347,35 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
   <!-- SERVICIOS -->
   <section class="section servicios" id="servicios" aria-labelledby="serv-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Servicios</p>
         <h2 id="serv-title">Lo que hacemos</h2>
         <p>Cuatro áreas de atención. En tu valoración te decimos cuál aplica a tu caso y por qué.</p>
       </div>
-      <div class="serv-grid">
+      <div class="serv-grid" data-cine-stagger>
         <article class="serv">
-          <span class="serv-num" aria-hidden="true">01</span>
+          <span class="serv-num" aria-hidden="true" data-cine-count>01</span>
           <div class="serv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.6-1.3-3.4-1.9-5-1.4C4.8 4.8 4 7 4.4 9.6c.3 2 1 3.6 1.4 5.6.4 2 .6 4.8 2.2 4.8 1.8 0 1.6-4.2 4-4.2s2.2 4.2 4 4.2c1.6 0 1.8-2.8 2.2-4.8.4-2 1.1-3.6 1.4-5.6.4-2.6-.4-4.8-2.6-5.5-1.6-.5-3.4.1-5 1.4z"/><path d="M9 9.5h6"/></svg></div>
           <h3>Cirugía oral</h3>
           <p>Procedimientos quirúrgicos dentro de la boca, realizados con planeación previa y explicados paso a paso antes de iniciar.</p>
           <span class="serv-tag">Especialidad</span>
         </article>
         <article class="serv">
-          <span class="serv-num" aria-hidden="true">02</span>
+          <span class="serv-num" aria-hidden="true" data-cine-count>02</span>
           <div class="serv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c-2 0-3.5 1.6-3.3 4 .2 2.2 1.2 3.8 1.6 6.4.3 2 .6 3.6 1.7 3.6 1 0 1.3-2 2-3.2"/><path d="M16 3c2 0 3.5 1.6 3.3 4-.2 2.2-1.2 3.8-1.6 6.4"/><circle cx="16" cy="18" r="3"/><path d="M12 3.6c-1-.4-2.4-.6-4-.6"/></svg></div>
           <h3>Apicectomía</h3>
           <p>Procedimiento en la punta de la raíz de un diente. Te explicamos en qué consiste y si es una opción adecuada para ti.</p>
           <span class="serv-tag">Endodoncia quirúrgica</span>
         </article>
         <article class="serv">
-          <span class="serv-num" aria-hidden="true">03</span>
+          <span class="serv-num" aria-hidden="true" data-cine-count>03</span>
           <div class="serv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg></div>
           <h3>Blanqueamiento dental</h3>
           <p>Tratamiento para aclarar el tono de los dientes, previa revisión de tu salud bucal para indicarte si es recomendable.</p>
           <span class="serv-tag">Estética</span>
         </article>
         <article class="serv">
-          <span class="serv-num" aria-hidden="true">04</span>
+          <span class="serv-num" aria-hidden="true" data-cine-count>04</span>
           <div class="serv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l3 3 5-6 5 6 3-3-1.5 9h-13z"/><path d="M6 20h12"/></svg></div>
           <h3>Coronas estéticas</h3>
           <p>Restauraciones que cubren un diente para devolverle forma y función, con un acabado pensado para verse natural.</p>
@@ -353,12 +388,12 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
   <!-- PROCESO -->
   <section class="section proceso" id="proceso" aria-labelledby="proc-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Cómo es tu proceso</p>
         <h2 id="proc-title">Sin sorpresas, de principio a fin</h2>
         <p>Así acompañamos cada caso, de forma general. Los detalles los definimos juntos en consulta.</p>
       </div>
-      <ol class="timeline">
+      <ol class="timeline" data-cine-stagger>
         <li class="step">
           <span class="step-dot" aria-hidden="true"></span>
           <div class="step-card">
@@ -388,19 +423,19 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
           </div>
         </li>
       </ol>
-      <p class="proceso-nota">Cada paciente es distinto: los tiempos y el plan se definen de forma individual en la valoración.</p>
+      <p class="proceso-nota" data-cine-reveal>Cada paciente es distinto: los tiempos y el plan se definen de forma individual en la valoración.</p>
     </div>
   </section>
 
   <!-- POR QUÉ -->
   <section class="section" id="porque" aria-labelledby="porque-title">
     <div class="container porque-grid">
-      <div class="porque-intro">
+      <div class="porque-intro" data-cine-reveal>
         <p class="eyebrow">Por qué elegirnos</p>
         <h2 id="porque-title">Una consulta pensada para que te sientas en confianza</h2>
         <p>Creemos que entender tu tratamiento es la mejor forma de enfrentarlo con calma.</p>
       </div>
-      <ul class="razones">
+      <ul class="razones" data-cine-stagger>
         <li class="razon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg>
           <h3>Te explicamos antes de trabajar</h3>
@@ -428,8 +463,8 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
   <!-- ESPECIALISTA -->
   <section class="section especialista" id="especialista" aria-labelledby="esp-title">
     <div class="container">
-      <div class="esp-card">
-        <div class="esp-avatar" aria-hidden="true">
+      <div class="esp-card" data-cine-reveal>
+        <div class="esp-avatar" aria-hidden="true" data-cine-parallax="0.06">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
         </div>
         <div class="stack">
@@ -445,11 +480,11 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
   <!-- TESTIMONIOS -->
   <section class="section" id="testimonios" aria-labelledby="testi-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Testimonios</p>
         <h2 id="testi-title">Lo que dicen nuestros pacientes</h2>
       </div>
-      <div class="testi-grid">
+      <div class="testi-grid" data-cine-stagger>
         <figure class="testi">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 7h4v4c0 3-1.5 5-4 6l-.8-1.4C7.6 14.8 8.3 13.6 8.4 12H7zM14 7h4v4c0 3-1.5 5-4 6l-.8-1.4c1.4-.8 2.1-2 2.2-3.6H14z"/></svg>
           <blockquote><p><span class="marcador">[Testimonio del cliente aquí]</span></p></blockquote>
@@ -469,12 +504,12 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
   <!-- FAQ -->
   <section class="section faq" id="preguntas" aria-labelledby="faq-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Preguntas frecuentes</p>
         <h2 id="faq-title">Resolvemos tus dudas</h2>
         <p>Información general y educativa. Tu caso particular siempre se evalúa en consulta.</p>
       </div>
-      <div class="faq-list">
+      <div class="faq-list" data-cine-stagger>
         <details>
           <summary>¿Qué es una apicectomía?</summary>
           <div class="faq-body">
@@ -520,11 +555,11 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
   <!-- UBICACIÓN -->
   <section class="section" id="ubicacion" aria-labelledby="ubic-title">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-cine-reveal>
         <p class="eyebrow">Ubicación</p>
         <h2 id="ubic-title">Visítanos en La Estancia</h2>
       </div>
-      <div class="ubic-grid">
+      <div class="ubic-grid" data-cine-stagger>
         <div class="map-embed">
           <iframe src="https://www.google.com/maps?q=Av.+Beethoven+5229-7%2C+La+Estancia%2C+45030+Zapopan%2C+Jalisco&amp;output=embed" title="Mapa de ubicación de Cirugía Oral Béjar" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
@@ -548,7 +583,7 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
 
   <!-- CONTACTO -->
   <section class="section contacto" id="contacto" aria-labelledby="cont-title">
-    <div class="container contacto-grid">
+    <div class="container contacto-grid" data-cine-stagger>
       <div>
         <p class="eyebrow">Contacto</p>
         <h2 id="cont-title">Agenda tu valoración</h2>
@@ -640,5 +675,6 @@ h1,h2,h3{font-family:var(--font-display);color:var(--ink-strong);letter-spacing:
   });
 })();
 </script>
+<script src="../../shared/cinema.js" defer></script>
 </body>
 </html>
