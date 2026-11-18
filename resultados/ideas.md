@@ -108,3 +108,5 @@ En Puerta de Hierro hay varios consultorios en el mismo edificio (Av. Empresario
 ### Zonas sin datos
 
 Los directorios casi no tienen negocios en Tesistán, Tabachines ni Belenes. No significa que no haya prospectos: ahí convendría recorrer a pie o buscar en Google Maps directamente, en lugar de directorios.
+
+> **Nota final de la sesión 2 (ronda 2B):** después de este resumen se sumaron 6 negocios y 3 teléfonos. Totales finales: **173 revisados, 163 prospectos, 110 con 60+ puntos** (Salud 51, Automotriz 28, Servicios 25, Belleza 6). El top 10 no cambió.

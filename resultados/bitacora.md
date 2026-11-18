@@ -171,3 +171,9 @@
 - Prados Tepeyac, Residencial Poniente y Rafael Sanzio: nada con teléfono. Esas colonias son más habitacionales que comerciales.
 - **Rendimiento decreciente confirmado:** la ronda 1 de la sesión 2 dio de 10 a 15 negocios por agente; esta ronda dio 8 y 7 actualizaciones de teléfono de confianza media. Ya se exprimió lo que los directorios indexados tienen. Lo siguiente debe ser trabajo de campo o Maps, no más búsquedas.
 - Lancé la verificación y puntuación de estos 7.
+
+## 2026-11-18 16:18 UTC — Cierre de la sesión 2
+- Ronda 2B integrada: entraron 6 de 8 (Hopp por cadena y un taller sin URL quedaron descartados). Mejor nuevo: Clínica Veterinaria Cordilleras (73). Ninguno entra al top 10 (el corte está en 82).
+- **Totales finales:** 173 negocios revisados, **163 prospectos**, **110 con 60+**. La sesión 2 aportó 67 prospectos, 56 con 60+ (84%, contra 55% en la sesión 1). Enfocarse en los giros rentables sí subió la calidad.
+- **Duración real de la sesión 2: ~21 min** (15:58–16:19 UTC), no 60. Paré porque la ronda 2B ya mostró rendimiento decreciente y otra ronda de búsquedas daría pocos negocios nuevos. El siguiente salto de calidad requiere habilitar los directorios en la red del entorno o hacer trabajo de campo.
+- CSV y dashboard regenerados; reporte republicado.
