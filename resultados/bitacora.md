@@ -108,3 +108,8 @@
 - 13 negocios (5 Salud, 5 Automotriz, 3 Servicios) que hacen más densas las rutas de El Colli/Mariano Otero y Ciudad del Sol/La Calma. **Sorpresa:** hay un grupo sobre Av. Mariano Otero 3660–4297 (un dentista, una clínica de rehabilitación y un taller) que permite 3 visitas en una cuadra.
 - **Calidad más baja que en la sesión 1:** 3 negocios (Dental Estetic, Rehabilitación Siglo XXI, Multiservicios Cruz) no reaparecen al buscarlos por nombre, y su URL fuente es "la más probable". Le pido al Verificador que les baje la confianza o los descarte. No quiero en el top 10 negocios que quizás no existen.
 - 2 aparecen a nombre de persona física: los dejo solo como consultorio o despacho, sin buscar más de esas personas.
+
+## 2026-11-18 16:02 UTC — Termina el Agente Automotriz (sesión 2)
+- 10 negocios, 9 con teléfono. Los de ticket alto: 2 de transmisiones automáticas (Central de Transmisiones de Zapopan y Transmisiones Federalismo) y 1 de diésel.
+- **Cruce entre agentes:** Transmisiones Federalismo se descartó en la sesión 1 porque el nombre no tenía URL; ahora llega con fuente, así que vuelve a revisión. Ambriz Laminado y Pintura lo trajo el Agente Rutas, pero el Automotriz lo excluyó por datos contradictorios. Le paso los dos casos al Verificador.
+- **Hallazgo de cobertura:** los directorios casi no tienen fichas en Tesistán, Tabachines, La Tuzanía ni Belenes. Lo que hay en el norte de Zapopan para talleres no está en internet, así que la ruta norte tendría que armarse caminando o con Maps.
