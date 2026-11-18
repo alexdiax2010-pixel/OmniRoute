@@ -288,8 +288,10 @@ html[data-cine]{
   --cine-font:"Fraunces",Georgia,"Times New Roman",serif;--cine-weight:300;--cine-case:none;
 }
 /* Toques boutique: telón crema con costura salvia, halo elíptico, filete sobre el nombre */
-html[data-cine] .cine-panel.top{box-shadow:inset 0 -1px 0 rgba(111,154,141,.55)}
-html[data-cine] .cine-panel.bot{box-shadow:inset 0 1px 0 rgba(111,154,141,.55)}
+html[data-cine] .cine-panel::after{content:"";position:absolute;left:0;right:0;height:1px;background:rgba(63,111,98,.6);opacity:0;transition:opacity .25s ease}
+html[data-cine] .cine-panel.top::after{bottom:0}
+html[data-cine] .cine-panel.bot::after{top:0}
+html[data-cine] .cine-intro.open .cine-panel::after{opacity:1}
 html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{background:#f3efe8;height:9vh}
 html[data-cine] .cine-flare{width:150vmax;height:90vmax;
   background:radial-gradient(closest-side,rgba(111,154,141,.42) 0%,rgba(230,238,233,.55) 45%,rgba(251,249,245,0) 100%)}
