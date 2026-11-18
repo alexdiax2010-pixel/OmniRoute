@@ -93,10 +93,10 @@ h1,h2,h3{font-family:var(--font-display);text-transform:uppercase;letter-spacing
   radial-gradient(ellipse 80% 60% at 75% 40%,rgba(255,194,14,.14),transparent 60%),
   linear-gradient(180deg,#0b0b0c 0%,#121214 100%)}
 .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(180deg,#000 30%,transparent 95%);pointer-events:none}
-.hero .container{position:relative;display:grid;gap:var(--space-6);padding-block:var(--space-7) var(--space-8)}
+.hero .container{position:relative;display:grid;gap:var(--space-6);padding-block:var(--space-7) var(--space-6)}
 .hero-tag{display:inline-flex;align-items:center;gap:.6rem;font-weight:700;font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brand)}
 .hero-tag::before{content:"";width:34px;height:10px;background:repeating-linear-gradient(-45deg,var(--brand) 0 5px,transparent 5px 10px)}
-.hero h1{font-size:clamp(3.4rem,13vw,8.6rem);font-weight:900;margin-top:var(--space-3)}
+.hero h1{font-size:clamp(3.4rem,13vw,8.6rem);font-weight:900;margin-top:var(--space-5)}
 .hero h1 .y{color:var(--brand);display:block}
 .hero h1 .outline{-webkit-text-stroke:2px var(--ink);color:transparent;display:block}
 .hero-lead{max-width:34ch;color:var(--muted);font-size:var(--step-1);margin-top:var(--space-5)}
@@ -104,13 +104,14 @@ h1,h2,h3{font-family:var(--font-display);text-transform:uppercase;letter-spacing
 .hero-ctas{display:flex;flex-wrap:wrap;gap:var(--space-4);margin-top:var(--space-6)}
 .hero-phone{margin-top:var(--space-5);font-size:.95rem;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
 .hero-phone a{color:var(--ink);font-weight:700;text-decoration:none;font-size:1.1rem}
-.hero-art{position:relative;align-self:end}
+.hero-art{position:relative;align-self:end;padding-right:56px}
+@media (min-width:900px){.hero-art{align-self:center;padding-right:0}}
 .truck-wrap{position:relative;padding:var(--space-5) 0 0}
 .truck-wrap::after{content:"";position:absolute;left:-10%;right:-10%;bottom:6px;height:16px;background:var(--hazard);transform:skewY(-2deg);opacity:.95}
 .truck{width:100%;height:auto;position:relative;z-index:1;filter:drop-shadow(0 18px 30px rgba(0,0,0,.6))}
 .hero-badge{position:absolute;top:0;right:0;z-index:2;background:var(--brand);color:#000;font:900 1.1rem/1 var(--font-display);text-transform:uppercase;padding:.55rem .8rem;transform:rotate(4deg);box-shadow:4px 4px 0 #000}
 @media (min-width:900px){
-  .hero .container{grid-template-columns:1.05fr 1fr;align-items:center;padding-block:var(--space-8) var(--space-9)}
+  .hero .container{grid-template-columns:1.05fr 1fr;align-items:center;padding-block:var(--space-8)}
 }
 
 /* Section heads */
@@ -307,7 +308,7 @@ form.quote h3{font-size:2.2rem;font-weight:900;margin-top:.4rem}
       <div class="split">
         <article class="split-card">
           <span class="big" aria-hidden="true">01</span>
-          <svg class="veh" viewBox="0 0 300 120" aria-hidden="true"><path d="M10 82v-18c0-6 4-10 10-10h70l28-26c4-4 9-6 15-6h58c6 0 11 3 14 8l16 24h55c8 0 14 6 14 14v14Z" fill="currentColor"/><path d="M124 34h48l14 20h-80Z" fill="#141416"/><rect x="6" y="80" width="288" height="10" fill="currentColor"/><circle cx="70" cy="92" r="20" fill="#141416" stroke="currentColor" stroke-width="6"/><circle cx="230" cy="92" r="20" fill="#141416" stroke="currentColor" stroke-width="6"/></svg>
+          <svg class="veh" viewBox="0 0 300 120" aria-hidden="true"><path d="M10 84V52h128V28q0-6 6-6h54q6 0 10 6l20 24h52q10 0 10 10v22Z" fill="currentColor"/><path d="M150 30h44l16 20h-60Z" fill="#141416"/><rect x="18" y="58" width="112" height="4" fill="#141416"/><rect x="6" y="82" width="288" height="8" fill="currentColor"/><circle cx="70" cy="92" r="20" fill="#141416" stroke="currentColor" stroke-width="6"/><circle cx="236" cy="92" r="20" fill="#141416" stroke="currentColor" stroke-width="6"/></svg>
           <h3>Camionetas</h3>
           <p>Camionetas con motor diésel para trabajo, reparto o uso diario: diagnóstico, mantenimiento y reparación.</p>
         </article>
