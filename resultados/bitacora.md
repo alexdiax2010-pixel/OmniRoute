@@ -42,3 +42,10 @@
 - 43 registros con alerta "verificar en Maps". **Sorpresa:** El Barbero Co y Eagle Man aparecen en la misma dirección (Aviación 4455), así que podría ser una plaza con varias barberías, una buena parada para la ruta.
 - Taller de Espresso podría tener web (un agregador cita tallerdeespresso.com). Lo marco para que el Analista lo baje.
 - Siguiente: Analista con la rúbrica, incluyendo los dentistas de la Ronda 2.
+
+## 15:58 UTC — Termina la Ronda 2 de Salud y lanzo al Analista
+- 13 dentistas nuevos, **11 con teléfono o WhatsApp** (en la ronda 1 eran 5 de 15). La apuesta salió bien.
+- **Hallazgo:** Las Águilas concentra 6 dentistas con teléfono → candidata natural para una ruta de visitas de dentistas (el paquete de $4,500).
+- Ciudad Granja: solo apareció Dentalia (cadena, descartada). Providencia y Jardines Universidad no dieron consultorios con teléfono.
+- Descarte probable: Dentist Vibliorio (Tesistán) ya tiene web propia.
+- Lancé al **Analista** con la rúbrica del cliente y le agregué dos reglas propias: (1) sin datos de reseñas, máximo 8 en "va bien", para no premiar lo desconocido; (2) -5 si hay alertas graves (dos direcciones, duda Zapopan/GDL), para que el top 10 sea visitable sin sorpresas.
