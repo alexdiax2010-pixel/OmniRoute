@@ -1,0 +1,84 @@
+{
+  "notas_proceso": [
+    "Se revisaron los 29 prospectos de Salud/Servicios/Automotriz con puntuacion >= 57 y teléfono no encontrado, posible o dudoso. Solo se usaron resúmenes de WebSearch; WebFetch está bloqueado en los directorios.",
+    "Sin número completo publicado en los resúmenes (WhatClinic lo esconde tras 'Show Phone Number' y Doctoralia lo trunca): Denticelis (Doctoralia muestra '33 2101...' en el perfil del consultorio de Ciudad del Sol), Centro de Vínculo Psicológico ('33 1333...'), Ortoklinic, Paudent, Dental Prados ('33 4348...' / '33 1396...' en un perfil ligado), Biodentaq, Leend Dental, Dental Palacios, Gama Dental, Diente Sano, Dental Valle Real, Saba Dental, Barragán Contadores, Dental MAVE, Fisioterapia Profesionales Rehabilitando, Dr. Eduardo García Lizárraga y Consultorio Dra. Monserrat Gallegos. Los números truncados NO se registran como teléfono.",
+    "Dental del Real: un sitio de datos de negocios (d7leadfinder) muestra '+52333244xxxx' enmascarado y sin vínculo claro con Av. Guadalupe 4354. No se usa.",
+    "Ortoklinic: el localizador de la AAO lista una consulta llamada 'Ortoclinik' (escrito distinto). No se pudo confirmar que sea la misma; sin teléfono.",
+    "MR11 Garage y Dental MAVE: ninguna búsqueda devolvió resultados con esos nombres.",
+    "Ambriz Laminado y Pintura: sale el mismo (33) 3620 8547. Hay un segundo registro con el mismo nombre en Av. Constitución 65, Loma Bonita, Zapopan, sin teléfono. No es un dato nuevo de contacto.",
+    "Consultorio Av. De las Rosas 430 y Brenda Olvera Fisioterapia: los resúmenes repiten los números que ya están en scored.json. El conflicto de Brenda Olvera sigue sin resolverse.",
+    "No apareció ninguna señal de cierre en ningún prospecto."
+  ],
+  "actualizaciones": [
+    {
+      "nombre": "RYO Rehabilitación y Traumatología",
+      "telefono_nuevo": "+52 33 3636 4413",
+      "whatsapp_nuevo": "",
+      "fuente": "https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/arcos-de-zapopan",
+      "confianza": "media",
+      "web_encontrada": "",
+      "cerrado": "no se sabe",
+      "nota": "Ficha de Fresha: 'RYO Rehabilitacion y traumatología. C. Tesistán, Arcos de Zapopan, 45130 ... +52 33 3636 4413'. El número se asocia al negocio por su posición en el texto de la página. Hay otro número en la misma calle (+52 33 3178 6594, Tesistán 670-14 F), pero es de un quiropráctico distinto. Verificar."
+    },
+    {
+      "nombre": "Auto Laminado y Pintura Santa Esther",
+      "telefono_nuevo": "(33) 3165 8793",
+      "whatsapp_nuevo": "",
+      "fuente": "https://www.seccionamarilla.com.mx/resultados/pintura-de-automoviles-y-camiones/8",
+      "confianza": "media",
+      "web_encontrada": "",
+      "cerrado": "no se sabe",
+      "nota": "Una sola fuente: el directorio de Sección Amarilla, que lo ubica en Guadalajara, Jal. No se confirmó en otra fuente y la fecha del dato se desconoce."
+    },
+    {
+      "nombre": "Spine Center - Centro Quiropráctico de Descompresión Espinal (Clínica Especializada en Hernia de Disco)",
+      "telefono_nuevo": "+52 33 3615 6676",
+      "whatsapp_nuevo": "",
+      "fuente": "https://www.fresha.com/lp/en/tt/chiropractors/in/mx-guadalajara/ciudad-del-sol",
+      "confianza": "media",
+      "web_encontrada": "",
+      "cerrado": "no se sabe",
+      "nota": "Dos páginas de Fresha confirman el +52 33 3615 6676 para Av. Tizoc 595 B, Cd. del Sol, así que pesa más que el +52 33 3615 9912 en conflicto. Otra ficha, 'Spine Center Quiroprácticos / Centro de Descompresión', está en Jesús Sánchez Carrillo 1923, Paseos del Sol, con +52 33 2244 4116 (https://www.fresha.com/lp/en/tt/chiropractors/in/mx-guadalajara/paseos-del-sol). Puede ser otra sucursal: anotar ambos."
+    },
+    {
+      "nombre": "Refaccionaria Rogelio",
+      "telefono_nuevo": "(33) 3801-9156",
+      "whatsapp_nuevo": "",
+      "fuente": "https://www.seccionamarilla.com.mx/resultados/refaccionaria-de-autopartes/jalisco/1",
+      "confianza": "media",
+      "web_encontrada": "refaccionariarogelio.miadn.mx",
+      "cerrado": "no",
+      "nota": "Varias fichas de Sección Amarilla asocian claramente el (33) 3801-9156 a Refaccionaria Rogelio, Av. 18 de Marzo 3463, Las Águilas, CP 45080, así que deja de ser dudoso. La ficha enlaza un micrositio de Sección Amarilla (miadn.mx), que no es una web propia completa. Existe otra Refaccionaria Rogelio en Av. Revolución 2228, La Loma, con (33) 3657 5780, en la categoría de electrodomésticos. Hay una razón social en Panjiva (Refaccionaria Rogelio S.A. de C.V.)."
+    },
+    {
+      "nombre": "Servikar Diésel",
+      "telefono_nuevo": "(33) 4259-0498",
+      "whatsapp_nuevo": "",
+      "fuente": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/1",
+      "confianza": "media",
+      "web_encontrada": "",
+      "cerrado": "no se sabe",
+      "nota": "Confirma el número actual: dos fichas de Sección Amarilla (diésel en Zapopan y refacciones diésel) dan el mismo teléfono para Mariano Otero 5664, Paseos del Sol. Dunsguide registra Servikar Diesel S.A. de C.V. (fundada en 2019). Los horarios no coinciden entre fichas."
+    },
+    {
+      "nombre": "Central de Transmisiones Automáticas de Zapopan",
+      "telefono_nuevo": "(33) 3624 1212",
+      "whatsapp_nuevo": "",
+      "fuente": "https://www.seccionamarilla.com.mx/resultados/transmisiones-automaticas-poza-rica/25",
+      "confianza": "media",
+      "web_encontrada": "",
+      "cerrado": "no se sabe",
+      "nota": "Confirma el número actual: una búsqueda por nombre exacto devuelve el (33) 3624 1212 junto con Juan Gil Preciado 3441, Nuevo México, CP 45138, en dos páginas del mismo directorio. Fuente única (Sección Amarilla)."
+    },
+    {
+      "nombre": "Abogados García Maldonado",
+      "telefono_nuevo": "(33) 3658 2498",
+      "whatsapp_nuevo": "",
+      "fuente": "https://www.seccionamarilla.com.mx/mapas/despachos-de-abogados/jalisco/guadalajara/2",
+      "confianza": "media",
+      "web_encontrada": "",
+      "cerrado": "no se sabe",
+      "nota": "Confirma el número actual: dos listados de Sección Amarilla (despachos de abogados y abogados de familia) asocian el (33) 3658 2498 a G. Leroux 745, Paseos Universidad. No se encontró web propia."
+    }
+  ]
+}

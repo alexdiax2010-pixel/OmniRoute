@@ -160,3 +160,8 @@
 - Dashboard regenerado y republicado (157 prospectos). Llevamos ~15 min reales de la sesión 2, con más tiempo del presupuesto. **Ronda 2B** con 2 agentes:
   1. **Buscador de teléfonos:** los prospectos de alto ticket sin teléfono o con teléfono dudoso. Subirles el contacto de 0 a 15 puntos vale más que encontrar negocios nuevos de 50 puntos.
   2. **Zonas restantes:** Arcos de Zapopan, Prados Tepeyac, Jardines de Guadalupe, Ciudad de los Niños, Vallarta Universidad y Prados Guadalupe (Salud, Servicios y Automotriz).
+
+## 2026-11-18 16:16 UTC — Termina el Buscador de teléfonos (ronda 2B)
+- Revisó 29 prospectos de alto valor sin teléfono confiable. **Solo 7 actualizaciones, todas de confianza media:** 2 números nuevos (RYO Rehabilitación, Auto Laminado Santa Esther) y 5 confirmados en un segundo listado (Spine Center, Refaccionaria Rogelio, Servikar, Central de Transmisiones, García Maldonado).
+- **Lección clave:** los 15 dentistas sin teléfono siguen sin él. Doctoralia y WhatClinic ocultan o truncan los números **a propósito**, para cobrar al consultorio por las citas. Para ese grupo el canal es la **visita en persona** o Maps, no el buscador. Por eso están en las rutas 4 y 5 aunque no se les pueda escribir.
+- Integración con script: con confianza media el contacto sube a 8 puntos (no a 15), según la rúbrica "dudoso 5 / solo WhatsApp 8 / confirmado 15". Ninguno de estos cambia el top 10.
