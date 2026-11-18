@@ -22,3 +22,16 @@
 - **Limitación importante:** la red del entorno también bloquea seccionamarilla.com.mx y cronoshare.com.mx. Los datos salen de los fragmentos del buscador, y la URL fuente a veces es una página de resultados del directorio, no la ficha del negocio. Esos datos quedan como "verificar".
 - 3 negocios (Alcaraz Leal, Azteca, Balbaneda) aparecen con dos direcciones distintas, y la Notaría 30 sale en Guadalajara aunque es "de Zapopan" → el Verificador debe marcarlos.
 - "Sin web" aquí significa "no apareció dominio al buscar", no "confirmado que no tiene web". Ajuste: la puntuación de "sin web" la dejo completa, pero el CSV dirá "no encontrada" en vez de "no".
+
+## 15:45 UTC — Fase 1 completa (5 agentes de giro terminaron)
+- Salud 15 · Automotriz 18 · Belleza 16 · Comida 16 · Servicios 15 → **80 negocios en bruto**.
+- **Patrón en todos los agentes:** la red del entorno bloquea casi todos los directorios (Doctoralia, WhatClinic, TopDoctors, Sección Amarilla, Cylex, Fresha, AgendaPro). Solo funcionó WebSearch. Cada dato trae la URL que citó el buscador, pero las fichas no se abrieron. Decisión: no invento nada. Todo queda con su fuente y la nota "confirmar en la ficha/Maps".
+- **Teléfono es el cuello de botella:** Doctoralia y WhatClinic ocultan los teléfonos, y en Comida solo 2 de 16 tienen. Ajusto: en la rúbrica, "facilidad de contacto" pesa mucho para desempatar, y los negocios sin teléfono no deberían entrar al top 10 aunque su perfil sea bueno.
+- **Ninguno de los 80 mostró web propia** al buscarlo. Sorprende, y confirma que hay mercado, aunque en parte se debe a que no se pudo revisar todo. Laminado y Pintura JV tiene un dominio citado (laminadojv.com) que no aparece en la búsqueda → posible "web caída", buen gancho.
+- Descartes en la fase: cadenas (Hopp, Prodynamics, O'Reilly, APYMSA, Portos Abogados). La Zapopana (≈20 sucursales) y Avanti (posible franquicia) quedan marcados para descartar.
+- Siguiente: Verificador (duplicados, datos contradictorios, cadenas) → Analista (rúbrica 0–100).
+
+## 15:47 UTC — Fase 2 arranca + Ronda 2 en paralelo
+- Lancé el **Verificador** sobre los 80 negocios: duplicados, cadenas, datos sin fuente → "no encontrado", alertas de contradicciones.
+- **Cambio de estrategia (Ronda 2 adelantada):** no esperé al minuto 60. Salud es el giro de mayor ticket ($4,500), pero solo 5 de 15 tenían teléfono. Lancé en paralelo un agente que busca **dentistas con teléfono** en colonias sin cubrir (Providencia, Chapalita, Ciudad Granja, Las Águilas, Santa Margarita, Tesistán, Jardines Universidad, Ciudad del Sol). Sus resultados entran directo al Analista.
+- Comida queda como el giro más débil para prospectar en frío (2 de 16 con teléfono). Para ese giro conviene la visita en persona más que el WhatsApp.
