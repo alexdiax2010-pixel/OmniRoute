@@ -136,3 +136,11 @@
 - 64 → **61 prospectos nuevos**. 1 duplicado interno (Procesum, fusionado) y 0 coincidencias con el CSV: las zonas asignadas sí evitaron repetir negocios. 2 descartados por cadena (The Glow Skin Clinic y Centropiel).
 - 8 negocios perdieron dirección o teléfono por no tener URL (regla de no inventar). 7 fichas a nombre de persona se renombraron por tipo de negocio y dirección.
 - **Decisión para el Analista:** los 3 negocios de "confianza baja" llevan -5 extra y no pueden entrar al top 10. Además pido **recalcular la cercanía para los 157 prospectos**, porque ahora Ciudad del Sol, Puerta de Hierro y El Colli tienen más vecinos y sería injusto dejar los puntajes viejos con menos cercanía.
+
+## 2026-11-18 16:10 UTC — Termina el Analista (sesión 2): cambia el top 10
+- **157 prospectos** (165 revisados en total), **103 con 60 puntos o más** (53 de la sesión 1 y 50 de la sesión 2).
+- **Entran al top 10 cinco de la sesión 2:** 3 consultorios dentales de Puerta de Hierro (88 cada uno), Román Abogados Rincón Mayorga (85) y un consultorio dental en 20 de Noviembre 188, Zapopan Centro (82). **Salen** Easy Dental (80), Notaría 30, Dental City, Hojalatería El Tin y Kyma Life.
+- **Por qué Puerta de Hierro gana:** mismo ticket (dentista +25) y teléfono con fuente, más +10 de cercanía, porque ahí hay 6 prospectos, y la zona es de alto poder adquisitivo. Dos están en edificios médicos (Centro Médico y Condominio Médico Puerta de Hierro). **Hallazgo:** en un edificio médico se pueden visitar varios consultorios sin mover el coche, la ruta más eficiente de todas.
+- **Decisión que consideré y descarté:** quise restar 5 a los 13 negocios con la alerta "confirmar que siga operando", como hice con Frenos Frescos y Okrasa. Lo descarté: los 13 son de la sesión 2 solo porque esos agentes lo anotaron, pero los 157 vienen de directorios igual de sin confirmar. Penalizarlos castigaría al agente más honesto. A Frenos y Okrasa además les faltaba confirmar el giro.
+- La cercanía recalculada subió 29 prospectos viejos y no bajó ninguno (ej. Denticelis 68→78, los dentistas de Tesistán 72→80).
+- 3 de los 5 nuevos del top 10 no tienen nombre comercial, solo dirección (estaban a nombre de un doctor). El mensaje de WhatsApp tendrá que ser genérico: "consultorio dental en Av. Empresarios 150".
