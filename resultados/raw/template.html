@@ -1,0 +1,225 @@
+<title>Prospectos Zapopan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: hoja de ruta de campo — resumen arriba, luego "qué visitar" (top10, rutas), luego análisis y bitácora */
+:root{
+  --bg:#f6f7f4; --surface:#ffffff; --ink:#18231f; --muted:#5d6b65; --line:#dde3de;
+  --agave:#1f6b52; --agave-soft:#e3efe9; --marigold:#d98e04; --marigold-soft:#fbf0d9;
+  --good:#1f7a4d; --warn:#b26b00; --low:#8a8f8c;
+  --f-display:"Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --f-body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111816; --surface:#18211e; --ink:#e7eeea; --muted:#9aaba3; --line:#2a3632;
+  --agave:#5cc39b; --agave-soft:#1d3029; --marigold:#f0b23e; --marigold-soft:#33291a;
+  --good:#5cc39b; --warn:#f0b23e; --low:#7d8784; color-scheme: dark;}}
+:root[data-theme="dark"]{
+  --bg:#111816; --surface:#18211e; --ink:#e7eeea; --muted:#9aaba3; --line:#2a3632;
+  --agave:#5cc39b; --agave-soft:#1d3029; --marigold:#f0b23e; --marigold-soft:#33291a;
+  --good:#5cc39b; --warn:#f0b23e; --low:#7d8784; color-scheme: dark;}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 64px}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,44px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:24px;font-weight:700;margin-bottom:14px}
+h3{font-size:17px;font-weight:700}
+.eyebrow{font:600 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--agave)}
+.muted{color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+header{display:flex;flex-direction:column;gap:12px}
+.summary{max-width:70ch;font-size:16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.kpi b{display:block;font:700 30px/1.1 var(--f-display);font-variant-numeric:tabular-nums}
+.kpi span{font-size:13px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:800px){.grid2{grid-template-columns:1fr}}
+.grid2>*{min-width:0}
+.chart svg{width:100%;height:auto;display:block}
+.chart text{fill:var(--ink);font:12px var(--f-body)}
+.chart .val{font-family:var(--f-mono);fill:var(--muted)}
+.tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);cursor:pointer;user-select:none;white-space:nowrap;position:sticky;top:0;background:var(--surface)}
+th:hover,th:focus-visible{color:var(--agave)}
+th[aria-sort="ascending"]::after{content:" ▲"} th[aria-sort="descending"]::after{content:" ▼"}
+tr:last-child td{border-bottom:0}
+.score{display:inline-block;min-width:42px;text-align:center;font:600 13px var(--f-mono);padding:2px 8px;border-radius:999px}
+.s-hi{background:var(--agave-soft);color:var(--good)} .s-mid{background:var(--marigold-soft);color:var(--warn)} .s-lo{background:var(--line);color:var(--low)}
+.chip{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin:2px 4px 2px 0}
+.chip.noweb{border-color:var(--marigold);color:var(--warn)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+@media (max-width:420px){.cards{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card .head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.rank{font:700 13px var(--f-mono);color:var(--muted)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:13px}
+.facts dt{color:var(--muted)} .facts dd{margin:0;overflow-wrap:anywhere}
+.msg{background:var(--agave-soft);border-radius:10px;padding:12px;font-size:14px;white-space:pre-wrap}
+.guion{border-left:3px solid var(--marigold);padding-left:10px;font-size:14px;white-space:pre-wrap}
+button.copy{align-self:flex-start;font:600 13px var(--f-body);background:var(--agave);color:var(--bg);border:0;border-radius:8px;padding:6px 12px;cursor:pointer}
+button.copy:focus-visible,th:focus-visible{outline:2px solid var(--marigold);outline-offset:2px}
+details summary{cursor:pointer;color:var(--agave);font-size:13px}
+.src a{color:var(--agave);overflow-wrap:anywhere;font-size:12px}
+.route{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.route ol{margin:10px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
+.ideas{display:flex;flex-direction:column;gap:12px}
+.idea{padding:12px 0;border-bottom:1px solid var(--line)} .idea:last-child{border-bottom:0}
+.timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 18px 20px}
+.timeline li::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--agave)}
+.timeline ul{margin:6px 0 0;padding-left:18px;font-size:14px;color:var(--muted)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.filters select,.filters input{font:14px var(--f-body);padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}.card:hover{border-color:var(--agave)}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Prospección · Zapopan, Jal. · <span id="fecha"></span></div>
+    <h1>¿A quién visitar primero?</h1>
+    <p class="summary" id="resumen"></p>
+    <div class="kpis" id="kpis"></div>
+  </header>
+
+  <section class="grid2">
+    <div class="chart"><h2>Prospectos por giro</h2><div id="chart"></div><p class="muted" style="font-size:13px">Barra = número de prospectos calificados. Número a la derecha = puntuación promedio.</p></div>
+    <div><h2>Giros más rentables</h2><div class="ideas" id="girosTop"></div></div>
+  </section>
+
+  <section>
+    <h2>Top 10 con mensaje listo</h2>
+    <p class="muted">Mensajes para que <b>tú</b> los envíes. Verifica teléfono y dirección en Maps antes de visitar.</p>
+    <div class="cards" id="top10"></div>
+  </section>
+
+  <section>
+    <h2>Rutas de visita (una mañana cada una)</h2>
+    <div class="cards" id="rutas"></div>
+  </section>
+
+  <section>
+    <h2>Top 30 — tabla ordenable</h2>
+    <div class="filters">
+      <label class="muted" for="fGiro">Giro</label>
+      <select id="fGiro"><option value="">Todos</option></select>
+      <input id="fText" type="search" placeholder="Buscar nombre o colonia" aria-label="Buscar">
+    </div>
+    <div class="tablebox"><table id="tabla"><thead><tr>
+      <th data-k="puntuacion" tabindex="0">Pts</th><th data-k="nombre" tabindex="0">Negocio</th><th data-k="giro" tabindex="0">Giro</th>
+      <th data-k="colonia" tabindex="0">Colonia</th><th data-k="telefono" tabindex="0">Teléfono</th><th data-k="tiene_web" tabindex="0">Web</th><th data-k="razon_puntuacion" tabindex="0">Por qué</th>
+    </tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="grid2">
+    <div><h2>Ideas para vender más</h2><div class="ideas" id="ideasVenta"></div></div>
+    <div><h2>Productos nuevos con Claude Code</h2><div class="ideas" id="productos"></div></div>
+  </section>
+
+  <section id="oppSec">
+    <h2>Proyectos abiertos en plataformas freelance</h2>
+    <div class="ideas" id="opps"></div>
+  </section>
+
+  <section>
+    <h2>Bitácora: cómo se trabajó</h2>
+    <ol class="timeline" id="timeline"></ol>
+  </section>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const txt = v => Array.isArray(v) ? v.join("; ") : (v && typeof v === "object") ? Object.values(v).join(" ") : (v ?? "");
+const cls = n => n >= 70 ? "s-hi" : n >= 50 ? "s-mid" : "s-lo";
+const P = DATA.prospectos || [], E = DATA.estrategia || {};
+const noWeb = p => /^no\b/i.test(String(p.tiene_web||"")) ;
+
+$("#fecha").textContent = new Date().toLocaleDateString("es-MX",{day:"numeric",month:"long",year:"numeric"});
+const califican = P.filter(p => +p.puntuacion >= 60).length;
+$("#resumen").textContent = E.resumen_ejecutivo ||
+  `Se revisaron ${DATA.revisados} negocios; ${P.length} quedaron verificados y ${califican} tienen 60 puntos o más.`;
+const giros = {};
+P.forEach(p => { const g = p.giro_categoria || p.giro || "otro"; (giros[g] ||= []).push(+p.puntuacion || 0); });
+const kp = [
+  [DATA.revisados, "negocios revisados"], [P.length, "prospectos verificados"],
+  [califican, "con 60+ puntos"], [P.filter(noWeb).length, "sin página web propia"],
+  [(DATA.oportunidades?.proyectos||[]).length, "proyectos freelance abiertos"]];
+$("#kpis").innerHTML = kp.map(([n,l]) => `<div class="kpi"><b>${esc(n)}</b><span>${esc(l)}</span></div>`).join("");
+
+// chart
+(function(){
+  const rows = Object.entries(giros).map(([g,a]) => [g, a.length, Math.round(a.reduce((x,y)=>x+y,0)/a.length)]).sort((a,b)=>b[1]-a[1]);
+  if(!rows.length){$("#chart").innerHTML='<p class="muted">Sin datos.</p>';return;}
+  const max = Math.max(...rows.map(r=>r[1])), W=520, lab=140, right=70, bh=26, gap=8, H=rows.length*(bh+gap)+4;
+  const sc = v => (W-lab-right) * v / max;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Prospectos por giro">`;
+  rows.forEach((r,i)=>{ const y=i*(bh+gap);
+    s += `<text x="${lab-8}" y="${y+bh/2+4}" text-anchor="end">${esc(r[0])}</text>`;
+    s += `<rect x="${lab}" y="${y}" width="${Math.max(2,sc(r[1]))}" height="${bh}" rx="4" fill="var(--agave)"/>`;
+    s += `<text x="${lab+sc(r[1])+6}" y="${y+bh/2+4}" class="val">${r[1]} · ⌀${r[2]}</text>`; });
+  $("#chart").innerHTML = s + "</svg>";
+})();
+
+$("#girosTop").innerHTML = (E.giros_top||[]).map((g,i)=>`<div class="idea"><h3>${i+1}. ${esc(g.giro)}</h3><p>${esc(g.por_que)}</p></div>`).join("") || '<p class="muted">Pendiente.</p>';
+
+function srcLinks(f){ if(!f) return ""; const o = typeof f==="object" ? f : {fuente:f};
+  return Object.entries(o).map(([k,u])=> /^https?:/.test(u) ? `<div>${esc(k)}: <a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a></div>` : `<div>${esc(k)}: ${esc(u)}</div>`).join(""); }
+
+$("#top10").innerHTML = (DATA.top10||[]).map((p,i)=>`
+  <article class="card">
+    <div class="head"><div><div class="rank">#${i+1} · ${esc(p.giro)}</div><h3>${esc(p.nombre)}</h3></div><span class="score ${cls(+p.puntuacion)}">${esc(p.puntuacion)}</span></div>
+    <dl class="facts"><dt>Dirección</dt><dd>${esc(p.direccion)}</dd><dt>Teléfono</dt><dd class="mono">${esc(p.telefono)}</dd><dt>Web</dt><dd>${esc(p.tiene_web)}</dd><dt>Por qué</dt><dd>${esc(p.razon_puntuacion)}</dd></dl>
+    ${p.whatsapp_msg?`<div class="eyebrow">WhatsApp</div><div class="msg" id="m${i}">${esc(p.whatsapp_msg)}</div><button class="copy" data-t="m${i}">Copiar mensaje</button>`:""}
+    ${p.guion?`<div class="eyebrow">Guion de llamada (30 s)</div><div class="guion">${esc(p.guion)}</div>`:""}
+    <details><summary>Fuentes</summary><div class="src">${srcLinks(p.fuentes)}</div></details>
+  </article>`).join("");
+document.addEventListener("click", e => { const b = e.target.closest("button.copy"); if(!b) return;
+  const el = document.getElementById(b.dataset.t), t = el.textContent;
+  const ok = () => { b.textContent = "Copiado"; setTimeout(()=>b.textContent="Copiar mensaje",1500); };
+  const sel = () => { const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent="Texto seleccionado"; };
+  try { navigator.clipboard.writeText(t).then(ok, sel); } catch(_) { sel(); } });
+
+$("#rutas").innerHTML = (E.rutas||[]).map(r=>`<div class="route"><div class="eyebrow">${esc(r.zona||"")}</div><h3>${esc(r.nombre)}</h3>
+  <ol>${(r.paradas||[]).map(s=>`<li><b>${esc(s.nombre)}</b><br><span class="muted">${esc(s.direccion)}</span>${s.nota?`<br><span style="font-size:13px">${esc(s.nota)}</span>`:""}</li>`).join("")}</ol>
+  ${r.nota?`<p class="muted" style="font-size:13px">${esc(r.nota)}</p>`:""}</div>`).join("") || '<p class="muted">Pendiente.</p>';
+
+// table
+const sel = $("#fGiro"); Object.keys(giros).sort().forEach(g => sel.insertAdjacentHTML("beforeend", `<option>${esc(g)}</option>`));
+let sortK = "puntuacion", sortD = -1;
+function renderTable(){
+  const g = sel.value, q = $("#fText").value.toLowerCase();
+  let rows = P.slice(0,30).filter(p => (!g || (p.giro_categoria||p.giro)===g) && (!q || (p.nombre+" "+p.colonia).toLowerCase().includes(q)));
+  rows.sort((a,b)=>{ const x=a[sortK], y=b[sortK]; const nx=+x, ny=+y;
+    return (isNaN(nx)||isNaN(ny) ? String(x).localeCompare(String(y),"es") : nx-ny) * sortD; });
+  $("#tabla tbody").innerHTML = rows.map(p=>`<tr><td><span class="score ${cls(+p.puntuacion)}">${esc(p.puntuacion)}</span></td>
+    <td><b>${esc(p.nombre)}</b><div class="muted" style="font-size:12px">${esc(p.direccion)}</div></td><td>${esc(p.giro)}</td><td>${esc(p.colonia)}</td>
+    <td class="mono" style="white-space:nowrap">${esc(p.telefono)}</td><td>${noWeb(p)?'<span class="chip noweb">sin web</span>':esc(p.tiene_web)}</td><td style="font-size:13px">${esc(p.razon_puntuacion)}</td></tr>`).join("");
+  document.querySelectorAll("#tabla th").forEach(th => th.setAttribute("aria-sort", th.dataset.k===sortK ? (sortD>0?"ascending":"descending") : "none"));
+}
+document.querySelectorAll("#tabla th").forEach(th => { const go = () => { if(sortK===th.dataset.k) sortD*=-1; else { sortK=th.dataset.k; sortD = sortK==="puntuacion"?-1:1; } renderTable(); };
+  th.addEventListener("click", go); th.addEventListener("keydown", e => { if(e.key==="Enter"||e.key===" "){e.preventDefault();go();} }); });
+sel.addEventListener("change", renderTable); $("#fText").addEventListener("input", renderTable); renderTable();
+
+const ideaList = (arr, el) => $(el).innerHTML = (arr||[]).map(x=>`<div class="idea"><h3>${esc(x.titulo)}</h3><p>${esc(x.detalle)}</p>${x.precio_sugerido?`<p class="mono muted" style="font-size:13px">${esc(x.precio_sugerido)}</p>`:""}</div>`).join("") || '<p class="muted">Pendiente.</p>';
+ideaList(E.ideas_venta, "#ideasVenta"); ideaList(E.productos_nuevos, "#productos");
+
+const O = DATA.oportunidades || {};
+$("#opps").innerHTML = (O.proyectos||[]).map(o=>`<div class="idea"><h3>${/^https?:/.test(o.url)?`<a href="${esc(o.url)}" target="_blank" rel="noopener" style="color:var(--agave)">${esc(o.titulo)}</a>`:esc(o.titulo)}</h3>
+  <p class="muted" style="font-size:13px">${esc(o.plataforma)} · ${esc(o.fecha_publicacion)} · ${esc(o.presupuesto)} · abierto: ${esc(o.abierto)}</p><p>${esc(o.resumen)}</p></div>`).join("")
+  + ((O.observaciones_mercado||[]).length ? `<div class="idea"><h3>Observaciones de mercado</h3><ul>${O.observaciones_mercado.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>` : "")
+  || '<p class="muted">No se encontraron proyectos verificables.</p>';
+
+$("#timeline").innerHTML = (DATA.timeline||[]).map(t=>`<li><div class="mono muted" style="font-size:12px">${esc(t.hora)} UTC</div><b>${esc(t.titulo)}</b><ul>${t.items.map(i=>`<li>${esc(i.replace(/\*\*/g,""))}</li>`).join("")}</ul></li>`).join("");
+</script>

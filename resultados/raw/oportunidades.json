@@ -1,0 +1,141 @@
+{
+  "agente": "oportunidades",
+  "notas_proceso": [
+    "WebFetch bloqueado por la red de la sesión: www.workana.com y www.freelancer.mx dieron ENOTFOUND (fuera de los dominios permitidos). No se pudo abrir ninguna página de proyecto; todo lo de abajo viene de títulos y resúmenes de WebSearch, así que fechas, presupuestos y estado no se verificaron en la página.",
+    "Para revisar proyectos directamente hay que permitir workana.com, freelancer.mx/freelancer.com, upwork.com y malt.com en la configuración de red de la sesión.",
+    "Solo un proyecto apareció con fecha dentro de la ventana de 30 días (19-oct-2026, Workana); esa fecha la dio el resumen del buscador y no se verificó en la página.",
+    "Las búsquedas en Upwork devolvieron solo perfiles de freelancers y páginas de categoría, ninguna oferta de trabajo. Malt no devolvió resultados. No se encontraron foros ni grupos públicos indexados con proyectos recientes.",
+    "Ningún resultado mostró un cliente ubicado explícitamente en Jalisco, Guadalajara o Zapopan.",
+    "En Workana, 'Evaluando propuestas' es la etiqueta que el buscador muestra en la página. Puede estar desactualizada en caché, así que no confirma que el proyecto siga abierto hoy.",
+    "No me postulé a nada ni contacté a nadie. No registré datos personales de clientes."
+  ],
+  "observaciones_mercado": [
+    "En Freelancer.mx los proyectos de landing page suelen ofrecer entre 10 y 250 USD (aprox. $200-$5,000 MXN); hubo uno de $20-50 USD y otro de $10-30 USD para un negocio local con SEO. Es decir, muchos clientes de plataforma pagan menos que el piso de $2,500 MXN. Fuente: https://www.freelancer.mx/projects/website-design/Landing-page-39724630.html y https://www.freelancer.mx/projects/seo/Urgent-Local-Business-SEO-Landing.html (resumen del buscador).",
+    "Las agencias de Guadalajara/Zapopan anuncian landings desde $4,000-$4,750 MXN (Simplixy 'Landing Esencial' $4,500 MXN; Geek Solutions desde $4,750 MXN). ListoWeb menciona sitios básicos desde ~$2,000 MXN. Un precio de $2,500 MXN queda por debajo de la mayoría de las agencias locales. Fuentes: https://simplixy.com.mx/diseno-web-guadalajara/ , https://www.geeksolutions.com.mx/web/jalisco/guadalajara/ , https://listoweb.com.mx/diseno-de-paginas-web-en-guadalajara-jalisco/ , https://clientesconweb.com/diseno-web-guadalajara/",
+    "Las guías de precios 2026 para México ponen la landing hecha por freelancer en $3,000-$10,000 MXN (principiante $5,000-$12,000; con experiencia $12,000-$25,000). Son blogs de agencias con interés comercial. Fuentes: https://creatupaginaweb.mx/blog/cuanto-cobra-un-disenador-de-paginas-web-en-mexico/ , https://www.nebugrama.com/blog/cuanto-cuesta-pagina-web-mexico",
+    "Tipos de negocio que más aparecen en las ofertas de Workana/Freelancer: servicios locales (mantenimiento, seguridad privada, bombas y equipos de agua), restaurantes (landing con menú, reservas y WhatsApp), clínicas estéticas, inmobiliarias, consultoría y cursos, y eventos (venta de boletos con Mercado Pago). Fuentes: https://www.workana.com/es/job/desarrollador-web-para-landing-page-profesional-de-empresa-de-mantenimiento , https://www.workana.com/es/job/desarrollo-de-landing-page-premium-y-responsiva-para-restaurante-de-alta-gama , https://www.workana.com/es/job/marketin-pagina-web-y-diseno-grafico",
+    "Requisitos que se repiten: optimización móvil, botón o integración de WhatsApp, formularios de leads/CRM, SEO local básico, correos corporativos, pagos (Mercado Pago) y agendamiento (Calendly). Conviene incluir WhatsApp y SEO local en el paquete base. Fuente: https://www.workana.com/es/job/desarrollador-web-para-landing-page-profesional-de-empresa-de-mantenimiento , https://www.workana.com/job/disenador-web-experto-en-cro-para-landing-page-de-agencia-y-embudo-de-ventas"
+  ],
+  "proyectos": [
+    {
+      "titulo": "Desarrollo web integral y automatización para negocios",
+      "plataforma": "Workana",
+      "url": "https://www.workana.com/es/job/desarrollo-web-integral-y-automatizacion-para-negocios",
+      "fecha_publicacion": "19 de octubre de 2026 (según resumen del buscador; no verificado en la página)",
+      "presupuesto": "no encontrado",
+      "ubicacion_cliente": "no indicada (no se confirma que sea México)",
+      "resumen": "Desarrollo web que incluye landing pages y automatización para negocios, entre ellos restaurantes.",
+      "abierto": "no confirmado"
+    },
+    {
+      "titulo": "Desarrollador web para landing page profesional de empresa de mantenimiento",
+      "plataforma": "Workana",
+      "url": "https://www.workana.com/es/job/desarrollador-web-para-landing-page-profesional-de-empresa-de-mantenimiento",
+      "fecha_publicacion": "abril 2026 (según resumen del buscador; fuera de la ventana de 30 días)",
+      "presupuesto": "no encontrado",
+      "ubicacion_cliente": "México (servicios en México)",
+      "resumen": "Landing para empresa de mantenimiento residencial, industrial y comercial. Piden confianza y conversión, versión móvil, SEO básico para México y 3 correos corporativos.",
+      "abierto": "no confirmado"
+    },
+    {
+      "titulo": "Desarrollador web para landing page de alta conversión - Elite 1 Seguridad Privada",
+      "plataforma": "Workana",
+      "url": "https://www.workana.com/es/job/desarrollador-web-para-landing-page-de-alta-conversion-elite-1-seguridad-privada",
+      "fecha_publicacion": "no encontrado",
+      "presupuesto": "no encontrado",
+      "ubicacion_cliente": "Ciudad de México (según resumen del buscador)",
+      "resumen": "Landing de conversión para captar clientes calificados: condominios, empresas medianas y compañías de nearshoring.",
+      "abierto": "no confirmado"
+    },
+    {
+      "titulo": "Desarrollo de landing page y plataforma para consultoría de trayectoria lingüística",
+      "plataforma": "Workana",
+      "url": "https://www.workana.com/es/job/desarrollo-de-landing-page-y-plataforma-para-consultoria-de-trayectoria-linguistica",
+      "fecha_publicacion": "junio 2026 (según resumen del buscador; fuera de la ventana)",
+      "presupuesto": "no encontrado",
+      "ubicacion_cliente": "México (alumnos solo en México)",
+      "resumen": "Landing con sistema de agendamiento y pago seguro para una consultoría.",
+      "abierto": "no confirmado"
+    },
+    {
+      "titulo": "Marketing, página web y diseño gráfico",
+      "plataforma": "Workana",
+      "url": "https://www.workana.com/es/job/marketin-pagina-web-y-diseno-grafico",
+      "fecha_publicacion": "no encontrado",
+      "presupuesto": "no encontrado",
+      "ubicacion_cliente": "no encontrado",
+      "resumen": "Empresa de venta, mantenimiento e instalación de bombas y equipos para agua potable y residual. Busca visibilidad web y captar clientes con una página tipo landing.",
+      "abierto": "no confirmado"
+    },
+    {
+      "titulo": "Landing para nueva empresa",
+      "plataforma": "Workana",
+      "url": "https://www.workana.com/es/job/landing-para-nueva-empresa",
+      "fecha_publicacion": "no encontrado",
+      "presupuesto": "no encontrado",
+      "ubicacion_cliente": "no encontrado",
+      "resumen": "Landing para una empresa nueva; el buscador no dio más detalles.",
+      "abierto": "no confirmado"
+    },
+    {
+      "titulo": "conectamos mx landing",
+      "plataforma": "Workana",
+      "url": "https://www.workana.com/es/job/conectamos-mx-landing",
+      "fecha_publicacion": "no encontrado",
+      "presupuesto": "no encontrado",
+      "ubicacion_cliente": "no encontrado",
+      "resumen": "Rediseño de una landing existente en WordPress con editor visual.",
+      "abierto": "no confirmado"
+    },
+    {
+      "titulo": "High-Converting Local Service Landing Page",
+      "plataforma": "Freelancer.mx",
+      "url": "https://www.freelancer.mx/projects/landing-pages/High-Converting-Local-Service-Landing",
+      "fecha_publicacion": "no encontrado",
+      "presupuesto": "no encontrado",
+      "ubicacion_cliente": "no encontrado (remoto)",
+      "resumen": "Landing para un negocio de servicios locales, enfocada en generar llamadas y envíos de formulario.",
+      "abierto": "no confirmado"
+    },
+    {
+      "titulo": "Urgent: Local Business SEO Landing Pages",
+      "plataforma": "Freelancer.mx",
+      "url": "https://www.freelancer.mx/projects/seo/Urgent-Local-Business-SEO-Landing.html",
+      "fecha_publicacion": "no encontrado",
+      "presupuesto": "$10-30 USD (según resumen del buscador)",
+      "ubicacion_cliente": "no encontrado",
+      "resumen": "Landing pages para un negocio local con SEO local y generación de leads.",
+      "abierto": "no confirmado (el resumen del buscador decía 'Abierto para recibir ofertas')"
+    },
+    {
+      "titulo": "High-Converting Small Business Landing Page",
+      "plataforma": "Freelancer.mx",
+      "url": "https://www.freelancer.mx/projects/web-design/High-Converting-Small-Business-Landing",
+      "fecha_publicacion": "no encontrado",
+      "presupuesto": "no encontrado (un resultado relacionado mencionaba $250-750 USD; no se confirma que sea este proyecto)",
+      "ubicacion_cliente": "no encontrado",
+      "resumen": "Landing de alta conversión para un negocio pequeño.",
+      "abierto": "no confirmado"
+    },
+    {
+      "titulo": "Construir landing pages",
+      "plataforma": "Freelancer.mx",
+      "url": "https://www.freelancer.mx/projects/website-design/Construir-landing-pages",
+      "fecha_publicacion": "no encontrado",
+      "presupuesto": "$30-250 USD (según resumen del buscador)",
+      "ubicacion_cliente": "no encontrado",
+      "resumen": "Construir rápido varias landing pages en Wix.",
+      "abierto": "no confirmado"
+    },
+    {
+      "titulo": "Creación de Landing Page y Captación de Clientes en México",
+      "plataforma": "Freelancer.com",
+      "url": "https://www.freelancer.com/projects/graphic-design/Creaci-Landing-Page-Captaci-Clientes.html",
+      "fecha_publicacion": "no encontrado",
+      "presupuesto": "€5,000-10,000, plazo de 1 año (según resumen del buscador)",
+      "ubicacion_cliente": "busca empresa o freelance mexicano; el cliente es una empresa de equipos de tratamiento de agua",
+      "resumen": "Landing informativa con formulario de contacto y estrategia de captación de clientes en México.",
+      "abierto": "no confirmado"
+    }
+  ]
+}
