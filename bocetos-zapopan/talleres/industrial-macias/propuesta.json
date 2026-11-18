@@ -4,7 +4,13 @@
   "giroLinea": "Taller mecánico para empresas y flotillas en Jardines Universidad, Zapopan",
   "direccion": "Calz. Olímpica 761, Jardines Universidad, Zapopan, CP 45110",
   "dominio": "www.tallermecanicoindustrialmacias.com",
-  "colores": { "oscuro": "#16191d", "medio": "#2b3138", "acento": "#ff6a13", "sobreOscuro": "#ffffff", "acentoTexto": "#1a1a1a" },
+  "colores": {
+    "oscuro": "#16191d",
+    "medio": "#2b3138",
+    "acento": "#ff6a13",
+    "sobreOscuro": "#ffffff",
+    "acentoTexto": "#1a1a1a"
+  },
   "fuentes": {
     "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
     "titulo": "'IBM Plex Sans Condensed', 'Arial Narrow', system-ui, sans-serif",
@@ -15,9 +21,21 @@
     "tamTitulo": "84px"
   },
   "beneficios": [
-    { "titulo": "Solicitudes de cotización de empresas", "texto": "Un formulario y un botón de WhatsApp para que las empresas pidan cotización indicando sus unidades y el servicio." },
-    { "titulo": "Una imagen formal para tus clientes", "texto": "Una página seria y ordenada que puedes compartir con compras, administración o quien autoriza el gasto." },
-    { "titulo": "Servicio a flotillas bien explicado", "texto": "Una sección que presenta cómo atiendes flotillas de reparto y servicio antes de la primera llamada." },
-    { "titulo": "Empresas que buscan taller en Zapopan", "texto": "Una página con SEO local ayuda a que te encuentren negocios que buscan taller mecánico industrial en Zapopan." }
+    {
+      "titulo": "Solicitudes de cotización de empresas",
+      "texto": "Un formulario y un botón de WhatsApp para que las empresas pidan cotización indicando sus unidades y el servicio."
+    },
+    {
+      "titulo": "Una imagen formal para tus clientes",
+      "texto": "Una página seria y ordenada que puedes compartir con compras, administración o quien autoriza el gasto."
+    },
+    {
+      "titulo": "Atención a empresas bien explicada",
+      "texto": "Una sección para empresas y flotillas que presenta tu forma de trabajar antes de la primera llamada."
+    },
+    {
+      "titulo": "Empresas que buscan taller en Zapopan",
+      "texto": "Una página con SEO local ayuda a que te encuentren negocios que buscan taller mecánico industrial en Zapopan."
+    }
   ]
 }

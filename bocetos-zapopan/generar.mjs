@@ -67,7 +67,13 @@ async function capturar(browser, negocio, width, height) {
   // La franja de boceto puede quedar fuera de las capturas (sí va en el PDF y en los marcos).
   await page.addStyleTag({ content: '.franja-boceto{display:none!important}' });
   await page.evaluate(() => document.fonts && document.fonts.ready);
-  await page.waitForTimeout(700);
+  // Recorre la página para disparar las animaciones de aparición (IntersectionObserver) y vuelve arriba.
+  await page.evaluate(async () => {
+    const h = document.documentElement.scrollHeight;
+    for (let y = 0; y < h; y += Math.round(innerHeight / 2)) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 40)); }
+    scrollTo(0, 0);
+  });
+  await page.waitForTimeout(900);
   // Color del área superior, para pintar la barra de estado del celular.
   const barra = await page.evaluate(() => {
     let el = document.elementFromPoint(4, 4);
