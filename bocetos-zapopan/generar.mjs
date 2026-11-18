@@ -5,16 +5,23 @@
  *   node generar.mjs todos               → los 13 negocios
  *   node generar.mjs dental-prados       → solo uno (nombre de su carpeta)
  *   node generar.mjs frenos-frescos dr-llamas   → varios
+ *   node generar.mjs todos --video       → además graba la intro (intro.webm + intro.mp4)
+ *   node generar.mjs dr-llamas --solo-video  → solo el video de la intro
  *
  * Por cada negocio lee <giro>/<negocio>/propuesta.json y escribe en esa carpeta:
  *   mockup-celular.png (1080x1350) · mockup-escritorio.png (1920x1080)
  *   mockup-combo.png (1920x1080)   · propuesta.pdf (carta, 2 páginas)
  *
+ * Video: graba la intro cinematográfica a 390x844 (~5 s: intro + scroll suave) con recordVideo.
+ *   Si hay ffmpeg, recorta el arranque en blanco y genera intro.mp4 (H.264, ideal para WhatsApp).
+ *
  * Plantillas: _plantillas/{celular,escritorio,combo,propuesta}.html con marcadores {{clave}}.
  * Requiere Playwright con Chromium (npm i playwright && npx playwright install chromium).
  */
 import { createRequire } from 'node:module';
-import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync, mkdtempSync, copyFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { execFileSync } from 'node:child_process';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -158,11 +165,54 @@ async function generar(browser, negocio) {
   await pdf(browser, { ...vars, comboImg: dataUri(comboJpg, 'image/jpeg') }, join(negocio.dir, 'propuesta.pdf'));
 }
 
+
+// ---------- video de la intro ----------
+function hayFfmpeg() {
+  try { execFileSync('ffmpeg', ['-version'], { stdio: 'ignore' }); return true; } catch { return false; }
+}
+async function grabarIntro(browser, negocio) {
+  const tmp = mkdtempSync(join(tmpdir(), 'intro-'));
+  const ctx = await browser.newContext({
+    viewport: { width: 390, height: 844 }, deviceScaleFactor: 2,
+    recordVideo: { dir: tmp, size: { width: 780, height: 1688 } },
+  });
+  const t0 = Date.now();
+  const page = await ctx.newPage();
+  await page.goto(pathToFileURL(join(negocio.dir, 'index.html')).href, { waitUntil: 'commit' });
+  const inicio = Math.max(0, (Date.now() - t0) / 1000 - 0.05);
+  await page.waitForTimeout(3300);                       // intro completa (< 3 s) + respiro
+  await page.evaluate(async () => {                      // scroll suave ~1.6 s
+    const dur = 1600, fin = performance.now() + dur;
+    const H = Math.min(document.documentElement.scrollHeight - innerHeight, innerHeight * 1.5);
+    while (performance.now() < fin) {
+      const p = 1 - (fin - performance.now()) / dur;
+      scrollTo(0, H * (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2));
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+  });
+  await page.waitForTimeout(500);
+  const video = page.video();
+  await ctx.close();
+  const crudo = await video.path();
+  const webm = join(negocio.dir, 'intro.webm'), mp4 = join(negocio.dir, 'intro.mp4');
+  if (hayFfmpeg()) {
+    const ss = ['-y', '-loglevel', 'error', '-ss', inicio.toFixed(2), '-i', crudo, '-an', '-t', '5.6'];
+    execFileSync('ffmpeg', [...ss, '-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '32', '-row-mt', '1', '-deadline', 'good', '-cpu-used', '4', webm]);
+    execFileSync('ffmpeg', [...ss, '-c:v', 'libx264', '-preset', 'medium', '-crf', '21', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-r', '30', mp4]);
+  } else {
+    copyFileSync(crudo, webm);
+    console.warn('  (sin ffmpeg: solo intro.webm, sin recortar)');
+  }
+  rmSync(tmp, { recursive: true, force: true });
+}
+
 // ---------- CLI ----------
-const args = process.argv.slice(2);
+const argv = process.argv.slice(2);
+const conVideo = argv.includes('--video'), soloVideo = argv.includes('--solo-video');
+const args = argv.filter((a) => !a.startsWith('--'));
 const todos = listarNegocios();
 if (!args.length) {
-  console.log('Uso: node generar.mjs <negocio|todos> [otro-negocio ...]\nNegocios: ' + todos.map((n) => n.slug).join(', '));
+  console.log('Uso: node generar.mjs <negocio|todos> [otro-negocio ...] [--video | --solo-video]\nNegocios: ' + todos.map((n) => n.slug).join(', '));
   process.exit(1);
 }
 const elegidos = args.includes('todos') ? todos : args.map((a) => {
@@ -176,7 +226,8 @@ let fallos = 0;
 for (const n of elegidos) {
   const t = Date.now();
   try {
-    await generar(browser, n);
+    if (!soloVideo) await generar(browser, n);
+    if (conVideo || soloVideo) await grabarIntro(browser, n);
     console.log(`✔ ${n.giro}/${n.slug}  (${((Date.now() - t) / 1000).toFixed(1)} s)`);
   } catch (e) {
     fallos++;
