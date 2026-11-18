@@ -259,6 +259,9 @@ html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{height:9vh;
 /* nombre sobrio: entra con poco desenfoque y tracking contenido */
 html[data-cine] .cine-title{font-size:clamp(1.85rem,8.4vw,5.6rem);letter-spacing:.2em;filter:blur(8px);line-height:1}
 html[data-cine] .cine-intro.name .cine-title{letter-spacing:.04em}
+@media (max-width:640px){html[data-cine] .cine-title{letter-spacing:.1em;white-space:nowrap;padding:0 16px}}
+/* al abrir, el nombre se retira rápido para no encimarse con el titular del hero */
+html[data-cine] .cine-intro.open .cine-title{opacity:0;transform:scale(1.03);transition:opacity .2s ease,transform .3s ease}
 html[data-cine] .cine-title small{font-family:"IBM Plex Sans",system-ui,sans-serif;font-weight:500;font-size:max(.19em,11px);
   letter-spacing:.34em;opacity:.8;margin-top:1.15em;color:#c9d0d8}
 /* vibración mínima (motor en ralentí) */

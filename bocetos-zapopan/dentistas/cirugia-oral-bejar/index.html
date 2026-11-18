@@ -244,14 +244,14 @@ html[data-cine]{
   --cine-weight:800;--cine-case:none;
 }
 /* telón: blanco que se funde en menta, como el hero */
-html[data-cine] .cine-panel.top{background:linear-gradient(180deg,#ffffff 0%,#f6fcfa 100%)}
-html[data-cine] .cine-panel.bot{background:linear-gradient(180deg,#f6fcfa 0%,#ffffff 100%)}
+html[data-cine] .cine-panel.top{background:linear-gradient(180deg,#ffffff 0%,#f6fcfa 100%);box-shadow:inset 0 -1px 0 #c3e9dd,0 10px 30px -12px rgba(15,122,104,.18)}
+html[data-cine] .cine-panel.bot{background:linear-gradient(180deg,#f6fcfa 0%,#ffffff 100%);box-shadow:inset 0 1px 0 #c3e9dd,0 -10px 30px -12px rgba(15,122,104,.18)}
 /* letterbox más fino y sereno */
 html[data-cine] .cine-bars::before,html[data-cine] .cine-bars::after{height:6vh;background:#f1faf7;border-color:#c3e9dd}
 /* nombre: tracking preciso, sin dramatismo */
 html[data-cine] .cine-title{letter-spacing:.18em;font-size:clamp(1.9rem,7vw,4.4rem)}
 html[data-cine] .cine-intro.name .cine-title{letter-spacing:-.01em}
-html[data-cine] .cine-intro.open .cine-title{letter-spacing:-.01em}
+html[data-cine] .cine-intro.open .cine-title{letter-spacing:-.01em;transition:opacity .25s ease}
 html[data-cine] .cine-title small{color:#0f7a68;font-weight:700;letter-spacing:.3em;text-transform:uppercase;font-size:.2em;opacity:.85}
 /* línea de precisión que se traza bajo el nombre */
 html[data-cine] .cine-title::after{content:"";display:block;width:min(220px,42vw);height:2px;margin:.38em auto 0;border-radius:2px;
