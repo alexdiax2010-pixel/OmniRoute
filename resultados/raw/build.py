@@ -44,7 +44,7 @@ timeline = []
 with open(os.path.join(BASE, "bitacora.md"), encoding="utf-8") as f:
     cur = None
     for line in f:
-        m = re.match(r"^## (\d{1,2}:\d{2}) UTC — (.*)", line)
+        m = re.match(r"^## (?:\d{4}-\d{2}-\d{2} )?(\d{1,2}:\d{2}) UTC — (.*)", line)
         if m:
             cur = {"hora": m.group(1), "titulo": m.group(2).strip(), "items": []}
             timeline.append(cur)

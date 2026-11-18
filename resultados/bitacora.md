@@ -86,3 +86,20 @@
 - **Ajuste del director:** Frenos Frescos (76) y Okrasa (75) habrían entrado al top 10 desplazando a Kyma Life. Pero los dos tienen una sola fuente, que no confirma que sigan operando ni qué giro son (Okrasa "según directorio"). Les resté 5 (→71 y 70), con el mismo criterio que el Analista aplicó a datos dudosos. El top 10 queda igual y todos llevan mensaje.
 - Agregué las paradas nuevas al final de las rutas 1 y 2 como opcionales.
 - **Total final:** 101 negocios revisados, 96 prospectos, 50 con 60 puntos o más.
+
+---
+
+# Sesión 2 — 2026-11-18
+
+## 2026-11-18 15:58 UTC — Corrección de horas de la sesión 1 y plan de la sesión 2
+- **Corrección importante:** al revisar el reloj del sistema (`date`) vi que ahora son las 15:58 UTC. La sesión 1 empezó a las 15:31 UTC, así que duró **unos 26 minutos reales, no 55**. Las horas de la sesión 1 posteriores a 15:45 eran estimaciones mías y se adelantaron al reloj. El orden de los eventos sí es correcto. Desde ahora cada entrada toma la hora de `date`.
+- **Plan:** el Estratega marcó Salud, Automotriz y Servicios como los giros más rentables. Las colonias con 0 o 1 prospecto en el CSV son Providencia, Puerta de Hierro, Valle Real, Royal Country, Ciudad Granja, Santa Margarita, Ciudad del Sol, Arcos de Zapopan, Tabachines, Zapopan Centro, Tesistán y Jardines Universidad. Lanzo 5 agentes de investigación en paralelo, repartidos por giro y zona, y cada uno lee el CSV para no repetir negocios.
+- Dejo fuera Comida y Oportunidades: la sesión 1 mostró que tienen bajo rendimiento (0 de 16 con 60+ y ningún proyecto freelance confirmable).
+
+## 2026-11-18 15:59 UTC — Fase 1 de la sesión 2 lanzada (5 agentes en paralelo)
+- **Salud A:** dentistas en Puerta de Hierro, Valle Real, Royal Country, Andares, Zapopan Centro, Arcos, Tabachines, Santa Margarita, Ciudad Granja y Seattle.
+- **Salud B:** fisioterapia, dermatología, psicología, nutrición, podología, ópticas y veterinarias en Ciudad del Sol, Jardines Universidad, Providencia, Santa Margarita, Tesistán, Ciudad Granja y Arcos.
+- **Automotriz:** hojalatería, transmisiones y especialidades en el norte (Santa Margarita, Tesistán, Centro, Tabachines, Belenes, Vallarta poniente).
+- **Servicios:** abogados, notarías, inmobiliarias, contables, guarderías e idiomas en el poniente y el norte.
+- **Rutas (agente nuevo):** su misión no es abrir zonas sino **hacer más densas las rutas existentes** (El Colli/Felipe Ruvalcaba y Ciudad del Sol/Mariano Otero). La sesión 1 mostró que el valor de una ruta crece con el número de paradas.
+- Las zonas no se traslapan entre agentes, y todos leen el CSV para no repetir negocios.
