@@ -56,3 +56,7 @@
 - **El giro manda:** Salud promedia 67.6 y 21 de 26 pasan de 60; Comida promedia 44 y ninguno llega a 60. Comida tiene fama pero no teléfono ni ticket alto, así que no es buen blanco para landing; le sirve más un menú QR.
 - **Riesgo:** Dental Infante y Easy Dental Láser comparten dirección (Río Cuixtle 5784) y los dos están en el top 6. Podrían ser el mismo consultorio con dos nombres. Lo dejo visible como alerta en lugar de borrar uno sin evidencia.
 - Lancé en paralelo al **Estratega** (giros, rutas, ideas) y al **Redactor** (WhatsApp + guion para el top 10). Al Redactor le pedí no afirmar "no tienen web" sino "no encontré una página propia", porque eso es lo que realmente verificamos.
+
+## 16:05 UTC — Verificación propia del caso Río Cuixtle 5784
+- Busqué yo mismo la dirección. **Dental Infante sí queda respaldado:** su perfil de Doctoralia (https://www.doctoralia.com.mx/perfil/miriam-infante-taracena) lo ubica en Río Cuixtle 5784, Colinas de las Águilas, con 2 consultorios, primera visita desde $600, profilaxis $1,000 y acepta Seguros Monterrey. Esos datos sirven para personalizar el mensaje.
+- **Easy Dental Láser no se pudo corroborar:** una búsqueda directa no devolvió ninguna ficha con ese nombre. Mantengo la alerta. Si visitas Dental Infante, pregunta ahí mismo si "Easy Dental Láser" es su segunda marca; si lo es, cuentan como un solo prospecto.
