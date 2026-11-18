@@ -37,7 +37,7 @@
     // Si arrancamos tarde (CSS/tipografías lentas), comprimimos para no pasar de ~3 s desde que abrió la página
     var ya = (window.performance && performance.now()) || 0;
     if (ya > 1800) { d.classList.remove('cine-on'); return; }
-    var k = Math.max(0.55, Math.min(1, (3100 - ya) / 2900));
+    var k = Math.max(0.55, Math.min(1, (2650 - ya) / 2650));   // deja margen para el retiro (300 ms)
     T = { name: T.name * k, open: T.open * k, close: T.close * k };
     try { sessionStorage.setItem('cine-visto:' + location.pathname, '1'); } catch (e) {}
 
@@ -113,7 +113,7 @@
       at(T.open - 260 * k, function () { ov.classList.add('out'); });   // el nombre se va antes de abrir el telón
       at(T.open, function () { ov.classList.add('open'); heroIn(); });
       at(T.open + T.close, function () { finish(false); });
-      at(Math.max(1200, 2900 - ya), function () { finish(false); });   // tope duro
+      at(Math.max(1200, 2650 - ya), function () { finish(false); });   // tope duro (+300 ms de retiro < 3 s)
     });
   }
 
