@@ -1,0 +1,394 @@
+{
+ "agente": "s2_salud_b",
+ "notas_proceso": [
+  "Leído prospectos.csv (96 nombres) y raw/salud*.json; descartados repetidos (Vetpets, Recupera-T, CORE, PhysioCare, Salud Mental Para Todos, Centro de Vínculo Psicológico, etc.).",
+  "WebFetch bloqueado incluso en cybo.com (ENOTFOUND); todos los datos provienen de resúmenes de WebSearch, por lo que cada ficha debe verificarse en Google Maps.",
+  "Ningún dominio propio localizado para los 13 negocios; tiene_web='no encontrada' significa que no apareció en búsquedas por nombre, no que esté confirmado que no exista.",
+  "Psicología, podología y ópticas independientes en las colonias pedidas: no se encontraron negocios con teléfono (solo profesionales individuales o cadenas como Devlyn/Calpini, descartadas).",
+  "Descartados por estar fuera de zona o ser individuos: Livet Wellness Center (Las Águilas), nutriólogas individuales, Dernna (Jardín de San Ignacio), Dynami (Prados Providencia, Guadalajara)."
+ ],
+ "negocios": [
+  {
+   "nombre": "Veterinaria Franquez",
+   "giro": "veterinaria",
+   "giro_categoria": "Salud",
+   "subgiro": "veterinaria",
+   "direccion": "Av. Tesistán 670-11, Arcos de Zapopan, 45130 Zapopan, Jal.",
+   "colonia": "Arcos de Zapopan",
+   "telefono": "33 9688 3513",
+   "whatsapp": "no encontrado",
+   "servicios": "Veterinario / clínica para animales; el directorio también lo clasifica como albergue animal",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Solo aparece en directorio (Cybo); sin web ni redes localizadas",
+    "Búsqueda por nombre exacto no devuelve ninguna otra presencia"
+   ],
+   "alertas": [
+    "Dato de directorio, verificar en Maps antes de contactar"
+   ],
+   "fuentes": {
+    "nombre": "https://es.cybo.com/MX-biz/veterinaria-franquez",
+    "direccion": "https://es.cybo.com/MX-biz/veterinaria-franquez",
+    "telefono": "https://es.cybo.com/MX-biz/veterinaria-franquez",
+    "web": "búsqueda: \"Veterinaria Franquez\" Zapopan (sin resultados de web propia)"
+   }
+  },
+  {
+   "nombre": "Especialidades Veterinarias de Guadalajara",
+   "giro": "veterinaria (especialidades)",
+   "giro_categoria": "Salud",
+   "subgiro": "veterinaria (especialidades)",
+   "direccion": "Av. Patria 1150, local 10F, Ciudad del Sol, 45050 Zapopan, Jal.",
+   "colonia": "Ciudad del Sol",
+   "telefono": "(33) 3628 3868",
+   "whatsapp": "no encontrado",
+   "servicios": "Médicos veterinarios zootecnistas / especialidades veterinarias",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Sin web localizada al buscar nombre + dirección",
+    "Listado en Sección Amarilla (veterinarias y MVZ Zapopan)"
+   ],
+   "alertas": [
+    "Verificar en Maps que siga operando en el local 10F"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/resultados/veterinarias/jalisco/zapopan/1",
+    "direccion": "https://www.seccionamarilla.com.mx/resultados/veterinarias/jalisco/zapopan/1",
+    "telefono": "https://www.seccionamarilla.com.mx/resultados/veterinarias/jalisco/zapopan/1",
+    "web": "búsqueda: \"Especialidades Veterinarias de Guadalajara\" Patria 1150 (sin web)"
+   }
+  },
+  {
+   "nombre": "Spine Center - Centro Quiropráctico de Descompresión Espinal (Clínica Especializada en Hernia de Disco)",
+   "giro": "quiropráctica / fisioterapia de columna",
+   "giro_categoria": "Salud",
+   "subgiro": "quiropráctica / fisioterapia de columna",
+   "direccion": "Av. Tizoc 595-B, Cd. del Sol, 45050 Zapopan, Jal.",
+   "colonia": "Ciudad del Sol",
+   "telefono": "+52 33 3615 6676",
+   "whatsapp": "no encontrado",
+   "servicios": "Quiropráctica, descompresión espinal, fisioterapia para hernia de disco",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "Doctoralia: reseñas generalmente positivas (cifra no obtenida)",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Depende de Fresha y Doctoralia para reservas; no se encontró dominio propio",
+    "Reseñas positivas en Doctoralia según resumen"
+   ],
+   "alertas": [
+    "Teléfono en conflicto: otra ficha Fresha da +52 33 3615 9912",
+    "En Doctoralia aparece ligado a un solo quiropráctico; confirmar que sea clínica con equipo"
+   ],
+   "fuentes": {
+    "nombre": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+    "direccion": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+    "telefono": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+    "web": "búsqueda: Spine Center Zapopan Ciudad del Sol quiropráctica sitio web (sin web propia); https://www.doctoralia.com.mx/perfil/cary-rothenberg"
+   }
+  },
+  {
+   "nombre": "CRNQ Clínica de Rodilla No Quirúrgica / Vita Fisioterapia",
+   "giro": "fisioterapia y rehabilitación (rodilla)",
+   "giro_categoria": "Salud",
+   "subgiro": "fisioterapia y rehabilitación (rodilla)",
+   "direccion": "Av. Tizoc 595-B, Cd. del Sol, 45050 Zapopan, Jal.",
+   "colonia": "Ciudad del Sol",
+   "telefono": "+52 33 3610 2724",
+   "whatsapp": "no encontrado",
+   "servicios": "Fisioterapia, tratamiento no quirúrgico de rodilla",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Varias fichas duplicadas en Fresha (CRNQ, Centro de la Rodilla No Quirúrgico, Vita Fisioterapia) = presencia desordenada",
+    "Sin web localizada por nombre"
+   ],
+   "alertas": [
+    "Mismo domicilio que Spine Center: posible grupo/consultorio compartido",
+    "Fichas Fresha antiguas (480-1,280 días)"
+   ],
+   "fuentes": {
+    "nombre": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+    "direccion": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+    "telefono": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/ciudad-del-sol",
+    "web": "búsqueda: \"Clínica de Rodilla No Quirúrgica\" Zapopan (sin resultados)"
+   }
+  },
+  {
+   "nombre": "The Glow Skin Clinic (sucursal Naciones Unidas)",
+   "giro": "clínica estética / dermocosmética",
+   "giro_categoria": "Salud",
+   "subgiro": "clínica estética / dermocosmética",
+   "direccion": "Av. Naciones Unidas 5279, Jardines Universidad, 45110 Zapopan, Jal.",
+   "colonia": "Jardines Universidad",
+   "telefono": "+52 33 2696 6205",
+   "whatsapp": "no encontrado",
+   "servicios": "Rellenos dérmicos, aclaramiento de piel, faciales",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Solo encontrada en Fresha; sin web propia en resultados"
+   ],
+   "alertas": [
+    "Varios teléfonos distintos en fichas (+52 33 2617 7117, +52 33 1542 0703, +52 33 9688 7677)",
+    "Tiene otras sucursales (Bugambilias, Victoria): podría tener web/IG de cadena; verificar",
+    "Verificar si hay médico responsable (giro estético)"
+   ],
+   "fuentes": {
+    "nombre": "https://www.fresha.com/lp/en/tt/dermal-fillers/in/mx-guadalajara/jardines-universidad",
+    "direccion": "https://www.fresha.com/lp/en/tt/dermal-fillers/in/mx-guadalajara/jardines-universidad",
+    "telefono": "https://www.fresha.com/lp/en/tt/dermal-fillers/in/mx-guadalajara/jardines-universidad",
+    "web": "búsqueda: \"The Glow Skin Clinic\" Zapopan Naciones Unidas (sin web)"
+   }
+  },
+  {
+   "nombre": "Centropiel 2",
+   "giro": "dermatología (clínica)",
+   "giro_categoria": "Salud",
+   "subgiro": "dermatología (clínica)",
+   "direccion": "Av. Santa Margarita 517A, Zapopan 45136, Jal.",
+   "colonia": "Santa Margarita",
+   "telefono": "+52 33 2303 5054",
+   "whatsapp": "no encontrado",
+   "servicios": "Consulta dermatológica, peeling, microdermoabrasión, microcirugía dermatológica, rellenos (consulta desde $795 según Doctoralia)",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Clínica con 2 sucursales (Valdepeñas y Santa Margarita) sin web oficial localizada",
+    "Agenda vía Doctoralia/Fresha"
+   ],
+   "alertas": [
+    "El teléfono proviene de la ficha Fresha de la sucursal Av. Valdepeñas 2382A; confirmar número de la sucursal Santa Margarita",
+    "Doctoralia la muestra bajo el perfil de una dermatóloga; no usar datos personales"
+   ],
+   "fuentes": {
+    "nombre": "https://www.doctoralia.com.mx/perfil/diana-elizabeth-pinon-gonzalez",
+    "direccion": "https://www.doctoralia.com.mx/perfil/diana-elizabeth-pinon-gonzalez",
+    "telefono": "https://www.fresha.com/lp/en/tt/dermal-fillers/in/mx-guadalajara/real-de-valdepeñas",
+    "web": "búsqueda: Centropiel Zapopan clínica dermatológica Valdepeñas sitio web (sin web)"
+   }
+  },
+  {
+   "nombre": "Quiroprácticos OB",
+   "giro": "quiropráctica y fisioterapia",
+   "giro_categoria": "Salud",
+   "subgiro": "quiropráctica y fisioterapia",
+   "direccion": "Av. Tesistán 670-14 F, Arcos de Zapopan, 45130 Zapopan, Jal.",
+   "colonia": "Arcos de Zapopan",
+   "telefono": "+52 33 3178 6594",
+   "whatsapp": "no encontrado",
+   "servicios": "Quiropráctica, terapia física",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Solo fichas Fresha (algunas como QuiroJuárez)",
+    "Sin web localizada"
+   ],
+   "alertas": [
+    "Nombre comercial inconsistente (Quiroprácticos OB / QuiroJuárez)",
+    "Fichas de 1-2 años; confirmar que siga activo"
+   ],
+   "fuentes": {
+    "nombre": "https://www.fresha.com/lp/es/bt/centros-de-terapia/mx-guadalajara/arcos-de-zapopan",
+    "direccion": "https://www.fresha.com/lp/es/bt/centros-de-terapia/mx-guadalajara/arcos-de-zapopan",
+    "telefono": "https://www.fresha.com/lp/es/bt/centros-de-terapia/mx-guadalajara/arcos-de-zapopan",
+    "web": "búsqueda: fresha therapy centers Arcos de Zapopan Tesistán 670 (sin web)"
+   }
+  },
+  {
+   "nombre": "Servicios Veterinarios Ahued",
+   "giro": "veterinaria",
+   "giro_categoria": "Salud",
+   "subgiro": "veterinaria",
+   "direccion": "Jazmín 98, Fracc. Real Cantabria, 45138 Zapopan, Jal.",
+   "colonia": "Real Cantabria (CP 45138, zona Santa Margarita/La Tuzania)",
+   "telefono": "33 3842 5910",
+   "whatsapp": "no encontrado",
+   "servicios": "Servicios veterinarios; horario listado diario 10:00-20:00",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Sin presencia fuera de Cybo; búsqueda por nombre exacto no devuelve web"
+   ],
+   "alertas": [
+    "Colonia limítrofe a la zona pedida; verificar en Maps"
+   ],
+   "fuentes": {
+    "nombre": "https://es.cybo.com/MX-biz/servicios-veterinarios-ahued",
+    "direccion": "https://es.cybo.com/MX-biz/servicios-veterinarios-ahued",
+    "telefono": "https://es.cybo.com/MX-biz/servicios-veterinarios-ahued",
+    "web": "búsqueda: \"Servicios Veterinarios Ahued\" Zapopan (sin resultados)"
+   }
+  },
+  {
+   "nombre": "Veterinaria House",
+   "giro": "veterinaria / farmacia veterinaria",
+   "giro_categoria": "Salud",
+   "subgiro": "veterinaria / farmacia veterinaria",
+   "direccion": "Av. San Mateo 1331, Parques de Tesistán, 45200 Zapopan, Jal.",
+   "colonia": "Parques de Tesistán (Tesistán)",
+   "telefono": "(33) 1075 1948",
+   "whatsapp": "no encontrado",
+   "servicios": "El directorio la clasifica como tienda de medicinas veterinarias",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Sin web localizada"
+   ],
+   "alertas": [
+    "Puede ser farmacia y no clínica: verificar servicios",
+    "URL de la ficha exacta no capturada; resumen de búsqueda restringida a Sección Amarilla/Cybo/InfoisInfo. Verificar en Maps"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/resultados/veterinaria/jalisco/zapopan/1",
+    "direccion": "verificar en Maps",
+    "telefono": "verificar en Maps",
+    "web": "búsqueda: veterinaria Tesistán Zapopan dirección"
+   }
+  },
+  {
+   "nombre": "Veterinaria Amiguitos",
+   "giro": "veterinaria",
+   "giro_categoria": "Salud",
+   "subgiro": "veterinaria",
+   "direccion": "Calzada Norte 50, Ciudad Granja, Zapopan, Jal.",
+   "colonia": "Ciudad Granja",
+   "telefono": "no encontrado",
+   "whatsapp": "no encontrado",
+   "servicios": "Médicos veterinarios",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Ficha mínima en InfoisInfo sin teléfono ni horario: fuerte señal de nula presencia digital"
+   ],
+   "alertas": [
+    "Teléfono no encontrado: verificar en Maps",
+    "Un directorio de MVZ lista el número (33) 3627 3483 en Calzada Norte 50-2, Ciudad Granja, bajo otro nombre registrado; confirmar si es el mismo negocio"
+   ],
+   "fuentes": {
+    "nombre": "https://zapopan.infoisinfo.com.mx/busqueda/medicos_veterinarios/b/ciudad-granja",
+    "direccion": "https://zapopan.infoisinfo.com.mx/busqueda/medicos_veterinarios/b/ciudad-granja",
+    "telefono": "no encontrado",
+    "web": "búsqueda: médicos veterinarios Ciudad Granja Zapopan Veterinaria Amiguitos"
+   }
+  },
+  {
+   "nombre": "Fisioterapia Profesionales Rehabilitando",
+   "giro": "fisioterapia",
+   "giro_categoria": "Salud",
+   "subgiro": "fisioterapia",
+   "direccion": "Cerrada Marina Vallarta, Santa Margarita Residencial, Zapopan 45138, Jal.",
+   "colonia": "Santa Margarita",
+   "telefono": "no encontrado",
+   "whatsapp": "no encontrado",
+   "servicios": "Fisioterapia",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Ficha de clínica en Doctoralia sin teléfono, horario ni opiniones visibles",
+    "Sin web localizada"
+   ],
+   "alertas": [
+    "Teléfono no encontrado: verificar en Maps / perfil Doctoralia",
+    "Número exterior no publicado"
+   ],
+   "fuentes": {
+    "nombre": "https://www.doctoralia.com.mx/clinicas/fisioterapia-profesionales-rehabilitando",
+    "direccion": "https://www.doctoralia.com.mx/clinicas/fisioterapia-profesionales-rehabilitando",
+    "telefono": "no encontrado",
+    "web": "búsqueda: \"Fisioterapia Profesionales Rehabilitando\" Zapopan"
+   }
+  },
+  {
+   "nombre": "RYO Rehabilitación y Traumatología",
+   "giro": "rehabilitación / traumatología",
+   "giro_categoria": "Salud",
+   "subgiro": "rehabilitación / traumatología",
+   "direccion": "C. Tesistán, Arcos de Zapopan, 45130 Zapopan, Jal.",
+   "colonia": "Arcos de Zapopan",
+   "telefono": "no encontrado",
+   "whatsapp": "no encontrado",
+   "servicios": "Rehabilitación física y traumatología",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Ficha Fresha sin teléfono ni número exterior",
+    "Sin web localizada"
+   ],
+   "alertas": [
+    "Teléfono no encontrado: verificar en Maps"
+   ],
+   "fuentes": {
+    "nombre": "https://www.fresha.com/lp/es/bt/centros-de-terapia/mx-guadalajara/arcos-de-zapopan",
+    "direccion": "https://www.fresha.com/lp/es/bt/centros-de-terapia/mx-guadalajara/arcos-de-zapopan",
+    "telefono": "no encontrado",
+    "web": "búsqueda: \"RYO Rehabilitación y Traumatología\" Zapopan"
+   }
+  },
+  {
+   "nombre": "SKiNHOME",
+   "giro": "clínica estética / cuidado de la piel",
+   "giro_categoria": "Salud",
+   "subgiro": "clínica estética / cuidado de la piel",
+   "direccion": "C. Cuitláhuac 237, int. 4, Cd. del Sol, Zapopan, Jal.",
+   "colonia": "Ciudad del Sol",
+   "telefono": "+52 33 1479 4737",
+   "whatsapp": "no encontrado",
+   "servicios": "Faciales para acné / tratamientos de piel",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "sin dominio propio localizado en búsquedas",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Solo encontrada en Fresha"
+   ],
+   "alertas": [
+    "Otro número en ficha distinta: +52 33 3388 7217",
+    "No confirmado que sea clínica médica (podría ser cosmetología); no se revisó web propia por falta de tiempo"
+   ],
+   "fuentes": {
+    "nombre": "https://www.fresha.com/lp/en/tt/acne-facials/in/mx-guadalajara/ciudad-del-sol",
+    "direccion": "https://www.fresha.com/lp/en/tt/acne-facials/in/mx-guadalajara/ciudad-del-sol",
+    "telefono": "https://www.fresha.com/lp/en/tt/acne-facials/in/mx-guadalajara/ciudad-del-sol",
+    "web": "no verificada (pendiente buscar \"SKiNHOME Zapopan\")"
+   }
+  }
+ ]
+}

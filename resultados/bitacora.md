@@ -113,3 +113,9 @@
 - 10 negocios, 9 con teléfono. Los de ticket alto: 2 de transmisiones automáticas (Central de Transmisiones de Zapopan y Transmisiones Federalismo) y 1 de diésel.
 - **Cruce entre agentes:** Transmisiones Federalismo se descartó en la sesión 1 porque el nombre no tenía URL; ahora llega con fuente, así que vuelve a revisión. Ambriz Laminado y Pintura lo trajo el Agente Rutas, pero el Automotriz lo excluyó por datos contradictorios. Le paso los dos casos al Verificador.
 - **Hallazgo de cobertura:** los directorios casi no tienen fichas en Tesistán, Tabachines, La Tuzanía ni Belenes. Lo que hay en el norte de Zapopan para talleres no está en internet, así que la ruta norte tendría que armarse caminando o con Maps.
+
+## 2026-11-18 16:02 UTC — Termina Salud A (dentistas, zona norte/poniente)
+- 15 consultorios, 10 con teléfono completo. **Puerta de Hierro aporta 3 con teléfono** (AM Smile Care Center, Castellanos Orozco, Ortodoncia Castellanos). Zona de alto poder adquisitivo, así que pueden competir por el top 10.
+- Zapopan Centro suma 2 más (Farías Chávez, Cordero Núñez) y Tabachines 1 de endodoncia. Esto abre la posibilidad de una **4ª ruta: Puerta de Hierro → Zapopan Centro**.
+- Vacíos confirmados: Seattle, Royal Country, Ciudad Granja y Andares no dieron consultorios independientes. Lo que hay ahí son clínicas grandes o en torres médicas, que no son tu cliente.
+- **Sorpresa:** Biodentaq (Arcos) ofrece primera consulta gratis e implantes, un perfil agresivo en marketing pero sin web. Buen argumento: "ya invierten en atraer pacientes".
