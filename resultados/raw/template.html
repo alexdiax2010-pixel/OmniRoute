@@ -54,6 +54,8 @@ th{font:600 12px var(--f-mono);letter-spacing:.04em;text-transform:uppercase;col
 th:hover,th:focus-visible{color:var(--agave)}
 th[aria-sort="ascending"]::after{content:" ▲"} th[aria-sort="descending"]::after{content:" ▼"}
 tr:last-child td{border-bottom:0}
+td.why{min-width:260px;max-width:380px}
+td.who{min-width:200px;max-width:280px}
 .score{display:inline-block;min-width:42px;text-align:center;font:600 13px var(--f-mono);padding:2px 8px;border-radius:999px}
 .s-hi{background:var(--agave-soft);color:var(--good)} .s-mid{background:var(--marigold-soft);color:var(--warn)} .s-lo{background:var(--line);color:var(--low)}
 .chip{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin:2px 4px 2px 0}
@@ -74,7 +76,7 @@ details summary{cursor:pointer;color:var(--agave);font-size:13px}
 .route{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
 .route ol{margin:10px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
 .ideas{display:flex;flex-direction:column;gap:12px}
-.idea{padding:12px 0;border-bottom:1px solid var(--line)} .idea:last-child{border-bottom:0}
+.idea{padding:12px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere;min-width:0} .idea:last-child{border-bottom:0}
 .timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
 .timeline li{position:relative;padding:0 0 18px 20px}
 .timeline li::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--agave)}
@@ -154,8 +156,8 @@ const giros = {};
 P.forEach(p => { const g = p.giro_categoria || p.giro || "otro"; (giros[g] ||= []).push(+p.puntuacion || 0); });
 const kp = [
   [DATA.revisados, "negocios revisados"], [P.length, "prospectos verificados"],
-  [califican, "con 60+ puntos"], [P.filter(noWeb).length, "sin página web propia"],
-  [(DATA.oportunidades?.proyectos||[]).length, "proyectos freelance abiertos"]];
+  [califican, "con 60+ puntos"], [P.filter(noWeb).length, "sin web propia encontrada"],
+  [(DATA.oportunidades?.proyectos||[]).length, "proyectos freelance (abiertos sin confirmar)"]];
 $("#kpis").innerHTML = kp.map(([n,l]) => `<div class="kpi"><b>${esc(n)}</b><span>${esc(l)}</span></div>`).join("");
 
 // chart
@@ -204,8 +206,8 @@ function renderTable(){
   rows.sort((a,b)=>{ const x=a[sortK], y=b[sortK]; const nx=+x, ny=+y;
     return (isNaN(nx)||isNaN(ny) ? String(x).localeCompare(String(y),"es") : nx-ny) * sortD; });
   $("#tabla tbody").innerHTML = rows.map(p=>`<tr><td><span class="score ${cls(+p.puntuacion)}">${esc(p.puntuacion)}</span></td>
-    <td><b>${esc(p.nombre)}</b><div class="muted" style="font-size:12px">${esc(p.direccion)}</div></td><td>${esc(p.giro)}</td><td>${esc(p.colonia)}</td>
-    <td class="mono" style="white-space:nowrap">${esc(p.telefono)}</td><td>${noWeb(p)?'<span class="chip noweb">sin web</span>':esc(p.tiene_web)}</td><td style="font-size:13px">${esc(p.razon_puntuacion)}</td></tr>`).join("");
+    <td class="who"><b>${esc(p.nombre)}</b><div class="muted" style="font-size:12px">${esc(p.direccion)}</div></td><td>${esc(p.giro)}</td><td>${esc(p.colonia)}</td>
+    <td class="mono" style="white-space:nowrap">${esc(p.telefono)}</td><td>${noWeb(p)?'<span class="chip noweb">sin web</span>':esc(p.tiene_web)}</td><td class="why" style="font-size:13px">${esc(p.razon_puntuacion)}</td></tr>`).join("");
   document.querySelectorAll("#tabla th").forEach(th => th.setAttribute("aria-sort", th.dataset.k===sortK ? (sortD>0?"ascending":"descending") : "none"));
 }
 document.querySelectorAll("#tabla th").forEach(th => { const go = () => { if(sortK===th.dataset.k) sortD*=-1; else { sortK=th.dataset.k; sortD = sortK==="puntuacion"?-1:1; } renderTable(); };

@@ -65,3 +65,18 @@
 - 10 WhatsApp (67–74 palabras, contadas con código) y 10 guiones de 30 s. Usa "usted" en salud y legal, y "tú" en la hojalatería. Ninguno menciona precio y todos ofrecen un boceto sin costo.
 - Revisé dos al azar (Denti Mundo, Dental Infante): cada uno cita un dato que sí está en las fuentes (calle o perfil de Doctoralia) y dice "no encontré una página propia", no "no tienen web". Correcto.
 - Mejora posible para la siguiente sesión: los mensajes son algo genéricos porque los datos públicos son escasos. Cuando confirmes en Maps, mete una reseña real o un servicio concreto (ej. "vi que atienden con Seguros Monterrey").
+
+## 16:11 UTC — Termina el Estratega (Fase 3 completa)
+- Giros top: **Salud, Automotriz, Servicios profesionales**. Belleza y Comida quedan como secundarios.
+- 3 rutas: Las Águilas (dentistas, 10:00), Chapalita (Av. de las Rosas, 10:00) y El Colli/Felipe Ruvalcaba (talleres, 8:30). Los talleres abren antes, así que esa ruta va temprano.
+- **Idea más rentable:** un paquete "Pro" de $3,500–3,900, todavía abajo de las agencias ($4,000–4,750), y la alta de la ficha de Google Business ($800–1,200) como upsell. Encaja con que casi ninguno aparece bien en búsquedas.
+- Genero CSV y dashboard con el script, y queda tiempo para una Ronda 3 en las zonas de las rutas.
+
+## 16:16 UTC — Dashboard generado y revisado
+- `build.py` arma `prospectos.csv` (88 filas) y `reporte.html` a partir de los JSON. Así ningún dato se copia a mano.
+- En la revisión en celular (400 px) había scroll horizontal por URLs largas en las observaciones de mercado. Lo corregí con ajuste de línea.
+- **Corrección de honestidad:** el KPI decía "87 sin página web propia" y "12 proyectos freelance abiertos". Lo cambié a "sin web propia encontrada" y "abiertos sin confirmar", porque eso es lo que realmente sabemos.
+
+## 16:18 UTC — Reporte publicado y Ronda 3 lanzada
+- Publiqué el dashboard como Artifact privado (https://claude.ai/artifact/HforWV1wYy7L4wVMvDCjrC) para que no dependa de este contenedor.
+- Quedan ~15 min del presupuesto. **Ronda 3:** en vez de abrir otro giro, refuerzo las dos rutas con más densidad (Las Águilas y Chapalita) con barberías, talleres y dentistas que tengan teléfono. Más paradas por mañana significa más visitas por viaje.

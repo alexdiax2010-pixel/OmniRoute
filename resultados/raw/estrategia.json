@@ -1,0 +1,190 @@
+{
+  "resumen_ejecutivo": "Encontramos 88 negocios en Zapopan y ninguno mostró una página propia en la búsqueda. Los mejores blancos son los dentistas (21 de 26 en Salud pasan de 60 puntos y pagan el paquete de $4,500), sobre todo los 6 de Las Águilas, que se visitan en una mañana. Con $2,500 el cliente cobra menos que las agencias locales ($4,000-4,750), así que hay espacio para un paquete Pro y para vender mantenimiento.",
+  "giros_top": [
+    {
+      "giro": "Salud (dentistas, fisioterapia)",
+      "por_que": "Es el giro con mejor puntaje: 26 prospectos, 21 con 60+ y promedio 67.6. Tiene el ticket más alto ($4,500 por landing dental) y ninguno de los 26 mostró una web propia en la búsqueda. 13 tienen teléfono con fuente y Las Águilas concentra 6 dentistas en pocas calles, ideal para visitas. Además son los que más necesitan agendamiento, un extra que se cobra aparte."
+    },
+    {
+      "giro": "Automotriz (hojalatería, transmisiones, talleres)",
+      "por_que": "17 prospectos, 10 con 60+ (promedio 60.9) y el que mejor contacto tiene: 15 de 17 con teléfono con fuente. Ticket de $2,500, pero los talleres abren temprano y se pueden visitar antes que los consultorios. Laminado y Pintura JV tiene una web caída, venta directa de rediseño."
+    },
+    {
+      "giro": "Servicios profesionales (abogados, notaría, contadores, guarderías, cerrajería)",
+      "por_que": "15 prospectos, 9 con 60+ (promedio 62.2), 13 con teléfono con fuente y ninguno con web propia encontrada. EFD Abogados SC (81) y la Notaría Pública No. 30 (77) están en el top 10. Chapalita concentra 5 en Av. de las Rosas. Un despacho puede pagar más que un taller, así que se puede cotizar entre $2,500 y $4,500 (sugerencia). Belleza (prom. 50.1, 3 con teléfono) y Comida (prom. 44.1, 0 con 60+) quedan atrás para landing."
+    }
+  ],
+  "rutas": [
+    {
+      "nombre": "Ruta 1: Dentistas de Las Águilas",
+      "zona": "Las Águilas / Colinas de Las Águilas / La Calma (CP 45080)",
+      "hora_inicio": "10:00 (los consultorios abren ~10am)",
+      "paradas": [
+        {
+          "orden": 1,
+          "nombre": "Denti Mundo",
+          "direccion": "C. Río Cihuatlán 1517-A2, Las Águilas, 45080 Zapopan, Jal.",
+          "nota": "85 pts. Empatado en el top (85). Abrir con: 'no encontré una página propia del consultorio'; ofrecer paquete dentista $4,500 con botón de WhatsApp y citas. Alerta: dato tomado de resumen de búsqueda, confirmar que siga ahí."
+        },
+        {
+          "orden": 2,
+          "nombre": "Dental Infante",
+          "direccion": "Río Cuixtle 5784, Colinas de las Águilas, 45080 Zapopan, Jal.",
+          "nota": "85 pts. 85 pts, aparece en Doctoralia. ALERTA: comparte dirección (Río Cuixtle 5784) con Easy Dental; preguntar en recepción si son el mismo negocio antes de presentar dos propuestas."
+        },
+        {
+          "orden": 3,
+          "nombre": "Easy Dental Odontología Simplificada con Láser",
+          "direccion": "C. Río Cuixtle 5784 B, Las Águilas, 45080",
+          "nota": "80 pts. Misma parada que Dental Infante (5784 B). Ángulo: su propuesta de láser merece una página que la explique. Si es el mismo negocio, una sola propuesta."
+        },
+        {
+          "orden": 4,
+          "nombre": "SPA Dental",
+          "direccion": "Av. Sierra de Tapalpa (número no encontrado), Las Águilas, Zapopan",
+          "nota": "85 pts. 85 pts, odontología estética: buen candidato a landing con galería antes/después. Alerta: número exterior no encontrado sobre Av. Sierra de Tapalpa; ubicar en Maps antes."
+        },
+        {
+          "orden": 5,
+          "nombre": "Guardería Rehilete",
+          "direccion": "Av. Sierra de Tapalpa 5821, CP 45080, Zapopan",
+          "nota": "64 pts. Sobre la misma avenida (Sierra de Tapalpa 5821). No es dentista, pero aprovecha la vuelta: landing con formulario de inscripción y WhatsApp para papás. Paquete sugerido $2,500."
+        },
+        {
+          "orden": 6,
+          "nombre": "Armando Núñez, dentista especialista en niños",
+          "direccion": "Av. Nicolás Copérnico 3730 int. 108, Las Águilas, Zapopan, CP 45080",
+          "nota": "85 pts. 85 pts, odontopediatría en edificio médico (int. 108). Ángulo: papás buscan en Google 'dentista para niños Zapopan' (SEO local). Alerta: la colonia varía entre directorios (Las Águilas o Arboledas, MediCenter)."
+        },
+        {
+          "orden": 7,
+          "nombre": "Refaccionaria Rogelio",
+          "direccion": "Av. 18 de Marzo 3463, Zapopan, Jal.",
+          "nota": "57 pts. Opcional si sobra tiempo (57 pts). Teléfono dudoso: confirmar en persona el número correcto."
+        }
+      ],
+      "nota": "Agrupada por calles: Río Cihuatlán y Río Cuixtle, luego Av. Sierra de Tapalpa y al final Av. Nicolás Copérnico. El orden es tentativo: confirmar recorrido en Maps. Llevar en el celular un ejemplo de landing dental."
+    },
+    {
+      "nombre": "Ruta 2: Chapalita sobre Av. de las Rosas",
+      "zona": "Chapalita / Chapalita Sur / Chapalita Oriente / Camino Real (CP 45040)",
+      "hora_inicio": "10:00 (despachos y consultorios abren ~9:30-10am)",
+      "paradas": [
+        {
+          "orden": 1,
+          "nombre": "EFD Abogados SC",
+          "direccion": "Av. de las Rosas 164, CP 45040, Zapopan",
+          "nota": "81 pts. 81 pts, el más alto fuera de Salud. Ángulo: landing de despacho con áreas de práctica, formulario de consulta y WhatsApp."
+        },
+        {
+          "orden": 2,
+          "nombre": "Kyma Life - Clínica de rehabilitación y acondicionamiento físico",
+          "direccion": "Av. de las Rosas 171A, Zapopan 45040",
+          "nota": "73 pts. Misma avenida, numeración cercana (171A). Alerta: multisucursal y un listado la ubica en GDL; preguntar quién decide (puede ser la matriz). Ofrecer agendamiento de citas."
+        },
+        {
+          "orden": 3,
+          "nombre": "Consultorio dental Av. De las Rosas 430 (nombre comercial no encontrado)",
+          "direccion": "Av. De las Rosas 430, Chapalita Oriente, Zapopan, CP 45040",
+          "nota": "71 pts. 71 pts, 2 dentistas. Alertas: falta nombre comercial y el teléfono es dudoso; anotar nombre y número reales en la visita."
+        },
+        {
+          "orden": 4,
+          "nombre": "Cerrajería Chapalita",
+          "direccion": "Av. de las Rosas 555, CP 45040, Zapopan",
+          "nota": "68 pts. 68 pts, servicio 24h. Ángulo: botón de llamada y WhatsApp visible + SEO 'cerrajero Chapalita'. Paquete básico $2,500."
+        },
+        {
+          "orden": 5,
+          "nombre": "Notaría Pública No. 30 de Zapopan",
+          "direccion": "Calle San Juan Bosco, Chapalita, Guadalajara (número no encontrado; el directorio la ubica en GDL aunque es notaría de Zapopan)",
+          "nota": "77 pts. 77 pts. Alerta: número exterior no encontrado en San Juan Bosco y el directorio la ubica en GDL; confirmar en Maps. Ticket potencial alto, pero decide el notario: pedir cita en vez de vender en mostrador."
+        },
+        {
+          "orden": 6,
+          "nombre": "Despacho Padilla Villarruel y Cía",
+          "direccion": "Lázaro Cárdenas 4135, CP 45040, Zapopan",
+          "nota": "62 pts. 62 pts, contadores sobre Lázaro Cárdenas (mismo CP 45040). Ángulo: landing con servicios fiscales y formulario. Puede quedar más lejos: confirmar en Maps."
+        }
+      ],
+      "nota": "Las primeras 4 paradas están sobre Av. de las Rosas en orden de numeración (164, 171A, 430, 555). HUNThöhle CrossFit (Primo Feliciano Velázquez 668, mismo CP) puede sumarse, pero no tiene teléfono. Confirmar recorrido en Maps."
+    },
+    {
+      "nombre": "Ruta 3: Talleres de El Colli / Felipe Ruvalcaba",
+      "zona": "El Colli 1a Sección / Colli Urbano / Paseos del Sol (CP 45070-45079)",
+      "hora_inicio": "8:30-9:00 (los talleres abren temprano)",
+      "paradas": [
+        {
+          "orden": 1,
+          "nombre": "Transmisiones Automáticas Euroalemanas de Zapopan",
+          "direccion": "Calle Felipe Ruvalcaba 5358, C.P. 45070 (directorio lo etiqueta como Guadalajara; CP corresponde a Zapopan)",
+          "nota": "72 pts. 72 pts, nicho europeo. Paquete taller $2,500 con WhatsApp y 'cotiza tu servicio'. Alerta: directorio la etiqueta como Guadalajara (CP 45070 es Zapopan)."
+        },
+        {
+          "orden": 2,
+          "nombre": "Cerrajerías JR",
+          "direccion": "Calle Felipe Ruvalcaba 5710-A, CP 45079, Zapopan",
+          "nota": "57 pts. 57 pts, sobre la misma calle (Felipe Ruvalcaba 5710-A). Parada rápida de paso."
+        },
+        {
+          "orden": 3,
+          "nombre": "Laminado y Pintura JV",
+          "direccion": "C. Felipe Ruvalcaba 5966, C.P. 45070, Zapopan, Jal.",
+          "nota": "65 pts. 65 pts. Ángulo fuerte: el directorio cita laminadojv.com pero no carga; ofrecer rehacer o recuperar su web + mantenimiento mensual."
+        },
+        {
+          "orden": 4,
+          "nombre": "MR11 Garage",
+          "direccion": "Calle Volcán Cofre de Perote 5309A, C.P. 45070, Zapopan, Jal.",
+          "nota": "60 pts. 60 pts, misma colonia que JV (Colli Urbano). Sin teléfono: conseguir número y WhatsApp en la visita."
+        },
+        {
+          "orden": 5,
+          "nombre": "Recupera-T Fisioterapia - Rehabilitación",
+          "direccion": "Av. Adolfo López Mateos 5880, Local 8, Zapopan 45070",
+          "nota": "64 pts. 64 pts, mismo CP 45070 sobre Av. López Mateos. Cerrar aquí la mañana (~10-11am, cuando ya abrió). Ofrecer landing + agendamiento."
+        }
+      ],
+      "nota": "Las 3 primeras van sobre C. Felipe Ruvalcaba en orden de numeración (5358, 5710-A, 5966). Extensión opcional en Miramar (CP 45060): Laminado y Pintura Profesional Gómez y Autolavado Las Torres; no se sabe qué tan cerca quedan. Ruta alterna automotriz: Constitución (Hojalatería \"El Tin\" 75 pts, El salón de la fama Barbershop y Scire en Av. Venustiano Carranza). Confirmar recorrido en Maps."
+    }
+  ],
+  "ideas_venta": [
+    {
+      "titulo": "Subir el precio base sin perder ventaja",
+      "detalle": "Las agencias de GDL/Zapopan cobran $4,000-4,750 por una landing (Simplixy $4,500, Geek Solutions desde $4,750). A $2,500 el cliente queda casi a la mitad. Sugerencia: mantener $2,500 como paquete 'Básico' y crear un 'Pro' de $3,500-3,900 con WhatsApp, SEO local y formulario, que siguen siendo más baratos que una agencia."
+    },
+    {
+      "titulo": "Paquetes por giro con lo que más se pide",
+      "detalle": "WhatsApp, SEO local, formularios y agendamiento son los requisitos que más se repiten en Workana/Freelancer. Paquete Dental ($4,500): citas + WhatsApp + Google Business. Paquete Taller ($2,500): botón 'cotiza por WhatsApp' + galería de trabajos. Paquete Despacho ($3,500 sugerido): áreas de práctica + formulario de consulta."
+    },
+    {
+      "titulo": "Mantenimiento mensual con algo visible",
+      "detalle": "Vender el mantenimiento como 'tu página siempre al día': cambios de precios y promociones, revisión de que el WhatsApp funcione y un reporte mensual de visitas. Ejemplo: Laminado y Pintura JV muestra lo que pasa sin mantenimiento (dominio citado que ya no carga). Sugerencia: $300-500/mes según giro."
+    },
+    {
+      "titulo": "Venta por zona y referidos entre vecinos",
+      "detalle": "Cerrar un dentista en Las Águilas y usar su página como ejemplo con los otros 5 de la colonia. Ofrecer un descuento o un mes de mantenimiento gratis por cada negocio referido que contrate. Lo mismo en Av. de las Rosas (Chapalita)."
+    },
+    {
+      "titulo": "Alta y optimización de Google Business Profile",
+      "detalle": "Casi todos los prospectos aparecen solo en directorios (Sección Amarilla, Doctoralia, Fresha) y en muchos los datos no coinciden (dos direcciones, teléfonos distintos: Alcaraz Leal Abogados, Azteca Abogados, Mexa Cuts). Servicio extra: dejar su ficha de Google con dirección, horario y teléfono correctos y ligada a la landing. Sugerencia: $800-1,200 una vez."
+    }
+  ],
+  "productos_nuevos": [
+    {
+      "titulo": "Sistema de citas en línea para dentistas y barberías",
+      "detalle": "Página de agendamiento conectada a Google Calendar con recordatorio por WhatsApp. Responde al pedido de agendamiento que aparece en las ofertas y le sirve a los 6 dentistas de Las Águilas y a barberías como El salón de la fama Barbershop o El Barbero Co (Aviación).",
+      "precio_sugerido": "Sugerencia: $1,500-2,500 de instalación + $300/mes"
+    },
+    {
+      "titulo": "Menú digital con código QR para Comida",
+      "detalle": "Comida es el giro con peor puntaje para landing (prom. 44.1, ninguno con 60+, solo 2 con teléfono), pero tiene negocios con buenas reseñas como Taquería MS (~392 reseñas) o El Bigos Tortas Ahogadas. Un menú QR fácil de actualizar con botón de pedido por WhatsApp es más útil y barato para ellos que una landing.",
+      "precio_sugerido": "Sugerencia: $1,200-1,800 + $150/mes por cambios de menú"
+    },
+    {
+      "titulo": "Chatbot de WhatsApp para preguntas frecuentes",
+      "detalle": "Respuestas automáticas a horarios, precios y ubicación, con paso a humano. Útil para Cerrajería Chapalita (24h), talleres que reciben pedidos de cotización y consultorios. Se puede vender como extra del paquete Pro.",
+      "precio_sugerido": "Sugerencia: $2,000-3,500 de instalación + $400/mes"
+    }
+  ]
+}
