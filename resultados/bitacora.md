@@ -144,3 +144,8 @@
 - **Decisión que consideré y descarté:** quise restar 5 a los 13 negocios con la alerta "confirmar que siga operando", como hice con Frenos Frescos y Okrasa. Lo descarté: los 13 son de la sesión 2 solo porque esos agentes lo anotaron, pero los 157 vienen de directorios igual de sin confirmar. Penalizarlos castigaría al agente más honesto. A Frenos y Okrasa además les faltaba confirmar el giro.
 - La cercanía recalculada subió 29 prospectos viejos y no bajó ninguno (ej. Denticelis 68→78, los dentistas de Tesistán 72→80).
 - 3 de los 5 nuevos del top 10 no tienen nombre comercial, solo dirección (estaban a nombre de un doctor). El mensaje de WhatsApp tendrá que ser genérico: "consultorio dental en Av. Empresarios 150".
+
+## 2026-11-18 16:11 UTC — Termina el Redactor (sesión 2)
+- 5 mensajes nuevos (69–76 palabras) para los que entraron al top 10. Reutilicé sin cambios los 5 de la sesión 1 que siguen dentro.
+- Los mensajes de los 5 que salieron del top 10 se conservan en raw/mensajes.json, por si quieres contactarlos también.
+- En los consultorios sin nombre comercial, el mensaje se refiere al lugar ("su consultorio en Av. Empresarios 150") y no usa el nombre de ningún doctor.

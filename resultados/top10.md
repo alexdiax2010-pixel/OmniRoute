@@ -2,7 +2,115 @@
 
 > **Nota:** Datos tomados de resultados de búsqueda; confirma teléfono y dirección en Google Maps antes de contactar.
 
-## 1. Denti Mundo
+**Fecha:** 2026-11-18 (sesión 2)
+
+## Cambios respecto a la sesión 1
+
+**Entraron:**
+
+- AM Smile Care Center
+- Consultorio dental Av. Empresarios 150 No. 12 (nombre comercial no encontrado)
+- Consultorio de ortodoncia, Condominio Médico Puerta de Hierro (nombre comercial no encontrado)
+- Román Abogados Litigantes Rincón Mayorga
+- Consultorio dental 20 de Noviembre 188 (nombre comercial no encontrado)
+
+**Salieron:**
+
+- Easy Dental Odontología Simplificada con Láser
+- Notaría Pública No. 30 de Zapopan
+- Dental City
+- Hojalatería "El Tin"
+- Kyma Life - Clínica de rehabilitación y acondicionamiento físico
+
+Los mensajes y guiones de los que salieron siguen guardados en `raw/mensajes.json`.
+
+---
+
+## 1. AM Smile Care Center
+
+- **Puntaje:** 88
+- **Giro:** Consultorio dental / Odontología general / urgencias
+- **Dirección:** Av. Real Acueducto 160 Loc. 4, CP 45116, Zapopan, Jal.
+- **Colonia:** Puerta de Hierro
+- **Teléfono:** (33) 1652 7733
+- **Web:** no encontrada (Busqué '"AM Smile Care" Zapopan Real Acueducto' y no apareció ni un dominio ni otra ficha.)
+- **Señales:** Teléfono publicado como del negocio; Zona premium (Puerta de Hierro / Real Acueducto); Sin presencia web detectable
+- **Razón del puntaje:** Sin web (+30), dentista (+25), zona Puerta de Hierro, sin datos de reseñas (+8), tel. con fuente (+15), cerca de 5 más en Puerta de Hierro (+10)
+- **Alertas:**
+  - Fuente única (Sección Amarilla); confirmar que siga operando; verificar en Maps.
+- **Fuentes:**
+  - nombre: https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1
+  - direccion: https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1
+  - telefono: https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1
+  - web: búsqueda WebSearch: "AM Smile Care" Zapopan Real Acueducto
+
+**Mensaje de WhatsApp** (76 palabras):
+
+> Buen día. Vi que AM Smile Care Center atiende en Av. Real Acueducto, en Puerta de Hierro, Zapopan. Me dedico a hacer páginas web para consultorios dentales de la zona y, al buscarlos en Google, no encontré una página propia del consultorio. Me gustaría prepararle un boceto sin costo de cómo podría verse su página, para que sus pacientes le encuentren y agenden más fácil. ¿Le interesa que se lo envíe por aquí? Saludos, [Tu nombre]
+
+**Guion de llamada (30 s):**
+
+> Buen día, ¿hablo a AM Smile Care Center? Mi nombre es [Tu nombre], hago páginas web para consultorios dentales en Zapopan. Vi que ustedes atienden en Av. Real Acueducto, en Puerta de Hierro. Cuando alguien les busca en Google, no encontré una página propia, y muchos pacientes terminan yéndose con otro consultorio que sí aparece. Me gustaría prepararle un boceto gratis de su página, sin compromiso. ¿Le parece si se lo mando por WhatsApp?
+
+---
+
+## 2. Consultorio dental Av. Empresarios 150 No. 12 (nombre comercial no encontrado)
+
+- **Puntaje:** 88
+- **Giro:** Consultorio dental / Odontología general
+- **Dirección:** Av. Empresarios 150 No. 12, CP 45116, Zapopan, Jal. (Centro Médico Puerta de Hierro)
+- **Colonia:** Puerta de Hierro
+- **Teléfono:** (33) 3615 3877
+- **Web:** no encontrada (Solo aparecen fichas de directorio (Sección Amarilla, TocDoc))
+- **Señales:** Teléfono publicado; Dentro del Centro Médico Puerta de Hierro (pacientes de alto poder adquisitivo)
+- **Razón del puntaje:** Sin web (+30), dentista (+25), Centro Médico Puerta de Hierro, sin reseñas (+8), tel. con fuente (+15), cerca de 5 más en Puerta de Hierro (+10)
+- **Alertas:**
+  - El nombre de directorio es el de un doctor; se usa solo como nombre del consultorio; verificar en Maps.
+- **Fuentes:**
+  - nombre: https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1
+  - direccion: https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1
+  - telefono: https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1
+  - web: búsqueda WebSearch: "Castellanos" Puerta de Hierro Zapopan
+
+**Mensaje de WhatsApp** (69 palabras):
+
+> Buen día. Vi su consultorio en Av. Empresarios 150, en el Centro Médico Puerta de Hierro. Me dedico a hacer páginas web para consultorios dentales de Zapopan y, al buscarlo en Google, no encontré una página propia del consultorio. Me gustaría prepararle un boceto sin costo de su página, para que más pacientes le encuentren y agenden directamente. ¿Le interesa que se lo envíe por aquí? Saludos, [Tu nombre]
+
+**Guion de llamada (30 s):**
+
+> Buen día, ¿hablo al consultorio dental de Av. Empresarios 150? Mi nombre es [Tu nombre], hago páginas web para consultorios dentales en Zapopan. Vi que atienden en el Centro Médico Puerta de Hierro. Cuando alguien busca su consultorio en Google, no encontré una página propia, y muchos pacientes se van con otro consultorio que sí aparece. Me gustaría prepararle un boceto gratis de su página, sin compromiso. ¿Le parece si se lo mando por WhatsApp?
+
+---
+
+## 3. Consultorio de ortodoncia, Condominio Médico Puerta de Hierro (nombre comercial no encontrado)
+
+- **Puntaje:** 88
+- **Giro:** Consultorio de ortodoncia / Ortodoncia
+- **Dirección:** Blvd. Puerta de Hierro 5150, 5-A, Condominio Médico Puerta de Hierro, CP 45116, Zapopan, Jal.
+- **Colonia:** Puerta de Hierro
+- **Teléfono:** 33 3813 3509
+- **Web:** no encontrada (Solo aparece la ficha del localizador de la AAO; no apareció ningún dominio propio)
+- **Señales:** Ortodoncia = ticket alto; Teléfono publicado en un directorio profesional; Zona premium
+- **Razón del puntaje:** Sin web (+30), ortodoncia (+25), condominio médico Puerta de Hierro, sin reseñas (+8), tel. con fuente (+15), cerca de 5 más en Puerta de Hierro (+10)
+- **Alertas:**
+  - Fuente única (AAO); confirmar el número; verificar en Maps.
+- **Fuentes:**
+  - nombre: https://aaoinfo.org/locator/dr-eduardo-castellanos/
+  - direccion: https://aaoinfo.org/locator/dr-eduardo-castellanos/
+  - telefono: https://aaoinfo.org/locator/dr-eduardo-castellanos/
+  - web: búsqueda WebSearch: "Castellanos" ortodoncia Puerta de Hierro 5150 Zapopan
+
+**Mensaje de WhatsApp** (72 palabras):
+
+> Buen día. Vi su consultorio de ortodoncia en el Condominio Médico Puerta de Hierro, en Blvd. Puerta de Hierro 5150. Me dedico a hacer páginas web para consultorios de Zapopan y, al buscarlo en Google, no encontré una página propia. En un tratamiento como la ortodoncia, los pacientes suelen investigar antes de llamar. ¿Le parece si le preparo un boceto sin costo de su página para que lo revise? Saludos, [Tu nombre]
+
+**Guion de llamada (30 s):**
+
+> Buen día, ¿hablo al consultorio de ortodoncia del Condominio Médico Puerta de Hierro? Mi nombre es [Tu nombre], hago páginas web para consultorios en Zapopan. Vi que atienden en Blvd. Puerta de Hierro 5150. Al buscar su consultorio en Google no encontré una página propia, y en ortodoncia los pacientes comparan antes de decidir. Me gustaría prepararle un boceto gratis de su página, sin compromiso. ¿A quién se lo envío?
+
+---
+
+## 4. Denti Mundo
 
 - **Puntaje:** 85
 - **Giro:** Dentista / Consultorio dental general
@@ -11,9 +119,9 @@
 - **Teléfono:** +52 33 1307 7867
 - **Web:** no encontrada (Solo aparece en un directorio)
 - **Señales:** Teléfono completo publicado; Sin web propia en los resultados
-- **Razón del puntaje:** Sin web (+30), dentista (+25), zona Las Águilas, sin reseñas (+5), tel. con fuente (+15), cerca de 5 más en Las Águilas (+10)
+- **Razón del puntaje:** Sin web (+30), dentista (+25), zona Las Águilas, sin reseñas (+5), tel. con fuente (+15), cerca de 9 más en Las Águilas (+10)
 - **Alertas:**
-  - Dato tomado del resumen de búsqueda. La página no se pudo abrir (DNS bloqueado).
+  - Dato tomado del resumen de búsqueda. La página no se pudo abrir (DNS bloqueado); verificar en Maps.
 - **Fuentes:**
   - nombre: https://buscodentista.com.mx/jalisco/zapopan/denti-mundo/
   - direccion: https://buscodentista.com.mx/jalisco/zapopan/denti-mundo/
@@ -30,7 +138,7 @@
 
 ---
 
-## 2. Dental Infante
+## 5. Dental Infante
 
 - **Puntaje:** 85
 - **Giro:** Dentista / Consultorio dental general
@@ -39,10 +147,10 @@
 - **Teléfono:** +52 33 1228 4606
 - **Web:** no encontrada (Solo aparece en directorios (buscodentista, Doctoralia))
 - **Señales:** Teléfono completo publicado; Perfil en Doctoralia con reserva por teléfono; Sin web propia en los resultados
-- **Razón del puntaje:** Sin web (+30), dentista (+25), zona Las Águilas, Doctoralia, sin reseñas (+5), tel. con fuente (+15), cerca de 5 más en Colinas de Las Águilas (+10)
+- **Razón del puntaje:** Sin web (+30), dentista (+25), zona Las Águilas, Doctoralia, sin reseñas (+5), tel. con fuente (+15), cerca de 9 más en Las Águilas (+10)
 - **Alertas:**
-  - Puede ser el mismo inmueble que Easy Dental (Río Cuixtle 5784 B). Confirmar que no se trata del mismo negocio.
-  - ALERTA: Dental Infante y Easy Dental Láser comparten dirección (Río Cuixtle 5784): posible mismo negocio o mismo inmueble; confirmar antes de contactar a ambos.
+  - Puede ser el mismo inmueble que Easy Dental (Río Cuixtle 5784 B). Confirmar que no se trata del mismo negocio; verificar en Maps.
+  - ALERTA: Dental Infante y Easy Dental Láser comparten dirección (Río Cuixtle 5784): posible mismo negocio o mismo inmueble; confirmar antes de contactar a ambos; verificar en Maps.
 - **Fuentes:**
   - nombre: https://buscodentista.com.mx/jalisco/zapopan/dental-infante/
   - direccion: https://www.doctoralia.com.mx/perfil/miriam-infante-taracena
@@ -59,7 +167,7 @@
 
 ---
 
-## 3. SPA Dental
+## 6. SPA Dental
 
 - **Puntaje:** 85
 - **Giro:** Dentista / Spa dental / odontología estética
@@ -68,10 +176,10 @@
 - **Teléfono:** 33 3632 8206
 - **Web:** no encontrada (Solo aparece en un directorio)
 - **Señales:** Teléfono fijo publicado; Concepto 'spa', orientado a estética
-- **Razón del puntaje:** Sin web (+30), dentista (+25), zona Las Águilas, sin reseñas (+5), tel. con fuente (+15), cerca de 5 más en Las Águilas (+10)
+- **Razón del puntaje:** Sin web (+30), dentista (+25), zona Las Águilas, sin reseñas (+5), tel. con fuente (+15), cerca de 9 más en Las Águilas (+10)
 - **Alertas:**
   - Número exterior no encontrado; verificar en Maps.
-  - El directorio puede estar desactualizado.
+  - El directorio puede estar desactualizado; verificar en Maps.
 - **Fuentes:**
   - nombre: https://hospitalesmexico.com/spa-dental-198343
   - direccion: https://hospitalesmexico.com/spa-dental-198343
@@ -88,7 +196,7 @@
 
 ---
 
-## 4. Armando Núñez, dentista especialista en niños
+## 7. Armando Núñez, dentista especialista en niños
 
 - **Puntaje:** 85
 - **Giro:** Dentista / Odontopediatría
@@ -97,11 +205,10 @@
 - **Teléfono:** (33) 1411 8294
 - **Web:** no encontrada (Solo aparece en Sección Amarilla)
 - **Señales:** Teléfono publicado; Nicho pediátrico; Edificio con varios consultorios dentales (MediCenter)
-- **Razón del puntaje:** Sin web (+30), dentista (+25), zona Las Águilas, edificio médico, sin reseñas (+5), tel. con fuente (+15), cerca de 5 más en Las Águilas (+10)
+- **Razón del puntaje:** Sin web (+30), dentista (+25), zona Las Águilas, edificio médico, sin reseñas (+5), tel. con fuente (+15), cerca de 10 más en Las Águilas y tramo Av. Nicolás Copérnico (+10)
 - **Alertas:**
-  - Consultorio con nombre de doctor: se usa solo como nombre del negocio.
-  - La colonia no coincide entre directorios (Las Águilas o Arboledas).
-  - Verificar en Maps.
+  - Consultorio con nombre de doctor: se usa solo como nombre del negocio; verificar en Maps.
+  - La colonia no coincide entre directorios (Las Águilas o Arboledas); verificar en Maps.
 - **Fuentes:**
   - nombre: https://www.seccionamarilla.com.mx/mapas/dentistas-en-endodoncia/jalisco/3
   - direccion: https://www.seccionamarilla.com.mx/mapas/dentistas-en-endodoncia/jalisco/3
@@ -118,19 +225,47 @@
 
 ---
 
-## 5. EFD Abogados SC
+## 8. Román Abogados Litigantes Rincón Mayorga
 
-- **Puntaje:** 81
+- **Puntaje:** 85
+- **Giro:** Despacho de abogados / Abogados litigantes
+- **Dirección:** Paseo Royal Country 4650, Puerta de Hierro, Zapopan, Jal., CP 45116
+- **Colonia:** Puerta de Hierro
+- **Teléfono:** (33) 3826 5144
+- **Web:** no encontrada (Sin web ni perfiles en Best Lawyers/Chambers en la búsqueda "Rincón Mayorga Román" abogados Zapopan)
+- **Señales:** Puerta de Hierro: zona de ticket alto; Teléfono publicado; Despacho litigante pequeño sin web
+- **Razón del puntaje:** Sin web (+30), abogados (+22), zona Puerta de Hierro, sin reseñas (+8), tel. con fuente (+15), cerca de 5 más en Puerta de Hierro (+10)
+- **Alertas:**
+  - El nombre del despacho incluye apellidos: usar solo como nombre comercial; verificar en Maps.
+  - Ficha de directorio: verificar que siga activo; verificar en Maps.
+- **Fuentes:**
+  - nombre: https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/10
+  - direccion: https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/10 (o /resultados/despachos-de-abogados/jalisco/guadalajara/8)
+  - telefono: https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/10 (o /resultados/despachos-de-abogados/jalisco/guadalajara/8)
+  - web: búsqueda WebSearch: "Rincón Mayorga Román" abogados Zapopan
+
+**Mensaje de WhatsApp** (71 palabras):
+
+> Buen día. Vi que Román Abogados Litigantes tiene su despacho en Paseo Royal Country, en Puerta de Hierro, Zapopan. Me dedico a hacer páginas web para despachos y negocios de Zapopan y, al buscarlos en Google, no encontré una página propia del despacho. Una página profesional ayuda a que los clientes confíen antes de llamar. ¿Le parece si le preparo un boceto sin costo para que lo revise? Saludos, [Tu nombre]
+
+**Guion de llamada (30 s):**
+
+> Buen día, ¿hablo a Román Abogados Litigantes? Mi nombre es [Tu nombre], hago páginas web para despachos en Zapopan. Vi que tienen su oficina en Paseo Royal Country, en Puerta de Hierro. Cuando alguien les busca en Google, no encontré una página propia del despacho, y muchos clientes potenciales se van con otro despacho que sí aparece. Me gustaría prepararle un boceto gratis, sin compromiso. ¿A quién se lo envío?
+
+---
+
+## 9. EFD Abogados SC
+
+- **Puntaje:** 83
 - **Giro:** servicios profesionales / despacho de abogados
 - **Dirección:** Av. de las Rosas 164, CP 45040, Zapopan
 - **Colonia:** Chapalita Sur
 - **Teléfono:** (33) 3854 5585
 - **Web:** no encontrada (búsqueda sin dominio propio)
 - **Señales:** solo directorio; sin web propia encontrada; ticket alto (abogados); zona Chapalita
-- **Razón del puntaje:** Sin web (+30), abogados (+22), zona Chapalita, sin reseñas (+6), tel. con fuente (+15), cerca de 4 más en Chapalita Sur (+8)
+- **Razón del puntaje:** Sin web (+30), abogados (+22), zona Chapalita, sin reseñas (+6), tel. con fuente (+15), cerca de 7 más en Chapalita (+10)
 - **Alertas:**
-  - Ninguna registrada
-  - Verificar en Maps.
+  - Ninguna registrada; verificar en Maps.
 - **Fuentes:**
   - nombre: https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/8
   - direccion: https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/8
@@ -147,144 +282,31 @@
 
 ---
 
-## 6. Easy Dental Odontología Simplificada con Láser
+## 10. Consultorio dental 20 de Noviembre 188 (nombre comercial no encontrado)
 
-- **Puntaje:** 80
-- **Giro:** Dentista / Odontología con láser
-- **Dirección:** C. Río Cuixtle 5784 B, Las Águilas, 45080
-- **Colonia:** Las Águilas
-- **Teléfono:** +52 33 3632 7779
-- **Web:** no encontrada (Solo aparece en un directorio)
-- **Señales:** Teléfono fijo publicado; Nombre de marca con propuesta diferenciada (láser): buen gancho para una landing
-- **Razón del puntaje:** Sin web (+30), dentista (+25), zona Las Águilas, propuesta láser, sin reseñas (+5), tel. con fuente (+15), cerca de 5 más en Las Águilas (+10), alerta grave de ubicación (-5)
+- **Puntaje:** 82
+- **Giro:** Consultorio dental / Odontología general
+- **Dirección:** 20 de Noviembre 188, CP 45100, Zapopan, Jal.
+- **Colonia:** Zapopan Centro
+- **Teléfono:** (33) 3633 2267
+- **Web:** no encontrada (No apareció dominio)
+- **Señales:** Teléfono fijo publicado; Consultorio tradicional del centro, probablemente sin presencia digital
+- **Razón del puntaje:** Sin web (+30), dentista (+25), sin datos de reseñas (+2), tel. con fuente (+15), cerca de 6 más en Zapopan Centro (+10)
 - **Alertas:**
-  - El directorio pone la ciudad como 'Guadalajara' con CP 45080, que es de Zapopan.
-  - Comparte número de calle con Dental Infante.
-  - ALERTA: Dental Infante y Easy Dental Láser comparten dirección (Río Cuixtle 5784): posible mismo negocio o mismo inmueble; confirmar antes de contactar a ambos.
+  - Nombre de directorio a título de un doctor; usado solo como nombre del consultorio; verificar en Maps.
+  - Puede ser un dato viejo; verificar en Maps.
 - **Fuentes:**
-  - nombre: https://mxfirmas.com/JAL-Zapopan/Dentistas
-  - direccion: https://mxfirmas.com/JAL-Zapopan/Dentistas
-  - telefono: https://mxfirmas.com/JAL-Zapopan/Dentistas
-  - web: búsqueda: consultorio dental Las Águilas Zapopan teléfono
-
-**Mensaje de WhatsApp** (68 palabras):
-
-> Buen día. Me llamó la atención que Easy Dental ofrece odontología con láser en Las Águilas, Zapopan. Me dedico a hacer páginas web para consultorios dentales y, al buscarlos en Google, no encontré una página propia. Una propuesta como el láser se puede explicar muy bien en una página para atraer pacientes. ¿Le parece si le preparo un boceto sin costo para que lo vea? Saludos, [Tu nombre]
-
-**Guion de llamada (30 s):**
-
-> Buen día, ¿hablo a Easy Dental? Mi nombre es [Tu nombre], hago páginas web para consultorios dentales en Zapopan. Vi que ofrecen odontología con láser en Las Águilas. Cuando alguien les busca en Google, no encontré una página propia, y esos pacientes pueden irse con otra clínica que sí aparece. Me gustaría prepararle un boceto gratis que explique su servicio con láser. ¿Le parece si se lo mando por WhatsApp?
-
----
-
-## 7. Notaría Pública No. 30 de Zapopan
-
-- **Puntaje:** 77
-- **Giro:** servicios profesionales / notaría
-- **Dirección:** Calle San Juan Bosco, Chapalita, Guadalajara (número no encontrado; el directorio la ubica en GDL aunque es notaría de Zapopan)
-- **Colonia:** Chapalita
-- **Teléfono:** (33) 3121-1067
-- **Web:** no encontrada (no se hizo búsqueda dedicada del nombre)
-- **Señales:** solo directorio en lo revisado; ticket alto; dato inconsistente: hay que verificarlo con el Colegio de Notarios de Jalisco
-- **Razón del puntaje:** Sin web (+30), notaría (+22), notaría en Chapalita, sin reseñas (+7), tel. con fuente (+15), cerca de 4 más en Chapalita (+8), alerta grave de ubicación (-5)
-- **Alertas:**
-  - El directorio la ubica en Chapalita, Guadalajara, aunque es notaría de Zapopan; verificar con el Colegio de Notarios y verificar en Maps
-- **Fuentes:**
-  - nombre: https://www.seccionamarilla.com.mx/mapas/notaria-48/jalisco/1
-  - direccion: https://www.seccionamarilla.com.mx/mapas/notaria-48/jalisco/1
-  - telefono: https://www.seccionamarilla.com.mx/mapas/notaria-48/jalisco/1
-  - web: no verificado
-
-**Mensaje de WhatsApp** (68 palabras):
-
-> Buen día. Me dirijo a la Notaría Pública No. 30 de Zapopan, en la zona de Chapalita. Me dedico a hacer páginas web para notarías y despachos y, al buscarla en Google, no encontré una página propia de la notaría. Una página con sus trámites y requisitos puede ahorrarles muchas llamadas. ¿Le parece si le preparo un boceto sin costo para que lo revise? Saludos cordiales, [Tu nombre]
-
-**Guion de llamada (30 s):**
-
-> Buen día, ¿hablo a la Notaría Pública No. 30 de Zapopan? Mi nombre es [Tu nombre], hago páginas web para notarías y despachos. Cuando alguien busca la notaría en Google, no encontré una página propia, y muchos clientes terminan yendo a otra notaría que sí aparece con sus trámites. Me gustaría prepararles un boceto gratis de su página, sin compromiso. ¿A quién se lo puedo enviar?
-
----
-
-## 8. Dental City
-
-- **Puntaje:** 77
-- **Giro:** Dentista / Clínica dental general
-- **Dirección:** Av. Santa Margarita 4410, Jardín Real, Zapopan, CP 45136
-- **Colonia:** Jardín Real (sobre Av. Santa Margarita)
-- **Teléfono:** (33) 3832 3296 / (33) 3832 3175
-- **Web:** no encontrada (Solo aparece en Sección Amarilla)
-- **Señales:** Dos líneas telefónicas, lo que sugiere un consultorio con varios sillones; Zona de nivel socioeconómico medio-alto
-- **Razón del puntaje:** Sin web (+30), dentista (+25), 2 líneas tel. y zona medio-alta, sin reseñas (+7), tel. con fuente (+15), sin prospectos cercanos (+0)
-- **Alertas:**
-  - Revisar que no sea una franquicia o cadena (el nombre es genérico).
-- **Fuentes:**
-  - nombre: https://www.seccionamarilla.com.mx/resultados/dentista-de-urgencia/jalisco/12
-  - direccion: https://www.seccionamarilla.com.mx/resultados/dentista-de-urgencia/jalisco/12
-  - telefono: https://www.seccionamarilla.com.mx/resultados/dentista-de-urgencia/jalisco/12
-  - web: búsqueda: "Dental City" Santa Margarita 4410 Zapopan
+  - nombre: https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1
+  - direccion: https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1
+  - telefono: https://www.seccionamarilla.com.mx/mapas/dentista-de-urgencia/jalisco/1
+  - web: búsqueda WebSearch: seccionamarilla dentistas Zapopan centro
 
 **Mensaje de WhatsApp** (74 palabras):
 
-> Buen día. Vi que Dental City atiende sobre Av. Santa Margarita, en Jardín Real, Zapopan. Me dedico a hacer páginas web para clínicas dentales de la zona y, al buscarlos en Google, no encontré una página propia de la clínica. Me gustaría prepararle un boceto sin costo de su página, para que los pacientes de la zona le encuentren y le contacten fácil. ¿Le interesa que se lo envíe por aquí? Saludos, [Tu nombre]
+> Buen día. Vi su consultorio dental en la calle 20 de Noviembre 188, en Zapopan Centro. Me dedico a hacer páginas web para consultorios dentales de la zona y, al buscarlo en Google, no encontré una página propia del consultorio. Me gustaría prepararle un boceto sin costo de cómo podría verse su página, para que sus pacientes le encuentren y agenden más fácil. ¿Le interesa que se lo envíe por aquí? Saludos, [Tu nombre]
 
 **Guion de llamada (30 s):**
 
-> Buen día, ¿hablo a Dental City? Mi nombre es [Tu nombre], hago páginas web para clínicas dentales en Zapopan. Vi que atienden sobre Av. Santa Margarita, en Jardín Real. Cuando alguien les busca en Google, no encontré una página propia, y muchos pacientes de la zona se van con otra clínica que sí aparece. Me gustaría prepararle un boceto gratis de su página. ¿Le parece si se lo mando por WhatsApp?
-
----
-
-## 9. Hojalatería "El Tin"
-
-- **Puntaje:** 75
-- **Giro:** automotriz / hojalatería
-- **Dirección:** Av. Manuel M. Diéguez 438-A, C.P. 45180, Zapopan, Jal.
-- **Colonia:** Constitución
-- **Teléfono:** 33 1835 5484
-- **Web:** no encontrada (sin dominio localizado)
-- **Señales:** solo directorio; búsqueda por nombre sin resultados: presencia online mínima
-- **Razón del puntaje:** Sin web (+30), hojalatería-pintura (+22), sin datos de reseñas (+2), tel. con fuente (+15), cerca de 2 más en Constitución (+6)
-- **Alertas:**
-  - Ninguna registrada
-- **Fuentes:**
-  - nombre: https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)
-  - direccion: https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)
-  - telefono: https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)
-  - web: búsqueda '"Hojalateria El Tin" Zapopan': sin resultados
-
-**Mensaje de WhatsApp** (72 palabras):
-
-> ¡Hola! Vi que la Hojalatería El Tin está en Av. Manuel M. Diéguez, en la colonia Constitución, Zapopan. Me dedico a hacer páginas web para negocios de la zona y, al buscarte en Google, no encontré una página propia del taller. Mucha gente busca hojalatería en internet cuando choca o quiere pintar su carro. ¿Te late que te prepare un boceto sin costo de cómo se vería tu página? Saludos, [Tu nombre]
-
-**Guion de llamada (30 s):**
-
-> ¡Hola, buen día! ¿Hablo a la Hojalatería El Tin? Me llamo [Tu nombre], hago páginas web para negocios en Zapopan. Vi que están en Av. Manuel M. Diéguez, en la Constitución. Cuando alguien busca hojalatería en Google, no encontré una página propia del taller, y esos clientes se van con otro taller que sí aparece. Te puedo preparar un boceto gratis de tu página, sin compromiso. ¿Te lo mando por WhatsApp?
-
----
-
-## 10. Kyma Life - Clínica de rehabilitación y acondicionamiento físico
-
-- **Puntaje:** 73
-- **Giro:** salud / fisioterapia / rehabilitación
-- **Dirección:** Av. de las Rosas 171A, Zapopan 45040
-- **Colonia:** Chapalita Sur
-- **Teléfono:** +52 33 1172 7536
-- **Web:** no encontrada (solo aparece en Fresha; otras sedes en Colomos Providencia (GDL) y Las Águilas (Zapopan))
-- **Señales:** multisucursal sin web encontrada; marca con nombre propio (le serviría una landing)
-- **Razón del puntaje:** Sin web (+30), fisioterapia (+17), multisucursal (Chapalita Sur, Providencia), sin reseñas (+8), tel. con fuente (+15), cerca de 4 más en Chapalita Sur (+8), alerta grave de ubicación (-5)
-- **Alertas:**
-  - Multisucursal (Chapalita Sur, Colomos Providencia GDL, Las Águilas); un listado da Calle Luis Pérez Verdía 572, Ladrón de Guevara, GDL (WebSearch verificador sin web oficial: https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/jardines-vallarta): verificar en Maps
-- **Fuentes:**
-  - nombre: https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/chapalita-sur
-  - direccion: https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/chapalita-sur
-  - telefono: https://www.fresha.com/lp/en/bt/therapy-centers/in/mx-guadalajara/chapalita-sur
-  - web: búsqueda: "Kyma Life" rehabilitación Zapopan Chapalita
-
-**Mensaje de WhatsApp** (73 palabras):
-
-> Buen día. Vi que Kyma Life ofrece rehabilitación y acondicionamiento físico en Av. de las Rosas, Chapalita Sur. Me dedico a hacer páginas web para clínicas de Zapopan y, al buscarlos en Google, no encontré una página propia de la clínica. Una marca como Kyma Life podría mostrar ahí sus servicios y facilitar que los pacientes agenden. ¿Le parece si le preparo un boceto sin costo para que lo vea? Saludos, [Tu nombre]
-
-**Guion de llamada (30 s):**
-
-> Buen día, ¿hablo a Kyma Life? Mi nombre es [Tu nombre], hago páginas web para clínicas en Zapopan. Vi que ofrecen rehabilitación y acondicionamiento físico en Av. de las Rosas, Chapalita Sur. Cuando alguien les busca en Google, no encontré una página propia, y muchos pacientes se van con otra clínica que sí aparece. Me gustaría prepararle un boceto gratis de su página. ¿A quién se lo envío?
+> Buen día, ¿hablo al consultorio dental de 20 de Noviembre 188? Mi nombre es [Tu nombre], hago páginas web para consultorios dentales en Zapopan. Vi que atienden en Zapopan Centro. Cuando alguien busca su consultorio en Google, no encontré una página propia, y muchos pacientes terminan yéndose con otro consultorio que sí aparece. Me gustaría prepararle un boceto gratis de su página, sin compromiso. ¿Le parece si se lo mando por WhatsApp?
 
 ---
