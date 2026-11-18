@@ -1,0 +1,464 @@
+{
+  "agente": "automotriz",
+  "notas_proceso": [
+    "WebFetch FALLÓ para todos los dominios probados (seccionamarilla.com.mx, cylex.com.mx, autosyllantas.com): ENOTFOUND, fuera de la red permitida de la sesión. Habría que permitir esos hosts para abrir páginas y verificar webs.",
+    "Todo se obtuvo vía resúmenes de WebSearch; las URLs de 'fuentes' son las páginas citadas por el buscador, pero NO se abrieron directamente. Donde la atribución a una URL concreta no es segura se marca 'probable' o 'vía resumen de búsqueda'.",
+    "Fuentes útiles: Sección Amarilla (hojalatería, transmisiones, refacciones, motos), autosyllantas.com (autolavados Zapopan), mexicoo.mx (hojalatería), chapapinturamx.com, JustAnswer (llantera con reseñas).",
+    "Cylex e Infoisinfo no aparecieron en los resultados de búsqueda. No se encontraron talleres de motos (servicio) en Zapopan con datos; solo refacciones de motos.",
+    "Ningún negocio mostró web propia verificada; búsquedas dedicadas por nombre + Zapopan se hicieron para ~11 de 18. 'tiene_web' queda 'no encontrado' (no 'no') porque no se pudo revisar Maps/Facebook ni abrir páginas.",
+    "Datos de directorio pueden estar desactualizados; hay inconsistencias de dirección (Charly, Diesel Mecánica descartado por eso, Motorcycles Unlimited). Reseñas solo halladas para Flomar.",
+    "Se excluyeron cadenas (Hopp, Llantas Prodynamics, Tersa, O'Reilly, APYMSA)."
+  ],
+  "negocios": [
+    {
+      "nombre": "Laminado y Pintura Automotriz Alex",
+      "giro": "automotriz",
+      "subgiro": "hojalatería y pintura",
+      "direccion": "Calle Frijol 6-A, C.P. 45189, Zapopan, Jal.",
+      "colonia": "Mesa Colorada Poniente",
+      "telefono": "(33) 1442 9331",
+      "whatsapp": "no encontrado",
+      "servicios": "laminado y pintura automotriz",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo aparece en directorio",
+        "servicio de ticket alto (hojalatería)",
+        "el resultado lo lista también bajo Guadalajara: dato a confirmar"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "web": "búsqueda: 'Laminado y Pintura Alex Zapopan' - sin web"
+      }
+    },
+    {
+      "nombre": "Laminado y Pintura Profesional Gómez",
+      "giro": "automotriz",
+      "subgiro": "hojalatería y pintura",
+      "direccion": "Calle Puerto Salinas Cruz 278, C.P. 45060, Zapopan, Jal.",
+      "colonia": "Miramar",
+      "telefono": "(33) 1833 2121",
+      "whatsapp": "no encontrado",
+      "servicios": "laminado y pintura",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "ticket alto (hojalatería)"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "web": "búsqueda por nombre + Zapopan: sin web"
+      }
+    },
+    {
+      "nombre": "Laminados Pintura y Modificaciones Charly",
+      "giro": "automotriz",
+      "subgiro": "hojalatería, pintura y modificaciones",
+      "direccion": "Privada Pescadores 15, C.P. 45185, Zapopan, Jal. (otra búsqueda lo ubicó en Calle Santa Mercedes 1651, Valle Esmeralda: dirección inconsistente)",
+      "colonia": "La Martinica",
+      "telefono": "(33) 2074 1799",
+      "whatsapp": "no encontrado",
+      "servicios": "laminado, pintura, modificaciones",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "servicio de personalización/modificaciones (buen material visual para landing)",
+        "dirección inconsistente entre resultados"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "web": "búsqueda por nombre + Zapopan: sin web"
+      }
+    },
+    {
+      "nombre": "Gral Car",
+      "giro": "automotriz",
+      "subgiro": "hojalatería y pintura (listado en esa categoría)",
+      "direccion": "Av. Patria 411, C.P. 45110, Zapopan, Jal.",
+      "colonia": "Jardines de la Patria",
+      "telefono": "(33) 3673 2535",
+      "whatsapp": "no encontrado",
+      "servicios": "no encontrado",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "búsqueda por nombre no arrojó ninguna presencia"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalateria-y-pintura/jalisco/zapopan/1",
+        "web": "búsqueda '\"Gral Car\" Patria 411 Zapopan': 0 resultados relevantes"
+      }
+    },
+    {
+      "nombre": "Laminado y Pintura JV",
+      "giro": "automotriz",
+      "subgiro": "hojalatería y pintura",
+      "direccion": "C. Felipe Ruvalcaba 5966, C.P. 45070, Zapopan, Jal.",
+      "colonia": "Colli Urbano",
+      "telefono": "33 3157 6318",
+      "whatsapp": "no encontrado",
+      "servicios": "laminado y pintura",
+      "tiene_web": "no encontrado",
+      "url_web": "laminadojv.com (mencionado en directorio, NO verificado)",
+      "estado_web": "no se pudo abrir (WebFetch bloqueado); búsqueda del dominio no devolvió resultados",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "dominio citado en directorio pero no indexado: posible web caída o abandonada",
+        "ticket alto"
+      ],
+      "fuentes": {
+        "nombre": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "direccion": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "telefono": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "web": "búsqueda '\"Laminado y Pintura JV\" Zapopan laminadojv.com': sin resultados del dominio"
+      }
+    },
+    {
+      "nombre": "Hojalatería \"El Tin\"",
+      "giro": "automotriz",
+      "subgiro": "hojalatería",
+      "direccion": "Av. Manuel M. Diéguez 438-A, C.P. 45180, Zapopan, Jal.",
+      "colonia": "Constitución",
+      "telefono": "33 1835 5484",
+      "whatsapp": "no encontrado",
+      "servicios": "hojalatería",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "búsqueda por nombre sin resultados: presencia online mínima"
+      ],
+      "fuentes": {
+        "nombre": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "direccion": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "telefono": "https://mexicoo.mx/empresas/jalisco/zapopan/hojalateria-y-pintura-de-automoviles-y-camiones (vía resumen de búsqueda)",
+        "web": "búsqueda '\"Hojalateria El Tin\" Zapopan': sin resultados"
+      }
+    },
+    {
+      "nombre": "MR11 Garage",
+      "giro": "automotriz",
+      "subgiro": "hojalatería y pintura (chapa y pintura)",
+      "direccion": "Calle Volcán Cofre de Perote 5309A, C.P. 45070, Zapopan, Jal.",
+      "colonia": "Colli Urbano",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "chapa y pintura",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo en un directorio de nicho",
+        "sin teléfono público encontrado"
+      ],
+      "fuentes": {
+        "nombre": "https://chapapinturamx.com/jalisco/mr11-garage-zapopan/",
+        "direccion": "https://chapapinturamx.com/jalisco/mr11-garage-zapopan/",
+        "telefono": "no encontrado",
+        "web": "búsqueda '\"MR11 Garage\" Zapopan hojalatería': sin web"
+      }
+    },
+    {
+      "nombre": "Transmisiones Automáticas Euroalemanas de Zapopan",
+      "giro": "automotriz",
+      "subgiro": "taller de transmisiones automáticas",
+      "direccion": "Calle Felipe Ruvalcaba 5358, C.P. 45070 (directorio lo etiqueta como Guadalajara; CP corresponde a Zapopan)",
+      "colonia": "El Colli 1a Sección",
+      "telefono": "(33) 1204 3275",
+      "whatsapp": "no encontrado",
+      "servicios": "transmisiones automáticas (autos europeos/alemanes, según nombre)",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "servicio caro (transmisiones)",
+        "solo directorio",
+        "nicho europeo = cliente de ticket alto"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27 (probable; vía resumen de búsqueda)",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27 (probable)",
+        "telefono": "https://www.seccionamarilla.com.mx/resultados/transmisiones-estandar-refacciones/jalisco/27 (probable)",
+        "web": "búsqueda '\"Transmisiones Automáticas Euroalemanas\" Zapopan': solo directorio"
+      }
+    },
+    {
+      "nombre": "Transmisiones Automáticas Federalismo",
+      "giro": "automotriz",
+      "subgiro": "taller de transmisiones automáticas",
+      "direccion": "Calle José Luis Pérez Verdía 77-A, C.P. 45170, Zapopan, Jal.",
+      "colonia": "Ejido de Zoquiapan",
+      "telefono": "(33) 3823 2719",
+      "whatsapp": "no encontrado",
+      "servicios": "transmisiones automáticas",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "no verificado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "servicio caro (transmisiones)",
+        "solo directorio"
+      ],
+      "fuentes": {
+        "nombre": "seccionamarilla.com.mx categoría transmisiones Jalisco (vía resumen de búsqueda 'taller de transmisiones automáticas Zapopan')",
+        "direccion": "idem",
+        "telefono": "idem",
+        "web": "no se hizo búsqueda dedicada por nombre (tiempo)"
+      }
+    },
+    {
+      "nombre": "Taller Mecánico Industrial Macías",
+      "giro": "automotriz",
+      "subgiro": "taller mecánico",
+      "direccion": "Calz. Olímpica 761, C.P. 45110, Zapopan, Jal.",
+      "colonia": "Jardines Universidad",
+      "telefono": "(33) 3650 2990",
+      "whatsapp": "no encontrado",
+      "servicios": "mecánica automotriz",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "no verificado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-turbo/jalisco/guadalajara/2",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-turbo/jalisco/guadalajara/2",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-turbo/jalisco/guadalajara/2",
+        "web": "no se hizo búsqueda dedicada por nombre (tiempo)"
+      }
+    },
+    {
+      "nombre": "Servicios Automotrices Europa",
+      "giro": "automotriz",
+      "subgiro": "taller mecánico",
+      "direccion": "Calle Emiliano Zapata 75, C.P. 45018, Zapopan, Jal.",
+      "colonia": "Santa María del Pueblito",
+      "telefono": "no encontrado",
+      "whatsapp": "no encontrado",
+      "servicios": "talleres mecánicos (categoría)",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "sin teléfono público encontrado"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/7",
+        "direccion": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/7",
+        "telefono": "no encontrado",
+        "web": "búsqueda por nombre + colonia: solo directorio; homónimo en Cancún no relacionado"
+      }
+    },
+    {
+      "nombre": "Llantera y Vulcanizadora Flomar",
+      "giro": "automotriz",
+      "subgiro": "llantera / vulcanizadora",
+      "direccion": "Calle José Guadalupe Gallo 1354, Zapopan, Jal.",
+      "colonia": "El Campanario",
+      "telefono": "+52 33 1336 8325",
+      "whatsapp": "no encontrado",
+      "servicios": "llantera, vulcanizado; L-V 8:00-20:00, S 8:00-16:00 (según fuente de ~2 años)",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "4.6 estrellas, 63 opiniones (según la fuente; probablemente de Maps)",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "buenas reseñas pero presencia online mínima",
+        "única fuente es un foro (JustAnswer): verificar en Maps"
+      ],
+      "fuentes": {
+        "nombre": "https://www.justanswer.es/informatica-es/mzwhj-solicito-un-servicio-en-ciudad-del-sol-zapopan-jalisco.html",
+        "direccion": "https://www.justanswer.es/informatica-es/mzwhj-solicito-un-servicio-en-ciudad-del-sol-zapopan-jalisco.html",
+        "telefono": "https://www.justanswer.es/informatica-es/mzwhj-solicito-un-servicio-en-ciudad-del-sol-zapopan-jalisco.html",
+        "web": "búsqueda '\"Flomar\" llantera vulcanizadora Zapopan': solo foro"
+      }
+    },
+    {
+      "nombre": "Auto Lavado Splash",
+      "giro": "automotriz",
+      "subgiro": "autolavado",
+      "direccion": "Av. Juan Pablo II 545, C.P. 45147, Zapopan, Jal.",
+      "colonia": "El Vigía",
+      "telefono": "+52 33 2541 4494",
+      "whatsapp": "no encontrado",
+      "servicios": "lavado de autos",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "no verificado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio"
+      ],
+      "fuentes": {
+        "nombre": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-lavado-splash/",
+        "direccion": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-lavado-splash/",
+        "telefono": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-lavado-splash/",
+        "web": "no se hizo búsqueda dedicada por nombre (tiempo)"
+      }
+    },
+    {
+      "nombre": "Autolavado H2o",
+      "giro": "automotriz",
+      "subgiro": "autolavado",
+      "direccion": "Av. Valle de Atemajac 2316, Zapopan, Jal.",
+      "colonia": "Jardines del Valle",
+      "telefono": "+52 33 1561 0453",
+      "whatsapp": "no encontrado",
+      "servicios": "lavado de autos",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "no verificado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio"
+      ],
+      "fuentes": {
+        "nombre": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-h2o/",
+        "direccion": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-h2o/",
+        "telefono": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-h2o/",
+        "web": "no se hizo búsqueda dedicada por nombre (tiempo)"
+      }
+    },
+    {
+      "nombre": "Autolavado Las Torres",
+      "giro": "automotriz",
+      "subgiro": "autolavado",
+      "direccion": "Av. Tepeyac 2666, C.P. 45060, Zapopan, Jal.",
+      "colonia": "Miramar",
+      "telefono": "+52 33 2834 1535",
+      "whatsapp": "no encontrado",
+      "servicios": "lavado de autos",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "búsqueda por nombre sin resultados propios"
+      ],
+      "fuentes": {
+        "nombre": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-las-torres/",
+        "direccion": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-las-torres/",
+        "telefono": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/autolavado-las-torres/",
+        "web": "búsqueda '\"Autolavado Las Torres\" Tepeyac Zapopan': sin web"
+      }
+    },
+    {
+      "nombre": "Auto Baño San Rafael",
+      "giro": "automotriz",
+      "subgiro": "autolavado",
+      "direccion": "no encontrado (verificar en Maps)",
+      "colonia": "Constitución (según resumen del directorio)",
+      "telefono": "+52 33 1700 7997",
+      "whatsapp": "no encontrado",
+      "servicios": "lavado de autos; L-S 9:00-19:00, domingo cerrado",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "búsqueda por nombre sin resultados"
+      ],
+      "fuentes": {
+        "nombre": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-bano-san-rafael/",
+        "direccion": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-bano-san-rafael/",
+        "telefono": "https://autosyllantas.com/jalisco/zapopan/lavado-de-autos/auto-bano-san-rafael/",
+        "web": "búsqueda '\"Auto Baño San Rafael\" Zapopan': sin resultados"
+      }
+    },
+    {
+      "nombre": "Motorcycles Unlimited SA de CV",
+      "giro": "automotriz",
+      "subgiro": "motos: refacciones y accesorios",
+      "direccion": "Calle Ramón Corona 49, C.P. 45190, Zapopan, Jal. (otro listado: Ramón Corona 5857, Jocotán, mismo teléfono)",
+      "colonia": "Atemajac del Valle",
+      "telefono": "(33) 3160 0971",
+      "whatsapp": "no encontrado",
+      "servicios": "refacciones y accesorios para motocicletas",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "sin dominio localizado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "existe homónimo en Morelia: confirmar que es independiente"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/motocicletas-refacciones-y-accesorios-para/jalisco/guadalajara/1",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/motocicletas-refacciones-y-accesorios-para/jalisco/guadalajara/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/motocicletas-refacciones-y-accesorios-para/jalisco/guadalajara/1",
+        "web": "búsqueda por nombre + dirección: sin web"
+      }
+    },
+    {
+      "nombre": "Refaccionaria Rogelio",
+      "giro": "automotriz",
+      "subgiro": "refaccionaria",
+      "direccion": "Av. 18 de Marzo 3463, Zapopan, Jal.",
+      "colonia": "Las Águilas",
+      "telefono": "(33) 3801-9156 (asociación nombre-teléfono poco clara en la fuente)",
+      "whatsapp": "no encontrado",
+      "servicios": "refacciones automotrices",
+      "tiene_web": "no encontrado",
+      "url_web": "",
+      "estado_web": "no verificado",
+      "resenas": "no encontrado",
+      "num_doctores_empleados": "no encontrado",
+      "señales": [
+        "solo directorio",
+        "dato de teléfono incierto"
+      ],
+      "fuentes": {
+        "nombre": "https://www.seccionamarilla.com.mx/mapas/refaccionaria-de-autopartes/jalisco/1 (vía resumen de búsqueda)",
+        "direccion": "https://www.seccionamarilla.com.mx/mapas/refaccionaria-de-autopartes/jalisco/1",
+        "telefono": "https://www.seccionamarilla.com.mx/mapas/refaccionaria-de-autopartes/jalisco/1",
+        "web": "no se hizo búsqueda dedicada por nombre (tiempo)"
+      }
+    }
+  ]
+}

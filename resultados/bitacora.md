@@ -16,3 +16,9 @@
 - Solo 1 proyecto cae en la ventana de 30 días; ningún cliente es de Jalisco.
 - **Sorpresa útil:** en Freelancer.mx se ofrecen landings por 10–250 USD, mientras que las agencias de GDL/Zapopan anuncian desde $4,000–4,750 MXN. Tu precio de $2,500 está por debajo del mercado local de agencias → argumento de venta, y quizá margen para subir el de barberías/talleres.
 - **Cambio de estrategia:** las plataformas freelance no son buen canal para ti (precio bajo, competencia nacional). El foco se queda en prospección local directa.
+
+## 15:41 UTC — Termina Agente Servicios
+- 15 negocios (3 abogados, 4 contadores, 3 guarderías, 2 cerrajerías, 1 inmobiliaria, 1 escuela de idiomas, 1 notaría). Descartó Portos Abogados por ser despacho grande.
+- **Limitación importante:** la red del entorno también bloquea seccionamarilla.com.mx y cronoshare.com.mx. Los datos salen de los fragmentos del buscador, y la URL fuente a veces es una página de resultados del directorio, no la ficha del negocio. Esos datos quedan como "verificar".
+- 3 negocios (Alcaraz Leal, Azteca, Balbaneda) aparecen con dos direcciones distintas, y la Notaría 30 sale en Guadalajara aunque es "de Zapopan" → el Verificador debe marcarlos.
+- "Sin web" aquí significa "no apareció dominio al buscar", no "confirmado que no tiene web". Ajuste: la puntuación de "sin web" la dejo completa, pero el CSV dirá "no encontrada" en vez de "no".
