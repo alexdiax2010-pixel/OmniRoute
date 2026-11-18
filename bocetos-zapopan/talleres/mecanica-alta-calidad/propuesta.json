@@ -1,0 +1,23 @@
+{
+  "nombre": "Mecánica de Alta Calidad",
+  "nombreCorto": "Mecánica de Alta Calidad",
+  "giroLinea": "Taller mecánico en Miramar, Zapopan",
+  "direccion": "Quebrada 3913, Miramar, Zapopan, CP 45060",
+  "dominio": "www.mecanicadealtacalidad.com",
+  "colores": { "oscuro": "#0c0c0d", "medio": "#1e1e21", "acento": "#ff6a00", "sobreOscuro": "#f4f1ec", "acentoTexto": "#111111" },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap",
+    "titulo": "'Anton', Impact, 'Arial Narrow', sans-serif",
+    "texto": "'Inter', system-ui, sans-serif",
+    "pesoTitulo": 400,
+    "mayusculas": true,
+    "tracking": "0.01em",
+    "tamTitulo": "96px"
+  },
+  "beneficios": [
+    { "titulo": "Cotizaciones por WhatsApp", "texto": "El cliente te manda fotos y datos de su auto con un toque y tú le respondes la cotización desde el celular." },
+    { "titulo": "Clientes que buscan taller en Zapopan", "texto": "Una página con SEO local ayuda a que te encuentren quienes buscan mecánico cerca de Miramar." },
+    { "titulo": "Calidad que se nota desde el inicio", "texto": "Una imagen seria y ordenada que transmite la confianza que tu nombre promete antes de que lleguen al taller." },
+    { "titulo": "Fácil de llegar y de llamar", "texto": "Tu dirección en el mapa y tu teléfono a un toque, para que el cliente llegue sin perderse." }
+  ]
+}

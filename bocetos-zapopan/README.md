@@ -4,14 +4,41 @@
 Todo se abre con doble clic y se publica tal cual.
 
 ```
-index.html            → portafolio con tarjetas por giro
+index.html            → galería interna: boceto + mockups + propuesta por negocio
+generar.mjs           → genera los materiales para WhatsApp (mockups PNG + propuesta PDF)
+_plantillas/          → plantillas HTML de los marcos (celular, escritorio, combo, propuesta)
 shared/base.css       → reset, tipografía, utilidades y componentes comunes
 shared/BRIEF.md       → guía de estilo y reglas de honestidad usadas para los bocetos
 dentistas/…/index.html
 talleres/…/index.html
 barberias/…/index.html
-capturas/*.png        → capturas móviles (375 px) para mandar por WhatsApp
+capturas/*.png        → capturas móviles simples (375 px)
+<giro>/<negocio>/propuesta.json  → datos de la propuesta (colores, fuentes, beneficios, dominio)
+<giro>/<negocio>/mockup-*.png, propuesta.pdf → materiales generados
 ```
+
+## Regenerar los materiales para WhatsApp
+
+Requiere Node 18+ y Playwright con Chromium (una sola vez):
+
+```bash
+npm install playwright
+npx playwright install chromium
+```
+
+Luego, desde esta carpeta:
+
+```bash
+node generar.mjs dental-prados        # un negocio (nombre de su carpeta)
+node generar.mjs frenos-frescos dr-llamas   # varios
+node generar.mjs todos                # los 13
+```
+
+Por cada negocio escribe en su carpeta: `mockup-celular.png` (1080×1350), `mockup-escritorio.png`
+(1920×1080), `mockup-combo.png` (1920×1080, la imagen principal) y `propuesta.pdf` (carta, 2 páginas).
+Para cambiar textos de la propuesta (beneficios, dominio, colores) edita el `propuesta.json` del negocio;
+los precios de los paquetes y tus datos de contacto son marcadores en `_plantillas/propuesta.html`
+(llénalos ahí una vez y regenera con `todos`).
 
 > Importante: cada boceto enlaza `../../shared/base.css`. Publica **siempre la carpeta completa**
 > (`bocetos-zapopan/`) para que no se rompan los estilos.

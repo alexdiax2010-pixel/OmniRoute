@@ -1,0 +1,23 @@
+{
+  "nombre": "Cirugía Oral Béjar",
+  "nombreCorto": "Cirugía Oral Béjar",
+  "giroLinea": "Cirugía oral y estética dental en La Estancia, Zapopan",
+  "direccion": "Av. Beethoven 5229-7, La Estancia, Zapopan, CP 45030",
+  "dominio": "www.cirugiaoralbejar.com",
+  "colores": { "oscuro": "#0b5f52", "medio": "#0f7a68", "acento": "#97d8c4", "sobreOscuro": "#ffffff", "acentoTexto": "#0b5f52" },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap",
+    "titulo": "'Manrope', system-ui, sans-serif",
+    "texto": "'Manrope', system-ui, sans-serif",
+    "pesoTitulo": 800,
+    "mayusculas": false,
+    "tracking": "-0.02em",
+    "tamTitulo": "88px"
+  },
+  "beneficios": [
+    { "titulo": "Pacientes que buscan cirujano en Zapopan", "texto": "Una página con SEO local ayuda a que te encuentren quienes buscan cirugía oral o apicectomía cerca de La Estancia." },
+    { "titulo": "Procedimientos explicados con calma", "texto": "Secciones claras sobre cirugía oral y apicectomía que resuelven dudas y bajan los nervios antes de la consulta." },
+    { "titulo": "Estética dental que se antoja", "texto": "Blanqueamiento y coronas estéticas presentados con orden, para que el paciente sepa qué opciones tiene." },
+    { "titulo": "Contacto directo desde el celular", "texto": "Un botón de WhatsApp y un mapa a tu consultorio en Av. Beethoven para pedir cita sin complicaciones." }
+  ]
+}

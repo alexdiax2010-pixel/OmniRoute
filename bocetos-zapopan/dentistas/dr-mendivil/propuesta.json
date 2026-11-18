@@ -1,0 +1,23 @@
+{
+  "nombre": "Clínica Dental del Dr. Mendivil",
+  "nombreCorto": "Clínica Dental Mendivil",
+  "giroLinea": "Clínica dental en Zapopan, Jalisco",
+  "direccion": "Av. Miguel Ángel 21, Zapopan, CP 45030",
+  "dominio": "www.clinicadentaldrmendivil.com",
+  "colores": { "oscuro": "#143642", "medio": "#2f7f78", "acento": "#8fd0c4", "sobreOscuro": "#faf6ee", "acentoTexto": "#143642" },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap",
+    "titulo": "'DM Serif Display', Georgia, serif",
+    "texto": "'DM Sans', system-ui, sans-serif",
+    "pesoTitulo": 400,
+    "mayusculas": false,
+    "tracking": "-0.005em",
+    "tamTitulo": "84px"
+  },
+  "beneficios": [
+    { "titulo": "Pacientes que buscan dentista en Zapopan", "texto": "Una página con SEO local ayuda a que te encuentren quienes buscan coronas, puentes o endodoncia cerca de ellos." },
+    { "titulo": "Citas por WhatsApp", "texto": "El paciente te escribe con un toque desde el celular para pedir su cita o resolver una duda." },
+    { "titulo": "Carillas Lumineers bien explicadas", "texto": "Una sección clara sobre carillas, dentaduras y prótesis que resuelve dudas antes de la primera consulta." },
+    { "titulo": "Fácil de llegar a Av. Miguel Ángel", "texto": "Tu dirección con mapa integrado para que el paciente llegue a la clínica sin perderse." }
+  ]
+}

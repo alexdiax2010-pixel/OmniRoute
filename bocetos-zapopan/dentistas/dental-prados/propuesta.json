@@ -1,0 +1,23 @@
+{
+  "nombre": "Dental Prados",
+  "nombreCorto": "Dental Prados",
+  "giroLinea": "Clínica dental y ortodoncia en Prados Vallarta, Zapopan",
+  "direccion": "Av. Manuel J. Clouthier 133, Prados Vallarta, Zapopan",
+  "dominio": "www.dentalprados.com",
+  "colores": { "oscuro": "#0f2340", "medio": "#3f6f62", "acento": "#a8cbbd", "sobreOscuro": "#fbf9f5", "acentoTexto": "#0f2340" },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600;700&display=swap",
+    "titulo": "'Fraunces', Georgia, serif",
+    "texto": "'Inter', system-ui, sans-serif",
+    "pesoTitulo": 400,
+    "mayusculas": false,
+    "tracking": "-0.02em",
+    "tamTitulo": "104px"
+  },
+  "beneficios": [
+    { "titulo": "Ortodoncia e Invisalign, bien explicados", "texto": "Una sección clara sobre brackets e Invisalign que resuelve las dudas del paciente antes de su primera consulta." },
+    { "titulo": "Te encuentran quienes buscan en Zapopan", "texto": "Preparada para búsquedas locales: ayuda a que te encuentre quien busca dentista u ortodoncista cerca de Prados Vallarta." },
+    { "titulo": "Citas por WhatsApp en un toque", "texto": "Un botón directo a WhatsApp desde el celular: el paciente pide su valoración sin tener que buscar tu número." },
+    { "titulo": "Todos tus tratamientos, bien presentados", "texto": "General, estética, rehabilitación, restauradora y ortodoncia, cada uno con su espacio y un diseño a la altura de tu clínica." }
+  ]
+}

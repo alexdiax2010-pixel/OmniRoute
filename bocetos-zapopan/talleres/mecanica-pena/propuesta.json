@@ -1,0 +1,23 @@
+{
+  "nombre": "Mecánica Automotriz Peña",
+  "nombreCorto": "Mecánica Peña",
+  "giroLinea": "Taller electromecánico en Miramar, Zapopan",
+  "direccion": "Puerto Manzanillo 21, Miramar, Zapopan, CP 45060",
+  "dominio": "www.mecanicaautomotrizpena.com",
+  "colores": { "oscuro": "#070b14", "medio": "#1d3a66", "acento": "#ffd21f", "sobreOscuro": "#ffffff", "acentoTexto": "#141000" },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap",
+    "titulo": "'Chakra Petch', 'Rajdhani', system-ui, sans-serif",
+    "texto": "'Inter', system-ui, sans-serif",
+    "pesoTitulo": 700,
+    "mayusculas": false,
+    "tracking": "0.01em",
+    "tamTitulo": "92px"
+  },
+  "beneficios": [
+    { "titulo": "Cotizaciones por WhatsApp", "texto": "El cliente te escribe el síntoma, el testigo encendido y su auto con un toque desde el celular." },
+    { "titulo": "Clientes que buscan 'taller en Zapopan'", "texto": "Una página con SEO local ayuda a que te encuentren quienes buscan taller eléctrico cerca de Miramar." },
+    { "titulo": "Tu diagnóstico eléctrico en primer plano", "texto": "Una sección de síntomas comunes (testigos, batería, no arranca) que muestra tu especialidad." },
+    { "titulo": "Fácil de ubicar en el mapa", "texto": "Dirección, teléfono y mapa a la vista para que lleguen al taller sin perderse." }
+  ]
+}

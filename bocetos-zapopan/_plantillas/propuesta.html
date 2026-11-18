@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<title>Propuesta de página web para {{nombre}}</title>
+<link rel="stylesheet" href="{{fontUrl}}">
+<style>
+  @page{size:Letter;margin:0}
+  :root{--c1:{{oscuro}};--c2:{{medio}};--acc:{{acento}};--on:{{sobreOscuro}};--ink:#1b1e24;--muted:#5d636d;--line:#e3e5ea;--soft:#f5f6f8;--accink:{{acentoTexto}}}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-family:{{fuenteTexto}};color:var(--ink);font-size:11.5pt;line-height:1.5}
+  .page{width:8.5in;height:11in;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+  .page:last-child{page-break-after:auto}
+  .tag{position:absolute;top:0;left:0;right:0;background:#111;color:#eee;font:500 8pt/1 system-ui,sans-serif;text-align:center;padding:5px 0;letter-spacing:.03em;z-index:2}
+  .hero{background:linear-gradient(135deg,var(--c1),var(--c2));color:var(--on);padding:46px 52px 30px}
+  .eyebrow{font-size:9pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
+  h1{font-family:{{fuenteTitulo}};font-weight:{{pesoTitulo}};text-transform:{{mayusTitulo}};letter-spacing:{{trackTituloPdf}};font-size:27pt;line-height:1.08;margin-top:10px}
+  .meta{margin-top:10px;font-size:10pt;opacity:.82}
+  .combo{margin:-2px 52px 0;transform:translateY(16px);border-radius:12px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,.22)}
+  .combo img{display:block;width:100%}
+  .body{padding:40px 52px 0;flex:1}
+  h2{font-family:{{fuenteTitulo}};font-weight:{{pesoTitulo}};text-transform:{{mayusTitulo}};letter-spacing:{{trackTituloPdf}};font-size:15pt;color:var(--c1);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:22px;height:3px;background:var(--acc);border-radius:2px}
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .benefit{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:#fff;border-top:3px solid var(--acc)}
+  .benefit h3{font-size:11pt;line-height:1.25;margin-bottom:4px}
+  .benefit p{font-size:9.5pt;color:var(--muted);line-height:1.45}
+  .foot{padding:14px 52px 20px;font-size:8pt;color:var(--muted);border-top:1px solid var(--line);margin:0 52px;padding-left:0;padding-right:0;display:flex;justify-content:space-between;gap:20px}
+  .page2 .body{padding-top:52px}
+  .incl{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px;margin-bottom:30px}
+  .incl li{list-style:none;display:flex;gap:10px;align-items:flex-start;font-size:10.5pt}
+  .incl svg{flex:none;width:18px;height:18px;margin-top:2px}
+  .incl svg circle{fill:var(--acc)}.incl svg path{stroke:var(--accink)}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:30px}
+  .plan{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--soft);display:flex;flex-direction:column;gap:8px}
+  .plan.feat{background:#fff;border:2px solid var(--c1)}
+  .plan h3{font-size:12pt}
+  .plan .k{font-size:8pt;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+  .m{display:inline-block;background:#fff4c2;color:#5c4400;border:1px dashed #b38600;border-radius:5px;padding:1px 6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:9pt;font-weight:600}
+  .price .m{font-size:11pt}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:30px;counter-reset:s}
+  .step{font-size:9.5pt;color:var(--muted)}
+  .step b{display:block;color:var(--ink);font-size:10.5pt;margin-bottom:2px}
+  .step b::before{counter-increment:s;content:counter(s) ". ";color:var(--c1)}
+  .contact{background:linear-gradient(135deg,var(--c1),var(--c2));color:var(--on);border-radius:14px;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+  .contact h3{font-family:{{fuenteTitulo}};font-weight:{{pesoTitulo}};text-transform:{{mayusTitulo}};font-size:14pt}
+  .contact p{font-size:9.5pt;opacity:.85}
+  .contact ul{list-style:none;display:grid;gap:6px;text-align:right}
+  .legal{margin-top:16px;font-size:8.5pt;color:var(--muted);line-height:1.45}
+</style>
+</head>
+<body>
+  <!-- Página 1 -->
+  <section class="page">
+    <div class="tag">Propuesta comercial · el diseño mostrado es un boceto no oficial</div>
+    <div class="hero">
+      <div class="eyebrow">Propuesta de página web</div>
+      <h1>Propuesta de página web para {{nombre}}</h1>
+      <p class="meta">{{giroLinea}} · {{direccion}} · {{fecha}}</p>
+    </div>
+    <div class="combo"><img src="{{comboImg}}" alt="Vista de la propuesta de página web en laptop y celular"></div>
+    <div class="body">
+      <h2>Lo que tu página puede hacer por {{nombreCorto}}</h2>
+      <div class="benefits">{{beneficiosHtml}}</div>
+    </div>
+    <div class="foot"><span>Propuesta de página web para {{nombre}}</span><span>1 / 2</span></div>
+  </section>
+
+  <!-- Página 2 -->
+  <section class="page page2">
+    <div class="tag">Propuesta comercial · el diseño mostrado es un boceto no oficial</div>
+    <div class="body">
+      <h2>Qué incluye</h2>
+      <ul class="incl">{{incluyeHtml}}</ul>
+
+      <h2>Paquetes</h2>
+      <div class="plans">
+        <div class="plan"><span class="k">Paquete</span><h3>Básico</h3><div class="price"><span class="m">[Precio por definir]</span></div><div><span class="m">[Detalle por definir]</span></div></div>
+        <div class="plan feat"><span class="k">Paquete</span><h3>Estándar</h3><div class="price"><span class="m">[Precio por definir]</span></div><div><span class="m">[Detalle por definir]</span></div></div>
+        <div class="plan"><span class="k">Servicio</span><h3>Mantenimiento mensual</h3><div class="price"><span class="m">[Precio por definir]</span></div><div><span class="m">[Detalle por definir]</span></div></div>
+      </div>
+
+      <h2>Cómo seguimos</h2>
+      <div class="steps">
+        <div class="step"><b>Revisas el boceto</b>Me dices qué te gusta y qué cambiarías.</div>
+        <div class="step"><b>Confirmamos tus datos</b>Teléfono, horario, servicios y fotos reales de tu negocio.</div>
+        <div class="step"><b>Publicamos</b>Tu página en línea con tu dominio y botón de WhatsApp.</div>
+      </div>
+
+      <div class="contact">
+        <div><h3>¿Platicamos?</h3><p>Con gusto te enseño el boceto en tu celular y resolvemos dudas.</p></div>
+        <ul><li><span class="m">[Tu nombre]</span></li><li><span class="m">[Tu WhatsApp]</span></li><li><span class="m">[Tu correo]</span></li></ul>
+      </div>
+
+      <p class="legal"><strong>Importante:</strong> esta es una propuesta. El diseño mostrado es un boceto de demostración elaborado sin la participación del negocio; los datos marcados como “por confirmar” se completarán con información proporcionada por {{nombreCorto}} antes de publicar. El dominio {{dominio}} es ilustrativo y está sujeto a disponibilidad. No se usaron reseñas, calificaciones ni datos inventados.</p>
+    </div>
+    <div class="foot"><span>Propuesta de página web para {{nombre}}</span><span>2 / 2</span></div>
+  </section>
+</body>
+</html>
