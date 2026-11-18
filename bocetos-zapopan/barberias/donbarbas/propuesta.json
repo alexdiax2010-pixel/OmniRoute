@@ -1,0 +1,45 @@
+{
+  "nombre": "DONBARBAS Barbería & Spa",
+  "nombreCorto": "DONBARBAS",
+  "giroLinea": "Barbería y spa en Zapopan",
+  "direccion": "Zapopan, Jalisco",
+  "dominio": "www.donbarbas.com",
+  "colores": {
+    "oscuro": "#08080a",
+    "medio": "#1a1a1e",
+    "acento": "#c9a45c",
+    "sobreOscuro": "#ece8df",
+    "acentoTexto": "#0b0b0c"
+  },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap",
+    "titulo": "'Cinzel', 'Bodoni Moda', Georgia, serif",
+    "texto": "'Montserrat', system-ui, sans-serif",
+    "pesoTitulo": 700,
+    "mayusculas": true,
+    "tracking": "0.06em",
+    "tamTitulo": "76px"
+  },
+  "beneficios": [
+    {
+      "titulo": "Agenda en línea con un toque",
+      "texto": "El botón principal lleva al cliente directo a tu agenda de AgendaPro para apartar su lugar sin llamar."
+    },
+    {
+      "titulo": "Clientes que buscan barbería en Zapopan",
+      "texto": "Una página con SEO local ayuda a que te encuentren quienes buscan barbería o spa en Zapopan."
+    },
+    {
+      "titulo": "Corte, barba y spa bien presentados",
+      "texto": "Cada servicio con su espacio, para que el cliente sepa qué ofreces antes de llegar."
+    },
+    {
+      "titulo": "Una imagen de lujo a la altura",
+      "texto": "Negro y dorado con tipografía elegante que transmite la experiencia premium de tu barbería."
+    }
+  ],
+  "crecer": [
+    "Tus clientes agendan por WhatsApp aunque estés cortando, y el chatbot los lleva directo a tu AgendaPro.",
+    "Tu ficha de Google Maps te ayuda a que te encuentren quienes buscan barbería y spa en Zapopan."
+  ]
+}

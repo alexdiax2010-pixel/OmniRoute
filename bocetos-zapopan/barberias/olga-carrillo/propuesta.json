@@ -1,0 +1,45 @@
+{
+  "nombre": "Olga Carrillo Estética Barbería",
+  "nombreCorto": "Olga Carrillo",
+  "giroLinea": "Estética y barbería en Ejido Copalita, Zapopan",
+  "direccion": "5 de Marzo #108A, Ejido Copalita, Zapopan, CP 45200",
+  "dominio": "www.olgacarrilloesteticabarberia.com",
+  "colores": {
+    "oscuro": "#1b1712",
+    "medio": "#86371f",
+    "acento": "#c29a52",
+    "sobreOscuro": "#fbf6ea",
+    "acentoTexto": "#1b1712"
+  },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500;1,700&display=swap",
+    "titulo": "'Playfair Display', Georgia, 'Times New Roman', serif",
+    "texto": "'Karla', 'Work Sans', system-ui, sans-serif",
+    "pesoTitulo": 800,
+    "mayusculas": false,
+    "tracking": "-0.01em",
+    "tamTitulo": "80px"
+  },
+  "beneficios": [
+    {
+      "titulo": "Citas por WhatsApp con un toque",
+      "texto": "Tus clientes eligen corte, barba o estética y te escriben directo desde el celular para apartar su lugar."
+    },
+    {
+      "titulo": "Que te encuentren en Zapopan",
+      "texto": "Una página con SEO local ayuda a que te encuentre quien busca barbería o estética cerca de Ejido Copalita."
+    },
+    {
+      "titulo": "Tus servicios, claros y a la vista",
+      "texto": "Corte, barba y estética explicados de forma sencilla, para que el cliente sepa qué pedir antes de llegar."
+    },
+    {
+      "titulo": "El trato cercano de Olga, en línea",
+      "texto": "Un diseño cálido y con personalidad que transmite el ambiente de tu local desde el primer vistazo."
+    }
+  ],
+  "crecer": [
+    "Tus clientes agendan corte, barba o estética por WhatsApp aunque estés cortando.",
+    "Tu ficha en Google Maps facilita que te encuentren quienes buscan barbería en Ejido Copalita."
+  ]
+}

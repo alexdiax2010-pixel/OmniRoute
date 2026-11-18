@@ -1,0 +1,45 @@
+{
+  "nombre": "Precisión Mecánica",
+  "nombreCorto": "Precisión Mecánica",
+  "giroLinea": "Taller mecánico en Jardines de la Patria, Zapopan",
+  "direccion": "Av. Patria 347, Jardines de la Patria, Zapopan, CP 45110",
+  "dominio": "www.precisionmecanica.com",
+  "colores": {
+    "oscuro": "#1b1e22",
+    "medio": "#2f343b",
+    "acento": "#ffc414",
+    "sobreOscuro": "#eef0f2",
+    "acentoTexto": "#16181b"
+  },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap",
+    "titulo": "'Barlow Condensed', 'Arial Narrow', Arial, sans-serif",
+    "texto": "'Barlow', system-ui, sans-serif",
+    "pesoTitulo": 800,
+    "mayusculas": true,
+    "tracking": "0.01em",
+    "tamTitulo": "120px"
+  },
+  "beneficios": [
+    {
+      "titulo": "Cotizaciones por WhatsApp",
+      "texto": "El cliente te manda la falla y fotos de su auto con un toque, y tú le respondes la cotización desde el celular."
+    },
+    {
+      "titulo": "Clientes que buscan 'taller en Zapopan'",
+      "texto": "Una página con SEO local ayuda a que te encuentren quienes buscan mecánico cerca de Jardines de la Patria."
+    },
+    {
+      "titulo": "Cómo llegar en un clic",
+      "texto": "Tu dirección en Av. Patria con mapa integrado para que el cliente llegue directo al taller."
+    },
+    {
+      "titulo": "Un taller que inspira confianza",
+      "texto": "Una imagen profesional y ordenada que muestra tu trabajo antes de que el cliente deje su auto."
+    }
+  ],
+  "crecer": [
+    "Aparece cuando buscan \"taller cerca de mí\" o frenos y suspensión en Jardines de la Patria en Google Maps.",
+    "Un chatbot de WhatsApp facilita recibir la falla y fotos del auto para que respondas tu cotización más rápido."
+  ]
+}

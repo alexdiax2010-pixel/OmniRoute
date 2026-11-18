@@ -1,0 +1,27 @@
+{
+  "nombre": "Taller Coronado",
+  "nombreCorto": "Taller Coronado",
+  "giroLinea": "Taller mecánico general en Mirador del Sol, Zapopan",
+  "direccion": "Av. Patria 1571, Mirador del Sol, Zapopan, CP 45054",
+  "dominio": "www.tallercoronado.com",
+  "colores": { "oscuro": "#1a120c", "medio": "#5a3018", "acento": "#e07a3a", "sobreOscuro": "#f3e6cf", "acentoTexto": "#1a120c" },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap",
+    "titulo": "'Archivo Black', 'Arial Black', Impact, sans-serif",
+    "texto": "'Archivo', system-ui, sans-serif",
+    "pesoTitulo": 400,
+    "mayusculas": true,
+    "tracking": "0.01em",
+    "tamTitulo": "96px"
+  },
+  "beneficios": [
+    { "titulo": "Cotizaciones por WhatsApp", "texto": "Tu cliente te manda fotos o la falla de su auto con un toque y tú le respondes la cotización desde el celular." },
+    { "titulo": "Clientes que buscan 'taller en Zapopan'", "texto": "Una página con SEO local ayuda a que te encuentren quienes buscan mecánico cerca de Mirador del Sol." },
+    { "titulo": "Fácil de llegar al taller", "texto": "Tu dirección en Av. Patria con mapa y botón para llamar al (33) 3628 8465 sin copiar el número." },
+    { "titulo": "La confianza del taller del barrio", "texto": "Una imagen clara y honesta que transmite el trato cercano de un taller mecánico de confianza." }
+  ],
+  "crecer": [
+    "Aparece cuando alguien busca 'taller cerca de mí' en Google Maps por Mirador del Sol, Zapopan.",
+    "Un chatbot de WhatsApp te ayuda a recibir dudas de frenos o diagnóstico aunque estés bajo el cofre."
+  ]
+}

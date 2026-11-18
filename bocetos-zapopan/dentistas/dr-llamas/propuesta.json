@@ -1,0 +1,45 @@
+{
+  "nombre": "Dr. Llamas Dental Office",
+  "nombreCorto": "Dr. Llamas",
+  "giroLinea": "Consultorio dental en Zapopan",
+  "direccion": "Av. Patria 1150, local J-10, Plaza Tepeyac, Zapopan",
+  "dominio": "www.drllamasdentaloffice.com",
+  "colores": {
+    "oscuro": "#0b3d7a",
+    "medio": "#1565c0",
+    "acento": "#90caf9",
+    "sobreOscuro": "#ffffff",
+    "acentoTexto": "#0b3d7a"
+  },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
+    "titulo": "'Plus Jakarta Sans', system-ui, sans-serif",
+    "texto": "'Plus Jakarta Sans', system-ui, sans-serif",
+    "pesoTitulo": 800,
+    "mayusculas": false,
+    "tracking": "-0.02em",
+    "tamTitulo": "88px"
+  },
+  "beneficios": [
+    {
+      "titulo": "Coronas, implantes y carillas, explicados",
+      "texto": "Una sección por tratamiento que resuelve dudas frecuentes antes de la primera consulta."
+    },
+    {
+      "titulo": "Aviso claro para Seguros Monterrey",
+      "texto": "Quien tiene Seguros Monterrey ve desde el inicio que lo aceptas y puede preguntarte por su caso."
+    },
+    {
+      "titulo": "Pacientes que buscan dentista en Zapopan",
+      "texto": "Una página con SEO local ayuda a que te encuentren quienes buscan implantes o carillas cerca."
+    },
+    {
+      "titulo": "Cómo llegar a Plaza Tepeyac",
+      "texto": "Tu dirección y local J-10 con mapa, para que el paciente llegue sin perderse."
+    }
+  ],
+  "crecer": [
+    "Tus pacientes agendan implantes, coronas o carillas a cualquier hora, incluso fuera del horario de consulta.",
+    "Tu ficha en Google Maps facilita que te encuentren quienes buscan dentista cerca de Plaza Tepeyac."
+  ]
+}

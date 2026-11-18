@@ -1,0 +1,45 @@
+{
+  "nombre": "Diesel Mecánica",
+  "nombreCorto": "Diesel Mecánica",
+  "giroLinea": "Taller diésel en Los Cajetes, Zapopan",
+  "direccion": "Calle San José 2276, Los Cajetes, Zapopan, CP 45234",
+  "dominio": "www.dieselmecanica.com",
+  "colores": {
+    "oscuro": "#0b0b0c",
+    "medio": "#1b1b1e",
+    "acento": "#ffc20e",
+    "sobreOscuro": "#f3f1ea",
+    "acentoTexto": "#0b0b0b"
+  },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap",
+    "titulo": "'Big Shoulders Display', Impact, 'Arial Narrow Bold', sans-serif",
+    "texto": "'Barlow', system-ui, sans-serif",
+    "pesoTitulo": 900,
+    "mayusculas": true,
+    "tracking": "0.01em",
+    "tamTitulo": "150px"
+  },
+  "beneficios": [
+    {
+      "titulo": "Cotizaciones por WhatsApp",
+      "texto": "El cliente te manda fotos y datos de su unidad con un toque y tú le respondes con la cotización desde el celular."
+    },
+    {
+      "titulo": "Clientes que buscan 'taller diésel'",
+      "texto": "Una página con SEO local ayuda a que te encuentren quienes buscan taller diésel en Zapopan."
+    },
+    {
+      "titulo": "Camionetas y camiones, claro desde el inicio",
+      "texto": "Explica que atiendes motores diésel ligeros y pesados, para que te contacte quien sí necesita tu servicio."
+    },
+    {
+      "titulo": "Ubicación y llamada a un toque",
+      "texto": "Mapa para llegar a Los Cajetes y botón para llamar, listos para el chofer o el dueño de la flotilla."
+    }
+  ],
+  "crecer": [
+    "Aparece cuando alguien busca \"taller diésel cerca de mí\" en Google Maps desde Los Cajetes y Zapopan.",
+    "Un chatbot de WhatsApp te ayuda a recibir datos y fotos de camionetas y camiones para cotizar más rápido."
+  ]
+}

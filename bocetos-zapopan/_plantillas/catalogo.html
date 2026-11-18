@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<title>Catálogo de servicios</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  @page{size:Letter;margin:0}
+  :root{--c1:#16302b;--c2:#2c5a4f;--acc:#e0b04a;--ink:#1b1e24;--muted:#5d636d;--line:#e3e5ea;--soft:#f5f6f4}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);font-size:10pt;line-height:1.45}
+  .page{width:8.5in;height:11in;overflow:hidden;display:flex;flex-direction:column}
+  .hero{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;padding:26px 44px 20px}
+  .eyebrow{font-size:8.5pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
+  h1{font-family:'Space Grotesk','Inter',sans-serif;font-size:25pt;line-height:1.1;margin-top:6px}
+  .hero p{font-size:10pt;opacity:.85;margin-top:6px}
+  .body{padding:18px 44px 0;flex:1;display:flex;flex-direction:column;gap:12px}
+  h2{font-family:'Space Grotesk','Inter',sans-serif;font-size:13pt;color:var(--c1);margin-bottom:8px;display:flex;align-items:center;gap:9px}
+  h2::before{content:"";width:20px;height:3px;background:var(--acc);border-radius:2px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .card{border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff;display:flex;flex-direction:column;gap:4px}
+  .card h3{font-size:10.5pt;line-height:1.25}
+  .card p{font-size:8.6pt;color:var(--muted);line-height:1.4;flex:1}
+  .card .pr{font-weight:700;color:var(--c1);font-size:9.6pt;border-top:1px dashed var(--line);padding-top:5px}
+  .web{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;align-items:start}
+  .prices{display:grid;gap:6px}
+  .prices div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:5px;font-size:9.8pt}
+  .prices b{color:var(--c1)}
+  .incl{list-style:none;display:grid;gap:3px;font-size:8.8pt;color:var(--muted)}
+  .incl li::before{content:"✓ ";color:var(--c2);font-weight:700}
+  .m{display:inline-block;background:#fff4c2;color:#5c4400;border:1px dashed #b38600;border-radius:5px;padding:0 6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:8.5pt;font-weight:600}
+  .combo{border:2px solid var(--c1);border-radius:10px;padding:11px 13px;background:#fff;display:flex;flex-direction:column;gap:4px}
+  .combo .k{font-size:7.5pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--c2)}
+  .combo h3{font-family:'Space Grotesk','Inter',sans-serif;font-size:11.5pt;color:var(--c1)}
+  .combo ul{list-style:none;font-size:8.6pt;color:var(--muted);flex:1}
+  .combo li::before{content:"+ ";color:var(--c1);font-weight:700}
+  .combo .now{font-size:15pt;font-weight:800;color:var(--c1);line-height:1.1}
+  .combo .was{font-size:8.6pt;color:var(--muted)}.combo .was s{margin-right:6px}
+  .combo .save{font-weight:700;color:var(--c1)}
+  .combo .mo{font-size:8.2pt;color:var(--muted);border-top:1px dashed var(--line);padding-top:4px}
+  .fine{font-size:7.4pt;color:var(--muted);line-height:1.4;margin-top:5px}
+  .terms{display:flex;gap:16px;flex-wrap:wrap;font-size:8.8pt;padding:7px 12px;background:var(--soft);border-radius:8px;color:var(--muted)}
+  .terms b{color:var(--ink)}
+  .contact{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;border-radius:12px;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .contact h3{font-family:'Space Grotesk','Inter',sans-serif;font-size:12.5pt}
+  .contact p{font-size:8.8pt;opacity:.85}
+  .contact ul{list-style:none;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .foot{margin:8px 44px 0;padding:8px 0 22px;border-top:1px solid var(--line);font-size:7.6pt;color:var(--muted);display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="hero">
+    <div class="eyebrow">Catálogo de servicios · {{fecha}}</div>
+    <h1>Páginas web y presencia digital para negocios de Zapopan</h1>
+    <p>Tu página, tu ficha en Google Maps, tus redes y tu WhatsApp, trabajando juntos para que te encuentren y te escriban.</p>
+  </div>
+  <div class="body">
+    <div>
+      <h2>Página web</h2>
+      <div class="web">
+        <div class="prices">
+          <div><span>Talleres mecánicos</span><b>desde $2,500</b></div>
+          <div><span>Barberías y estéticas</span><b>desde $2,500</b></div>
+          <div><span>Consultorios dentales</span><b>desde $4,500</b></div>
+          <div><span>Mantenimiento mensual</span><span class="m">[Precio por definir]</span></div>
+        </div>
+        <ul class="incl">
+          <li>Diseño responsive: celular, tablet y computadora</li>
+          <li>Botón de WhatsApp para que te escriban con un toque</li>
+          <li>Mapa de Google con botón “Cómo llegar”</li>
+          <li>SEO local: configurado para búsquedas en Zapopan</li>
+          <li>Hosting incluido el primer año</li>
+          <li>2 rondas de cambios sobre el diseño</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h2>Haz crecer tu negocio</h2>
+      <div class="grid3">
+        <div class="card"><h3>Perfil de Google Maps</h3><p>Crear u optimizar tu ficha: fotos, horario, servicios, categorías y respuesta a reseñas.</p><div class="pr">$700 configuración + $500/mes gestión</div></div>
+        <div class="card"><h3>Redes sociales</h3><p>12 publicaciones al mes en Facebook e Instagram, con diseño y textos, programadas.</p><div class="pr">$2,500/mes</div></div>
+        <div class="card"><h3>Chatbot de WhatsApp</h3><p>Responde preguntas frecuentes, precios y horarios, y agenda citas las 24 horas, los 7 días.</p><div class="pr">Desde $3,500 instalación + $800/mes</div></div>
+      </div>
+      <p class="fine">El chatbot requiere una plataforma de WhatsApp Business cuyo costo mensual y tarifas de mensajes de Meta paga el cliente directamente; se cotiza por separado.</p>
+    </div>
+
+    <div>
+      <h2>Combos por giro</h2>
+      <div class="grid3">
+        <div class="combo"><span class="k">Talleres</span><h3>Combo Taller Visible</h3><ul><li>Página Estándar</li><li>Google Maps (configuración)</li></ul><div class="now">$4,200</div><div class="was"><s>$4,500</s><span class="save">Ahorras $300</span></div><div class="mo">Mantenimiento web + gestión de Google Maps: $700/mes</div></div>
+        <div class="combo"><span class="k">Barberías</span><h3>Combo Agenda Llena</h3><ul><li>Página Estándar</li><li>Google Maps (configuración)</li><li>1 mes de redes sociales</li></ul><div class="now">$6,000</div><div class="was"><s>$6,700</s><span class="save">Ahorras $700</span></div><div class="mo">Después: mantenimiento + Google Maps + redes = $3,000/mes</div></div>
+        <div class="combo"><span class="k">Consultorios dentales</span><h3>Combo Consultorio Pro</h3><ul><li>Página Estándar</li><li>Google Maps (configuración)</li><li>Chatbot de WhatsApp para citas</li></ul><div class="now">$9,900</div><div class="was"><s>$10,700</s><span class="save">Ahorras $800</span></div><div class="mo">Mantenimiento + Google Maps + chatbot = $1,700/mes</div></div>
+      </div>
+      <p class="fine">Con página Premium, el Combo Consultorio Pro queda en $12,900 en lugar de $13,700.</p>
+    </div>
+
+    <p class="terms"><span><b>Precios sin IVA.</b></span><span><b>Forma de pago:</b> 50% de anticipo y 50% al entregar.</span><span>Te preparo un boceto de tu página sin costo antes de contratar.</span></p>
+
+    <div class="contact">
+      <div><h3>¿Platicamos?</h3><p>Escríbeme y te enseño cómo se vería la página de tu negocio.</p></div>
+      <ul><li><span class="m">[Tu nombre]</span></li><li><span class="m">[Tu WhatsApp]</span></li><li><span class="m">[Tu correo]</span></li></ul>
+    </div>
+  </div>
+  <div class="foot"><span>Catálogo de servicios</span><span>Precios sin IVA, vigentes a {{fecha}}</span></div>
+</section>
+</body>
+</html>

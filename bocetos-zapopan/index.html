@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Galería de bocetos — Zapopan</title>
+<meta name="description" content="Galería interna de bocetos de landing page y materiales para WhatsApp de negocios locales de Zapopan, Jalisco.">
+<link rel="stylesheet" href="shared/base.css">
+<style>
+  :root{--bg:#f4f3ef;--surface:#fff;--ink:#17181c;--muted:#5d6068;--border:#e2e0d9;--brand:#17181c;--maxw:1320px}
+  header.top{padding:var(--space-7) 0 var(--space-4)}
+  header.top h1{font-size:var(--step-3);letter-spacing:-.02em}
+  header.top p{color:var(--muted);max-width:68ch;margin-top:var(--space-3)}
+  .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:var(--space-4)}
+  .chips a{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.35rem .9rem;font-size:var(--step--1);font-weight:600;text-decoration:none}
+  section.giro{padding-block:var(--space-6)}
+  section.giro h2{font-size:var(--step-2);display:flex;align-items:center;gap:.6rem;margin-bottom:var(--space-5)}
+  section.giro h2 .dot{width:14px;height:14px;border-radius:50%;flex:none}
+  .grid{display:grid;gap:var(--space-5);grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr))}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .combo{display:block;aspect-ratio:16/9;background:linear-gradient(135deg,var(--c1),var(--c2));position:relative}
+  .combo img{width:100%;height:100%;object-fit:cover;display:block}
+  .combo .fb{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.3rem}
+  .combo img+.fb{display:none}
+  .thumbs{display:grid;grid-template-columns:1fr 1.78fr;gap:6px;padding:6px 6px 0}
+  .thumbs a{display:block;border-radius:8px;overflow:hidden;background:var(--bg);aspect-ratio:var(--ar)}
+  .thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+  .body{padding:var(--space-4);display:flex;flex-direction:column;gap:.4rem;flex:1}
+  .body h3{font-size:var(--step-1)}
+  .addr{color:var(--muted);font-size:var(--step--1)}
+  .links{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto;padding-top:.7rem}
+  .links a{font-size:13px;font-weight:600;border-radius:999px;padding:.35rem .75rem;border:1px solid var(--border);text-decoration:none;background:var(--bg);min-height:34px;display:inline-flex;align-items:center}
+  .links a.main{background:#17181c;color:#fff;border-color:#17181c}
+  .tag{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:.1rem .55rem;background:#fff4c2;border:1px solid #e0c25a;color:#5c4400;width:fit-content}
+  footer{padding:var(--space-7) 0;color:var(--muted);font-size:var(--step--1)}
+</style>
+</head>
+<body>
+<div class="franja-boceto" role="note">Galería interna — bocetos no oficiales</div>
+<header class="top">
+  <div class="container">
+    <p class="eyebrow">Uso interno</p>
+    <h1>Bocetos y materiales para WhatsApp · Zapopan</h1>
+    <p>Por negocio: el boceto en línea, el mockup combo (imagen principal para enviar), los mockups de celular y escritorio, y la propuesta en PDF. Para regenerar los materiales después de cambiar una página: <code>node generar.mjs &lt;negocio&gt;</code>.</p>
+    <nav class="chips" aria-label="Giros"><a href="#g-dent">4 dentistas</a><a href="#g-tall">7 talleres</a><a href="#g-barb">2 barberías</a></nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="giro" aria-labelledby="g-dent"><div class="container">
+    <h2 id="g-dent"><span class="dot" style="background:#3b82c4" aria-hidden="true"></span>Dentistas</h2>
+    <div class="grid" data-giro="dentistas"></div>
+  </div></section>
+  <section class="giro" aria-labelledby="g-tall"><div class="container">
+    <h2 id="g-tall"><span class="dot" style="background:#e8590c" aria-hidden="true"></span>Talleres mecánicos</h2>
+    <div class="grid" data-giro="talleres"></div>
+  </div></section>
+  <section class="giro" aria-labelledby="g-barb"><div class="container">
+    <h2 id="g-barb"><span class="dot" style="background:#b8913a" aria-hidden="true"></span>Barberías</h2>
+    <div class="grid" data-giro="barberias"></div>
+  </div></section>
+</main>
+<footer><div class="container">Uso interno. Los bocetos usan solo los datos proporcionados; lo marcado en amarillo debe confirmarse con cada negocio. Los precios de la propuesta están como marcadores.</div></footer>
+
+<script>
+  // Lista de negocios: [giro, carpeta, nombre, dirección, colores, etiqueta opcional]
+  var NEGOCIOS = [
+    ['dentistas','dental-prados','Dental Prados','Av. Manuel J. Clouthier 133, Prados Vallarta','#0f2340','#6f9a8d','Prospecto premium'],
+    ['dentistas','dr-llamas','Dr. Llamas Dental Office','Av. Patria 1150, local J-10, Plaza Tepeyac','#1d5fb8','#8ccaf2'],
+    ['dentistas','cirugia-oral-bejar','Cirugía Oral Béjar','Av. Beethoven 5229-7, La Estancia','#1b252c','#5fb39c'],
+    ['dentistas','dr-mendivil','Clínica Dental del Dr. Mendivil','Av. Miguel Ángel 21','#1f4f5a','#2f7f78'],
+    ['talleres','frenos-frescos','Taller Mecánico Frenos Frescos','Av. López Mateos Sur 5597, Las Águilas','#111','#d62828'],
+    ['talleres','precision-mecanica','Precisión Mecánica','Av. Patria 347, Jardines de la Patria','#2a2d33','#f2c200'],
+    ['talleres','mecanica-pena','Mecánica Automotriz Peña','Puerto Manzanillo 21, Miramar','#0b1426','#ffcc00'],
+    ['talleres','mecanica-alta-calidad','Mecánica de Alta Calidad','Quebrada 3913, Miramar','#0d0d0d','#ff6b00'],
+    ['talleres','industrial-macias','Taller Mecánico Industrial Macías','Calz. Olímpica 761, Jardines Universidad','#33383f','#f26b1d'],
+    ['talleres','diesel-mecanica','Diesel Mecánica','Calle San José 2276, Los Cajetes','#111','#f5b700','Tel. por confirmar'],
+    ['talleres','taller-coronado','Taller Coronado','Av. Patria 1571, Mirador del Sol','#1e1712','#c8642c'],
+    ['barberias','olga-carrillo','Olga Carrillo Estética Barbería','5 de Marzo #108A, Ejido Copalita','#2a2420','#b5653f'],
+    ['barberias','donbarbas','DONBARBAS Barbería & Spa','Zapopan · dirección por confirmar','#000','#b8913a','Sin teléfono ni dirección']
+  ];
+  function el(tag, attrs, html){var e=document.createElement(tag);for(var k in attrs){e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;}
+  NEGOCIOS.forEach(function(n){
+    var base=n[0]+'/'+n[1]+'/';
+    var card=el('article',{'class':'card',style:'--c1:'+n[4]+';--c2:'+n[5]});
+    var combo=el('a',{'class':'combo',href:base+'mockup-combo.png','aria-label':'Ver mockup combo de '+n[2]});
+    var img=el('img',{src:base+'mockup-combo.png',alt:'Mockup combo de la propuesta para '+n[2],loading:'lazy'});
+    img.onerror=function(){this.remove();};
+    combo.appendChild(img);combo.appendChild(el('span',{'class':'fb'},n[2]));
+    card.appendChild(combo);
+    var th=el('div',{'class':'thumbs'});
+    [['mockup-celular.png','4/5','celular'],['mockup-escritorio.png','16/9','escritorio']].forEach(function(t){
+      var a=el('a',{href:base+t[0],style:'--ar:'+t[1],'aria-label':'Ver mockup de '+t[2]+' de '+n[2]});
+      var i=el('img',{src:base+t[0],alt:'Mockup de '+t[2]+' de '+n[2],loading:'lazy'});i.onerror=function(){this.remove();};
+      a.appendChild(i);th.appendChild(a);
+    });
+    card.appendChild(th);
+    var body=el('div',{'class':'body'});
+    body.appendChild(el('h3',{},n[2].replace(/&/g,'&amp;')));
+    body.appendChild(el('p',{'class':'addr'},n[3]));
+    if(n[6])body.appendChild(el('span',{'class':'tag'},n[6]));
+    body.appendChild(el('div',{'class':'links'},
+      '<a class="main" href="'+base+'index.html">Ver página</a>'+
+      '<a href="'+base+'mockup-combo.png" download>Combo</a>'+
+      '<a href="'+base+'mockup-celular.png" download>Celular</a>'+
+      '<a href="'+base+'mockup-escritorio.png" download>Escritorio</a>'+
+      '<a href="'+base+'propuesta.pdf">Propuesta PDF</a>'));
+    card.appendChild(body);
+    document.querySelector('[data-giro="'+n[0]+'"]').appendChild(card);
+  });
+</script>
+</body>
+</html>

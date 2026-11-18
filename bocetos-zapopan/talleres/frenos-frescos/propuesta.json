@@ -1,0 +1,45 @@
+{
+  "nombre": "Taller Mecánico Frenos Frescos",
+  "nombreCorto": "Frenos Frescos",
+  "giroLinea": "Taller de frenos en Las Águilas, Zapopan",
+  "direccion": "Av. López Mateos Sur 5597, Las Águilas, Zapopan",
+  "dominio": "www.tallermecanicofrenosfrescos.com",
+  "colores": {
+    "oscuro": "#0b0b0d",
+    "medio": "#2a2d33",
+    "acento": "#ff2a33",
+    "sobreOscuro": "#ffffff",
+    "acentoTexto": "#ffffff"
+  },
+  "fuentes": {
+    "url": "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap",
+    "titulo": "'Bebas Neue', Impact, 'Arial Narrow', sans-serif",
+    "texto": "'Barlow', system-ui, sans-serif",
+    "pesoTitulo": 400,
+    "mayusculas": true,
+    "tracking": "0.02em",
+    "tamTitulo": "120px"
+  },
+  "beneficios": [
+    {
+      "titulo": "Cotizaciones por WhatsApp",
+      "texto": "Tu cliente te cuenta qué hace su auto y te pide precio con un toque, sin llamadas ni vueltas al taller."
+    },
+    {
+      "titulo": "Clientes que buscan frenos en Zapopan",
+      "texto": "Una página con SEO local ayuda a que te encuentren quienes buscan taller de frenos en Las Águilas y Zapopan."
+    },
+    {
+      "titulo": "Señales de alerta bien explicadas",
+      "texto": "Rechinido, pedal esponjoso o vibración: una sección que orienta al conductor y lo invita a revisar sus frenos."
+    },
+    {
+      "titulo": "Tus servicios de frenos a la vista",
+      "texto": "Balatas, discos, tambores y líquido de frenos presentados con claridad para que sepan qué te pueden pedir."
+    }
+  ],
+  "crecer": [
+    "Aparece cuando alguien busca \"taller de frenos cerca de mí\" en Google Maps desde Las Águilas o Zapopan.",
+    "Un chatbot de WhatsApp te ayuda a responder dudas de balatas y discos aunque estés con las manos en un auto."
+  ]
+}
