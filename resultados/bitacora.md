@@ -103,3 +103,8 @@
 - **Servicios:** abogados, notarías, inmobiliarias, contables, guarderías e idiomas en el poniente y el norte.
 - **Rutas (agente nuevo):** su misión no es abrir zonas sino **hacer más densas las rutas existentes** (El Colli/Felipe Ruvalcaba y Ciudad del Sol/Mariano Otero). La sesión 1 mostró que el valor de una ruta crece con el número de paradas.
 - Las zonas no se traslapan entre agentes, y todos leen el CSV para no repetir negocios.
+
+## 2026-11-18 16:01 UTC — Termina el Agente Rutas
+- 13 negocios (5 Salud, 5 Automotriz, 3 Servicios) que hacen más densas las rutas de El Colli/Mariano Otero y Ciudad del Sol/La Calma. **Sorpresa:** hay un grupo sobre Av. Mariano Otero 3660–4297 (un dentista, una clínica de rehabilitación y un taller) que permite 3 visitas en una cuadra.
+- **Calidad más baja que en la sesión 1:** 3 negocios (Dental Estetic, Rehabilitación Siglo XXI, Multiservicios Cruz) no reaparecen al buscarlos por nombre, y su URL fuente es "la más probable". Le pido al Verificador que les baje la confianza o los descarte. No quiero en el top 10 negocios que quizás no existen.
+- 2 aparecen a nombre de persona física: los dejo solo como consultorio o despacho, sin buscar más de esas personas.

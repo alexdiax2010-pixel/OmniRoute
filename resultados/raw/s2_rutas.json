@@ -1,0 +1,389 @@
+{
+ "agente": "s2_rutas",
+ "notas_proceso": [
+  "Leí prospectos.csv y descarté repetidos: Denticelis, Taller Mecánico Industrial Macías, Laminado y Pintura Profesional Gómez, PhysioCare ya estaban.",
+  "WebFetch bloqueado; todos los datos vienen de resúmenes de WebSearch (Sección Amarilla, Fresha). Doctoralia muestra teléfonos truncados, por eso no se usaron sus fichas.",
+  "Descartados: GBL Fiscal (dirección en conflicto: Lafayette vs El Colli), Motor Servis Pipos (Prol. Mariano Otero 1600, fuera del tramo), Hernández Álvarez García (sin teléfono), taller listado a nombre de persona en Susana Gómez Palafox.",
+  "Cluster fuerte: Av. Mariano Otero 3660-4297 en El Colli (Dental Estetic, Siglo XXI, Auto Express Centauro) + Laplace y Clouthier. Cluster Paseos del Sol: Felipe Ruvalcaba 1011, Mariano Otero 5664, Felipe Zetter 3454.",
+  "Ningún teléfono fue verificado con el negocio; no se contactó a nadie. Todos marcados para verificar en Maps."
+ ],
+ "negocios": [
+  {
+   "nombre": "Consultorio dental (listado como 'Angel Cortes Miguel')",
+   "giro": "Dentista",
+   "giro_categoria": "Salud",
+   "subgiro": "Odontología general / endodoncia",
+   "direccion": "Av. Felipe Ruvalcaba 1011, CP 45079",
+   "colonia": "Paseos del Sol",
+   "telefono": "(33) 1152-8066",
+   "whatsapp": "no encontrado",
+   "servicios": "Dentista (categoría endodoncia en directorio); abre 09:00 según ficha",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Sobre Av. Felipe Ruvalcaba: encaja directo en ruta El Colli/Ruvalcaba",
+    "Solo presencia en directorio"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+    "Listado a nombre de persona física; nombre comercial no encontrado"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/3",
+    "direccion": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/3",
+    "telefono": "https://www.seccionamarilla.com.mx/resultados/dentistas-en-endodoncia/jalisco/3",
+    "web": "búsqueda: 'consultorio dental Av. Felipe Ruvalcaba Zapopan' y 'dentista Paseos del Sol Zapopan' (sin web propia en resultados)"
+   }
+  },
+  {
+   "nombre": "Dental Estetic",
+   "giro": "Dentista",
+   "giro_categoria": "Salud",
+   "subgiro": "Odontología estética",
+   "direccion": "Av. Mariano Otero 4297, CP 45070",
+   "colonia": "El Colli 2a Sección (directorio dice Guadalajara)",
+   "telefono": "(33) 3631-8327",
+   "whatsapp": "no encontrado",
+   "servicios": "verificar en Maps",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Sobre Av. Mariano Otero en El Colli, a pocos metros de Rehabilitación Física Siglo XXI (Otero 4289)"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+    "La URL fuente es la que más probablemente contiene el listado según el resumen de búsqueda; una 2a búsqueda por nombre no lo confirmó: VERIFICAR antes de usar"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/resultados/dentista-de-urgencia/jalisco/12",
+    "direccion": "https://www.seccionamarilla.com.mx/resultados/dentista-de-urgencia/jalisco/12",
+    "telefono": "https://www.seccionamarilla.com.mx/resultados/dentista-de-urgencia/jalisco/12",
+    "web": "búsqueda: 'dentista El Colli Zapopan teléfono'; búsqueda por nombre+dirección sin resultados"
+   }
+  },
+  {
+   "nombre": "Rehabilitación Física Siglo XXI",
+   "giro": "Fisioterapia / rehabilitación",
+   "giro_categoria": "Salud",
+   "subgiro": "Rehabilitación física",
+   "direccion": "Av. Mariano Otero 4289, CP 45070",
+   "colonia": "El Colli 2a Sección (directorio dice Guadalajara)",
+   "telefono": "(33) 3631-3722",
+   "whatsapp": "no encontrado",
+   "servicios": "verificar en Maps (listado bajo categoría de rehabilitación bucal)",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Vecino de Dental Estetic: 2 paradas en una"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+    "Categoría del directorio ambigua (dental vs. física); 2a búsqueda por nombre no lo confirmó"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/mapas/dentistas-en-rehabilitación-bucal/jalisco/zapopan/1",
+    "direccion": "https://www.seccionamarilla.com.mx/mapas/dentistas-en-rehabilitación-bucal/jalisco/zapopan/1",
+    "telefono": "https://www.seccionamarilla.com.mx/mapas/dentistas-en-rehabilitación-bucal/jalisco/zapopan/1",
+    "web": "búsqueda: '\"Rehabilitación Física Siglo XXI\" Guadalajara Otero' sin web propia"
+   }
+  },
+  {
+   "nombre": "Fisioterapia Malena",
+   "giro": "Fisioterapia",
+   "giro_categoria": "Salud",
+   "subgiro": "Fisioterapia / masaje terapéutico",
+   "direccion": "C. Puerto Matamoros 3133, CP 45060",
+   "colonia": "Miramar",
+   "telefono": "+52 33 3139 7681",
+   "whatsapp": "no encontrado",
+   "servicios": "Fisioterapia (Fresha la lista en categoría masajes)",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Miramar: cerca de la ruta de talleres",
+    "Solo ficha en directorio de reservas"
+   ],
+   "alertas": [
+    "Dato de Fresha (snapshot de directorio): verificar"
+   ],
+   "fuentes": {
+    "nombre": "https://fresha.com/lp/en/bt/massage/in/mx-guadalajara/miramar",
+    "direccion": "https://fresha.com/lp/en/bt/massage/in/mx-guadalajara/miramar",
+    "telefono": "https://fresha.com/lp/en/bt/massage/in/mx-guadalajara/miramar",
+    "web": "búsqueda: '\"Fisioterapia Malena\" Zapopan' sin web propia"
+   }
+  },
+  {
+   "nombre": "Brenda Olvera Fisioterapia",
+   "giro": "Fisioterapia",
+   "giro_categoria": "Salud",
+   "subgiro": "Fisioterapia",
+   "direccion": "C. Andrómeda 3554, CP 45070",
+   "colonia": "La Calma",
+   "telefono": "+52 33 3407 7004 (en conflicto: otro listado da +52 33 2825 5582)",
+   "whatsapp": "no encontrado",
+   "servicios": "Fisioterapia",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "La Calma, ruta Ciudad del Sol/López Mateos"
+   ],
+   "alertas": [
+    "Teléfonos en conflicto entre listados de Fresha; el +52 33 3407 7004 también aparece para Livet Wellness Center en la misma dirección",
+    "Otras fichas con el mismo nombre en La Estancia y Las Flores: confirmar sede",
+    "Nombre comercial contiene nombre de persona"
+   ],
+   "fuentes": {
+    "nombre": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/la-calma",
+    "direccion": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/la-calma",
+    "telefono": "https://www.fresha.com/lp/da/bt/terapicentre/mx-guadalajara/la-calma",
+    "web": "búsqueda: '\"Brenda Olvera\" fisioterapia Zapopan' sin web propia"
+   }
+  },
+  {
+   "nombre": "Ambriz Laminado y Pintura",
+   "giro": "Hojalatería y pintura",
+   "giro_categoria": "Automotriz",
+   "subgiro": "Laminado y pintura",
+   "direccion": "Av. Manuel J. Clouthier 2448, CP 45070",
+   "colonia": "El Colli Urbano",
+   "telefono": "(33) 3620-8547",
+   "whatsapp": "no encontrado",
+   "servicios": "Hojalatería y pintura",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "El Colli Urbano: densifica ruta de talleres"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+    "Listado aparece en páginas de resultados de Sección Amarilla (/6 o /26); verificar URL exacta"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalaterÃƒÂ­a-y-pintura/6",
+    "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalaterÃƒÂ­a-y-pintura/6",
+    "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-hojalaterÃƒÂ­a-y-pintura/6",
+    "web": "búsqueda: '\"Ambriz Laminado y Pintura\" Clouthier' sin web propia"
+   }
+  },
+  {
+   "nombre": "Hangar 17",
+   "giro": "Hojalatería y pintura",
+   "giro_categoria": "Automotriz",
+   "subgiro": "Hojalatería y pintura",
+   "direccion": "Av. López Mateos 4327, CP 45070",
+   "colonia": "La Calma",
+   "telefono": "(33) 3634-9432",
+   "whatsapp": "no encontrado",
+   "servicios": "Hojalatería y pintura",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Sobre López Mateos en La Calma: refuerza ruta Ciudad del Sol"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/resultados/talleres-de-carroceria/jalisco/guadalajara/21",
+    "direccion": "https://www.seccionamarilla.com.mx/resultados/talleres-de-carroceria/jalisco/guadalajara/21",
+    "telefono": "https://www.seccionamarilla.com.mx/resultados/talleres-de-carroceria/jalisco/guadalajara/21",
+    "web": "búsqueda: '\"Hangar 17\" hojalatería La Calma Zapopan' sin web propia"
+   }
+  },
+  {
+   "nombre": "Auto Express Centauro SA de CV",
+   "giro": "Taller mecánico",
+   "giro_categoria": "Automotriz",
+   "subgiro": "Mecánica general",
+   "direccion": "Av. Mariano Otero 3660, CP 45070",
+   "colonia": "El Colli Urbano 2a Sección",
+   "telefono": "(33) 3628-1848",
+   "whatsapp": "no encontrado",
+   "servicios": "Taller mecánico",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Sobre Mariano Otero, cerca de Dental Estetic/Siglo XXI"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+    "Es SA de CV: confirmar que sea negocio independiente (no cadena)"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/2",
+    "direccion": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/2",
+    "telefono": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/2",
+    "web": "búsqueda: '\"Auto Express Centauro\" Zapopan' sin web propia"
+   }
+  },
+  {
+   "nombre": "Servikar Diésel",
+   "giro": "Taller mecánico diésel",
+   "giro_categoria": "Automotriz",
+   "subgiro": "Inyección diésel",
+   "direccion": "Av. Mariano Otero 5664, CP 45079",
+   "colonia": "Paseos del Sol",
+   "telefono": "(33) 4259-0498",
+   "whatsapp": "no encontrado",
+   "servicios": "Especialistas en inyección diésel; refacciones diésel",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Paseos del Sol sobre Mariano Otero"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+    "El teléfono aparece en la entrada de Mariano Otero 5664 pero el snippet no muestra el nombre junto al número; otro listado ubica Servikar en Calz. Olímpica 761 (Jardines Universidad): confirmar sede y teléfono",
+    "Empresa SA de CV (1-20 empleados según dunsguide)"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/1",
+    "direccion": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/jalisco/zapopan/1",
+    "telefono": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/27",
+    "web": "https://www.seccionamarilla.com.mx/resultados/taller-mecanico-a-diesel/27 (búsqueda; sin web propia)"
+   }
+  },
+  {
+   "nombre": "Multiservicios Cruz",
+   "giro": "Taller mecánico",
+   "giro_categoria": "Automotriz",
+   "subgiro": "Mecánica general",
+   "direccion": "Av. Felipe Zetter 3454, CP 45079",
+   "colonia": "Paseos del Sol",
+   "telefono": "(33) 3133-3134",
+   "whatsapp": "no encontrado",
+   "servicios": "verificar en Maps",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Paseos del Sol"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+    "2a búsqueda por nombre no lo confirmó; URL fuente según resumen de búsqueda 'taller mecánico Ciudad del Sol Zapopan': verificar"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/4",
+    "direccion": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/4",
+    "telefono": "https://www.seccionamarilla.com.mx/mapas/taller-mecanico-a-diesel/jalisco/zapopan/4",
+    "web": "búsqueda: '\"Multiservicios Cruz\" Felipe Zeter Zapopan' sin resultados"
+   }
+  },
+  {
+   "nombre": "SD Contadores y Auditores",
+   "giro": "Despacho contable",
+   "giro_categoria": "Servicios",
+   "subgiro": "Contabilidad y auditoría",
+   "direccion": "C. Pierre Simon Laplace 5536, CP 45070",
+   "colonia": "El Colli 2a Sección (directorio dice Guadalajara)",
+   "telefono": "(33) 3632-6085",
+   "whatsapp": "no encontrado",
+   "servicios": "Contabilidad, auditoría",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "El Colli: se suma a la ruta"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/mapas/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/1",
+    "direccion": "https://www.seccionamarilla.com.mx/mapas/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/1",
+    "telefono": "https://www.seccionamarilla.com.mx/mapas/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/1",
+    "web": "búsqueda: '\"SD Contadores\" Guadalajara Laplace' sin web propia"
+   }
+  },
+  {
+   "nombre": "Procesum García Godínez Abogados",
+   "giro": "Despacho de abogados",
+   "giro_categoria": "Servicios",
+   "subgiro": "Abogados",
+   "direccion": "C. Xóchitl 231, CP 45050",
+   "colonia": "Jardines del Sol",
+   "telefono": "(33) 3616-6916",
+   "whatsapp": "no encontrado",
+   "servicios": "Servicios legales",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Jardines del Sol, entre ambas rutas"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/8",
+    "direccion": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/8",
+    "telefono": "https://www.seccionamarilla.com.mx/resultados/despachos-de-abogados/jalisco/guadalajara/8",
+    "web": "búsqueda: '\"Procesum\" abogados Zapopan' sin web propia"
+   }
+  },
+  {
+   "nombre": "Contador Público (listado como 'Guerrero Morales Gloria Eugenia')",
+   "giro": "Contador",
+   "giro_categoria": "Servicios",
+   "subgiro": "Contabilidad y asuntos fiscales",
+   "direccion": "Av. Naciones Unidas 5179, CP 45110",
+   "colonia": "Jardines Universidad",
+   "telefono": "(33) 3165-0389",
+   "whatsapp": "no encontrado",
+   "servicios": "Contadores, auditores y asuntos fiscales",
+   "tiene_web": "no encontrada",
+   "url_web": "",
+   "estado_web": "no se encontró web propia en búsqueda por nombre",
+   "resenas": "no encontrado",
+   "num_doctores_empleados": "no encontrado",
+   "señales": [
+    "Jardines Universidad: refuerza ruta débil"
+   ],
+   "alertas": [
+    "Dato de directorio (Sección Amarilla), fecha de actualización desconocida: verificar en Maps antes de visitar",
+    "Listado a nombre de persona física; nombre comercial no encontrado"
+   ],
+   "fuentes": {
+    "nombre": "https://www.seccionamarilla.com.mx/resultados/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/11",
+    "direccion": "https://www.seccionamarilla.com.mx/resultados/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/11",
+    "telefono": "https://www.seccionamarilla.com.mx/resultados/contadores,-auditores-y-asuntos-fiscales/jalisco/guadalajara/11",
+    "web": "búsqueda: 'contadores Jardines Universidad Zapopan seccionamarilla' sin web propia"
+   }
+  }
+ ]
+}
