@@ -155,3 +155,8 @@
 - Rutas nuevas: **Ruta 4, Puerta de Hierro → Zapopan Centro**, con dos edificios médicos donde conviene pedir en recepción el directorio de consultorios, y **Ruta 5, Jardines del Sol / Ciudad del Sol / Mariano Otero**. Las rutas 1 y 3 recibieron paradas de la sesión 2.
 - Ideas nuevas: "paquete edificio médico" (descuento por 3 consultorios del mismo edificio) y llevar una maqueta impresa para los consultorios sin nombre comercial.
 - Siguiente: regenerar el CSV y el dashboard.
+
+## 2026-11-18 16:13 UTC — Checkpoint y Ronda 2B
+- Dashboard regenerado y republicado (157 prospectos). Llevamos ~15 min reales de la sesión 2, con más tiempo del presupuesto. **Ronda 2B** con 2 agentes:
+  1. **Buscador de teléfonos:** los prospectos de alto ticket sin teléfono o con teléfono dudoso. Subirles el contacto de 0 a 15 puntos vale más que encontrar negocios nuevos de 50 puntos.
+  2. **Zonas restantes:** Arcos de Zapopan, Prados Tepeyac, Jardines de Guadalupe, Ciudad de los Niños, Vallarta Universidad y Prados Guadalupe (Salud, Servicios y Automotriz).
