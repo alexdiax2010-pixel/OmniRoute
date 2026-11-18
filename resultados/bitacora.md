@@ -49,3 +49,10 @@
 - Ciudad Granja: solo apareció Dentalia (cadena, descartada). Providencia y Jardines Universidad no dieron consultorios con teléfono.
 - Descarte probable: Dentist Vibliorio (Tesistán) ya tiene web propia.
 - Lancé al **Analista** con la rúbrica del cliente y le agregué dos reglas propias: (1) sin datos de reseñas, máximo 8 en "va bien", para no premiar lo desconocido; (2) -5 si hay alertas graves (dos direcciones, duda Zapopan/GDL), para que el top 10 sea visitable sin sorpresas.
+
+## 16:02 UTC — Termina el Analista y arranca la Fase 3
+- 93 revisados → **88 prospectos puntuados**, 43 con 60 puntos o más. Descartados 5 (se sumó Dentist Vibliorio, que ya tiene web propia).
+- **Top:** 4 dentistas de Las Águilas empatados en 85 (Denti Mundo, Dental Infante, SPA Dental, Armando Núñez), EFD Abogados 81, Easy Dental Láser 80.
+- **El giro manda:** Salud promedia 67.6 y 21 de 26 pasan de 60; Comida promedia 44 y ninguno llega a 60. Comida tiene fama pero no teléfono ni ticket alto, así que no es buen blanco para landing; le sirve más un menú QR.
+- **Riesgo:** Dental Infante y Easy Dental Láser comparten dirección (Río Cuixtle 5784) y los dos están en el top 6. Podrían ser el mismo consultorio con dos nombres. Lo dejo visible como alerta en lugar de borrar uno sin evidencia.
+- Lancé en paralelo al **Estratega** (giros, rutas, ideas) y al **Redactor** (WhatsApp + guion para el top 10). Al Redactor le pedí no afirmar "no tienen web" sino "no encontré una página propia", porque eso es lo que realmente verificamos.
