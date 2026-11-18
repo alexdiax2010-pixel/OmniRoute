@@ -165,3 +165,9 @@
 - Revisó 29 prospectos de alto valor sin teléfono confiable. **Solo 7 actualizaciones, todas de confianza media:** 2 números nuevos (RYO Rehabilitación, Auto Laminado Santa Esther) y 5 confirmados en un segundo listado (Spine Center, Refaccionaria Rogelio, Servikar, Central de Transmisiones, García Maldonado).
 - **Lección clave:** los 15 dentistas sin teléfono siguen sin él. Doctoralia y WhatClinic ocultan o truncan los números **a propósito**, para cobrar al consultorio por las citas. Para ese grupo el canal es la **visita en persona** o Maps, no el buscador. Por eso están en las rutas 4 y 5 aunque no se les pueda escribir.
 - Integración con script: con confianza media el contacto sube a 8 puntos (no a 15), según la rúbrica "dudoso 5 / solo WhatsApp 8 / confirmado 15". Ninguno de estos cambia el top 10.
+
+## 2026-11-18 16:17 UTC — Termina el agente de Zonas restantes (ronda 2B)
+- 8 negocios con teléfono (2 veterinarias, 2 dentales, 2 despachos, 2 talleres). Excluyo **Hopp Taller Automotriz** por cadena; ya lo había excluido en la sesión 1.
+- Prados Tepeyac, Residencial Poniente y Rafael Sanzio: nada con teléfono. Esas colonias son más habitacionales que comerciales.
+- **Rendimiento decreciente confirmado:** la ronda 1 de la sesión 2 dio de 10 a 15 negocios por agente; esta ronda dio 8 y 7 actualizaciones de teléfono de confianza media. Ya se exprimió lo que los directorios indexados tienen. Lo siguiente debe ser trabajo de campo o Maps, no más búsquedas.
+- Lancé la verificación y puntuación de estos 7.
