@@ -23,7 +23,7 @@ export function SceneOrchestrator() {
     let cleanup: (() => void) | undefined;
 
     import("./anim/setup")
-      .then(({ setupScenes }) => setupScenes(root, () => hitRef.current()))
+      .then(({ setupScenes }) => setupScenes(root, () => hitRef.current(), () => cancelled))
       .then((fn) => {
         if (cancelled) fn();
         else cleanup = fn;

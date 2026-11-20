@@ -211,7 +211,7 @@ export function unirNotas(a: Nota[], b: Nota[]): Nota[] {
  * se conservan, y las notas se unen (las notas del CRM nunca se pierden).
  */
 export function fusionar(existente: Prospecto | null, parcial: ProspectoParcial): Prospecto {
-  if (!existente) return prospectoBase(parcial);
+  if (!existente) return prospectoBase({ ...parcial, giro: parcial.giro ?? "", whatsapp: parcial.whatsapp ?? "" });
   const r: Prospecto = { ...existente, ...parcial, id: existente.id, creado: existente.creado };
   if (parcial.notas) r.notas = unirNotas(existente.notas, parcial.notas);
   return r;

@@ -435,7 +435,7 @@ export function ExampleShowcase({ variante }: { variante: VarianteEjemplo }) {
         </svg>
       </div>
       <figcaption className={`muted ${s.ejemploPie}`}>
-        <strong>Ejemplo de diseño:</strong> {etiqueta.toLowerCase()}. El negocio es ficticio; tu boceto lo hacemos con tu
+        <strong>Ejemplo de diseño:</strong> {etiqueta}. El negocio es ficticio; tu boceto lo hacemos con tu
         nombre, tus fotos y tus datos reales.
       </figcaption>
     </figure>

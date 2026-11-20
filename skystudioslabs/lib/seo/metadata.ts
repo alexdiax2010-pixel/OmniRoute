@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SITIO } from "@/config/sitio";
 import { obtenerPagina, type PaginaSEO } from "./paginas";
 import { breadcrumb, faqPage, service, type JsonLdObjeto } from "./schema";
-import { siteUrl } from "./url";
+import { IMAGEN_OG, siteUrl } from "./url";
 
 /** Metadata única por página SEO (title, description, canonical, Open Graph). */
 export function metadataSEO(slug: string): Metadata {
@@ -19,6 +19,7 @@ export function metadataSEO(slug: string): Metadata {
       url: ruta,
       title: `${p.titulo} | ${SITIO.nombre}`,
       description: p.descripcion,
+      images: [IMAGEN_OG],
     },
   };
 }

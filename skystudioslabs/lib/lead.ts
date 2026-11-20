@@ -37,7 +37,7 @@ export const esquemaLead = z.object({
   origen: z
     .string()
     .optional()
-    .transform((s) => (s ?? "").replace(/[^\p{L}\p{N} _/.-]/gu, "").slice(0, 60).trim() || "sitio"),
+    .transform((s) => (s ?? "").replace(/[^\p{L}\p{N} _/.:-]/gu, "").slice(0, 60).trim() || "sitio"),
 });
 
 export type Lead = z.infer<typeof esquemaLead>;

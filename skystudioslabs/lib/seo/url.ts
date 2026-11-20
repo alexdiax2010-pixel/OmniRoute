@@ -24,3 +24,12 @@ export function protocoloPara(root: string): "http" | "https" {
 export function urlSubdominio(slug: string, root: string): string {
   return `${protocoloPara(root)}://${slug}.${root}`;
 }
+
+/** Imagen OG por defecto (app/opengraph-image.tsx). Se declara explícita porque un openGraph
+ *  definido en un layout/página reemplaza la imagen heredada del archivo. */
+export const IMAGEN_OG = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: "Sky Studios Labs — Páginas que venden, en Zapopan y Guadalajara",
+};

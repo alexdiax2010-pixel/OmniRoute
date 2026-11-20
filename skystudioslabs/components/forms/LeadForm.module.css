@@ -1,0 +1,35 @@
+/* SOLO 3 tamaños de fuente: var(--fs-display) / var(--fs-title) / var(--fs-body) */
+.form { display: grid; gap: 14px; width: 100%; max-width: 560px; text-align: left; }
+.campo { display: grid; gap: 6px; }
+.label { font-size: var(--fs-body); font-weight: 700; }
+.input {
+  width: 100%;
+  min-height: 52px;
+  background: var(--c-bg-2);
+  color: var(--c-text);
+  border: 1px solid var(--c-line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: var(--fs-body);
+  font-family: inherit;
+}
+.input:focus { border-color: var(--c-orange); outline: none; }
+.input[aria-invalid="true"] { border-color: var(--c-ember); }
+.ayuda { font-size: var(--fs-body); color: var(--c-muted); }
+.errorCampo { font-size: var(--fs-body); color: var(--c-ember); }
+.trampa { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.btn {
+  min-height: 56px;
+  border: 0;
+  border-radius: 999px;
+  font-size: var(--fs-body);
+  font-weight: 800;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--c-ember), var(--c-orange));
+  color: #140700;
+  box-shadow: 0 10px 40px -10px rgba(255, 74, 28, 0.7);
+}
+.btn:disabled { opacity: 0.6; cursor: default; }
+.estado { font-size: var(--fs-body); min-height: 1.5em; }
+.ok { color: var(--c-ok); font-weight: 700; }
+.error { color: var(--c-ember); }

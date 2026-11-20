@@ -28,7 +28,14 @@ const BUILDERS: Record<string, (kit: Kit, section: HTMLElement) => void> = {
   cierre: buildCierre,
 };
 
-export async function setupScenes(root: HTMLElement, onScene: (name: string) => void): Promise<() => void> {
+/** Instancia activa: evita que la limpieza de una instancia vieja (StrictMode) borre las marcas de la nueva. */
+let activeToken = 0;
+
+export async function setupScenes(
+  root: HTMLElement,
+  onScene: (name: string) => void,
+  isCancelled: () => boolean = () => false
+): Promise<() => void> {
   const [{ gsap }, { ScrollTrigger }, { SplitText }, { default: Lenis }] = await Promise.all([
     import("gsap"),
     import("gsap/ScrollTrigger"),
@@ -41,6 +48,9 @@ export async function setupScenes(root: HTMLElement, onScene: (name: string) => 
   } catch {
     /* sin Font Loading API: seguimos */
   }
+
+  if (isCancelled()) return () => {};
+  const token = ++activeToken;
 
   gsap.registerPlugin(ScrollTrigger, SplitText);
   const html = document.documentElement;
@@ -111,24 +121,23 @@ export async function setupScenes(root: HTMLElement, onScene: (name: string) => 
   ScrollTrigger.refresh();
   html.dataset.animReady = "1";
 
-  // Si cambia el layout por carga tardía (imágenes, formulario), recalcular pins.
-  const ro = new ResizeObserver(() => ScrollTrigger.refresh());
-  let first = true;
-  const roTarget = root;
-  const roWrap = new ResizeObserver(() => {
-    if (first) {
-      first = false;
-      return;
+  // Si cambia la altura del home (fuentes, formulario que carga después), recalcular pins.
+  let lastH = root.offsetHeight;
+  const ro = new ResizeObserver(() => {
+    const h = root.offsetHeight;
+    if (Math.abs(h - lastH) > 4) {
+      lastH = h;
+      ScrollTrigger.refresh();
     }
-    ro.disconnect();
   });
-  roWrap.disconnect();
+  ro.observe(root);
 
   return () => {
     ro.disconnect();
     mm.revert();
-    html.classList.remove("js-anim");
-    delete html.dataset.animReady;
-    void roTarget;
+    if (token === activeToken) {
+      html.classList.remove("js-anim");
+      delete html.dataset.animReady;
+    }
   };
 }
