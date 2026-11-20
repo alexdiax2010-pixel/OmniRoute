@@ -1,0 +1,133 @@
+/* ==========================================================================
+   Sky Studios Labs — tokens de diseño
+   REGLA: exactamente 3 tamaños de fuente. Usa SOLO var(--fs-display),
+   var(--fs-title) y var(--fs-body). (Lo verifica tests/unit/tipografia.test.ts)
+   ========================================================================== */
+:root {
+  --fs-display: clamp(64px, 12vw, 168px);
+  --fs-title: 44px;
+  --fs-body: 18px;
+
+  --c-bg: #050505;
+  --c-bg-2: #0d0d0f;
+  --c-surface: #141417;
+  --c-line: #26262b;
+  --c-text: #f4f1ec;
+  --c-muted: #a8a39b;
+  --c-ember: #ff4a1c;     /* rojo brasa */
+  --c-orange: #ff8a2a;    /* naranja */
+  --c-electric: #2f6bff;  /* azul eléctrico */
+  --c-electric-2: #7fa6ff;
+  --c-ok: #3ddc84;
+
+  --glow-ember: radial-gradient(closest-side, rgba(255, 74, 28, 0.55), rgba(255, 138, 42, 0.18) 55%, transparent 100%);
+  --glow-electric: radial-gradient(closest-side, rgba(47, 107, 255, 0.5), rgba(47, 107, 255, 0.12) 55%, transparent 100%);
+
+  --radius: 14px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --maxw: 1200px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: dark;
+}
+
+@media (max-width: 640px) {
+  :root { --fs-title: 32px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote { margin: 0; }
+/* Todos los encabezados heredan uno de los 3 tamaños: nunca tamaños del navegador. */
+h1, h2, h3, h4, h5, h6 { font-size: var(--fs-title); font-weight: inherit; line-height: 1.05; }
+small, button, input, select, textarea, label, td, th { font-size: var(--fs-body); font-family: inherit; }
+img, svg, video, canvas { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--c-orange); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- Tipografía de marca ---------- */
+.t-display {
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: var(--fs-display);
+  line-height: 0.88;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+.t-title {
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: var(--fs-title);
+  line-height: 1.02;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.t-body { font-size: var(--fs-body); }
+.muted { color: var(--c-muted); }
+
+/* Highlight de marca: 1–2 palabras clave en rojo/naranja e itálica */
+.hl {
+  font-style: italic;
+  color: var(--c-ember);
+  background: linear-gradient(90deg, var(--c-ember), var(--c-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-right: 0.06em;
+}
+.hl--blue { background: linear-gradient(90deg, var(--c-electric), var(--c-electric-2)); -webkit-background-clip: text; background-clip: text; }
+
+/* ---------- Máscaras para revelados ---------- */
+.mask-line { display: block; overflow: hidden; padding-bottom: 0.06em; }
+.mask-line > * { display: inline-block; will-change: transform; }
+
+/* ---------- Layout ---------- */
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: clamp(64px, 10vw, 140px) 0; position: relative; }
+.stack > * + * { margin-top: 24px; }
+.grid { display: grid; gap: 24px; }
+@media (min-width: 800px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-2 { grid-template-columns: repeat(2, 1fr); } .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+
+.card { background: var(--c-surface); border: 1px solid var(--c-line); border-radius: var(--radius); padding: 28px; }
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 14px 26px; border-radius: 999px; border: 1px solid transparent;
+  font-weight: 700; text-decoration: none; cursor: pointer; line-height: 1;
+  transition: transform 0.2s var(--ease-out), background 0.2s, box-shadow 0.2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: linear-gradient(90deg, var(--c-ember), var(--c-orange)); color: #140700; box-shadow: 0 10px 40px -10px rgba(255, 74, 28, 0.7); }
+.btn-ghost { background: transparent; color: var(--c-text); border-color: var(--c-line); }
+.btn-wa { background: #25d366; color: #04210f; }
+
+/* ---------- Marcadores de contenido pendiente ---------- */
+.placeholder {
+  display: inline-block; border: 1px dashed var(--c-orange); color: var(--c-orange);
+  padding: 2px 10px; border-radius: 6px; font-family: ui-monospace, monospace;
+}
+
+/* ---------- Brillos ---------- */
+.glow { position: absolute; pointer-events: none; border-radius: 50%; filter: blur(10px); }
+.glow--ember { background: var(--glow-ember); }
+.glow--electric { background: var(--glow-electric); }
+@keyframes breathe { 0%, 100% { opacity: 0.65; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+.glow--breathe { animation: breathe 6s ease-in-out infinite; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.skip-link { position: absolute; left: 16px; top: -100px; z-index: 1000; background: var(--c-orange); color: #000; padding: 12px 18px; border-radius: 8px; }
+.skip-link:focus { top: 16px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
