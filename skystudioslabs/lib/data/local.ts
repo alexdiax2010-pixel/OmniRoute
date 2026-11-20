@@ -2,8 +2,10 @@ import "server-only";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
-import type { Repo, NuevoProspecto } from "./repo";
+import type { Repo } from "./repo";
+import { prospectoBase } from "./base";
 import type { Prospecto, Sitio, SolicitudCambio, Nota } from "@/lib/types";
+import { notaPortal } from "@/lib/crm/notas";
 
 type DB = {
   prospectos: Prospecto[];
@@ -50,40 +52,8 @@ function mutar<T>(fn: (db: DB) => T | Promise<T>): Promise<T> {
 
 const ahora = () => new Date().toISOString();
 
-export function prospectoBase(p: NuevoProspecto): Prospecto {
-  const t = ahora();
-  return {
-    id: p.id ?? randomUUID(),
-    nombre: p.nombre,
-    giro: p.giro ?? "",
-    categoria: p.categoria ?? "",
-    colonia: p.colonia ?? "",
-    direccion: p.direccion ?? "",
-    telefono: p.telefono ?? "",
-    whatsapp: p.whatsapp ?? "",
-    puntaje: p.puntaje ?? 0,
-    razon: p.razon ?? "",
-    alertas: p.alertas ?? [],
-    top10: p.top10 ?? false,
-    etapa: p.etapa ?? "Nuevo",
-    seguimiento: p.seguimiento ?? null,
-    mensaje: p.mensaje ?? "",
-    guion: p.guion ?? "",
-    notas: p.notas ?? [],
-    boceto: p.boceto ?? "",
-    fuente: p.fuente ?? "",
-    sesion: p.sesion ?? "",
-    paquete: p.paquete ?? null,
-    monto: p.monto ?? null,
-    mensualidad: p.mensualidad ?? null,
-    diaCobro: p.diaCobro ?? null,
-    servicios: p.servicios ?? [],
-    fechaGanado: p.fechaGanado ?? null,
-    email: p.email ?? null,
-    creado: p.creado ?? t,
-    actualizado: t,
-  };
-}
+/** Re-exportado por compatibilidad (antes vivía aquí). */
+export { prospectoBase };
 
 export const localRepo: Repo = {
   async listarProspectos() {
@@ -161,6 +131,12 @@ export const localRepo: Repo = {
     return mutar((db) => {
       const fila: SolicitudCambio = { ...s, id: randomUUID(), creado: ahora() };
       db.solicitudes.push(fila);
+      // Igual que el trigger de Supabase: la solicitud aparece como nota en el CRM.
+      const p = db.prospectos.find((x) => x.id === s.prospecto_id);
+      if (p) {
+        p.notas = [...p.notas, { t: fila.creado, txt: notaPortal(s.texto, s.foto) }];
+        p.actualizado = fila.creado;
+      }
       return fila;
     });
   },

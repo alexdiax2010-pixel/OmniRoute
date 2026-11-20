@@ -1,0 +1,71 @@
+:root {
+  --tinta: #0f172a;
+  --texto: #334155;
+  --suave: #64748b;
+  --fondo: #f8fafc;
+  --acento: #ea580c;
+  --acento-hover: #c2410c;
+  --borde: #e2e8f0;
+  --radio: 14px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+}
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { color: var(--tinta); line-height: 1.15; margin: 0 0 .6em; }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -.02em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+a { color: var(--acento); }
+.contenedor { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+.aviso { margin: 0; padding: 6px 16px; text-align: center; font-size: .8rem; background: #fef3c7; color: #78350f; }
+
+.cabecera { position: sticky; top: 0; z-index: 10; background: rgba(248, 250, 252, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--borde); }
+.cabecera__fila { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; flex-wrap: wrap; }
+.logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; color: var(--tinta); text-decoration: none; }
+.logo__marca { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--acento); color: #fff; font-size: .85rem; }
+.menu { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.menu a:not(.boton) { color: var(--texto); text-decoration: none; font-weight: 500; }
+.menu a:not(.boton):hover { color: var(--acento); }
+
+.boton { display: inline-block; padding: 12px 22px; border-radius: 999px; background: var(--acento); color: #fff; font-weight: 700; text-decoration: none; transition: background .2s, transform .2s; }
+.boton:hover { background: var(--acento-hover); transform: translateY(-1px); }
+.boton--chico { padding: 8px 16px; font-size: .9rem; }
+.boton--borde { background: transparent; color: var(--tinta); box-shadow: inset 0 0 0 2px var(--tinta); }
+.boton--borde:hover { background: var(--tinta); color: #fff; }
+
+.heroe { padding: clamp(40px, 8vw, 96px) 0; }
+.heroe__rejilla { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+.etiqueta { display: inline-block; margin: 0 0 16px; padding: 4px 12px; border-radius: 999px; background: #ffedd5; color: #9a3412; font-size: .85rem; font-weight: 600; }
+.heroe__texto { font-size: 1.1rem; max-width: 34em; }
+.heroe__acciones { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.heroe__imagen { margin: 0; border-radius: var(--radio); overflow: hidden; box-shadow: 0 20px 50px -20px rgba(15, 23, 42, .45); }
+
+.seccion { padding: clamp(48px, 7vw, 88px) 0; }
+.seccion--oscura { background: var(--tinta); color: #cbd5e1; }
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.tarjeta { background: #fff; border: 1px solid var(--borde); border-radius: var(--radio); padding: 22px; }
+.tarjeta p { margin: 0 0 .5em; }
+.precio { color: var(--acento); font-weight: 700; }
+
+.ventajas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: center; }
+.ventajas strong { display: block; font-size: clamp(2rem, 5vw, 3rem); color: #fff; }
+
+.dos-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.horario { list-style: none; padding: 0; margin: 0; }
+.horario li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--borde); }
+.contacto { background: #fff; border: 1px solid var(--borde); border-radius: var(--radio); padding: 28px; }
+.contacto__dato { font-weight: 600; color: var(--tinta); }
+
+.pie { padding: 28px 0; border-top: 1px solid var(--borde); color: var(--suave); font-size: .9rem; text-align: center; }
+
+@media (max-width: 800px) {
+  .heroe__rejilla, .dos-columnas { grid-template-columns: 1fr; }
+  .ventajas { grid-template-columns: 1fr; }
+  .menu { gap: 12px; font-size: .95rem; }
+}

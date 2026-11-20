@@ -13,6 +13,7 @@
     "test:e2e": "playwright test --trace off",
     "check:images": "tsx scripts/check-images.ts",
     "sitio:nuevo": "tsx --conditions=react-server scripts/sitio-nuevo.ts",
+    "sembrar:demo": "tsx --conditions=react-server scripts/sembrar-demo.ts",
     "crm:importar": "tsx --conditions=react-server scripts/crm-importar.ts",
     "crm:respaldo": "tsx --conditions=react-server scripts/crm-respaldo.ts"
   },

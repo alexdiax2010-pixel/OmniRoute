@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taller Demo — ejemplo de diseño</title>
+  <meta name="description" content="Sitio de demostración de un taller mecánico ficticio. Ejemplo de diseño, no es un negocio real.">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <p class="aviso">Sitio de demostración: “Taller Demo” es un negocio ficticio creado como ejemplo de diseño.</p>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="logo" href="#inicio"><span class="logo__marca">TD</span> Taller Demo</a>
+      <nav class="menu" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#por-que">Por qué nosotros</a>
+        <a href="#horario">Horario</a>
+        <a class="boton boton--chico" href="#contacto">Agendar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="heroe">
+      <div class="contenedor heroe__rejilla">
+        <div>
+          <p class="etiqueta">Mecánica general · Frenos · Afinación</p>
+          <h1>Tu coche en buenas manos, sin sorpresas en la cuenta.</h1>
+          <p class="heroe__texto">Diagnóstico claro, presupuesto antes de trabajar y refacciones con garantía. Te mandamos fotos del avance por WhatsApp.</p>
+          <div class="heroe__acciones">
+            <a class="boton" href="#contacto">Agendar revisión</a>
+            <a class="boton boton--borde" href="#servicios">Ver servicios</a>
+          </div>
+        </div>
+        <figure class="heroe__imagen">
+          <img src="img/taller.webp" width="1200" height="800" alt="Ilustración de un auto naranja junto a una llave de tuercas">
+        </figure>
+      </div>
+    </section>
+
+    <section id="servicios" class="seccion">
+      <div class="contenedor">
+        <h2>Servicios</h2>
+        <div class="tarjetas">
+          <article class="tarjeta"><h3>Afinación</h3><p>Bujías, filtros, aceite y escaneo computarizado.</p><p class="precio">desde $1,200</p></article>
+          <article class="tarjeta"><h3>Frenos</h3><p>Balatas, discos y líquido. Revisión sin costo.</p><p class="precio">desde $900</p></article>
+          <article class="tarjeta"><h3>Suspensión</h3><p>Amortiguadores, rótulas y alineación.</p><p class="precio">cotización</p></article>
+          <article class="tarjeta"><h3>Diagnóstico</h3><p>¿Se encendió la luz de “check engine”? La revisamos hoy.</p><p class="precio">$350</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="por-que" class="seccion seccion--oscura">
+      <div class="contenedor ventajas">
+        <div><strong>15+</strong><span>años de experiencia (ficticios)</span></div>
+        <div><strong>3 meses</strong><span>de garantía en mano de obra</span></div>
+        <div><strong>0</strong><span>cargos sin tu autorización</span></div>
+      </div>
+    </section>
+
+    <section id="horario" class="seccion">
+      <div class="contenedor dos-columnas">
+        <div>
+          <h2>Horario</h2>
+          <ul class="horario">
+            <li><span>Lunes a viernes</span><span>8:30 – 18:30</span></li>
+            <li><span>Sábado</span><span>9:00 – 14:00</span></li>
+            <li><span>Domingo</span><span>Cerrado</span></li>
+          </ul>
+        </div>
+        <div id="contacto" class="contacto">
+          <h2>Agenda tu cita</h2>
+          <p>Este es un sitio de ejemplo: los datos de contacto no son reales.</p>
+          <p class="contacto__dato">Av. Ejemplo 123, Zapopan, Jal.</p>
+          <p class="contacto__dato">WhatsApp: 33 0000 0000</p>
+          <a class="boton" href="#inicio">Volver arriba</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">© Taller Demo — ejemplo de diseño. Negocio ficticio.</div>
+  </footer>
+</body>
+</html>

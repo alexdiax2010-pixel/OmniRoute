@@ -65,9 +65,9 @@ export function rutaReescrita(destino: Destino, pathname: string): string | null
       return `/propuestas${p}`;
     }
     case "admin":
-      return pathname.startsWith("/admin") || pathname.startsWith("/api/") ? null : `/admin${p}`;
+      return pathname.startsWith("/admin") || pathname.startsWith("/api/") || pathname.startsWith("/auth/") ? null : `/admin${p}`;
     case "portal":
-      return pathname.startsWith("/portal") || pathname.startsWith("/api/") ? null : `/portal${p}`;
+      return pathname.startsWith("/portal") || pathname.startsWith("/api/") || pathname.startsWith("/auth/") ? null : `/portal${p}`;
     case "dominio-propio":
       return `/sitios/_d/${destino.host}${p}`;
     case "publico": {

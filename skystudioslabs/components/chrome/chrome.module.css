@@ -1,0 +1,212 @@
+/* Chrome del sitio público: header, footer y botón flotante de WhatsApp.
+   Tipografía: sólo var(--fs-display | --fs-title | --fs-body). */
+
+/* ---------- Header ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(5, 5, 5, 0.82);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--c-line);
+}
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 72px;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--font-display), Impact, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-right: auto;
+}
+.logoSol {
+  width: 26px;
+  height: 26px;
+  flex: none;
+}
+.navDesktop { display: none; }
+.navLista {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navLink,
+.summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--c-text);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.navLink:hover,
+.summary:hover { background: var(--c-surface); }
+.summary { list-style: none; }
+.summary::-webkit-details-marker { display: none; }
+.summary::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.2s var(--ease-out);
+}
+details[open] > .summary::after { transform: translateY(2px) rotate(-135deg); }
+.desplegable { position: relative; }
+.panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 280px;
+  padding: 10px;
+  background: var(--c-bg-2);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.8);
+}
+.panelLista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.panelLink {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.panelLink:hover { background: var(--c-surface); color: var(--c-orange); }
+.cta { white-space: nowrap; }
+.ctaHeader { display: none; }
+
+/* Menú móvil */
+.movil { position: static; }
+.movilSummary { border: 1px solid var(--c-line); }
+.movilPanel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  max-height: calc(100dvh - 72px);
+  overflow-y: auto;
+  padding: 20px var(--gutter) 32px;
+  background: var(--c-bg);
+  border-bottom: 1px solid var(--c-line);
+}
+.movilGrupo + .movilGrupo { margin-top: 20px; }
+.movilTitulo {
+  color: var(--c-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.movilCta { margin-top: 24px; width: 100%; }
+
+@media (min-width: 480px) {
+  .ctaHeader { display: inline-flex; }
+}
+@media (min-width: 1000px) {
+  .navDesktop { display: block; }
+  .movil { display: none; }
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--c-line);
+  background: var(--c-bg-2);
+  padding: 72px 0 120px;
+}
+.footerGlow {
+  width: 520px;
+  height: 520px;
+  left: -160px;
+  bottom: -320px;
+  opacity: 0.5;
+}
+.footerGrid {
+  position: relative;
+  display: grid;
+  gap: 40px;
+}
+@media (min-width: 720px) { .footerGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .footerGrid { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
+.footerMarca > * + * { margin-top: 16px; }
+.footerTitulo {
+  color: var(--c-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+.footerLista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footerLista li + li { margin-top: 8px; }
+.footerLista a { text-decoration: none; }
+.footerLista a:hover { color: var(--c-orange); text-decoration: underline; }
+.footerBase {
+  position: relative;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--c-line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  justify-content: space-between;
+  color: var(--c-muted);
+}
+
+/* ---------- Botón flotante de WhatsApp ---------- */
+.fab {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #04210f;
+  box-shadow: 0 12px 32px -8px rgba(37, 211, 102, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s var(--ease-out);
+}
+.fab:hover { transform: scale(1.06); }
+.fabIcono { width: 32px; height: 32px; }
+.fab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fab::before { animation: fabPulso 2.8s ease-out infinite; }
+}
+@keyframes fabPulso {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
