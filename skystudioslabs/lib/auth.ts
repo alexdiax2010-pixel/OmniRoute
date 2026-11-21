@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { cookies, headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { redirect, unstable_rethrow } from "next/navigation";
 import type { Sesion } from "@/lib/types";
 import { getRepo, supabaseConfigurado } from "@/lib/data";
 import {
@@ -99,6 +99,7 @@ export const obtenerSesion = cache(async (): Promise<Sesion | null> => {
     if (modoLocal()) return await sesionLocal();
     return null;
   } catch (e) {
+    unstable_rethrow(e); // deja pasar los errores internos de Next (render dinámico, redirect)
     console.error("[auth] no se pudo leer la sesión", e instanceof Error ? e.message : "");
     return null;
   }

@@ -1,5 +1,5 @@
 /** Escenas 4a–4d: web, maps, redes, chatbot. */
-import { $, $$, CHAIN, type Kit, cameraIn, cameraOut, glowOn, maskReveal, rise } from "./core";
+import { $, $$, CHAIN, type Kit, cameraIn, cameraOut, glowOn, maskReveal, rise, tokenColor } from "./core";
 
 /** Título + textos de la columna de copy, en cadena. */
 function intro(kit: Kit, tl: gsap.core.Timeline, section: HTMLElement) {
@@ -149,7 +149,7 @@ export function buildChatbot(kit: Kit, section: HTMLElement, tl: gsap.core.Timel
   tl.fromTo(proxy, { m: START }, { m: END, duration: 1.6, ease: "power1.inOut", immediateRender: false, onUpdate: render }, CHAIN);
   if (minHand) tl.fromTo(minHand, { rotation: START * 6, svgOrigin: "50 50" }, { rotation: END * 6, svgOrigin: "50 50", duration: 1.6, ease: "power1.inOut" }, "<");
   if (hourHand) tl.fromTo(hourHand, { rotation: START * 0.5, svgOrigin: "50 50" }, { rotation: END * 0.5, svgOrigin: "50 50", duration: 1.6, ease: "power1.inOut" }, "<");
-  if (clock) tl.to(clock, { filter: "drop-shadow(0 0 30px rgba(47,107,255,0.9))", duration: 0.4 }, CHAIN);
+  if (clock) tl.to(clock, { filter: `drop-shadow(0 0 30px ${tokenColor("--c-electric", "#2f6bff")})`, duration: 0.4 }, CHAIN);
   cameraOut(tl, camera);
 
   if (bubbles.length) {

@@ -154,6 +154,17 @@ fecha indicada (30 días por defecto).
 
 ---
 
+## Prototipos de paleta
+
+La misma portada (mismas escenas y animaciones) con otras paletas, para comparar:
+
+- `/prototipo/negro-plata`: Black + Silver (`#0D0D0D #2B2B2B #8E8E8E #E6E6E6`)
+- `/prototipo/azul-marino`: Navy + White (`#0F1E3A #1E2F4F #A7B6D0 #FFFFFF`)
+
+Llevan `noindex`, no están en el sitemap y tienen una franja para cambiar entre versiones.
+Las paletas viven en `lib/temas.ts`. Para adoptar una como definitiva, copia sus valores a
+`:root` en `app/globals.css`.
+
 ## Estructura
 
 ```

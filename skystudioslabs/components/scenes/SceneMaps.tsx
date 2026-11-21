@@ -43,8 +43,8 @@ export function SceneMaps() {
             </div>
             <div className={s.map} data-anim>
               <svg viewBox="0 0 400 300" aria-hidden="true" focusable="false">
-                <rect width="400" height="300" fill="#0a1020" />
-                <g fill="#101a33">
+                <rect width="400" height="300" style={{ fill: "var(--k-0a1020, #0a1020)" }} />
+                <g style={{ fill: "var(--k-101a33, #101a33)" }}>
                   <rect x="20" y="20" width="90" height="70" rx="6" />
                   <rect x="130" y="20" width="110" height="70" rx="6" />
                   <rect x="260" y="20" width="120" height="70" rx="6" />
@@ -55,7 +55,7 @@ export function SceneMaps() {
                   <rect x="130" y="210" width="110" height="70" rx="6" />
                   <rect x="260" y="210" width="120" height="70" rx="6" />
                 </g>
-                <path d="M300 225 q30 -10 60 10 l0 35 q-30 10 -60 -5 z" fill="#0f2b22" />
+                <path d="M300 225 q30 -10 60 10 l0 35 q-30 10 -60 -5 z" style={{ fill: "var(--k-0f2b22, #0f2b22)" }} />
                 <path data-street className={s.street} d="M0 100 H400" pathLength={1} />
                 <path data-street className={s.street} d="M0 200 H400" pathLength={1} />
                 <path data-street className={s.street} d="M120 0 V300" pathLength={1} />
@@ -67,8 +67,8 @@ export function SceneMaps() {
                 <span className={s.ring} />
                 <span className={s.ring} />
                 <svg viewBox="0 0 48 48" focusable="false">
-                  <path d="M24 2C14 2 7 9.6 7 19c0 12.5 17 27 17 27s17-14.5 17-27C41 9.6 34 2 24 2z" fill="#ff4a1c" />
-                  <circle cx="24" cy="19" r="7" fill="#fff6e8" />
+                  <path d="M24 2C14 2 7 9.6 7 19c0 12.5 17 27 17 27s17-14.5 17-27C41 9.6 34 2 24 2z" style={{ fill: "var(--c-ember)" }} />
+                  <circle cx="24" cy="19" r="7" style={{ fill: "var(--k-fff6e8, #fff6e8)" }} />
                 </svg>
               </div>
               <span className={s.pinLabel} data-pin-label>

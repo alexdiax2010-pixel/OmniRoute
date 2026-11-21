@@ -19,7 +19,7 @@
   font-size: var(--fs-body);
   cursor: pointer;
   background: linear-gradient(90deg, var(--c-ember), var(--c-orange));
-  color: #140700;
+  color: var(--k-140700, #140700);
 }
 .btn:disabled { opacity: 0.6; }
 .msg { font-size: var(--fs-body); }

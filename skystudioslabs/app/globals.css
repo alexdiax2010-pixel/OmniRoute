@@ -107,7 +107,7 @@ a { color: inherit; }
   transition: transform 0.2s var(--ease-out), background 0.2s, box-shadow 0.2s;
 }
 .btn:hover { transform: translateY(-2px); }
-.btn-primary { background: linear-gradient(90deg, var(--c-ember), var(--c-orange)); color: #140700; box-shadow: 0 10px 40px -10px rgba(255, 74, 28, 0.7); }
+.btn-primary { background: linear-gradient(90deg, var(--c-ember), var(--c-orange)); color: var(--k-140700, #140700); box-shadow: 0 10px 40px -10px rgba(var(--k-rgb-255-74-28, 255,74,28), 0.7); }
 .btn-ghost { background: transparent; color: var(--c-text); border-color: var(--c-line); }
 .btn-wa { background: #25d366; color: #04210f; }
 

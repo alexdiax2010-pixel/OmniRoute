@@ -26,8 +26,8 @@
   font-weight: 800;
   cursor: pointer;
   background: linear-gradient(90deg, var(--c-ember), var(--c-orange));
-  color: #140700;
-  box-shadow: 0 10px 40px -10px rgba(255, 74, 28, 0.7);
+  color: var(--k-140700, #140700);
+  box-shadow: 0 10px 40px -10px rgba(var(--k-rgb-255-74-28, 255,74,28), 0.7);
 }
 .btn:disabled { opacity: 0.6; cursor: default; }
 .estado { font-size: var(--fs-body); min-height: 1.5em; }

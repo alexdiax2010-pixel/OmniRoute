@@ -4,7 +4,7 @@
  * - No tiene bucle propio: solo dibuja cuando cambia el progreso (lo mueve el scroll) y
  *   el canvas está visible, así que fuera de pantalla queda en pausa por construcción.
  */
-import { offsetWithin } from "./core";
+import { offsetWithin, tokenColor } from "./core";
 
 export interface ParticleText {
   setProgress(p: number): void;
@@ -27,6 +27,8 @@ export function createParticleText(
   let data = new Float32Array(0);
   let count = 0;
   const ctx = canvas.getContext("2d");
+  const colorA = tokenColor("--c-ember", "#ff4a1c");
+  const colorB = tokenColor("--c-orange", "#ff8a2a");
 
   function init() {
     if (!ctx) return;
@@ -91,7 +93,7 @@ export function createParticleText(
       const e = 1 - Math.pow(1 - local, 3);
       const x = data[j] + (data[j + 2] - data[j]) * e;
       const y = data[j + 1] + (data[j + 3] - data[j + 1]) * e;
-      ctx.fillStyle = x / w < 0.5 ? "#ff4a1c" : "#ff8a2a";
+      ctx.fillStyle = x / w < 0.5 ? colorA : colorB;
       ctx.globalAlpha = 0.35 + 0.65 * e;
       ctx.fillRect(x, y, 2, 2);
     }

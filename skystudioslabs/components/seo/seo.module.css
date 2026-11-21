@@ -67,8 +67,8 @@
   position: relative;
   border-radius: 20px;
   padding: clamp(8px, 1.5vw, 16px);
-  background: linear-gradient(140deg, rgba(255, 74, 28, 0.45), rgba(38, 38, 43, 0.9) 40%, rgba(47, 107, 255, 0.35));
-  box-shadow: 0 40px 120px -40px rgba(255, 74, 28, 0.45);
+  background: linear-gradient(140deg, rgba(var(--k-rgb-255-74-28, 255,74,28), 0.45), rgba(var(--k-rgb-38-38-43, 38,38,43), 0.9) 40%, rgba(var(--k-rgb-47-107-255, 47,107,255), 0.35));
+  box-shadow: 0 40px 120px -40px rgba(var(--k-rgb-255-74-28, 255,74,28), 0.45);
 }
 .ejemploSvg { width: 100%; height: auto; border-radius: 14px; }
 .ejemploSello {
@@ -79,7 +79,7 @@
   padding: 4px 14px;
   border-radius: 999px;
   background: var(--c-orange);
-  color: #140700;
+  color: var(--k-140700, #140700);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -123,7 +123,7 @@
   height: 2px;
   background: linear-gradient(90deg, var(--c-ember), var(--c-orange));
 }
-.nota { margin-top: 32px; border-color: rgba(255, 138, 42, 0.4); }
+.nota { margin-top: 32px; border-color: rgba(var(--k-rgb-255-138-42, 255,138,42), 0.4); }
 
 /* ---------- Proceso ---------- */
 .pasos { display: grid; gap: 20px; counter-reset: paso; }
@@ -161,8 +161,8 @@
 }
 .precioDestacado {
   border-color: var(--c-ember);
-  background: linear-gradient(180deg, rgba(255, 74, 28, 0.12), var(--c-surface) 45%);
-  box-shadow: 0 30px 80px -40px rgba(255, 74, 28, 0.6);
+  background: linear-gradient(180deg, rgba(var(--k-rgb-255-74-28, 255,74,28), 0.12), var(--c-surface) 45%);
+  box-shadow: 0 30px 80px -40px rgba(var(--k-rgb-255-74-28, 255,74,28), 0.6);
 }
 .precioSello {
   position: absolute;
@@ -171,7 +171,7 @@
   padding: 2px 12px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--c-ember), var(--c-orange));
-  color: #140700;
+  color: var(--k-140700, #140700);
   font-weight: 700;
 }
 .precioMonto { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }

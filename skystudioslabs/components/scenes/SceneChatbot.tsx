@@ -37,14 +37,14 @@ export function SceneChatbot() {
                       y1="8"
                       x2="50"
                       y2="13"
-                      stroke="#2f6bff"
+                      style={{ stroke: "var(--c-electric)" }}
                       strokeWidth="2"
                       transform={`rotate(${i * 30} 50 50)`}
                     />
                   ))}
                   <line data-hand-hour className={s.hand} x1="50" y1="50" x2="50" y2="28" strokeWidth="4" transform="rotate(90 50 50)" />
                   <line data-hand-min className={`${s.hand} ${s.handMin}`} x1="50" y1="50" x2="50" y2="16" strokeWidth="3" />
-                  <circle cx="50" cy="50" r="3" fill="#f4f1ec" />
+                  <circle cx="50" cy="50" r="3" style={{ fill: "var(--c-text)" }} />
                 </svg>
                 <p className={`t-title ${s.digital}`}>
                   <time data-clock dateTime="03:00">
