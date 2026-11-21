@@ -8,7 +8,7 @@ import { RUTAS_SEO } from "./paginas";
 import { urlSubdominio } from "./url";
 
 /** Rutas que nunca deben rastrearse en el dominio principal. */
-export const RUTAS_PRIVADAS = ["/admin", "/portal", "/api", "/propuestas", "/sitios", "/c/", "/prototipo"];
+export const RUTAS_PRIVADAS = ["/admin", "/portal", "/api", "/propuestas", "/sitios", "/c/"];
 
 /** Sólo sitios de clientes activos (nunca propuestas). */
 export function sitiosIndexables(sitios: Sitio[]): Sitio[] {

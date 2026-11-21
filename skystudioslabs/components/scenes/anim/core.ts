@@ -239,7 +239,7 @@ export function revealAll(kit: Kit, tl: gsap.core.Timeline, root: HTMLElement, p
   if (items.length) tl.add(rise(kit, items), position);
 }
 
-/** Lee un color de los tokens CSS (permite que los prototipos de paleta cambien también canvas y filtros). */
+/** Lee un color de los tokens CSS (así canvas y filtros siguen la paleta definida en globals.css). */
 export function tokenColor(nombre: string, respaldo: string): string {
   if (typeof document === "undefined") return respaldo;
   const v = getComputedStyle(document.documentElement).getPropertyValue(nombre).trim();
