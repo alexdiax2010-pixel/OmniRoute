@@ -40,7 +40,8 @@ export function professionalService(base: string = leerSiteUrl()): JsonLdObjeto 
       addressCountry: SITIO.pais,
     },
     knowsAbout: ["Diseño de páginas web", "Google Maps", "SEO local", "Redes sociales", "Chatbots de WhatsApp"],
-    ...(whatsappConfigurado ? { telephone: `+${SITIO.whatsapp}` } : {}),
+    telephone: `+${SITIO.telefono}`,
+    ...(whatsappConfigurado ? { contactPoint: { "@type": "ContactPoint", contactType: "sales", telephone: `+${SITIO.whatsapp}`, areaServed: "MX", availableLanguage: "es" } } : {}),
   };
 }
 

@@ -65,12 +65,13 @@ describe("páginas SEO", () => {
 });
 
 describe("schema.org", () => {
-  it("ProfessionalService cubre Zapopan y Guadalajara y no inventa teléfono", () => {
+  it("ProfessionalService cubre Zapopan y Guadalajara con teléfono de llamadas y WhatsApp de ventas", () => {
     const ps = professionalService(SITE);
     expect(ps["@type"]).toBe("ProfessionalService");
     expect(JSON.stringify(ps.areaServed)).toContain("Zapopan");
     expect(JSON.stringify(ps.areaServed)).toContain("Guadalajara");
-    expect(ps).not.toHaveProperty("telephone"); // el número aún es marcador
+    expect(ps.telephone).toBe("+523330282202");
+    expect(JSON.stringify(ps.contactPoint)).toContain("+524492889487");
   });
   it("FAQPage y serialización segura", () => {
     const f = faqPage([{ pregunta: "¿<script>?", respuesta: "</script>" }]);
@@ -121,5 +122,14 @@ describe("robots", () => {
     const regla = Array.isArray(r.rules) ? r.rules[0] : r.rules;
     expect(regla.disallow).toBe("/");
     expect(regla.allow).toBeUndefined();
+  });
+});
+
+describe("contacto", () => {
+  it("WhatsApp al 449 y teléfono de llamadas al 33", async () => {
+    const { linkWhatsApp, formatoTelefono, SITIO } = await import("@/config/sitio");
+    expect(linkWhatsApp("hola")).toBe("https://wa.me/524492889487?text=hola");
+    expect(formatoTelefono(SITIO.telefono)).toBe("+52 33 3028 2202");
+    expect(formatoTelefono(SITIO.whatsapp)).toBe("+52 44 9288 9487");
   });
 });
