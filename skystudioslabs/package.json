@@ -43,5 +43,8 @@
   },
   "browserslist": [
     "defaults and fully supports es6-module"
-  ]
+  ],
+  "engines": {
+    "node": ">=22"
+  }
 }
