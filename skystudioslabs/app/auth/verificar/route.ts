@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { consumirEnlaceLocal, modoLocal } from "@/lib/auth";
+import { redireccionRelativa } from "@/lib/redireccion";
 
 /** MODO LOCAL: valida el enlace mágico simulado y crea la cookie de sesión. En Supabase → 404. */
 export async function GET(request: NextRequest) {
@@ -7,7 +8,7 @@ export async function GET(request: NextRequest) {
   const destino = await consumirEnlaceLocal(request.nextUrl.searchParams.get("token"));
   if (!destino) {
     const portal = request.nextUrl.searchParams.get("a") === "portal";
-    return NextResponse.redirect(new URL(`${portal ? "/portal" : "/admin"}/login?error=enlace`, request.nextUrl));
+    return redireccionRelativa(`${portal ? "/portal" : "/admin"}/login?error=enlace`, 307);
   }
-  return NextResponse.redirect(new URL(destino, request.nextUrl), 303);
+  return redireccionRelativa(destino, 303);
 }

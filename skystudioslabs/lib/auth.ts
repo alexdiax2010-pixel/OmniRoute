@@ -50,7 +50,10 @@ export async function origenConfiable(): Promise<string> {
   const permitido =
     host === root || host === `admin.${root}` || host === `portal.${root}` || host === `www.${root}` || host === "localhost" || host === "127.0.0.1";
   if (permitido && /^[a-z0-9.:-]+$/.test(rawHost)) {
-    const proto = h.get("x-forwarded-proto")?.split(",")[0].trim() === "https" || process.env.NODE_ENV === "production" ? "https" : "http";
+    // En producción real siempre https. El modo local en `next start` (SKY_ALLOW_LOCAL_STORE=1,
+    // sólo pruebas) corre en http://localhost: ahí se respeta el protocolo de la petición.
+    const httpsForzado = process.env.NODE_ENV === "production" && !modoLocal();
+    const proto = h.get("x-forwarded-proto")?.split(",")[0].trim() === "https" || httpsForzado ? "https" : "http";
     return `${proto}://${rawHost}`;
   }
   return (process.env.NEXT_PUBLIC_SITE_URL ?? `https://${root}`).replace(/\/$/, "");
