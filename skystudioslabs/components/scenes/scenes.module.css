@@ -98,6 +98,19 @@
 }
 
 /* ---------- 1. Intro ---------- */
+/* El bloque de texto se sube para quedar por encima de la zona donde sale el sol. */
+.introCamera {
+  align-content: start;
+  padding-top: max(96px, 14svh);
+  padding-bottom: 34svh;
+}
+/* "brille" va sobre fondo oscuro, pero el sol puede pasar detrás: contorno oscuro + degradado claro. */
+.hlOnSun {
+  background: linear-gradient(90deg, #ffb347, #ffe0a3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 1px #000) drop-shadow(0 0 2px #000) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
+}
 .introContent {
   position: relative;
   z-index: 2;
@@ -195,10 +208,9 @@
 }
 @media (max-width: 767px) {
   .badge {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    margin: 8px auto 0;
+    right: 16px;
+    bottom: calc(18% + 20px);
+    width: 96px;
   }
 }
 
@@ -795,6 +807,14 @@
 }
 
 /* ---------- 5. Proceso ---------- */
+.stageProceso {
+  align-content: center;
+  grid-template-columns: minmax(0, 1fr);
+}
+.procesoBody {
+  min-width: 0;
+  width: 100%;
+}
 .procesoHead {
   width: 100%;
   max-width: var(--maxw);
@@ -806,6 +826,7 @@
 .trackViewport {
   position: relative;
   width: 100%;
+  overflow: hidden;
   padding: 0 var(--gutter) 64px;
 }
 .track {
@@ -869,7 +890,7 @@
 .sky {
   position: relative;
   width: 100%;
-  max-width: 1000px;
+  max-width: 820px;
   margin: 0 auto;
 }
 .sky svg {

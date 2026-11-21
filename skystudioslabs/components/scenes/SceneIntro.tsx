@@ -10,7 +10,7 @@ export function SceneIntro() {
   return (
     <section data-scene="intro" className={s.scene} aria-labelledby="intro-titulo">
       <div data-stage className={s.stage}>
-        <div data-cam className={s.camera}>
+        <div data-cam className={`${s.camera} ${s.introCamera}`}>
           <div className={s.bg} aria-hidden="true">
             <div data-glow className={`glow glow--ember glow--breathe ${s.glowA}`} />
             <div data-glow className={`glow glow--ember ${s.glowB}`} />
@@ -47,7 +47,7 @@ export function SceneIntro() {
             <p className="t-title">
               <span className={`mask-line ${s.maskUp}`}>
                 <span>
-                  Hacemos que tu negocio <em className="hl">brille</em> en internet
+                  Hacemos que tu negocio <em className={`hl ${s.hlOnSun}`}>brille</em> en internet
                 </span>
               </span>
             </p>

@@ -7,7 +7,7 @@
 
 | URL | Performance | Accesibilidad | Buenas prácticas | SEO | LCP | TBT | CLS |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `/` (home cinematográfica) | **94** (91–94) · antes 82 | **100** · antes 96 | 100 | 100 | 2.5 s (2.5–2.6) | 230 ms (220–280) · antes 600 | 0 |
+| `/` (home cinematográfica) | **94** (93–95) · antes 82 | **100** · antes 96 | 100 | 100 | 2.7 s (simulado) | 150 ms (120–200) · antes 600 | 0 |
 | `/paginas-web-para-dentistas` | **96** (87–96) | 100 | 100 | 100 | 2.7 s | 100 ms (70–410) | 0 |
 | `/chatbot-whatsapp` | **96** (96–97) | 100 | 100 | 100 | 2.7 s | 60 ms (60–100) | 0 |
 
@@ -19,6 +19,17 @@ npx -y lighthouse@12 http://localhost:3100/<ruta> \
   --chrome-flags="--headless=new --no-sandbox" \
   --only-categories=performance,accessibility,seo,best-practices --output=json
 ```
+
+## Home `/` — tras la QA visual (2026-11-21): performance 94 (93–95), accesibilidad 100
+
+- Cada escena tiene un timeline de **entrada** (mientras el escenario sube a pantalla) que deja
+  título, texto y protagonista completos ANTES del pin; el timeline fijado anima el resto. Pins más
+  cortos; la cámara limita su zoom/paneo para no sacar el título de pantalla; contadores por tiempo
+  (nunca se quedan en 0); reseñas y formulario se revelan completos al asomar.
+- La distancia de cada pin se reserva como espacio fijo (padding/margin) y los pins usan
+  `pinSpacing: false`, así se crean de forma perezosa sin cambiar el alto de la página.
+- El motor arranca con la primera intención del usuario (rueda/toque/tecla/scroll) o ~3 s después
+  de `load` en un momento ocioso; la intro ya se anima con CSS desde el primer frame.
 
 ## Home `/` — después de la optimización (2026-11-21): performance 94 (91–94), accesibilidad 100
 

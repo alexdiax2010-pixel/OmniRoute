@@ -8,7 +8,7 @@ import { createParticleText } from "./particles";
  * servidor y solo lo cruza un destello decorativo. Aquí va la parte atada al scroll: el sol termina
  * de salir, la cámara viaja al círculo "boceto gratis" y regresa.
  */
-export function buildIntro(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
+export function buildIntro(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline, entry: gsap.core.Timeline): void {
   const camera = $(section, "[data-cam]");
   if (!camera) return;
   const sun = $(section, "[data-sun]");
@@ -19,11 +19,13 @@ export function buildIntro(kit: Kit, section: HTMLElement, tl: gsap.core.Timelin
   cameraIn(kit, tl, camera, badge, 1.35, CHAIN, 0.55);
   if (badge) tl.to(badge, { rotation: 120, duration: 1.2, ease: "none" }, "<");
   cameraOut(tl, camera);
-  if (content) tl.to(content, { yPercent: -18, autoAlpha: 0.25, duration: 0.8 }, CHAIN);
+  // El contenido sube un poco al salir, pero sigue legible hasta que entra la siguiente escena.
+  if (content) tl.to(content, { yPercent: -10, duration: 0.6 }, "<");
+  void entry;
 }
 
 /** 2. Problema: título → buscador escribe → resultados pasan volando → "¿Y tu negocio? No aparece." */
-export function buildProblema(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
+export function buildProblema(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline, entry: gsap.core.Timeline): void {
   const { gsap } = kit;
   const camera = $(section, "[data-cam]");
   if (!camera) return;
@@ -35,11 +37,13 @@ export function buildProblema(kit: Kit, section: HTMLElement, tl: gsap.core.Time
   const groupB = $$(section, '[data-result="b"]');
   const you = $(section, '[data-result="you"]');
 
-  glowOn(kit, tl, section);
-  if (title) tl.add(maskReveal(kit, title), CHAIN);
-  if (copy.length) tl.add(rise(kit, copy, 30), CHAIN);
-  if (search) tl.add(rise(kit, search, 40), CHAIN);
-  cameraIn(kit, tl, camera, search, 1.25);
+  // Entrada (mientras sube a pantalla): brillo → título → texto → buscador.
+  glowOn(kit, entry, section);
+  if (title) entry.add(maskReveal(kit, title), CHAIN);
+  if (copy.length) entry.add(rise(kit, copy, 30), CHAIN);
+  if (search) entry.add(rise(kit, search, 40), CHAIN);
+  // Fijada: la cámara se acerca al buscador.
+  cameraIn(kit, tl, camera, search, 1.1, 0);
 
   // Escritura atada al scroll: t 0→1 escribe q1, 1→2 la borra, 2→3 escribe q2.
   if (typed) {
@@ -85,7 +89,7 @@ export function buildProblema(kit: Kit, section: HTMLElement, tl: gsap.core.Time
 }
 
 /** 3. Tachado: "SIN PÁGINA. SIN GOOGLE MAPS." → línea roja → partículas → "CON SKY STUDIOS LABS" → contadores. */
-export function buildTachado(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
+export function buildTachado(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline, entry: gsap.core.Timeline): void {
   const { gsap } = kit;
   const camera = $(section, "[data-cam]");
   if (!camera) return;
@@ -96,20 +100,22 @@ export function buildTachado(kit: Kit, section: HTMLElement, tl: gsap.core.Timel
   const counterItems = $$(section, "[data-anim]");
   const nums = $$(section, "[data-count]");
 
-  glowOn(kit, tl, section);
-
+  // Entrada: brillo → "SIN PÁGINA." → "SIN GOOGLE MAPS." (completos antes del pin).
+  glowOn(kit, entry, section);
   for (const line of lines) {
     const txt = $(line, "[data-split]");
-    if (txt) tl.add(maskReveal(kit, txt), CHAIN);
+    if (txt) entry.add(maskReveal(kit, txt), CHAIN);
   }
+  // …y la línea roja tacha cada frase, en cadena (al llegar al pin ya están tachadas).
   for (const line of lines) {
     const path = $<SVGPathElement>(line, "[data-strike]");
     if (!path) continue;
     gsap.set(path, { strokeDasharray: 1, strokeDashoffset: 1 });
-    tl.to(path, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, CHAIN);
+    entry.to(path, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, CHAIN);
   }
+  // Fijada: lo tachado se apaga → "CON SKY STUDIOS LABS" se arma → contadores → cámara.
   const strikeTexts = lines.map((l) => $(l, "[data-split]")).filter((x): x is HTMLElement => !!x);
-  if (strikeTexts.length) tl.to(strikeTexts, { autoAlpha: 0.35, duration: 0.4 }, CHAIN);
+  if (strikeTexts.length) tl.to(strikeTexts, { autoAlpha: 0.35, duration: 0.4 }, 0);
 
   // Partículas (solo escritorio): se arman y luego ceden el lugar al texto real.
   if (withText && canvas && kit.mode === "desktop") {
@@ -124,16 +130,16 @@ export function buildTachado(kit: Kit, section: HTMLElement, tl: gsap.core.Timel
       proxy,
       { p: 0 },
       { p: 1, duration: 1.2, ease: "none", immediateRender: false, onUpdate: () => pt.setProgress(proxy.p) },
-      CHAIN
+      0
     );
     if (withText) tl.add(maskReveal(kit, withText), "-=0.3");
     tl.to(canvas, { autoAlpha: 0, duration: 0.4 }, "-=0.5");
   } else if (withText) {
-    tl.add(maskReveal(kit, withText), CHAIN);
+    tl.add(maskReveal(kit, withText), 0.1);
   }
 
   if (counterItems.length) tl.add(rise(kit, counterItems, 40), CHAIN);
-  cameraIn(kit, tl, camera, countersBox, 1.3);
-  nums.forEach((n, i) => counter(kit, tl, n, i === 0 ? CHAIN : "<0.1"));
+  nums.forEach((n) => counter(kit, tl, n, "<0.2"));
+  cameraIn(kit, tl, camera, countersBox, 1.15);
   cameraOut(tl, camera, "+=0.2");
 }

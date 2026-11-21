@@ -13,7 +13,7 @@ function intro(kit: Kit, tl: gsap.core.Timeline, section: HTMLElement) {
 }
 
 /** "Páginas que venden": navegador → la cámara entra → el mini-sitio se arma pieza por pieza. */
-export function buildWeb(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
+export function buildWeb(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline, entry: gsap.core.Timeline): void {
   const { gsap } = kit;
   const camera = $(section, "[data-cam]");
   if (!camera) return;
@@ -21,16 +21,16 @@ export function buildWeb(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline)
   const parts = $$(section, "[data-mini]");
   const btn = $(section, "[data-mini-btn]");
 
-  intro(kit, tl, section);
+  intro(kit, entry, section);
   if (browser) {
     gsap.set(browser, { y: 120, scale: 0.85, autoAlpha: 0, rotationX: 18, transformPerspective: 900 });
-    tl.to(browser, { y: 0, scale: 1, autoAlpha: 1, rotationX: 0, duration: 1 }, CHAIN);
+    entry.to(browser, { y: 0, scale: 1, autoAlpha: 1, rotationX: 0, duration: 1 }, CHAIN);
   }
-  cameraIn(kit, tl, camera, browser, 1.3);
   if (parts.length) {
     gsap.set(parts, { y: 40, autoAlpha: 0 });
-    tl.to(parts, { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.18 }, CHAIN);
+    entry.to(parts, { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.18 }, CHAIN);
   }
+  cameraIn(kit, tl, camera, browser, 1.1, 0);
   if (btn) {
     gsap.set(btn, { scale: 0 });
     tl.to(btn, { scale: 1, duration: 0.5, ease: "back.out(2.2)" }, CHAIN);
@@ -39,7 +39,7 @@ export function buildWeb(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline)
 }
 
 /** "Que te encuentren en Google Maps": calles se dibujan → cae el pin → zoom → órbita "+1". */
-export function buildMaps(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
+export function buildMaps(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline, entry: gsap.core.Timeline): void {
   const { gsap } = kit;
   const camera = $(section, "[data-cam]");
   if (!camera) return;
@@ -53,8 +53,8 @@ export function buildMaps(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline
   const core = $(section, "[data-orbit-core]");
   const orbitText = $(section, "p[data-split]");
 
-  intro(kit, tl, section);
-  if (map) tl.add(rise(kit, map, 60), CHAIN);
+  intro(kit, entry, section);
+  if (map) entry.add(rise(kit, map, 60), CHAIN);
   if (streets.length) {
     gsap.set(streets, { strokeDasharray: 1, strokeDashoffset: 1 });
     tl.to(streets, { strokeDashoffset: 0, duration: 0.8, stagger: 0.1, ease: "power2.inOut" }, CHAIN);
@@ -67,7 +67,7 @@ export function buildMaps(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline
     gsap.set(pinLabel, { scale: 0 });
     tl.to(pinLabel, { scale: 1, duration: 0.4, ease: "back.out(2)" }, CHAIN);
   }
-  cameraIn(kit, tl, camera, pin, 1.6, CHAIN, 0.7);
+  cameraIn(kit, tl, camera, pin, 1.12, CHAIN, 0.7);
   cameraOut(tl, camera, "+=0.1");
 
   // Órbita "+1": el núcleo aparece, los puntos se encienden y giran con el scroll.
@@ -84,7 +84,7 @@ export function buildMaps(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline
 }
 
 /** "Redes que trabajan por ti": posts dispersos se acomodan en cuadrícula → barras crecen. */
-export function buildRedes(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
+export function buildRedes(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline, entry: gsap.core.Timeline): void {
   const { gsap } = kit;
   const camera = $(section, "[data-cam]");
   if (!camera) return;
@@ -93,13 +93,7 @@ export function buildRedes(kit: Kit, section: HTMLElement, tl: gsap.core.Timelin
   const chart = $(section, "figure[data-anim]");
   const bars = $$(section, "[data-bar]");
 
-  glowOn(kit, tl, section);
-  const label = $(section, "p[data-anim]");
-  if (label) tl.add(rise(kit, label, 20), CHAIN);
-  const title = $(section, "h2[data-split]");
-  if (title) tl.add(maskReveal(kit, title), CHAIN);
-  const copy = $(section, "h2 ~ p[data-anim]");
-  if (copy) tl.add(rise(kit, copy, 30), CHAIN);
+  intro(kit, entry, section);
 
   if (posts.length) {
     const spread = kit.mode === "mobile" ? 120 : 320;
@@ -110,9 +104,9 @@ export function buildRedes(kit: Kit, section: HTMLElement, tl: gsap.core.Timelin
       scale: 0.5,
       autoAlpha: 0,
     });
-    tl.to(posts, { x: 0, y: 0, rotation: 0, scale: 1, autoAlpha: 1, duration: 1, stagger: { each: 0.06, from: "random" } }, CHAIN);
+    tl.to(posts, { x: 0, y: 0, rotation: 0, scale: 1, autoAlpha: 1, duration: 1, stagger: { each: 0.06, from: "random" } }, 0);
   }
-  cameraIn(kit, tl, camera, grid, 1.25);
+  cameraIn(kit, tl, camera, grid, 1.1);
   cameraOut(tl, camera);
   if (chart) tl.add(rise(kit, chart, 30), CHAIN);
   if (bars.length) {
@@ -122,7 +116,7 @@ export function buildRedes(kit: Kit, section: HTMLElement, tl: gsap.core.Timelin
 }
 
 /** "Un chatbot que responde a las 3 AM": el reloj corre hasta las 03:00 → burbujas de chat. */
-export function buildChatbot(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
+export function buildChatbot(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline, entry: gsap.core.Timeline): void {
   const { gsap } = kit;
   const camera = $(section, "[data-cam]");
   if (!camera) return;
@@ -132,9 +126,9 @@ export function buildChatbot(kit: Kit, section: HTMLElement, tl: gsap.core.Timel
   const minHand = $(section, "[data-hand-min]");
   const bubbles = $$(section, "[data-bubble]");
 
-  intro(kit, tl, section);
-  if (clock) tl.add(rise(kit, clock, 40), CHAIN);
-  cameraIn(kit, tl, camera, clock, 1.45);
+  intro(kit, entry, section);
+  if (clock) entry.add(rise(kit, clock, 40), CHAIN);
+  cameraIn(kit, tl, camera, clock, 1.12, 0);
 
   // 21:00 → 03:00 (360 minutos) atado al scroll.
   const START = 21 * 60;

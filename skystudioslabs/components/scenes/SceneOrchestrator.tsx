@@ -22,17 +22,38 @@ export function SceneOrchestrator() {
     let cancelled = false;
     let cleanup: (() => void) | undefined;
 
-    // Diferir: después de `load` y en un momento ocioso (con tope), para no competir con el LCP.
+    // Diferir: la intro ya se anima con CSS desde el primer frame, así que el motor (GSAP, Lenis,
+    // escenas) arranca con la primera intención del usuario (rueda, toque, tecla, scroll) o, si no
+    // la hay, ~3 s después de `load` en un momento ocioso. Así no compite con la hidratación.
+    const INTENT = ["wheel", "touchstart", "pointerdown", "keydown", "scroll"] as const;
+    let stopListening = () => {};
     const whenIdle = () =>
       new Promise<void>((resolve) => {
+        let done = false;
+        let timer: number | undefined;
         const go = () => {
-          const ric = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number })
-            .requestIdleCallback;
-          if (ric) ric(() => resolve(), { timeout: 1500 });
-          else setTimeout(resolve, 300);
+          if (done) return;
+          done = true;
+          stopListening();
+          resolve();
         };
-        if (document.readyState === "complete") go();
-        else window.addEventListener("load", go, { once: true });
+        const opts: AddEventListenerOptions = { passive: true, once: true };
+        for (const ev of INTENT) window.addEventListener(ev, go, opts);
+        const afterLoad = () => {
+          timer = window.setTimeout(() => {
+            const ric = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number })
+              .requestIdleCallback;
+            if (ric) ric(go, { timeout: 1000 });
+            else go();
+          }, 3000);
+        };
+        if (document.readyState === "complete") afterLoad();
+        else window.addEventListener("load", afterLoad, { once: true });
+        stopListening = () => {
+          for (const ev of INTENT) window.removeEventListener(ev, go);
+          window.removeEventListener("load", afterLoad);
+          window.clearTimeout(timer);
+        };
       });
 
     whenIdle()
@@ -50,6 +71,7 @@ export function SceneOrchestrator() {
 
     return () => {
       cancelled = true;
+      stopListening();
       cleanup?.();
     };
   }, []);

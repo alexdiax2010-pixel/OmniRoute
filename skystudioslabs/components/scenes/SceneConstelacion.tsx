@@ -55,7 +55,7 @@ export function SceneConstelacion({ activos }: { activos: number }) {
             )}
           </div>
           <div className={s.sky} data-sky>
-            <svg viewBox="0 0 1000 560" aria-hidden="true" focusable="false">
+            <svg viewBox={n === 0 ? "0 200 1000 160" : "0 0 1000 560"} aria-hidden="true" focusable="false">
               {links.map(([a, b], i) => (
                 <line
                   key={`l${i}`}

@@ -10,11 +10,11 @@ const PASOS = [
 export function SceneProceso() {
   return (
     <section data-scene="proceso" id="proceso" className={s.scene} aria-labelledby="proceso-titulo">
-      <div data-stage className={s.stage} style={{ alignContent: "center" }}>
+      <div data-stage className={`${s.stage} ${s.stageProceso}`}>
         <div className={s.bg} aria-hidden="true">
           <div data-glow className={`glow glow--ember glow--breathe ${s.glowA}`} />
         </div>
-        <div>
+        <div className={s.procesoBody}>
           <div className={s.procesoHead}>
             <p className={`t-body ${s.label}`} data-anim>Cómo trabajamos</p>
             <h2 id="proceso-titulo" className="t-title" data-split>

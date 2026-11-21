@@ -8,7 +8,7 @@
  *  3. "Llenar": el contenido de cada timeline (SplitText, tweens) se construye de forma perezosa,
  *     cuando la escena se acerca al viewport, una escena por tarea y cediendo el hilo entre escenas.
  */
-import type { Kit } from "./core";
+import type { Kit, SceneTimelines } from "./core";
 import { $, sceneTimeline } from "./core";
 import { buildCierre, buildConstelacion, buildPrecios, buildProceso, buildReduced } from "./final";
 import { buildIntro, buildProblema, buildTachado } from "./narrativa";
@@ -21,21 +21,21 @@ declare global {
   }
 }
 
-type Builder = (kit: Kit, section: HTMLElement, tl: gsap.core.Timeline) => void;
+type Builder = (kit: Kit, section: HTMLElement, main: gsap.core.Timeline, entry: gsap.core.Timeline) => void;
 
 /** Constructor + longitud del pin (% de viewport) por escena. */
 const SCENES: Record<string, { build: Builder; length: (mobile: boolean) => number }> = {
-  intro: { build: buildIntro, length: () => 120 },
-  problema: { build: buildProblema, length: () => 200 },
-  tachado: { build: buildTachado, length: () => 200 },
-  web: { build: buildWeb, length: () => 170 },
-  maps: { build: buildMaps, length: () => 200 },
-  redes: { build: buildRedes, length: () => 170 },
-  chatbot: { build: buildChatbot, length: () => 190 },
-  proceso: { build: buildProceso, length: (m) => (m ? 420 : 340) },
-  constelacion: { build: buildConstelacion, length: () => 180 },
-  precios: { build: buildPrecios, length: () => 140 },
-  cierre: { build: buildCierre, length: () => 130 },
+  intro: { build: buildIntro, length: () => 90 },
+  problema: { build: buildProblema, length: () => 170 },
+  tachado: { build: buildTachado, length: () => 160 },
+  web: { build: buildWeb, length: () => 130 },
+  maps: { build: buildMaps, length: () => 170 },
+  redes: { build: buildRedes, length: () => 130 },
+  chatbot: { build: buildChatbot, length: () => 150 },
+  proceso: { build: buildProceso, length: (m) => (m ? 360 : 300) },
+  constelacion: { build: buildConstelacion, length: () => 110 },
+  precios: { build: buildPrecios, length: () => 80 },
+  cierre: { build: buildCierre, length: () => 70 },
 };
 
 /** Cede el hilo principal (scheduler.yield si existe; si no, un macrotask). */
@@ -94,7 +94,7 @@ export async function setupScenes(
         ScrollTrigger,
         SplitText,
         mode: mobile ? "mobile" : "desktop",
-        maxScale: mobile ? 1.15 : 1.6,
+        maxScale: mobile ? 1.06 : 1.25,
         cleanups: [],
         onScene,
       };
@@ -136,14 +136,42 @@ export async function setupScenes(
           const stage = $(section, "[data-stage]") ?? section;
           return { section, stage, fits: stage.offsetHeight <= vh * 1.04 };
         });
+        // Reserva la distancia de cada pin como padding-bottom (UNA escritura para todas): la página
+        // ya tiene su alto final y los pins se pueden crear después sin mover nada.
+        const pinLength = (sc: { def: (typeof SCENES)[string] }) => {
+          const pct = sc.def.length(!!mobile) * (mobile ? 0.6 : 1);
+          return Math.round((pct / 100) * window.innerHeight);
+        };
         const scenes = measured.map(({ section, stage, fits }) => ({
           section,
           stage,
           fits,
           def: SCENES[section.dataset.scene ?? ""],
-          tl: null as gsap.core.Timeline | null,
+          tl: null as SceneTimelines | null,
           filled: false,
         }));
+        // El espacio va justo DESPUÉS del escenario (antes de reseñas / formulario, si los hay),
+        // para que lo que sigue no pase por debajo del escenario fijado.
+        const spacerOf = (sc: { stage: HTMLElement; section: HTMLElement }) => {
+          const next = sc.stage.nextElementSibling as HTMLElement | null;
+          return next ? { el: next, prop: "marginTop" as const } : { el: sc.section, prop: "paddingBottom" as const };
+        };
+        const applyPadding = () => {
+          for (const sc of scenes) {
+            if (!sc.fits) continue;
+            const { el, prop } = spacerOf(sc);
+            el.style[prop] = `${pinLength(sc)}px`;
+          }
+        };
+        applyPadding();
+        window.addEventListener("resize", applyPadding);
+        kit.cleanups.push(() => {
+          window.removeEventListener("resize", applyPadding);
+          for (const sc of scenes) {
+            const { el, prop } = spacerOf(sc);
+            el.style[prop] = "";
+          }
+        });
 
         // --- Llenar de forma perezosa, en orden, una escena por tarea. ---
         let pending = 0; // índice hasta el que hay que llenar (exclusivo)
@@ -154,14 +182,17 @@ export async function setupScenes(
           running = true;
           for (let i = 0; i < pending && alive; i++) {
             const sc = scenes[i];
-            if (sc.filled || !sc.tl) continue;
-            const tl = sc.tl;
+            if (sc.filled) continue;
             sc.filled = true;
             context.add(() => {
-              sc.def.build(kit, sc.section, tl);
+              const tl = sceneTimeline(kit, sc.section, sc.stage, () => pinLength(sc), sc.fits);
+              sc.tl = tl;
+              sc.def.build(kit, sc.section, tl.main, tl.entry);
               // Sincroniza con la posición actual (por si se llegó saltando).
-              const st = tl.scrollTrigger;
-              if (st) tl.progress(st.progress);
+              for (const t of [tl.entry, tl.main]) {
+                const st = t.scrollTrigger;
+                if (st) t.progress(st.progress);
+              }
             });
             await yieldToMain();
           }
@@ -176,25 +207,15 @@ export async function setupScenes(
               if (i >= 0) void fillUpTo(i);
             }
           },
-          { rootMargin: "100% 0px 100% 0px" }
+          { rootMargin: "60% 0px 60% 0px" }
         );
         kit.cleanups.push(() => io.disconnect());
 
-        // Pins en orden de documento, uno por tarea (cada uno mide con los anteriores ya puestos).
-        void (async () => {
-          for (const sc of scenes) {
-            await yieldToMain();
-            if (!alive) return;
-            context.add(() => {
-              sc.tl = sceneTimeline(kit, sc.section, sc.stage, sc.def.length(!!mobile), sc.fits);
-            });
-          }
-          if (!alive) return;
-          context.add(createMaster);
-          for (const sc of scenes) io.observe(sc.section);
-          if (scenes.length) void fillUpTo(0); // la escena visible al cargar
-          markReady();
-        })();
+        // Al cargar solo se crea el progreso maestro y la escena visible; el resto llega con el scroll.
+        createMaster();
+        for (const sc of scenes) io.observe(sc.section);
+        if (scenes.length) void fillUpTo(0);
+        markReady();
       }
       if (reduce) {
         createMaster();

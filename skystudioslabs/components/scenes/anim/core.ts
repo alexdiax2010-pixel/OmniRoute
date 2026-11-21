@@ -35,37 +35,61 @@ export function $$<T extends Element = HTMLElement>(root: ParentNode, sel: strin
   return Array.from(root.querySelectorAll<T>(sel));
 }
 
+export interface SceneTimelines {
+  /** Entrada: corre MIENTRAS el escenario sube a la pantalla (antes del pin). Título, copy y
+   *  protagonista quedan completos cuando empieza el pin → nunca hay cuadros vacíos. */
+  entry: gsap.core.Timeline;
+  /** Principal: fijado (pin) y atado al scroll. */
+  main: gsap.core.Timeline;
+}
+
 /**
- * Timeline de escena: fija el [data-stage] (si cabe en pantalla) y lo ata al scroll.
- * `fits` se mide antes, en lote, para no forzar reflows intercalados con escrituras.
- * El timeline nace vacío: su contenido se agrega después, de forma perezosa (setup.ts).
+ * Timelines de escena. `fits` se mide antes, en lote, para no forzar reflows intercalados.
+ * Nacen vacíos: su contenido se agrega después, de forma perezosa (setup.ts).
+ * Si el escenario no cabe en pantalla (móvil / contenido largo) no se fija: la entrada termina
+ * cuando su parte de arriba está a media pantalla y el resto avanza hasta que se ve completo.
  */
-export function sceneTimeline(kit: Kit, section: HTMLElement, stage: HTMLElement, length: number, fits: boolean): gsap.core.Timeline {
-  const len = kit.mode === "mobile" ? Math.round(length * 0.6) : length;
+/**
+ * `pinPx`: distancia de pin en px. Ya está reservada como padding-bottom de la sección (setup.ts),
+ * así que el pin usa `pinSpacing: false`: crearlo NO cambia el alto de la página (sin saltos ni
+ * re-layouts en cadena) y puede hacerse de forma perezosa, justo antes de que la escena llegue.
+ */
+export function sceneTimeline(kit: Kit, section: HTMLElement, stage: HTMLElement, pinPx: () => number, fits: boolean): SceneTimelines {
   const name = section.dataset.scene ?? "";
-  return kit.gsap.timeline({
+  const entry = kit.gsap.timeline({
+    defaults: { ease: "power2.out", duration: 1 },
+    scrollTrigger: {
+      trigger: stage,
+      start: "top 92%",
+      end: fits ? "top 12%" : "top 45%",
+      scrub: 0.6,
+      invalidateOnRefresh: true,
+    },
+  });
+  const main = kit.gsap.timeline({
     defaults: { ease: "power2.out", duration: 1 },
     scrollTrigger: fits
       ? {
           trigger: stage,
           start: "top top",
-          end: `+=${len}%`,
+          end: () => `+=${pinPx()}`,
           pin: true,
+          pinSpacing: false,
           scrub: 0.8,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onToggle: (self) => self.isActive && kit.onScene(name),
         }
       : {
-          // Escena más alta que la pantalla (móvil o contenido largo): sin pin, mismo scrub.
           trigger: stage,
-          start: "top 85%",
-          end: "top 20%",
+          start: "top 45%",
+          end: "bottom bottom",
           scrub: 0.8,
           invalidateOnRefresh: true,
           onToggle: (self) => self.isActive && kit.onScene(name),
         },
   });
+  return { entry, main };
 }
 
 /**
@@ -124,7 +148,9 @@ export function offsetWithin(el: HTMLElement, ancestor: HTMLElement): { x: numbe
 
 /**
  * Cámara (regla 3): zoom + paneo hacia el protagonista. Solo transform (scale/x/y).
- * Un punto a distancia d del centro termina en x + s·d; queremos que quede en d·(1-k).
+ * Un punto a distancia d del centro termina en x + s·d; queremos acercarlo al centro (factor k).
+ * El paneo se limita a ±(s-1)·W/4 para que el borde de la cámara nunca deje ver negro y el
+ * título de la escena siga dentro de la pantalla (en móvil solo hay paneo vertical).
  */
 export function cameraIn(
   kit: Kit,
@@ -137,6 +163,7 @@ export function cameraIn(
 ): void {
   if (!target) return;
   const s = Math.min(scale, kit.maxScale);
+  const clamp = (v: number, lim: number) => Math.max(-lim, Math.min(lim, v));
   const delta = () => {
     const o = offsetWithin(target, camera);
     return {
@@ -148,8 +175,8 @@ export function cameraIn(
     camera,
     {
       scale: s,
-      x: () => delta().dx * (1 - k - s),
-      y: () => delta().dy * (1 - k - s),
+      x: () => (kit.mode === "mobile" ? 0 : clamp(delta().dx * (1 - k - s), ((s - 1) * camera.offsetWidth) / 4)),
+      y: () => clamp(delta().dy * (1 - k - s), ((s - 1) * Math.min(camera.offsetHeight, window.innerHeight)) / 2),
       duration: 1.2,
       ease: "power2.inOut",
     },
@@ -161,27 +188,38 @@ export function cameraOut(tl: gsap.core.Timeline, camera: HTMLElement, position:
   tl.to(camera, { scale: 1, x: 0, y: 0, duration: 1, ease: "power2.inOut" }, position);
 }
 
-/** Contador que corre con el scroll. El HTML del servidor ya trae el valor final (SEO). */
+/**
+ * Contador. El HTML del servidor ya trae el valor real (SEO / sin JS). Cuando el timeline pasa por
+ * `position`, el número corre de 0 al valor real en 0.8 s (por tiempo, no por scroll) y SE QUEDA ahí.
+ * Antes de eso muestra el valor real: nadie se queda viendo un 0 si se detiene a media escena.
+ */
 export function counter(kit: Kit, tl: gsap.core.Timeline, el: HTMLElement, position: gsap.Position = CHAIN): void {
   const to = Number(el.dataset.count ?? el.textContent ?? 0) || 0;
   const original = el.textContent ?? String(to);
-  const proxy = { v: 0 };
-  el.textContent = "0";
   kit.cleanups.push(() => {
     el.textContent = original;
   });
-  tl.fromTo(
-    proxy,
-    { v: 0 },
-    {
-      v: to,
-      duration: 1,
-      ease: "power1.out",
-      immediateRender: false,
-      onUpdate: () => {
-        el.textContent = String(Math.round(proxy.v));
-      },
+  // El número real se queda puesto hasta que arranca el conteo (nunca se "estaciona" en 0).
+  let done = to === 0;
+  tl.call(
+    () => {
+      if (done) return;
+      done = true;
+      const proxy = { v: 0 };
+      el.textContent = "0";
+      kit.gsap.to(proxy, {
+        v: to,
+        duration: 0.8,
+        ease: "power2.out",
+        onUpdate: () => {
+          el.textContent = String(Math.round(proxy.v));
+        },
+        onComplete: () => {
+          el.textContent = original;
+        },
+      });
     },
+    undefined,
     position
   );
 }
