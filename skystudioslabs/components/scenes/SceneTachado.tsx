@@ -3,7 +3,7 @@ import s from "./scenes.module.css";
 function Strike() {
   return (
     <svg className={s.strikeSvg} viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <path data-strike d="M1 6 C 30 3, 65 8, 99 4" pathLength={1} vectorEffect="non-scaling-stroke" />
+      <path data-strike d="M1 6 C 30 3, 65 8, 99 4" pathLength={1} />
     </svg>
   );
 }

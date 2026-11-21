@@ -4,10 +4,10 @@ import s from "./scenes.module.css";
 function Precio({ valor, sufijo }: { valor: number | null; sufijo?: string }) {
   const txt = formatoPrecio(valor);
   return (
-    <p className={`t-title ${s.price}`}>
-      {valor == null ? <span className="placeholder">{txt}</span> : txt}
-      {sufijo ? <span className="t-body muted"> {sufijo}</span> : null}
-    </p>
+    <>
+      <p className={`t-title ${s.price}`}>{valor == null ? <span className="placeholder">{txt}</span> : txt}</p>
+      {sufijo ? <p className="muted">{sufijo}</p> : null}
+    </>
   );
 }
 

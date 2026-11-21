@@ -17,26 +17,27 @@ export function buildIntro(kit: Kit, section: HTMLElement): void {
   const anims = $$(section, "[data-anim]");
 
   // a) Secuencia de entrada (al cargar): cada paso arranca cuando termina el anterior (-=0.2).
-  const load = gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.1 });
+  const load = gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.05 });
+  load.timeScale(1.6);
   glowOn(kit, load, section);
   if (embers.length) {
     gsap.set(embers, { autoAlpha: 0 });
-    load.to(embers, { autoAlpha: 1, duration: 0.6, stagger: 0.05 }, CHAIN);
+    load.to(embers, { autoAlpha: 1, duration: 0.5, stagger: 0.03 }, "<0.1");
   }
   if (horizon) {
     gsap.set(horizon, { scaleX: 0 });
-    load.to(horizon, { scaleX: 1, duration: 0.9, ease: "power2.inOut" }, CHAIN);
+    load.to(horizon, { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, "<0.1");
   }
   if (h1) load.add(maskReveal(kit, h1), CHAIN);
   if (sunRise) {
     gsap.set(sunRise, { yPercent: 60 });
-    load.to(sunRise, { yPercent: 0, duration: 1.4, ease: "power2.out" }, CHAIN);
+    load.to(sunRise, { yPercent: 0, duration: 1.2, ease: "power2.out" }, "-=0.9");
   }
-  if (tagline) load.add(maskReveal(kit, tagline), "-=1.0");
-  if (anims.length) load.add(rise(kit, anims, 30), CHAIN);
+  if (tagline) load.add(maskReveal(kit, tagline), "-=0.9");
+  if (anims.length) load.add(rise(kit, anims, 30), "-=0.6");
   if (badge) {
     gsap.set(badge, { scale: 0, rotation: -90 });
-    load.to(badge, { scale: 1, rotation: 0, duration: 0.8, ease: "back.out(1.6)" }, CHAIN);
+    load.to(badge, { scale: 1, rotation: 0, duration: 0.7, ease: "back.out(1.6)" }, CHAIN);
   }
 
   // b) Con scroll: el sol termina de salir, la cámara va al círculo "boceto gratis" y regresa.

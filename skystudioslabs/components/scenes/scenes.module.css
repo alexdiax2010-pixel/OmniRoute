@@ -189,7 +189,7 @@
 .badge {
   position: absolute;
   right: max(var(--gutter), 4vw);
-  bottom: 8%;
+  bottom: calc(18% + 24px);
   width: clamp(120px, 16vw, 190px);
   z-index: 3;
 }
@@ -333,7 +333,7 @@
 .strikeSvg path {
   fill: none;
   stroke: var(--c-ember);
-  stroke-width: 10;
+  stroke-width: 2.2;
   stroke-linecap: round;
   filter: drop-shadow(0 0 8px rgba(255, 74, 28, 0.8));
 }

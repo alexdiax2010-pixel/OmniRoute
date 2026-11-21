@@ -57,8 +57,8 @@ export function sceneTimeline(kit: Kit, section: HTMLElement, length = 160): gsa
       : {
           // Escena más alta que la pantalla (móvil o contenido largo): sin pin, mismo scrub.
           trigger: stage,
-          start: "top 80%",
-          end: "bottom 60%",
+          start: "top 85%",
+          end: "top 20%",
           scrub: 0.8,
           invalidateOnRefresh: true,
           onToggle: (self) => self.isActive && kit.onScene(name),
