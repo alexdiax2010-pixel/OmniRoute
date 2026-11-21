@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { resolverHost, rutaReescrita } from "@/lib/hosts";
+import { supabaseUrl, supabaseAnonKey } from "@/lib/supabase/env";
 
 const ROOT = process.env.NEXT_PUBLIC_ROOT_DOMAIN ?? "skystudioslabs.com";
 
@@ -14,8 +15,8 @@ type CookiePendiente = { name: string; value: string; options: Record<string, un
 async function refrescarSesion(request: NextRequest): Promise<{ cookies: CookiePendiente[]; headers: Record<string, string> }> {
   const pendientes: CookiePendiente[] = [];
   let cabeceras: Record<string, string> = {};
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = supabaseUrl();
+  const anon = supabaseAnonKey();
   if (!url || !anon) return { cookies: pendientes, headers: cabeceras };
   try {
     const supabase = createServerClient(url, anon, {

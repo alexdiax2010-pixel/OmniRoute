@@ -1,6 +1,7 @@
 import "server-only";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { createServerClient } from "@supabase/ssr";
+import { supabaseUrl, supabaseAnonKey, supabaseServiceKey } from "@/lib/supabase/env";
 
 /**
  * Clientes de Supabase (SOLO servidor).
@@ -10,7 +11,7 @@ import { createServerClient } from "@supabase/ssr";
  */
 
 function url(): string {
-  const u = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const u = supabaseUrl();
   if (!u) throw new Error("Falta NEXT_PUBLIC_SUPABASE_URL");
   return u;
 }
@@ -18,7 +19,7 @@ function url(): string {
 let servicio: SupabaseClient | null = null;
 
 export function clienteServicio(): SupabaseClient {
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = supabaseServiceKey();
   if (!key) throw new Error("Falta SUPABASE_SERVICE_ROLE_KEY (solo servidor)");
   servicio ??= createClient(url(), key, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
@@ -30,7 +31,7 @@ export function clienteServicio(): SupabaseClient {
 export async function clienteSesion(): Promise<SupabaseClient> {
   const { cookies } = await import("next/headers");
   const store = await cookies();
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const anon = supabaseAnonKey();
   if (!anon) throw new Error("Falta NEXT_PUBLIC_SUPABASE_ANON_KEY");
   return createServerClient(url(), anon, {
     cookies: {
