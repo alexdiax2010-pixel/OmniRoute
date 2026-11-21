@@ -22,13 +22,28 @@ export function SceneOrchestrator() {
     let cancelled = false;
     let cleanup: (() => void) | undefined;
 
-    import("./anim/setup")
+    // Diferir: después de `load` y en un momento ocioso (con tope), para no competir con el LCP.
+    const whenIdle = () =>
+      new Promise<void>((resolve) => {
+        const go = () => {
+          const ric = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number })
+            .requestIdleCallback;
+          if (ric) ric(() => resolve(), { timeout: 1500 });
+          else setTimeout(resolve, 300);
+        };
+        if (document.readyState === "complete") go();
+        else window.addEventListener("load", go, { once: true });
+      });
+
+    whenIdle()
+      .then(() => (cancelled ? Promise.reject(new Error("cancelado")) : import("./anim/setup")))
       .then(({ setupScenes }) => setupScenes(root, () => hitRef.current(), () => cancelled))
       .then((fn) => {
         if (cancelled) fn();
         else cleanup = fn;
       })
       .catch((err: unknown) => {
+        if (cancelled) return;
         // Si falla la animación, el contenido sigue visible (todo viene del servidor).
         console.error("[escenas] no se pudo iniciar la animación", err);
       });

@@ -35,10 +35,12 @@ export function $$<T extends Element = HTMLElement>(root: ParentNode, sel: strin
   return Array.from(root.querySelectorAll<T>(sel));
 }
 
-/** Timeline de escena: fija el [data-stage] (si cabe en pantalla) y lo ata al scroll. */
-export function sceneTimeline(kit: Kit, section: HTMLElement, length = 160): gsap.core.Timeline {
-  const stage = $(section, "[data-stage]") ?? section;
-  const fits = stage.offsetHeight <= window.innerHeight * 1.04;
+/**
+ * Timeline de escena: fija el [data-stage] (si cabe en pantalla) y lo ata al scroll.
+ * `fits` se mide antes, en lote, para no forzar reflows intercalados con escrituras.
+ * El timeline nace vacío: su contenido se agrega después, de forma perezosa (setup.ts).
+ */
+export function sceneTimeline(kit: Kit, section: HTMLElement, stage: HTMLElement, length: number, fits: boolean): gsap.core.Timeline {
   const len = kit.mode === "mobile" ? Math.round(length * 0.6) : length;
   const name = section.dataset.scene ?? "";
   return kit.gsap.timeline({
@@ -78,6 +80,8 @@ export function maskReveal(kit: Kit, el: HTMLElement): gsap.core.Timeline {
     mask: "lines",
     linesClass: "sl",
     wordsClass: "sw",
+    // Sin aria-label en <p>/<span> (aria-prohibited-attr): el texto partido sigue siendo legible.
+    aria: "none",
   });
   const tl = gsap.timeline();
   gsap.set(split.lines, { yPercent: 110 });

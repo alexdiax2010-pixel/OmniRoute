@@ -7,7 +7,7 @@
 
 | URL | Performance | Accesibilidad | Buenas prácticas | SEO | LCP | TBT | CLS |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `/` (home cinematográfica) | **82** (81–82) | **96** | 100 | 100 | 2.7 s | 600 ms (560–620) | 0 |
+| `/` (home cinematográfica) | **94** (91–94) · antes 82 | **100** · antes 96 | 100 | 100 | 2.5 s (2.5–2.6) | 230 ms (220–280) · antes 600 | 0 |
 | `/paginas-web-para-dentistas` | **96** (87–96) | 100 | 100 | 100 | 2.7 s | 100 ms (70–410) | 0 |
 | `/chatbot-whatsapp` | **96** (96–97) | 100 | 100 | 100 | 2.7 s | 60 ms (60–100) | 0 |
 
@@ -20,7 +20,27 @@ npx -y lighthouse@12 http://localhost:3100/<ruta> \
   --only-categories=performance,accessibility,seo,best-practices --output=json
 ```
 
-## Home `/` — performance 82 (< 90) y accesibilidad 96
+## Home `/` — después de la optimización (2026-11-21): performance 94 (91–94), accesibilidad 100
+
+Medido en `next start -p 3125` (mismo entorno E2E), 3 corridas Lighthouse 12 móvil.
+
+Cambios aplicados (escenas + config):
+
+- **LCP**: el `h1` del intro ya no tiene máscara ni transform: se pinta completo desde el servidor
+  (LCP observado = FCP ≈ 0.3 s sin throttling). La entrada del intro (sol, horizonte, lema con máscara,
+  CTA, círculo) es CSS puro; sobre el título sólo pasa un destello decorativo (no es texto).
+  El 2.5 s simulado restante es "render delay" del modelo de Lighthouse (cuenta los scripts del framework).
+- **TBT 600 → ~230 ms**: el orquestador espera a `load` + `requestIdleCallback` (tope 1.5 s); GSAP/Lenis
+  se cargan después; los 11 pins se crean uno por tarea (lecturas de layout en lote, antes de escribir);
+  el contenido de cada escena (SplitText + tweens) se construye perezosamente cuando la escena está a
+  ~1 viewport, una escena por tarea con `scheduler.yield`. La tarea larga mayor que queda (180–260 ms)
+  es la hidratación de React (`react-dom`), no las escenas.
+- **A11y**: SplitText con `aria: "none"` (sin `aria-label` en `<p>`/`<span>`; el texto sigue legible).
+- **CSS bloqueante**: `experimental.inlineCss: true` (0 `<link rel="stylesheet">` en el HTML).
+- `browserslist` moderno en `package.json`; el aviso de *legacy JS* (~13 KiB) persiste porque viene del
+  chunk de framework de Next.
+
+## Home `/` — medición anterior: performance 82 (< 90) y accesibilidad 96
 
 Auditorías que fallan / oportunidades principales:
 

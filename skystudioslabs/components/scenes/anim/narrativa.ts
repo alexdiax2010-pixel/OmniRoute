@@ -1,57 +1,29 @@
 /** Escenas 1–3: intro, problema, tachado. */
-import { $, $$, CHAIN, type Kit, cameraIn, cameraOut, counter, glowOn, maskReveal, rise, sceneTimeline } from "./core";
+import { $, $$, CHAIN, type Kit, cameraIn, cameraOut, counter, glowOn, maskReveal, rise } from "./core";
 import { createParticleText } from "./particles";
 
-/** 1. Intro: negro → brasas → "SKY STUDIOS LABS" desde máscara → el sol sale sobre el horizonte. */
-export function buildIntro(kit: Kit, section: HTMLElement): void {
-  const { gsap } = kit;
+/**
+ * 1. Intro. La entrada (brasas → horizonte → sol que sale → máscara del lema → CTA) es CSS puro y
+ * corre desde el primer frame, sin esperar a JS; el h1 (elemento LCP) se pinta completo desde el
+ * servidor y solo lo cruza un destello decorativo. Aquí va la parte atada al scroll: el sol termina
+ * de salir, la cámara viaja al círculo "boceto gratis" y regresa.
+ */
+export function buildIntro(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
   const camera = $(section, "[data-cam]");
   if (!camera) return;
-  const h1 = $(section, "h1[data-split]");
-  const tagline = $(section, "p[data-split]");
-  const embers = $$(section, "[data-ember]");
-  const sunRise = $(section, "[data-sun-rise]");
   const sun = $(section, "[data-sun]");
-  const horizon = $(section, "[data-horizon]");
   const badge = $(section, "[data-cam-target]");
-  const anims = $$(section, "[data-anim]");
+  const content = $(section, "[data-intro-content]");
 
-  // a) Secuencia de entrada (al cargar): cada paso arranca cuando termina el anterior (-=0.2).
-  const load = gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.05 });
-  load.timeScale(1.6);
-  glowOn(kit, load, section);
-  if (embers.length) {
-    gsap.set(embers, { autoAlpha: 0 });
-    load.to(embers, { autoAlpha: 1, duration: 0.5, stagger: 0.03 }, "<0.1");
-  }
-  if (horizon) {
-    gsap.set(horizon, { scaleX: 0 });
-    load.to(horizon, { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, "<0.1");
-  }
-  if (h1) load.add(maskReveal(kit, h1), CHAIN);
-  if (sunRise) {
-    gsap.set(sunRise, { yPercent: 60 });
-    load.to(sunRise, { yPercent: 0, duration: 1.2, ease: "power2.out" }, "-=0.9");
-  }
-  if (tagline) load.add(maskReveal(kit, tagline), "-=0.9");
-  if (anims.length) load.add(rise(kit, anims, 30), "-=0.6");
-  if (badge) {
-    gsap.set(badge, { scale: 0, rotation: -90 });
-    load.to(badge, { scale: 1, rotation: 0, duration: 0.7, ease: "back.out(1.6)" }, CHAIN);
-  }
-
-  // b) Con scroll: el sol termina de salir, la cámara va al círculo "boceto gratis" y regresa.
-  const tl = sceneTimeline(kit, section, 120);
   if (sun) tl.to(sun, { yPercent: -45, scale: 1.25, duration: 1.4, ease: "power1.inOut" });
   cameraIn(kit, tl, camera, badge, 1.35, CHAIN, 0.55);
   if (badge) tl.to(badge, { rotation: 120, duration: 1.2, ease: "none" }, "<");
   cameraOut(tl, camera);
-  const content = $(section, "[data-split]")?.parentElement;
   if (content) tl.to(content, { yPercent: -18, autoAlpha: 0.25, duration: 0.8 }, CHAIN);
 }
 
 /** 2. Problema: título → buscador escribe → resultados pasan volando → "¿Y tu negocio? No aparece." */
-export function buildProblema(kit: Kit, section: HTMLElement): void {
+export function buildProblema(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
   const { gsap } = kit;
   const camera = $(section, "[data-cam]");
   if (!camera) return;
@@ -63,7 +35,6 @@ export function buildProblema(kit: Kit, section: HTMLElement): void {
   const groupB = $$(section, '[data-result="b"]');
   const you = $(section, '[data-result="you"]');
 
-  const tl = sceneTimeline(kit, section, 200);
   glowOn(kit, tl, section);
   if (title) tl.add(maskReveal(kit, title), CHAIN);
   if (copy.length) tl.add(rise(kit, copy, 30), CHAIN);
@@ -114,7 +85,7 @@ export function buildProblema(kit: Kit, section: HTMLElement): void {
 }
 
 /** 3. Tachado: "SIN PÁGINA. SIN GOOGLE MAPS." → línea roja → partículas → "CON SKY STUDIOS LABS" → contadores. */
-export function buildTachado(kit: Kit, section: HTMLElement): void {
+export function buildTachado(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
   const { gsap } = kit;
   const camera = $(section, "[data-cam]");
   if (!camera) return;
@@ -125,7 +96,6 @@ export function buildTachado(kit: Kit, section: HTMLElement): void {
   const counterItems = $$(section, "[data-anim]");
   const nums = $$(section, "[data-count]");
 
-  const tl = sceneTimeline(kit, section, 200);
   glowOn(kit, tl, section);
 
   for (const line of lines) {

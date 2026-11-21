@@ -26,24 +26,32 @@ export function SceneIntro() {
 
           <div className={s.sunWrap} aria-hidden="true">
             <div className={s.sunClip}>
-              <div data-sun-rise style={{ position: "absolute", inset: 0 }}>
+              <div data-sun-rise className={s.sunRise}>
                 <div data-sun className={s.sun} />
               </div>
             </div>
           </div>
-          <div data-horizon className={s.horizon} aria-hidden="true" />
+          <div data-horizon className={`${s.horizon} ${s.horizonIn}`} aria-hidden="true" />
 
-          <div className={`${s.inner} ${s.introContent}`}>
-            <p className={`t-body ${s.label}`} data-anim>
-              Agencia web en Zapopan y Guadalajara
+          <div className={`${s.inner} ${s.introContent}`} data-intro-content>
+            <p className={`t-body ${s.label} ${s.introIn}`}>Agencia web en Zapopan y Guadalajara</p>
+            <div className={s.titleWrap}>
+              {/* h1 = elemento LCP: se pinta completo desde el servidor, sin máscara ni transform. */}
+              <h1 id="intro-titulo" className="t-display">
+                Sky Studios Labs
+              </h1>
+              <span className={s.sweep} aria-hidden="true">
+                <span />
+              </span>
+            </div>
+            <p className="t-title">
+              <span className={`mask-line ${s.maskUp}`}>
+                <span>
+                  Hacemos que tu negocio <em className="hl">brille</em> en internet
+                </span>
+              </span>
             </p>
-            <h1 id="intro-titulo" className="t-display" data-split="display">
-              Sky Studios Labs
-            </h1>
-            <p className="t-title" data-split>
-              Hacemos que tu negocio <em className="hl">brille</em> en internet
-            </p>
-            <div className={s.ctaRow} data-anim>
+            <div className={`${s.ctaRow} ${s.introIn} ${s.introLate}`}>
               <a className="btn btn-primary" href="#contacto">
                 Pide tu boceto gratis
               </a>
@@ -53,7 +61,7 @@ export function SceneIntro() {
             </div>
           </div>
 
-          <div className={s.badge} data-cam-target="badge">
+          <div className={`${s.badge} ${s.badgeIn}`} data-cam-target="badge">
             <CircleText />
           </div>
         </div>

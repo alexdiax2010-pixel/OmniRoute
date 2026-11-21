@@ -7,6 +7,8 @@ const raiz = path.resolve(import.meta.dirname);
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // CSS en <style> dentro del HTML: elimina las hojas que bloquean el render (el CSS total es pequeño).
+  experimental: { inlineCss: true },
   turbopack: { root: raiz },
   outputFileTracingRoot: raiz,
   images: {

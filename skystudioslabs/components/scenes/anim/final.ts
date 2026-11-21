@@ -1,19 +1,13 @@
 /** Escenas 5–8: proceso, constelación, precios, cierre (+ bloques "after" sin pin). */
-import { $, $$, CHAIN, type Kit, cameraIn, cameraOut, counter, glowOn, maskReveal, offsetWithin, revealAll, rise, sceneTimeline } from "./core";
+import { $, $$, CHAIN, type Kit, cameraIn, cameraOut, counter, glowOn, maskReveal, offsetWithin, revealAll, rise } from "./core";
 
 /** 5. Proceso: la cámara viaja de paso en paso por una pista horizontal. */
-export function buildProceso(kit: Kit, section: HTMLElement): void {
+export function buildProceso(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
   const { gsap } = kit;
   const stage = $(section, "[data-stage]");
   const track = $(section, "[data-track]");
   const steps = $$(section, "[data-step]");
   if (!stage || !track || !steps.length) return;
-
-  // Cambia la cuadrícula a pista horizontal SOLO con JS + movimiento permitido.
-  section.dataset.enhanced = "1";
-  kit.cleanups.push(() => {
-    delete section.dataset.enhanced;
-  });
 
   const centerX = (i: number) => {
     const o = offsetWithin(steps[i], stage);
@@ -21,7 +15,6 @@ export function buildProceso(kit: Kit, section: HTMLElement): void {
   };
   const progress = $(section, "[data-progress]");
 
-  const tl = sceneTimeline(kit, section, kit.mode === "mobile" ? 420 : 340);
   gsap.set(track, { x: centerX(0) });
   tl.set(track, { x: () => centerX(0) }, 0);
   if (progress) gsap.set(progress, { scaleX: 0 });
@@ -50,7 +43,7 @@ export function buildProceso(kit: Kit, section: HTMLElement): void {
 }
 
 /** 6. Constelación: las estrellas (una por sitio publicado) se conectan; contador real. */
-export function buildConstelacion(kit: Kit, section: HTMLElement): void {
+export function buildConstelacion(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
   const { gsap } = kit;
   const camera = $(section, "[data-cam]");
   if (!camera) return;
@@ -60,7 +53,6 @@ export function buildConstelacion(kit: Kit, section: HTMLElement): void {
   const num = $(section, "[data-count]");
   const desc = countBox ? $(countBox, "[data-anim]") : null;
 
-  const tl = sceneTimeline(kit, section, 180);
   glowOn(kit, tl, section);
   const title = $(section, "h2[data-split]");
   if (title) tl.add(maskReveal(kit, title), CHAIN);
@@ -85,13 +77,12 @@ export function buildConstelacion(kit: Kit, section: HTMLElement): void {
 }
 
 /** 7. Precios: tarjetas suben en cadena; la cámara se acerca al paquete recomendado. */
-export function buildPrecios(kit: Kit, section: HTMLElement): void {
+export function buildPrecios(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
   const camera = $(section, "[data-cam]");
   if (!camera) return;
   const plans = $$(section, "[data-plan]");
   const featured = $(section, "[data-cam-target]");
 
-  const tl = sceneTimeline(kit, section, 140);
   glowOn(kit, tl, section);
   const label = $(section, ".t-body[data-anim]");
   if (label) tl.add(rise(kit, label, 20), CHAIN);
@@ -105,13 +96,12 @@ export function buildPrecios(kit: Kit, section: HTMLElement): void {
 }
 
 /** 8. Cierre: "¿Sigues solo en esto?" → botón grande de WhatsApp con la cámara encima. */
-export function buildCierre(kit: Kit, section: HTMLElement): void {
+export function buildCierre(kit: Kit, section: HTMLElement, tl: gsap.core.Timeline): void {
   const { gsap } = kit;
   const camera = $(section, "[data-cam]");
   if (!camera) return;
   const wa = $(section, "[data-wa]");
 
-  const tl = sceneTimeline(kit, section, 130);
   glowOn(kit, tl, section);
   const title = $(section, "h2[data-split]");
   if (title) tl.add(maskReveal(kit, title), CHAIN);
