@@ -24,6 +24,8 @@ export interface Repo {
   obtenerSitio(slug: string): Promise<Sitio | null>;
   obtenerSitioPorDominio(host: string): Promise<Sitio | null>;
   guardarSitio(s: Omit<Sitio, "creado"> & { creado?: string }): Promise<Sitio>;
+  /** Público: sitios de clientes activos (para el sitemap). Sin datos del prospecto. */
+  listarSitiosPublicos(): Promise<Sitio[]>;
   /** Público: solo un número, nunca filas. */
   contarSitiosActivos(): Promise<number>;
 

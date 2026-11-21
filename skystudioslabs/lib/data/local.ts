@@ -120,6 +120,9 @@ export const localRepo: Repo = {
       return fila;
     });
   },
+  async listarSitiosPublicos() {
+    return (await leer()).sitios.filter((s) => s.tipo === "cliente" && s.activo);
+  },
   async contarSitiosActivos() {
     return (await leer()).sitios.filter((s) => s.tipo === "cliente" && s.activo).length;
   },

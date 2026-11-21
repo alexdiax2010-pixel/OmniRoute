@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let sitios: Sitio[] = [];
   try {
     const repo = await getRepo();
-    sitios = await repo.listarSitios();
+    sitios = await repo.listarSitiosPublicos();
   } catch {
     sitios = [];
   }

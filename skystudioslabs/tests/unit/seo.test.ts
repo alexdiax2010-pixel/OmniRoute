@@ -133,3 +133,12 @@ describe("contacto", () => {
     expect(formatoTelefono(SITIO.whatsapp)).toBe("+52 44 9288 9487");
   });
 });
+
+describe("sitemap usa solo sitios públicos", () => {
+  it("app/sitemap.ts lee listarSitiosPublicos (con service role), no listarSitios (requiere sesión)", async () => {
+    const { readFileSync } = await import("node:fs");
+    const src = readFileSync("app/sitemap.ts", "utf8");
+    expect(src).toContain("listarSitiosPublicos()");
+    expect(src).not.toMatch(/listarSitios\(\)/);
+  });
+});

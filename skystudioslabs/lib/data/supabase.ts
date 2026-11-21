@@ -215,6 +215,17 @@ export function supabaseRepo(): Repo {
       if (error) fallo("guardarSitio", error);
       return deSitio(data);
     },
+    async listarSitiosPublicos() {
+      // SERVICE ROLE: el sitemap es público y no tiene sesión; solo sitios de clientes activos.
+      const { data, error } = await clienteServicio()
+        .from("sitios")
+        .select("*")
+        .eq("tipo", "cliente")
+        .eq("activo", true)
+        .order("creado", { ascending: false });
+      if (error) fallo("listarSitiosPublicos", error);
+      return (data ?? []).map(deSitio);
+    },
     async contarSitiosActivos() {
       const { data, error } = await clienteServicio().rpc("contar_sitios_activos");
       if (error) fallo("contarSitiosActivos", error);
