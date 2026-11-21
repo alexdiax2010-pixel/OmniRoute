@@ -56,8 +56,8 @@ export const PAQUETES: Paquete[] = [
 
 export const MANTENIMIENTO = {
   nombre: "Mantenimiento mensual",
-  /** MXN al mes. null = marcador. */
-  precio: null as number | null,
+  /** MXN al mes. */
+  precio: 1099 as number | null,
   incluye: ["Hosting en tu link", "Cambios menores cada mes", "Soporte por WhatsApp"],
 };
 
