@@ -938,6 +938,51 @@
   gap: 12px;
 }
 
+/* Nuestros clientes (portafolio real, config/portafolio.ts) */
+.clientes {
+  max-width: var(--maxw);
+  margin: 0 auto 72px;
+  scroll-margin-top: 110px;
+}
+.clientesLista {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: grid;
+  gap: 24px;
+}
+.clienteCard {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+  padding: 20px;
+}
+@media (min-width: 900px) {
+  .clienteCard { grid-template-columns: 1.15fr 1fr; padding: 28px; }
+}
+.clienteImagen {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+  box-shadow: 0 30px 80px -40px rgba(var(--k-rgb-255-74-28, 255,74,28), 0.45);
+}
+.clienteImagen img { width: 100%; height: auto; }
+.clienteTexto { display: grid; gap: 12px; }
+.clienteGiro {
+  color: var(--c-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+.clienteIncluye {
+  margin: 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 6px;
+  color: var(--c-muted);
+}
+
 /* ---------- 7. Precios ---------- */
 .plans {
   margin-top: 36px;

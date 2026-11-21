@@ -1,4 +1,6 @@
 import s from "./scenes.module.css";
+import Image from "next/image";
+import { PORTAFOLIO, clientesSinSitio } from "@/config/portafolio";
 
 const MAX_ESTRELLAS = 48;
 
@@ -31,8 +33,10 @@ function enlaces(pts: Array<{ x: number; y: number }>) {
   return out;
 }
 
+/** Una estrella por negocio: sitios publicados + clientes del portafolio sin sitio propio. */
 export function SceneConstelacion({ activos }: { activos: number }) {
-  const n = Math.min(Math.max(activos, 0), MAX_ESTRELLAS);
+  const total = Math.max(activos, 0) + clientesSinSitio();
+  const n = Math.min(total, MAX_ESTRELLAS);
   const pts = estrellas(n);
   const links = enlaces(pts);
 
@@ -44,7 +48,7 @@ export function SceneConstelacion({ activos }: { activos: number }) {
             <div data-glow className={`glow glow--ember glow--breathe ${s.glowA}`} />
           </div>
           <div className={s.inner} style={{ textAlign: "center" }}>
-            {activos > 0 ? (
+            {total > 0 ? (
               <h2 id="constelacion-titulo" className="t-title" data-split>
                 Cada estrella es un negocio que ya <em className="hl">brilla</em>
               </h2>
@@ -75,18 +79,50 @@ export function SceneConstelacion({ activos }: { activos: number }) {
             </svg>
           </div>
           <div className={s.skyCount} data-cam-target="count">
-            <strong className={`t-display ${s.skyCountNum}`} data-count={activos}>
-              {activos}
+            <strong className={`t-display ${s.skyCountNum}`} data-count={total}>
+              {total}
             </strong>
             <p className="muted" data-anim>
-              {activos === 1 ? "sitio publicado y activo" : "sitios publicados y activos"}. Una estrella por cada
-              negocio.
+              {total === 1 ? "negocio que ya trabaja con nosotros" : "negocios que ya trabajan con nosotros"}. Una
+              estrella por cada uno.
             </p>
           </div>
         </div>
       </div>
 
       <div className={s.after}>
+        <div className={s.clientes} id="clientes">
+          <h3 className="t-title" data-split>
+            Nuestros <em className="hl">clientes</em>
+          </h3>
+          <ul className={s.clientesLista}>
+            {PORTAFOLIO.map((c) => (
+              <li key={c.nombre} className={`card ${s.clienteCard}`} data-anim>
+                <figure className={s.clienteImagen}>
+                  <Image
+                    src={c.imagen.src}
+                    alt={c.imagen.alt}
+                    width={c.imagen.ancho}
+                    height={c.imagen.alto}
+                    sizes="(max-width: 800px) 100vw, 600px"
+                    loading="lazy"
+                  />
+                </figure>
+                <div className={s.clienteTexto}>
+                  <p className={s.clienteGiro}>{c.giro}</p>
+                  <h4 className="t-title">{c.nombre}</h4>
+                  <p>{c.trabajo}</p>
+                  <ul className={s.clienteIncluye}>
+                    {c.incluye.map((x) => (
+                      <li key={x}>{x}</li>
+                    ))}
+                  </ul>
+                  <p className="muted">Capturas con datos de ejemplo.</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className={s.reviews}>
           <h3 className="t-title" data-split>
             Lo que dicen nuestros <em className="hl">clientes</em>

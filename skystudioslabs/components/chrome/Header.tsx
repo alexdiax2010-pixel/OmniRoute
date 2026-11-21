@@ -8,6 +8,7 @@ import s from "./chrome.module.css";
 const ANCLAS = [
   { href: "/#precios", texto: "Precios" },
   { href: "/#proceso", texto: "Proceso" },
+  { href: "/#clientes", texto: "Clientes" },
 ];
 
 function ListaPaginas({ paginas }: { paginas: typeof PAGINAS_SERVICIO }) {
