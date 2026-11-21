@@ -11,3 +11,4 @@ test-results/
 respaldos/
 *.tsbuildinfo
 next-env.d.ts
+_artifacts/
