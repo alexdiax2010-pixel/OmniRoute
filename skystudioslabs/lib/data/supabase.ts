@@ -11,6 +11,8 @@ import { clienteServicio, clienteSesionOServicio } from "@/lib/supabase/servidor
  *
  * Qué cliente usa cada método:
  *  [SESIÓN → RLS]  (en scripts sin petición HTTP cae a service role)
+ *    (los prospectos se leen de la vista prospectos_completo y se escriben repartidos entre
+ *     prospectos [parte de cliente] y prospectos_internos [solo admins])
  *    listarProspectos, obtenerProspecto, upsertProspectos, actualizarProspecto, agregarNota,
  *    listarSitios, guardarSitio, crearSolicitudCambio
  *  [SERVICE ROLE]  (solo servidor; el llamador ya validó con Zod / sesión)
@@ -60,6 +62,27 @@ export function deFila(r: Fila): Prospecto {
 
 const MAPA: Partial<Record<keyof Prospecto, string>> = { diaCobro: "dia_cobro", fechaGanado: "fecha_ganado" };
 
+/**
+ * Columnas que viven en public.prospectos_internos (solo admins). El resto va en public.prospectos,
+ * que es lo único que un cliente del portal puede leer de su propia fila.
+ */
+export const COLUMNAS_INTERNAS = [
+  "telefono", "whatsapp", "puntaje", "razon", "alertas", "top10", "etapa", "seguimiento",
+  "mensaje", "guion", "notas", "boceto", "fuente", "sesion",
+] as const;
+const INTERNAS = new Set<string>(COLUMNAS_INTERNAS);
+
+/** Separa una fila en la parte de cliente y la parte interna. */
+export function dividirFila(f: Fila): { publica: Fila; interna: Fila } {
+  const publica: Fila = {};
+  const interna: Fila = {};
+  for (const [k, v] of Object.entries(f)) (INTERNAS.has(k) ? interna : publica)[k] = v;
+  return { publica, interna };
+}
+
+/** Vista de lectura (une ambas tablas con el RLS de quien consulta). */
+const VISTA = "prospectos_completo";
+
 /** camelCase → columnas. Solo incluye las claves presentes (para updates parciales). */
 export function aFila(p: Partial<Prospecto>): Fila {
   const f: Fila = {};
@@ -97,13 +120,13 @@ export function supabaseRepo(): Repo {
   return {
     async listarProspectos() {
       const db = await rls();
-      const { data, error } = await db.from("prospectos").select("*").order("puntaje", { ascending: false }).limit(5000);
+      const { data, error } = await db.from(VISTA).select("*").order("puntaje", { ascending: false }).limit(5000);
       if (error) fallo("listarProspectos", error);
       return (data ?? []).map(deFila);
     },
     async obtenerProspecto(id) {
       const db = await rls();
-      const { data, error } = await db.from("prospectos").select("*").eq("id", id).maybeSingle();
+      const { data, error } = await db.from(VISTA).select("*").eq("id", id).maybeSingle();
       if (error) fallo("obtenerProspecto", error);
       return data ? deFila(data) : null;
     },
@@ -118,9 +141,12 @@ export function supabaseRepo(): Repo {
         for (const r of data ?? []) existentes.add(String(r.id));
       }
       for (let i = 0; i < lista.length; i += 500) {
-        const filas = lista.slice(i, i + 500).map((p) => aFila(p));
-        const { error } = await db.from("prospectos").upsert(filas, { onConflict: "id" });
-        if (error) fallo("upsertProspectos", error);
+        const partes = lista.slice(i, i + 500).map((p) => ({ id: p.id, ...dividirFila(aFila(p)) }));
+        // Primero la parte de cliente (la interna referencia su id).
+        const pub = await db.from("prospectos").upsert(partes.map((x) => x.publica), { onConflict: "id" });
+        if (pub.error) fallo("upsertProspectos", pub.error);
+        const int = await db.from("prospectos_internos").upsert(partes.map((x) => ({ ...x.interna, id: x.id })), { onConflict: "id" });
+        if (int.error) fallo("upsertProspectos", int.error);
       }
       const actualizados = ids.filter((id) => existentes.has(id)).length;
       return { insertados: ids.length - actualizados, actualizados };
@@ -128,7 +154,15 @@ export function supabaseRepo(): Repo {
     async crearProspecto(p: NuevoProspecto) {
       // SERVICE ROLE: lo usa el formulario público (ya validado con Zod + honeypot + rate limit).
       const db = clienteServicio();
-      const { data, error } = await db.from("prospectos").insert(aFila(prospectoBase(p))).select("*").single();
+      const { publica, interna } = dividirFila(aFila(prospectoBase(p)));
+      const pub = await db.from("prospectos").insert(publica);
+      if (pub.error) fallo("crearProspecto", pub.error);
+      const int = await db.from("prospectos_internos").insert({ ...interna, id: publica.id });
+      if (int.error) {
+        await db.from("prospectos").delete().eq("id", String(publica.id));
+        fallo("crearProspecto", int.error);
+      }
+      const { data, error } = await db.from(VISTA).select("*").eq("id", String(publica.id)).single();
       if (error) fallo("crearProspecto", error);
       return deFila(data);
     },
@@ -137,7 +171,17 @@ export function supabaseRepo(): Repo {
       const { id: _ignorado, creado: _c, ...resto } = cambios;
       void _ignorado;
       void _c;
-      const { data, error } = await db.from("prospectos").update(aFila(resto)).eq("id", id).select("*").maybeSingle();
+      const { publica, interna } = dividirFila(aFila(resto));
+      if (Object.keys(publica).length) {
+        const r = await db.from("prospectos").update(publica).eq("id", id);
+        if (r.error) fallo("actualizarProspecto", r.error);
+      }
+      if (Object.keys(interna).length) {
+        // upsert: un prospecto viejo sin fila interna la obtiene aquí.
+        const r = await db.from("prospectos_internos").upsert({ ...interna, id }, { onConflict: "id" });
+        if (r.error) fallo("actualizarProspecto", r.error);
+      }
+      const { data, error } = await db.from(VISTA).select("*").eq("id", id).maybeSingle();
       if (error) fallo("actualizarProspecto", error);
       if (!data) throw new Error("Prospecto no encontrado");
       return deFila(data);
@@ -203,7 +247,7 @@ export function supabaseRepo(): Repo {
     async volcarTodo() {
       const db = clienteServicio();
       const out: Record<string, unknown[]> = {};
-      for (const tabla of ["prospectos", "sitios", "solicitudes_cambio", "clientes_portal", "admins"]) {
+      for (const tabla of ["prospectos", "prospectos_internos", "sitios", "solicitudes_cambio", "clientes_portal", "admins"]) {
         const filas: unknown[] = [];
         for (let desde = 0; ; desde += 1000) {
           const { data, error } = await db.from(tabla).select("*").range(desde, desde + 999);

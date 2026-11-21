@@ -4,7 +4,10 @@
 -- Modelo de seguridad (RLS en TODAS las tablas):
 --   * admins (correo en public.admins)  → acceso total al CRM.
 --   * clientes del portal (auth.users ligados en public.clientes_portal)
---       → SELECT solo de SU prospecto y SUS sitios; INSERT de solicitudes_cambio solo
+--       → SELECT solo de la parte "de cliente" de SU prospecto (public.prospectos) y SUS sitios.
+--         Los datos internos de venta (teléfono, WhatsApp, puntaje, razón, alertas, etapa,
+--         seguimiento, mensaje, guion, notas, boceto, fuente, sesión) viven en
+--         public.prospectos_internos, que SOLO los admins pueden leer; INSERT de solicitudes_cambio solo
 --         para su propio prospecto; subir fotos solo a la carpeta cambios/<su prospecto>/.
 --   * anon → NINGÚN acceso a tablas. Lo único público es contar_sitios_activos() (un número).
 --   * Los leads del formulario público y el antispam (envios) se escriben en el servidor con
@@ -24,6 +27,7 @@ create table if not exists public.admins (
   email text primary key check (email = lower(email))
 );
 
+-- Parte del prospecto que el cliente puede ver en el portal (sus propios datos de contrato).
 create table if not exists public.prospectos (
   id            text primary key,
   nombre        text not null,
@@ -31,6 +35,21 @@ create table if not exists public.prospectos (
   categoria     text not null default '',
   colonia       text not null default '',
   direccion     text not null default '',
+  paquete       text,
+  monto         numeric check (monto is null or monto >= 0),
+  mensualidad   numeric check (mensualidad is null or mensualidad >= 0),
+  dia_cobro     smallint check (dia_cobro between 1 and 31),
+  servicios     text[] not null default '{}',
+  fecha_ganado  date,
+  email         text check (email is null or email = lower(email)),
+  creado        timestamptz not null default now(),
+  actualizado   timestamptz not null default now()
+);
+create index if not exists prospectos_email_idx on public.prospectos (email);
+
+-- Datos internos de venta: SOLO admins (ninguna política para clientes del portal).
+create table if not exists public.prospectos_internos (
+  id            text primary key references public.prospectos(id) on delete cascade,
   telefono      text not null default '',
   whatsapp      text not null default '',
   puntaje       numeric not null default 0,
@@ -45,20 +64,21 @@ create table if not exists public.prospectos (
   notas         jsonb not null default '[]'::jsonb check (jsonb_typeof(notas) = 'array'),
   boceto        text not null default '',
   fuente        text not null default '',
-  sesion        text not null default '',
-  paquete       text,
-  monto         numeric check (monto is null or monto >= 0),
-  mensualidad   numeric check (mensualidad is null or mensualidad >= 0),
-  dia_cobro     smallint check (dia_cobro between 1 and 31),
-  servicios     text[] not null default '{}',
-  fecha_ganado  date,
-  email         text check (email is null or email = lower(email)),
-  creado        timestamptz not null default now(),
-  actualizado   timestamptz not null default now()
+  sesion        text not null default ''
 );
-create index if not exists prospectos_etapa_idx on public.prospectos (etapa);
-create index if not exists prospectos_seguimiento_idx on public.prospectos (seguimiento);
-create index if not exists prospectos_email_idx on public.prospectos (email);
+create index if not exists prospectos_internos_etapa_idx on public.prospectos_internos (etapa);
+create index if not exists prospectos_internos_seguimiento_idx on public.prospectos_internos (seguimiento);
+
+-- Vista de lectura para el CRM. security_invoker: aplica el RLS de AMBAS tablas a quien consulta,
+-- así que un cliente del portal solo ve su fila con las columnas internas en NULL.
+create or replace view public.prospectos_completo with (security_invoker = true) as
+  select p.id, p.nombre, p.giro, p.categoria, p.colonia, p.direccion,
+         i.telefono, i.whatsapp, i.puntaje, i.razon, i.alertas, i.top10, i.etapa, i.seguimiento,
+         i.mensaje, i.guion, i.notas, i.boceto, i.fuente, i.sesion,
+         p.paquete, p.monto, p.mensualidad, p.dia_cobro, p.servicios, p.fecha_ganado, p.email,
+         p.creado, p.actualizado
+    from public.prospectos p
+    left join public.prospectos_internos i on i.id = p.id;
 
 create table if not exists public.sitios (
   slug            text primary key check (slug ~ '^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$'),
@@ -103,14 +123,16 @@ create index if not exists clientes_portal_prospecto_idx on public.clientes_port
 -- -----------------------------------------------------------------------------
 alter table public.admins              enable row level security;
 alter table public.prospectos          enable row level security;
+alter table public.prospectos_internos enable row level security;
 alter table public.sitios              enable row level security;
 alter table public.solicitudes_cambio  enable row level security;
 alter table public.envios              enable row level security;
 alter table public.clientes_portal     enable row level security;
 
 -- Defensa en profundidad: anon no tiene privilegios sobre ninguna tabla.
-revoke all on table public.admins, public.prospectos, public.sitios, public.solicitudes_cambio,
+revoke all on table public.admins, public.prospectos, public.prospectos_internos, public.sitios, public.solicitudes_cambio,
   public.envios, public.clientes_portal from anon;
+revoke all on public.prospectos_completo from anon;
 -- envios solo lo usa el servidor (service role).
 revoke all on table public.envios from authenticated;
 -- admins se administra por SQL; los usuarios autenticados solo pueden leer (si son admin).
@@ -153,7 +175,7 @@ returns void
 language sql security invoker
 set search_path = ''
 as $$
-  update public.prospectos set notas = notas || jsonb_build_array(p_nota) where id = p_id;
+  update public.prospectos_internos set notas = notas || jsonb_build_array(p_nota) where id = p_id;
 $$;
 
 revoke execute on function public.is_admin(), public.mi_prospecto_id(), public.agregar_nota(text, jsonb) from public, anon;
@@ -175,12 +197,25 @@ drop trigger if exists prospectos_actualizado on public.prospectos;
 create trigger prospectos_actualizado before update on public.prospectos
   for each row execute function public.tocar_actualizado();
 
+-- Un cambio en los datos internos también marca el prospecto como actualizado.
+create or replace function public.tocar_prospecto_padre()
+returns trigger language plpgsql security definer set search_path = '' as $$
+begin
+  update public.prospectos set actualizado = now() where id = new.id;
+  return new;
+end;
+$$;
+revoke execute on function public.tocar_prospecto_padre() from public, anon, authenticated;
+drop trigger if exists prospectos_internos_actualizado on public.prospectos_internos;
+create trigger prospectos_internos_actualizado after update on public.prospectos_internos
+  for each row execute function public.tocar_prospecto_padre();
+
 -- Una solicitud del portal aparece como nota "[Portal] ..." en el prospecto
 -- (mismo formato que lib/crm/notas.ts). Security definer: el cliente no puede editar prospectos.
 create or replace function public.solicitud_a_nota()
 returns trigger language plpgsql security definer set search_path = '' as $$
 begin
-  update public.prospectos
+  update public.prospectos_internos
      set notas = notas || jsonb_build_array(jsonb_build_object(
            't', to_char(new.creado at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"'),
            'txt', '[Portal] ' || new.texto || coalesce(' — foto: ' || new.foto, '')))
@@ -205,12 +240,15 @@ create policy "admins: lectura admin" on public.admins
 drop policy if exists "prospectos: admin todo" on public.prospectos;
 create policy "prospectos: admin todo" on public.prospectos
   for all to authenticated using ((select public.is_admin())) with check ((select public.is_admin()));
--- El cliente puede leer SU fila (son sus propios datos). Nota: incluye campos internos de venta
--- (razon, guion, notas); la app solo le muestra plan/servicios/cobro. Si se quiere ocultarlos
--- también a nivel API, muévelos a una tabla aparte solo-admin.
+-- El cliente puede leer SU fila: solo nombre, giro, dirección y datos de su contrato.
 drop policy if exists "prospectos: cliente lee el suyo" on public.prospectos;
 create policy "prospectos: cliente lee el suyo" on public.prospectos
   for select to authenticated using (id = (select public.mi_prospecto_id()));
+
+-- prospectos_internos: SOLO admins. Sin política para clientes → el portal nunca los ve.
+drop policy if exists "prospectos_internos: admin todo" on public.prospectos_internos;
+create policy "prospectos_internos: admin todo" on public.prospectos_internos
+  for all to authenticated using ((select public.is_admin())) with check ((select public.is_admin()));
 
 -- sitios
 drop policy if exists "sitios: admin todo" on public.sitios;

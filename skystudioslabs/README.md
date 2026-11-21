@@ -73,6 +73,11 @@ arrancar en producción** a menos que pongas `SKY_ALLOW_LOCAL_STORE=1` (solo par
 7. Pon tu correo también en `ADMIN_EMAILS` (el CRM exige estar en ambas listas).
 8. Importa tus prospectos: copia tu archivo a `data/crm-prospectos.json` y corre `npm run crm:importar`.
 
+> Datos internos: teléfono, WhatsApp, puntaje, razón, alertas, etapa, seguimiento, mensaje,
+> guion, notas, boceto, fuente y sesión viven en `prospectos_internos`, que **solo los admins**
+> pueden leer. El cliente del portal solo ve nombre, giro, dirección y su contrato. La prueba
+> `supabase/pruebas/rls.sql` lo verifica en un PostgreSQL local.
+>
 > Seguridad: el sitio público nunca lee filas de prospectos. Solo llama a la función
 > `contar_sitios_activos()` (un número). Los formularios públicos se guardan desde el servidor
 > tras validar con Zod, campo trampa y límite de 5 envíos por IP por hora.
