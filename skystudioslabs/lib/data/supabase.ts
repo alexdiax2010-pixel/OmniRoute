@@ -5,6 +5,7 @@ import type { Prospecto, Sitio, SolicitudCambio, Nota, Etapa } from "@/lib/types
 import type { Servicio } from "@/config/precios";
 import { prospectoBase } from "./base";
 import { clienteServicio, clienteSesionOServicio } from "@/lib/supabase/servidor";
+import { adminPorCodigo } from "@/lib/auth-codigo";
 
 /**
  * Repo sobre Supabase.
@@ -113,6 +114,9 @@ function fallo(op: string, error: { message?: string; code?: string } | null): n
 }
 
 async function rls(): Promise<SupabaseClient> {
+  // Sesión de admin iniciada con código especial: no hay sesión de Supabase, se usa la service
+  // role. adminPorCodigo() verifica la cookie firmada; las acciones del CRM además llaman requerirAdmin().
+  if (await adminPorCodigo()) return clienteServicio();
   return clienteSesionOServicio();
 }
 

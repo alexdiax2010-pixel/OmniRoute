@@ -13,6 +13,7 @@ import {
   type PayloadToken,
 } from "@/lib/auth-token";
 import { normalizarHost } from "@/lib/hosts";
+import { adminPorCodigo } from "@/lib/auth-codigo";
 
 /**
  * Autenticación.
@@ -95,6 +96,8 @@ async function sesionSupabase(): Promise<Sesion | null> {
 /** Sesión actual (memoizada por petición). */
 export const obtenerSesion = cache(async (): Promise<Sesion | null> => {
   try {
+    const porCodigo = await adminPorCodigo();
+    if (porCodigo) return { rol: "admin", email: porCodigo };
     if (supabaseConfigurado()) return await sesionSupabase();
     if (modoLocal()) return await sesionLocal();
     return null;

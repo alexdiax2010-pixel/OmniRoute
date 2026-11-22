@@ -1,6 +1,8 @@
 "use server";
 
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { codigoAdminConfigurado, codigoCorrecto, crearSesionCodigo } from "@/lib/auth-codigo";
 import { z } from "zod";
 import { MENSAJE_ENLACE, secreto, solicitarEnlace } from "@/lib/auth";
 import { getRepo } from "@/lib/data";
@@ -32,4 +34,28 @@ export async function enviarEnlaceAdmin(_prev: EstadoLogin, formData: FormData):
 
 export async function enviarEnlacePortal(_prev: EstadoLogin, formData: FormData): Promise<EstadoLogin> {
   return enviar(formData, "portal");
+}
+
+const LIMITE_CODIGO_HORA = 5;
+const esquemaCodigo = z.object({ codigo: z.string().min(1).max(128) });
+
+/** Entrar al CRM con el código especial (ADMIN_CODIGO). 5 intentos por hora por IP. */
+export async function entrarConCodigo(_prev: EstadoLogin, formData: FormData): Promise<EstadoLogin> {
+  const r = esquemaCodigo.safeParse({ codigo: String(formData.get("codigo") ?? "") });
+  if (!r.success) return { mensaje: "Escribe el código.", error: true };
+  if (!codigoAdminConfigurado()) return { mensaje: "El acceso con código no está activado.", error: true };
+  let ok = false;
+  try {
+    const repo = await getRepo();
+    const ip = ipDeCabeceras(await headers());
+    const n = await repo.registrarEnvio(hashIp(`codigo:${ip}`, secreto()), new Date(Date.now() - 3600_000).toISOString());
+    if (n > LIMITE_CODIGO_HORA) return { mensaje: "Demasiados intentos. Espera una hora e inténtalo de nuevo.", error: true };
+    ok = codigoCorrecto(r.data.codigo);
+    if (ok) await crearSesionCodigo();
+  } catch (e) {
+    console.error("[auth] entrar con código falló", e instanceof Error ? e.message : "");
+    return { mensaje: "No se pudo entrar. Inténtalo de nuevo.", error: true };
+  }
+  if (!ok) return { mensaje: "Código incorrecto.", error: true };
+  redirect("/admin");
 }

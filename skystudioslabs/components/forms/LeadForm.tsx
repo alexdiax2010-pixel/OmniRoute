@@ -2,8 +2,9 @@
 
 import { useId, useState } from "react";
 import s from "./LeadForm.module.css";
+import { linkWhatsApp } from "@/config/sitio";
 
-type Estado = { tipo: "inicial" } | { tipo: "enviando" } | { tipo: "ok" } | { tipo: "error"; mensaje: string; campos?: Record<string, string> };
+type Estado = { tipo: "inicial" } | { tipo: "enviando" } | { tipo: "ok"; wa: string } | { tipo: "error"; mensaje: string; campos?: Record<string, string> };
 
 /** Formulario de contacto público. Envía a /api/prospectos (funciona también sin JS). */
 export function LeadForm({ origen }: { origen?: string }) {
@@ -25,7 +26,9 @@ export function LeadForm({ origen }: { origen?: string }) {
       const j = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; campos?: Record<string, string> };
       if (res.ok && j.ok) {
         form.reset();
-        setEstado({ tipo: "ok" });
+        const n = String(datos.nombre ?? "").trim();
+        const neg = String(datos.negocio ?? "").trim();
+        setEstado({ tipo: "ok", wa: linkWhatsApp(`Hola, soy ${n} de ${neg}. Acabo de pedir mi boceto gratis en su página.`) });
       } else {
         setEstado({ tipo: "error", mensaje: j.error ?? "No pudimos enviar tu mensaje. Inténtalo de nuevo.", campos: j.campos });
       }
@@ -72,7 +75,14 @@ export function LeadForm({ origen }: { origen?: string }) {
         {estado.tipo === "enviando" ? "Enviando…" : "Quiero mi boceto gratis"}
       </button>
       <p className={s.estado} aria-live="polite" role="status">
-        {estado.tipo === "ok" && <span className={s.ok}>¡Gracias! Te escribimos por WhatsApp muy pronto.</span>}
+        {estado.tipo === "ok" && (
+          <span className={s.ok}>
+            ¡Gracias! Ya recibimos tus datos. Para que te atienda más rápido,{" "}
+            <a href={estado.wa} target="_blank" rel="noopener noreferrer" data-testid="lead-wa">
+              envíame tu solicitud por WhatsApp →
+            </a>
+          </span>
+        )}
         {estado.tipo === "error" && <span className={s.error}>{estado.mensaje}</span>}
       </p>
     </form>

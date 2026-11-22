@@ -68,3 +68,15 @@ test("el formulario público crea un prospecto con fuente web", async ({ page })
   await enlace.click();
   await expect(page.getByText(/Fuente: web/)).toBeVisible();
 });
+
+test("entrar al CRM con el código especial (incorrecto rechaza, correcto entra)", async ({ page }, testInfo) => {
+  test.skip(soloEscritorio(testInfo), "solo escritorio");
+  await page.goto("/admin/login");
+  await page.getByLabel("Código especial").fill("codigo-equivocado");
+  await page.getByRole("button", { name: "Entrar con código" }).click();
+  await expect(page.getByText("Código incorrecto.")).toBeVisible();
+  await page.getByLabel("Código especial").fill("Codigo-E2E-2026");
+  await page.getByRole("button", { name: "Entrar con código" }).click();
+  await expect(page).toHaveURL(/\/admin$/);
+  await expect(page.getByText(PROSPECTOS_EJEMPLO[0]).first()).toBeVisible();
+});

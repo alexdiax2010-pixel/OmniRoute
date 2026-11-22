@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { LoginForm } from "@/components/auth/LoginForm";
-import { enviarEnlaceAdmin } from "@/app/auth/acciones";
+import { CodigoForm } from "@/components/auth/CodigoForm";
+import { enviarEnlaceAdmin, entrarConCodigo } from "@/app/auth/acciones";
+import { codigoAdminConfigurado } from "@/lib/auth-codigo";
 import { obtenerSesion } from "@/lib/auth";
 import s from "../admin.module.css";
 
@@ -15,9 +17,19 @@ export default async function LoginAdmin({ searchParams }: { searchParams: Promi
       <h1 className={s.titulo}>
         CRM <em>Sky</em>
       </h1>
-      <p className={s.muted} style={{ marginBottom: 16 }}>
-        Te enviamos un enlace de acceso a tu correo. Sin contraseñas.
-      </p>
+      {codigoAdminConfigurado() && (
+        <>
+          <CodigoForm accion={entrarConCodigo} />
+          <p className={s.muted} style={{ margin: "24px 0 16px" }}>
+            O recibe un enlace de acceso en tu correo:
+          </p>
+        </>
+      )}
+      {!codigoAdminConfigurado() && (
+        <p className={s.muted} style={{ marginBottom: 16 }}>
+          Te enviamos un enlace de acceso a tu correo. Sin contraseñas.
+        </p>
+      )}
       {error === "enlace" && (
         <p className={s.error} role="alert" style={{ marginBottom: 12 }}>
           El enlace no es válido o ya venció. Pide uno nuevo.

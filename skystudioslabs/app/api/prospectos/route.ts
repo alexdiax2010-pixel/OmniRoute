@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getRepo } from "@/lib/data";
 import { secreto } from "@/lib/auth";
 import { evaluarLead, hashIp, ipDeCabeceras, LIMITE_ENVIOS_HORA, prospectoDesdeLead } from "@/lib/lead";
+import { after } from "next/server";
+import { avisarNuevoProspecto } from "@/lib/notificar";
 
 /**
  * POST /api/prospectos — formulario público de contacto (JSON o form).
@@ -61,6 +63,9 @@ export async function POST(request: NextRequest) {
       return responder(request, esForm, 429, { ok: false, error: "Recibimos varios envíos desde tu conexión. Inténtalo más tarde o escríbenos por WhatsApp." });
     }
     await repo.crearProspecto(prospectoDesdeLead(r.lead));
+    // Aviso a tu WhatsApp después de responder (no retrasa al visitante).
+    const lead = r.lead;
+    after(() => avisarNuevoProspecto(lead));
     return responder(request, esForm, 200, { ok: true });
   } catch (e) {
     console.error("[lead] no se pudo guardar", e instanceof Error ? e.message : "");

@@ -33,6 +33,7 @@ export default defineConfig({
       SKY_DATA_FILE: ".data/e2e.json",
       ADMIN_EMAILS: "admin@sky.test",
       SKY_SECRET: "e2e-secret-no-usar-en-produccion",
+      ADMIN_CODIGO: "Codigo-E2E-2026",
       NEXT_PUBLIC_SUPABASE_URL: "",
       NEXT_PUBLIC_SUPABASE_ANON_KEY: "",
     },

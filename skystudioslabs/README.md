@@ -154,6 +154,23 @@ fecha indicada (30 días por defecto).
 
 ---
 
+## Entrar al CRM con código especial
+
+En `/admin` (o `admin.skystudioslabs.com`) escribe el código guardado en la variable `ADMIN_CODIGO`
+de Vercel. Son 5 intentos por hora por conexión y la sesión dura 12 horas. Para cambiar el código,
+edita `ADMIN_CODIGO` en Vercel → Settings → Environment Variables y vuelve a publicar.
+
+## Avisos por WhatsApp de prospectos nuevos
+
+1. **Al visitante**: tras enviar el formulario aparece un botón que abre WhatsApp con su solicitud
+   lista para mandarte. Si lo envía, te llega como un chat normal.
+2. **Aviso automático** (CallMeBot, gratis, uso personal):
+   - Sigue los pasos de activación en la página oficial de CallMeBot (agregar su número como
+     contacto y mandarle el mensaje de activación). Te responde con tu `apikey`.
+   - En Vercel agrega `CALLMEBOT_APIKEY` (tipo Sensitive) con esa llave. `AVISO_WHATSAPP` ya tiene
+     tu número (`524492889487`). Vuelve a publicar.
+   - Cada prospecto nuevo te manda: nombre, negocio, WhatsApp, de qué página llegó y el link al CRM.
+
 ## Estructura
 
 ```
