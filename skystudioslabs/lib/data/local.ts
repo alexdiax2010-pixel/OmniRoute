@@ -4,7 +4,7 @@ import path from "node:path";
 import { randomUUID } from "node:crypto";
 import type { Repo } from "./repo";
 import { prospectoBase } from "./base";
-import type { Prospecto, Sitio, SolicitudCambio, Nota } from "@/lib/types";
+import type { Prospecto, Sitio, SolicitudCambio, Nota, SuscripcionPush } from "@/lib/types";
 import { notaPortal } from "@/lib/crm/notas";
 
 type DB = {
@@ -12,6 +12,7 @@ type DB = {
   sitios: Sitio[];
   solicitudes: SolicitudCambio[];
   envios: { ip: string; t: string }[];
+  push?: SuscripcionPush[];
 };
 
 const vacia = (): DB => ({ prospectos: [], sitios: [], solicitudes: [], envios: [] });
@@ -149,6 +150,19 @@ export const localRepo: Repo = {
       db.envios = db.envios.filter((e) => e.t >= desde);
       db.envios.push({ ip: ipHash, t });
       return db.envios.filter((e) => e.ip === ipHash).length;
+    });
+  },
+  guardarSuscripcionPush(s) {
+    return mutar((db) => {
+      db.push = [...(db.push ?? []).filter((x) => x.endpoint !== s.endpoint), s];
+    });
+  },
+  async listarSuscripcionesPush() {
+    return (await leer()).push ?? [];
+  },
+  borrarSuscripcionPush(endpoint) {
+    return mutar((db) => {
+      db.push = (db.push ?? []).filter((x) => x.endpoint !== endpoint);
     });
   },
   async volcarTodo() {

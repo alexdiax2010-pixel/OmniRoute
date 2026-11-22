@@ -1,7 +1,7 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Repo, NuevoProspecto } from "./repo";
-import type { Prospecto, Sitio, SolicitudCambio, Nota, Etapa } from "@/lib/types";
+import type { Prospecto, Sitio, SolicitudCambio, Nota, Etapa, SuscripcionPush } from "@/lib/types";
 import type { Servicio } from "@/config/precios";
 import { prospectoBase } from "./base";
 import { clienteServicio, clienteSesionOServicio } from "@/lib/supabase/servidor";
@@ -258,6 +258,19 @@ export function supabaseRepo(): Repo {
       const { count, error } = await db.from("envios").select("id", { count: "exact", head: true }).eq("ip_hash", ipHash).gte("t", desde);
       if (error) fallo("registrarEnvio", error);
       return count ?? 1;
+    },
+    async guardarSuscripcionPush(s) {
+      const { error } = await clienteServicio().from("push_suscripciones").upsert(s, { onConflict: "endpoint" });
+      if (error) fallo("guardarSuscripcionPush", error);
+    },
+    async listarSuscripcionesPush() {
+      const { data, error } = await clienteServicio().from("push_suscripciones").select("endpoint, p256dh, auth, etiqueta");
+      if (error) fallo("listarSuscripcionesPush", error);
+      return (data ?? []) as SuscripcionPush[];
+    },
+    async borrarSuscripcionPush(endpoint) {
+      const { error } = await clienteServicio().from("push_suscripciones").delete().eq("endpoint", endpoint);
+      if (error) fallo("borrarSuscripcionPush", error);
     },
     async volcarTodo() {
       const db = clienteServicio();

@@ -1,4 +1,4 @@
-import type { Prospecto, Sitio, SolicitudCambio, Nota } from "@/lib/types";
+import type { Prospecto, Sitio, SolicitudCambio, Nota, SuscripcionPush } from "@/lib/types";
 
 export type NuevoProspecto = Pick<Prospecto, "nombre" | "giro" | "whatsapp"> & Partial<Prospecto>;
 
@@ -35,6 +35,11 @@ export interface Repo {
 
   // Antispam: registra un envío y devuelve cuántos hubo desde `desde` (ISO) para esa IP (hash).
   registrarEnvio(ipHash: string, desde: string): Promise<number>;
+
+  // Notificaciones push del CRM (solo servidor)
+  guardarSuscripcionPush(s: SuscripcionPush): Promise<void>;
+  listarSuscripcionesPush(): Promise<SuscripcionPush[]>;
+  borrarSuscripcionPush(endpoint: string): Promise<void>;
 
   // Respaldo
   volcarTodo(): Promise<Record<string, unknown[]>>;

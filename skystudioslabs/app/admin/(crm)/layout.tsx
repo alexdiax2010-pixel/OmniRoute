@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { requerirAdmin } from "@/lib/auth";
+import { pushConfigurado } from "@/lib/push";
+import { AvisosTelefono } from "./_componentes/AvisosTelefono";
 import s from "../admin.module.css";
 
 /** Todo lo que está bajo (crm) exige admin. Las Server Actions vuelven a verificarlo. */
@@ -26,6 +28,7 @@ export default async function CrmLayout({ children }: { children: React.ReactNod
         </div>
       </header>
       <main className={s.main} id="contenido">
+        {pushConfigurado() && <AvisosTelefono llavePublica={process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!.trim()} />}
         {children}
       </main>
     </>

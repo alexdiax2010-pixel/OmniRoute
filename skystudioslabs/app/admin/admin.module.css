@@ -224,3 +224,18 @@ fieldset.grupo { border: 1px solid var(--c-line); border-radius: 10px; padding: 
 .mover .select { padding: 6px 8px; }
 
 .login { max-width: 460px; margin: 10vh auto 0; padding: 0 16px; }
+
+/* Avisos de clientes nuevos (notificaciones push) */
+.avisos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+}
+.avisosBtns { display: inline-flex; gap: 12px; align-items: center; }
+.btnSec { composes: btn; }

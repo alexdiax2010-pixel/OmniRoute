@@ -160,16 +160,16 @@ En `/admin` (o `admin.skystudioslabs.com`) escribe el código guardado en la var
 de Vercel. Son 5 intentos por hora por conexión y la sesión dura 12 horas. Para cambiar el código,
 edita `ADMIN_CODIGO` en Vercel → Settings → Environment Variables y vuelve a publicar.
 
-## Avisos por WhatsApp de prospectos nuevos
+## Notificación en tu teléfono cuando llega un cliente
 
-1. **Al visitante**: tras enviar el formulario aparece un botón que abre WhatsApp con su solicitud
-   lista para mandarte. Si lo envía, te llega como un chat normal.
-2. **Aviso automático** (CallMeBot, gratis, uso personal):
-   - Sigue los pasos de activación en la página oficial de CallMeBot (agregar su número como
-     contacto y mandarle el mensaje de activación). Te responde con tu `apikey`.
-   - En Vercel agrega `CALLMEBOT_APIKEY` (tipo Sensitive) con esa llave. `AVISO_WHATSAPP` ya tiene
-     tu número (`524492889487`). Vuelve a publicar.
-   - Cada prospecto nuevo te manda: nombre, negocio, WhatsApp, de qué página llegó y el link al CRM.
+1. Abre el CRM en tu teléfono (`skystudioslabs.com/admin`) y entra.
+   - **iPhone**: primero toca Compartir → **Agregar a pantalla de inicio** y abre "CRM Sky" desde ese ícono
+     (Apple solo permite avisos en apps instaladas).
+2. Toca **Activar avisos en este teléfono** y acepta el permiso. Pulsa **Enviar prueba** para comprobarlo.
+3. Cada formulario nuevo del sitio te llega como notificación: "Nuevo cliente: [negocio]". Al tocarla abre el CRM.
+
+Usa Web Push estándar (llaves `NEXT_PUBLIC_VAPID_PUBLIC_KEY` y `VAPID_PRIVATE_KEY` en Vercel). Puedes activarlo
+en varios teléfonos o computadoras.
 
 ## Estructura
 

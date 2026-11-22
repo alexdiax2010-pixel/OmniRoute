@@ -64,6 +64,8 @@ export type SolicitudCambio = {
   creado: string;
 };
 
+export type SuscripcionPush = { endpoint: string; p256dh: string; auth: string; etiqueta: string };
+
 export type Sesion =
   | { rol: "admin"; email: string }
   | { rol: "cliente"; email: string; prospectoId: string };
