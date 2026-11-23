@@ -15,7 +15,7 @@ import { FAQ } from "./FAQ";
 import { WhatsAppCTA } from "./WhatsAppCTA";
 import s from "./seo.module.css";
 
-/** Plantilla única para las 8 páginas SEO (servicios y giros). El contenido vive en lib/seo/paginas.ts. */
+/** Plantilla única para las páginas SEO (servicios y giros). El contenido vive en lib/seo/paginas.ts. */
 export function PlantillaSEO({ slug }: { slug: string }) {
   const p = obtenerPagina(slug);
   const wa = linkWhatsApp(p.mensajeWhatsApp);
@@ -139,8 +139,8 @@ export function PlantillaSEO({ slug }: { slug: string }) {
         </div>
       </section>
 
-      <WhatsAppCTA mensaje={p.mensajeWhatsApp}>
-        <div className={s.formulario}>
+      <WhatsAppCTA mensaje={p.mensajeWhatsApp} texto={p.ctaTexto}>
+        <div className={s.formulario} id="contacto">
           <p className="muted">¿Prefieres que te contactemos nosotros? Déjanos tus datos:</p>
           <LeadForm origen={`seo:${p.slug}`} />
         </div>

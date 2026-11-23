@@ -13,10 +13,11 @@
   font-size: var(--fs-body);
   font-family: inherit;
 }
-.input:focus { border-color: var(--c-orange); outline: none; }
+.input:focus { border-color: var(--c-orange); outline: 2px solid var(--c-orange); outline-offset: 2px; }
+.input::placeholder { color: var(--c-muted); opacity: 0.7; }
 .input[aria-invalid="true"] { border-color: var(--c-ember); }
 .ayuda { font-size: var(--fs-body); color: var(--c-muted); }
-.errorCampo { font-size: var(--fs-body); color: var(--c-ember); }
+.errorCampo { font-size: var(--fs-body); color: var(--c-ember); font-weight: 700; }
 .trampa { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 .btn {
   min-height: 56px;
@@ -30,6 +31,9 @@
   box-shadow: 0 10px 40px -10px rgba(var(--k-rgb-255-74-28, 255,74,28), 0.7);
 }
 .btn:disabled { opacity: 0.6; cursor: default; }
+.btn:focus-visible { outline: 3px solid var(--c-text); outline-offset: 3px; }
 .estado { font-size: var(--fs-body); min-height: 1.5em; }
+.estado:focus { outline: none; }
+.estado a { color: inherit; text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
 .ok { color: var(--c-ok); font-weight: 700; }
 .error { color: var(--c-ember); }

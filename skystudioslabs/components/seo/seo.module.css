@@ -32,6 +32,9 @@
   overflow-wrap: break-word;
   hyphens: auto;
 }
+/* La palabra resaltada baja completa a su renglón en vez de partirse junto a "para";
+   si aun así no cabe, se divide con guion. */
+.h1 :global(.hl) { display: inline-block; max-width: 100%; }
 .intro { max-width: 640px; color: var(--c-text); }
 .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .heroInner .acciones { margin-top: 32px; }
