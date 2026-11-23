@@ -1,5 +1,5 @@
 /**
- * Contenido de las 8 páginas SEO (4 servicios + 4 giros). Se pintan con la plantilla
+ * Contenido de las páginas SEO (servicios y giros). Se pintan con la plantilla
  * components/seo/PlantillaSEO.tsx. En `h1` y en los títulos de sección, el texto entre
  * *asteriscos* se resalta en brasa/naranja (máximo 1–2 palabras por frase).
  *
@@ -19,7 +19,10 @@ export type VarianteEjemplo =
   | "dentista"
   | "taller"
   | "barberia"
-  | "restaurante";
+  | "restaurante"
+  | "despacho"
+  | "consultorio"
+  | "veterinaria";
 
 export type PaginaSEO = {
   slug: string;
@@ -43,6 +46,11 @@ export type PaginaSEO = {
   /** Nota honesta opcional (ej. no garantizamos el primer lugar en Google). */
   nota?: string;
   faqs: FAQ[];
+  /**
+   * Texto del bloque final de contacto: qué mandar por WhatsApp para pedir el boceto.
+   * Si falta, se usa el texto general de components/seo/WhatsAppCTA.tsx.
+   */
+  ctaTexto?: string;
   /** Datos para el schema.org Service. */
   servicio: { nombre: string; descripcion: string };
   /** Mensaje prellenado de WhatsApp. */
@@ -68,6 +76,18 @@ const faqCambios: FAQ = {
   pregunta: "¿Puedo hacer cambios?",
   respuesta:
     "Sí. Antes de publicar revisamos el boceto contigo y lo ajustamos. Ya publicada, con el mantenimiento mensual nos mandas por WhatsApp los cambios menores (precios, horarios, fotos, promociones) y nosotros los hacemos.",
+};
+
+const faqBoceto: FAQ = {
+  pregunta: "¿El boceto gratis me compromete a algo?",
+  respuesta:
+    "No. Te enseñamos cómo podría verse tu página con el nombre y el giro de tu negocio. Si te gusta, seguimos; si no, no pagas nada y no te insistimos.",
+};
+
+const faqPrecio: FAQ = {
+  pregunta: "¿Cuánto cuesta?",
+  respuesta:
+    "Hay tres paquetes de pago único (Básico, Estándar y Premium) y un mantenimiento mensual opcional; los precios están en la tabla de esta página. Antes de cobrarte nada te enseñamos el boceto y te decimos qué paquete te conviene.",
 };
 
 function faqNecesito(cosas: string): FAQ {
@@ -459,7 +479,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     titulo: "Páginas web para dentistas en México",
     descripcion:
       "Página web para consultorios dentales en todo México: tratamientos, ubicación, horarios y citas por WhatsApp. Pide tu boceto gratis.",
-    antetitulo: "Consultorios dentales",
+    antetitulo: "Consultorios y clínicas dentales",
     h1: "Páginas web para *dentistas*",
     intro:
       "Quien busca dentista quiere confiar antes de llegar: ver el consultorio, saber qué tratamientos haces y agendar sin complicarse. Tu página resuelve eso y manda la cita directo a tu WhatsApp.",
@@ -468,7 +488,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     problemas: [
       {
         titulo: "No sabe qué tratamientos haces",
-        texto: "Limpieza, resinas, ortodoncia, implantes, blanqueamiento… si no lo ve claro en tu perfil, busca a otro.",
+        texto: "Limpieza, resinas, ortodoncia, implantes, blanqueamiento… si no lo ve claro, busca a otro dentista.",
       },
       {
         titulo: "No conoce el consultorio ni al doctor",
@@ -479,8 +499,8 @@ export const PAGINAS_SEO: PaginaSEO[] = [
         texto: "Llama mientras estás con un paciente, nadie contesta y la cita se pierde. Por WhatsApp es más fácil.",
       },
       {
-        titulo: "Las clínicas grandes se ven mejor",
-        texto: "Tienen página y anuncios. Una página bien hecha te pone al mismo nivel de presentación sin su presupuesto.",
+        titulo: "En los directorios estás junto a tu competencia",
+        texto: "En un directorio médico tu perfil aparece al lado de otros dentistas. En tu página, el paciente solo te ve a ti.",
       },
     ],
     incluyeTitulo: "Qué incluye la página de tu *consultorio*",
@@ -499,6 +519,8 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       { titulo: "Espacio para reseñas reales", texto: "Una sección lista para las opiniones de tus pacientes, tomadas de Google con su permiso." },
     ],
     faqs: [
+      faqBoceto,
+      faqPrecio,
       faqTiempo,
       faqNecesito(
         "Tu logo, fotos del consultorio y del equipo, la lista de tratamientos, tu cédula profesional, horarios, dirección y el WhatsApp donde quieres recibir citas."
@@ -506,11 +528,18 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       faqDominio,
       faqCambios,
       {
+        pregunta: "Ya estoy en directorios médicos, ¿para qué quiero página?",
+        respuesta:
+          "Los directorios ayudan, pero ahí tu perfil compite con otros dentistas y no controlas cómo se ve. Tu página es solo tuya: la puedes poner en Google Maps, en tus redes y en tus tarjetas, y puedes seguir usando el directorio al mismo tiempo.",
+      },
+      {
         pregunta: "¿Puedo poner precios de tratamientos?",
         respuesta:
           "Tú decides: puedes poner precios “desde”, solo describir los tratamientos o invitar a una valoración. Cuidamos que los textos sean claros y sin prometer resultados.",
       },
     ],
+    ctaTexto:
+      "Mándanos por WhatsApp el nombre de tu consultorio, tu ciudad y los tratamientos que más haces. Te enseñamos cómo podría verse tu página antes de que pagues nada.",
     servicio: {
       nombre: "Páginas web para dentistas",
       descripcion:
@@ -525,7 +554,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     titulo: "Páginas web para talleres mecánicos en México",
     descripcion:
       "Página web para talleres mecánicos en todo México: servicios, ubicación y cotizaciones por WhatsApp. Que te encuentren cuando el carro falla.",
-    antetitulo: "Talleres y servicio automotriz",
+    antetitulo: "Talleres, hojalatería y servicio automotriz",
     h1: "Páginas web para talleres *mecánicos*",
     intro:
       "Cuando el carro falla, el cliente busca un taller cerca y de confianza, casi siempre desde el celular y con prisa. Tu página le dice qué arreglas, dónde estás y cómo pedirte una cotización en un mensaje.",
@@ -538,7 +567,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       },
       {
         titulo: "No saben qué arreglas",
-        texto: "Frenos, afinación, suspensión, eléctrico, clima… si no lo dices claro, el cliente asume que no lo haces.",
+        texto: "Frenos, afinación, suspensión, eléctrico, clima, transmisiones… si no lo dices claro, el cliente asume que no lo haces.",
       },
       {
         titulo: "No te encuentran cerca",
@@ -552,7 +581,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     incluyeTitulo: "Qué incluye la página de tu *taller*",
     incluye: [
       { titulo: "Servicios claros", texto: "Lista de servicios con una explicación corta de cada uno y las marcas o tipos de vehículo que atiendes." },
-      { titulo: "Galería de trabajos", texto: "Fotos de tu taller y de trabajos terminados: la mejor prueba de que sabes lo que haces." },
+      { titulo: "Galería de trabajos", texto: "Fotos de tu taller y de trabajos terminados, o un antes y después: la mejor prueba de que sabes lo que haces." },
       {
         titulo: "Cotiza por WhatsApp",
         texto: "Un botón con mensaje listo para que el cliente mande marca, modelo, año y la falla, con fotos si quiere.",
@@ -562,6 +591,8 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       { titulo: "Espacio para reseñas reales", texto: "Las opiniones de tus clientes, tomadas de Google con su permiso, para quitar la desconfianza." },
     ],
     faqs: [
+      faqBoceto,
+      faqPrecio,
       faqTiempo,
       faqNecesito(
         "Fotos de tu taller y de trabajos terminados, la lista de servicios, las marcas que atiendes, horarios, dirección y el WhatsApp donde quieres recibir cotizaciones."
@@ -569,11 +600,18 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       faqDominio,
       faqCambios,
       {
+        pregunta: "¿Sirve si hago hojalatería, transmisiones o lavado de autos?",
+        respuesta:
+          "Sí. La página se arma con tus servicios reales: hojalatería y pintura, transmisiones, radiadores, clima, llantas o autolavado. Para hojalatería funciona muy bien una galería de antes y después.",
+      },
+      {
         pregunta: "¿Puedo mostrar precios?",
         respuesta:
           "Sí. Puedes poner precios de servicios comunes, como cambio de aceite o afinación, y para lo demás pedir que te manden la falla por WhatsApp para cotizar.",
       },
     ],
+    ctaTexto:
+      "Mándanos por WhatsApp el nombre de tu taller, tu ciudad y los servicios que das. Te enseñamos cómo podría verse tu página antes de que pagues nada.",
     servicio: {
       nombre: "Páginas web para talleres mecánicos",
       descripcion:
@@ -588,7 +626,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     titulo: "Páginas web para barberías en México",
     descripcion:
       "Página web para barberías en todo México: cortes, precios, galería y citas por WhatsApp. Llena tu agenda y pide tu boceto gratis.",
-    antetitulo: "Barberías y estéticas",
+    antetitulo: "Barberías, estéticas y spas",
     h1: "Páginas web para *barberías*",
     intro:
       "En una barbería el cliente compra con los ojos: quiere ver cortes, saber cuánto cuesta y apartar su lugar sin esperar. Tu página muestra tu estilo y manda las citas directo a tu WhatsApp.",
@@ -622,6 +660,8 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       { titulo: "Conectada a tu Instagram", texto: "Enlaces a tus redes para que te sigan y vean lo nuevo." },
     ],
     faqs: [
+      faqBoceto,
+      faqPrecio,
       faqTiempo,
       faqNecesito(
         "Fotos de tus cortes y del local, la lista de servicios con precios, los nombres de tus barberos, horarios, dirección y el WhatsApp donde quieres recibir citas."
@@ -629,11 +669,18 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       faqDominio,
       faqCambios,
       {
+        pregunta: "¿También sirve para estéticas, spas o salones de uñas?",
+        respuesta:
+          "Sí. La misma idea funciona para cualquier negocio de belleza: galería de trabajos, servicios con precio y citas por WhatsApp. Cambiamos colores, textos y secciones para que vaya con tu estilo.",
+      },
+      {
         pregunta: "¿Se puede conectar con una app de citas?",
         respuesta:
           "Sí. Si ya usas una app de citas, ponemos el botón para agendar ahí. Si no, la cita llega a tu WhatsApp, y con un chatbot puedes automatizar parte de las respuestas.",
       },
     ],
+    ctaTexto:
+      "Mándanos por WhatsApp el nombre de tu barbería, tu ciudad y tu Instagram si tienes. Te enseñamos cómo podría verse tu página antes de que pagues nada.",
     servicio: {
       nombre: "Páginas web para barberías",
       descripcion:
@@ -682,6 +729,8 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       { titulo: "Conectada a Google Maps", texto: "Mismos datos en tu página y tu ficha para que Google te muestre bien." },
     ],
     faqs: [
+      faqBoceto,
+      faqPrecio,
       faqTiempo,
       faqNecesito(
         "Tu menú actual (aunque sea en foto), fotos de tus platillos y del lugar, horarios, dirección, formas de pago y el WhatsApp donde quieres recibir pedidos."
@@ -693,13 +742,267 @@ export const PAGINAS_SEO: PaginaSEO[] = [
         respuesta:
           "El menú digital con código QR viene en el paquete Premium. Con el mantenimiento mensual actualizamos precios y platillos cuando nos lo pidas por WhatsApp.",
       },
+      {
+        pregunta: "Tengo una panadería, cafetería o banquetes, ¿también aplica?",
+        respuesta:
+          "Sí. Cambiamos el menú por tu catálogo (pan, pasteles, paquetes de banquete) y el botón de WhatsApp por el pedido o la cotización que más te sirva.",
+      },
     ],
+    ctaTexto:
+      "Mándanos por WhatsApp el nombre de tu restaurante, tu ciudad y una foto de tu menú. Te enseñamos cómo podría verse tu página antes de que pagues nada.",
     servicio: {
       nombre: "Páginas web para restaurantes",
       descripcion:
         "Diseño de páginas web para restaurantes en todo México con menú digital, código QR y pedidos por WhatsApp.",
     },
     mensajeWhatsApp: "Hola, tengo un restaurante y quiero mi boceto gratis de página web.",
+  },
+  {
+    slug: "paginas-web-para-abogados-y-contadores",
+    tipo: "giro",
+    menu: "Abogados y contadores",
+    titulo: "Páginas web para abogados y contadores en México",
+    descripcion:
+      "Página web para despachos de abogados, notarías y contadores en todo México: áreas de práctica, perfil profesional y consultas por WhatsApp. Boceto gratis.",
+    antetitulo: "Despachos de abogados y contadores",
+    h1: "Páginas web para *despachos*",
+    intro:
+      "Nadie le confía un juicio o sus impuestos a un despacho que no puede revisar antes. Tu página explica en qué te especializas, quién está detrás y cómo pedir una primera consulta por WhatsApp, sin vueltas.",
+    ejemplo: "despacho",
+    problemasTitulo: "Por qué un cliente *no te llama*",
+    problemas: [
+      {
+        titulo: "No sabe si llevas su caso",
+        texto: "Familiar, laboral, penal, mercantil, declaraciones, nómina… si no ve tu especialidad, busca a alguien que sí la diga.",
+      },
+      {
+        titulo: "No sabe quién lo va a atender",
+        texto: "Un tema legal o fiscal es delicado. Sin nombre, foto y cédula del responsable, cuesta dar el primer paso.",
+      },
+      {
+        titulo: "Tus datos no coinciden en internet",
+        texto: "Directorios con otra dirección o un teléfono viejo. El cliente duda si sigues ahí y se va con el siguiente.",
+      },
+      {
+        titulo: "Llamar da pena",
+        texto: "Mucha gente no sabe cómo explicar su problema por teléfono. Un WhatsApp con mensaje listo baja esa barrera.",
+      },
+    ],
+    incluyeTitulo: "Qué incluye la página de tu *despacho*",
+    incluye: [
+      {
+        titulo: "Áreas de práctica claras",
+        texto: "Cada servicio explicado en lenguaje sencillo: qué resuelves, para quién es y qué documentos conviene traer.",
+      },
+      {
+        titulo: "Perfil del responsable",
+        texto: "Nombre, foto, formación y cédula profesional [CÉDULA PROFESIONAL]. La confianza empieza antes de la primera cita.",
+      },
+      {
+        titulo: "Consulta por WhatsApp",
+        texto: "Un botón con mensaje listo (“Quiero una primera consulta sobre…”) que llega a tu teléfono o al de tu asistente.",
+      },
+      { titulo: "Ubicación y horario de atención", texto: "Mapa, referencias y si atiendes en oficina, en línea o con cita." },
+      {
+        titulo: "Preguntas frecuentes de tu área",
+        texto: "Respuestas cortas a lo que más te preguntan, para que el cliente llegue mejor informado.",
+      },
+      { titulo: "Espacio para reseñas reales", texto: "Una sección lista para opiniones verdaderas de tus clientes, tomadas de Google con su permiso." },
+    ],
+    nota:
+      "Escribimos tus textos sin prometer resultados de juicios, trámites ni devoluciones de impuestos. Explicamos lo que haces y cómo trabajas; las promesas de resultado restan credibilidad.",
+    faqs: [
+      faqBoceto,
+      faqPrecio,
+      faqTiempo,
+      faqNecesito(
+        "Tu logo (si tienes), las áreas o servicios que atiendes, los nombres y cédulas de los responsables, fotos de la oficina y del equipo, horarios, dirección y el WhatsApp donde quieres recibir consultas."
+      ),
+      faqDominio,
+      faqCambios,
+      {
+        pregunta: "¿Sirve igual para un contador que para un abogado?",
+        respuesta:
+          "Sí. Cambian las secciones: para un despacho contable ponemos servicios como contabilidad mensual, declaraciones o nómina; para uno legal, tus materias. También aplica para notarías y despachos mixtos.",
+      },
+      {
+        pregunta: "¿Puedo atender clientes de otras ciudades?",
+        respuesta:
+          "Sí. Si das asesoría en línea, la página lo dice claro y el WhatsApp sirve como primer contacto desde cualquier parte de México.",
+      },
+    ],
+    ctaTexto:
+      "Mándanos por WhatsApp el nombre de tu despacho, tu ciudad y tus áreas de práctica. Te enseñamos cómo podría verse tu página antes de que pagues nada.",
+    servicio: {
+      nombre: "Páginas web para abogados y contadores",
+      descripcion:
+        "Diseño de páginas web para despachos de abogados, notarías y contadores en todo México con áreas de práctica y consultas por WhatsApp.",
+    },
+    mensajeWhatsApp: "Hola, tengo un despacho y quiero mi boceto gratis de página web.",
+  },
+  {
+    slug: "paginas-web-para-consultorios",
+    tipo: "giro",
+    menu: "Fisioterapia y consultorios",
+    titulo: "Páginas web para fisioterapeutas y consultorios en México",
+    descripcion:
+      "Página web para fisioterapeutas, psicólogos, nutriólogos y consultorios en todo México: servicios, especialista, ubicación y citas por WhatsApp.",
+    antetitulo: "Fisioterapia, psicología y nutrición",
+    h1: "Páginas web para *consultorios*",
+    intro:
+      "Quien tiene dolor, ansiedad o quiere cuidar su salud busca a alguien de confianza cerca de casa. Tu página le explica cómo trabajas, quién lo va a atender y cómo agendar su primera cita por WhatsApp.",
+    ejemplo: "consultorio",
+    problemasTitulo: "Por qué un paciente *no agenda*",
+    problemas: [
+      {
+        titulo: "No entiende qué haces",
+        texto: "Rehabilitación, terapia de pareja, plan de alimentación… si no lo explicas sencillo, el paciente no sabe si eres para él.",
+      },
+      {
+        titulo: "No sabe cómo es la primera cita",
+        texto: "Cuánto dura, qué llevar, si es en línea o presencial. Esa duda frena a mucha gente justo antes de escribir.",
+      },
+      {
+        titulo: "Dependes de un directorio",
+        texto: "Ahí tu perfil aparece al lado de otros especialistas. En tu página, el paciente solo te ve a ti.",
+      },
+      {
+        titulo: "Contestas mensajes entre sesiones",
+        texto: "Los mismos datos una y otra vez: dirección, horarios, costo de la consulta. Una página los responde por ti.",
+      },
+    ],
+    incluyeTitulo: "Qué incluye la página de tu *consultorio*",
+    incluye: [
+      {
+        titulo: "Servicios explicados",
+        texto: "Cada servicio en lenguaje claro: para quién es, cómo es una sesión y si atiendes en consultorio, a domicilio o en línea.",
+      },
+      {
+        titulo: "Perfil del especialista",
+        texto: "Tu formación, enfoque y cédula profesional [CÉDULA PROFESIONAL], con foto. El paciente sabe con quién va.",
+      },
+      {
+        titulo: "Tu primera cita, paso a paso",
+        texto: "Qué esperar, cuánto dura y qué llevar. Menos dudas, más citas agendadas.",
+      },
+      {
+        titulo: "Citas por WhatsApp",
+        texto: "Un botón con mensaje listo (“Quiero agendar una primera cita”) que llega directo a tu teléfono.",
+      },
+      { titulo: "Ubicación y horarios", texto: "Mapa, referencias, estacionamiento y tus horarios de atención siempre a la vista." },
+      { titulo: "Varias sedes, una página", texto: "Si atiendes en más de un lugar, cada sede con su mapa y su horario." },
+    ],
+    nota:
+      "Cuidamos que los textos informen sin prometer curas ni resultados. Tu página explica cómo trabajas y deja la valoración para la consulta.",
+    faqs: [
+      faqBoceto,
+      faqPrecio,
+      faqTiempo,
+      faqNecesito(
+        "Tu logo (si tienes), la lista de servicios, tu cédula profesional, fotos del consultorio y tuyas, horarios, dirección de cada sede y el WhatsApp donde quieres recibir citas."
+      ),
+      faqDominio,
+      faqCambios,
+      {
+        pregunta: "¿Sirve para psicólogos, nutriólogos o médicos generales?",
+        respuesta:
+          "Sí. La estructura es la misma: servicios, especialista, primera cita y contacto. Cambiamos textos y secciones según tu especialidad. Para dentistas tenemos una página aparte.",
+      },
+      {
+        pregunta: "¿Puedo poner el costo de la consulta?",
+        respuesta:
+          "Tú decides. Poner el costo filtra a los curiosos y te llegan pacientes más decididos; si prefieres no hacerlo, invitamos a escribir por WhatsApp para darlo.",
+      },
+    ],
+    ctaTexto:
+      "Mándanos por WhatsApp el nombre de tu consultorio, tu ciudad y tu especialidad. Te enseñamos cómo podría verse tu página antes de que pagues nada.",
+    servicio: {
+      nombre: "Páginas web para fisioterapeutas y consultorios",
+      descripcion:
+        "Diseño de páginas web para fisioterapeutas, psicólogos, nutriólogos y consultorios en todo México con citas por WhatsApp.",
+    },
+    mensajeWhatsApp: "Hola, tengo un consultorio y quiero mi boceto gratis de página web.",
+  },
+  {
+    slug: "paginas-web-para-veterinarias",
+    tipo: "giro",
+    menu: "Veterinarias",
+    titulo: "Páginas web para veterinarias en México",
+    descripcion:
+      "Página web para clínicas veterinarias en todo México: servicios, urgencias, estética canina, ubicación y citas por WhatsApp. Pide tu boceto gratis.",
+    antetitulo: "Clínicas y hospitales veterinarios",
+    h1: "Páginas web para *veterinarias*",
+    intro:
+      "Cuando una mascota se enferma, su dueño busca una veterinaria cerca y abierta, casi siempre desde el celular. Tu página le dice qué atiendes, a qué hora y cómo escribirte por WhatsApp en un toque.",
+    ejemplo: "veterinaria",
+    problemasTitulo: "Por qué no llegan *más pacientes*",
+    problemas: [
+      {
+        titulo: "No saben si atiendes urgencias",
+        texto: "A las once de la noche nadie quiere adivinar. Si no dices tus horarios y si atiendes urgencias, buscan a otra.",
+      },
+      {
+        titulo: "No saben todo lo que haces",
+        texto: "Vacunas, cirugías, estética, hospitalización, farmacia… si solo te conocen por consultas, pierdes el resto.",
+      },
+      {
+        titulo: "Tu teléfono suena con lo mismo",
+        texto: "¿Cuánto cuesta la vacuna? ¿Tienen baño hoy? Responder lo mismo todo el día te quita tiempo con los pacientes.",
+      },
+      {
+        titulo: "Los dueños quieren confiar",
+        texto: "Antes de dejar a su mascota quieren ver la clínica y al médico. Sin fotos ni datos, prefieren la cadena conocida.",
+      },
+    ],
+    incluyeTitulo: "Qué incluye la página de tu *veterinaria*",
+    incluye: [
+      {
+        titulo: "Servicios por tipo",
+        texto: "Consulta, vacunas, cirugía, estética, hospitalización y farmacia, cada uno con una explicación corta.",
+      },
+      {
+        titulo: "Horarios y urgencias a la vista",
+        texto: "Tus horarios reales y cómo atiendes urgencias: [HORARIO DE URGENCIAS]. Sin letras chiquitas.",
+      },
+      {
+        titulo: "Citas por WhatsApp",
+        texto: "Un botón con mensaje listo para que manden el nombre, la especie y el motivo de la consulta.",
+      },
+      {
+        titulo: "Tu equipo médico",
+        texto: "Cada médico con foto, especialidad y cédula profesional [CÉDULA PROFESIONAL].",
+      },
+      { titulo: "Fotos de la clínica", texto: "Recepción, consultorio y área de estética para que el dueño sepa a dónde lleva a su mascota." },
+      { titulo: "Ubicación y cómo llegar", texto: "Mapa, referencias y estacionamiento, conectados a tu ficha de Google Maps." },
+    ],
+    faqs: [
+      faqBoceto,
+      faqPrecio,
+      faqTiempo,
+      faqNecesito(
+        "Tu logo, fotos de la clínica y del equipo, la lista de servicios, horarios (incluidas urgencias si las atiendes), dirección y el WhatsApp donde quieres recibir citas."
+      ),
+      faqDominio,
+      faqCambios,
+      {
+        pregunta: "¿Puedo anunciar promociones de vacunas o estética?",
+        respuesta:
+          "Sí. Dejamos un espacio para promociones y campañas. Con el mantenimiento mensual las cambiamos cuando nos mandes los datos por WhatsApp.",
+      },
+      {
+        pregunta: "¿Sirve si también tengo farmacia o venta de alimento?",
+        respuesta:
+          "Sí. Agregamos una sección para tu farmacia o tienda, con un botón para preguntar existencias o apartar por WhatsApp.",
+      },
+    ],
+    ctaTexto:
+      "Mándanos por WhatsApp el nombre de tu veterinaria, tu ciudad y los servicios que das. Te enseñamos cómo podría verse tu página antes de que pagues nada.",
+    servicio: {
+      nombre: "Páginas web para veterinarias",
+      descripcion:
+        "Diseño de páginas web para clínicas veterinarias en todo México con servicios, horarios de urgencias y citas por WhatsApp.",
+    },
+    mensajeWhatsApp: "Hola, tengo una veterinaria y quiero mi boceto gratis de página web.",
   },
 ];
 

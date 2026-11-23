@@ -54,7 +54,29 @@ const iconoTienda = (c: string) => (
   </g>
 );
 
-const PAGINAS: Record<"web" | "dentista" | "taller" | "barberia" | "restaurante", TemaPagina> = {
+const iconoBalanza = (c: string) => (
+  <g fill="none" stroke={c} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M24 6v34M14 42h20M8 12h32" />
+    <path d="M8 12 2 26a6 6 0 0 0 12 0zM40 12l-6 14a6 6 0 0 0 12 0z" />
+  </g>
+);
+const iconoPulso = (c: string) => (
+  <g fill="none" stroke={c} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M24 42S4 30 4 16a10 10 0 0 1 20-2 10 10 0 0 1 20 2c0 14-20 26-20 26z" />
+    <path d="M8 24h9l3-6 5 12 3-6h12" />
+  </g>
+);
+const iconoHuella = (c: string) => (
+  <g fill={c}>
+    <ellipse cx="24" cy="33" rx="10" ry="8" />
+    <ellipse cx="11" cy="20" rx="4.5" ry="6" />
+    <ellipse cx="19" cy="11" rx="4.5" ry="6" />
+    <ellipse cx="29" cy="11" rx="4.5" ry="6" />
+    <ellipse cx="37" cy="20" rx="4.5" ry="6" />
+  </g>
+);
+
+const PAGINAS: Record<"web" | "dentista" | "taller" | "barberia" | "restaurante" | "despacho" | "consultorio" | "veterinaria", TemaPagina> = {
   web: {
     nombre: "Tu Negocio",
     lema: ["Tu negocio", "en línea"],
@@ -125,6 +147,48 @@ const PAGINAS: Record<"web" | "dentista" | "taller" | "barberia" | "restaurante"
     icono: iconoPlato,
     descripcion: "página de un restaurante con menú, pedidos por WhatsApp y horarios",
   },
+  despacho: {
+    nombre: "Despacho Ríos & Asociados",
+    lema: ["Asesoría", "clara"],
+    cta: "Pide tu consulta",
+    tarjetas: ["Familiar", "Laboral", "Fiscal"],
+    fondo: "#0f1624",
+    texto: "#eef1f6",
+    tenue: "#2a3448",
+    acento: "#c9a45c",
+    textoCta: "#1a1306",
+    tarjeta: "#161f31",
+    icono: iconoBalanza,
+    descripcion: "página de un despacho de abogados y contadores con áreas de práctica y botón para pedir consulta por WhatsApp",
+  },
+  consultorio: {
+    nombre: "Fisio Movimiento",
+    lema: ["Vuelve a", "moverte"],
+    cta: "Agenda tu cita",
+    tarjetas: ["Terapia", "Ejercicio", "Valoración"],
+    fondo: "#f4f8f5",
+    texto: "#12301f",
+    tenue: "#cfe1d5",
+    acento: "#2f855a",
+    textoCta: "#ffffff",
+    tarjeta: "#ffffff",
+    icono: iconoPulso,
+    descripcion: "página de un consultorio de fisioterapia con servicios, especialista y botón para agendar por WhatsApp",
+  },
+  veterinaria: {
+    nombre: "Veterinaria Huellitas",
+    lema: ["Cuidamos a", "tu mascota"],
+    cta: "Agenda por WhatsApp",
+    tarjetas: ["Consulta", "Vacunas", "Estética"],
+    fondo: "#f5f7ff",
+    texto: "#1b2147",
+    tenue: "#d5daf2",
+    acento: "#4f46e5",
+    textoCta: "#ffffff",
+    tarjeta: "#ffffff",
+    icono: iconoHuella,
+    descripcion: "página de una clínica veterinaria con servicios, horarios de urgencias y citas por WhatsApp",
+  },
 };
 
 const ETIQUETA: Record<VarianteEjemplo, string> = {
@@ -136,6 +200,9 @@ const ETIQUETA: Record<VarianteEjemplo, string> = {
   taller: "Página para un taller mecánico",
   barberia: "Página para una barbería",
   restaurante: "Página para un restaurante",
+  despacho: "Página para un despacho de abogados o contadores",
+  consultorio: "Página para un consultorio de fisioterapia",
+  veterinaria: "Página para una clínica veterinaria",
 };
 
 function BarraNavegador({ url }: { url: string }) {

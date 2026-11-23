@@ -25,11 +25,11 @@ const SITIOS: Sitio[] = [
 ];
 
 describe("páginas SEO", () => {
-  it("son 8 con slugs únicos (4 servicios + 4 giros)", () => {
-    expect(PAGINAS_SEO).toHaveLength(8);
-    expect(new Set(PAGINAS_SEO.map((p) => p.slug)).size).toBe(8);
+  it("son 11 con slugs únicos (4 servicios + 7 giros)", () => {
+    expect(PAGINAS_SEO).toHaveLength(11);
+    expect(new Set(PAGINAS_SEO.map((p) => p.slug)).size).toBe(11);
     expect(PAGINAS_SEO.filter((p) => p.tipo === "servicio")).toHaveLength(4);
-    expect(PAGINAS_SEO.filter((p) => p.tipo === "giro")).toHaveLength(4);
+    expect(PAGINAS_SEO.filter((p) => p.tipo === "giro")).toHaveLength(7);
   });
 
   it.each(PAGINAS_SEO.map((p) => [p.slug, p] as const))("%s tiene title, description, canonical y schema", (slug, p) => {
@@ -59,8 +59,8 @@ describe("páginas SEO", () => {
   });
 
   it("los títulos y descripciones no se repiten", () => {
-    expect(new Set(PAGINAS_SEO.map((p) => p.titulo)).size).toBe(8);
-    expect(new Set(PAGINAS_SEO.map((p) => p.descripcion)).size).toBe(8);
+    expect(new Set(PAGINAS_SEO.map((p) => p.titulo)).size).toBe(PAGINAS_SEO.length);
+    expect(new Set(PAGINAS_SEO.map((p) => p.descripcion)).size).toBe(PAGINAS_SEO.length);
   });
 });
 
@@ -86,7 +86,7 @@ describe("sitemap", () => {
   const mapa = construirSitemap(SITIOS, SITE, ROOT);
   const urls = mapa.map((e) => e.url);
 
-  it("incluye el inicio y las 8 páginas SEO", () => {
+  it("incluye el inicio y todas las páginas SEO", () => {
     expect(urls).toContain(`${SITE}/`);
     for (const ruta of RUTAS_SEO) expect(urls).toContain(`${SITE}${ruta}`);
   });

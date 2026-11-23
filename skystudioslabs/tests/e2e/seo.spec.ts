@@ -7,8 +7,8 @@ test.beforeEach(({}, testInfo) => {
 });
 
 test.describe("Páginas SEO", () => {
-  test("son 8", () => {
-    expect(PAGINAS_SEO).toHaveLength(8);
+  test("son 11", () => {
+    expect(PAGINAS_SEO).toHaveLength(11);
   });
 
   for (const p of PAGINAS_SEO) {
@@ -26,7 +26,7 @@ test.describe("Páginas SEO", () => {
   }
 });
 
-test("sitemap.xml lista las 8 páginas SEO y nada privado", async ({ request }) => {
+test("sitemap.xml lista todas las páginas SEO y nada privado", async ({ request }) => {
   const res = await request.get("/sitemap.xml");
   expect(res.status()).toBe(200);
   const xml = await res.text();
