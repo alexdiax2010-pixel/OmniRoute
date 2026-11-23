@@ -36,3 +36,16 @@
 - Verificado: tsc limpio, vitest 124/124, Lighthouse móvil de la home: performance 96 (antes 94), accesibilidad 100, CLS 0.
 - Sugerencias: `css: { postcss: {} }` en `vitest.config.ts` (toma el postcss de OmniRoute); dar margen a las anclas
   `#precios` para que no queden bajo el encabezado fijo.
+
+## 2026-11-23 ~20:10 UTC — Terminó D (contenido y conversión) → unido
+- 3 páginas de giro nuevas, respaldadas por los 171 prospectos (sin copiar datos de ellos):
+  `/paginas-web-para-abogados-y-contadores` (20), `/paginas-web-para-consultorios` (16),
+  `/paginas-web-para-veterinarias` (8). Estéticas sin página (solo ~5 prospectos); se cubren con una
+  pregunta frecuente en la página de barberías. Siguiente candidata: guarderías (9).
+- Las 7 páginas de giro: preguntas frecuentes "¿el boceto me compromete?" y "¿cuánto cuesta?" (sin montos), texto
+  de cierre por giro, ajustes según lo que más aparece en los prospectos. Sin cifras ni reseñas inventadas.
+- Formulario: validación en el navegador igual a la del servidor, foco en el primer error, enlace a
+  WhatsApp si falla el envío, acepta "+52 1 …", funciona sin JavaScript (`?lead=ok|error`). Mismo contrato con `/api/prospectos`.
+- El sitemap y el menú toman las páginas nuevas solos (11 páginas).
+- Unido con A sin conflictos: tsc limpio, vitest 170/170.
+- Sugerencia → 00-PREGUNTAS: falta un aviso de privacidad (el formulario pide nombre y WhatsApp).
