@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { SITIO, linkWhatsApp, formatoTelefono } from "@/config/sitio";
+import { SITIO, linkWhatsApp } from "@/config/sitio";
+import { Contactos } from "./Contactos";
 import { PAGINAS_GIRO, PAGINAS_SERVICIO } from "@/lib/seo/paginas";
 import { LogoSol } from "./LogoSol";
 import s from "./chrome.module.css";
@@ -58,14 +59,7 @@ export function Footer() {
         <div>
           <p className={s.footerTitulo}>Contacto</p>
           <ul className={s.footerLista}>
-            <li>
-              <a href={wa} target="_blank" rel="noopener noreferrer">
-                WhatsApp: {formatoTelefono(SITIO.whatsapp)}
-              </a>
-            </li>
-            <li>
-              <a href={`tel:+${SITIO.telefono}`}>Llamadas: {formatoTelefono(SITIO.telefono)}</a>
-            </li>
+            <Contactos variante="lista" />
             <li>
               {configurado(SITIO.correo) ? (
                 <a href={`mailto:${SITIO.correo}`}>{SITIO.correo}</a>

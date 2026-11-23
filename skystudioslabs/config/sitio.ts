@@ -20,6 +20,9 @@ export const SITIO = {
   },
 } as const;
 
+/** Los dos números del negocio: ambos reciben WhatsApp y llamadas. */
+export const NUMEROS = [SITIO.whatsapp, SITIO.telefono] as const;
+
 /** true si el número de WhatsApp ya fue configurado (no es marcador). */
 export const whatsappConfigurado = /^\d{10,15}$/.test(SITIO.whatsapp);
 

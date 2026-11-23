@@ -1,5 +1,6 @@
 import { LeadForm } from "@/components/forms/LeadForm";
-import { SITIO, formatoTelefono, linkWhatsApp, whatsappConfigurado } from "@/config/sitio";
+import { linkWhatsApp, whatsappConfigurado } from "@/config/sitio";
+import { Contactos } from "@/components/chrome/Contactos";
 import s from "./scenes.module.css";
 
 export function SceneCierre() {
@@ -28,12 +29,9 @@ export function SceneCierre() {
             >
               <span className="t-title">Escríbeme →</span>
             </a>
-            <p className="muted" data-anim>
-              o llámanos al{" "}
-              <a href={`tel:+${SITIO.telefono}`} data-llamar>
-                {formatoTelefono(SITIO.telefono)}
-              </a>
-            </p>
+            <div data-anim>
+              <Contactos />
+            </div>
             {!whatsappConfigurado ? (
               <p className="muted">
                 <span className="placeholder">[MI_WHATSAPP]</span>

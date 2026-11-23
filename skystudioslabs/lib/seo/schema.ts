@@ -1,7 +1,7 @@
 /**
  * Generadores de JSON-LD (schema.org). Devuelven objetos planos; se pintan con <JsonLd />.
  */
-import { SITIO, whatsappConfigurado } from "@/config/sitio";
+import { NUMEROS, SITIO, whatsappConfigurado } from "@/config/sitio";
 import { siteUrl as leerSiteUrl } from "./url";
 
 export type JsonLdObjeto = Record<string, unknown>;
@@ -40,7 +40,9 @@ export function professionalService(base: string = leerSiteUrl()): JsonLdObjeto 
     sameAs: [`https://www.instagram.com/${SITIO.redes.instagram.replace(/^@/, "")}`],
     knowsAbout: ["Diseño de páginas web", "Google Maps", "SEO local", "Redes sociales", "Chatbots de WhatsApp"],
     telephone: `+${SITIO.telefono}`,
-    ...(whatsappConfigurado ? { contactPoint: { "@type": "ContactPoint", contactType: "sales", telephone: `+${SITIO.whatsapp}`, areaServed: "MX", availableLanguage: "es" } } : {}),
+    ...(whatsappConfigurado
+      ? { contactPoint: NUMEROS.map((n) => ({ "@type": "ContactPoint", contactType: "sales", telephone: `+${n}`, areaServed: "MX", availableLanguage: "es" })) }
+      : {}),
   };
 }
 

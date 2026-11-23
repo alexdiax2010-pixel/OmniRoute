@@ -73,6 +73,7 @@ describe("schema.org", () => {
     expect(ps.sameAs).toEqual(["https://www.instagram.com/sky_studiolabs"]);
     expect(ps.telephone).toBe("+523330282202");
     expect(JSON.stringify(ps.contactPoint)).toContain("+524492889487");
+    expect(JSON.stringify(ps.contactPoint)).toContain("+523330282202");
   });
   it("FAQPage y serialización segura", () => {
     const f = faqPage([{ pregunta: "¿<script>?", respuesta: "</script>" }]);
