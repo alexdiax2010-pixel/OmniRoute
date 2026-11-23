@@ -21,6 +21,12 @@ export function metadataSEO(slug: string): Metadata {
       description: p.descripcion,
       images: [IMAGEN_OG],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${p.titulo} | ${SITIO.nombre}`,
+      description: p.descripcion,
+      images: [IMAGEN_OG.url],
+    },
   };
 }
 

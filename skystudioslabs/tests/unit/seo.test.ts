@@ -113,13 +113,13 @@ describe("robots", () => {
     const r = construirRobots("skystudioslabs.com", ROOT, SITE);
     const regla = Array.isArray(r.rules) ? r.rules[0] : r.rules;
     expect(regla.allow).toBe("/");
-    for (const ruta of ["/admin", "/portal", "/propuestas", "/api", "/sitios"]) {
+    for (const ruta of ["/admin", "/portal", "/propuestas", "/api", "/sitios", "/auth/"]) {
       expect(regla.disallow).toContain(ruta);
       expect(RUTAS_PRIVADAS).toContain(ruta);
     }
     expect(r.sitemap).toBe(`${SITE}/sitemap.xml`);
   });
-  it.each(["propuesta", "admin", "portal"])("%s. bloquea todo", (sub) => {
+  it.each(["admin", "portal"])("%s. bloquea todo", (sub) => {
     const r = construirRobots(`${sub}.skystudioslabs.com`, ROOT, SITE);
     const regla = Array.isArray(r.rules) ? r.rules[0] : r.rules;
     expect(regla.disallow).toBe("/");

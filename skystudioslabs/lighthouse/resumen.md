@@ -1,5 +1,50 @@
 # Lighthouse — resumen (móvil)
 
+## 2026-11-23 — SEO técnico y cabeceras de seguridad (antes / después)
+
+- Lighthouse 12.8.2, perfil móvil por defecto (Moto G, 4× CPU, 4G simulado). 3 corridas por URL;
+  mediana (rango). Sandbox compartido con otras sesiones: el TBT varía mucho entre corridas.
+- Servidor: `next build && next start -p 3202` con el entorno E2E (`SKY_ALLOW_LOCAL_STORE=1`,
+  `SKY_DATA_FILE=.data/e2e.json`, `NEXT_PUBLIC_ROOT_DOMAIN=localhost:3202`).
+- Chrome: `/opt/pw-browsers/chromium-1243/chrome-linux64/chrome --headless=new --no-sandbox`.
+
+| URL | | Perf | A11y | BP | SEO | FCP | LCP | TBT | CLS |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `/` | antes | 95 (93–96) | 100 | 100 | 100 | 0.81 s | 2.69 s | 113 ms (111–214) | 0 |
+| `/` | después | **96** (96–96) | 100 | 100 | 100 | 0.81 s | 2.65 s | **85 ms** (70–87) | 0 |
+| `/paginas-web-para-dentistas` | antes | 96 (95–97) | 100 | 100 | 100 | 0.80 s | 2.65 s | 118 ms (39–165) | 0 |
+| `/paginas-web-para-dentistas` | después | 96 (96–96) | 100 | 100 | 100 | 0.80 s | 2.63 s | 92 ms (72–128) | 0 |
+| `/paginas-web-para-talleres-mecanicos` | antes | 95 (95–96) | 100 | 100 | 100 | 0.79 s | 2.67 s | 134 ms (65–148) | 0 |
+| `/paginas-web-para-talleres-mecanicos` | después | 95 (92–96) | 100 | 100 | 100 | 0.80 s | 2.64 s | 163 ms (100–241)* | 0 |
+
+\* Ruido del sandbox: en la tanda previa con los mismos cambios (antes de añadir sólo la reescritura
+de `/favicon.ico`) el TBT de talleres dio 100 ms (79–117) y performance 96 (96–97). `/admin/login` y `/portal/login` (CSP activa): buenas
+prácticas 100, sin errores de consola.
+
+Lo que se midió en el camino:
+
+- **COOP descartado.** Con `Cross-Origin-Opener-Policy: same-origin` el FCP simulado subía ~50 ms
+  en las tres URLs (0.80 → 0.85 s, reproducible en 2 tandas; desaparecía al quitar sólo COOP).
+  Se dejó fuera: el sitio no abre ventanas emergentes que lo justifiquen.
+- La CSP (sin nonces, para no volver dinámicas las páginas estáticas/ISR) y HSTS no cambian
+  ninguna métrica (+~80 bytes por respuesta).
+- El LCP simulado de 2.6 s sigue siendo "render delay" del modelo de Lighthouse (LCP observado sin
+  throttling ≈ 0.15–0.25 s = FCP). Lo que queda (unused JS 29 KiB, legacy JS 13 KiB) es el chunk
+  de framework de Next.
+
+Comando (ajusta el puerto):
+
+```bash
+npx -y lighthouse@12 http://localhost:3202/<ruta> \
+  --chrome-path=/opt/pw-browsers/chromium-1243/chrome-linux64/chrome \
+  --chrome-flags="--headless=new --no-sandbox" \
+  --only-categories=performance,accessibility,seo,best-practices --output=json
+```
+
+---
+
+## 2026-11-21 — medición anterior
+
 - Fecha: 2026-11-21 · Lighthouse 12.8.2 · perfil móvil por defecto (Moto G, 4× CPU, 4G simulado)
 - Servidor: `next start -p 3100` (build de producción) con el entorno E2E (`SKY_ALLOW_LOCAL_STORE=1`, `SKY_DATA_FILE=.data/e2e.json`)
 - Chrome: `/opt/pw-browsers/chromium-1243/chrome-linux64/chrome --headless=new --no-sandbox`

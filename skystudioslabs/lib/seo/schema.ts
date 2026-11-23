@@ -10,6 +10,21 @@ export type Miga = { nombre: string; ruta: string };
 
 const zona = () => ({ "@type": "Country", name: SITIO.area });
 
+/** true si el valor de config/sitio.ts sigue siendo un marcador ("[MI_CORREO]") o está vacío. */
+export function esMarcador(valor: string | null | undefined): boolean {
+  const v = (valor ?? "").trim();
+  return !v || /^\[.*\]$/.test(v);
+}
+
+/** Perfiles públicos reales (schema.org sameAs). Los marcadores sin llenar se omiten. */
+export function perfilesSociales(): string[] {
+  const { instagram, facebook } = SITIO.redes;
+  const lista: string[] = [];
+  if (!esMarcador(instagram)) lista.push(`https://www.instagram.com/${instagram.replace(/^@/, "")}`);
+  if (!esMarcador(facebook)) lista.push(`https://www.facebook.com/${facebook.replace(/^@/, "")}`);
+  return lista;
+}
+
 function absoluta(ruta: string, base: string): string {
   if (/^https?:\/\//.test(ruta)) return ruta;
   return `${base}${ruta.startsWith("/") ? "" : "/"}${ruta === "/" ? "" : ruta}`.replace(/\/$/, "") || base;
@@ -29,7 +44,8 @@ export function professionalService(base: string = leerSiteUrl()): JsonLdObjeto 
     name: SITIO.nombre,
     url: `${base}/`,
     image: `${base}/opengraph-image`,
-    logo: `${base}/icon.svg`,
+    // Google pide un logo raster de al menos 112×112 px (no SVG).
+    logo: `${base}/icons/icon-512.png`,
     description:
       "Agencia de páginas web, alta en Google Maps, redes sociales y chatbots de WhatsApp para negocios de todo México.",
     areaServed: zona(),
@@ -37,12 +53,27 @@ export function professionalService(base: string = leerSiteUrl()): JsonLdObjeto 
       "@type": "PostalAddress",
       addressCountry: SITIO.pais,
     },
-    sameAs: [`https://www.instagram.com/${SITIO.redes.instagram.replace(/^@/, "")}`],
+    sameAs: perfilesSociales(),
     knowsAbout: ["Diseño de páginas web", "Google Maps", "SEO local", "Redes sociales", "Chatbots de WhatsApp"],
+    knowsLanguage: "es-MX",
     telephone: `+${SITIO.telefono}`,
+    ...(esMarcador(SITIO.correo) ? {} : { email: SITIO.correo }),
     ...(whatsappConfigurado
       ? { contactPoint: NUMEROS.map((n) => ({ "@type": "ContactPoint", contactType: "sales", telephone: `+${n}`, areaServed: "MX", availableLanguage: "es" })) }
       : {}),
+  };
+}
+
+/** schema.org WebSite: nombre del sitio en resultados de Google, publicado por el negocio. */
+export function webSite(base: string = leerSiteUrl()): JsonLdObjeto {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${base}/#sitio`,
+    name: SITIO.nombre,
+    url: `${base}/`,
+    inLanguage: "es-MX",
+    publisher: { "@id": idNegocio(base) },
   };
 }
 

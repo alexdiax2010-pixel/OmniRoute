@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { resolverHost, rutaReescrita } from "@/lib/hosts";
 import { supabaseUrl, supabaseAnonKey } from "@/lib/supabase/env";
+import { cabecerasSeguridad, esPaginaPropia, hostSinWww, robotsPorHost } from "@/lib/seo/cabeceras";
 
 const ROOT = process.env.NEXT_PUBLIC_ROOT_DOMAIN ?? "skystudioslabs.com";
 
@@ -43,6 +44,14 @@ export async function proxy(request: NextRequest) {
   const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
   const destino = resolverHost(host, ROOT);
 
+  // Una sola versión del sitio: www.<root> → <root> (308 conserva método y cuerpo).
+  const sinWww = hostSinWww(host, ROOT);
+  if (sinWww) {
+    const proto = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim() || url.protocol.replace(/:$/, "");
+    // Location absoluta a mano: NextResponse.redirect la vuelve relativa si cree que es el mismo origen.
+    return new NextResponse(null, { status: 308, headers: { Location: `${proto}://${sinWww}${url.pathname}${url.search}` } });
+  }
+
   if (destino.tipo === "reservado") {
     return new NextResponse("No encontrado", { status: 404 });
   }
@@ -70,6 +79,12 @@ export async function proxy(request: NextRequest) {
         return NextResponse.rewrite(nueva, { request: { headers } });
       })()
     : NextResponse.next({ request: { headers } });
+
+  if (esPaginaPropia(destino, destinoRuta)) {
+    for (const [k, v] of Object.entries(cabecerasSeguridad(process.env.NODE_ENV === "development"))) respuesta.headers.set(k, v);
+  }
+  const robots = robotsPorHost(destino, host);
+  if (robots) respuesta.headers.set("X-Robots-Tag", robots);
 
   if (sesion) {
     for (const c of sesion.cookies) respuesta.cookies.set(c.name, c.value, c.options);
