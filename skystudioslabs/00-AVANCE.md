@@ -10,3 +10,17 @@
   instalado aquí). Se anota en preguntas/plan.
 - Leídos los 171 prospectos de `brave-fermi`: los giros con más demanda sin página propia en el sitio
   son abogados/contadores, salud general (médicos, fisioterapia) y estéticas/belleza.
+
+## 2026-11-23 17:05 UTC — 4 subagentes de Sky lanzados
+- A diseño/UX · B SEO/rendimiento · C CRM/portal/seguridad · D contenido/conversión, cada uno en
+  `.claude/worktrees/sky-<x>` (rama local `sky/<x>`), con archivos separados.
+- El usuario pidió también correr aquí los agentes de YouTube (canal **Versión Superior**), porque su PC
+  está apagada. Primero, un agente extrae el historial de esa sesión para no inventar temas.
+- Causa del fallo de los videos 2–5 (vista en el historial): `producir.ps1` usa `"== video$n: …"`;
+  PowerShell interpreta `$n:` como unidad de disco → se corrige con `${n}`. Además, guardar el .ps1 en
+  UTF-8 con BOM (los acentos salían como "CarÃ¡cter").
+
+## 2026-11-23 19:56 UTC — Pausa por límite de uso y reanudación
+- Los 5 agentes se detuvieron a las ~17:10 por el límite de 5 horas de la cuenta (se restableció a las 19:40).
+- Ninguno alcanzó a hacer commit; solo quedó un cambio sin commitear de D en `lib/seo/paginas.ts`.
+- Reanudados los 5 a las 19:57.
