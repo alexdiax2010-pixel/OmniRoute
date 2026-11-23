@@ -24,3 +24,15 @@
 - Los 5 agentes se detuvieron a las ~17:10 por el límite de 5 horas de la cuenta (se restableció a las 19:40).
 - Ninguno alcanzó a hacer commit; solo quedó un cambio sin commitear de D en `lib/seo/paginas.ts`.
 - Reanudados los 5 a las 19:57.
+
+## 2026-11-23 ~20:05 UTC — Terminó A (diseño y UX) → unido
+- Cierre de la home: botón "Escríbeme por WhatsApp" y una tarjeta por número con WhatsApp y Llamar.
+  Se quitó el marcador `[MI_WHATSAPP]`.
+- `Contactos.tsx`: variante de botones grandes; cada enlace dice su número al lector de pantalla.
+- Fuera de la vista pública: reseñas `[RESEÑA REAL AQUÍ]`, `[PRECIO]` (ahora "Precio según tu negocio:
+  te lo damos junto con tu boceto gratis"), `[MI_CORREO]`, `[MI_FACEBOOK]`. "Nuestros clientes" → "Trabajo
+  real" (solo Wellness Fitness 5AM, que está en `config/portafolio.ts`).
+- Corregido el recorte de la "Y" de "SKY" a 360px; el resaltado se ve en el modo de alto contraste.
+- Verificado: tsc limpio, vitest 124/124, Lighthouse móvil de la home: performance 96 (antes 94), accesibilidad 100, CLS 0.
+- Sugerencias: `css: { postcss: {} }` en `vitest.config.ts` (toma el postcss de OmniRoute); dar margen a las anclas
+  `#precios` para que no queden bajo el encabezado fijo.
