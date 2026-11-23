@@ -6,9 +6,9 @@ import { NavDetails } from "./NavDetails";
 import s from "./chrome.module.css";
 
 const ANCLAS = [
-  { href: "/#precios", texto: "Precios" },
+  { href: "/#precios", texto: "Paquetes" },
   { href: "/#proceso", texto: "Proceso" },
-  { href: "/#clientes", texto: "Clientes" },
+  { href: "/#clientes", texto: "Trabajo" },
 ];
 
 function ListaPaginas({ paginas }: { paginas: typeof PAGINAS_SERVICIO }) {

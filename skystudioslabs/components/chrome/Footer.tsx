@@ -60,36 +60,27 @@ export function Footer() {
           <p className={s.footerTitulo}>Contacto</p>
           <ul className={s.footerLista}>
             <Contactos variante="lista" />
-            <li>
-              {configurado(SITIO.correo) ? (
+            {/* Correo y redes sólo si ya están configurados: nunca mostrar marcadores al público. */}
+            {configurado(SITIO.correo) ? (
+              <li>
                 <a href={`mailto:${SITIO.correo}`}>{SITIO.correo}</a>
-              ) : (
-                <span className="placeholder">{SITIO.correo}</span>
-              )}
-            </li>
+              </li>
+            ) : null}
             <li className="muted">Atendemos negocios en todo México</li>
           </ul>
           <p className={s.footerTitulo} style={{ marginTop: 24 }}>
             Redes
           </p>
           <ul className={s.footerLista}>
-            {(["instagram", "facebook"] as const).map((red) => {
-              const valor = SITIO.redes[red];
-              const nombre = red === "instagram" ? "Instagram" : "Facebook";
-              return (
+            {(["instagram", "facebook"] as const)
+              .filter((red) => configurado(SITIO.redes[red]))
+              .map((red) => (
                 <li key={red}>
-                  {configurado(valor) ? (
-                    <a href={urlRed(red, valor)} target="_blank" rel="noopener noreferrer">
-                      {nombre}
-                    </a>
-                  ) : (
-                    <>
-                      {nombre}: <span className="placeholder">{valor}</span>
-                    </>
-                  )}
+                  <a href={urlRed(red, SITIO.redes[red])} target="_blank" rel="noopener noreferrer">
+                    {red === "instagram" ? "Instagram" : "Facebook"}
+                  </a>
                 </li>
-              );
-            })}
+              ))}
           </ul>
         </div>
       </div>

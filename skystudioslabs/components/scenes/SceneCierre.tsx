@@ -1,6 +1,7 @@
 import { LeadForm } from "@/components/forms/LeadForm";
 import { linkWhatsApp, whatsappConfigurado } from "@/config/sitio";
 import { Contactos } from "@/components/chrome/Contactos";
+import { IconoWhatsApp } from "@/components/chrome/IconoWhatsApp";
 import s from "./scenes.module.css";
 
 export function SceneCierre() {
@@ -27,16 +28,13 @@ export function SceneCierre() {
               aria-label="Escríbeme por WhatsApp"
               {...(whatsappConfigurado ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
-              <span className="t-title">Escríbeme →</span>
+              <IconoWhatsApp className={s.waBigIcono} />
+              <span className="t-title">Escríbeme por WhatsApp</span>
             </a>
-            <div data-anim>
-              <Contactos />
+            <div className={s.cierreContactos} data-anim>
+              <p className="muted">O elige un número: los dos reciben WhatsApp y llamadas.</p>
+              <Contactos variante="botones" />
             </div>
-            {!whatsappConfigurado ? (
-              <p className="muted">
-                <span className="placeholder">[MI_WHATSAPP]</span>
-              </p>
-            ) : null}
           </div>
         </div>
       </div>

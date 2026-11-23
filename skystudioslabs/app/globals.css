@@ -82,7 +82,11 @@ a { color: inherit; }
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  padding-right: 0.06em;
+  /* clone: cada línea del resaltado lleva su propio relleno y degradado; sin esto, en celular la
+     última letra en itálica de un renglón ("SKY" en "Con Sky Studios Labs") se recortaba. */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding-right: 0.1em;
 }
 .hl--blue { background: linear-gradient(90deg, var(--c-electric), var(--c-electric-2)); -webkit-background-clip: text; background-clip: text; }
 
@@ -123,6 +127,11 @@ a { color: inherit; }
 .glow--electric { background: var(--glow-electric); }
 @keyframes breathe { 0%, 100% { opacity: 0.65; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
 .glow--breathe { animation: breathe 6s ease-in-out infinite; }
+
+/* Alto contraste (Windows): el texto con degradado recortado desaparecería; se pinta sólido. */
+@media (forced-colors: active) {
+  .hl, .hl--blue { background: none; -webkit-text-fill-color: currentColor; color: CanvasText; }
+}
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .skip-link { position: absolute; left: 16px; top: -100px; z-index: 1000; background: var(--c-orange); color: #000; padding: 12px 18px; border-radius: 8px; }
