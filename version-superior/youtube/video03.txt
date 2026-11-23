@@ -1,0 +1,78 @@
+TÍTULO
+Cómo OLER CARO Gastando POCO (guía completa)
+
+DESCRIPCIÓN
+Oler caro no depende del precio del perfume, depende de la técnica. En este video te enseño 10 trucos para oler caro gastando poco: cómo preparar la piel, dónde aplicar, cuánto usar, cómo guardar el frasco y cómo comprar con decants, miniaturas y testers sin gastar de más. Aquí no recomendamos perfumes: es pura técnica.
+
+⏱️ Capítulos (APROXIMADOS: verificar contra el video final)
+00:00 Oler caro no depende del precio
+00:43 #10 Piel limpia y neutra
+01:26 #9 Hidrata antes del perfume
+02:09 #8 Puntos de calor (sin frotar)
+02:51 #7 Cuánto aplicar
+03:33 #6 Capas de aroma
+04:14 #5 Que tu ropa guarde el olor
+04:56 #4 Dónde guardar el frasco
+05:38 #3 Aroma según clima y ocasión
+06:18 #2 Prueba antes de comprar
+06:58 #1 Decants, miniaturas y testers
+07:42 Repaso y reto
+
+💬 ¿Cuál truco vas a probar primero? Te leo en los comentarios.
+🔔 Suscríbete a Versión Superior para mejorar tu imagen, tus hábitos y tu confianza.
+
+Los precios que menciono son rangos aproximados y pueden variar según la tienda.
+
+Fotos: Unsplash (licencia Unsplash, uso libre).
+
+#perfumehombre #olerbien #cuidadopersonal
+
+ETIQUETAS
+como oler caro, oler bien todo el dia, como hacer que el perfume dure mas, donde aplicar el perfume hombre, trucos de perfume, perfume hombre, que es un decant, como guardar el perfume, oler bien gastando poco, cuidado personal hombre, consejos para hombres, version superior
+
+CONFIGURACIÓN SUGERIDA
+- Miniatura: la del video 3 (textos y capas en miniaturas/, trabajo del subagente Y3)
+- Categoría: Consejos y estilo (Howto & Style)
+- Idioma: Español (México)
+- Contenido alterado o sintético: Sí (la narración es voz sintética)
+- Apto para niños: No
+- Lista de reproducción: "Cuidado personal para hombres" (ver estrategia.md)
+- Anuncios a mitad del video: activarlos cuando el canal esté monetizado (dura más de 8 min)
+
+
+======================================================================
+NOTAS (NO copiar a YouTube)
+======================================================================
+
+Título
+- Original (se queda hasta que decidas): Cómo OLER CARO Gastando POCO (guía completa)  — 44 caracteres.
+- Alternativa propuesta: Cómo OLER CARO Gastando POCO (10 trucos que casi nadie usa)  — 59 caracteres.
+  Razón: "guía completa" no dice qué trae el video; "10 trucos" pone un número concreto como en los
+  videos 1, 2 y 4 y deja claro que es técnica, no una lista de perfumes. La narración dice "diez
+  técnicas" y "la última es la que casi nadie aprovecha", así que la promesa se cumple. Es una
+  hipótesis: no hay datos del canal que lo confirmen.
+- Ojo con ambos: quien busque "perfumes baratos que huelen caro" espera nombres de perfumes y el
+  video no los da (lo dice en la intro). Por eso la descripción aclara "Aquí no recomendamos
+  perfumes". Si la retención cae al inicio, esa puede ser la causa.
+
+Capítulos
+- Calculados con `node capitulos.mjs 3`: 502.1 s repartidos según las palabras de cada bloque
+  (1,599 palabras en 12 bloques).
+- Versión con tarjetas como en el video 1 (`--tarjeta 1.8`, hipótesis):
+  00:00 Oler caro no depende del precio
+  00:45 #10 Piel limpia y neutra
+  01:29 #9 Hidrata antes del perfume
+  02:14 #8 Puntos de calor (sin frotar)
+  02:58 #7 Cuánto aplicar
+  03:42 #6 Capas de aroma
+  04:25 #5 Que tu ropa guarde el olor
+  05:08 #4 Dónde guardar el frasco
+  05:53 #3 Aroma según clima y ocasión
+  06:34 #2 Prueba antes de comprar
+  07:16 #1 Decants, miniaturas y testers
+  08:00 Repaso y reto
+- Antes de publicar: corrige cada marca contra el video final (ver README.md).
+
+Pendiente
+- La intro dice "eso viene en otro video" (recomendaciones de perfumes). Cuando exista ese video,
+  enlázalo en la descripción y en una tarjeta/pantalla final.

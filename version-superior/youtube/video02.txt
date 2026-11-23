@@ -1,0 +1,83 @@
+TÍTULO
+12 Hábitos que te Hacen Ver MAYOR (sin darte cuenta)
+
+DESCRIPCIÓN
+¿Te calculan más años de los que tienes? No es solo la cara: son hábitos pequeños que repites todos los días en cómo te vistes, cómo te mueves y hasta cómo hablas. En este video te traigo 12 hábitos que te hacen ver mayor y cómo corregir cada uno, casi todos gratis o con muy poco dinero. El último es el que casi todos ignoramos.
+
+⏱️ Capítulos (APROXIMADOS: verificar contra el video final)
+00:00 Por qué te ven mayor
+00:38 #12 Lentes pasados de moda
+01:16 #11 Colores apagados
+01:52 #10 El peinado de la secundaria
+02:29 #9 Vestirte como señor
+03:06 #8 Barba sin control
+03:42 #7 Caminar lento
+04:18 #6 Quejarte de todo
+04:55 #5 Ceño fruncido
+05:31 #4 Pantalla hasta la madrugada
+06:07 #3 Poca agua y puro antojo
+06:42 #2 Fumar o vapear
+07:19 #1 No usar bloqueador solar
+07:59 Repaso y cierre
+
+💬 ¿Cuál de estos hábitos tenías tú? Te leo en los comentarios.
+🔔 Suscríbete a Versión Superior para mejorar tu imagen, tus hábitos y tu confianza.
+
+Este video es informativo y no sustituye la consulta con un profesional de la salud.
+
+Fotos: Unsplash (licencia Unsplash, uso libre).
+
+#cuidadopersonal #estilomasculino #consejosparahombres
+
+ETIQUETAS
+habitos que te hacen ver mayor, como verse mas joven hombre, por que me veo mayor, como no verse viejo, cuidado personal hombre, estilo masculino, bloqueador solar hombre, como arreglar la barba, ropa para hombres jovenes, consejos para hombres, glow up hombre, version superior
+
+CONFIGURACIÓN SUGERIDA
+- Miniatura: la del video 2 (textos y capas en miniaturas/, trabajo del subagente Y3)
+- Categoría: Consejos y estilo (Howto & Style)
+- Idioma: Español (México)
+- Contenido alterado o sintético: Sí (la narración es voz sintética)
+- Apto para niños: No
+- Lista de reproducción: "Cuidado personal para hombres" (ver estrategia.md)
+- Anuncios a mitad del video: activarlos cuando el canal esté monetizado (dura más de 8 min)
+
+
+======================================================================
+NOTAS (NO copiar a YouTube)
+======================================================================
+
+Título
+- Original (se queda): 12 Hábitos que te Hacen Ver MAYOR (sin darte cuenta)  — 52 caracteres.
+- No propongo cambiarlo: tiene número, palabra clave en mayúsculas y un paréntesis que crea
+  curiosidad, igual que el video 1. Coincide con lo que dice la narración ("doce hábitos que te
+  hacen ver mayor"), así que la promesa del título se confirma en los primeros segundos.
+
+Capítulos
+- Calculados con `node capitulos.mjs 2`: 515 s de audio clonado repartidos según las palabras de
+  cada bloque del guion (1,554 palabras en 14 bloques).
+- La narración NO dice los números ("doce", "once"…); los "#12…#1" de los capítulos siguen el orden
+  del guion (de menos a más impactante). Si las tarjetas del video usan otra numeración, ajústala.
+- En el video 1, el video final quedó más largo que la voz (tarjetas #N y transiciones). Si el
+  render del video 2 se monta igual, esta versión probablemente queda más cerca
+  (`node capitulos.mjs 2 --tarjeta 1.8`, valor ajustado con el video 1; es una hipótesis):
+  00:00 Por qué te ven mayor
+  00:40 #12 Lentes pasados de moda
+  01:20 #11 Colores apagados
+  01:57 #10 El peinado de la secundaria
+  02:36 #9 Vestirte como señor
+  03:15 #8 Barba sin control
+  03:53 #7 Caminar lento
+  04:31 #6 Quejarte de todo
+  05:09 #5 Ceño fruncido
+  05:47 #4 Pantalla hasta la madrugada
+  06:25 #3 Poca agua y puro antojo
+  07:02 #2 Fumar o vapear
+  07:41 #1 No usar bloqueador solar
+  08:21 Repaso y cierre
+- Antes de publicar: reproduce el video final y corrige cada marca al segundo en que aparece la
+  tarjeta del punto (ver README.md).
+
+Fotos
+- Si `creditos_fotos.txt` del video 2 tiene fotos de Pexels, cambia la línea a
+  "Fotos: Unsplash y Pexels (uso libre)". Si quieres dar crédito por autor, pega la lista en la
+  descripción o en el comentario fijado (un archivo de tu PC no lo ve nadie).
