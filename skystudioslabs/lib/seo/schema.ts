@@ -37,6 +37,7 @@ export function professionalService(base: string = leerSiteUrl()): JsonLdObjeto 
       "@type": "PostalAddress",
       addressCountry: SITIO.pais,
     },
+    sameAs: [`https://www.instagram.com/${SITIO.redes.instagram.replace(/^@/, "")}`],
     knowsAbout: ["Diseño de páginas web", "Google Maps", "SEO local", "Redes sociales", "Chatbots de WhatsApp"],
     telephone: `+${SITIO.telefono}`,
     ...(whatsappConfigurado ? { contactPoint: { "@type": "ContactPoint", contactType: "sales", telephone: `+${SITIO.whatsapp}`, areaServed: "MX", availableLanguage: "es" } } : {}),

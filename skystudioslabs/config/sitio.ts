@@ -15,7 +15,7 @@ export const SITIO = {
   area: "México",
   mensajeWhatsApp: "Hola, vi su página y quiero mi boceto gratis para mi negocio.",
   redes: {
-    instagram: "[MI_INSTAGRAM]",
+    instagram: "sky_studiolabs",
     facebook: "[MI_FACEBOOK]",
   },
 } as const;

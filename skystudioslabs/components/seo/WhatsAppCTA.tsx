@@ -1,4 +1,4 @@
-import { linkWhatsApp, SITIO } from "@/config/sitio";
+import { formatoTelefono, linkWhatsApp, SITIO } from "@/config/sitio";
 import { IconoWhatsApp } from "@/components/chrome/IconoWhatsApp";
 import { Hl } from "./Hl";
 import s from "./seo.module.css";
@@ -30,6 +30,9 @@ export function WhatsAppCTA({
         <a className="btn btn-wa" href={linkWhatsApp(mensaje)} target="_blank" rel="noopener noreferrer">
           <IconoWhatsApp />
           {boton}
+        </a>{" "}
+        <a className="btn btn-ghost" href={`tel:+${SITIO.telefono}`}>
+          Llamar al {formatoTelefono(SITIO.telefono)}
         </a>
         {children}
       </div>

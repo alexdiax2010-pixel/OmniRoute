@@ -70,6 +70,7 @@ describe("schema.org", () => {
     expect(ps["@type"]).toBe("ProfessionalService");
     expect(ps.areaServed).toEqual({ "@type": "Country", name: "México" });
     expect(JSON.stringify(ps)).not.toMatch(/Zapopan|Guadalajara|Jalisco/);
+    expect(ps.sameAs).toEqual(["https://www.instagram.com/sky_studiolabs"]);
     expect(ps.telephone).toBe("+523330282202");
     expect(JSON.stringify(ps.contactPoint)).toContain("+524492889487");
   });
