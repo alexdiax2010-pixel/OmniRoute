@@ -22,7 +22,14 @@ export default async function Detalle({ params }: { params: Promise<{ id: string
   await requerirAdmin();
   const { id } = await params;
   const repo = await getRepo();
-  const p = await repo.obtenerProspecto(decodeURIComponent(id));
+  let idReal: string;
+  try {
+    idReal = decodeURIComponent(id);
+  } catch {
+    notFound(); // "%" mal formado: 404 en vez de error 500
+  }
+  if (!idReal || idReal.length > 120) notFound();
+  const p = await repo.obtenerProspecto(idReal);
   if (!p) notFound();
   const sitios = (await repo.listarSitios()).filter((x) => x.prospecto_id === p.id);
   const hoy = hoyMX();

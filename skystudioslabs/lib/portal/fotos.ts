@@ -47,8 +47,12 @@ export async function guardarFoto(prospectoId: string, bytes: Uint8Array, tipo: 
 export async function leerFoto(ruta: string): Promise<{ url: string } | { bytes: Buffer; tipo: string } | null> {
   if (!rutaValida(ruta)) return null;
   if (supabaseConfigurado()) {
-    const { clienteSesion } = await import("@/lib/supabase/servidor");
-    const { data, error } = await (await clienteSesion()).storage.from("cambios").createSignedUrl(ruta, 300);
+    // Admin con código especial: no tiene sesión de Supabase (la política "cambios: admin lee"
+    // no lo reconocería) → service role, igual que el resto del CRM (lib/data/supabase.ts).
+    const { clienteSesion, clienteServicio } = await import("@/lib/supabase/servidor");
+    const { adminPorCodigo } = await import("@/lib/auth-codigo");
+    const db = (await adminPorCodigo()) ? clienteServicio() : await clienteSesion();
+    const { data, error } = await db.storage.from("cambios").createSignedUrl(ruta, 300);
     return error || !data ? null : { url: data.signedUrl };
   }
   try {

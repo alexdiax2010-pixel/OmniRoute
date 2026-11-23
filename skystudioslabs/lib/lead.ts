@@ -89,3 +89,45 @@ export function ipDeCabeceras(h: Headers): string {
   if (xff) return xff.split(",")[0].trim() || "desconocida";
   return h.get("x-real-ip")?.trim() || "desconocida";
 }
+
+/**
+ * Lee el cuerpo de una petición sin pasar de `max` bytes (aunque no traiga Content-Length o
+ * mienta en él: envío "chunked"). Devuelve null si se pasa; corta la lectura en cuanto se pasa.
+ */
+export async function leerCuerpoLimitado(cuerpo: ReadableStream<Uint8Array> | null, max: number): Promise<Uint8Array | null> {
+  if (!cuerpo) return new Uint8Array(0);
+  const lector = cuerpo.getReader();
+  const partes: Uint8Array[] = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await lector.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > max) {
+      await lector.cancel().catch(() => {});
+      return null;
+    }
+    partes.push(value);
+  }
+  const out = new Uint8Array(total);
+  let i = 0;
+  for (const p of partes) {
+    out.set(p, i);
+    i += p.byteLength;
+  }
+  return out;
+}
+
+/** Cuerpo ya leído → objeto de campos de texto (JSON, urlencoded o multipart). Lanza si no se puede leer. */
+export async function camposDelCuerpo(bytes: Uint8Array, tipo: string): Promise<Record<string, unknown>> {
+  if (tipo.includes("application/x-www-form-urlencoded")) {
+    return Object.fromEntries(new URLSearchParams(new TextDecoder().decode(bytes)).entries());
+  }
+  if (tipo.includes("multipart/form-data")) {
+    const form = await new Response(new Blob([bytes as Uint8Array<ArrayBuffer>]), { headers: { "content-type": tipo } }).formData();
+    return Object.fromEntries([...form.entries()].filter(([, v]) => typeof v === "string"));
+  }
+  const j = JSON.parse(new TextDecoder().decode(bytes));
+  if (!j || typeof j !== "object" || Array.isArray(j)) throw new Error("no objeto");
+  return j as Record<string, unknown>;
+}

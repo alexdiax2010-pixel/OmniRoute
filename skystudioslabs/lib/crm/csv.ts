@@ -4,7 +4,9 @@
  */
 export function celdaCSV(valor: unknown): string {
   let s = valor == null ? "" : Array.isArray(valor) ? valor.join("; ") : typeof valor === "object" ? JSON.stringify(valor) : String(valor);
-  if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
+  // También con espacios delante (" =1+1") y con los signos de ancho completo (＝＋－＠),
+  // que algunas versiones de Excel convierten en fórmula.
+  if (/^[\s\u00a0]*[=+\-@\uff1d\uff0b\uff0d\uff20]/.test(s) || /^[\t\r\n]/.test(s)) s = `'${s}`;
   if (/[",\n\r]/.test(s)) s = `"${s.replace(/"/g, '""')}"`;
   return s;
 }

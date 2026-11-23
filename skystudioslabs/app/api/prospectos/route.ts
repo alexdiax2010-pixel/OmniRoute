@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getRepo } from "@/lib/data";
 import { secreto } from "@/lib/auth";
-import { evaluarLead, hashIp, ipDeCabeceras, LIMITE_ENVIOS_HORA, prospectoDesdeLead } from "@/lib/lead";
+import { camposDelCuerpo, evaluarLead, hashIp, ipDeCabeceras, leerCuerpoLimitado, LIMITE_ENVIOS_HORA, prospectoDesdeLead } from "@/lib/lead";
 import { after } from "next/server";
 import { avisoNuevoCliente, enviarAvisoPush } from "@/lib/push";
 
@@ -36,17 +36,12 @@ export async function POST(request: NextRequest) {
   const largo = Number(request.headers.get("content-length") ?? 0);
   if (largo > MAX_BYTES) return responder(request, esForm, 413, { ok: false, error: "Solicitud demasiado grande." });
 
+  // El tamaño se vuelve a medir al leer: Content-Length puede faltar (chunked) o mentir.
+  const bytes = await leerCuerpoLimitado(request.body, MAX_BYTES).catch(() => new Uint8Array(0));
+  if (!bytes) return responder(request, esForm, 413, { ok: false, error: "Solicitud demasiado grande." });
   let datos: Record<string, unknown>;
   try {
-    if (esForm) {
-      datos = Object.fromEntries([...(await request.formData()).entries()].filter(([, v]) => typeof v === "string"));
-    } else {
-      const texto = await request.text();
-      if (texto.length > MAX_BYTES) return responder(request, false, 413, { ok: false, error: "Solicitud demasiado grande." });
-      const j = JSON.parse(texto);
-      if (!j || typeof j !== "object" || Array.isArray(j)) throw new Error("no objeto");
-      datos = j;
-    }
+    datos = await camposDelCuerpo(bytes, tipo);
   } catch {
     return responder(request, esForm, 400, { ok: false, error: "No pudimos leer el formulario." });
   }
