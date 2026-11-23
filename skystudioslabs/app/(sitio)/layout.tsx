@@ -8,7 +8,7 @@ import { professionalService } from "@/lib/seo/schema";
 import { IMAGEN_OG } from "@/lib/seo/url";
 
 const DESCRIPCION =
-  "Páginas web, Google Maps, redes sociales y chatbots de WhatsApp para negocios locales de Zapopan y Guadalajara. Pide tu boceto gratis.";
+  "Páginas web, Google Maps, redes sociales y chatbots de WhatsApp para negocios de todo México. Pide tu boceto gratis.";
 
 export const metadata: Metadata = {
   description: DESCRIPCION,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     locale: "es_MX",
     siteName: SITIO.nombre,
     url: "/",
-    title: "Sky Studios Labs — Páginas web para negocios en Zapopan",
+    title: "Sky Studios Labs — Páginas web para negocios en México",
     description: DESCRIPCION,
     images: [IMAGEN_OG],
   },

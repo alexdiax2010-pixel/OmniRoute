@@ -152,7 +152,7 @@ describe("estadoSitio", () => {
     expira: null,
     creado: "2026-01-01T00:00:00Z",
   };
-  const ahora = new Date("2026-11-20T18:00:00Z"); // 12:00 en Zapopan
+  const ahora = new Date("2026-11-20T18:00:00Z"); // 12:00 en hora del centro de México
   it("no existe / ok / inactivo", () => {
     expect(estadoSitio(null, ahora)).toBe("no-existe");
     expect(estadoSitio(base, ahora)).toBe("ok");

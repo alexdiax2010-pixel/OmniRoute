@@ -34,7 +34,7 @@ export function SceneIntro() {
           <div data-horizon className={`${s.horizon} ${s.horizonIn}`} aria-hidden="true" />
 
           <div className={`${s.inner} ${s.introContent}`} data-intro-content>
-            <p className={`t-body ${s.label} ${s.introIn}`}>Agencia web en Zapopan y Guadalajara</p>
+            <p className={`t-body ${s.label} ${s.introIn}`}>Agencia web para negocios de todo México</p>
             <div className={s.titleWrap}>
               {/* h1 = elemento LCP: se pinta completo desde el servidor, sin máscara ni transform. */}
               <h1 id="intro-titulo" className="t-display">

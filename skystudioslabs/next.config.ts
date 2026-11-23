@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
     "/sitios/[slug]/[[...path]]": ["./clientes/**/*"],
     "/propuestas/[slug]/[[...path]]": ["./clientes/**/*"],
   },
+  // La página de Zapopan pasó a cubrir todo México: el enlace viejo sigue funcionando.
+  async redirects() {
+    return [{ source: "/paginas-web-zapopan", destination: "/paginas-web-mexico", permanent: true }];
+  },
   async headers() {
     return [
       {

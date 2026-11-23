@@ -31,5 +31,5 @@ export const IMAGEN_OG = {
   url: "/opengraph-image",
   width: 1200,
   height: 630,
-  alt: "Sky Studios Labs — Páginas que venden, en Zapopan y Guadalajara",
+  alt: "Sky Studios Labs — Páginas que venden, en todo México",
 };

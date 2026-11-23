@@ -1,7 +1,7 @@
 import { PlantillaSEO } from "@/components/seo/PlantillaSEO";
 import { metadataSEO } from "@/lib/seo/metadata";
 
-const SLUG = "paginas-web-zapopan";
+const SLUG = "paginas-web-mexico";
 
 export const metadata = metadataSEO(SLUG);
 

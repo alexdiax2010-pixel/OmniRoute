@@ -1,6 +1,6 @@
 import s from "./scenes.module.css";
 
-const BUSQUEDAS = ["taller cerca de mí", "dentista en Zapopan"];
+const BUSQUEDAS = ["taller cerca de mí", "dentista en Monterrey"];
 
 export function SceneProblema() {
   return (

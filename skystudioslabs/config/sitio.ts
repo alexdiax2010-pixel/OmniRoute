@@ -10,10 +10,9 @@ export const SITIO = {
   /** Teléfono para llamadas (formato internacional sin "+"). */
   telefono: "523330282202",
   correo: "[MI_CORREO]",
-  ciudad: "Zapopan",
-  region: "Jalisco",
   pais: "MX",
-  areas: ["Zapopan", "Guadalajara"],
+  /** Zona que atendemos (schema.org areaServed). */
+  area: "México",
   mensajeWhatsApp: "Hola, vi su página y quiero mi boceto gratis para mi negocio.",
   redes: {
     instagram: "[MI_INSTAGRAM]",

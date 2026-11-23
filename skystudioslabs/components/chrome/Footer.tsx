@@ -26,7 +26,7 @@ export function Footer() {
             <span aria-hidden="true">SKY STUDIOS LABS</span>
           </Link>
           <p className="muted">
-            Páginas web, Google Maps, redes sociales y chatbots de WhatsApp para negocios locales de Zapopan y Guadalajara.
+            Páginas web, Google Maps, redes sociales y chatbots de WhatsApp para negocios de todo México.
           </p>
           <a className="btn btn-primary" href={wa} target="_blank" rel="noopener noreferrer">
             Pide tu boceto gratis
@@ -73,10 +73,7 @@ export function Footer() {
                 <span className="placeholder">{SITIO.correo}</span>
               )}
             </li>
-            <li>
-              {SITIO.ciudad}, {SITIO.region}
-            </li>
-            <li className="muted">Atendemos Zapopan y Guadalajara</li>
+            <li className="muted">Atendemos negocios en todo México</li>
           </ul>
           <p className={s.footerTitulo} style={{ marginTop: 24 }}>
             Redes
@@ -104,9 +101,9 @@ export function Footer() {
       </div>
       <div className={`container ${s.footerBase}`}>
         <p>
-          © {anio} {SITIO.nombre}. Zapopan, Jalisco.
+          © {anio} {SITIO.nombre}. México.
         </p>
-        <p>Hecho en Jalisco para negocios locales.</p>
+        <p>Hecho en México para negocios de todo el país.</p>
       </div>
     </footer>
   );

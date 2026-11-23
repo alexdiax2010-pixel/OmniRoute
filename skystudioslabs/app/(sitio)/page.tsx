@@ -18,9 +18,9 @@ import s from "@/components/scenes/scenes.module.css";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: { absolute: "Sky Studios Labs — Páginas web, Google Maps y chatbots en Zapopan" },
+  title: { absolute: "Sky Studios Labs — Páginas web, Google Maps y chatbots en todo México" },
   description:
-    "Páginas que venden, presencia en Google Maps, redes que trabajan por ti y un chatbot que responde a las 3 AM. Negocios de Zapopan y Guadalajara: pide tu boceto gratis.",
+    "Páginas que venden, presencia en Google Maps, redes que trabajan por ti y un chatbot que responde a las 3 AM. Negocios de todo México: pide tu boceto gratis.",
   alternates: { canonical: "/" },
 };
 

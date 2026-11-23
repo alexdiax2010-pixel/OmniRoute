@@ -83,14 +83,14 @@ function faqNecesito(cosas: string): FAQ {
 export const PAGINAS_SEO: PaginaSEO[] = [
   // ======================= SERVICIOS =======================
   {
-    slug: "paginas-web-zapopan",
+    slug: "paginas-web-mexico",
     tipo: "servicio",
     menu: "Páginas web",
-    titulo: "Páginas web para negocios en Zapopan",
+    titulo: "Páginas web para negocios en México",
     descripcion:
-      "Páginas web rápidas y pensadas para celular para negocios de Zapopan y Guadalajara: botón de WhatsApp, mapa y SEO local. Pide tu boceto gratis.",
-    antetitulo: "Diseño web en Zapopan y Guadalajara",
-    h1: "Páginas web para negocios en *Zapopan*",
+      "Páginas web rápidas y pensadas para celular para negocios de todo México: botón de WhatsApp, mapa y SEO local. Pide tu boceto gratis.",
+    antetitulo: "Diseño web para todo México",
+    h1: "Páginas web para negocios en *México*",
     intro:
       "Cuando alguien busca lo que vendes, lo primero que hace es sacar el celular. Una página clara, rápida y con tu WhatsApp a un toque convierte esa búsqueda en un mensaje para ti. Te enseñamos un boceto gratis antes de que pagues nada.",
     ejemplo: "web",
@@ -99,7 +99,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       {
         titulo: "Te buscan y no apareces",
         texto:
-          "Si alguien escribe tu giro + “Zapopan” y no encuentra nada tuyo, se va con el negocio que sí aparece, aunque el tuyo sea mejor.",
+          "Si alguien escribe tu giro + el nombre de tu ciudad y no encuentra nada tuyo, se va con el negocio que sí aparece, aunque el tuyo sea mejor.",
       },
       {
         titulo: "Todo depende de tus redes",
@@ -138,7 +138,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       {
         titulo: "SEO local",
         texto:
-          "Títulos, descripciones y datos estructurados para que Google entienda qué haces y en qué zona de Zapopan y Guadalajara.",
+          "Títulos, descripciones y datos estructurados para que Google entienda qué haces y en qué zona trabajas.",
       },
       {
         titulo: "Tu propio link",
@@ -158,17 +158,17 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       faqDominio,
       faqCambios,
       {
-        pregunta: "¿Trabajan solo en Zapopan?",
+        pregunta: "¿Trabajan en todo México?",
         respuesta:
-          "Estamos en Zapopan y trabajamos con negocios de toda la zona metropolitana de Guadalajara. Casi todo lo resolvemos por WhatsApp; si hace falta, nos ponemos de acuerdo para vernos.",
+          "Sí. Trabajamos con negocios de cualquier ciudad de México. Todo lo resolvemos por WhatsApp y, si hace falta, por videollamada.",
       },
     ],
     servicio: {
       nombre: "Diseño de páginas web para negocios locales",
       descripcion:
-        "Páginas web adaptadas a celular con botón de WhatsApp, mapa de ubicación y SEO local para negocios de Zapopan y Guadalajara.",
+        "Páginas web adaptadas a celular con botón de WhatsApp, mapa de ubicación y SEO local para negocios de todo México.",
     },
-    mensajeWhatsApp: "Hola, quiero mi boceto gratis de página web para mi negocio en Zapopan.",
+    mensajeWhatsApp: "Hola, quiero mi boceto gratis de página web para mi negocio.",
   },
   {
     slug: "google-maps-negocios",
@@ -176,11 +176,11 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     menu: "Google Maps",
     titulo: "Alta y optimización en Google Maps",
     descripcion:
-      "Damos de alta y optimizamos tu Perfil de Empresa en Google para que tu negocio aparezca en Google Maps en Zapopan y Guadalajara: fotos, horarios, categorías y reseñas.",
+      "Damos de alta y optimizamos tu Perfil de Empresa en Google para que tu negocio aparezca en Google Maps en todo México: fotos, horarios, categorías y reseñas.",
     antetitulo: "Perfil de Empresa en Google",
     h1: "Que te encuentren en *Google Maps*",
     intro:
-      "Cuando alguien busca “taller cerca de mí” o “dentista en Zapopan”, Google enseña primero un mapa con unos cuantos negocios. Ahí se decide buena parte de las visitas. Te ayudamos a tener tu ficha completa, verificada y bien configurada para competir por ese lugar.",
+      "Cuando alguien busca “taller cerca de mí” o “dentista en Monterrey”, Google enseña primero un mapa con unos cuantos negocios. Ahí se decide buena parte de las visitas. Te ayudamos a tener tu ficha completa, verificada y bien configurada para competir por ese lugar.",
     ejemplo: "maps",
     problemasTitulo: "Por qué no te *encuentran*",
     problemas: [
@@ -262,7 +262,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     servicio: {
       nombre: "Alta y optimización en Google Maps",
       descripcion:
-        "Alta, verificación y optimización del Perfil de Empresa en Google para negocios locales de Zapopan y Guadalajara.",
+        "Alta, verificación y optimización del Perfil de Empresa en Google para negocios de todo México.",
     },
     mensajeWhatsApp: "Hola, quiero que mi negocio aparezca bien en Google Maps. ¿Me ayudan?",
   },
@@ -272,7 +272,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     menu: "Redes sociales",
     titulo: "Manejo de redes sociales para negocios locales",
     descripcion:
-      "Plan de publicaciones, diseño y textos para Facebook e Instagram de negocios locales en Zapopan y Guadalajara, enfocados en que te escriban por WhatsApp.",
+      "Plan de publicaciones, diseño y textos para Facebook e Instagram de negocios de todo México, enfocados en que te escriban por WhatsApp.",
     antetitulo: "Facebook e Instagram para negocios",
     h1: "Redes sociales para negocios *locales*",
     intro:
@@ -356,7 +356,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     servicio: {
       nombre: "Manejo de redes sociales para negocios locales",
       descripcion:
-        "Plan de publicaciones, diseño y textos para Facebook e Instagram de negocios locales en Zapopan y Guadalajara.",
+        "Plan de publicaciones, diseño y textos para Facebook e Instagram de negocios de todo México.",
     },
     mensajeWhatsApp: "Hola, me interesa que me ayuden con las redes sociales de mi negocio.",
   },
@@ -366,7 +366,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     menu: "Chatbot de WhatsApp",
     titulo: "Chatbot de WhatsApp para negocios",
     descripcion:
-      "Chatbot de WhatsApp que responde horarios, precios y ubicación y toma datos para citas o pedidos, también fuera de horario. Para negocios de Zapopan y Guadalajara.",
+      "Chatbot de WhatsApp que responde horarios, precios y ubicación y toma datos para citas o pedidos, también fuera de horario. Para negocios de todo México.",
     antetitulo: "Atención automática en WhatsApp",
     h1: "Chatbot de *WhatsApp* para tu negocio",
     intro:
@@ -446,7 +446,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     servicio: {
       nombre: "Chatbot de WhatsApp para negocios",
       descripcion:
-        "Chatbot de WhatsApp que responde preguntas frecuentes y toma datos para citas o pedidos de negocios locales en Zapopan y Guadalajara.",
+        "Chatbot de WhatsApp que responde preguntas frecuentes y toma datos para citas o pedidos de negocios de todo México.",
     },
     mensajeWhatsApp: "Hola, me interesa un chatbot de WhatsApp para mi negocio.",
   },
@@ -456,9 +456,9 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     slug: "paginas-web-para-dentistas",
     tipo: "giro",
     menu: "Dentistas",
-    titulo: "Páginas web para dentistas en Zapopan",
+    titulo: "Páginas web para dentistas en México",
     descripcion:
-      "Página web para consultorios dentales en Zapopan y Guadalajara: tratamientos, ubicación, horarios y citas por WhatsApp. Pide tu boceto gratis.",
+      "Página web para consultorios dentales en todo México: tratamientos, ubicación, horarios y citas por WhatsApp. Pide tu boceto gratis.",
     antetitulo: "Consultorios dentales",
     h1: "Páginas web para *dentistas*",
     intro:
@@ -514,7 +514,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     servicio: {
       nombre: "Páginas web para dentistas",
       descripcion:
-        "Diseño de páginas web para consultorios dentales en Zapopan y Guadalajara con tratamientos, ubicación y citas por WhatsApp.",
+        "Diseño de páginas web para consultorios dentales en todo México con tratamientos, ubicación y citas por WhatsApp.",
     },
     mensajeWhatsApp: "Hola, tengo un consultorio dental y quiero mi boceto gratis de página web.",
   },
@@ -522,9 +522,9 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     slug: "paginas-web-para-talleres-mecanicos",
     tipo: "giro",
     menu: "Talleres mecánicos",
-    titulo: "Páginas web para talleres mecánicos en Zapopan",
+    titulo: "Páginas web para talleres mecánicos en México",
     descripcion:
-      "Página web para talleres mecánicos en Zapopan y Guadalajara: servicios, ubicación y cotizaciones por WhatsApp. Que te encuentren cuando el carro falla.",
+      "Página web para talleres mecánicos en todo México: servicios, ubicación y cotizaciones por WhatsApp. Que te encuentren cuando el carro falla.",
     antetitulo: "Talleres y servicio automotriz",
     h1: "Páginas web para talleres *mecánicos*",
     intro:
@@ -577,7 +577,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     servicio: {
       nombre: "Páginas web para talleres mecánicos",
       descripcion:
-        "Diseño de páginas web para talleres mecánicos en Zapopan y Guadalajara con servicios, galería y cotizaciones por WhatsApp.",
+        "Diseño de páginas web para talleres mecánicos en todo México con servicios, galería y cotizaciones por WhatsApp.",
     },
     mensajeWhatsApp: "Hola, tengo un taller mecánico y quiero mi boceto gratis de página web.",
   },
@@ -585,9 +585,9 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     slug: "paginas-web-para-barberias",
     tipo: "giro",
     menu: "Barberías",
-    titulo: "Páginas web para barberías en Zapopan",
+    titulo: "Páginas web para barberías en México",
     descripcion:
-      "Página web para barberías en Zapopan y Guadalajara: cortes, precios, galería y citas por WhatsApp. Llena tu agenda y pide tu boceto gratis.",
+      "Página web para barberías en todo México: cortes, precios, galería y citas por WhatsApp. Llena tu agenda y pide tu boceto gratis.",
     antetitulo: "Barberías y estéticas",
     h1: "Páginas web para *barberías*",
     intro:
@@ -637,7 +637,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     servicio: {
       nombre: "Páginas web para barberías",
       descripcion:
-        "Diseño de páginas web para barberías en Zapopan y Guadalajara con galería de cortes, precios y citas por WhatsApp.",
+        "Diseño de páginas web para barberías en todo México con galería de cortes, precios y citas por WhatsApp.",
     },
     mensajeWhatsApp: "Hola, tengo una barbería y quiero mi boceto gratis de página web.",
   },
@@ -645,9 +645,9 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     slug: "paginas-web-para-restaurantes",
     tipo: "giro",
     menu: "Restaurantes",
-    titulo: "Páginas web para restaurantes en Zapopan",
+    titulo: "Páginas web para restaurantes en México",
     descripcion:
-      "Página web para restaurantes, fondas y cafeterías en Zapopan y Guadalajara: menú digital con QR, ubicación, horarios y pedidos por WhatsApp.",
+      "Página web para restaurantes, fondas y cafeterías en todo México: menú digital con QR, ubicación, horarios y pedidos por WhatsApp.",
     antetitulo: "Restaurantes, fondas y cafeterías",
     h1: "Páginas web para *restaurantes*",
     intro:
@@ -697,13 +697,13 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     servicio: {
       nombre: "Páginas web para restaurantes",
       descripcion:
-        "Diseño de páginas web para restaurantes en Zapopan y Guadalajara con menú digital, código QR y pedidos por WhatsApp.",
+        "Diseño de páginas web para restaurantes en todo México con menú digital, código QR y pedidos por WhatsApp.",
     },
     mensajeWhatsApp: "Hola, tengo un restaurante y quiero mi boceto gratis de página web.",
   },
 ];
 
-/** Rutas públicas de las páginas SEO, ej. "/paginas-web-zapopan". */
+/** Rutas públicas de las páginas SEO, ej. "/paginas-web-mexico". */
 export const RUTAS_SEO: string[] = PAGINAS_SEO.map((p) => `/${p.slug}`);
 
 export const PAGINAS_SERVICIO = PAGINAS_SEO.filter((p) => p.tipo === "servicio");

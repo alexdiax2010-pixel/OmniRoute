@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 // Excepción de tipografía: la imagen se renderiza con Satori, fuera del CSS del sitio.
-export const alt = "Sky Studios Labs — Páginas que venden, en Zapopan y Guadalajara";
+export const alt = "Sky Studios Labs — Páginas que venden, en todo México";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -64,7 +64,7 @@ export default async function Image() {
           <span style={{ color: "#ff6a24" }}>Páginas que venden</span>
         </div>
         <div style={{ display: "flex", marginTop: 18, fontSize: 30, color: "#a8a39b", fontFamily: "sans-serif" }}>
-          Zapopan · Guadalajara · Boceto gratis
+          Todo México · Boceto gratis
         </div>
       </div>
     ),

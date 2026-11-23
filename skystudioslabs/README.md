@@ -150,7 +150,7 @@ fecha indicada (30 días por defecto).
 4. En **Sitemaps** envía `https://skystudioslabs.com/sitemap.xml`. Incluye la portada, las 8 páginas
    SEO y los sitios de clientes activos; excluye propuestas, CRM y portal.
 5. Recomendado: crea tu **Perfil de Negocio de Google** (Google Maps) para Sky Studios Labs con
-   área de servicio Zapopan y Guadalajara.
+   área de servicio en todo México.
 
 ---
 

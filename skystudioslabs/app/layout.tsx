@@ -6,9 +6,9 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://skystudioslabs.com
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Sky Studios Labs — Páginas web para negocios en Zapopan", template: "%s | Sky Studios Labs" },
+  title: { default: "Sky Studios Labs — Páginas web para negocios en México", template: "%s | Sky Studios Labs" },
   description:
-    "Páginas web, Google Maps, redes sociales y chatbots para negocios locales de Zapopan y Guadalajara. Pide tu boceto gratis.",
+    "Páginas web, Google Maps, redes sociales y chatbots para negocios de todo México. Pide tu boceto gratis.",
 };
 
 export const viewport: Viewport = {

@@ -65,11 +65,11 @@ describe("páginas SEO", () => {
 });
 
 describe("schema.org", () => {
-  it("ProfessionalService cubre Zapopan y Guadalajara con teléfono de llamadas y WhatsApp de ventas", () => {
+  it("ProfessionalService cubre todo México con teléfono de llamadas y WhatsApp de ventas", () => {
     const ps = professionalService(SITE);
     expect(ps["@type"]).toBe("ProfessionalService");
-    expect(JSON.stringify(ps.areaServed)).toContain("Zapopan");
-    expect(JSON.stringify(ps.areaServed)).toContain("Guadalajara");
+    expect(ps.areaServed).toEqual({ "@type": "Country", name: "México" });
+    expect(JSON.stringify(ps)).not.toMatch(/Zapopan|Guadalajara|Jalisco/);
     expect(ps.telephone).toBe("+523330282202");
     expect(JSON.stringify(ps.contactPoint)).toContain("+524492889487");
   });

@@ -8,7 +8,7 @@ export type JsonLdObjeto = Record<string, unknown>;
 export type FAQ = { pregunta: string; respuesta: string };
 export type Miga = { nombre: string; ruta: string };
 
-const ciudades = () => SITIO.areas.map((name) => ({ "@type": "City", name }));
+const zona = () => ({ "@type": "Country", name: SITIO.area });
 
 function absoluta(ruta: string, base: string): string {
   if (/^https?:\/\//.test(ruta)) return ruta;
@@ -31,12 +31,10 @@ export function professionalService(base: string = leerSiteUrl()): JsonLdObjeto 
     image: `${base}/opengraph-image`,
     logo: `${base}/icon.svg`,
     description:
-      "Agencia de páginas web, alta en Google Maps, redes sociales y chatbots de WhatsApp para negocios locales de Zapopan y Guadalajara.",
-    areaServed: ciudades(),
+      "Agencia de páginas web, alta en Google Maps, redes sociales y chatbots de WhatsApp para negocios de todo México.",
+    areaServed: zona(),
     address: {
       "@type": "PostalAddress",
-      addressLocality: SITIO.ciudad,
-      addressRegion: SITIO.region,
       addressCountry: SITIO.pais,
     },
     knowsAbout: ["Diseño de páginas web", "Google Maps", "SEO local", "Redes sociales", "Chatbots de WhatsApp"],
@@ -68,7 +66,7 @@ export function service(name: string, description: string, ruta?: string, base: 
     ...(ruta ? { url: absoluta(ruta, base) } : {}),
     serviceType: name,
     provider: { "@type": "ProfessionalService", "@id": idNegocio(base), name: SITIO.nombre },
-    areaServed: ciudades(),
+    areaServed: zona(),
   };
 }
 
