@@ -1,5 +1,6 @@
 -- Prueba de RLS: un cliente del portal no puede ver ni escribir prospectos_internos.
--- Uso (PostgreSQL local vacío): psql -f 00_stubs_supabase.sql; psql -f ../migrations/0001_inicial.sql; psql -f rls.sql
+-- Uso (PostgreSQL local vacío): psql -f 00_stubs_supabase.sql; psql -f ../migrations/0001_inicial.sql;
+--   psql -f ../migrations/0003_seguridad.sql; psql -f rls.sql
 \set ON_ERROR_STOP 0
 insert into public.admins values ('admin@sky.test');
 insert into auth.users values ('11111111-1111-1111-1111-111111111111','cliente@sky.test');
@@ -22,6 +23,12 @@ select id,nombre,telefono,razon,guion,notas,etapa from public.prospectos_complet
 \echo '--- intento de escribir internos (debe fallar / 0 filas)'
 update public.prospectos_internos set razon='hack' where id='1';
 insert into public.prospectos_internos(id) values ('1');
+\echo '--- solicitud con foto de OTRO cliente (debe fallar: solicitudes_foto_propia)'
+insert into public.solicitudes_cambio(prospecto_id,texto,foto) values ('1','foto ajena','2/00000000-0000-0000-0000-000000000000.png');
+\echo '--- solicitud para OTRO prospecto (debe fallar por RLS)'
+insert into public.solicitudes_cambio(prospecto_id,texto) values ('2','no es mío');
+\echo '--- solicitud propia con foto propia (debe funcionar)'
+insert into public.solicitudes_cambio(prospecto_id,texto,foto) values ('1','foto propia','1/00000000-0000-0000-0000-000000000000.png');
 \echo '--- agregar_nota como cliente (no debe cambiar nada)'
 select public.agregar_nota('1','{"t":"y","txt":"inyectada"}');
 reset role;

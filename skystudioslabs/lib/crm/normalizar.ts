@@ -4,6 +4,8 @@ import { PAQUETES, SERVICIOS, type Servicio } from "@/config/precios";
 import { prospectoBase } from "@/lib/data/base";
 import { esFechaISO } from "./fechas";
 import { plano } from "./texto";
+import { normalizarCategoria, normalizarGiro } from "./giros";
+import { limpiarDireccion, limpiarTelefono } from "./contacto";
 
 /**
  * Normalización de prospectos para crm:importar (pura, testeable).
@@ -67,8 +69,9 @@ function normalizarBool(v: unknown): boolean {
 
 function normalizarAlertas(v: unknown): string[] {
   if (v == null || v === "") return [];
-  const arr = Array.isArray(v) ? v : String(v).split(/\r?\n|\s\|\s/);
-  return arr.map((a) => String(a ?? "").trim()).filter(Boolean);
+  // Las listas de prospección separan las alertas con "; " (también saltos de línea o " | ").
+  const arr = Array.isArray(v) ? v : String(v).split(/\r?\n|\s\|\s|;\s+/);
+  return [...new Set(arr.map((a) => String(a ?? "").trim()).filter(Boolean))];
 }
 
 function texto(v: unknown): string {
@@ -104,11 +107,34 @@ export function normalizarFila(raw: unknown, indice: number): FilaNormalizada {
   const parcial: ProspectoParcial = { id: String(r.data.id).trim(), nombre: r.data.nombre };
 
   for (const k of CAMPOS_TEXTO) if (presente(o, k)) parcial[k] = texto(o[k]);
-  if (typeof o.telefono === "number") parcial.telefono = String(o.telefono);
-  if (typeof o.whatsapp === "number") parcial.whatsapp = String(o.whatsapp);
+
+  // Giro y categoría canónicos (para filtrar y contar). El giro original queda en una nota.
+  const notasExtra: Nota[] = [];
+  if (presente(o, "giro")) {
+    const original = texto(o.giro);
+    parcial.giro = normalizarGiro(original, r.data.nombre);
+    if (original && plano(original) !== plano(parcial.giro)) notasExtra.push({ t: "", txt: `Giro original: ${original}` });
+  }
+  if (presente(o, "categoria")) parcial.categoria = normalizarCategoria(texto(o.categoria));
+
+  // Teléfono / WhatsApp / dirección: número limpio; el texto original va a las alertas.
+  const alertasExtra: string[] = [];
+  for (const [k, etiqueta] of [["telefono", "Teléfono"], ["whatsapp", "WhatsApp"]] as const) {
+    if (!presente(o, k)) continue;
+    const r = limpiarTelefono(o[k], etiqueta);
+    parcial[k] = r.valor;
+    if (r.alerta) alertasExtra.push(r.alerta);
+  }
+  if (presente(o, "direccion")) {
+    const r = limpiarDireccion(o.direccion);
+    parcial.direccion = r.valor;
+    if (r.alerta) alertasExtra.push(r.alerta);
+  }
 
   if (presente(o, "puntaje")) parcial.puntaje = normalizarNumero(o.puntaje) ?? 0;
-  if (presente(o, "alertas")) parcial.alertas = normalizarAlertas(o.alertas);
+  if (presente(o, "alertas") || alertasExtra.length) {
+    parcial.alertas = [...new Set([...normalizarAlertas(o.alertas), ...alertasExtra])];
+  }
   if (presente(o, "top10")) parcial.top10 = normalizarBool(o.top10);
   if (presente(o, "etapa")) {
     const { etapa, aviso } = normalizarEtapa(o.etapa);
@@ -126,6 +152,7 @@ export function normalizarFila(raw: unknown, indice: number): FilaNormalizada {
     const notas: Nota[] = typeof n === "string" ? (n.trim() ? [{ t: "", txt: n.trim() }] : []) : (n ?? []).map((x) => ({ t: x.t == null ? "" : String(x.t), txt: x.txt }));
     parcial.notas = notas.filter((x) => x.txt.trim());
   }
+  if (notasExtra.length) parcial.notas = unirNotas(parcial.notas ?? [], notasExtra);
   if (presente(o, "paquete")) {
     const v = texto(o.paquete);
     if (!v) parcial.paquete = null;
