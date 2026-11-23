@@ -62,3 +62,14 @@
 - Yo agregué `data/crm-prospectos.json` al `.gitignore` (datos personales; sugerencia de C).
 - Unido con A y D: tsc limpio, vitest 200/200.
 - Pendiente (no urgente): un trigger de límite de solicitudes en Supabase; revisar el origen en `/auth/salir`.
+
+## 2026-11-23 ~21:00 UTC — Terminó B (SEO técnico, rendimiento y seguridad) → unido. Cierre.
+- Datos estructurados: `WebSite` + negocio con logo PNG, areaServed México, los dos teléfonos, Instagram; sin
+  reseñas/precios/dirección inventados. Las tarjetas de Twitter/Open Graph van en cada página.
+- Sitemap sin fechas falsas; `robots.txt` bloquea `/auth/` y deja leer `/c/` y propuestas (para que Google vea su noindex).
+- Nuevas cabeceras: CSP (sin romper páginas estáticas), `X-Frame-Options`, HSTS (sin preload), `X-Robots-Tag`
+  noindex en admin/portal/propuestas/previews, redirección www → dominio raíz.
+- Lighthouse móvil: home 95 → **96**; dentistas 96; talleres 95; accesibilidad/buenas prácticas/SEO 100 en todas.
+- **Verificación final del conjunto (A+B+C+D):** tsc limpio · vitest **216/216** (antes 116) · Playwright e2e
+  **42 pasaron, 0 fallaron** (66 omitidas a propósito: solo corren en escritorio).
+- Pendiente: comprobar la redirección www tras el próximo deploy.

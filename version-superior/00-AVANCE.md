@@ -38,3 +38,16 @@
 - `shorts/herramientas/srt_por_frases.ps1`: subtítulos sincronizados por frases y pausas reales (sin créditos);
   probado en PowerShell 7 con audio sintético. Falta probarlo con la voz real en Windows.
 - Nota técnica: al quemar subtítulos con ffmpeg, `FontSize=15` ≈ 100 px a 1920 de alto (100 se sale de la pantalla).
+
+## 2026-11-23 ~21:00 UTC — Terminó Y4 (producción) → unido. Cierre.
+- `produccion/producir.ps1` (UTF-8 con BOM): `${num}`, modo estricto, revisa requisitos (ffmpeg, herramientas, mp3,
+  guion, fotos, archivos solo en la nube de OneDrive), revisa cada código de salida, bitácora en archivo, sin
+  `Stop-Process ffmpeg` (candado contra corridas paralelas), render a temporal y reemplazo solo si el nuevo es válido
+  y dura > 8 min, resumen OK/FALLÓ.
+- Verificado con PowerShell 7.7 (0 errores de sintaxis) y corridas en seco con ffmpeg real y herramientas simuladas
+  (8 casos, incluida ruta con espacio). Falta probarlo en Windows PowerShell 5.1.
+- `DIAGNOSTICO.md`: 7 hipótesis del exit 4 con comandos para confirmar (causa sigue desconocida).
+- `cortar_frase.ps1`: quita la frase falsa del video 4 con fundido de 30 ms, guarda el original y permite escuchar
+  antes; los segundos exactos los pone el usuario.
+- `INSTRUCCIONES.md` (paso a paso) y `CHECKLIST-PUBLICACION.md`.
+- Nota: Y4 hizo su commit con los hooks de git desactivados; aquí no había hooks instalados, así que no cambió nada.
