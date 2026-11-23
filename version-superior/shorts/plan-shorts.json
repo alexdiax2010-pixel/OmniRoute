@@ -1,0 +1,388 @@
+{
+  "_nota": "Generado por herramientas/generar-plan.cjs. Tiempos APROXIMADOS (proporción de palabras); ajustar a la pausa más cercana antes de cortar (ver README). Calendario = PROPUESTA.",
+  "formato": {
+    "ancho": 1080,
+    "alto": 1920,
+    "subtitulos": "Arial Black 100",
+    "cierre": "Video completo en el canal"
+  },
+  "shorts": [
+    {
+      "id": "s02-1",
+      "video": 2,
+      "video_titulo": "12 Hábitos que te Hacen Ver MAYOR (sin darte cuenta)",
+      "bloque": "#9 — Vestirte como señor antes de tiempo",
+      "texto": "Vestirte como señor antes de tiempo. Pantalón de pinzas muy holgado, camisa de cuadros abotonada hasta arriba, chamarra de piel gastada y zapatos de suela gruesa todos los días. Vestir formal no tiene nada de malo, pero hay prendas con una edad muy marcada. Si a los veinticinco te vistes como tu tío de cincuenta, la gente te va a leer así. La clave es encontrar un punto medio. Cambia el pantalón de pinzas por un chino de corte recto. Usa camisas lisas u oxford con un corte moderno. Combina con tenis blancos limpios o botines sencillos. Así te ves arreglado, pero con la energía de tu edad, y eso se nota desde lejos.",
+      "palabras": 114,
+      "palabras_totales_guion": 1554,
+      "audio_total_s": 515,
+      "inicio_s": 149.1,
+      "fin_s": 186.9,
+      "duracion_s": 37.8,
+      "inicio_mmss": "2:29.1",
+      "fin_mmss": "3:06.9",
+      "gancho_pantalla": [
+        "¿TE VISTES",
+        "COMO TU TÍO?"
+      ],
+      "titulo_youtube": "Deja de vestirte como señor a los 25",
+      "hashtags": [
+        "#estilohombre",
+        "#modamasculina",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s02-2",
+      "video": 2,
+      "video_titulo": "12 Hábitos que te Hacen Ver MAYOR (sin darte cuenta)",
+      "bloque": "#5 — Traer el ceño fruncido todo el tiempo",
+      "texto": "Traer el ceño fruncido todo el tiempo. Muchos andamos con cara de enojo sin estar enojados. Por concentrarte en el celular, por el sol o por pura costumbre, tensas la frente y juntas las cejas durante horas. Esa expresión te hace ver serio, cansado y más grande. Y los gestos que repites mucho tienden a marcarse. La solución empieza por darte cuenta. Pon una alarma en el celular un par de veces al día y revisa tu cara. ¿Tienes la frente tensa? ¿Aprietas la mandíbula? Suelta. Si el sol te hace entrecerrar los ojos, usa lentes de sol. Una cara relajada se ve más joven y más accesible.",
+      "palabras": 108,
+      "palabras_totales_guion": 1554,
+      "audio_total_s": 515,
+      "inicio_s": 295.3,
+      "fin_s": 331.1,
+      "duracion_s": 35.8,
+      "inicio_mmss": "4:55.3",
+      "fin_mmss": "5:31.1",
+      "gancho_pantalla": [
+        "ESA CARA",
+        "TE SUMA AÑOS"
+      ],
+      "titulo_youtube": "Tu cara de enojo te hace ver mayor (y ni lo notas)",
+      "hashtags": [
+        "#cuidadopersonal",
+        "#hombres",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s02-3",
+      "video": 2,
+      "video_titulo": "12 Hábitos que te Hacen Ver MAYOR (sin darte cuenta)",
+      "bloque": "#1 — No usar bloqueador solar",
+      "texto": "Y el que más pesa de todos: no usar bloqueador solar. Es el que casi todos los hombres ignoramos. En México tenemos sol intenso casi todo el año, y aunque esté nublado, los rayos siguen llegando a tu piel. El sol es una de las principales causas del envejecimiento de la piel. Manchas, textura áspera y líneas finas. No pasa de un día para otro, pero cada vez que sales sin protección, suma. La solución es sencilla y barata. Ponte bloqueador de factor treinta o más todas las mañanas en cara, cuello y orejas, aunque no vayas a la playa. Elige uno ligero. Y si pasas mucho tiempo afuera, vuelve a aplicar. Tu yo de cuarenta te lo va a agradecer.",
+      "palabras": 121,
+      "palabras_totales_guion": 1554,
+      "audio_total_s": 515,
+      "inicio_s": 439.8,
+      "fin_s": 479.9,
+      "duracion_s": 40.1,
+      "inicio_mmss": "7:19.8",
+      "fin_mmss": "7:59.9",
+      "gancho_pantalla": [
+        "EL HÁBITO QUE",
+        "MÁS AÑOS TE SUMA"
+      ],
+      "titulo_youtube": "El hábito que más te hace ver mayor",
+      "hashtags": [
+        "#cuidadodelapiel",
+        "#bloqueadorsolar",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s03-1",
+      "video": 3,
+      "video_titulo": "Cómo OLER CARO Gastando POCO (guía completa)",
+      "bloque": "#7 — Calcula cuánto aplicar",
+      "texto": "Calcula cuánto aplicar. Más no siempre es mejor, güey. Si la gente te huele antes de verte, te pasaste. Para la mayoría de los perfumes, de dos a cuatro atomizaciones están bien. Si es una fragancia muy concentrada, quédate en dos. Si es una de las ligeras, que se van rápido, puedes llegar a cuatro o cinco. Y aquí está la trampa. Tu nariz se acostumbra a tu propio olor en pocos minutos, por eso sientes que ya no hueles a nada y te echas más. Pero los demás sí te huelen. Así que confía en tu número y no lo subas. Un truco para checarlo es preguntarle a alguien de confianza si hueles bien o si te pasaste. Usar menos, además, hace que tu frasco dure el doble. Eso es ahorro directo.",
+      "palabras": 133,
+      "palabras_totales_guion": 1599,
+      "audio_total_s": 502.1,
+      "inicio_s": 171.8,
+      "fin_s": 213.5,
+      "duracion_s": 41.8,
+      "inicio_mmss": "2:51.8",
+      "fin_mmss": "3:33.5",
+      "gancho_pantalla": [
+        "¿CUÁNTAS VECES",
+        "TE PERFUMAS?"
+      ],
+      "titulo_youtube": "¿Cuántas atomizaciones de perfume son suficientes?",
+      "hashtags": [
+        "#perfumes",
+        "#olerbien",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s03-2",
+      "video": 3,
+      "video_titulo": "Cómo OLER CARO Gastando POCO (guía completa)",
+      "bloque": "#4 — Cuida el frasco como si fuera oro",
+      "texto": "Cuida el frasco como si fuera oro. Aquí va un mito que hay que romper. El baño es el peor lugar para guardar tu perfume. El calor y la humedad de la regadera lo degradan con el tiempo y le pueden cambiar el olor. Lo mismo pasa si lo dejas en la ventana, donde le pega el sol, o en el carro, que en México se vuelve un horno. El lugar ideal es oscuro, fresco y seco, como un cajón o el clóset. Si todavía tienes la caja original, guárdalo ahí, porque lo protege de la luz. Cierra bien la tapa después de usarlo para que no se evapore. Con estos cuidados, un frasco te puede durar años sin echarse a perder. Y un perfume que no se echa a perder es dinero que no tiras.",
+      "palabras": 136,
+      "palabras_totales_guion": 1599,
+      "audio_total_s": 502.1,
+      "inicio_s": 296.1,
+      "fin_s": 338.8,
+      "duracion_s": 42.7,
+      "inicio_mmss": "4:56.1",
+      "fin_mmss": "5:38.8",
+      "gancho_pantalla": [
+        "NUNCA GUARDES",
+        "TU PERFUME AHÍ"
+      ],
+      "titulo_youtube": "Por qué NO debes guardar tu perfume en el baño",
+      "hashtags": [
+        "#perfumes",
+        "#cuidadopersonal",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s03-3",
+      "video": 3,
+      "video_titulo": "Cómo OLER CARO Gastando POCO (guía completa)",
+      "bloque": "#1 — Compra inteligente con decants, miniaturas y testers",
+      "texto": "Y el truco que más dinero te ahorra: compra inteligente con decants, miniaturas y testers. Un decant es una porción de perfume original que alguien pasa de un frasco grande a un atomizador chiquito, de cinco o diez mililitros. Te permite usar un perfume por semanas antes de gastar en el frasco completo. Las miniaturas y los sets de muestras hacen lo mismo. Y los testers son frascos originales que se venden sin caja o sin tapa, muchas veces más baratos. Un decant pequeño puede andar más o menos entre cien y trescientos pesos, aunque los precios varían mucho. Eso sí, compra solo con vendedores con buenas reseñas y evita las falsificaciones a toda costa, porque pueden irritar tu piel y al rato huelen horrible. Con esta estrategia pruebas mucho, gastas poco y solo compras lo que de verdad te queda.",
+      "palabras": 141,
+      "palabras_totales_guion": 1599,
+      "audio_total_s": 502.1,
+      "inicio_s": 418.3,
+      "fin_s": 462.5,
+      "duracion_s": 44.3,
+      "inicio_mmss": "6:58.3",
+      "fin_mmss": "7:42.5",
+      "gancho_pantalla": [
+        "PRUEBA PERFUMES",
+        "SIN GASTAR DE MÁS"
+      ],
+      "titulo_youtube": "Decants: prueba perfumes antes de comprar el frasco",
+      "hashtags": [
+        "#perfumes",
+        "#decants",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s04-1",
+      "video": 4,
+      "video_titulo": "9 Cosas que MATAN tu Confianza (cada mañana)",
+      "bloque": "#9 — Posponer la alarma",
+      "texto": "Posponer la alarma. Suena el despertador, le das a posponer, y te dices: nada más cinco minutitos. Luego otros cinco. Y otros cinco. Pero piensa en esto. La primera decisión que tomas en todo el día es no hacer lo que dijiste que ibas a hacer. Anoche pusiste esa alarma con una intención, y hoy la ignoraste tres veces. Y encima te levantas más atontado y ya tarde. ¿Qué hacer en su lugar? Pon el despertador lejos de la cama, para que tengas que pararte a apagarlo. Y cuando lo apagues, no te regreses a la cama. Pon los pies en el piso y cuenta hacia atrás del cinco al uno. Al llegar al uno, te mueves. Así no le das tiempo a tu cabeza de negociar.",
+      "palabras": 127,
+      "palabras_totales_guion": 1583,
+      "audio_total_s": 516,
+      "inicio_s": 40.7,
+      "fin_s": 82.1,
+      "duracion_s": 41.4,
+      "inicio_mmss": "0:40.7",
+      "fin_mmss": "1:22.1",
+      "gancho_pantalla": [
+        "DEJA DE POSPONER",
+        "LA ALARMA"
+      ],
+      "titulo_youtube": "Posponer la alarma te está quitando confianza",
+      "hashtags": [
+        "#confianza",
+        "#habitos",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s04-2",
+      "video": 4,
+      "video_titulo": "9 Cosas que MATAN tu Confianza (cada mañana)",
+      "bloque": "#4 — Compararte en redes desde temprano",
+      "texto": "Compararte en redes desde temprano. Todavía estás en la cama, con los ojos medio cerrados, y ya viste al compa que se fue de viaje, al que estrenó coche, al que tiene cuerpo de portada. Claro que te sientes poca cosa. Pero piensa en esto: estás comparando tu peor momento del día, recién levantado, contra el mejor momento de otra persona, editado y escogido entre cien fotos. Esa comparación nunca la vas a ganar, porque está arreglada. Qué hacer: no abras redes sociales en la primera hora del día. Si te cuesta, saca las apps de la pantalla principal para que no estén a un toque. Y cuando las abras más tarde, haz la única comparación que sí sirve: tú contra el tú de hace un mes.",
+      "palabras": 127,
+      "palabras_totales_guion": 1583,
+      "audio_total_s": 516,
+      "inicio_s": 273.5,
+      "fin_s": 314.9,
+      "duracion_s": 41.4,
+      "inicio_mmss": "4:33.5",
+      "fin_mmss": "5:14.9",
+      "gancho_pantalla": [
+        "ESA COMPARACIÓN",
+        "ESTÁ ARREGLADA"
+      ],
+      "titulo_youtube": "Deja de compararte en redes apenas despiertas",
+      "hashtags": [
+        "#confianza",
+        "#redessociales",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s04-3",
+      "video": 4,
+      "video_titulo": "9 Cosas que MATAN tu Confianza (cada mañana)",
+      "bloque": "#1 — Romper las promesas que te haces a ti mismo",
+      "texto": "Y el más grave de todos, el que más gente comete: romper las promesas que te haces a ti mismo. Mañana me levanto temprano. Mañana empiezo a hacer ejercicio. Mañana sí leo. Y llega la mañana y no pasa nada. Aquí está lo que casi nadie te explica. La confianza no es sentirte bien contigo. La confianza es confiar en ti. Y es imposible confiar en alguien que te falla todos los días, aunque ese alguien seas tú. Cada promesa rota es una pequeña prueba de que tu palabra no vale. Qué hacer: hazte promesas más chiquitas, tan pequeñas que sea casi imposible fallar. En lugar de una hora de ejercicio, diez lagartijas. En lugar de leer un libro, dos páginas. Cúmplelas todos los días, y cuando ya te salgan solas, súbele un poquito. Así, mañana tras mañana, le vas demostrando a tu cabeza que cuando dices algo, lo haces. Y eso, más que cualquier frase motivacional, es lo que construye una confianza de verdad.",
+      "palabras": 165,
+      "palabras_totales_guion": 1583,
+      "audio_total_s": 516,
+      "inicio_s": 416.6,
+      "fin_s": 470.4,
+      "duracion_s": 53.8,
+      "inicio_mmss": "6:56.6",
+      "fin_mmss": "7:50.4",
+      "gancho_pantalla": [
+        "LA RAÍZ DE TU",
+        "FALTA DE CONFIANZA"
+      ],
+      "titulo_youtube": "La verdadera razón por la que no confías en ti",
+      "hashtags": [
+        "#confianza",
+        "#superacionpersonal",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s05-1",
+      "video": 5,
+      "video_titulo": "La RUTINA de Piel MÁS FÁCIL para Hombres (5 minutos)",
+      "bloque": "#7 — Conoce tu tipo de piel",
+      "texto": "Conoce tu tipo de piel. Antes de comprar cualquier cosa, tienes que saber con qué estás trabajando. Porque si compras un producto para piel seca y tú la tienes grasosa, vas a terminar peor que antes. La prueba es sencilla. Lávate la cara con agua y un jabón suave, sécate con cuidado, y no te pongas nada. Espera una hora. Luego mírate en el espejo con buena luz. Si toda tu cara brilla, sobre todo la frente, la nariz y la barbilla, tienes piel grasa. Si la sientes tirante, áspera, o se te hacen pellejitos, tienes piel seca. Si te brilla solo la zona de en medio y las mejillas están normales, tienes piel mixta, que es muy común en hombres jóvenes. Y si te arde o se te pone roja con casi cualquier cosa, probablemente tienes piel sensible. Cero esfuerzo, y te ahorra dinero en productos que no te sirven.",
+      "palabras": 151,
+      "palabras_totales_guion": 1598,
+      "audio_total_s": 511.6,
+      "inicio_s": 40.7,
+      "fin_s": 89,
+      "duracion_s": 48.3,
+      "inicio_mmss": "0:40.7",
+      "fin_mmss": "1:29.0",
+      "gancho_pantalla": [
+        "¿CUÁL ES TU",
+        "TIPO DE PIEL?"
+      ],
+      "titulo_youtube": "Cómo saber tu tipo de piel (prueba fácil para hombres)",
+      "hashtags": [
+        "#cuidadodelapiel",
+        "#skincarehombres",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s05-2",
+      "video": 5,
+      "video_titulo": "La RUTINA de Piel MÁS FÁCIL para Hombres (5 minutos)",
+      "bloque": "#6 — Agua tibia, nunca caliente",
+      "texto": "Agua tibia, nunca caliente. Mucha gente se lava la cara en la regadera con el agua bien caliente, porque se siente rico. El problema es que el agua muy caliente le quita a tu piel sus aceites naturales, esos que la protegen. ¿Y qué pasa? Tu piel se reseca, se irrita, y en muchos casos reacciona produciendo todavía más grasa para compensar. La solución no cuesta nada. Lávate la cara con agua tibia, que se sienta templada en la mano, no caliente. Si te gusta bañarte con agua muy caliente, está bien, pero deja la cara para el final y bájale tantito a la temperatura antes de lavártela. Y otro detalle que casi nadie hace bien: sécate la cara a toquecitos, no tallándote con la toalla como si estuvieras lijando una mesa. Esto no te agrega ni un segundo a tu rutina, solo cambia cómo haces algo que ya haces.",
+      "palabras": 150,
+      "palabras_totales_guion": 1598,
+      "audio_total_s": 511.6,
+      "inicio_s": 98.3,
+      "fin_s": 146.3,
+      "duracion_s": 48,
+      "inicio_mmss": "1:38.3",
+      "fin_mmss": "2:26.3",
+      "gancho_pantalla": [
+        "DEJA DE LAVARTE",
+        "CON AGUA CALIENTE"
+      ],
+      "titulo_youtube": "El error del agua caliente en tu cara",
+      "hashtags": [
+        "#cuidadodelapiel",
+        "#skincarehombres",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    },
+    {
+      "id": "s05-3",
+      "video": 5,
+      "video_titulo": "La RUTINA de Piel MÁS FÁCIL para Hombres (5 minutos)",
+      "bloque": "#1 — Bloqueador solar todos los días",
+      "texto": "Bloqueador solar todos los días. Es el paso más importante, y casi ningún hombre lo hace. Mucha gente cree que el bloqueador es solo para la playa o para cuando hace mucho calor. Pero el sol te pega diario. Cuando caminas a la escuela o al trabajo, cuando esperas el camión, cuando manejas, incluso en días nublados. Y con los años, el sol es uno de los factores que más contribuye a las manchas, a la piel maltratada y a que la cara se vea cansada antes de tiempo. Qué buscar: un bloqueador facial de amplio espectro, factor treinta o más. Si tienes piel grasa, busca uno con textura ligera, en gel o fluido, que diga acabado mate o sin aceite. Hay opciones accesibles en farmacias y súper. Cómo se usa: en la mañana, después de tu hidratante, como último paso. Una cantidad generosa, más o menos lo que cabe a lo largo de dos dedos, en toda la cara, las orejas y el cuello.",
+      "palabras": 165,
+      "palabras_totales_guion": 1598,
+      "audio_total_s": 511.6,
+      "inicio_s": 395.7,
+      "fin_s": 448.5,
+      "duracion_s": 52.8,
+      "inicio_mmss": "6:35.7",
+      "fin_mmss": "7:28.5",
+      "gancho_pantalla": [
+        "EL PASO QUE",
+        "CASI TODOS SE SALTAN"
+      ],
+      "titulo_youtube": "El paso de skincare que casi todos los hombres se saltan",
+      "hashtags": [
+        "#bloqueadorsolar",
+        "#skincarehombres",
+        "#shorts"
+      ],
+      "cierre_pantalla": "Video completo en el canal"
+    }
+  ],
+  "calendario_propuesto": {
+    "nota": "PROPUESTA: 1 por día; ningún short antes de que su video largo esté público.",
+    "dias": [
+      {
+        "dia": 1,
+        "fecha_propuesta": "2026-11-26",
+        "short": "s02-3"
+      },
+      {
+        "dia": 2,
+        "fecha_propuesta": "2026-11-27",
+        "short": "s03-2"
+      },
+      {
+        "dia": 3,
+        "fecha_propuesta": "2026-11-28",
+        "short": "s04-1"
+      },
+      {
+        "dia": 4,
+        "fecha_propuesta": "2026-11-29",
+        "short": "s05-3"
+      },
+      {
+        "dia": 5,
+        "fecha_propuesta": "2026-11-30",
+        "short": "s02-1"
+      },
+      {
+        "dia": 6,
+        "fecha_propuesta": "2026-12-01",
+        "short": "s03-1"
+      },
+      {
+        "dia": 7,
+        "fecha_propuesta": "2026-12-02",
+        "short": "s04-2"
+      },
+      {
+        "dia": 8,
+        "fecha_propuesta": "2026-12-03",
+        "short": "s05-2"
+      },
+      {
+        "dia": 9,
+        "fecha_propuesta": "2026-12-04",
+        "short": "s02-2"
+      },
+      {
+        "dia": 10,
+        "fecha_propuesta": "2026-12-05",
+        "short": "s03-3"
+      },
+      {
+        "dia": 11,
+        "fecha_propuesta": "2026-12-06",
+        "short": "s04-3"
+      },
+      {
+        "dia": 12,
+        "fecha_propuesta": "2026-12-07",
+        "short": "s05-1"
+      }
+    ]
+  }
+}
