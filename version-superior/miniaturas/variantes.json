@@ -1,0 +1,130 @@
+{
+  "_nota": "Fuente de las capas. Cada línea es un texto; lo que va entre [corchetes] es la palabra clave (amarillo #FFD400). 'rojo' = subrayado | flecha. Regenerar con: node herramientas/generar-capas.cjs",
+  "videos": [
+    {
+      "video": 1,
+      "titulo": "10 Errores que te Hacen Ver DESCUIDADO (aunque te bañes diario)",
+      "actual": "TE VEN / DESCUIDADO (vidIQ, círculo rojo)",
+      "variantes": [
+        {
+          "id": "v01-a",
+          "lineas": ["[NADIE]", "TE LO DICE"],
+          "rojo": "subrayado",
+          "razon": "El intro dice 'nadie te lo va a decir de frente'. Abre un hueco (¿qué no me dicen?) sin repetir 'descuidado' del título."
+        },
+        {
+          "id": "v01-b",
+          "lineas": ["TODOS LO", "[NOTAN]"],
+          "rojo": "flecha",
+          "razon": "Miedo social: algo que los demás ven y tú no. La flecha apunta al detalle de la foto (tenis, uñas, camisa)."
+        },
+        {
+          "id": "v01-c",
+          "lineas": ["¿[TÚ] LO", "HACES?"],
+          "rojo": "subrayado",
+          "razon": "Pregunta directa al espectador; obliga a entrar para saber qué es 'lo'. La más corta: se lee bien a 320×180."
+        }
+      ]
+    },
+    {
+      "video": 2,
+      "titulo": "12 Hábitos que te Hacen Ver MAYOR (sin darte cuenta)",
+      "actual": "¿TE VES / MAYOR? (vidIQ, flecha a las ojeras)",
+      "variantes": [
+        {
+          "id": "v02-a",
+          "lineas": ["¿ERES EL", "[TÍO]?"],
+          "rojo": "flecha",
+          "razon": "Sale del gancho del guion ('te pregunten si eres el tío de alguien'). Humor + incomodidad, muy mexicano, y no repite 'mayor'."
+        },
+        {
+          "id": "v02-b",
+          "lineas": ["TE ECHAN", "MÁS [AÑOS]"],
+          "rojo": "subrayado",
+          "razon": "Expresión coloquial ('te echan más años'). Dice el problema con otras palabras que el título."
+        },
+        {
+          "id": "v02-c",
+          "lineas": ["LO HACES", "[DIARIO]"],
+          "rojo": "subrayado",
+          "razon": "Refuerza 'sin darte cuenta' del título sin copiarlo; genera curiosidad por cuál hábito es."
+        }
+      ]
+    },
+    {
+      "video": 3,
+      "titulo": "Cómo OLER CARO Gastando POCO (guía completa)",
+      "actual": "HUELE / CARO",
+      "variantes": [
+        {
+          "id": "v03-a",
+          "lineas": ["NO ES EL", "[PRECIO]"],
+          "rojo": "subrayado",
+          "razon": "Es la tesis del intro ('no es el precio, es la técnica'). Contradice la idea de que oler caro cuesta, y no repite 'caro'."
+        },
+        {
+          "id": "v03-b",
+          "lineas": ["¿TU PERFUME", "EN EL [BAÑO]?"],
+          "rojo": "flecha",
+          "razon": "Error concreto del guion (el baño es el peor lugar). Mucha gente lo guarda ahí: la pregunta pica. La flecha va al frasco de la foto."
+        },
+        {
+          "id": "v03-c",
+          "lineas": ["NO LO", "[FROTES]"],
+          "rojo": "subrayado",
+          "razon": "Orden directa sobre el error de frotar las muñecas. Corta y con tensión: '¿frotar qué?'."
+        }
+      ]
+    },
+    {
+      "video": 4,
+      "titulo": "9 Cosas que MATAN tu Confianza (cada mañana)",
+      "actual": "SIN / CONFIANZA",
+      "variantes": [
+        {
+          "id": "v04-a",
+          "lineas": ["DEJA DE", "[POSPONER]"],
+          "rojo": "subrayado",
+          "razon": "Primer error del guion y casi universal (la alarma). Sirve con cualquiera de los dos títulos propuestos para el video 4."
+        },
+        {
+          "id": "v04-b",
+          "lineas": ["¿TE", "[FALLAS]", "DIARIO?"],
+          "rojo": "flecha",
+          "razon": "Es el punto #1 (romper las promesas que te haces). Pregunta incómoda que no adelanta la respuesta."
+        },
+        {
+          "id": "v04-c",
+          "lineas": ["¿TE HABLAS", "[ASÍ]?"],
+          "rojo": "flecha",
+          "razon": "Viene del punto del espejo. Funciona con una foto de un hombre frente al espejo: la flecha apunta a su reflejo."
+        }
+      ]
+    },
+    {
+      "video": 5,
+      "titulo": "La RUTINA de Piel MÁS FÁCIL para Hombres (5 minutos)",
+      "actual": "PIEL / LIMPIA",
+      "variantes": [
+        {
+          "id": "v05-a",
+          "lineas": ["DEJA ESE", "[JABÓN]"],
+          "rojo": "flecha",
+          "razon": "Primer error del intro (lavarte la cara con el jabón del cuerpo). Orden + objeto concreto: la flecha va al jabón de la foto."
+        },
+        {
+          "id": "v05-b",
+          "lineas": ["¿AGUA", "[CALIENTE]?"],
+          "rojo": "subrayado",
+          "razon": "Paso del guion que contradice lo que casi todos hacen en la regadera. Dos palabras: se lee perfecto a tamaño chico."
+        },
+        {
+          "id": "v05-c",
+          "lineas": ["TE LO", "[SALTAS]"],
+          "rojo": "subrayado",
+          "razon": "Alude al paso más importante (bloqueador) sin decirlo; el intro promete que 'casi todos se lo saltan'."
+        }
+      ]
+    }
+  ]
+}
