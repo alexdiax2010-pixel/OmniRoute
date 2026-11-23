@@ -1,0 +1,87 @@
+TÍTULO
+9 Cosas que MATAN tu Confianza (cada mañana)
+(PENDIENTE: el usuario decide entre este y "9 Hábitos de la Mañana que DESTRUYEN tu Confianza"; ver NOTAS)
+
+DESCRIPCIÓN
+La confianza no se pierde de golpe: se va gastando poco a poco con cosas que haces cada mañana sin darte cuenta. En este video te digo 9 hábitos de la mañana que le bajan la confianza a cualquiera y qué hacer en lugar de cada uno, sin gastar dinero. El último es la raíz de todos los demás.
+
+⏱️ Capítulos (APROXIMADOS: verificar contra el video final)
+00:00 Por qué amaneces sin confianza
+00:40 #9 Posponer la alarma
+01:27 #8 Dejar la cama sin tender
+02:13 #7 Salir sin agua ni comida
+03:00 #6 Quedarte en pijama
+03:46 #5 Empezar el día a las carreras
+04:33 #4 Compararte en redes
+05:20 #3 El celular al abrir los ojos
+06:08 #2 Hablarte mal en el espejo
+06:56 #1 Romper tus propias promesas
+07:50 Repaso y cierre
+
+💬 ¿Cuál de los nueve es el que más te cuesta soltar? Te leo en los comentarios.
+🔔 Suscríbete a Versión Superior para mejorar tu imagen, tus hábitos y tu confianza.
+
+Fotos: Unsplash (licencia Unsplash, uso libre).
+
+#confianza #superacionpersonal #habitos
+
+ETIQUETAS
+habitos que matan tu confianza, como tener mas confianza, confianza en uno mismo, autoestima hombre, rutina de mañana, habitos de la mañana, posponer la alarma, tender la cama, compararse en redes sociales, superacion personal, disciplina, consejos para hombres, version superior
+
+CONFIGURACIÓN SUGERIDA
+- Miniatura: la del video 4 (textos y capas en miniaturas/, trabajo del subagente Y3)
+- Categoría: Consejos y estilo (Howto & Style)
+- Idioma: Español (México)
+- Contenido alterado o sintético: Sí (la narración es voz sintética)
+- Apto para niños: No
+- Lista de reproducción: "Hábitos y confianza" (ver estrategia.md)
+- Anuncios a mitad del video: activarlos cuando el canal esté monetizado (dura más de 8 min)
+
+
+======================================================================
+NOTAS (NO copiar a YouTube)
+======================================================================
+
+Título: comparación de las dos opciones (decide el usuario)
+
+A) 9 Cosas que MATAN tu Confianza (cada mañana)  — 44 caracteres
+   + Es literalmente lo que dice la narración en la intro ("nueve cosas que matan tu confianza
+     cada mañana"): título y primeros segundos coinciden. El audio ya está pagado y no cambia.
+   + Más corto y con un verbo más fuerte ("MATAN").
+   - "Cosas" es vago; el tema (la mañana) queda al final y entre paréntesis.
+   - "Matan" es lenguaje figurado; no conozco ningún problema concreto con él, pero es más agresivo.
+
+B) 9 Hábitos de la Mañana que DESTRUYEN tu Confianza  — 49 caracteres
+   + Dice con precisión qué es el video: hábitos de la mañana. Usa las mismas palabras que la
+     gente usaría para describir el tema ("hábitos de la mañana", "confianza").
+   + "Hábitos" conecta con el video 2 y con el estilo del canal.
+   - No coincide palabra por palabra con la intro (la intro dice "cosas que matan").
+   - Un poco más largo; aun así cabe completo en la mayoría de pantallas.
+
+Mi inclinación: B, por claridad (el espectador sabe qué va a ver antes de hacer clic). A es
+igual de válida si prefieres que el título sea idéntico a la narración. No hay datos del canal
+para decidir: si YouTube Studio te ofrece probar varios títulos en el mismo video, prueba ambos;
+si no, elige uno y revisa el CTR y la retención de los primeros 30 s (ver estrategia.md).
+La descripción ya está escrita para servir con cualquiera de los dos.
+
+Capítulos
+- Calculados con `node capitulos.mjs 4`: 516 s repartidos según las palabras de cada bloque
+  (1,583 palabras en 11 bloques).
+- Versión con tarjetas como en el video 1 (`--tarjeta 1.8`, hipótesis):
+  00:00 Por qué amaneces sin confianza
+  00:42 #9 Posponer la alarma
+  01:31 #8 Dejar la cama sin tender
+  02:19 #7 Salir sin agua ni comida
+  03:07 #6 Quedarte en pijama
+  03:55 #5 Empezar el día a las carreras
+  04:44 #4 Compararte en redes
+  05:33 #3 El celular al abrir los ojos
+  06:23 #2 Hablarte mal en el espejo
+  07:12 #1 Romper tus propias promesas
+  08:06 Repaso y cierre
+- Antes de publicar: corrige cada marca contra el video final (ver README.md).
+
+Pendiente
+- En el punto #3 la narración dice "de eso ya hay un video entero en el canal" (sobre el celular).
+  Entre los videos 1 a 5 no hay uno sobre eso. Si se publica antes de que exista, la frase queda
+  sin respaldo; cuando exista, enlázalo en la descripción y en una tarjeta en ese minuto.

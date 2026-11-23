@@ -1,0 +1,65 @@
+TÍTULO
+10 Errores que te Hacen Ver DESCUIDADO (aunque te bañes diario)
+
+DESCRIPCIÓN
+Puedes bañarte diario, vestir bien y usar buen perfume… y aun así verte descuidado. En este video te enseño 10 errores pequeños que la gente nota (aunque nadie te los diga) y cómo arreglar cada uno hoy mismo, gastando poco o nada.
+
+⏱️ Capítulos
+00:00 Por qué te ven descuidado
+00:47 #10 Ropa que no es de tu talla
+01:44 #9 Tenis sucios
+02:34 #8 Uñas largas o sucias
+03:16 #7 Labios partidos
+03:59 #6 Cejas y vello sin control
+04:41 #5 Ropa arrugada
+05:23 #4 Mal aliento
+06:08 #3 Cabello sin forma
+06:46 #2 Postura encorvada
+07:34 #1 Tu olor
+08:21 Cierre
+
+💬 ¿Cuál de estos errores cometías tú? Te leo en los comentarios.
+🔔 Suscríbete a Versión Superior para mejorar tu imagen, tus hábitos y tu confianza.
+
+Este video es informativo y no sustituye la consulta con un profesional de la salud.
+
+Fotos: Unsplash (licencia Unsplash, uso libre).
+
+#cuidadopersonal #estilomasculino #consejosparahombres
+
+ETIQUETAS
+errores que te hacen ver descuidado, como verse mejor hombre, cuidado personal hombre, estilo masculino, higiene masculina, como mejorar mi imagen, consejos para hombres, verse bien hombre, glow up hombre, como verse limpio hombre, mal aliento como quitarlo, version superior
+
+CONFIGURACIÓN SUGERIDA
+- Miniatura: la de vidIQ del video #1 (TE VEN / DESCUIDADO)
+- Categoría: Consejos y estilo (Howto & Style)
+- Idioma: Español (México)
+- Contenido alterado o sintético: Sí (la narración es voz sintética)
+- Apto para niños: No
+- Lista de reproducción: "Cuidado personal para hombres" (ver estrategia.md)
+- Anuncios a mitad del video: activarlos cuando el canal esté monetizado (dura más de 8 min)
+
+
+======================================================================
+QUÉ CAMBIÉ Y POR QUÉ (NO copiar a YouTube) — el original sigue en video01-original.txt
+======================================================================
+
+1. Título, descripción y capítulos: SIN cambios. El título ya sigue la fórmula del canal (número +
+   palabra clave en mayúsculas + paréntesis que rompe la objeción) y los capítulos se midieron
+   sobre el video final, así que son exactos.
+2. "Suscríbete … cada semana" → sin frecuencia. El plan es un video diario, pero aún no hay ritmo
+   real de publicación; mejor no prometer una frecuencia que todavía no se cumple.
+3. "Lista completa en creditos_fotos.txt" → quitado. Ese archivo está en tu PC y nadie en YouTube
+   lo puede abrir. Si quieres dar crédito por autor, pega la lista en la descripción o en el
+   comentario fijado.
+4. Aviso "informativo, no sustituye a un profesional": el video habla de mal aliento y olor
+   corporal; la línea es breve y protege al canal ante temas de salud.
+5. Hashtags: #estilohombre → #estilomasculino (mismo término que las etiquetas) y
+   #superacionpersonal → #consejosparahombres (el video es de imagen, no de superación).
+   Siguen siendo 3, los que YouTube muestra arriba del título.
+6. Etiquetas: se agregaron 2 relacionadas con el contenido ("como verse limpio hombre",
+   "mal aliento como quitarlo"); quedan 12. No hay datos de volumen: son elección por relevancia.
+7. Categoría: el nombre en YouTube Studio en español suele ser "Consejos y estilo" (Howto & Style);
+   si en tu Studio aparece con otro nombre, es la misma categoría.
+8. Anuncios a mitad del video: solo se pueden activar cuando el canal entre al Programa de Socios de
+   YouTube. Con 0 suscriptores todavía no aplica; déjalo anotado para después.
