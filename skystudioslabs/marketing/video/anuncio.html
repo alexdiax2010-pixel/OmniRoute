@@ -4,49 +4,52 @@
 <meta charset="utf-8">
 <title>Anuncio Sky Studios Labs</title>
 <!-- Anuncio vertical 1080x1920 (Reels / TikTok / Stories).
-     Se reproduce solo en el navegador; render.cjs lo convierte en MP4 cuadro por cuadro. -->
+     Se reproduce solo en el navegador; render.cjs lo convierte en MP4 (con sonido) cuadro por cuadro.
+     window.SONIDOS lista los efectos con su segundo exacto; sonido.py los sintetiza. -->
 <style>
 @font-face { font-family: Anton; src: url(../../node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2); }
-@font-face { font-family: Anton; src: url(../../node_modules/@fontsource/anton/files/anton-latin-ext-400-normal.woff2); unicode-range: U+0100-024F; }
 @font-face { font-family: Inter; src: url(../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2); font-weight: 100 900; }
-:root { --bg:#050505; --text:#f4f1ec; --muted:#a8a39b; --ember:#ff4a1c; --orange:#ff8a2a; --line:#26262b; }
+:root { --bg:#050505; --text:#f4f1ec; --muted:#a8a39b; --ember:#ff4a1c; --orange:#ff8a2a; --line:#26262b; --surface:#141417; }
 * { margin:0; padding:0; box-sizing:border-box; }
 html,body { background:#000; }
 #lienzo { position:relative; width:1080px; height:1920px; overflow:hidden; background:var(--bg); color:var(--text); font-family:Inter, sans-serif; }
+#rejilla { position:absolute; inset:-200px; opacity:.07;
+  background-image:linear-gradient(var(--text) 1px,transparent 1px),linear-gradient(90deg,var(--text) 1px,transparent 1px);
+  background-size:90px 90px; }
 #camara { position:absolute; inset:0; transform-origin:50% 50%; }
 .escena { position:absolute; inset:0; visibility:hidden; }
 .display { font-family:Anton, sans-serif; text-transform:uppercase; line-height:.9; }
 .grad { background:linear-gradient(90deg,var(--ember),var(--orange)); -webkit-background-clip:text; background-clip:text; color:transparent; }
 .centro { position:absolute; left:0; right:0; text-align:center; }
 .glow { position:absolute; border-radius:50%; pointer-events:none; }
-.ruido { position:absolute; inset:0; pointer-events:none; opacity:.06;
-  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px); mix-blend-mode:overlay; }
+.vineta { position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 55%,rgba(0,0,0,.6) 100%); z-index:18; }
 
-/* barra de progreso tipo historia: sincronizada con el tiempo (scrub) */
 #progreso { position:absolute; left:48px; right:48px; top:48px; display:flex; gap:10px; z-index:20; }
 #progreso i { flex:1; height:6px; border-radius:3px; background:rgba(244,241,236,.18); overflow:hidden; }
 #progreso i b { display:block; height:100%; width:0; background:var(--text); }
 #marca { position:absolute; left:48px; top:84px; z-index:20; font-weight:700; letter-spacing:6px; font-size:26px; color:var(--muted); }
 #flash { position:absolute; inset:0; background:var(--text); opacity:0; z-index:30; pointer-events:none; }
+#barrido { position:absolute; left:-10%; width:120%; height:120%; top:0; z-index:29;
+  background:linear-gradient(160deg,var(--orange),var(--ember)); }
 
 /* 1 · gancho */
 #e1 .l1 { top:600px; font-size:230px; }
 #e1 .l2 { top:810px; font-size:235px; }
-#e1 .sub { top:1130px; font-size:62px; line-height:1.3; font-weight:700; color:var(--text); }
+#e1 .sub { top:1130px; font-size:62px; line-height:1.3; font-weight:700; }
 
-/* 2 · teléfono con búsqueda */
-#tel { position:absolute; left:240px; top:420px; width:600px; height:1160px; border-radius:72px; background:#0d0d0f;
+/* teléfono (escena 2 y 4) */
+.tel { position:absolute; left:240px; width:600px; height:1160px; border-radius:72px; background:#0d0d0f;
   border:3px solid #2c2c32; box-shadow:0 60px 160px -40px rgba(255,74,28,.45); overflow:hidden; }
-#tel .notch { position:absolute; left:50%; top:22px; width:160px; height:36px; margin-left:-80px; border-radius:20px; background:#000; }
+.tel .notch { position:absolute; left:50%; top:22px; width:160px; height:36px; margin-left:-80px; border-radius:20px; background:#000; z-index:5; }
+#tel { top:420px; }
 #busca { position:absolute; left:36px; right:36px; top:110px; height:96px; border-radius:48px; background:#1b1b1f; border:2px solid #2c2c32;
   display:flex; align-items:center; padding:0 36px; font-size:36px; font-weight:500; }
 #busca .lupa { width:30px; height:30px; border:4px solid var(--muted); border-radius:50%; margin-right:22px; position:relative; flex:none; }
 #busca .lupa::after { content:""; position:absolute; width:14px; height:4px; background:var(--muted); right:-12px; bottom:-6px; transform:rotate(45deg); }
 #busca .cursor { display:inline-block; width:3px; height:40px; background:var(--orange); margin-left:4px; }
-.res { position:absolute; left:36px; right:36px; height:170px; border-radius:28px; background:#141417; border:2px solid #222227; padding:30px; }
+.res { position:absolute; left:36px; right:36px; height:170px; border-radius:28px; background:var(--surface); border:2px solid #222227; padding:30px; }
 .res .t { height:26px; width:62%; border-radius:13px; background:#2f2f35; }
 .res .s { height:18px; width:85%; border-radius:9px; background:#232328; margin-top:22px; }
-.res .s2 { width:48%; }
 .res .pin { position:absolute; right:30px; top:30px; width:44px; height:44px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#3a3a40; }
 .res .etq2 { position:absolute; left:30px; bottom:26px; font-size:24px; font-weight:800; letter-spacing:3px; color:#6b6b73; }
 #tuyo { border:3px dashed #4a4a52; background:transparent; z-index:2; }
@@ -60,50 +63,98 @@ html,body { background:#000; }
 #pregunta { top:1690px; font-size:64px; font-weight:700; z-index:15; visibility:hidden; }
 
 /* 3 · páginas que venden */
-#sol { position:absolute; left:290px; top:300px; width:500px; height:250px; border-radius:250px 250px 0 0;
-  background:linear-gradient(135deg,var(--orange),var(--ember)); }
-#horizonte { position:absolute; left:200px; top:575px; width:680px; height:24px; border-radius:12px; background:var(--text); transform-origin:50% 50%; }
+#sol { position:absolute; left:290px; top:300px; width:500px; height:250px; border-radius:250px 250px 0 0; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#horizonte { position:absolute; left:200px; top:575px; width:680px; height:24px; border-radius:12px; background:var(--text); }
 #e3 .titulo { position:absolute; left:80px; top:760px; font-size:250px; }
 #e3 .titulo div { white-space:nowrap; }
 
-/* 4 · servicios */
-#e4 .cab { position:absolute; left:80px; top:300px; font-size:46px; font-weight:700; letter-spacing:10px; color:var(--muted); }
-.serv { position:absolute; left:80px; right:80px; height:250px; border-top:2px solid var(--line); display:flex; align-items:center; gap:44px; }
-.serv .n { font-family:Anton; font-size:74px; color:var(--orange); width:120px; }
-.serv .nom { font-family:Anton; font-size:130px; text-transform:uppercase; line-height:1; }
-.serv .nom-wrap { overflow:hidden; padding:10px 0; }
+/* 4 · demos dentro del teléfono */
+#e4 .etiqueta { position:absolute; left:0; right:0; top:180px; height:200px; text-align:center; }
+#e4 .etiqueta .num { font-family:Anton; font-size:60px; color:var(--orange); }
+#e4 .etiqueta .cual { position:absolute; left:0; right:0; top:70px; height:160px; overflow:hidden; }
+#e4 .etiqueta .cual div { position:absolute; left:0; right:0; top:14px; font-family:Anton; font-size:130px; text-transform:uppercase; line-height:1; }
+#tel2 { top:470px; height:1140px; }
+.pant { position:absolute; inset:0; overflow:hidden; }
+/* web */
+#pWeb { background:#0f0f12; }
+#pWeb .nav { position:absolute; left:40px; right:40px; top:90px; display:flex; justify-content:space-between; align-items:center; }
+#pWeb .logo { font-family:Anton; font-size:44px; }
+#pWeb .menu { width:56px; height:6px; background:var(--text); border-radius:3px; box-shadow:0 16px 0 var(--text),0 -16px 0 var(--text); }
+#pWeb .hero { position:absolute; left:40px; right:40px; top:200px; height:420px; border-radius:36px; background:linear-gradient(150deg,#2a1406,#ff4a1c 60%,#ff8a2a); overflow:hidden; }
+#pWeb .hero::after { content:""; position:absolute; right:-80px; bottom:-120px; width:420px; height:420px; border-radius:50%; background:rgba(5,5,5,.25); }
+#pWeb .h1 { position:absolute; left:40px; top:660px; font-family:Anton; font-size:84px; line-height:.95; text-transform:uppercase; }
+#pWeb .lin { position:absolute; left:40px; height:20px; border-radius:10px; background:#2a2a30; }
+#pWeb .cta { position:absolute; left:40px; right:40px; top:960px; height:110px; border-radius:55px; background:#25d366; color:#04210f;
+  display:flex; align-items:center; justify-content:center; font-weight:800; font-size:36px; }
+/* mapa */
+#pMapa { background:#121418; }
+#pMapa svg { position:absolute; inset:0; }
+#pin { position:absolute; left:262px; top:380px; width:76px; height:76px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:var(--ember);
+  box-shadow:0 0 0 12px rgba(255,74,28,.25); }
+#pin::after { content:""; position:absolute; left:24px; top:24px; width:28px; height:28px; border-radius:50%; background:#fff; }
+#sombra { position:absolute; left:270px; top:470px; width:60px; height:16px; border-radius:50%; background:rgba(0,0,0,.6); }
+#ficha { position:absolute; left:30px; right:30px; bottom:40px; height:300px; border-radius:36px; background:#1c1d22; border:2px solid #2c2c32; padding:36px; }
+#ficha .n { font-family:Anton; font-size:58px; }
+#ficha .a { margin-top:10px; font-size:30px; color:#3ddc84; font-weight:700; }
+#ficha .bts { position:absolute; left:36px; right:36px; bottom:36px; display:flex; gap:18px; }
+#ficha .bts div { flex:1; height:84px; border-radius:42px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:30px; background:#2a2b31; }
+#ficha .bts div:first-child { background:var(--orange); color:#140700; }
+/* chat */
+#pChat { background:#0b0d10; }
+#pChat .top { position:absolute; left:0; right:0; top:0; height:190px; background:#16181d; border-bottom:2px solid #24262c; }
+#pChat .top .av { position:absolute; left:40px; top:92px; width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#pChat .top .nm { position:absolute; left:134px; top:94px; font-weight:800; font-size:34px; }
+#pChat .top .st { position:absolute; left:134px; top:138px; font-size:24px; color:#3ddc84; font-weight:600; }
+#hora { position:absolute; left:0; right:0; top:230px; text-align:center; font-size:26px; color:var(--muted); font-weight:700; letter-spacing:2px; }
+.burb { position:absolute; max-width:420px; padding:26px 32px; border-radius:34px; font-size:34px; line-height:1.3; font-weight:500; }
+.burb.yo { right:36px; background:#2b5cff; color:#fff; border-bottom-right-radius:8px; }
+.burb.bot { left:36px; background:#1f2127; border-bottom-left-radius:8px; }
+#puntos { position:absolute; left:36px; top:560px; padding:28px 34px; border-radius:34px; background:#1f2127; display:flex; gap:12px; }
+#puntos i { width:16px; height:16px; border-radius:50%; background:var(--muted); }
+/* aviso */
+#pAviso { background:radial-gradient(circle at 50% 30%,#3a1a0a,#0b0b0d 70%); }
+#pAviso .reloj { position:absolute; left:0; right:0; top:200px; text-align:center; font-family:Inter; font-weight:300; font-size:190px; letter-spacing:-6px; }
+#pAviso .fecha { position:absolute; left:0; right:0; top:420px; text-align:center; font-size:34px; font-weight:600; color:#d9d4cc; }
+#noti { position:absolute; left:30px; right:30px; top:540px; padding:30px; border-radius:38px; background:rgba(40,40,46,.92); border:2px solid #3a3a42; display:flex; gap:24px; }
+#noti .ic { width:84px; height:84px; flex:none; border-radius:22px; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#noti .tt { font-weight:800; font-size:32px; }
+#noti .tx { margin-top:6px; font-size:28px; color:#d9d4cc; line-height:1.3; }
+#noti .ap { position:absolute; right:30px; top:30px; font-size:22px; color:var(--muted); }
 
 /* 5 · oferta */
-#e6 .l1 { top:640px; font-size:300px; }
-#e6 .l2 { top:920px; font-size:300px; }
-#e6 .antes { top:1260px; font-size:62px; font-weight:700; }
+#e5 .l1 { top:640px; font-size:300px; }
+#e5 .l2 { top:920px; font-size:300px; }
+#e5 .antes { top:1260px; font-size:62px; font-weight:700; }
+#e5 .antes span { border-bottom:6px solid var(--orange); padding-bottom:4px; }
 
 /* 6 · llamada a la acción */
-#e7 #sol2 { position:absolute; left:390px; top:330px; width:300px; height:150px; border-radius:150px 150px 0 0; background:linear-gradient(135deg,var(--orange),var(--ember)); }
-#e7 #hor2 { position:absolute; left:330px; top:498px; width:420px; height:16px; border-radius:8px; background:var(--text); }
-#e7 .nombre { top:600px; font-size:150px; }
-#e7 .nombre2 { top:770px; font-size:46px; font-weight:700; letter-spacing:16px; color:var(--orange); }
+#sol2 { position:absolute; left:390px; top:330px; width:300px; height:150px; border-radius:150px 150px 0 0; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#hor2 { position:absolute; left:330px; top:498px; width:420px; height:16px; border-radius:8px; background:var(--text); }
+#e6 .nombre { top:600px; font-size:150px; }
+#e6 .nombre2 { top:770px; font-size:46px; font-weight:700; letter-spacing:16px; color:var(--orange); }
 #boton { position:absolute; left:140px; right:140px; top:1000px; height:180px; border-radius:90px; background:linear-gradient(90deg,var(--ember),var(--orange));
   color:#140700; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:64px; box-shadow:0 30px 90px -20px rgba(255,74,28,.8); }
-#e7 .dato { font-size:56px; font-weight:700; }
-#e7 .web { top:1290px; }
-#e7 .wa { top:1380px; color:var(--muted); font-weight:600; }
-#e7 .zona { top:1560px; font-size:40px; letter-spacing:8px; color:var(--muted); font-weight:600; }
+#flecha { position:absolute; left:500px; top:1200px; width:80px; height:80px; border-left:12px solid var(--text); border-top:12px solid var(--text); transform:rotate(45deg); }
+#e6 .dato { font-size:56px; font-weight:700; }
+#e6 .web { top:1330px; }
+#e6 .wa { top:1420px; color:var(--muted); font-weight:600; }
+#e6 .zona { top:1580px; font-size:40px; letter-spacing:8px; color:var(--muted); font-weight:600; }
 </style>
 </head>
 <body>
 <div id="lienzo">
+  <div id="rejilla"></div>
   <div id="camara">
     <div class="glow" id="glow" style="left:-160px;top:200px;width:1400px;height:1400px;background:radial-gradient(circle,rgba(255,74,28,.55),rgba(255,138,42,.14) 42%,rgba(5,5,5,0) 68%)"></div>
 
     <section class="escena" id="e1">
-      <div class="centro display l1 rev">Te están</div>
-      <div class="centro display l2 rev grad">buscando</div>
-      <div class="centro sub">…y están encontrando<br>a tu competencia.</div>
+      <div class="centro display l1">Te están</div>
+      <div class="centro display l2 grad">buscando</div>
+      <div class="centro sub">…y están encontrando<br>a tu <span class="grad">competencia.</span></div>
     </section>
 
     <section class="escena" id="e2">
-      <div id="tel">
+      <div class="tel" id="tel">
         <div class="notch"></div>
         <div id="busca"><span class="lupa"></span><span id="txt"></span><span class="cursor"></span></div>
         <div class="res comp" style="top:250px"><div class="t"></div><div class="s"></div><div class="pin"></div><div class="etq2">COMPETENCIA</div></div>
@@ -120,34 +171,74 @@ html,body { background:#000; }
     </section>
 
     <section class="escena" id="e4">
-      <div class="cab">TODO PARA VENDER MÁS</div>
-      <div class="serv" style="top:420px"><div class="n">01</div><div class="nom-wrap"><div class="nom">Página web</div></div></div>
-      <div class="serv" style="top:670px"><div class="n">02</div><div class="nom-wrap"><div class="nom">Google Maps</div></div></div>
-      <div class="serv" style="top:920px"><div class="n">03</div><div class="nom-wrap"><div class="nom">Redes sociales</div></div></div>
-      <div class="serv" style="top:1170px"><div class="n">04</div><div class="nom-wrap"><div class="nom grad">Chatbots</div></div></div>
+      <div class="etiqueta">
+        <div class="num" id="num">01</div>
+        <div class="cual"><div id="c1">Página web</div><div id="c2">Google Maps</div><div id="c3" class="grad">Chatbot 24/7</div><div id="c4">Avisos al instante</div></div>
+      </div>
+      <div class="tel" id="tel2">
+        <div class="notch"></div>
+        <div class="pant" id="pWeb">
+          <div class="nav"><div class="logo">TU NEGOCIO</div><div class="menu"></div></div>
+          <div class="hero"></div>
+          <div class="h1">Lo mejor<br>de Zapopan</div>
+          <div class="lin" style="top:860px;width:440px"></div>
+          <div class="lin" style="top:900px;width:320px"></div>
+          <div class="cta">Escríbenos por WhatsApp</div>
+        </div>
+        <div class="pant" id="pMapa">
+          <svg viewBox="0 0 600 1140" width="600" height="1140">
+            <rect width="600" height="1140" fill="#121418"/>
+            <g stroke="#262a31" stroke-width="34" fill="none" stroke-linecap="round">
+              <path d="M-20 260 L620 200"/><path d="M-20 640 L620 700"/><path d="M180 -20 L140 1160"/><path d="M460 -20 L520 1160"/>
+            </g>
+            <g stroke="#1c1f25" stroke-width="16" fill="none"><path d="M-20 460 L620 430"/><path d="M320 -20 L300 1160"/><path d="M-20 880 L620 900"/></g>
+            <rect x="200" y="300" width="90" height="120" rx="10" fill="#1a1d23"/><rect x="340" y="480" width="100" height="130" rx="10" fill="#1a1d23"/>
+            <rect x="40" y="480" width="80" height="120" rx="10" fill="#183022"/>
+          </svg>
+          <div id="sombra"></div>
+          <div id="pin"></div>
+          <div id="ficha"><div class="n">TU NEGOCIO</div><div class="a">Abierto ahora</div>
+            <div class="bts"><div>Cómo llegar</div><div>Llamar</div></div></div>
+        </div>
+        <div class="pant" id="pChat">
+          <div class="top"><div class="av"></div><div class="nm">Tu Negocio</div><div class="st">en línea</div></div>
+          <div id="hora">3:07 AM</div>
+          <div class="burb yo" id="b1" style="top:300px">¿Abren mañana? Quiero una cita</div>
+          <div id="puntos"><i></i><i></i><i></i></div>
+          <div class="burb bot" id="b2" style="top:540px">¡Claro! Mañana abrimos a las 9. ¿Te aparto las 10:00?</div>
+          <div class="burb yo" id="b3" style="top:800px">Sí, por favor</div>
+        </div>
+        <div class="pant" id="pAviso">
+          <div class="reloj">10:00</div>
+          <div class="fecha">martes</div>
+          <div id="noti"><div class="ic"></div><div><div class="tt">Nuevo cliente</div><div class="tx">Cita apartada para hoy 10:00</div></div><div class="ap">ahora</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="escena" id="e5">
+      <div class="centro display l1">Boceto</div>
+      <div class="centro display l2 grad">gratis</div>
+      <div class="centro antes">Mira tu página <span>antes de pagar.</span></div>
     </section>
 
     <section class="escena" id="e6">
-      <div class="centro display l1 rev">Boceto</div>
-      <div class="centro display l2 rev grad">gratis</div>
-      <div class="centro antes">Mira tu página antes de pagar.</div>
-    </section>
-
-    <section class="escena" id="e7">
       <div id="sol2"></div><div id="hor2"></div>
       <div class="centro display nombre">Sky Studios</div>
       <div class="centro nombre2">LABS</div>
       <div id="boton">Pide tu boceto gratis</div>
+      <div id="flecha"></div>
       <div class="centro dato web">skystudioslabs.com</div>
       <div class="centro dato wa">WhatsApp 44 9288 9487</div>
       <div class="centro zona">ZAPOPAN · GUADALAJARA</div>
     </section>
   </div>
 
-  <div class="centro pregunta" id="pregunta">Si no apareces, <span class="grad">no existes.</span></div>
-  <div class="ruido"></div>
+  <div class="centro" id="pregunta">Si no apareces, <span class="grad">no existes.</span></div>
+  <div class="vineta"></div>
   <div id="progreso"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
   <div id="marca">SKY STUDIOS LABS</div>
+  <div id="barrido"></div>
   <div id="flash"></div>
 </div>
 
@@ -159,23 +250,22 @@ window.LISTO = document.fonts.ready.then(() => {
   const q = (s) => document.querySelector(s);
   const RENDER = location.hash === "#render";
   const tl = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
+  const SONIDOS = [];
+  const sfx = (t, tipo, vol = 1) => SONIDOS.push({ t: +t.toFixed(3), tipo, vol });
 
-  // Regla 1 · revelado con máscara: cada línea marcada .rev sube desde detrás de su máscara.
   const GRAD = "linear-gradient(90deg,#ff4a1c,#ff8a2a)";
+  // Regla 1 · revelado con máscara; el degradado se reparte entre letras para que siga continuo
   const chars = (sel) => {
     const el = typeof sel === "string" ? q(sel) : sel;
     const split = SplitText.create(el, { type: "lines,chars", mask: "lines", aria: "none" });
-    // la máscara recorta acentos (Á) con line-height .9: se le da aire arriba y abajo
     (split.masks || []).forEach((m) => { m.style.padding = ".16em 0 .06em"; m.style.margin = "-.16em 0 -.06em"; });
-    // degradado continuo a lo largo de la palabra aunque cada letra se anime por separado
-    const contenedores = new Set(split.chars.map((c) => c.closest(".grad")).filter(Boolean));
-    contenedores.forEach((g) => {
+    new Set(split.chars.map((c) => c.closest(".grad")).filter(Boolean)).forEach((g) => {
       const r = g.getBoundingClientRect();
       const esc = r.width / (g.offsetWidth || r.width) || 1;
       split.chars.filter((c) => g.contains(c)).forEach((c) => {
         const x = (c.getBoundingClientRect().left - r.left) / esc;
-        Object.assign(c.style, { backgroundImage: GRAD, backgroundSize: r.width / esc + "px 100%",
-          backgroundPosition: -x + "px 0", webkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" });
+        Object.assign(c.style, { backgroundImage: GRAD, backgroundSize: r.width / esc + "px 100%", backgroundPosition: -x + "px 0",
+          webkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" });
       });
       g.classList.remove("grad");
     });
@@ -183,106 +273,171 @@ window.LISTO = document.fonts.ready.then(() => {
   };
   const mostrar = (id, t) => tl.set(id, { visibility: "visible" }, t);
   const ocultar = (id, t) => tl.set(id, { visibility: "hidden" }, t);
-  const flash = (t) => tl.fromTo("#flash", { opacity: 0.85 }, { opacity: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, t);
+  const flash = (t) => { tl.fromTo("#flash", { opacity: 0.85 }, { opacity: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, t); sfx(t, "impacto"); };
+  // transición: un panel naranja barre la pantalla; la escena cambia justo cuando la cubre
+  const barrido = (t) => {
+    tl.fromTo("#barrido", { yPercent: 110 }, { yPercent: 0, duration: 0.25, ease: "power3.in", immediateRender: false }, t - 0.25)
+      .to("#barrido", { yPercent: -120, duration: 0.3, ease: "power3.out" }, t);
+    sfx(t - 0.3, "whoosh");
+    sfx(t, "impacto", 0.8);
+  };
+  // golpe de cámara: sacudida corta al caer una palabra
+  const golpe = (t, fuerza = 18) => {
+    tl.to("#camara", { keyframes: { x: [fuerza, -fuerza * 0.7, fuerza * 0.4, 0], y: [-fuerza * 0.5, fuerza * 0.4, 0, 0] }, duration: 0.28, ease: "none" }, t);
+  };
+  // palabra que entra de golpe: grande, borrosa, y aterriza
+  const aterriza = (sel, t) => {
+    tl.fromTo(sel, { scale: 2.4, opacity: 0, filter: "blur(24px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.32, ease: "expo.out", immediateRender: true }, t);
+    golpe(t + 0.2);
+    sfx(t + 0.18, "impacto");
+  };
 
-  // Regla 3 · cámara: un solo contenedor que se acerca, se aleja y se desplaza entre escenas.
-  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 0);
+  gsap.set("#barrido", { yPercent: 110, skewY: -6 });
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 0)
+    .to("#rejilla", { backgroundPosition: "0px 900px", duration: 22, ease: "none" }, 0);
 
-  // ---------- 1 · gancho (0 – 2.8 s)
+  // ---------- 1 · gancho (0 – 2.6 s)
   mostrar("#e1", 0);
-  tl.from(chars("#e1 .l1"), { yPercent: 110, duration: 0.6, stagger: 0.035 }, 0.05)
-    .from(chars("#e1 .l2"), { yPercent: 110, duration: 0.6, stagger: 0.035 }, 0.35)
-    .from("#e1 .sub", { opacity: 0, y: 40, duration: 0.5 }, 1.0)
-    .to("#camara", { scale: 1.08, duration: 2.8, ease: "none" }, 0)
-    .to("#e1 .l2", { x: 14, duration: 0.05, repeat: 5, yoyo: true, ease: "none" }, 2.0);
-  ocultar("#e1", 2.8);
+  aterriza("#e1 .l1", 0.0);
+  aterriza("#e1 .l2", 0.42);
+  tl.from("#e1 .sub", { opacity: 0, y: 50, duration: 0.45 }, 1.05)
+    .to("#camara", { scale: 1.07, duration: 2.6, ease: "none" }, 0.5)
+    .to("#e1 .l2", { x: 16, duration: 0.05, repeat: 5, yoyo: true, ease: "none" }, 1.9);
+  sfx(1.05, "pop", 0.6);
+  ocultar("#e1", 2.6);
 
-  // ---------- 2 · búsqueda: aparece la competencia, no tú… hasta que llegas al #1 (2.8 – 6.6 s)
+  // ---------- 2 · búsqueda (2.6 – 6.6 s)
   const busquedas = ["barbería en Zapopan", "taller cerca de mí", "tacos en Guadalajara"];
   const tipeo = { p: 0 };
-  mostrar("#e2", 2.8); flash(2.8);
-  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 2.8)
-    .from("#tel", { yPercent: 40, rotation: -6, opacity: 0, duration: 0.7 }, 2.8)
-    .to(tipeo, { p: 2.999, duration: 1.9, ease: "none", onUpdate: () => {
+  mostrar("#e2", 2.6); flash(2.6);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 2.6)
+    .from("#tel", { yPercent: 40, rotation: -6, opacity: 0, duration: 0.6 }, 2.6)
+    .to(tipeo, { p: 2.999, duration: 1.8, ease: "none", onUpdate: () => {
       const i = Math.floor(tipeo.p), txt = busquedas[i];
       q("#txt").textContent = txt.slice(0, Math.ceil(Math.min(1, (tipeo.p - i) * 1.5) * txt.length));
-    } }, 3.1)
-    .from("#e2 .comp", { y: 80, opacity: 0, duration: 0.45, stagger: 0.1 }, 3.6)
-    .from("#tuyo", { opacity: 0, duration: 0.4 }, 4.0)
-    .set("#pregunta", { visibility: "visible" }, 4.6)
-    .from("#pregunta", { opacity: 0, y: 60, duration: 0.5 }, 4.6)
-    // el cambio: tu negocio sube al primer lugar y la competencia baja
-    .to("#e2 .comp", { y: 200, opacity: 0.45, duration: 0.7, ease: "power3.inOut" }, 5.3)
-    .to("#tuyo", { top: 250, borderColor: "rgba(0,0,0,0)", duration: 0.7, ease: "power3.inOut" }, 5.3)
-    .to("#tuyo .vacio", { opacity: 0, duration: 0.2 }, 5.3)
-    .to("#tuyo .lleno, #tuyo .t, #tuyo .s, #tuyo .pin, #tuyo .etq", { opacity: 1, duration: 0.3 }, 5.5)
+    } }, 2.9)
+    .from("#e2 .comp", { y: 80, opacity: 0, duration: 0.4, stagger: 0.1 }, 3.4)
+    .from("#tuyo", { opacity: 0, duration: 0.35 }, 3.8)
+    .set("#pregunta", { visibility: "visible" }, 4.4)
+    .from("#pregunta", { opacity: 0, y: 60, duration: 0.45 }, 4.4)
+    .to("#e2 .comp", { y: 200, opacity: 0.4, duration: 0.6, ease: "power3.inOut" }, 5.1)
+    .to("#tuyo", { top: 250, borderColor: "rgba(0,0,0,0)", duration: 0.6, ease: "power3.inOut" }, 5.1)
+    .to("#tuyo .vacio", { opacity: 0, duration: 0.2 }, 5.1)
+    .to("#tuyo .lleno, #tuyo .t, #tuyo .s, #tuyo .pin, #tuyo .etq", { opacity: 1, duration: 0.25 }, 5.35)
     // Regla 3 · la cámara se acerca a tu negocio ya en el #1
-    .to("#camara", { scale: 1.4, y: 150, duration: 1.1, ease: "power3.inOut" }, 5.4)
-    .fromTo("#tuyo", { boxShadow: "0 0 0 0 rgba(255,138,42,0)" }, { boxShadow: "0 0 0 22px rgba(255,138,42,.28)", duration: 0.35, repeat: 1, yoyo: true, immediateRender: false }, 6.0)
-    .set("#pregunta", { visibility: "hidden" }, 6.6); // fuera de la cámara: queda fija y legible durante el zoom
+    .to("#camara", { scale: 1.4, y: 150, duration: 1.0, ease: "power3.inOut" }, 5.2)
+    .fromTo("#tuyo", { boxShadow: "0 0 0 0 rgba(255,138,42,0)" }, { boxShadow: "0 0 0 22px rgba(255,138,42,.28)", duration: 0.3, repeat: 1, yoyo: true, immediateRender: false }, 5.7)
+    .set("#pregunta", { visibility: "hidden" }, 6.6);
+  // teclas: un clic por letra escrita
+  busquedas.forEach((txt, i) => { const ini = 2.9 + i * 0.6, dur = 0.6 / 1.5; for (let k = 0; k < txt.length; k += 2) sfx(ini + (k / txt.length) * dur, "tecla", 0.5); });
+  [3.4, 3.5, 3.6].forEach((t) => sfx(t, "pop", 0.5));
+  sfx(4.4, "pop", 0.7); sfx(5.05, "whoosh", 0.7); sfx(5.4, "ding");
+  sfx(5.6, "subida");
   ocultar("#e2", 6.6);
 
-  // ---------- 3 · páginas que venden (6.6 – 10.4 s)
-  mostrar("#e3", 6.6); flash(6.6);
-  const lineas3 = gsap.utils.toArray("#e3 .rev");
+  // ---------- 3 · páginas que venden (6.6 – 9.4 s)
+  barrido(6.6);
+  mostrar("#e3", 6.6);
   tl.set("#camara", { scale: 1.25, x: 0, y: 120 }, 6.6)
-    .to("#camara", { scale: 1, y: 0, duration: 3.6, ease: "power2.out" }, 6.6)
-    .from("#sol", { yPercent: 110, duration: 1.2, ease: "expo.out" }, 6.7)
-    .from("#horizonte", { scaleX: 0, duration: 0.9, ease: "expo.out" }, 6.8)
-    .from("#glow", { opacity: 0, duration: 1.2 }, 6.7);
-  // Regla 2 · líneas encadenadas: cada una empieza cuando la anterior va a la mitad
-  lineas3.forEach((el, i) => tl.from(chars(el), { yPercent: 115, duration: 0.75, stagger: 0.03 }, 7.3 + i * 0.4));
-  tl.to("#e3 .titulo", { y: -30, duration: 1, ease: "none" }, 9.2);
-  ocultar("#e3", 10.4);
+    .to("#camara", { scale: 1, y: 0, duration: 2.8, ease: "power2.out" }, 6.6)
+    .from("#sol", { yPercent: 110, duration: 1.0, ease: "expo.out" }, 6.65)
+    .from("#horizonte", { scaleX: 0, duration: 0.8, ease: "expo.out" }, 6.7)
+    .from("#glow", { opacity: 0, duration: 1 }, 6.6);
+  // Regla 2 · líneas encadenadas
+  gsap.utils.toArray("#e3 .rev").forEach((el, i) => { tl.from(chars(el), { yPercent: 115, duration: 0.6, stagger: 0.025 }, 7.0 + i * 0.33); sfx(7.05 + i * 0.33, i === 2 ? "impacto" : "pop", i === 2 ? 1 : 0.6); });
+  golpe(7.85, 22);
+  tl.to("#e3 .titulo", { y: -30, duration: 1, ease: "none" }, 8.4);
+  ocultar("#e3", 9.4);
 
-  // ---------- 4 · servicios (10.4 – 14.4 s)
-  mostrar("#e4", 10.4); flash(10.4);
-  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 10.4)
-    .from("#e4 .cab", { opacity: 0, x: -60, duration: 0.5 }, 10.5);
-  gsap.utils.toArray("#e4 .serv").forEach((el, i) => {
-    const t = 10.8 + i * 0.55;
-    tl.from(el, { borderTopColor: "rgba(38,38,43,0)", duration: 0.3 }, t)
-      .from(el.querySelector(".n"), { opacity: 0, y: 30, duration: 0.4 }, t)
-      .from(el.querySelector(".nom"), { yPercent: 110, duration: 0.6 }, t + 0.08);
-  });
-  tl.to("#camara", { scale: 1.06, duration: 4, ease: "none" }, 10.4)
-    .to("#e4 .serv:not(:last-child) .nom", { opacity: 0.35, duration: 0.4 }, 13.4);
-  ocultar("#e4", 14.4);
+  // ---------- 4 · cada servicio funcionando dentro del teléfono (9.4 – 15.4 s)
+  barrido(9.4);
+  mostrar("#e4", 9.4);
+  const T = [9.4, 10.9, 12.4, 13.9];
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 9.4)
+    .set(["#pMapa", "#pChat", "#pAviso"], { xPercent: 100 }, 9.4)
+    .set(["#c2", "#c3", "#c4"], { yPercent: 120 }, 9.4)
+    .from("#tel2", { yPercent: 30, rotation: 5, opacity: 0, duration: 0.6 }, 9.45)
+    .from("#c1", { yPercent: 120, duration: 0.5 }, 9.55)
+    .from("#num", { opacity: 0, y: 20, duration: 0.4 }, 9.5)
+    .to("#tel2", { rotation: -2, duration: 6, ease: "none" }, 9.4);
+  // web: la página se arma y baja sola
+  tl.from("#pWeb .hero", { scale: 0.85, opacity: 0, duration: 0.5 }, 9.7)
+    .from("#pWeb .h1", { y: 60, opacity: 0, duration: 0.45 }, 9.9)
+    .from("#pWeb .lin", { scaleX: 0, transformOrigin: "0 50%", duration: 0.4, stagger: 0.08 }, 10.05)
+    .from("#pWeb .cta", { y: 80, opacity: 0, duration: 0.45, ease: "back.out(1.7)" }, 10.2);
+  sfx(10.2, "pop", 0.7);
+  // cambio de pantalla: la nueva entra desde la derecha y la etiqueta cambia con máscara
+  const pantallas = ["#pWeb", "#pMapa", "#pChat", "#pAviso"];
+  for (let i = 1; i < 4; i++) {
+    const t = T[i];
+    tl.to(pantallas[i - 1], { xPercent: -35, duration: 0.45, ease: "power3.inOut" }, t)
+      .to(pantallas[i], { xPercent: 0, duration: 0.45, ease: "power3.inOut" }, t)
+      .to("#c" + i, { yPercent: -120, duration: 0.4, ease: "power3.in" }, t)
+      .to("#c" + (i + 1), { yPercent: 0, duration: 0.5 }, t + 0.25)
+      ;
+    sfx(t, "whoosh", 0.6);
+  }
+  // mapa: el pin cae y rebota
+  tl.from("#pin", { y: -500, duration: 0.55, ease: "bounce.out" }, T[1] + 0.35)
+    .from("#sombra", { scale: 0.2, opacity: 0, duration: 0.55, ease: "bounce.out" }, T[1] + 0.35)
+    .from("#ficha", { y: 340, duration: 0.5 }, T[1] + 0.7);
+  sfx(T[1] + 0.7, "impacto", 0.6); sfx(T[1] + 0.75, "pop", 0.6);
+  // chat a las 3 AM: el bot contesta solo
+  tl.from("#b1", { scale: 0.6, opacity: 0, transformOrigin: "100% 100%", duration: 0.3, ease: "back.out(2)" }, T[2] + 0.4)
+    .from("#puntos", { opacity: 0, duration: 0.15 }, T[2] + 0.65)
+    .to("#puntos i", { y: -10, duration: 0.14, stagger: 0.07, repeat: 1, yoyo: true, ease: "sine.inOut" }, T[2] + 0.65)
+    .to("#puntos", { opacity: 0, duration: 0.1 }, T[2] + 0.95)
+    .from("#b2", { scale: 0.6, opacity: 0, transformOrigin: "0% 100%", duration: 0.3, ease: "back.out(2)" }, T[2] + 0.95)
+    .from("#b3", { scale: 0.6, opacity: 0, transformOrigin: "100% 100%", duration: 0.3, ease: "back.out(2)" }, T[2] + 1.25);
+  sfx(T[2] + 0.4, "burbuja"); sfx(T[2] + 0.95, "burbuja"); sfx(T[2] + 1.25, "burbuja");
+  // aviso: la notificación cae en la pantalla bloqueada
+  tl.from("#noti", { y: -260, opacity: 0, duration: 0.45, ease: "back.out(1.6)" }, T[3] + 0.45)
+    .to("#tel2", { x: 10, duration: 0.04, repeat: 7, yoyo: true, ease: "none" }, T[3] + 0.5)
+    .to("#tel2", { scale: 1.06, duration: 1.0, ease: "power2.inOut" }, T[3] + 0.2);
+  sfx(T[3] + 0.5, "ding");
+  ocultar("#e4", 15.4);
 
-  // ---------- 5 · oferta (14.4 – 17.0 s)
-  mostrar("#e6", 14.4); flash(14.4);
-  tl.set("#camara", { scale: 1.2, x: 0, y: 0 }, 14.4)
-    .to("#camara", { scale: 1, duration: 1.2, ease: "expo.out" }, 14.4)
-    .from(chars("#e6 .l1"), { yPercent: 115, duration: 0.7, stagger: 0.04 }, 14.5)
-    .from(chars("#e6 .l2"), { yPercent: 115, duration: 0.7, stagger: 0.04 }, 14.8)
-    .from("#e6 .antes", { opacity: 0, y: 40, duration: 0.5 }, 15.4)
-    .to("#e6 .l2", { scale: 1.06, duration: 0.25, repeat: 1, yoyo: true, ease: "power2.inOut" }, 16.0);
-  ocultar("#e6", 17.0);
+  // ---------- 5 · oferta (15.4 – 18.2 s)
+  barrido(15.4);
+  mostrar("#e5", 15.4);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 15.4);
+  aterriza("#e5 .l1", 15.45);
+  aterriza("#e5 .l2", 15.8);
+  tl.from("#e5 .antes", { opacity: 0, y: 40, duration: 0.45 }, 16.35)
+    .from("#e5 .antes span", { borderBottomColor: "rgba(255,138,42,0)", duration: 0.4 }, 16.6)
+    .to("#e5 .l2", { scale: 1.06, duration: 0.22, repeat: 1, yoyo: true, ease: "power2.inOut" }, 17.3)
+    .to("#camara", { scale: 1.05, duration: 2.4, ease: "none" }, 15.8);
+  sfx(16.35, "pop", 0.6);
+  ocultar("#e5", 18.2);
 
-  // ---------- 6 · llamada a la acción (17.0 – 21.0 s)
-  mostrar("#e7", 17.0); flash(17.0);
-  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 17.0)
-    .from("#sol2", { yPercent: 110, duration: 1, ease: "expo.out" }, 17.0)
-    .from("#hor2", { scaleX: 0, duration: 0.8, ease: "expo.out" }, 17.1)
-    .from(chars("#e7 .nombre"), { yPercent: 115, duration: 0.7, stagger: 0.03 }, 17.3)
-    .from("#e7 .nombre2", { opacity: 0, letterSpacing: "60px", duration: 0.9 }, 17.6)
-    .from("#boton", { scale: 0.6, opacity: 0, duration: 0.7, ease: "back.out(1.6)" }, 18.0)
-    .from("#e7 .dato, #e7 .zona", { opacity: 0, y: 40, duration: 0.5, stagger: 0.15 }, 18.4)
-    .to("#boton", { scale: 1.05, duration: 0.4, repeat: 3, yoyo: true, ease: "sine.inOut" }, 19.0)
-    .to({}, { duration: 0.01 }, 21.0);
+  // ---------- 6 · llamada a la acción (18.2 – 22.0 s)
+  mostrar("#e6", 18.2); flash(18.2);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 18.2)
+    .from("#sol2", { yPercent: 110, duration: 0.9, ease: "expo.out" }, 18.2)
+    .from("#hor2", { scaleX: 0, duration: 0.7, ease: "expo.out" }, 18.3)
+    .from(chars("#e6 .nombre"), { yPercent: 115, duration: 0.6, stagger: 0.025 }, 18.4)
+    .from("#e6 .nombre2", { opacity: 0, letterSpacing: "60px", duration: 0.8 }, 18.65)
+    .from("#boton", { scale: 0.6, opacity: 0, duration: 0.6, ease: "back.out(1.6)" }, 19.0)
+    .from("#flecha", { opacity: 0, duration: 0.3 }, 19.4)
+    .to("#flecha", { y: -30, duration: 0.3, repeat: 7, yoyo: true, ease: "sine.inOut" }, 19.4)
+    .from("#e6 .dato, #e6 .zona", { opacity: 0, y: 40, duration: 0.45, stagger: 0.12 }, 19.4)
+    .to("#boton", { scale: 1.05, duration: 0.35, repeat: 5, yoyo: true, ease: "sine.inOut" }, 19.7)
+    .to({}, { duration: 0.01 }, 22.0);
+  sfx(19.0, "impacto", 0.7); sfx(19.4, "pop", 0.5);
 
-  // Regla 4 · sincronía con el avance (scrub): la barra superior sigue exactamente el tiempo del video
-  const cortes = [0, 2.8, 6.6, 10.4, 14.4, 17.0, 21.0];
+  // Regla 4 · la barra superior sigue exactamente el tiempo del video (scrub)
+  const cortes = [0, 2.6, 6.6, 9.4, 15.4, 18.2, 22.0];
   const barras = gsap.utils.toArray("#progreso b");
   const pintarBarras = () => {
     const t = tl.time();
-    barras.forEach((b, i) => {
-      const p = gsap.utils.clamp(0, 1, (t - cortes[i]) / (cortes[i + 1] - cortes[i]));
-      b.style.width = p * 100 + "%";
-    });
+    const n = "0" + (1 + T.filter((x, i) => i > 0 && t >= x + 0.25).length);
+    if (q("#num").textContent !== n) q("#num").textContent = n;
+    barras.forEach((b, i) => { b.style.width = gsap.utils.clamp(0, 1, (t - cortes[i]) / (cortes[i + 1] - cortes[i])) * 100 + "%"; });
   };
   tl.eventCallback("onUpdate", pintarBarras);
 
+  window.SONIDOS = SONIDOS.sort((a, b) => a.t - b.t);
+  window.CORTES = cortes;
   window.DURACION = tl.duration();
   window.irA = (t) => { tl.seek(t, false); pintarBarras(); };
   if (!RENDER) tl.play().eventCallback("onComplete", () => tl.restart());
