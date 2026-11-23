@@ -27,3 +27,14 @@
 - Guiones nuevos con títulos de Notion (solo lectura): **#6 "10 Prendas BÁSICAS que Todo Hombre NECESITA"**
   (1,630 palabras) y **#7 "Por qué NADIE te Toma en SERIO (y cómo cambiarlo)"** (1,608). Cada uno costaría
   ~8,500–8,750 caracteres de ElevenLabs; no se generó audio.
+
+## 2026-11-23 ~20:40 UTC — Terminó Y3 (miniaturas y shorts) → unido
+- Miniaturas: 3 variantes de texto por video (15 capas PNG transparentes 1280×720 con la fuente Anton, licencia OFL,
+  todas legibles a 320×180) + comando ffmpeg para ponerlas sobre las fotos en la PC. Recomendadas: V1 "NADIE /
+  TE LO DICE", V2 "¿ERES EL / TÍO?", V3 "NO ES EL / PRECIO", V4 "DEJA DE / POSPONER", V5 "DEJA ESE / JABÓN".
+  Propuesta de A/B test con "Probar y comparar".
+- Shorts: 3 por video (2–5), texto exacto del guion en un tramo continuo, con tiempos aproximados
+  (`shorts/plan-shorts.json`). Calendario propuesto de 12 días; ningún short antes que su video largo.
+- `shorts/herramientas/srt_por_frases.ps1`: subtítulos sincronizados por frases y pausas reales (sin créditos);
+  probado en PowerShell 7 con audio sintético. Falta probarlo con la voz real en Windows.
+- Nota técnica: al quemar subtítulos con ffmpeg, `FontSize=15` ≈ 100 px a 1920 de alto (100 se sale de la pantalla).
