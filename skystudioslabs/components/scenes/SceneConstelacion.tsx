@@ -33,7 +33,10 @@ function enlaces(pts: Array<{ x: number; y: number }>) {
   return out;
 }
 
-/** Una estrella por negocio: sitios publicados + clientes del portafolio sin sitio propio. */
+/**
+ * Una estrella por negocio: sitios publicados + clientes del portafolio sin sitio propio.
+ * Sin bloque de reseñas: sólo se mostrarán cuando haya reseñas reales (nunca marcadores en público).
+ */
 export function SceneConstelacion({ activos }: { activos: number }) {
   const total = Math.max(activos, 0) + clientesSinSitio();
   const n = Math.min(total, MAX_ESTRELLAS);
@@ -93,7 +96,7 @@ export function SceneConstelacion({ activos }: { activos: number }) {
       <div className={s.after}>
         <div className={s.clientes} id="clientes">
           <h3 className="t-title" data-split>
-            Nuestros <em className="hl">clientes</em>
+            Trabajo <em className="hl">real</em>
           </h3>
           <ul className={s.clientesLista}>
             {PORTAFOLIO.map((c) => (
@@ -119,21 +122,6 @@ export function SceneConstelacion({ activos }: { activos: number }) {
                   </ul>
                   <p className="muted">Capturas con datos de ejemplo.</p>
                 </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className={s.reviews}>
-          <h3 className="t-title" data-split>
-            Lo que dicen nuestros <em className="hl">clientes</em>
-          </h3>
-          <ul className="grid grid-3">
-            {[1, 2, 3].map((i) => (
-              <li key={i} className={`card ${s.reviewCard}`} data-anim>
-                <span className="placeholder">[RESEÑA REAL AQUÍ]</span>
-                <span className="muted">
-                  <span className="placeholder">[NOMBRE Y NEGOCIO]</span>
-                </span>
               </li>
             ))}
           </ul>

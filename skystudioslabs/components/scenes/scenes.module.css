@@ -924,21 +924,7 @@
   color: var(--c-orange);
   text-shadow: 0 0 60px rgba(var(--k-rgb-255-74-28, 255,74,28), 0.6);
 }
-.reviews {
-  max-width: var(--maxw);
-  margin: 0 auto;
-}
-.reviews ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 24px;
-}
-.reviewCard {
-  display: grid;
-  gap: 12px;
-}
-
-/* Nuestros clientes (portafolio real, config/portafolio.ts) */
+/* Trabajo real (portafolio real, config/portafolio.ts) */
 .clientes {
   max-width: var(--maxw);
   margin: 0 auto 72px;
@@ -1075,4 +1061,32 @@
 .soundBtn svg {
   width: 20px;
   height: 20px;
+}
+
+/* Cierre: CTA principal + los dos números con WhatsApp y llamada */
+.waBigIcono {
+  width: 34px;
+  height: 34px;
+  flex: none;
+}
+.cierreContactos {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  width: 100%;
+}
+@media (max-width: 640px) {
+  .waBig {
+    min-height: 72px;
+    padding: 18px 24px;
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
+.priceCotiza {
+  color: var(--c-text);
+  font-weight: 700;
+  border-left: 3px solid var(--c-orange);
+  padding-left: 12px;
 }

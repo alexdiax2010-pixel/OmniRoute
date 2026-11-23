@@ -210,3 +210,54 @@ details[open] > .summary::after { transform: translateY(2px) rotate(-135deg); }
   0% { opacity: 0.7; transform: scale(1); }
   100% { opacity: 0; transform: scale(1.5); }
 }
+
+/* Enlaces de contacto del pie: que se lean como enlaces, no como texto. */
+.footerLista a[data-contacto] {
+  color: var(--c-orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Contactos (variante "botones"): una tarjeta por número ---------- */
+.contactoBotones {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  width: min(100%, 760px);
+}
+@media (min-width: 760px) {
+  .contactoBotones { grid-template-columns: 1fr 1fr; }
+}
+.contactoTarjeta {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  padding: 16px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  background: rgba(var(--k-rgb-20-20-23, 20,20,23), 0.72);
+}
+.contactoNumero {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.contactoAcciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+.contactoBtn {
+  min-height: 48px;
+  padding: 12px 14px;
+  gap: 8px;
+}
+.contactoIcono {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
