@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Anuncio Sky Studios Labs</title>
+<!-- Anuncio vertical 1080x1920 (Reels / TikTok / Stories).
+     Se reproduce solo en el navegador; render.cjs lo convierte en MP4 cuadro por cuadro. -->
+<style>
+@font-face { font-family: Anton; src: url(../../node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2); }
+@font-face { font-family: Anton; src: url(../../node_modules/@fontsource/anton/files/anton-latin-ext-400-normal.woff2); unicode-range: U+0100-024F; }
+@font-face { font-family: Inter; src: url(../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2); font-weight: 100 900; }
+:root { --bg:#050505; --text:#f4f1ec; --muted:#a8a39b; --ember:#ff4a1c; --orange:#ff8a2a; --line:#26262b; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { background:#000; }
+#lienzo { position:relative; width:1080px; height:1920px; overflow:hidden; background:var(--bg); color:var(--text); font-family:Inter, sans-serif; }
+#camara { position:absolute; inset:0; transform-origin:50% 50%; }
+.escena { position:absolute; inset:0; visibility:hidden; }
+.display { font-family:Anton, sans-serif; text-transform:uppercase; line-height:.9; }
+.grad { background:linear-gradient(90deg,var(--ember),var(--orange)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.centro { position:absolute; left:0; right:0; text-align:center; }
+.glow { position:absolute; border-radius:50%; pointer-events:none; }
+.ruido { position:absolute; inset:0; pointer-events:none; opacity:.06;
+  background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px); mix-blend-mode:overlay; }
+
+/* barra de progreso tipo historia: sincronizada con el tiempo (scrub) */
+#progreso { position:absolute; left:48px; right:48px; top:48px; display:flex; gap:10px; z-index:20; }
+#progreso i { flex:1; height:6px; border-radius:3px; background:rgba(244,241,236,.18); overflow:hidden; }
+#progreso i b { display:block; height:100%; width:0; background:var(--text); }
+#marca { position:absolute; left:48px; top:84px; z-index:20; font-weight:700; letter-spacing:6px; font-size:26px; color:var(--muted); }
+#flash { position:absolute; inset:0; background:var(--text); opacity:0; z-index:30; pointer-events:none; }
+
+/* 1 · gancho */
+#e1 .l1 { top:660px; font-size:205px; }
+#e1 .l2 { top:860px; font-size:235px; }
+#e1 .sub { top:1160px; font-size:54px; font-weight:600; color:var(--muted); }
+
+/* 2 · teléfono con búsqueda */
+#tel { position:absolute; left:240px; top:420px; width:600px; height:1160px; border-radius:72px; background:#0d0d0f;
+  border:3px solid #2c2c32; box-shadow:0 60px 160px -40px rgba(255,74,28,.45); overflow:hidden; }
+#tel .notch { position:absolute; left:50%; top:22px; width:160px; height:36px; margin-left:-80px; border-radius:20px; background:#000; }
+#busca { position:absolute; left:36px; right:36px; top:110px; height:96px; border-radius:48px; background:#1b1b1f; border:2px solid #2c2c32;
+  display:flex; align-items:center; padding:0 36px; font-size:36px; font-weight:500; }
+#busca .lupa { width:30px; height:30px; border:4px solid var(--muted); border-radius:50%; margin-right:22px; position:relative; flex:none; }
+#busca .lupa::after { content:""; position:absolute; width:14px; height:4px; background:var(--muted); right:-12px; bottom:-6px; transform:rotate(45deg); }
+#busca .cursor { display:inline-block; width:3px; height:40px; background:var(--orange); margin-left:4px; }
+.res { position:absolute; left:36px; right:36px; height:170px; border-radius:28px; background:#141417; border:2px solid #222227; padding:30px; }
+.res .t { height:26px; width:62%; border-radius:13px; background:#2f2f35; }
+.res .s { height:18px; width:85%; border-radius:9px; background:#232328; margin-top:22px; }
+.res .s2 { width:48%; }
+.res .pin { position:absolute; right:30px; top:30px; width:44px; height:44px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#3a3a40; }
+#tuyo { border-color:var(--orange); background:linear-gradient(135deg,rgba(255,74,28,.18),rgba(255,138,42,.06)); }
+#tuyo .t { background:var(--orange); }
+#tuyo .pin { background:var(--ember); }
+#tuyo .etq { position:absolute; left:30px; bottom:26px; font-size:26px; font-weight:800; letter-spacing:3px; color:var(--orange); }
+#pregunta { top:1690px; font-size:64px; font-weight:700; z-index:15; visibility:hidden; }
+
+/* 3 · páginas que venden */
+#sol { position:absolute; left:290px; top:300px; width:500px; height:250px; border-radius:250px 250px 0 0;
+  background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#horizonte { position:absolute; left:200px; top:575px; width:680px; height:24px; border-radius:12px; background:var(--text); transform-origin:50% 50%; }
+#e3 .titulo { position:absolute; left:80px; top:760px; font-size:250px; }
+#e3 .titulo div { white-space:nowrap; }
+
+/* 4 · servicios */
+#e4 .cab { position:absolute; left:80px; top:300px; font-size:46px; font-weight:700; letter-spacing:10px; color:var(--muted); }
+.serv { position:absolute; left:80px; right:80px; height:250px; border-top:2px solid var(--line); display:flex; align-items:center; gap:44px; }
+.serv .n { font-family:Anton; font-size:74px; color:var(--orange); width:120px; }
+.serv .nom { font-family:Anton; font-size:130px; text-transform:uppercase; line-height:1; }
+.serv .nom-wrap { overflow:hidden; padding:10px 0; }
+
+/* 5 · clientes */
+#e5 .cab { top:300px; font-size:170px; }
+.pantalla { position:absolute; left:60px; width:960px; height:600px; border-radius:36px; overflow:hidden; border:3px solid #2c2c32;
+  box-shadow:0 50px 140px -40px rgba(0,0,0,.9); background:#111; }
+.pantalla img { width:100%; height:100%; object-fit:cover; display:block; transform-origin:50% 40%; }
+#p1 { top:690px; }
+#p2 { top:950px; }
+#e5 .pie { top:1600px; font-size:48px; font-weight:700; }
+#e5 .pie span { color:var(--muted); font-weight:500; }
+
+/* 6 · oferta */
+#e6 .l1 { top:520px; font-size:300px; }
+#e6 .l2 { top:800px; font-size:300px; }
+#precio { position:absolute; left:120px; right:120px; top:1230px; border:3px solid var(--line); border-radius:40px; padding:46px 50px; text-align:center; background:#0d0d0f; }
+#precio .k { font-size:36px; font-weight:700; letter-spacing:6px; color:var(--muted); }
+#precio .v { font-family:Anton; font-size:150px; line-height:1.05; margin-top:10px; }
+#precio .v small { font-family:Inter; font-size:46px; font-weight:600; color:var(--muted); }
+
+/* 7 · llamada a la acción */
+#e7 #sol2 { position:absolute; left:390px; top:330px; width:300px; height:150px; border-radius:150px 150px 0 0; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#e7 #hor2 { position:absolute; left:330px; top:498px; width:420px; height:16px; border-radius:8px; background:var(--text); }
+#e7 .nombre { top:600px; font-size:150px; }
+#e7 .nombre2 { top:770px; font-size:46px; font-weight:700; letter-spacing:16px; color:var(--orange); }
+#boton { position:absolute; left:140px; right:140px; top:1000px; height:180px; border-radius:90px; background:linear-gradient(90deg,var(--ember),var(--orange));
+  color:#140700; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:64px; box-shadow:0 30px 90px -20px rgba(255,74,28,.8); }
+#e7 .dato { font-size:56px; font-weight:700; }
+#e7 .web { top:1290px; }
+#e7 .wa { top:1380px; color:var(--muted); font-weight:600; }
+#e7 .zona { top:1560px; font-size:40px; letter-spacing:8px; color:var(--muted); font-weight:600; }
+</style>
+</head>
+<body>
+<div id="lienzo">
+  <div id="camara">
+    <div class="glow" id="glow" style="left:-160px;top:200px;width:1400px;height:1400px;background:radial-gradient(circle,rgba(255,74,28,.55),rgba(255,138,42,.14) 42%,rgba(5,5,5,0) 68%)"></div>
+
+    <section class="escena" id="e1">
+      <div class="centro display l1 rev">Tu negocio</div>
+      <div class="centro display l2 rev grad">no existe</div>
+      <div class="centro sub">si no sale en Google.</div>
+    </section>
+
+    <section class="escena" id="e2">
+      <div id="tel">
+        <div class="notch"></div>
+        <div id="busca"><span class="lupa"></span><span id="txt"></span><span class="cursor"></span></div>
+        <div class="res" style="top:250px"><div class="t"></div><div class="s"></div><div class="s s2"></div><div class="pin"></div></div>
+        <div class="res" style="top:450px"><div class="t"></div><div class="s"></div><div class="s s2"></div><div class="pin"></div></div>
+        <div class="res" id="tuyo" style="top:650px"><div class="t"></div><div class="s"></div><div class="pin"></div><div class="etq">TU NEGOCIO</div></div>
+        <div class="res" style="top:850px"><div class="t"></div><div class="s"></div><div class="s s2"></div><div class="pin"></div></div>
+      </div>
+    </section>
+
+    <section class="escena" id="e3">
+      <div id="sol"></div>
+      <div id="horizonte"></div>
+      <div class="titulo display"><div class="rev">Páginas</div><div class="rev">que</div><div class="rev grad">venden</div></div>
+    </section>
+
+    <section class="escena" id="e4">
+      <div class="cab">TODO PARA VENDER MÁS</div>
+      <div class="serv" style="top:420px"><div class="n">01</div><div class="nom-wrap"><div class="nom">Página web</div></div></div>
+      <div class="serv" style="top:670px"><div class="n">02</div><div class="nom-wrap"><div class="nom">Google Maps</div></div></div>
+      <div class="serv" style="top:920px"><div class="n">03</div><div class="nom-wrap"><div class="nom">Redes sociales</div></div></div>
+      <div class="serv" style="top:1170px"><div class="n">04</div><div class="nom-wrap"><div class="nom grad">Chatbots</div></div></div>
+    </section>
+
+    <section class="escena" id="e5">
+      <div class="centro display cab rev">Nuestros <span class="grad">clientes</span></div>
+      <div class="pantalla" id="p1"><img src="../../public/portafolio/wellness-5am-panel.webp" alt=""></div>
+      <div class="pantalla" id="p2"><img src="../../public/portafolio/wellness-5am-entrada.webp" alt=""></div>
+      <div class="centro pie">Wellness Fitness 5AM <span>· Gimnasio</span></div>
+    </section>
+
+    <section class="escena" id="e6">
+      <div class="centro display l1 rev">Boceto</div>
+      <div class="centro display l2 rev grad">gratis</div>
+      <div id="precio"><div class="k">MANTENIMIENTO</div><div class="v">$1,099 <small>MXN / mes</small></div></div>
+    </section>
+
+    <section class="escena" id="e7">
+      <div id="sol2"></div><div id="hor2"></div>
+      <div class="centro display nombre">Sky Studios</div>
+      <div class="centro nombre2">LABS</div>
+      <div id="boton">Pide tu boceto gratis</div>
+      <div class="centro dato web">skystudioslabs.com</div>
+      <div class="centro dato wa">WhatsApp 44 9288 9487</div>
+      <div class="centro zona">ZAPOPAN · GUADALAJARA</div>
+    </section>
+  </div>
+
+  <div class="centro pregunta" id="pregunta">Te buscan. <span class="grad">¿Te encuentran?</span></div>
+  <div class="ruido"></div>
+  <div id="progreso"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+  <div id="marca">SKY STUDIOS LABS</div>
+  <div id="flash"></div>
+</div>
+
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/SplitText.min.js"></script>
+<script>
+gsap.registerPlugin(SplitText);
+window.LISTO = document.fonts.ready.then(() => {
+  const q = (s) => document.querySelector(s);
+  const RENDER = location.hash === "#render";
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
+
+  // Regla 1 · revelado con máscara: cada línea marcada .rev sube desde detrás de su máscara.
+  const GRAD = "linear-gradient(90deg,#ff4a1c,#ff8a2a)";
+  const chars = (sel) => {
+    const el = typeof sel === "string" ? q(sel) : sel;
+    const split = SplitText.create(el, { type: "lines,chars", mask: "lines", aria: "none" });
+    // la máscara recorta acentos (Á) con line-height .9: se le da aire arriba y abajo
+    (split.masks || []).forEach((m) => { m.style.padding = ".16em 0 .06em"; m.style.margin = "-.16em 0 -.06em"; });
+    // degradado continuo a lo largo de la palabra aunque cada letra se anime por separado
+    const contenedores = new Set(split.chars.map((c) => c.closest(".grad")).filter(Boolean));
+    contenedores.forEach((g) => {
+      const r = g.getBoundingClientRect();
+      const esc = r.width / (g.offsetWidth || r.width) || 1;
+      split.chars.filter((c) => g.contains(c)).forEach((c) => {
+        const x = (c.getBoundingClientRect().left - r.left) / esc;
+        Object.assign(c.style, { backgroundImage: GRAD, backgroundSize: r.width / esc + "px 100%",
+          backgroundPosition: -x + "px 0", webkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" });
+      });
+      g.classList.remove("grad");
+    });
+    return split.chars;
+  };
+  const mostrar = (id, t) => tl.set(id, { visibility: "visible" }, t);
+  const ocultar = (id, t) => tl.set(id, { visibility: "hidden" }, t);
+  const flash = (t) => tl.fromTo("#flash", { opacity: 0.85 }, { opacity: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, t);
+
+  // Regla 3 · cámara: un solo contenedor que se acerca, se aleja y se desplaza entre escenas.
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 0);
+
+  // ---------- 1 · gancho (0 – 2.8 s)
+  mostrar("#e1", 0);
+  tl.from(chars("#e1 .l1"), { yPercent: 110, duration: 0.7, stagger: 0.035 }, 0.1)
+    .from(chars("#e1 .l2"), { yPercent: 110, duration: 0.7, stagger: 0.035 }, 0.45)
+    .from("#e1 .sub", { opacity: 0, y: 40, duration: 0.6 }, 1.2)
+    .to("#camara", { scale: 1.08, duration: 2.6, ease: "none" }, 0)
+    .to("#e1 .l2", { x: 14, duration: 0.05, repeat: 5, yoyo: true, ease: "none" }, 1.9);
+  ocultar("#e1", 2.8);
+
+  // ---------- 2 · búsqueda en el teléfono (2.8 – 6.6 s)
+  const busqueda = "negocio cerca de mí";
+  const tipeo = { n: 0 };
+  mostrar("#e2", 2.8); flash(2.8);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 2.8)
+    .from("#tel", { yPercent: 40, rotation: -6, opacity: 0, duration: 0.8 }, 2.8)
+    .to(tipeo, { n: busqueda.length, duration: 1.1, ease: "none", snap: { n: 1 },
+      onUpdate: () => (q("#txt").textContent = busqueda.slice(0, tipeo.n)) }, 3.3)
+    .from("#e2 .res", { y: 80, opacity: 0, duration: 0.5, stagger: 0.12 }, 4.4)
+    // Regla 3 · zoom de cámara hacia "tu negocio"
+    .to("#camara", { scale: 1.55, y: -40, duration: 1.4, ease: "power3.inOut" }, 5.0)
+    .fromTo("#tuyo", { boxShadow: "0 0 0 0 rgba(255,138,42,0)" }, { boxShadow: "0 0 0 18px rgba(255,138,42,.25)", duration: 0.5, repeat: 1, yoyo: true }, 5.4)
+    .set("#pregunta", { visibility: "visible" }, 5.2)
+    .from("#pregunta", { opacity: 0, y: 60, duration: 0.6 }, 5.2)
+    .set("#pregunta", { visibility: "hidden" }, 6.6); // fuera de la cámara: queda fija y legible durante el zoom
+  ocultar("#e2", 6.6);
+
+  // ---------- 3 · páginas que venden (6.6 – 10.4 s)
+  mostrar("#e3", 6.6); flash(6.6);
+  const lineas3 = gsap.utils.toArray("#e3 .rev");
+  tl.set("#camara", { scale: 1.25, x: 0, y: 120 }, 6.6)
+    .to("#camara", { scale: 1, y: 0, duration: 3.6, ease: "power2.out" }, 6.6)
+    .from("#sol", { yPercent: 110, duration: 1.2, ease: "expo.out" }, 6.7)
+    .from("#horizonte", { scaleX: 0, duration: 0.9, ease: "expo.out" }, 6.8)
+    .from("#glow", { opacity: 0, duration: 1.2 }, 6.7);
+  // Regla 2 · líneas encadenadas: cada una empieza cuando la anterior va a la mitad
+  lineas3.forEach((el, i) => tl.from(chars(el), { yPercent: 115, duration: 0.75, stagger: 0.03 }, 7.3 + i * 0.4));
+  tl.to("#e3 .titulo", { y: -30, duration: 1, ease: "none" }, 9.2);
+  ocultar("#e3", 10.4);
+
+  // ---------- 4 · servicios (10.4 – 14.4 s)
+  mostrar("#e4", 10.4); flash(10.4);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 10.4)
+    .from("#e4 .cab", { opacity: 0, x: -60, duration: 0.5 }, 10.5);
+  gsap.utils.toArray("#e4 .serv").forEach((el, i) => {
+    const t = 10.8 + i * 0.55;
+    tl.from(el, { borderTopColor: "rgba(38,38,43,0)", duration: 0.3 }, t)
+      .from(el.querySelector(".n"), { opacity: 0, y: 30, duration: 0.4 }, t)
+      .from(el.querySelector(".nom"), { yPercent: 110, duration: 0.6 }, t + 0.08);
+  });
+  tl.to("#camara", { scale: 1.06, duration: 4, ease: "none" }, 10.4)
+    .to("#e4 .serv:not(:last-child) .nom", { opacity: 0.35, duration: 0.4 }, 13.4);
+  ocultar("#e4", 14.4);
+
+  // ---------- 5 · clientes (14.4 – 18.0 s)
+  mostrar("#e5", 14.4); flash(14.4);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 14.4)
+    .from(chars("#e5 .cab"), { yPercent: 115, duration: 0.7, stagger: 0.025 }, 14.5)
+    .from("#p1", { y: 300, rotation: -4, opacity: 0, duration: 0.9 }, 14.8)
+    .from("#p1 img", { scale: 1.35, duration: 3.2, ease: "power2.out" }, 14.8)
+    .from("#p2", { y: 500, rotation: 5, opacity: 0, duration: 0.9 }, 15.9)
+    .from("#p2 img", { scale: 1.3, duration: 2.1, ease: "power2.out" }, 15.9)
+    .to("#p1", { y: -60, scale: 0.94, opacity: 0.5, duration: 0.9 }, 15.9)
+    .from("#e5 .pie", { opacity: 0, y: 40, duration: 0.6 }, 16.5)
+    .to("#camara", { scale: 1.07, duration: 3.6, ease: "none" }, 14.4);
+  ocultar("#e5", 18.0);
+
+  // ---------- 6 · oferta (18.0 – 21.0 s)
+  mostrar("#e6", 18.0); flash(18.0);
+  tl.set("#camara", { scale: 1.2, x: 0, y: 0 }, 18.0)
+    .to("#camara", { scale: 1, duration: 1.2, ease: "expo.out" }, 18.0)
+    .from(chars("#e6 .l1"), { yPercent: 115, duration: 0.7, stagger: 0.04 }, 18.1)
+    .from(chars("#e6 .l2"), { yPercent: 115, duration: 0.7, stagger: 0.04 }, 18.4)
+    .from("#precio", { y: 120, opacity: 0, duration: 0.8 }, 19.1)
+    .to("#e6 .l2", { scale: 1.06, duration: 0.25, repeat: 1, yoyo: true, ease: "power2.inOut" }, 20.0);
+  ocultar("#e6", 21.0);
+
+  // ---------- 7 · llamada a la acción (21.0 – 25.0 s)
+  mostrar("#e7", 21.0); flash(21.0);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 21.0)
+    .from("#sol2", { yPercent: 110, duration: 1, ease: "expo.out" }, 21.0)
+    .from("#hor2", { scaleX: 0, duration: 0.8, ease: "expo.out" }, 21.1)
+    .from(chars("#e7 .nombre"), { yPercent: 115, duration: 0.7, stagger: 0.03 }, 21.3)
+    .from("#e7 .nombre2", { opacity: 0, letterSpacing: "60px", duration: 0.9 }, 21.6)
+    .from("#boton", { scale: 0.6, opacity: 0, duration: 0.7, ease: "back.out(1.6)" }, 22.0)
+    .from("#e7 .dato, #e7 .zona", { opacity: 0, y: 40, duration: 0.5, stagger: 0.15 }, 22.4)
+    .to("#boton", { scale: 1.05, duration: 0.4, repeat: 3, yoyo: true, ease: "sine.inOut" }, 23.0)
+    .to({}, { duration: 0.01 }, 25.0);
+
+  // Regla 4 · sincronía con el avance (scrub): la barra superior sigue exactamente el tiempo del video
+  const cortes = [0, 2.8, 6.6, 10.4, 14.4, 18.0, 21.0, 25.0];
+  const barras = gsap.utils.toArray("#progreso b");
+  const pintarBarras = () => {
+    const t = tl.time();
+    barras.forEach((b, i) => {
+      const p = gsap.utils.clamp(0, 1, (t - cortes[i]) / (cortes[i + 1] - cortes[i]));
+      b.style.width = p * 100 + "%";
+    });
+  };
+  tl.eventCallback("onUpdate", pintarBarras);
+
+  window.DURACION = tl.duration();
+  window.irA = (t) => { tl.seek(t, false); pintarBarras(); };
+  if (!RENDER) tl.play().eventCallback("onComplete", () => tl.restart());
+  return tl.duration();
+});
+</script>
+</body>
+</html>
