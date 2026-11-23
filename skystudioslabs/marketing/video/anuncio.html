@@ -311,16 +311,16 @@ window.LISTO = document.fonts.ready.then(() => {
   gsap.set("#barrido", { yPercent: 110, skewY: -6 });
   tl.set("#camara", { scale: 1, x: 0, y: 0 }, 0);
 
-  // Tiempos tomados de la voz en off (voz.mp3): cada animación cae sobre la frase que se escucha.
-  const DUR = 35.4;
-  tl.to("#rejilla", { backgroundPosition: "0px 1400px", duration: DUR, ease: "none" }, 0);
+  // Tiempos tomados de la transcripción palabra por palabra de la voz en off (voz.mp3, Alejandro): cada animación cae sobre la frase que se escucha.
+  const DUR = 34.3;
+  tl.to("#rejilla", { backgroundPosition: "0px 1400px", duration: DUR, ease: "none" }, 0.0);
 
   // ---------- 1 · "¿Cuántos clientes te buscaron hoy en Google?" (0 – 2.45 s)
-  mostrar("#e1", 0);
+  mostrar("#e1", 0.0);
   aterriza("#e1 .l1", 0.0);
-  aterriza("#e1 .l2", 0.8);
-  aterriza("#e1 .l3", 1.6);
-  tl.to("#camara", { scale: 1.06, duration: 2.45, ease: "none" }, 0.3);
+  aterriza("#e1 .l2", 0.74);
+  aterriza("#e1 .l3", 1.48);
+  tl.to("#camara", { scale: 1.06, duration: 2.45, ease: "none" }, 0.28);
   ocultar("#e1", 2.45);
 
   // ---------- 2 · "…y terminaron con tu competencia. Si tu negocio no aparece, para ellos no existe." (2.45 – 8.6 s)
@@ -332,64 +332,64 @@ window.LISTO = document.fonts.ready.then(() => {
     .to(tipeo, { p: 2.999, duration: 1.1, ease: "none", onUpdate: () => {
       const i = Math.floor(tipeo.p), txt = busquedas[i];
       q("#txt").textContent = txt.slice(0, Math.ceil(Math.min(1, (tipeo.p - i) * 1.4) * txt.length));
-    } }, 2.6)
-    .from("#e2 .comp", { y: 80, opacity: 0, duration: 0.35, stagger: 0.12 }, 3.2)
+    } }, 2.62)
+    .from("#e2 .comp", { y: 80, opacity: 0, duration: 0.35, stagger: 0.12 }, 3.3)
     // "competencia": las etiquetas se encienden
-    .to("#e2 .etq2", { color: "#ff4a1c", duration: 0.2, stagger: 0.06 }, 3.6)
+    .to("#e2 .etq2", { color: "#ff4a1c", duration: 0.2, stagger: 0.06 }, 3.76)
     // "Si tu negocio no aparece": aparece el hueco vacío y la cámara se acerca
-    .from("#tuyo", { opacity: 0, scale: 0.9, duration: 0.35 }, 4.85)
-    .to("#tuyo", { x: 12, duration: 0.05, repeat: 7, yoyo: true, ease: "none" }, 5.4)
-    .to("#camara", { scale: 1.35, y: -300, duration: 2.6, ease: "power2.inOut" }, 4.85)
-    .set("#pregunta", { visibility: "visible" }, 4.85)
-    .set("#pq2", { opacity: 0 }, 4.85)
-    .from("#pq1", { opacity: 0, y: 50, duration: 0.4 }, 4.85)
+    .from("#tuyo", { opacity: 0, scale: 0.9, duration: 0.35 }, 4.72)
+    .to("#tuyo", { x: 12, duration: 0.05, repeat: 7, yoyo: true, ease: "none" }, 5.39)
+    .to("#camara", { scale: 1.35, y: -300, duration: 2.6, ease: "power2.inOut" }, 4.72)
+    .set("#pregunta", { visibility: "visible" }, 4.72)
+    .set("#pq2", { opacity: 0 }, 4.72)
+    .from("#pq1", { opacity: 0, y: 50, duration: 0.4 }, 4.72)
     // "para ellos no existe": el hueco se apaga
-    .to("#pq2", { opacity: 1, duration: 0.3 }, 6.64)
-    .to("#tuyo", { opacity: 0.12, duration: 0.5 }, 7.35)
-    .set("#pregunta", { visibility: "hidden" }, 8.6);
-  golpe(7.45, 16);
+    .to("#pq2", { opacity: 1, duration: 0.3 }, 6.9)
+    .to("#tuyo", { opacity: 0.12, duration: 0.5 }, 7.12)
+    .set("#pregunta", { visibility: "hidden" }, 7.85);
+  golpe(7.18, 16);
   [3.2, 3.32, 3.44].forEach((t) => sfx(t, "pop", 0.4));
-  sfx(4.85, "pop", 0.5); sfx(7.45, "impacto", 0.7);
-  ocultar("#e2", 8.6);
+  sfx(4.72, "pop", 0.5); sfx(7.18, "impacto", 0.7);
+  ocultar("#e2", 7.85);
 
   // ---------- 3 · "En Sky Studios Labs te ponemos en el mapa." (8.6 – 11.6 s)
-  barrido(8.6);
-  mostrar("#e3", 8.6);
-  tl.set("#camara", { scale: 1.15, x: 0, y: 0 }, 8.6)
-    .to("#camara", { scale: 1, duration: 2.8, ease: "power2.out" }, 8.6)
-    .from("#sol", { yPercent: 110, duration: 0.9, ease: "expo.out" }, 8.65)
-    .from("#horizonte", { scaleX: 0, duration: 0.7, ease: "expo.out" }, 8.7)
-    .from("#glow", { opacity: 0, duration: 0.8 }, 8.6)
-    .from(chars("#e3 .nombre"), { yPercent: 115, duration: 0.55, stagger: 0.025 }, 8.75)
-    .from("#e3 .nombre2", { opacity: 0, letterSpacing: "60px", duration: 0.6 }, 9.1)
+  barrido(7.85);
+  mostrar("#e3", 7.85);
+  tl.set("#camara", { scale: 1.15, x: 0, y: 0 }, 7.85)
+    .to("#camara", { scale: 1, duration: 2.8, ease: "power2.out" }, 7.85)
+    .from("#sol", { yPercent: 110, duration: 0.9, ease: "expo.out" }, 7.9)
+    .from("#horizonte", { scaleX: 0, duration: 0.7, ease: "expo.out" }, 7.95)
+    .from("#glow", { opacity: 0, duration: 0.8 }, 7.85)
+    .from(chars("#e3 .nombre"), { yPercent: 115, duration: 0.55, stagger: 0.025 }, 7.99)
+    .from("#e3 .nombre2", { opacity: 0, letterSpacing: "60px", duration: 0.6 }, 8.33)
     // "te ponemos en el mapa": el sol se oculta y cae un pin sobre el horizonte
-    .to(["#e3 .nombre", "#e3 .nombre2"], { opacity: 0, y: -40, duration: 0.25 }, 9.95)
-    .to("#sol", { scale: 0, opacity: 0, transformOrigin: "50% 100%", duration: 0.3, ease: "power3.in" }, 9.95)
-    .set("#pin3", { opacity: 1 }, 0)
-    .from("#pin3", { y: -700, opacity: 0, duration: 0.6, ease: "bounce.out" }, 10.25)
-    .from(chars("#e3 .mapa1"), { yPercent: 115, duration: 0.5, stagger: 0.025 }, 10.0)
-    .from(chars("#e3 .mapa2"), { yPercent: 115, duration: 0.5, stagger: 0.025 }, 10.45);
-  golpe(10.75, 20);
-  sfx(10.0, "whoosh", 0.5); sfx(10.75, "impacto", 0.8);
-  ocultar("#e3", 11.6);
+    .to(["#e3 .nombre", "#e3 .nombre2"], { opacity: 0, y: -40, duration: 0.25 }, 9.15)
+    .to("#sol", { scale: 0, opacity: 0, transformOrigin: "50% 100%", duration: 0.3, ease: "power3.in" }, 9.15)
+    .set("#pin3", { opacity: 1 }, 0.0)
+    .from("#pin3", { y: -700, opacity: 0, duration: 0.6, ease: "bounce.out" }, 9.45)
+    .from(chars("#e3 .mapa1"), { yPercent: 115, duration: 0.5, stagger: 0.025 }, 9.2)
+    .from(chars("#e3 .mapa2"), { yPercent: 115, duration: 0.5, stagger: 0.025 }, 9.65);
+  golpe(9.95, 20);
+  sfx(9.2, "whoosh", 0.5); sfx(9.95, "impacto", 0.8);
+  ocultar("#e3", 10.65);
 
   // ---------- 4 · servicios en el teléfono (11.6 – 20.9 s)
   // web 11.74 · Google Maps 12.95 · chatbot 14.56 ("hasta las 3 de la mañana" 16.9) · avisos 18.45
-  barrido(11.6);
-  mostrar("#e4", 11.6);
-  const T = [11.6, 12.9, 14.45, 18.35];
-  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 11.6)
-    .set(["#pMapa", "#pChat", "#pAviso"], { xPercent: 100 }, 11.6)
-    .set(["#c2", "#c3", "#c4"], { yPercent: 120 }, 11.6)
-    .from("#tel2", { yPercent: 30, rotation: 5, opacity: 0, duration: 0.5 }, 11.62)
-    .from("#c1", { yPercent: 120, duration: 0.45 }, 11.7)
-    .from("#num", { opacity: 0, y: 20, duration: 0.35 }, 11.7)
-    .to("#tel2", { rotation: -2, duration: 9.3, ease: "none" }, 11.6);
-  tl.from("#pWeb .hero", { scale: 0.85, opacity: 0, duration: 0.45 }, 11.85)
-    .from("#pWeb .h1", { y: 60, opacity: 0, duration: 0.4 }, 12.0)
-    .from("#pWeb .lin", { scaleX: 0, transformOrigin: "0 50%", duration: 0.35, stagger: 0.08 }, 12.15)
-    .from("#pWeb .cta", { y: 80, opacity: 0, duration: 0.4, ease: "back.out(1.7)" }, 12.3);
-  sfx(12.3, "pop", 0.5);
+  barrido(10.65);
+  mostrar("#e4", 10.65);
+  const T = [10.65, 12.1, 13.85, 17.75];
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 10.65)
+    .set(["#pMapa", "#pChat", "#pAviso"], { xPercent: 100 }, 10.65)
+    .set(["#c2", "#c3", "#c4"], { yPercent: 120 }, 10.65)
+    .from("#tel2", { yPercent: 30, rotation: 5, opacity: 0, duration: 0.5 }, 10.67)
+    .from("#c1", { yPercent: 120, duration: 0.45 }, 10.76)
+    .from("#num", { opacity: 0, y: 20, duration: 0.35 }, 10.76)
+    .to("#tel2", { rotation: -2, duration: 9.3, ease: "none" }, 10.65);
+  tl.from("#pWeb .hero", { scale: 0.85, opacity: 0, duration: 0.45 }, 10.93)
+    .from("#pWeb .h1", { y: 60, opacity: 0, duration: 0.4 }, 11.1)
+    .from("#pWeb .lin", { scaleX: 0, transformOrigin: "0 50%", duration: 0.35, stagger: 0.08 }, 11.26)
+    .from("#pWeb .cta", { y: 80, opacity: 0, duration: 0.4, ease: "back.out(1.7)" }, 11.43);
+  sfx(11.43, "pop", 0.5);
   const pantallas = ["#pWeb", "#pMapa", "#pChat", "#pAviso"];
   for (let i = 1; i < 4; i++) {
     const t = T[i];
@@ -400,68 +400,68 @@ window.LISTO = document.fonts.ready.then(() => {
     sfx(t, "whoosh", 0.45);
   }
   // Google Maps: el pin cae al decir "Google Maps"
-  tl.from("#pin", { y: -500, duration: 0.5, ease: "bounce.out" }, 13.3)
-    .from("#sombra", { scale: 0.2, opacity: 0, duration: 0.5, ease: "bounce.out" }, 13.3)
-    .from("#ficha", { y: 340, duration: 0.45 }, 13.6);
-  sfx(13.6, "pop", 0.5);
+  tl.from("#pin", { y: -500, duration: 0.5, ease: "bounce.out" }, 13.0)
+    .from("#sombra", { scale: 0.2, opacity: 0, duration: 0.5, ease: "bounce.out" }, 13.0)
+    .from("#ficha", { y: 340, duration: 0.45 }, 13.22);
+  sfx(13.22, "pop", 0.5);
   // chatbot: pregunta, escribe, contesta; la hora 3:07 AM se resalta con "3 de la mañana"
-  tl.from("#b1", { scale: 0.6, opacity: 0, transformOrigin: "100% 100%", duration: 0.3, ease: "back.out(2)" }, 14.9)
-    .from("#puntos", { opacity: 0, duration: 0.15 }, 15.3)
-    .to("#puntos i", { y: -10, duration: 0.14, stagger: 0.07, repeat: 3, yoyo: true, ease: "sine.inOut" }, 15.3)
-    .to("#puntos", { opacity: 0, duration: 0.1 }, 15.95)
-    .from("#b2", { scale: 0.6, opacity: 0, transformOrigin: "0% 100%", duration: 0.3, ease: "back.out(2)" }, 15.95)
-    .to("#hora", { scale: 1.9, color: "#ff8a2a", duration: 0.3, ease: "back.out(2)" }, 16.9)
-    .to("#hora", { scale: 1.5, duration: 0.3 }, 17.4)
-    .from("#b3", { scale: 0.6, opacity: 0, transformOrigin: "100% 100%", duration: 0.3, ease: "back.out(2)" }, 17.55);
-  sfx(14.9, "burbuja"); sfx(15.95, "burbuja"); sfx(16.9, "pop", 0.6); sfx(17.55, "burbuja");
+  tl.from("#b1", { scale: 0.6, opacity: 0, transformOrigin: "100% 100%", duration: 0.3, ease: "back.out(2)" }, 14.05)
+    .from("#puntos", { opacity: 0, duration: 0.15 }, 14.58)
+    .to("#puntos i", { y: -10, duration: 0.14, stagger: 0.07, repeat: 3, yoyo: true, ease: "sine.inOut" }, 14.58)
+    .to("#puntos", { opacity: 0, duration: 0.1 }, 15.45)
+    .from("#b2", { scale: 0.6, opacity: 0, transformOrigin: "0% 100%", duration: 0.3, ease: "back.out(2)" }, 15.45)
+    .to("#hora", { scale: 1.9, color: "#ff8a2a", duration: 0.3, ease: "back.out(2)" }, 16.72)
+    .to("#hora", { scale: 1.5, duration: 0.3 }, 17.08)
+    .from("#b3", { scale: 0.6, opacity: 0, transformOrigin: "100% 100%", duration: 0.3, ease: "back.out(2)" }, 17.18);
+  sfx(14.05, "burbuja"); sfx(15.45, "burbuja"); sfx(16.72, "pop", 0.6); sfx(17.18, "burbuja");
   // avisos: llega la notificación con "cuando llega un cliente"
-  tl.from("#noti", { y: -260, opacity: 0, duration: 0.45, ease: "back.out(1.6)" }, 19.35)
-    .to("#tel2", { x: 10, duration: 0.04, repeat: 7, yoyo: true, ease: "none" }, 19.4)
-    .to("#tel2", { scale: 1.06, duration: 1.0, ease: "power2.inOut" }, 18.6);
-  sfx(19.4, "ding");
-  ocultar("#e4", 20.9);
+  tl.from("#noti", { y: -260, opacity: 0, duration: 0.45, ease: "back.out(1.6)" }, 18.95)
+    .to("#tel2", { x: 10, duration: 0.04, repeat: 7, yoyo: true, ease: "none" }, 18.99)
+    .to("#tel2", { scale: 1.06, duration: 1.0, ease: "power2.inOut" }, 18.05);
+  sfx(18.99, "ding");
+  ocultar("#e4", 20.05);
 
   // ---------- 5 · "Te hacemos un boceto gratis: mira tu página antes de pagar." (20.9 – 24.7 s)
-  barrido(20.9);
-  mostrar("#e5", 20.9);
-  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 20.9);
-  aterriza("#e5 .l1", 21.55);
-  aterriza("#e5 .l2", 22.05);
-  tl.from("#e5 .antes", { opacity: 0, y: 40, duration: 0.4 }, 22.91)
-    .from("#e5 .antes span", { borderBottomColor: "rgba(255,138,42,0)", duration: 0.4 }, 23.7)
-    .to("#camara", { scale: 1.05, duration: 3.6, ease: "none" }, 21.1);
-  ocultar("#e5", 24.7);
+  barrido(20.05);
+  mostrar("#e5", 20.05);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 20.05);
+  aterriza("#e5 .l1", 20.46);
+  aterriza("#e5 .l2", 20.98);
+  tl.from("#e5 .antes", { opacity: 0, y: 40, duration: 0.4 }, 21.64)
+    .from("#e5 .antes span", { borderBottomColor: "rgba(255,138,42,0)", duration: 0.4 }, 22.48)
+    .to("#camara", { scale: 1.05, duration: 3.6, ease: "none" }, 20.18);
+  ocultar("#e5", 23.45);
 
   // ---------- 6 · "Pídelo en skystudioslabs.com. O escríbenos por WhatsApp: 44 9288 9487. Atendemos negocios en todo México." (24.7 – 35.4 s)
-  mostrar("#e6", 24.7); flash(24.7);
-  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 24.7)
-    .from("#sol2", { yPercent: 110, duration: 0.8, ease: "expo.out" }, 24.7)
-    .from("#hor2", { scaleX: 0, duration: 0.6, ease: "expo.out" }, 24.75)
-    .from(chars("#e6 .nombre"), { yPercent: 115, duration: 0.5, stagger: 0.02 }, 24.8)
-    .from("#e6 .nombre2", { opacity: 0, duration: 0.5 }, 25.0)
-    .from("#e6 .pide", { opacity: 0, y: 20, duration: 0.35 }, 24.84)
-    .from("#boton", { scale: 0.6, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 25.25)
-    .to("#boton", { scale: 1.06, duration: 0.3, repeat: 1, yoyo: true, ease: "sine.inOut" }, 26.5)
-    .from("#flecha", { opacity: 0, duration: 0.3 }, 25.6)
-    .to("#flecha", { y: -26, duration: 0.3, repeat: 5, yoyo: true, ease: "sine.inOut" }, 25.6)
-    .to("#flecha", { opacity: 0, duration: 0.2 }, 27.2)
+  mostrar("#e6", 23.45); flash(23.45);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 23.45)
+    .from("#sol2", { yPercent: 110, duration: 0.8, ease: "expo.out" }, 23.45)
+    .from("#hor2", { scaleX: 0, duration: 0.6, ease: "expo.out" }, 23.48)
+    .from(chars("#e6 .nombre"), { yPercent: 115, duration: 0.5, stagger: 0.02 }, 23.5)
+    .from("#e6 .nombre2", { opacity: 0, duration: 0.5 }, 23.71)
+    .from("#e6 .pide", { opacity: 0, y: 20, duration: 0.35 }, 23.52)
+    .from("#boton", { scale: 0.6, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 24.0)
+    .to("#boton", { scale: 1.06, duration: 0.3, repeat: 1, yoyo: true, ease: "sine.inOut" }, 25.18)
+    .from("#flecha", { opacity: 0, duration: 0.3 }, 24.33)
+    .to("#flecha", { y: -26, duration: 0.3, repeat: 5, yoyo: true, ease: "sine.inOut" }, 24.33)
+    .to("#flecha", { opacity: 0, duration: 0.2 }, 25.85)
     // "O escríbenos por WhatsApp"
-    .from("#wa", { scale: 0.5, opacity: 0, duration: 0.4, ease: "back.out(2)" }, 27.31);
+    .from("#wa", { scale: 0.5, opacity: 0, duration: 0.4, ease: "back.out(2)" }, 25.95);
   // el número aparece grupo por grupo, al ritmo en que se dice
   const grupos = gsap.utils.toArray("#numero span");
-  [28.78, 29.5, 30.15, 30.68, 31.3].forEach((t, i) => {
+  [27.24, 27.92, 28.72, 29.52, 30.24].forEach((t, i) => {
     tl.from(grupos[i], { yPercent: 60, opacity: 0, duration: 0.25, ease: "back.out(2)" }, t);
     sfx(t, "pop", 0.45);
   });
   // "Atendemos negocios en todo México"
-  tl.from(chars("#e6 .mx1"), { yPercent: 115, duration: 0.45, stagger: 0.03 }, 32.55);
-  aterriza("#e6 .mx2", 33.6);
-  tl.to("#e6 .mx2", { scale: 1.05, duration: 0.3, repeat: 1, yoyo: true, ease: "sine.inOut" }, 34.4)
+  tl.from(chars("#e6 .mx1"), { yPercent: 115, duration: 0.45, stagger: 0.03 }, 31.9);
+  aterriza("#e6 .mx2", 32.6);
+  tl.to("#e6 .mx2", { scale: 1.05, duration: 0.3, repeat: 1, yoyo: true, ease: "sine.inOut" }, 33.36)
     .to({}, { duration: 0.01 }, DUR);
-  sfx(25.25, "impacto", 0.6); sfx(27.31, "pop", 0.5);
+  sfx(24.0, "impacto", 0.6); sfx(25.95, "pop", 0.5);
 
   // Regla 4 · la barra superior sigue exactamente el tiempo del video (scrub)
-  const cortes = [0, 2.45, 8.6, 11.6, 20.9, 24.7, DUR];
+  const cortes = [0, 2.45, 7.85, 10.65, 20.05, 23.45, DUR];
   const barras = gsap.utils.toArray("#progreso b");
   const pintarBarras = () => {
     const t = tl.time();
