@@ -23,6 +23,14 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [{ source: "/paginas-web-zapopan", destination: "/paginas-web-mexico", permanent: true }];
   },
+  // Navegadores y bots piden /favicon.ico aunque la página declare icon.svg (y el CRM, al
+  // declarar sólo el ícono de Apple, no publica <link rel="icon">): se sirve el mismo SVG.
+  // Sólo en hosts propios (raíz, www, admin, portal): un sitio de cliente no debe heredar el logo.
+  async rewrites() {
+    const raizHost = (process.env.NEXT_PUBLIC_ROOT_DOMAIN || "skystudioslabs.com").replace(/:\d+$/, "");
+    const hostsPropios = `(?:www\\.|admin\\.|portal\\.)?${raizHost.replace(/\./g, "\\.")}`;
+    return [{ source: "/favicon.ico", has: [{ type: "host" as const, value: hostsPropios }], destination: "/icon.svg" }];
+  },
   async headers() {
     return [
       {
@@ -30,7 +38,10 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+          // HTTPS obligatorio 2 años en el dominio y todos los subdominios (Vercel emite el
+          // certificado wildcard). Sin "preload": eso es un compromiso que decide el dueño.
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
         ],
       },
       {
