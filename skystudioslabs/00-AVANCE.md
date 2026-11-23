@@ -49,3 +49,16 @@
 - El sitemap y el menú toman las páginas nuevas solos (11 páginas).
 - Unido con A sin conflictos: tsc limpio, vitest 170/170.
 - Sugerencia → 00-PREGUNTAS: falta un aviso de privacidad (el formulario pide nombre y WhatsApp).
+
+## 2026-11-23 ~20:20 UTC — Terminó C (CRM, portal y seguridad) → unido
+- `crm:importar` ahora acepta la carpeta de prospección (un .json por negocio): **los 171 prospectos reales
+  importan bien** (antes 0). Probado en un almacén temporal fuera del repo, ya borrado. 59 escrituras de giro
+  → 26; los teléfonos dudosos van a "alertas" sin inventar números; volver a importar actualiza, no duplica.
+- Seguridad (4 arreglos): límite real de 8 KB en el formulario público aunque el envío venga por partes (antes
+  se evadía); migración `supabase/migrations/0003_seguridad.sql`: un cliente no puede adjuntar la foto de otro
+  (probado en PostgreSQL local); CSV a salvo de fórmulas con espacios o signos de ancho completo; un id mal
+  formado da 404 en vez de 500. Arreglado también "Ver foto" con el código especial.
+- CRM: filtros por giro y categoría con conteo, "seguimiento hoy o vencido" y botones por etapa.
+- Yo agregué `data/crm-prospectos.json` al `.gitignore` (datos personales; sugerencia de C).
+- Unido con A y D: tsc limpio, vitest 200/200.
+- Pendiente (no urgente): un trigger de límite de solicitudes en Supabase; revisar el origen en `/auth/salir`.

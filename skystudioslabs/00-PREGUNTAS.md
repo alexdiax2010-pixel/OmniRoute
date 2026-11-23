@@ -13,3 +13,5 @@ Contesta debajo de cada pregunta ("R: …"). Las respuestas se aplican en la sig
 6. **Datos de las páginas nuevas** (abogados/contadores, consultorios, veterinarias): son ejemplos de diseño
    con negocios ficticios y marcadores como [CÉDULA PROFESIONAL]. ¿Te parecen bien esos giros o prefieres otros
    (por ejemplo, guarderías, que tienen 9 prospectos)?
+7. **Migración de seguridad 0003**: se aplica sola en el siguiente deploy (`npm run db:migrar`). No toqué tu base
+   real. ¿La aplico cuando publiquemos?
