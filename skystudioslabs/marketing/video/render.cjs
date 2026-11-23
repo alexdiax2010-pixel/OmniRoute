@@ -38,7 +38,15 @@ const audio = path.join(tmp, "audio.wav");
   await new Promise((r) => ffmpeg.on("close", r));
   await navegador.close();
 
-  execFileSync("python3", [path.join(__dirname, "sonido.py"), eventos, audio], { stdio: "inherit" });
+  // voz en off (si existe): se convierte a WAV y se mezcla encima de la música
+  const vozMp3 = path.join(__dirname, "voz.mp3");
+  const extra = [];
+  if (fs.existsSync(vozMp3)) {
+    const vozWav = path.join(tmp, "voz.wav");
+    execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", vozMp3, "-ac", "1", "-ar", "44100", vozWav]);
+    extra.push(vozWav);
+  }
+  execFileSync("python3", [path.join(__dirname, "sonido.py"), eventos, audio, ...extra], { stdio: "inherit" });
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", soloVideo, "-i", audio, "-c:v", "copy",
     "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", salida], { stdio: "inherit" });
   fs.rmSync(tmp, { recursive: true, force: true });

@@ -1,6 +1,6 @@
 """Sintetiza la pista del anuncio: ritmo + efectos sincronizados con la animación.
 
-Uso: python3 sonido.py eventos.json salida.wav
+Uso: python3 sonido.py eventos.json salida.wav [voz.wav]
 eventos.json = {"duracion": s, "cortes": [...], "sonidos": [{"t", "tipo", "vol"}]}
 Todo se genera aquí (sin samples externos), así que no hay derechos de autor de por medio.
 """
@@ -171,7 +171,23 @@ def main():
             seg = 1 - 0.5 * np.exp(-np.arange(m) / (0.08 * SR))
             fin = min(len(sidechain), i + m)
             sidechain[i:fin] = np.minimum(sidechain[i:fin], seg[: fin - i])
+    voz = None
+    if len(sys.argv) > 3:
+        with wave.open(sys.argv[3]) as w:
+            v = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(float) / 32768
+            if w.getnchannels() == 2:
+                v = v.reshape(-1, 2).mean(1)
+        voz = np.zeros_like(musica)
+        voz[: min(len(v), len(voz))] = v[: len(voz)]
+        voz /= np.max(np.abs(voz)) + 1e-9
+        # la música baja mientras habla la voz (envolvente suavizada de ~150 ms)
+        ventana = int(0.15 * SR)
+        env_voz = np.convolve(np.abs(voz), np.ones(ventana) / ventana, "same")
+        env_voz = np.clip(env_voz / (np.percentile(env_voz, 95) + 1e-9), 0, 1)
+        sidechain = sidechain * (1 - 0.6 * env_voz)
     mezcla = musica * 0.75 * sidechain + efectos * 0.9
+    if voz is not None:
+        mezcla = mezcla * 0.55 + voz * 0.95
     # salida suave
     cola = int(0.8 * SR)
     mezcla[-cola:] *= np.linspace(1, 0, cola)
