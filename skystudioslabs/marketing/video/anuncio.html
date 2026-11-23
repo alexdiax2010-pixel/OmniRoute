@@ -30,9 +30,9 @@ html,body { background:#000; }
 #flash { position:absolute; inset:0; background:var(--text); opacity:0; z-index:30; pointer-events:none; }
 
 /* 1 · gancho */
-#e1 .l1 { top:660px; font-size:205px; }
-#e1 .l2 { top:860px; font-size:235px; }
-#e1 .sub { top:1160px; font-size:54px; font-weight:600; color:var(--muted); }
+#e1 .l1 { top:600px; font-size:230px; }
+#e1 .l2 { top:810px; font-size:235px; }
+#e1 .sub { top:1130px; font-size:62px; line-height:1.3; font-weight:700; color:var(--text); }
 
 /* 2 · teléfono con búsqueda */
 #tel { position:absolute; left:240px; top:420px; width:600px; height:1160px; border-radius:72px; background:#0d0d0f;
@@ -48,8 +48,13 @@ html,body { background:#000; }
 .res .s { height:18px; width:85%; border-radius:9px; background:#232328; margin-top:22px; }
 .res .s2 { width:48%; }
 .res .pin { position:absolute; right:30px; top:30px; width:44px; height:44px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#3a3a40; }
-#tuyo { border-color:var(--orange); background:linear-gradient(135deg,rgba(255,74,28,.18),rgba(255,138,42,.06)); }
-#tuyo .t { background:var(--orange); }
+.res .etq2 { position:absolute; left:30px; bottom:26px; font-size:24px; font-weight:800; letter-spacing:3px; color:#6b6b73; }
+#tuyo { border:3px dashed #4a4a52; background:transparent; z-index:2; }
+#tuyo .vacio { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:40px; font-weight:800; color:var(--muted); letter-spacing:2px; }
+#tuyo .lleno { position:absolute; inset:-3px; border-radius:28px; border:3px solid var(--orange); background:linear-gradient(135deg,rgba(255,74,28,.32),rgba(255,138,42,.1)); opacity:0; }
+#tuyo .t, #tuyo .s, #tuyo .pin, #tuyo .etq { opacity:0; }
+#tuyo .t { background:var(--orange); position:relative; }
+#tuyo .s { position:relative; }
 #tuyo .pin { background:var(--ember); }
 #tuyo .etq { position:absolute; left:30px; bottom:26px; font-size:26px; font-weight:800; letter-spacing:3px; color:var(--orange); }
 #pregunta { top:1690px; font-size:64px; font-weight:700; z-index:15; visibility:hidden; }
@@ -68,25 +73,12 @@ html,body { background:#000; }
 .serv .nom { font-family:Anton; font-size:130px; text-transform:uppercase; line-height:1; }
 .serv .nom-wrap { overflow:hidden; padding:10px 0; }
 
-/* 5 · clientes */
-#e5 .cab { top:300px; font-size:170px; }
-.pantalla { position:absolute; left:60px; width:960px; height:600px; border-radius:36px; overflow:hidden; border:3px solid #2c2c32;
-  box-shadow:0 50px 140px -40px rgba(0,0,0,.9); background:#111; }
-.pantalla img { width:100%; height:100%; object-fit:cover; display:block; transform-origin:50% 40%; }
-#p1 { top:690px; }
-#p2 { top:950px; }
-#e5 .pie { top:1600px; font-size:48px; font-weight:700; }
-#e5 .pie span { color:var(--muted); font-weight:500; }
+/* 5 · oferta */
+#e6 .l1 { top:640px; font-size:300px; }
+#e6 .l2 { top:920px; font-size:300px; }
+#e6 .antes { top:1260px; font-size:62px; font-weight:700; }
 
-/* 6 · oferta */
-#e6 .l1 { top:520px; font-size:300px; }
-#e6 .l2 { top:800px; font-size:300px; }
-#precio { position:absolute; left:120px; right:120px; top:1230px; border:3px solid var(--line); border-radius:40px; padding:46px 50px; text-align:center; background:#0d0d0f; }
-#precio .k { font-size:36px; font-weight:700; letter-spacing:6px; color:var(--muted); }
-#precio .v { font-family:Anton; font-size:150px; line-height:1.05; margin-top:10px; }
-#precio .v small { font-family:Inter; font-size:46px; font-weight:600; color:var(--muted); }
-
-/* 7 · llamada a la acción */
+/* 6 · llamada a la acción */
 #e7 #sol2 { position:absolute; left:390px; top:330px; width:300px; height:150px; border-radius:150px 150px 0 0; background:linear-gradient(135deg,var(--orange),var(--ember)); }
 #e7 #hor2 { position:absolute; left:330px; top:498px; width:420px; height:16px; border-radius:8px; background:var(--text); }
 #e7 .nombre { top:600px; font-size:150px; }
@@ -105,19 +97,19 @@ html,body { background:#000; }
     <div class="glow" id="glow" style="left:-160px;top:200px;width:1400px;height:1400px;background:radial-gradient(circle,rgba(255,74,28,.55),rgba(255,138,42,.14) 42%,rgba(5,5,5,0) 68%)"></div>
 
     <section class="escena" id="e1">
-      <div class="centro display l1 rev">Tu negocio</div>
-      <div class="centro display l2 rev grad">no existe</div>
-      <div class="centro sub">si no sale en Google.</div>
+      <div class="centro display l1 rev">Te están</div>
+      <div class="centro display l2 rev grad">buscando</div>
+      <div class="centro sub">…y están encontrando<br>a tu competencia.</div>
     </section>
 
     <section class="escena" id="e2">
       <div id="tel">
         <div class="notch"></div>
         <div id="busca"><span class="lupa"></span><span id="txt"></span><span class="cursor"></span></div>
-        <div class="res" style="top:250px"><div class="t"></div><div class="s"></div><div class="s s2"></div><div class="pin"></div></div>
-        <div class="res" style="top:450px"><div class="t"></div><div class="s"></div><div class="s s2"></div><div class="pin"></div></div>
-        <div class="res" id="tuyo" style="top:650px"><div class="t"></div><div class="s"></div><div class="pin"></div><div class="etq">TU NEGOCIO</div></div>
-        <div class="res" style="top:850px"><div class="t"></div><div class="s"></div><div class="s s2"></div><div class="pin"></div></div>
+        <div class="res comp" style="top:250px"><div class="t"></div><div class="s"></div><div class="pin"></div><div class="etq2">COMPETENCIA</div></div>
+        <div class="res comp" style="top:450px"><div class="t"></div><div class="s"></div><div class="pin"></div><div class="etq2">COMPETENCIA</div></div>
+        <div class="res comp" style="top:650px"><div class="t"></div><div class="s"></div><div class="pin"></div><div class="etq2">COMPETENCIA</div></div>
+        <div class="res" id="tuyo" style="top:850px"><div class="lleno"></div><div class="vacio">¿Y TU NEGOCIO?</div><div class="t"></div><div class="s"></div><div class="pin"></div><div class="etq">TU NEGOCIO · #1</div></div>
       </div>
     </section>
 
@@ -135,17 +127,10 @@ html,body { background:#000; }
       <div class="serv" style="top:1170px"><div class="n">04</div><div class="nom-wrap"><div class="nom grad">Chatbots</div></div></div>
     </section>
 
-    <section class="escena" id="e5">
-      <div class="centro display cab rev">Nuestros <span class="grad">clientes</span></div>
-      <div class="pantalla" id="p1"><img src="../../public/portafolio/wellness-5am-panel.webp" alt=""></div>
-      <div class="pantalla" id="p2"><img src="../../public/portafolio/wellness-5am-entrada.webp" alt=""></div>
-      <div class="centro pie">Wellness Fitness 5AM <span>· Gimnasio</span></div>
-    </section>
-
     <section class="escena" id="e6">
       <div class="centro display l1 rev">Boceto</div>
       <div class="centro display l2 rev grad">gratis</div>
-      <div id="precio"><div class="k">MANTENIMIENTO</div><div class="v">$1,099 <small>MXN / mes</small></div></div>
+      <div class="centro antes">Mira tu página antes de pagar.</div>
     </section>
 
     <section class="escena" id="e7">
@@ -159,9 +144,9 @@ html,body { background:#000; }
     </section>
   </div>
 
-  <div class="centro pregunta" id="pregunta">Te buscan. <span class="grad">¿Te encuentran?</span></div>
+  <div class="centro pregunta" id="pregunta">Si no apareces, <span class="grad">no existes.</span></div>
   <div class="ruido"></div>
-  <div id="progreso"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+  <div id="progreso"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
   <div id="marca">SKY STUDIOS LABS</div>
   <div id="flash"></div>
 </div>
@@ -205,27 +190,35 @@ window.LISTO = document.fonts.ready.then(() => {
 
   // ---------- 1 · gancho (0 – 2.8 s)
   mostrar("#e1", 0);
-  tl.from(chars("#e1 .l1"), { yPercent: 110, duration: 0.7, stagger: 0.035 }, 0.1)
-    .from(chars("#e1 .l2"), { yPercent: 110, duration: 0.7, stagger: 0.035 }, 0.45)
-    .from("#e1 .sub", { opacity: 0, y: 40, duration: 0.6 }, 1.2)
-    .to("#camara", { scale: 1.08, duration: 2.6, ease: "none" }, 0)
-    .to("#e1 .l2", { x: 14, duration: 0.05, repeat: 5, yoyo: true, ease: "none" }, 1.9);
+  tl.from(chars("#e1 .l1"), { yPercent: 110, duration: 0.6, stagger: 0.035 }, 0.05)
+    .from(chars("#e1 .l2"), { yPercent: 110, duration: 0.6, stagger: 0.035 }, 0.35)
+    .from("#e1 .sub", { opacity: 0, y: 40, duration: 0.5 }, 1.0)
+    .to("#camara", { scale: 1.08, duration: 2.8, ease: "none" }, 0)
+    .to("#e1 .l2", { x: 14, duration: 0.05, repeat: 5, yoyo: true, ease: "none" }, 2.0);
   ocultar("#e1", 2.8);
 
-  // ---------- 2 · búsqueda en el teléfono (2.8 – 6.6 s)
-  const busqueda = "negocio cerca de mí";
-  const tipeo = { n: 0 };
+  // ---------- 2 · búsqueda: aparece la competencia, no tú… hasta que llegas al #1 (2.8 – 6.6 s)
+  const busquedas = ["barbería en Zapopan", "taller cerca de mí", "tacos en Guadalajara"];
+  const tipeo = { p: 0 };
   mostrar("#e2", 2.8); flash(2.8);
   tl.set("#camara", { scale: 1, x: 0, y: 0 }, 2.8)
-    .from("#tel", { yPercent: 40, rotation: -6, opacity: 0, duration: 0.8 }, 2.8)
-    .to(tipeo, { n: busqueda.length, duration: 1.1, ease: "none", snap: { n: 1 },
-      onUpdate: () => (q("#txt").textContent = busqueda.slice(0, tipeo.n)) }, 3.3)
-    .from("#e2 .res", { y: 80, opacity: 0, duration: 0.5, stagger: 0.12 }, 4.4)
-    // Regla 3 · zoom de cámara hacia "tu negocio"
-    .to("#camara", { scale: 1.55, y: -40, duration: 1.4, ease: "power3.inOut" }, 5.0)
-    .fromTo("#tuyo", { boxShadow: "0 0 0 0 rgba(255,138,42,0)" }, { boxShadow: "0 0 0 18px rgba(255,138,42,.25)", duration: 0.5, repeat: 1, yoyo: true }, 5.4)
-    .set("#pregunta", { visibility: "visible" }, 5.2)
-    .from("#pregunta", { opacity: 0, y: 60, duration: 0.6 }, 5.2)
+    .from("#tel", { yPercent: 40, rotation: -6, opacity: 0, duration: 0.7 }, 2.8)
+    .to(tipeo, { p: 2.999, duration: 1.9, ease: "none", onUpdate: () => {
+      const i = Math.floor(tipeo.p), txt = busquedas[i];
+      q("#txt").textContent = txt.slice(0, Math.ceil(Math.min(1, (tipeo.p - i) * 1.5) * txt.length));
+    } }, 3.1)
+    .from("#e2 .comp", { y: 80, opacity: 0, duration: 0.45, stagger: 0.1 }, 3.6)
+    .from("#tuyo", { opacity: 0, duration: 0.4 }, 4.0)
+    .set("#pregunta", { visibility: "visible" }, 4.6)
+    .from("#pregunta", { opacity: 0, y: 60, duration: 0.5 }, 4.6)
+    // el cambio: tu negocio sube al primer lugar y la competencia baja
+    .to("#e2 .comp", { y: 200, opacity: 0.45, duration: 0.7, ease: "power3.inOut" }, 5.3)
+    .to("#tuyo", { top: 250, borderColor: "rgba(0,0,0,0)", duration: 0.7, ease: "power3.inOut" }, 5.3)
+    .to("#tuyo .vacio", { opacity: 0, duration: 0.2 }, 5.3)
+    .to("#tuyo .lleno, #tuyo .t, #tuyo .s, #tuyo .pin, #tuyo .etq", { opacity: 1, duration: 0.3 }, 5.5)
+    // Regla 3 · la cámara se acerca a tu negocio ya en el #1
+    .to("#camara", { scale: 1.4, y: 150, duration: 1.1, ease: "power3.inOut" }, 5.4)
+    .fromTo("#tuyo", { boxShadow: "0 0 0 0 rgba(255,138,42,0)" }, { boxShadow: "0 0 0 22px rgba(255,138,42,.28)", duration: 0.35, repeat: 1, yoyo: true, immediateRender: false }, 6.0)
     .set("#pregunta", { visibility: "hidden" }, 6.6); // fuera de la cámara: queda fija y legible durante el zoom
   ocultar("#e2", 6.6);
 
@@ -256,43 +249,30 @@ window.LISTO = document.fonts.ready.then(() => {
     .to("#e4 .serv:not(:last-child) .nom", { opacity: 0.35, duration: 0.4 }, 13.4);
   ocultar("#e4", 14.4);
 
-  // ---------- 5 · clientes (14.4 – 18.0 s)
-  mostrar("#e5", 14.4); flash(14.4);
-  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 14.4)
-    .from(chars("#e5 .cab"), { yPercent: 115, duration: 0.7, stagger: 0.025 }, 14.5)
-    .from("#p1", { y: 300, rotation: -4, opacity: 0, duration: 0.9 }, 14.8)
-    .from("#p1 img", { scale: 1.35, duration: 3.2, ease: "power2.out" }, 14.8)
-    .from("#p2", { y: 500, rotation: 5, opacity: 0, duration: 0.9 }, 15.9)
-    .from("#p2 img", { scale: 1.3, duration: 2.1, ease: "power2.out" }, 15.9)
-    .to("#p1", { y: -60, scale: 0.94, opacity: 0.5, duration: 0.9 }, 15.9)
-    .from("#e5 .pie", { opacity: 0, y: 40, duration: 0.6 }, 16.5)
-    .to("#camara", { scale: 1.07, duration: 3.6, ease: "none" }, 14.4);
-  ocultar("#e5", 18.0);
+  // ---------- 5 · oferta (14.4 – 17.0 s)
+  mostrar("#e6", 14.4); flash(14.4);
+  tl.set("#camara", { scale: 1.2, x: 0, y: 0 }, 14.4)
+    .to("#camara", { scale: 1, duration: 1.2, ease: "expo.out" }, 14.4)
+    .from(chars("#e6 .l1"), { yPercent: 115, duration: 0.7, stagger: 0.04 }, 14.5)
+    .from(chars("#e6 .l2"), { yPercent: 115, duration: 0.7, stagger: 0.04 }, 14.8)
+    .from("#e6 .antes", { opacity: 0, y: 40, duration: 0.5 }, 15.4)
+    .to("#e6 .l2", { scale: 1.06, duration: 0.25, repeat: 1, yoyo: true, ease: "power2.inOut" }, 16.0);
+  ocultar("#e6", 17.0);
 
-  // ---------- 6 · oferta (18.0 – 21.0 s)
-  mostrar("#e6", 18.0); flash(18.0);
-  tl.set("#camara", { scale: 1.2, x: 0, y: 0 }, 18.0)
-    .to("#camara", { scale: 1, duration: 1.2, ease: "expo.out" }, 18.0)
-    .from(chars("#e6 .l1"), { yPercent: 115, duration: 0.7, stagger: 0.04 }, 18.1)
-    .from(chars("#e6 .l2"), { yPercent: 115, duration: 0.7, stagger: 0.04 }, 18.4)
-    .from("#precio", { y: 120, opacity: 0, duration: 0.8 }, 19.1)
-    .to("#e6 .l2", { scale: 1.06, duration: 0.25, repeat: 1, yoyo: true, ease: "power2.inOut" }, 20.0);
-  ocultar("#e6", 21.0);
-
-  // ---------- 7 · llamada a la acción (21.0 – 25.0 s)
-  mostrar("#e7", 21.0); flash(21.0);
-  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 21.0)
-    .from("#sol2", { yPercent: 110, duration: 1, ease: "expo.out" }, 21.0)
-    .from("#hor2", { scaleX: 0, duration: 0.8, ease: "expo.out" }, 21.1)
-    .from(chars("#e7 .nombre"), { yPercent: 115, duration: 0.7, stagger: 0.03 }, 21.3)
-    .from("#e7 .nombre2", { opacity: 0, letterSpacing: "60px", duration: 0.9 }, 21.6)
-    .from("#boton", { scale: 0.6, opacity: 0, duration: 0.7, ease: "back.out(1.6)" }, 22.0)
-    .from("#e7 .dato, #e7 .zona", { opacity: 0, y: 40, duration: 0.5, stagger: 0.15 }, 22.4)
-    .to("#boton", { scale: 1.05, duration: 0.4, repeat: 3, yoyo: true, ease: "sine.inOut" }, 23.0)
-    .to({}, { duration: 0.01 }, 25.0);
+  // ---------- 6 · llamada a la acción (17.0 – 21.0 s)
+  mostrar("#e7", 17.0); flash(17.0);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 17.0)
+    .from("#sol2", { yPercent: 110, duration: 1, ease: "expo.out" }, 17.0)
+    .from("#hor2", { scaleX: 0, duration: 0.8, ease: "expo.out" }, 17.1)
+    .from(chars("#e7 .nombre"), { yPercent: 115, duration: 0.7, stagger: 0.03 }, 17.3)
+    .from("#e7 .nombre2", { opacity: 0, letterSpacing: "60px", duration: 0.9 }, 17.6)
+    .from("#boton", { scale: 0.6, opacity: 0, duration: 0.7, ease: "back.out(1.6)" }, 18.0)
+    .from("#e7 .dato, #e7 .zona", { opacity: 0, y: 40, duration: 0.5, stagger: 0.15 }, 18.4)
+    .to("#boton", { scale: 1.05, duration: 0.4, repeat: 3, yoyo: true, ease: "sine.inOut" }, 19.0)
+    .to({}, { duration: 0.01 }, 21.0);
 
   // Regla 4 · sincronía con el avance (scrub): la barra superior sigue exactamente el tiempo del video
-  const cortes = [0, 2.8, 6.6, 10.4, 14.4, 18.0, 21.0, 25.0];
+  const cortes = [0, 2.8, 6.6, 10.4, 14.4, 17.0, 21.0];
   const barras = gsap.utils.toArray("#progreso b");
   const pintarBarras = () => {
     const t = tl.time();
