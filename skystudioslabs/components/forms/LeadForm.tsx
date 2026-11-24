@@ -65,7 +65,7 @@ export function LeadForm({ origen }: { origen?: string }) {
       <input type="hidden" name="origen" value={origen ?? "sitio"} />
       {campo("nombre", "Tu nombre", { autoComplete: "name", maxLength: 80 })}
       {campo("negocio", "Nombre de tu negocio", { autoComplete: "organization", maxLength: 120 })}
-      {campo("whatsapp", "WhatsApp", { type: "tel", inputMode: "numeric", autoComplete: "tel-national", maxLength: 16, placeholder: "33 1234 5678" }, "10 dígitos, sin +52.")}
+      {campo("whatsapp", "WhatsApp", { type: "tel", inputMode: "numeric", autoComplete: "tel-national", maxLength: 16, placeholder: "10 dígitos" }, "Tu número a 10 dígitos, sin +52. Ahí te mandamos tu boceto.")}
       {/* Trampa para bots: invisible para personas y lectores de pantalla. */}
       <div className={s.trampa} aria-hidden="true">
         <label htmlFor={`${id}-sitio_web`}>No llenes este campo</label>
@@ -74,6 +74,7 @@ export function LeadForm({ origen }: { origen?: string }) {
       <button type="submit" className={s.btn} disabled={estado.tipo === "enviando"}>
         {estado.tipo === "enviando" ? "Enviando…" : "Quiero mi boceto gratis"}
       </button>
+      <p className={s.ayuda}>Sin costo y sin compromiso: primero ves tu boceto y luego decides.</p>
       <p className={s.estado} aria-live="polite" role="status">
         {estado.tipo === "ok" && (
           <span className={s.ok}>

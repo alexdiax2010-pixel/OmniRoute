@@ -70,6 +70,14 @@ const faqCambios: FAQ = {
     "Sí. Antes de publicar revisamos el boceto contigo y lo ajustamos. Ya publicada, con el mantenimiento mensual nos mandas por WhatsApp los cambios menores (precios, horarios, fotos, promociones) y nosotros los hacemos.",
 };
 
+/** Combos: página + otros servicios del catálogo. Sin precios hasta que el dueño los confirme. */
+function faqCombo(ejemplo: string): FAQ {
+  return {
+    pregunta: "¿Puedo contratar varios servicios juntos?",
+    respuesta: `Sí. Armamos un combo con lo que tu negocio necesita: página web, Perfil de Google Maps, redes sociales o chatbot de WhatsApp. ${ejemplo} Te lo cotizamos por WhatsApp junto con tu boceto gratis.`,
+  };
+}
+
 function faqNecesito(cosas: string): FAQ {
   return {
     pregunta: "¿Qué necesito darte?",
@@ -149,7 +157,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       {
         pregunta: "¿Cuánto cuesta una página web?",
         respuesta:
-          "Tenemos tres paquetes de pago único (Básico, Estándar y Premium) y un mantenimiento mensual opcional. Los precios están en la tabla de esta página. El boceto es gratis y sin compromiso.",
+          "Tenemos tres paquetes de pago único (Básico, Estándar y Premium) y un mantenimiento mensual opcional. El precio depende de cuántas secciones lleva tu página y de si sumas Google Maps, redes o chatbot; te lo confirmamos por WhatsApp antes de empezar. El boceto es gratis y sin compromiso.",
       },
       faqTiempo,
       faqNecesito(
@@ -157,6 +165,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       ),
       faqDominio,
       faqCambios,
+      faqCombo("Lo más común es página + Google Maps, para que te encuentren en el mapa y te escriban desde tu página."),
       {
         pregunta: "¿Trabajan en todo México?",
         respuesta:
@@ -229,6 +238,11 @@ export const PAGINAS_SEO: PaginaSEO[] = [
         titulo: "Conexión con tu página",
         texto: "Tu ficha y tu página se refuerzan: mismos datos, mismo nombre y enlaces entre ambas.",
       },
+      {
+        titulo: "Gestión mensual opcional",
+        texto:
+          "Si quieres que la sigamos cuidando: horarios al día, fotos y novedades nuevas y ayuda para responder cada reseña.",
+      },
     ],
     nota:
       "Nadie puede garantizar el primer lugar en Google Maps; si alguien te lo promete, desconfía. Lo que sí hacemos es dejar tu ficha completa, correcta y activa, que es lo que Google toma en cuenta.",
@@ -256,7 +270,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       {
         pregunta: "¿Viene incluido en algún paquete?",
         respuesta:
-          "Sí: los paquetes Estándar y Premium incluyen el alta y optimización en Google Maps junto con tu página. Si solo quieres este servicio, cotízalo por WhatsApp.",
+          "Sí: los paquetes Estándar y Premium incluyen el alta y optimización en Google Maps junto con tu página. También lo puedes contratar solo, con o sin la gestión mensual; cotízalo por WhatsApp.",
       },
     ],
     servicio: {
@@ -352,6 +366,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
         respuesta:
           "La atención de mensajes la puedes automatizar en parte con un chatbot de WhatsApp que responde horarios, precios y ubicación, y te pasa al cliente cuando ya está listo.",
       },
+      faqCombo("Por ejemplo, página + Google Maps + un mes de redes para arrancar con todo conectado."),
     ],
     servicio: {
       nombre: "Manejo de redes sociales para negocios locales",
@@ -436,11 +451,12 @@ export const PAGINAS_SEO: PaginaSEO[] = [
       {
         pregunta: "¿Tiene costos extra?",
         respuesta:
-          "Según la opción que elijamos, WhatsApp (Meta) puede cobrar por conversación. Te explicamos los costos antes de empezar para que no haya sorpresas.",
+          "Sí, y te los decimos desde el principio: el chatbot funciona sobre una plataforma de WhatsApp Business que tiene su propio costo mensual, y Meta (WhatsApp) cobra tarifas por mensajes. Esos pagos los haces tú directo a esos proveedores; nosotros te ayudamos a elegir la opción y la configuramos.",
       },
       {
         pregunta: "¿Viene incluido en algún paquete?",
-        respuesta: "Sí, el paquete Premium incluye el chatbot de WhatsApp junto con tu página. Si solo quieres el chatbot, cotízalo por WhatsApp.",
+        respuesta:
+          "Sí, el paquete Premium incluye el chatbot de WhatsApp junto con tu página. También lo armamos en combo (por ejemplo, para que un consultorio reciba citas a cualquier hora) o solo, sin página; cotízalo por WhatsApp.",
       },
     ],
     servicio: {
@@ -462,7 +478,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     antetitulo: "Consultorios dentales",
     h1: "Páginas web para *dentistas*",
     intro:
-      "Quien busca dentista quiere confiar antes de llegar: ver el consultorio, saber qué tratamientos haces y agendar sin complicarse. Tu página resuelve eso y manda la cita directo a tu WhatsApp.",
+      "Quien busca dentista quiere confiar antes de llegar: ver el consultorio, saber qué tratamientos haces y agendar sin complicarse. Tu página resuelve eso y manda la cita directo a tu WhatsApp. Antes de pagar nada, te enseñamos un boceto con el nombre y los tratamientos de tu consultorio.",
     ejemplo: "dentista",
     problemasTitulo: "Por qué un paciente *no te elige*",
     problemas: [
@@ -510,6 +526,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
         respuesta:
           "Tú decides: puedes poner precios “desde”, solo describir los tratamientos o invitar a una valoración. Cuidamos que los textos sean claros y sin prometer resultados.",
       },
+      faqCombo("Para consultorios solemos sugerir página + Google Maps + chatbot de WhatsApp para que los pacientes agenden aunque estés en consulta."),
     ],
     servicio: {
       nombre: "Páginas web para dentistas",
@@ -528,7 +545,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     antetitulo: "Talleres y servicio automotriz",
     h1: "Páginas web para talleres *mecánicos*",
     intro:
-      "Cuando el carro falla, el cliente busca un taller cerca y de confianza, casi siempre desde el celular y con prisa. Tu página le dice qué arreglas, dónde estás y cómo pedirte una cotización en un mensaje.",
+      "Cuando el carro falla, el cliente busca un taller cerca y de confianza, casi siempre desde el celular y con prisa. Tu página le dice qué arreglas, dónde estás y cómo pedirte una cotización en un mensaje. Te enseñamos gratis un boceto con los servicios reales de tu taller antes de contratar.",
     ejemplo: "taller",
     problemasTitulo: "Por qué no llegan *más carros*",
     problemas: [
@@ -573,6 +590,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
         respuesta:
           "Sí. Puedes poner precios de servicios comunes, como cambio de aceite o afinación, y para lo demás pedir que te manden la falla por WhatsApp para cotizar.",
       },
+      faqCombo("Para talleres lo que más sirve es página + Google Maps, para aparecer cuando alguien busca “taller cerca de mí”."),
     ],
     servicio: {
       nombre: "Páginas web para talleres mecánicos",
@@ -591,7 +609,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
     antetitulo: "Barberías y estéticas",
     h1: "Páginas web para *barberías*",
     intro:
-      "En una barbería el cliente compra con los ojos: quiere ver cortes, saber cuánto cuesta y apartar su lugar sin esperar. Tu página muestra tu estilo y manda las citas directo a tu WhatsApp.",
+      "En una barbería el cliente compra con los ojos: quiere ver cortes, saber cuánto cuesta y apartar su lugar sin esperar. Tu página muestra tu estilo y manda las citas directo a tu WhatsApp. Te enseñamos gratis un boceto con el nombre y los servicios de tu barbería antes de contratar.",
     ejemplo: "barberia",
     problemasTitulo: "Por qué tu agenda *tiene huecos*",
     problemas: [
@@ -633,6 +651,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
         respuesta:
           "Sí. Si ya usas una app de citas, ponemos el botón para agendar ahí. Si no, la cita llega a tu WhatsApp, y con un chatbot puedes automatizar parte de las respuestas.",
       },
+      faqCombo("Para barberías solemos sugerir página + Google Maps + un mes de redes para mostrar tus cortes donde te buscan."),
     ],
     servicio: {
       nombre: "Páginas web para barberías",
@@ -693,6 +712,7 @@ export const PAGINAS_SEO: PaginaSEO[] = [
         respuesta:
           "El menú digital con código QR viene en el paquete Premium. Con el mantenimiento mensual actualizamos precios y platillos cuando nos lo pidas por WhatsApp.",
       },
+      faqCombo("Para restaurantes funciona bien página con menú + Google Maps, para que los horarios y el menú estén correctos en los dos lados."),
     ],
     servicio: {
       nombre: "Páginas web para restaurantes",

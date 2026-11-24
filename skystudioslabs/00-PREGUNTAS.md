@@ -15,3 +15,14 @@
 - [ ] Confirmar que revocaste la llave secreta de Supabase que salió en una foto.
 - [ ] ¿Quieres la etiqueta "contenido generado con IA" en el Reel (voz clonada)?
 - [ ] La voz `marketing/video/voz.mp3` está en un repo público. ¿La quito?
+
+## Del subagente de contenido (D)
+- [ ] Precios del catálogo de la rama (nov 2026, sin IVA) — ¿siguen vigentes y se publican? Página web desde $2,500 (talleres/barberías) y $4,500 (consultorios); Google Maps $700 + $500/mes; Redes $2,500/mes (12 publicaciones); Chatbot desde $3,500 + $800/mes; combos Taller Visible $4,200 (+$700/mes), Agenda Llena $6,000 (+$3,000/mes), Consultorio Pro $9,900 (+$1,700/mes) o $12,900 con página Premium. ¿Con o sin IVA?
+- [ ] Precio de los paquetes Básico, Estándar y Premium del sitio.
+- [ ] El catálogo dice "hosting incluido el primer año", pero el mantenimiento de $1,099/mes incluye hosting. ¿Cuál es la regla?
+- [ ] ¿Se ofrecen "2 rondas de cambios" y pago "50% anticipo / 50% al entregar"?
+- [ ] Tiempo de entrega real (marcador `[TIEMPO DE ENTREGA]`).
+- [ ] Aviso de privacidad: hace falta uno antes de prometer "no compartimos tus datos".
+- [ ] ¿Creo las páginas de giro "abogados y contadores" y "consultorios médicos"? (hay ~15 y ~14 prospectos de esos giros en el CRM)
+- [ ] Bocetos: algunos muestran el teléfono público del negocio, otros "[Teléfono por confirmar]". ¿Está bien así mientras sean propuestas privadas que caducan el 31 de diciembre?
+- [ ] Los videos intro de los bocetos y los PDF de propuesta quedaron fuera (el sitio no sirve mp4/webm y los PDF traen precios sin confirmar).
