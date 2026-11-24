@@ -26,3 +26,9 @@
 - [ ] ¿Creo las páginas de giro "abogados y contadores" y "consultorios médicos"? (hay ~15 y ~14 prospectos de esos giros en el CRM)
 - [ ] Bocetos: algunos muestran el teléfono público del negocio, otros "[Teléfono por confirmar]". ¿Está bien así mientras sean propuestas privadas que caducan el 31 de diciembre?
 - [ ] Los videos intro de los bocetos y los PDF de propuesta quedaron fuera (el sitio no sirve mp4/webm y los PDF traen precios sin confirmar).
+
+## Del subagente de SEO (B)
+- [ ] Logo en PNG cuadrado (fondo sólido, ≥112 px) para Google.
+- [ ] ¿Ya existe tu Perfil de Negocio de Google (área de servicio: todo México)? Si sí, pásame el enlace para enlazarlo.
+- [ ] Cuando tengas reseñas reales de Google, ¿las mostramos en el sitio?
+- [ ] El menú tiene "Clientes" (`/#clientes`): confirmar que se queda (hoy muestra el gimnasio Wellness Fitness 5AM).
