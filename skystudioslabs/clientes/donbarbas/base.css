@@ -1,0 +1,99 @@
+/* =========================================================
+   base.css — Guía de estilo compartida para los bocetos
+   Reset + tokens + utilidades + componentes obligatorios
+   (franja de boceto, marcadores, botones flotantes).
+   Cada página define su propia identidad encima de esto
+   sobrescribiendo las variables --brand-* y --font-*.
+   ========================================================= */
+
+/* ---------- Reset moderno ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+body{margin:0;min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,h5,h6,p,figure,blockquote,ul,ol,dl,dd{margin:0}
+ul[role="list"],ol[role="list"]{list-style:none;padding:0}
+img,picture,svg,video,iframe{display:block;max-width:100%}
+img{height:auto}
+input,button,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+h1,h2,h3{line-height:1.15;text-wrap:balance}
+p{text-wrap:pretty}
+
+/* ---------- Tokens (las páginas los sobrescriben) ---------- */
+:root{
+  --font-display:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --brand:#1f6feb;
+  --brand-ink:#ffffff;
+  --bg:#ffffff;
+  --surface:#f5f7fa;
+  --ink:#16191f;
+  --muted:#5a6270;
+  --border:#e1e5eb;
+  --focus:#ffbf47;
+  --radius:12px;
+  --gutter:16px;
+  --maxw:1160px;
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;
+  --space-5:1.5rem;--space-6:2rem;--space-7:3rem;--space-8:4.5rem;--space-9:6rem;
+  --wa:#25d366;
+  --step--1:clamp(.83rem,.8rem + .15vw,.9rem);
+  --step-0:clamp(1rem,.96rem + .2vw,1.1rem);
+  --step-1:clamp(1.2rem,1.1rem + .5vw,1.45rem);
+  --step-2:clamp(1.45rem,1.25rem + 1vw,2rem);
+  --step-3:clamp(1.8rem,1.4rem + 2vw,2.9rem);
+  --step-4:clamp(2.2rem,1.6rem + 3.2vw,4.2rem);
+}
+body{font-family:var(--font-body);font-size:var(--step-0);color:var(--ink);background:var(--bg)}
+
+/* ---------- Accesibilidad ---------- */
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:var(--gutter);top:-100px;z-index:1000;background:#000;color:#fff;padding:.6rem 1rem;border-radius:8px;text-decoration:none}
+.skip-link:focus{top:44px}
+
+/* ---------- Layout ---------- */
+.container{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+@media (min-width:768px){:root{--gutter:24px}}
+.section{padding-block:var(--space-8)}
+@media (min-width:900px){.section{padding-block:var(--space-9)}}
+.stack>*+*{margin-top:var(--space-4)}
+.grid{display:grid;gap:var(--space-5)}
+.grid-auto{display:grid;gap:var(--space-5);grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.center{text-align:center}
+.eyebrow{font-size:var(--step--1);letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+
+/* ---------- Botones genéricos ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.75rem 1.4rem;border-radius:999px;border:2px solid transparent;font-weight:700;text-decoration:none;line-height:1.1;transition:transform .15s ease,background-color .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:1.2em;height:1.2em;flex:none}
+.btn-primary{background:var(--brand);color:var(--brand-ink)}
+.btn-outline{border-color:currentColor;background:transparent}
+
+/* ---------- OBLIGATORIO: franja de boceto ---------- */
+.franja-boceto{position:relative;z-index:60;background:#111;color:#f1f1f1;font:500 12px/1.4 system-ui,sans-serif;text-align:center;padding:6px var(--gutter);letter-spacing:.02em}
+
+/* ---------- OBLIGATORIO: marcadores de dato pendiente ---------- */
+.marcador{display:inline-block;background:#fff4c2;color:#5c4400;border:1px dashed #b38600;border-radius:6px;padding:.05em .45em;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;font-weight:600;line-height:1.5}
+.marcador-bloque{display:block;background:#fff8d9;color:#5c4400;border:2px dashed #b38600;border-radius:var(--radius);padding:var(--space-5);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;text-align:center}
+
+/* ---------- OBLIGATORIO: botones flotantes ---------- */
+.fab{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;flex-direction:column;gap:12px;align-items:flex-end}
+.fab a{display:inline-flex;align-items:center;gap:.5rem;min-height:56px;min-width:56px;justify-content:center;padding:0 1.1rem;border-radius:999px;text-decoration:none;font-weight:700;font-family:system-ui,sans-serif;font-size:15px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.fab a svg{width:26px;height:26px;flex:none}
+.fab-wa{background:var(--wa);color:#063b1c}
+.fab-call{background:#fff;color:#111;border:1px solid rgba(0,0,0,.12)}
+.fab .fab-label{display:none}
+@media (min-width:768px){.fab .fab-label{display:inline}}
+
+/* ---------- Mapa responsive ---------- */
+.map-embed{position:relative;width:100%;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+@media (min-width:768px){.map-embed{aspect-ratio:16/10}}
+.map-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ---------- Tabla de horario ---------- */
+.horario{width:100%;border-collapse:collapse}
+.horario th,.horario td{padding:.6rem .25rem;border-bottom:1px solid var(--border);text-align:left}
+.horario td:last-child{text-align:right}
