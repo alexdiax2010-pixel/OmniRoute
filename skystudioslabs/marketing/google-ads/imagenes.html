@@ -1,0 +1,95 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Imágenes Google Ads</title>
+<!-- Fuente de las imágenes para Google Ads. render.cjs las exporta a PNG/JPG. -->
+<style>
+@font-face{font-family:Anton;src:url(../../node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2)}
+@font-face{font-family:Inter;src:url(../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2);font-weight:100 900}
+*{margin:0;padding:0;box-sizing:border-box}body{background:#222;display:flex;flex-direction:column;gap:40px;padding:20px}
+.c{position:relative;overflow:hidden;background:#050505;color:#f4f1ec;font-family:Inter}
+.glow{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,74,28,.55),rgba(255,138,42,.14) 42%,rgba(5,5,5,0) 68%)}
+.grid{position:absolute;inset:0;opacity:.06;background-image:linear-gradient(#f4f1ec 1px,transparent 1px),linear-gradient(90deg,#f4f1ec 1px,transparent 1px);background-size:60px 60px}
+.sol{position:absolute;border-radius:999px 999px 0 0;background:linear-gradient(135deg,#ff8a2a,#ff4a1c)}
+.hor{position:absolute;border-radius:99px;background:#f4f1ec}
+.marca{position:absolute;font-weight:800;letter-spacing:.3em;color:#a8a39b}
+.pill{position:absolute;border-radius:999px;background:linear-gradient(90deg,#ff4a1c,#ff8a2a);color:#140700;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px -15px rgba(255,74,28,.8)}
+/* teléfono */
+.tel{position:absolute;width:300px;height:600px;border-radius:44px;background:#0f0f12;border:3px solid #2c2c32;overflow:hidden;box-shadow:0 40px 100px -30px rgba(255,74,28,.55)}
+.tel .notch{position:absolute;left:50%;top:12px;width:90px;height:22px;margin-left:-45px;border-radius:12px;background:#000;z-index:3}
+.web .nav{position:absolute;left:20px;right:20px;top:46px;display:flex;justify-content:space-between;align-items:center}
+.web .logo{font-family:Anton;font-size:22px}
+.web .menu{width:28px;height:3px;background:#f4f1ec;box-shadow:0 8px 0 #f4f1ec,0 -8px 0 #f4f1ec}
+.web .hero{position:absolute;left:20px;right:20px;top:96px;height:210px;border-radius:20px;background:linear-gradient(150deg,#2a1406,#ff4a1c 60%,#ff8a2a);overflow:hidden}
+.web .hero:after{content:"";position:absolute;right:-40px;bottom:-60px;width:210px;height:210px;border-radius:50%;background:rgba(5,5,5,.25)}
+.web .h1{position:absolute;left:20px;top:326px;font-family:Anton;font-size:40px;line-height:.95;text-transform:uppercase}
+.web .lin{position:absolute;left:20px;height:10px;border-radius:5px;background:#2a2a30}
+.web .cta{position:absolute;left:20px;right:20px;top:500px;height:56px;border-radius:28px;background:#25d366;color:#04210f;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px}
+.mapa{background:#121418}
+.mapa svg{position:absolute;inset:0}
+.pin{position:absolute;width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#ff4a1c;box-shadow:0 0 0 8px rgba(255,74,28,.25)}
+.pin:after{content:"";position:absolute;left:14px;top:14px;width:16px;height:16px;border-radius:50%;background:#fff}
+.ficha{position:absolute;left:14px;right:14px;bottom:20px;height:150px;border-radius:22px;background:#1c1d22;border:2px solid #2c2c32;padding:18px}
+.ficha .n{font-family:Anton;font-size:28px}.ficha .a{margin-top:4px;font-size:15px;color:#3ddc84;font-weight:700}
+.ficha .bts{position:absolute;left:18px;right:18px;bottom:18px;display:flex;gap:10px}
+.ficha .bts div{flex:1;height:42px;border-radius:21px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;background:#2a2b31}
+.ficha .bts div:first-child{background:#ff8a2a;color:#140700}
+.chat{background:#0b0d10}
+.chat .top{position:absolute;left:0;right:0;top:0;height:96px;background:#16181d}
+.chat .av{position:absolute;left:18px;top:46px;width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ff8a2a,#ff4a1c)}
+.chat .nm{position:absolute;left:66px;top:46px;font-weight:800;font-size:17px}.chat .st{position:absolute;left:66px;top:68px;font-size:12px;color:#3ddc84;font-weight:600}
+.chat .hora{position:absolute;left:0;right:0;top:116px;text-align:center;font-size:13px;color:#ff8a2a;font-weight:800;letter-spacing:.1em}
+.b{position:absolute;max-width:210px;padding:13px 16px;border-radius:18px;font-size:16px;line-height:1.3}
+.b.yo{right:16px;background:#2b5cff;color:#fff;border-bottom-right-radius:4px}.b.bot{left:16px;background:#1f2127;border-bottom-left-radius:4px}
+.noti{position:absolute;padding:16px;border-radius:22px;background:rgba(40,40,46,.95);border:2px solid #3a3a42;display:flex;gap:12px;align-items:center;box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
+.noti .ic{width:46px;height:46px;flex:none;border-radius:12px;background:linear-gradient(135deg,#ff8a2a,#ff4a1c)}
+.noti .tt{font-weight:800;font-size:17px}.noti .tx{font-size:14px;color:#d9d4cc;margin-top:2px}
+</style></head><body>
+<template id="telWeb"><div class="tel web"><div class="notch"></div><div class="nav"><div class="logo">TU NEGOCIO</div><div class="menu"></div></div><div class="hero"></div><div class="h1">Lo mejor<br>de tu ciudad</div><div class="lin" style="top:430px;width:220px"></div><div class="lin" style="top:452px;width:160px"></div><div class="cta">Escríbenos por WhatsApp</div></div></template>
+<template id="telMapa"><div class="tel mapa"><div class="notch"></div><svg viewBox="0 0 300 600" width="300" height="600"><g stroke="#262a31" stroke-width="18" fill="none" stroke-linecap="round"><path d="M-10 140 L310 110"/><path d="M-10 330 L310 360"/><path d="M90 -10 L70 610"/><path d="M230 -10 L260 610"/></g><g stroke="#1c1f25" stroke-width="8" fill="none"><path d="M-10 240 L310 225"/><path d="M160 -10 L150 610"/></g><rect x="100" y="160" width="45" height="60" rx="6" fill="#1a1d23"/><rect x="20" y="250" width="40" height="60" rx="6" fill="#183022"/></svg><div class="pin" style="left:128px;top:190px"></div><div class="ficha"><div class="n">TU NEGOCIO</div><div class="a">Abierto ahora</div><div class="bts"><div>Cómo llegar</div><div>Llamar</div></div></div></div></template>
+<template id="telChat"><div class="tel chat"><div class="notch"></div><div class="top"><div class="av"></div><div class="nm">Tu Negocio</div><div class="st">en línea</div></div><div class="hora">3:07 AM</div><div class="b yo" style="top:150px">¿Abren mañana? Quiero una cita</div><div class="b bot" style="top:250px">¡Claro! Abrimos a las 9. ¿Te aparto las 10:00?</div><div class="b yo" style="top:370px">Sí, por favor</div></div></template>
+
+<!-- 1 · horizontal 1200x628 -->
+<div class="c" id="horizontal" style="width:1200px;height:628px">
+  <div class="grid"></div><div class="glow" style="left:500px;top:-300px;width:1000px;height:1000px"></div>
+  <div class="marca" style="left:60px;top:56px;font-size:20px">SKY STUDIOS LABS</div>
+  <div style="position:absolute;left:60px;top:150px;font-family:Anton;font-size:70px;line-height:.95;text-transform:uppercase">Tu página web<br><span style="background:linear-gradient(90deg,#ff4a1c,#ff8a2a);-webkit-background-clip:text;background-clip:text;color:transparent">lista para vender</span></div>
+  <div class="pill" style="left:60px;top:400px;width:300px;height:68px;font-size:26px">Boceto gratis</div>
+  <div class="slot" data-t="telWeb" style="position:absolute;left:700px;top:70px;transform:scale(.88) rotate(-5deg);transform-origin:0 0"></div>
+  <div class="slot" data-t="telMapa" style="position:absolute;left:920px;top:110px;transform:scale(.83) rotate(5deg);transform-origin:0 0"></div>
+</div>
+
+<!-- 2 · cuadrada 1200x1200 -->
+<div class="c" id="cuadrada" style="width:1200px;height:1200px">
+  <div class="grid"></div><div class="glow" style="left:100px;top:150px;width:1000px;height:1000px"></div>
+  <div class="sol" style="left:520px;top:90px;width:160px;height:80px"></div><div class="hor" style="left:490px;top:182px;width:220px;height:10px"></div>
+  <div class="marca" style="left:0;right:0;top:220px;text-align:center;font-size:24px">SKY STUDIOS LABS</div>
+  <div class="slot" data-t="telWeb" style="position:absolute;left:250px;top:330px;transform:rotate(-6deg);transform-origin:50% 50%"></div>
+  <div class="slot" data-t="telMapa" style="position:absolute;left:650px;top:360px;transform:rotate(6deg);transform-origin:50% 50%"></div>
+  <div class="pill" style="left:400px;top:1040px;width:400px;height:84px;font-size:34px">Boceto gratis</div>
+</div>
+
+<!-- 3 · vertical 960x1200 -->
+<div class="c" id="vertical" style="width:960px;height:1200px">
+  <div class="grid"></div><div class="glow" style="left:-100px;top:200px;width:1160px;height:1000px"></div>
+  <div class="marca" style="left:0;right:0;top:70px;text-align:center;font-size:22px">SKY STUDIOS LABS</div>
+  <div style="position:absolute;left:0;right:0;top:130px;text-align:center;font-family:Anton;font-size:96px;line-height:.95;text-transform:uppercase">Responde<br><span style="background:linear-gradient(90deg,#ff4a1c,#ff8a2a);-webkit-background-clip:text;background-clip:text;color:transparent">24/7</span></div>
+  <div class="slot" data-t="telChat" style="position:absolute;left:330px;top:400px;transform:scale(1.15);transform-origin:50% 0"></div>
+  <div class="noti" style="left:120px;top:1000px;width:720px"><div class="ic"></div><div><div class="tt">Nuevo cliente</div><div class="tx">Cita apartada para mañana 10:00</div></div></div>
+</div>
+
+<!-- 4 · logo cuadrado 1200x1200 -->
+<div class="c" id="logo-cuadrado" style="width:1200px;height:1200px">
+  <div class="glow" style="left:100px;top:80px;width:1000px;height:1000px"></div>
+  <div class="sol" style="left:320px;top:280px;width:560px;height:280px"></div><div class="hor" style="left:270px;top:592px;width:660px;height:34px"></div><div class="hor" style="left:420px;top:660px;width:360px;height:20px;opacity:.5"></div>
+  <div style="position:absolute;left:0;right:0;top:720px;text-align:center;font-family:Anton;font-size:170px;line-height:1">SKY</div>
+  <div style="position:absolute;left:0;right:0;top:905px;text-align:center;font-weight:700;font-size:46px;letter-spacing:.35em;color:#ff8a2a">STUDIOS LABS</div>
+</div>
+
+<!-- 5 · logo horizontal 1200x300 -->
+<div class="c" id="logo-horizontal" style="width:1200px;height:300px">
+  <div class="sol" style="left:90px;top:70px;width:200px;height:100px"></div><div class="hor" style="left:70px;top:184px;width:240px;height:14px"></div>
+  <div style="position:absolute;left:350px;top:66px;font-family:Anton;font-size:120px;line-height:1">SKY STUDIOS <span style="color:#ff8a2a">LABS</span></div>
+</div>
+<script>
+document.querySelectorAll('.slot').forEach(s=>s.appendChild(document.getElementById(s.dataset.t).content.cloneNode(true)));
+document.querySelectorAll('.slot').forEach(s=>{s.style.width='300px';s.style.height='600px'});
+</script>
+</body></html>
