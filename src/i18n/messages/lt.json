@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck kelių agentų orkestratorius",
       "5dive": "5dive — savarankiškai talpinamas kodavimo agentų parkas; vienas autentifikavimo profilis nukreipia juos visus į OmniRoute",
       "whycodes": "WhyCodes autonominis CLI agentas su OpenAI suderinamu baziniu URL",
-      "zed": "Zed kodo redaktorius — integruotas agentas per su OpenAI suderinamą teikėją"
+      "zed": "Zed kodo redaktorius — integruotas agentas per su OpenAI suderinamą teikėją",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "Įklijuokite įgūdžio manifestą JSON formatu arba įkelkite .json failą.",
     "uploadJson": "Įkelti JSON",
     "cancel": "Atšaukti",
-    "installSkill": "Įdiegti įgūdį"
+    "installSkill": "Įdiegti įgūdį",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "Lygiagretumo ribotuvai",

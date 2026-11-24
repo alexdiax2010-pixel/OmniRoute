@@ -1085,6 +1085,48 @@ supports_tools = true`,
       },
     ],
   },
+
+  /** ★ Paperclip AI-agent orchestration (paperclipai/paperclip, MIT) — 2026-11-24 */
+  paperclip: {
+    id: "paperclip",
+    name: "Paperclip",
+    icon: "corporate_fare",
+    color: "#B45309",
+    description:
+      "Paperclip — open-source orchestration for teams of AI agents (org chart, tasks, budgets); its Custom gateway / Local endpoint AI connection points at OmniRoute",
+    docsUrl: "https://github.com/paperclipai/paperclip",
+    configType: "guide",
+    category: "agent",
+    vendor: "OSS (paperclipai)",
+    acpSpawnable: false,
+    baseUrlSupport: "full",
+    defaultCommand: "paperclipai",
+    guideSteps: [
+      {
+        step: 1,
+        title: "Install Paperclip",
+        desc: "Requires Node.js 24.11+: npx paperclipai@latest onboard --yes",
+      },
+      {
+        step: 2,
+        title: "Add an AI connection",
+        desc: "In Paperclip open the AI provider setup → Custom gateway (or Local endpoint when OmniRoute runs on the same machine as the agents) → protocol Chat Completions, auth Bearer",
+      },
+      { step: 3, title: "Base URL", value: "{{baseUrl}}", copyable: true },
+      { step: 4, title: "API Key", type: "apiKeySelector" },
+      { step: 5, title: "Select Model", type: "modelSelector" },
+    ],
+    notes: [
+      {
+        type: "info",
+        text: "Paperclip's gateway connection speaks Chat Completions, Responses or Anthropic Messages — OmniRoute serves all three, so any combo or model can back a Paperclip agent.",
+      },
+      {
+        type: "info",
+        text: "Install the 'paperclip' skill from Omni Skills → Marketplace → Featured so agents know how to work Paperclip tasks.",
+      },
+    ],
+  },
 };
 
 // ─── Registry helpers ────────────────────────────────────────────────────────

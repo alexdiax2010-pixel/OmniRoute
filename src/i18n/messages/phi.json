@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck na tagapag-orkestra ng maraming ahente",
       "5dive": "5dive — self-hosted fleet ng coding agents; isang auth profile ang nagtuturo sa kanilang lahat sa OmniRoute",
       "whycodes": "Awtonomong CLI agent na WhyCodes na may base URL na tugma sa OpenAI",
-      "zed": "Zed code editor — built-in na agent sa pamamagitan ng provider na compatible sa OpenAI"
+      "zed": "Zed code editor — built-in na agent sa pamamagitan ng provider na compatible sa OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "Mag-paste ng skill manifest JSON o mag-upload ng .json file.",
     "uploadJson": "Mag-upload ng JSON",
     "cancel": "Kanselahin",
-    "installSkill": "I-install ang Skill"
+    "installSkill": "I-install ang Skill",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "Mga gate ng sabayang pagproseso",

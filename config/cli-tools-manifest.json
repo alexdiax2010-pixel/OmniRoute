@@ -577,6 +577,18 @@
         "providerAlias": "opencode"
       }
     },
+    "paperclip": {
+      "displayName": "Paperclip",
+      "aliases": [],
+      "binaries": ["paperclipai"],
+      "surfaces": {
+        "catalog": true,
+        "detect": false,
+        "run": false,
+        "configure": false,
+        "generate": false
+      }
+    },
     "pi": {
       "displayName": "Pi",
       "aliases": [],

@@ -3364,7 +3364,8 @@
       "agent-deck": "Orkestrator berbilang ejen Agent Deck",
       "5dive": "5dive — armada ejen pengekodan yang dihoskan sendiri; satu profil auth menghalakan semuanya ke OmniRoute",
       "whycodes": "Ejen CLI autonomi WhyCodes dengan base URL yang serasi dengan OpenAI",
-      "zed": "Editor kod Zed — ejen terbina dalam melalui penyedia yang serasi dengan OpenAI"
+      "zed": "Editor kod Zed — ejen terbina dalam melalui penyedia yang serasi dengan OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "Tampal JSON manifes kemahiran atau muat naik fail .json.",
     "uploadJson": "Muat naik JSON",
     "cancel": "Batal",
-    "installSkill": "Pasang Kemahiran"
+    "installSkill": "Pasang Kemahiran",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "Gerbang keserentakan",

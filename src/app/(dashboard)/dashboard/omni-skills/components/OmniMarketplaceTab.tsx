@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import Button from "@/shared/components/Button";
 import Input from "@/shared/components/Input";
@@ -24,6 +24,16 @@ interface SkillsShSkill {
   source: string;
 }
 
+interface FeaturedSkillEntry {
+  id: string;
+  name: string;
+  project: string;
+  description: string;
+  source: string;
+  license: string;
+  repositoryUrl: string;
+}
+
 interface OmniMarketplaceTabProps {
   skillsProvider: SkillsProvider;
   onRefreshSkills: () => Promise<void>;
@@ -44,6 +54,48 @@ export function OmniMarketplaceTab({
   const [shLoading, setShLoading] = useState(false);
   const [shError, setShError] = useState("");
   const [shInstallingId, setShInstallingId] = useState<string | null>(null);
+  const [featured, setFeatured] = useState<FeaturedSkillEntry[]>([]);
+  const [featuredError, setFeaturedError] = useState("");
+  const [featuredInstallingId, setFeaturedInstallingId] = useState<string | null>(null);
+  const [featuredInstalled, setFeaturedInstalled] = useState<string[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/skills/featured")
+      .then((res) => (res.ok ? res.json() : { skills: [] }))
+      .then((data: { skills?: FeaturedSkillEntry[] }) => {
+        if (!cancelled) setFeatured(data.skills || []);
+      })
+      .catch(() => {
+        if (!cancelled) setFeatured([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const installFeatured = async (skill: FeaturedSkillEntry) => {
+    setFeaturedInstallingId(skill.id);
+    setFeaturedError("");
+    try {
+      const res = await fetch("/api/skills/featured/install", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: skill.id }),
+      });
+      const data = await res.json();
+      if (res.ok && (data as { success?: boolean }).success) {
+        setFeaturedInstalled((prev) => [...prev, skill.id]);
+        await onRefreshSkills();
+      } else {
+        setFeaturedError((data as { error?: string }).error || t("installError"));
+      }
+    } catch (err) {
+      setFeaturedError(err instanceof Error ? err.message : t("installError"));
+    } finally {
+      setFeaturedInstallingId(null);
+    }
+  };
 
   const searchMarketplace = async () => {
     setMpLoading(true);
@@ -142,6 +194,54 @@ export function OmniMarketplaceTab({
 
   return (
     <div className="grid gap-4">
+      {featured.length > 0 && (
+        <Card>
+          <h3 className="font-semibold mb-2">{t("featuredSkills")}</h3>
+          <p className="text-sm text-text-muted mb-4">{t("featuredSkillsHint")}</p>
+          {featuredError && (
+            <div className="p-3 rounded-lg bg-error/10 text-error text-sm mb-4">
+              {featuredError}
+            </div>
+          )}
+          <div className="grid gap-3">
+            {featured.map((skill) => (
+              <div
+                key={skill.id}
+                className="flex items-center justify-between gap-3 rounded-lg border border-border p-3"
+              >
+                <div className="min-w-0">
+                  <h4 className="font-semibold">
+                    {skill.name}{" "}
+                    <span className="text-xs font-normal text-text-muted">· {skill.project}</span>
+                  </h4>
+                  <p className="text-sm text-text-muted mt-1">{skill.description}</p>
+                  <a
+                    href={skill.repositoryUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-text-muted underline"
+                  >
+                    {skill.source} · {skill.license}
+                  </a>
+                </div>
+                <Button
+                  size="sm"
+                  onClick={() => installFeatured(skill)}
+                  disabled={
+                    featuredInstallingId === skill.id || featuredInstalled.includes(skill.id)
+                  }
+                >
+                  {featuredInstallingId === skill.id
+                    ? t("installing")
+                    : featuredInstalled.includes(skill.id)
+                      ? t("installed")
+                      : t("installSkillButton")}
+                </Button>
+              </div>
+            ))}
+          </div>
+        </Card>
+      )}
       <Card>
         <h3 className="font-semibold mb-2">{t("skillsMarketplace")}</h3>
         <p className="text-sm text-text-muted mb-4">

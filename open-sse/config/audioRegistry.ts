@@ -249,6 +249,21 @@ export const AUDIO_TRANSCRIPTION_PROVIDERS: Record<string, AudioProvider> = {
     models: [{ id: "qwen3-asr", name: "Qwen3 ASR" }],
   },
 
+  // VoiceStudio (github.com/debpalash/VoiceStudio) — local, on-device voice studio.
+  // Its backend serves an OpenAI-compatible /v1/audio/* surface on port 3900; the
+  // OpenAI ids map to whichever ASR engine is active there. No key for local use.
+  voicestudio: {
+    id: "voicestudio",
+    baseUrl: "http://localhost:3900/v1/audio/transcriptions",
+    authType: "none",
+    authHeader: "none",
+    format: "openai",
+    models: [
+      { id: "whisper-1", name: "VoiceStudio ASR (active engine)" },
+      { id: "gpt-4o-transcribe", name: "VoiceStudio ASR (gpt-4o-transcribe alias)" },
+    ],
+  },
+
   kie: {
     id: "kie",
     baseUrl: "https://api.kie.ai",
@@ -370,6 +385,14 @@ export const AUDIO_TRANSLATION_PROVIDERS: Record<string, AudioProvider> = {
     authType: "apikey",
     authHeader: "bearer",
     models: [{ id: "whisper-large-v3", name: "Whisper Large v3" }],
+  },
+
+  voicestudio: {
+    id: "voicestudio",
+    baseUrl: "http://localhost:3900/v1/audio/translations",
+    authType: "none",
+    authHeader: "none",
+    models: [{ id: "whisper-1", name: "VoiceStudio ASR (translate to English)" }],
   },
 };
 
@@ -529,6 +552,22 @@ export const AUDIO_SPEECH_PROVIDERS: Record<string, AudioProvider> = {
     authHeader: "none",
     format: "openai",
     models: [{ id: "qwen3-tts", name: "Qwen3 TTS" }],
+  },
+
+  // VoiceStudio local TTS (OpenAI-compatible). `voice` accepts OpenAI stock names or a
+  // saved VoiceStudio profile id (GET http://localhost:3900/v1/audio/voices).
+  voicestudio: {
+    id: "voicestudio",
+    baseUrl: "http://localhost:3900/v1/audio/speech",
+    authType: "none",
+    authHeader: "none",
+    format: "openai",
+    supportedFormats: ["mp3", "wav", "opus", "flac", "aac", "pcm"],
+    models: [
+      { id: "tts-1", name: "VoiceStudio TTS" },
+      { id: "tts-1-hd", name: "VoiceStudio TTS HD" },
+      { id: "gpt-4o-mini-tts", name: "VoiceStudio TTS (gpt-4o-mini-tts alias)" },
+    ],
   },
 
   // Qwen Cloud Token Plan — DashScope SpeechSynthesizer (JSON → inline base64 or an

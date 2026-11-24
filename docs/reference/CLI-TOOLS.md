@@ -186,7 +186,7 @@ All tools that appear in `/dashboard/cli-code`. Those with `baseUrlSupport: none
 Tools with `baseUrlSupport: "partial"` show a badge "⚠ Base URL parcial" in the dashboard card.
 ---
 
-## 2. CLI Agents Catalog (11 tools)
+## 2. CLI Agents Catalog (12 tools)
 
 Autonomous agents that appear in `/dashboard/cli-agents`:
 
@@ -203,6 +203,7 @@ Autonomous agents that appear in `/dashboard/cli-agents`:
 | prime-agent  | Prime Agent      | Prime Intellect (OSS)    | full           | false        |
 | 5dive        | 5dive            | OSS (5dive-ai)           | full           | false        |
 | whycodes     | WhyCodes         | Why Corporation          | full           | false        |
+| paperclip    | Paperclip        | OSS (paperclipai)        | full           | false        |
 
 ---
 

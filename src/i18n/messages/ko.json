@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck 다중 에이전트 오케스트레이터",
       "5dive": "5dive — 자체 호스팅 코딩 에이전트 플릿; 인증 프로필 하나로 전체를 OmniRoute로 연결",
       "whycodes": "OpenAI 호환 기본 URL을 사용하는 WhyCodes 자율 CLI 에이전트",
-      "zed": "Zed 코드 편집기 — OpenAI 호환 공급자를 통한 내장 에이전트"
+      "zed": "Zed 코드 편집기 — OpenAI 호환 공급자를 통한 내장 에이전트",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "스킬 매니페스트 JSON을 붙여넣거나 .json 파일을 업로드하세요.",
     "uploadJson": "JSON 업로드",
     "cancel": "취소",
-    "installSkill": "스킬 설치"
+    "installSkill": "스킬 설치",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "동시 실행 게이트",

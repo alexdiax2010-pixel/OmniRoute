@@ -14894,6 +14894,22 @@ paths:
       responses:
         "200":
           description: OK
+  /api/skills/featured:
+    get:
+      tags:
+        - Skills
+      summary: "GET skills › featured"
+      responses:
+        "200":
+          description: OK
+  /api/skills/featured/install:
+    post:
+      tags:
+        - Skills
+      summary: "POST skills › featured › install"
+      responses:
+        "200":
+          description: OK
   /api/skills/marketplace:
     get:
       tags:

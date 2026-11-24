@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck multi-agent-orkestrerare",
       "5dive": "5dive — självhostad flotta av kodningsagenter; en auth-profil pekar dem alla mot OmniRoute",
       "whycodes": "WhyCodes autonom CLI-agent med OpenAI-kompatibel bas-URL",
-      "zed": "Zed-kodredigerare — inbyggd agent via en OpenAI-kompatibel leverantör"
+      "zed": "Zed-kodredigerare — inbyggd agent via en OpenAI-kompatibel leverantör",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "Klistra in ett manifest för en färdighet i JSON-format eller ladda upp en .json-fil.",
     "uploadJson": "Ladda upp JSON",
     "cancel": "Avbryt",
-    "installSkill": "Installera Skill"
+    "installSkill": "Installera Skill",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "Samtidighetsbegränsningar",

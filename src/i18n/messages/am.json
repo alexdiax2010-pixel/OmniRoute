@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck የብዙ ወኪሎች አስተባባሪ",
       "5dive": "5dive — በራስ አገልጋይ ላይ የሚስተናገድ የኮድ ወኪሎች ስብስብ፤ አንድ የማንነት ማረጋገጫ መገለጫ ሁሉንም ወደ OmniRoute ያመራል",
       "whycodes": "WhyCodes ራስ-ገዝ ወኪል CLI ከOpenAI ጋር ተኳሃኝ base URL ያለው",
-      "zed": "Zed የኮድ አርታዒ — አብሮ የተሰራ ወኪል በOpenAI-ተኳሃኝ አቅራቢ በኩል"
+      "zed": "Zed የኮድ አርታዒ — አብሮ የተሰራ ወኪል በOpenAI-ተኳሃኝ አቅራቢ በኩል",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "የክህሎት manifest JSON ይለጥፉ ወይም የ.json ፋይል ይስቀሉ።",
     "uploadJson": "JSON ይስቀሉ",
     "cancel": "ሰርዝ",
-    "installSkill": "ክህሎት ጫን"
+    "installSkill": "ክህሎት ጫን",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "የተጓዳኝ አፈጻጸም በሮች",

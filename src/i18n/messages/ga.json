@@ -3364,7 +3364,8 @@
       "agent-deck": "comhordaitheoir ilghníomhairí Agent Deck",
       "5dive": "5dive — cabhlach féinóstáilte de ghníomhairí códaithe; díríonn próifíl fíordheimhnithe amháin iad go léir ar OmniRoute",
       "whycodes": "Gníomhaire CLI uathrialach WhyCodes le bun-URL atá comhoiriúnach le OpenAI",
-      "zed": "Eagarthóir cóid Zed — gníomhaire ionsuite trí sholáthraí atá comhoiriúnach le OpenAI"
+      "zed": "Eagarthóir cóid Zed — gníomhaire ionsuite trí sholáthraí atá comhoiriúnach le OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "Greamaigh manifest scile i bhformáid JSON nó uaslódáil comhad .json.",
     "uploadJson": "Uaslódáil JSON",
     "cancel": "Cealaigh",
-    "installSkill": "Suiteáil Scil"
+    "installSkill": "Suiteáil Scil",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "Geataí comhthráthachta",

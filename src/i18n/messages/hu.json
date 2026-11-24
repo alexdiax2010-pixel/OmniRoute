@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck többágenses orkesztrátor",
       "5dive": "5dive — saját üzemeltetésű kódolóügynök-flotta; egyetlen auth profil mindet az OmniRoute-ra irányítja",
       "whycodes": "WhyCodes autonóm CLI ágens OpenAI-kompatibilis alap URL-lel",
-      "zed": "Zed kódszerkesztő — beépített ágens OpenAI-kompatibilis szolgáltatón keresztül"
+      "zed": "Zed kódszerkesztő — beépített ágens OpenAI-kompatibilis szolgáltatón keresztül",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "Illesszen be egy képesség-manifest JSON-t, vagy töltsön fel egy .json fájlt.",
     "uploadJson": "JSON feltöltése",
     "cancel": "Mégse",
-    "installSkill": "Telepítse a Skill-t"
+    "installSkill": "Telepítse a Skill-t",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "Párhuzamossági kapuk",

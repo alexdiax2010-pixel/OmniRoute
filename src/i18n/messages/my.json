@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck အေးဂျင့်မျိုးစုံ စီမံညှိနှိုင်းရေးကိရိယာ",
       "5dive": "5dive — ကိုယ်တိုင် host လုပ်ထားသော ကုဒ်ရေးအေးဂျင့်အုပ်စု၊ auth profile တစ်ခုတည်းဖြင့် ၎င်းတို့အားလုံးကို OmniRoute သို့ ချိတ်ဆက်ပေးသည်",
       "whycodes": "OpenAI နှင့် ကိုက်ညီသော base URL ပါသည့် WhyCodes အလိုအလျောက် လုပ်ဆောင်နိုင်သော CLI အေးဂျင့်",
-      "zed": "Zed ကုဒ်တည်းဖြတ်ကိရိယာ — OpenAI နှင့် ကိုက်ညီသော ပံ့ပိုးသူမှတစ်ဆင့် ပါဝင်ပြီးသား အေးဂျင့်"
+      "zed": "Zed ကုဒ်တည်းဖြတ်ကိရိယာ — OpenAI နှင့် ကိုက်ညီသော ပံ့ပိုးသူမှတစ်ဆင့် ပါဝင်ပြီးသား အေးဂျင့်",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "စွမ်းရည် manifest JSON ကို ကူးထည့်ပါ သို့မဟုတ် .json ဖိုင်တစ်ခုကို အပ်လုဒ်လုပ်ပါ။",
     "uploadJson": "JSON အပ်လုဒ်လုပ်ရန်",
     "cancel": "ပယ်ဖျက်ရန်",
-    "installSkill": "စွမ်းရည်ကို ထည့်သွင်းရန်"
+    "installSkill": "စွမ်းရည်ကို ထည့်သွင်းရန်",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "တစ်ပြိုင်နက်လုပ်ဆောင်မှု ထိန်းချုပ်ဂိတ်များ",

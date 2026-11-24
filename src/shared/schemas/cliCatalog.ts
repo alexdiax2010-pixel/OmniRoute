@@ -74,4 +74,5 @@ export const EXPECTED_CODE_COUNT = 23;
 // +1 (#11166): "prime-agent" (PrimeIntellect-ai/prime-agent) added as an agent entry.
 // +1 (#11578): "5dive" (5dive-ai/5dive) added as an agent entry.
 // +1 (#14096): "whycodes" (whycorporation/whycodes) added as an agent entry.
-export const EXPECTED_AGENT_COUNT = 11;
+// +1: "paperclip" (paperclipai/paperclip) added as an agent guide entry.
+export const EXPECTED_AGENT_COUNT = 12;

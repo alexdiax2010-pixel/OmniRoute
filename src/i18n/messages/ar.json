@@ -3364,7 +3364,8 @@
       "agent-deck": "منسق الوكلاء المتعددين Agent Deck",
       "5dive": "5dive — أسطول ذاتي الاستضافة من وكلاء البرمجة؛ ملف اعتماد واحد يوجّهها جميعًا إلى OmniRoute",
       "whycodes": "العميل المستقل WhyCodes عبر CLI مع عنوان URL أساسي متوافق مع OpenAI",
-      "zed": "محرر الأكواد Zed — وكيل مدمج عبر مزوّد متوافق مع OpenAI"
+      "zed": "محرر الأكواد Zed — وكيل مدمج عبر مزوّد متوافق مع OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "الصق بيان المهارات JSON أو قم بتحميل ملف .json.",
     "uploadJson": "تحميل JSON",
     "cancel": "إلغاء",
-    "installSkill": "تثبيت المهارة"
+    "installSkill": "تثبيت المهارة",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "بوابات التزامن",

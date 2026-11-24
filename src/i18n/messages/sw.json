@@ -3364,7 +3364,8 @@
       "agent-deck": "Mratibu wa mawakala wengi wa Agent Deck",
       "5dive": "5dive — kundi la mawakala wa uandishi wa msimbo unaojipangisha; wasifu mmoja wa auth huwaelekeza wote kwa OmniRoute",
       "whycodes": "Wakala wa CLI anayejitegemea wa WhyCodes mwenye base URL inayooana na OpenAI",
-      "zed": "Kihariri cha msimbo cha Zed — wakala aliyejengewa ndani kupitia mtoa huduma anayeendana na OpenAI"
+      "zed": "Kihariri cha msimbo cha Zed — wakala aliyejengewa ndani kupitia mtoa huduma anayeendana na OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "Bandika faili ya manifest ya JSON ya ujuzi au pakia faili ya .json.",
     "uploadJson": "Pakia JSON",
     "cancel": "Ghairi",
-    "installSkill": "Sakinisha Ujuzi"
+    "installSkill": "Sakinisha Ujuzi",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "Milango ya utekelezaji sambamba",

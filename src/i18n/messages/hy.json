@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck բազմագործակալային համակարգող",
       "5dive": "5dive — ինքնուրույն հոսթավորվող կոդավորման գործակալների խումբ․ նույնականացման մեկ պրոֆիլը բոլորին ուղղորդում է դեպի OmniRoute",
       "whycodes": "WhyCodes ինքնավար CLI գործակալ՝ OpenAI-համատեղելի հիմնական URL-ով",
-      "zed": "Zed կոդի խմբագիր — ներկառուցված գործակալ OpenAI-համատեղելի մատակարարի միջոցով"
+      "zed": "Zed կոդի խմբագիր — ներկառուցված գործակալ OpenAI-համատեղելի մատակարարի միջոցով",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "Փակցրեք հմտության մանիֆեստի JSON-ը կամ վերբեռնեք .json ֆայլ։",
     "uploadJson": "Վերբեռնել JSON",
     "cancel": "Չեղարկել",
-    "installSkill": "Տեղադրել հմտությունը"
+    "installSkill": "Տեղադրել հմտությունը",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "Զուգահեռության սահմանափակիչներ",

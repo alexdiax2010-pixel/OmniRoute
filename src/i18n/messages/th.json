@@ -3364,7 +3364,8 @@
       "agent-deck": "ตัวประสานงานหลายเอเจนต์ Agent Deck",
       "5dive": "5dive — ฟลีตเอเจนต์เขียนโค้ดที่โฮสต์เอง; โปรไฟล์ auth เดียวชี้ทั้งหมดไปที่ OmniRoute",
       "whycodes": "เอเจนต์ CLI อัตโนมัติ WhyCodes พร้อม base URL ที่เข้ากันได้กับ OpenAI",
-      "zed": "โปรแกรมแก้ไขโค้ด Zed — เอเจนต์ในตัวผ่านผู้ให้บริการที่เข้ากันได้กับ OpenAI"
+      "zed": "โปรแกรมแก้ไขโค้ด Zed — เอเจนต์ในตัวผ่านผู้ให้บริการที่เข้ากันได้กับ OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "วาง skill manifest JSON หรืออัปโหลดไฟล์ .json.",
     "uploadJson": "อัปโหลด JSON",
     "cancel": "ยกเลิก",
-    "installSkill": "ติดตั้งทักษะ"
+    "installSkill": "ติดตั้งทักษะ",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "เกตควบคุมการทำงานพร้อมกัน",

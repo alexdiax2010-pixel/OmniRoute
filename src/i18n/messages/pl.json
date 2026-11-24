@@ -3364,7 +3364,8 @@
       "agent-deck": "Orkiestrator wieloagentowy Agent Deck",
       "5dive": "5dive — samodzielnie hostowana flota agentów kodujących; jeden profil auth kieruje je wszystkie do OmniRoute",
       "whycodes": "Autonomiczny agent CLI WhyCodes z bazowym URL zgodnym z OpenAI",
-      "zed": "Edytor kodu Zed — wbudowany agent przez dostawcę zgodnego z OpenAI"
+      "zed": "Edytor kodu Zed — wbudowany agent przez dostawcę zgodnego z OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "Wklej manifest JSON umiejętności lub prześlij plik .json.",
     "uploadJson": "Prześlij JSON",
     "cancel": "Anuluj",
-    "installSkill": "Zainstaluj umiejętność"
+    "installSkill": "Zainstaluj umiejętność",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "Bramki współbieżności",

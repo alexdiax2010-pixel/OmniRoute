@@ -3364,7 +3364,8 @@
       "agent-deck": "מתזמר מרובה סוכנים Agent Deck",
       "5dive": "5dive — צי מתארח עצמאית של סוכני קוד; פרופיל אימות אחד מכוון את כולם ל-OmniRoute",
       "whycodes": "סוכן CLI אוטונומי WhyCodes עם כתובת URL בסיסית תואמת OpenAI",
-      "zed": "עורך הקוד Zed — סוכן מובנה דרך ספק תואם OpenAI"
+      "zed": "עורך הקוד Zed — סוכן מובנה דרך ספק תואם OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,10 @@
     "installSkillModalDesc": "הדבק JSON של מניפסט כישור או העלה קובץ .json.",
     "uploadJson": "העלה JSON",
     "cancel": "ביטול",
-    "installSkill": "התקן את מיומנות"
+    "installSkill": "התקן את מיומנות",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed"
   },
   "health": {
     "queuesTitle": "שערי מקביליות",

@@ -941,7 +941,7 @@ export async function handleAudioSpeech({
   if (!providerConfig) {
     return errorResponse(
       400,
-      `No speech provider found for model "${body.model}". Use format provider/model. Available: openai, hyperbolic, deepgram, nvidia, elevenlabs, huggingface, inworld, cartesia, fishaudio, playht, kie, aws-polly, xiaomi-mimo, gtts, coqui, tortoise, qwen`
+      `No speech provider found for model "${body.model}". Use format provider/model. Available: openai, hyperbolic, deepgram, nvidia, elevenlabs, huggingface, inworld, cartesia, fishaudio, playht, kie, aws-polly, xiaomi-mimo, gtts, coqui, tortoise, qwen, voicestudio`
     );
   }
 
