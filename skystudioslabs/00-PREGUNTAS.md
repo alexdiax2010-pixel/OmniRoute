@@ -39,3 +39,7 @@
 - [ ] 8 prospectos que vienen de bocetos no tienen puntaje (entran con 0): ¿les asignamos uno?
 - [ ] ¿Te parece bien el tope global de 30 códigos fallidos por hora? Si alguien lo provoca, el código se pausa una hora (el correo sigue funcionando).
 - [ ] Los mensajes y guiones dicen "[Tu nombre]": ¿lo cambio por tu nombre?
+
+## Del subagente de diseño (A)
+- [ ] Reseñas reales (texto + nombre y negocio, con permiso) para la portada; mientras no haya, el bloque no se muestra.
+- [ ] La constelación muestra 2 sitios activos (dato real) y deja espacio vacío: ¿la achicamos mientras haya pocos sitios?
