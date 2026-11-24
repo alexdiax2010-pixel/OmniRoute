@@ -1,5 +1,6 @@
 // Convierte anuncio.html en MP4 vertical (1080x1920, 30 fps) con sonido.
-// Uso: node marketing/video/render.cjs [salida.mp4]
+// Uso: node marketing/video/render.cjs [salida.mp4] [pagina.html] [voz.mp3]
+// (por defecto: anuncio.html + voz.mp3 → anuncio-sky-studios.mp4)
 const { chromium } = require("playwright");
 const { spawn, execFileSync } = require("node:child_process");
 const fs = require("node:fs");
@@ -7,7 +8,7 @@ const os = require("node:os");
 const path = require("node:path");
 
 const FPS = 30;
-const html = path.join(__dirname, "anuncio.html");
+const html = path.resolve(__dirname, process.argv[3] || "anuncio.html");
 const salida = process.argv[2] || path.join(__dirname, "anuncio-sky-studios.mp4");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "anuncio-"));
 const soloVideo = path.join(tmp, "video.mp4");
@@ -39,7 +40,7 @@ const audio = path.join(tmp, "audio.wav");
   await navegador.close();
 
   // voz en off (si existe): se convierte a WAV y se mezcla encima de la música
-  const vozMp3 = path.join(__dirname, "voz.mp3");
+  const vozMp3 = path.resolve(__dirname, process.argv[4] || "voz.mp3");
   const extra = [];
   if (fs.existsSync(vozMp3)) {
     const vozWav = path.join(tmp, "voz.wav");

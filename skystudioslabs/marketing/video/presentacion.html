@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Presentación Sky Studios Labs</title>
+<!-- Anuncio vertical 1080x1920 (Reels / TikTok / Stories).
+     Se reproduce solo en el navegador; render.cjs lo convierte en MP4 (con sonido) cuadro por cuadro.
+     window.SONIDOS lista los efectos con su segundo exacto; sonido.py los sintetiza. -->
+<style>
+@font-face { font-family: Anton; src: url(../../node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2); }
+@font-face { font-family: Inter; src: url(../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2); font-weight: 100 900; }
+:root { --bg:#050505; --text:#f4f1ec; --muted:#a8a39b; --ember:#ff4a1c; --orange:#ff8a2a; --line:#26262b; --surface:#141417; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { background:#000; }
+#lienzo { position:relative; width:1080px; height:1920px; overflow:hidden; background:var(--bg); color:var(--text); font-family:Inter, sans-serif; }
+#rejilla { position:absolute; inset:-200px; opacity:.07;
+  background-image:linear-gradient(var(--text) 1px,transparent 1px),linear-gradient(90deg,var(--text) 1px,transparent 1px);
+  background-size:90px 90px; }
+#camara { position:absolute; inset:0; transform-origin:50% 50%; }
+.escena { position:absolute; inset:0; visibility:hidden; }
+.display { font-family:Anton, sans-serif; text-transform:uppercase; line-height:.9; }
+.grad { background:linear-gradient(90deg,var(--ember),var(--orange)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.centro { position:absolute; left:0; right:0; text-align:center; }
+.glow { position:absolute; border-radius:50%; pointer-events:none; }
+.vineta { position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 55%,rgba(0,0,0,.6) 100%); z-index:18; }
+
+#progreso { position:absolute; left:48px; right:48px; top:48px; display:flex; gap:10px; z-index:20; }
+#progreso i { flex:1; height:6px; border-radius:3px; background:rgba(244,241,236,.18); overflow:hidden; }
+#progreso i b { display:block; height:100%; width:0; background:var(--text); }
+#marca { position:absolute; left:48px; top:84px; z-index:20; font-weight:700; letter-spacing:6px; font-size:26px; color:var(--muted); }
+#flash { position:absolute; inset:0; background:var(--text); opacity:0; z-index:30; pointer-events:none; }
+#barrido { position:absolute; left:-10%; width:120%; height:120%; top:0; z-index:29;
+  background:linear-gradient(160deg,var(--orange),var(--ember)); }
+
+/* 1 · gancho */
+#e1 .display { white-space:nowrap; }
+#e1 .l1 { top:600px; font-size:120px; }
+#e1 .l2 { top:730px; font-size:136px; }
+#e1 .l3 { top:895px; font-size:205px; }
+
+/* teléfono (escena 2 y 4) */
+.tel { position:absolute; left:240px; width:600px; height:1160px; border-radius:72px; background:#0d0d0f;
+  border:3px solid #2c2c32; box-shadow:0 60px 160px -40px rgba(255,74,28,.45); overflow:hidden; }
+.tel .notch { position:absolute; left:50%; top:22px; width:160px; height:36px; margin-left:-80px; border-radius:20px; background:#000; z-index:5; }
+#tel { top:420px; }
+#busca { position:absolute; left:36px; right:36px; top:110px; height:96px; border-radius:48px; background:#1b1b1f; border:2px solid #2c2c32;
+  display:flex; align-items:center; padding:0 36px; font-size:36px; font-weight:500; }
+#busca .lupa { width:30px; height:30px; border:4px solid var(--muted); border-radius:50%; margin-right:22px; position:relative; flex:none; }
+#busca .lupa::after { content:""; position:absolute; width:14px; height:4px; background:var(--muted); right:-12px; bottom:-6px; transform:rotate(45deg); }
+#busca .cursor { display:inline-block; width:3px; height:40px; background:var(--orange); margin-left:4px; }
+.res { position:absolute; left:36px; right:36px; height:170px; border-radius:28px; background:var(--surface); border:2px solid #222227; padding:30px; }
+.res .t { height:26px; width:62%; border-radius:13px; background:#2f2f35; }
+.res .s { height:18px; width:85%; border-radius:9px; background:#232328; margin-top:22px; }
+.res .pin { position:absolute; right:30px; top:30px; width:44px; height:44px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#3a3a40; }
+.res .etq2 { position:absolute; left:30px; bottom:26px; font-size:24px; font-weight:800; letter-spacing:3px; color:#6b6b73; }
+#tuyo { border:3px dashed #4a4a52; background:transparent; z-index:2; }
+#tuyo .vacio { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:40px; font-weight:800; color:var(--muted); letter-spacing:2px; }
+#tuyo .lleno { position:absolute; inset:-3px; border-radius:28px; border:3px solid var(--orange); background:linear-gradient(135deg,rgba(255,74,28,.32),rgba(255,138,42,.1)); opacity:0; }
+#tuyo .t, #tuyo .s, #tuyo .pin, #tuyo .etq { opacity:0; }
+#tuyo .t { background:var(--orange); position:relative; }
+#tuyo .s { position:relative; }
+#tuyo .pin { background:var(--ember); }
+#tuyo .etq { position:absolute; left:30px; bottom:26px; font-size:26px; font-weight:800; letter-spacing:3px; color:var(--orange); }
+#pregunta { top:1690px; font-size:64px; font-weight:700; z-index:15; visibility:hidden; }
+
+/* 3 · páginas que venden */
+#sol { position:absolute; left:290px; top:300px; width:500px; height:250px; border-radius:250px 250px 0 0; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#horizonte { position:absolute; left:200px; top:575px; width:680px; height:24px; border-radius:12px; background:var(--text); }
+#e3 .titulo { position:absolute; left:80px; top:760px; font-size:250px; }
+#e3 .titulo div { white-space:nowrap; }
+#e3 .nombre { top:700px; font-size:190px; }
+#e3 .nombre2 { top:900px; font-size:56px; font-weight:700; letter-spacing:20px; color:var(--orange); }
+#e3 .mapa1 { top:720px; font-size:210px; }
+#e3 .mapa2 { top:920px; font-size:230px; }
+#pin3 { position:absolute; left:480px; top:410px; width:120px; height:120px; border-radius:50% 50% 50% 0; transform:rotate(-45deg);
+  background:linear-gradient(135deg,var(--orange),var(--ember)); box-shadow:0 0 0 18px rgba(255,74,28,.22); }
+#pin3::after { content:""; position:absolute; left:38px; top:38px; width:44px; height:44px; border-radius:50%; background:var(--bg); }
+
+/* 4 · demos dentro del teléfono */
+#e4 .etiqueta { position:absolute; left:0; right:0; top:180px; height:200px; text-align:center; }
+#e4 .etiqueta .num { font-family:Anton; font-size:60px; color:var(--orange); }
+#e4 .etiqueta .cual { position:absolute; left:0; right:0; top:70px; height:160px; overflow:hidden; }
+#e4 .etiqueta .cual div { position:absolute; left:0; right:0; top:14px; font-family:Anton; font-size:130px; text-transform:uppercase; line-height:1; }
+#tel2 { top:470px; height:1140px; }
+.pant { position:absolute; inset:0; overflow:hidden; }
+/* web */
+#pWeb { background:#0f0f12; }
+#pWeb .nav { position:absolute; left:40px; right:40px; top:90px; display:flex; justify-content:space-between; align-items:center; }
+#pWeb .logo { font-family:Anton; font-size:44px; }
+#pWeb .menu { width:56px; height:6px; background:var(--text); border-radius:3px; box-shadow:0 16px 0 var(--text),0 -16px 0 var(--text); }
+#pWeb .hero { position:absolute; left:40px; right:40px; top:200px; height:420px; border-radius:36px; background:linear-gradient(150deg,#2a1406,#ff4a1c 60%,#ff8a2a); overflow:hidden; }
+#pWeb .hero::after { content:""; position:absolute; right:-80px; bottom:-120px; width:420px; height:420px; border-radius:50%; background:rgba(5,5,5,.25); }
+#pWeb .h1 { position:absolute; left:40px; top:660px; font-family:Anton; font-size:84px; line-height:.95; text-transform:uppercase; }
+#pWeb .lin { position:absolute; left:40px; height:20px; border-radius:10px; background:#2a2a30; }
+#pWeb .cta { position:absolute; left:40px; right:40px; top:960px; height:110px; border-radius:55px; background:#25d366; color:#04210f;
+  display:flex; align-items:center; justify-content:center; font-weight:800; font-size:36px; }
+/* mapa */
+#pMapa { background:#121418; }
+#pMapa svg { position:absolute; inset:0; }
+#pin { position:absolute; left:262px; top:380px; width:76px; height:76px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:var(--ember);
+  box-shadow:0 0 0 12px rgba(255,74,28,.25); }
+#pin::after { content:""; position:absolute; left:24px; top:24px; width:28px; height:28px; border-radius:50%; background:#fff; }
+#sombra { position:absolute; left:270px; top:470px; width:60px; height:16px; border-radius:50%; background:rgba(0,0,0,.6); }
+#ficha { position:absolute; left:30px; right:30px; bottom:40px; height:300px; border-radius:36px; background:#1c1d22; border:2px solid #2c2c32; padding:36px; }
+#ficha .n { font-family:Anton; font-size:58px; }
+#ficha .a { margin-top:10px; font-size:30px; color:#3ddc84; font-weight:700; }
+#ficha .bts { position:absolute; left:36px; right:36px; bottom:36px; display:flex; gap:18px; }
+#ficha .bts div { flex:1; height:84px; border-radius:42px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:30px; background:#2a2b31; }
+#ficha .bts div:first-child { background:var(--orange); color:#140700; }
+/* chat */
+#pChat { background:#0b0d10; }
+#pChat .top { position:absolute; left:0; right:0; top:0; height:190px; background:#16181d; border-bottom:2px solid #24262c; }
+#pChat .top .av { position:absolute; left:40px; top:92px; width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#pChat .top .nm { position:absolute; left:134px; top:94px; font-weight:800; font-size:34px; }
+#pChat .top .st { position:absolute; left:134px; top:138px; font-size:24px; color:#3ddc84; font-weight:600; }
+#hora { position:absolute; left:0; right:0; top:230px; text-align:center; font-size:26px; color:var(--muted); font-weight:700; letter-spacing:2px; }
+.burb { position:absolute; max-width:420px; padding:26px 32px; border-radius:34px; font-size:34px; line-height:1.3; font-weight:500; }
+.burb.yo { right:36px; background:#2b5cff; color:#fff; border-bottom-right-radius:8px; }
+.burb.bot { left:36px; background:#1f2127; border-bottom-left-radius:8px; }
+#puntos { position:absolute; left:36px; top:560px; padding:28px 34px; border-radius:34px; background:#1f2127; display:flex; gap:12px; }
+#puntos i { width:16px; height:16px; border-radius:50%; background:var(--muted); }
+/* aviso */
+#pAviso { background:radial-gradient(circle at 50% 30%,#3a1a0a,#0b0b0d 70%); }
+#pAviso .reloj { position:absolute; left:0; right:0; top:200px; text-align:center; font-family:Inter; font-weight:300; font-size:190px; letter-spacing:-6px; }
+#pAviso .fecha { position:absolute; left:0; right:0; top:420px; text-align:center; font-size:34px; font-weight:600; color:#d9d4cc; }
+#noti { position:absolute; left:30px; right:30px; top:540px; padding:30px; border-radius:38px; background:rgba(40,40,46,.92); border:2px solid #3a3a42; display:flex; gap:24px; }
+#noti .ic { width:84px; height:84px; flex:none; border-radius:22px; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#noti .tt { font-weight:800; font-size:32px; }
+#noti .tx { margin-top:6px; font-size:28px; color:#d9d4cc; line-height:1.3; }
+#noti .ap { position:absolute; right:30px; top:30px; font-size:22px; color:var(--muted); }
+
+/* 5 · oferta */
+#e5 .l1 { top:640px; font-size:300px; }
+#e5 .l2 { top:920px; font-size:300px; }
+#e5 .antes { top:1260px; font-size:62px; font-weight:700; }
+#e5 .antes span { border-bottom:6px solid var(--orange); padding-bottom:4px; }
+
+/* 6 · llamada a la acción */
+#sol2 { position:absolute; left:440px; top:250px; width:200px; height:100px; border-radius:100px 100px 0 0; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#hor2 { position:absolute; left:400px; top:362px; width:280px; height:12px; border-radius:6px; background:var(--text); }
+#e6 .nombre { top:420px; font-size:110px; }
+#e6 .nombre2 { top:545px; font-size:36px; font-weight:700; letter-spacing:14px; color:var(--orange); }
+#e6 .pide { top:690px; font-size:36px; font-weight:700; letter-spacing:6px; color:var(--muted); }
+#boton { position:absolute; left:90px; right:90px; top:750px; height:170px; border-radius:85px; background:linear-gradient(90deg,var(--ember),var(--orange));
+  color:#140700; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:70px; box-shadow:0 30px 90px -20px rgba(255,74,28,.8); }
+#flecha { position:absolute; left:500px; top:960px; width:80px; height:80px; border-left:12px solid var(--text); border-top:12px solid var(--text); transform:rotate(45deg); }
+#wa { position:absolute; left:50%; top:1080px; transform:translateX(-50%); padding:18px 44px; border-radius:60px; background:#25d366; color:#04210f; font-weight:800; font-size:44px; }
+#numero { top:1180px; font-family:Anton; font-size:140px; line-height:1; letter-spacing:2px; }
+#numero span { display:inline-block; }
+#e6 .mx1 { top:1420px; font-size:120px; }
+#e6 .mx2 { top:1510px; font-size:190px; padding-top:.18em; }
+
+/* ===== presentación ===== */
+#p1 .nombre { top:820px; font-size:180px; }
+#p1 .nombre2 { top:1010px; font-size:56px; font-weight:700; letter-spacing:22px; color:var(--orange); }
+#p1 #solP { position:absolute; left:340px; top:470px; width:400px; height:200px; border-radius:200px 200px 0 0; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#p1 #horP { position:absolute; left:270px; top:690px; width:540px; height:20px; border-radius:10px; background:var(--text); }
+#p1 .somos { top:380px; font-size:52px; font-weight:700; letter-spacing:14px; color:var(--muted); }
+#p2 .agencia { top:330px; font-size:44px; font-weight:700; letter-spacing:12px; color:var(--muted); }
+#p2 .l1 { top:420px; font-size:150px; }
+#p2 .l2 { top:545px; font-size:190px; padding-top:.16em; }
+#p2 .l3 { top:1350px; font-size:64px; font-weight:700; line-height:1.3; }
+#p2 .pins { position:absolute; left:90px; right:90px; top:820px; height:460px; border-radius:40px; border:2px solid var(--line); background:#0d0d0f; overflow:hidden; }
+#p2 .pins .road { position:absolute; background:#1c1f25; }
+#p2 .pp { position:absolute; width:56px; height:56px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:var(--ember); box-shadow:0 0 0 10px rgba(255,74,28,.22); }
+#p2 .pp::after { content:""; position:absolute; left:18px; top:18px; width:20px; height:20px; border-radius:50%; background:#fff; }
+#pRedes { background:#0b0b0d; }
+#pRedes .perfil { position:absolute; left:30px; right:30px; top:90px; display:flex; gap:24px; align-items:center; }
+#pRedes .avatar { width:110px; height:110px; border-radius:50%; background:linear-gradient(135deg,var(--orange),var(--ember)); border:5px solid #0b0b0d; box-shadow:0 0 0 4px #ff8a2a; flex:none; }
+#pRedes .nombreR { font-weight:800; font-size:32px; }
+#pRedes .bio { margin-top:6px; height:16px; width:260px; border-radius:8px; background:#2a2a30; }
+#pRedes .grid3 { position:absolute; left:30px; right:30px; top:260px; display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+#pRedes .grid3 i { display:block; aspect-ratio:1; border-radius:10px; background:linear-gradient(150deg,#2a1406,#ff4a1c 70%,#ff8a2a); }
+#pRedes .grid3 i:nth-child(2n) { background:linear-gradient(150deg,#141417,#2a2a30); }
+#pRedes .grid3 i:nth-child(3n) { background:linear-gradient(150deg,#3a1a0a,#ff8a2a); }
+#dm { position:absolute; left:30px; right:30px; top:820px; padding:26px; border-radius:30px; background:rgba(40,40,46,.95); border:2px solid #3a3a42; display:flex; gap:20px; align-items:center; }
+#dm .ic { width:70px; height:70px; flex:none; border-radius:20px; background:linear-gradient(135deg,#ff8a2a,#ff4a1c); }
+#dm .tt { font-weight:800; font-size:30px; } #dm .tx { font-size:26px; color:#d9d4cc; margin-top:4px; }
+#corazones { position:absolute; right:40px; top:560px; font-size:60px; color:var(--ember); }
+#p4 .cab { top:300px; font-size:46px; font-weight:700; letter-spacing:10px; color:var(--muted); }
+.paso { position:absolute; left:90px; right:90px; height:230px; border-radius:36px; border:2px solid var(--line); background:#0d0d0f; display:flex; align-items:center; gap:40px; padding:0 50px; }
+.paso .n { font-family:Anton; font-size:110px; color:var(--orange); line-height:1; width:120px; }
+.paso .t { font-family:Anton; font-size:96px; text-transform:uppercase; line-height:1; }
+.paso.activo { border-color:var(--orange); box-shadow:0 0 0 6px rgba(255,138,42,.15); }
+#p4 .sin { top:1460px; font-size:150px; }
+#p5 .l1 { top:400px; font-size:170px; line-height:1.05; }
+.canal { position:absolute; left:140px; right:140px; height:170px; border-radius:85px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:62px; }
+#cWa { top:850px; background:#25d366; color:#04210f; }
+#cVid { top:1060px; background:#2b5cff; color:#fff; }
+#p5 .donde { top:1330px; font-size:80px; font-weight:800; }
+#p6 #sol6 { position:absolute; left:390px; top:300px; width:300px; height:150px; border-radius:150px 150px 0 0; background:linear-gradient(135deg,var(--orange),var(--ember)); }
+#p6 #hor6 { position:absolute; left:330px; top:468px; width:420px; height:16px; border-radius:8px; background:var(--text); }
+#p6 .nombre { top:540px; font-size:150px; }
+#p6 .nombre2 { top:710px; font-size:46px; font-weight:700; letter-spacing:16px; color:var(--orange); }
+#p6 .lema1 { top:880px; font-size:120px; }
+#p6 .lema2 { top:1010px; font-size:150px; padding-top:.16em; }
+#p6 #url { position:absolute; left:90px; right:90px; top:1300px; height:160px; border-radius:80px; background:linear-gradient(90deg,var(--ember),var(--orange)); color:#140700; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:66px; box-shadow:0 30px 90px -20px rgba(255,74,28,.8); }
+#p6 .nums { top:1510px; font-size:44px; font-weight:700; color:var(--muted); line-height:1.5; }
+#p3 .cl { position:absolute; left:0; right:0; top:14px; font-family:Anton; font-size:130px; text-transform:uppercase; line-height:1; }
+</style>
+</head>
+<body>
+<div id="lienzo">
+  <div id="rejilla"></div>
+  <div id="camara">
+    <div class="glow" id="glow" style="left:-160px;top:200px;width:1400px;height:1400px;background:radial-gradient(circle,rgba(255,74,28,.55),rgba(255,138,42,.14) 42%,rgba(5,5,5,0) 68%)"></div>
+
+    <section class="escena" id="p1">
+      <div class="centro somos">SOMOS</div>
+      <div id="solP"></div><div id="horP"></div>
+      <div class="centro display nombre">Sky Studios</div>
+      <div class="centro nombre2">LABS</div>
+    </section>
+
+    <section class="escena" id="p2">
+      <div class="centro agencia">AGENCIA DIGITAL</div>
+      <div class="centro display l1">Negocios de</div>
+      <div class="centro display l2 grad">todo México</div>
+      <div class="pins">
+        <div class="road" style="left:0;right:0;top:120px;height:22px"></div><div class="road" style="left:0;right:0;top:320px;height:22px"></div>
+        <div class="road" style="top:0;bottom:0;left:230px;width:22px"></div><div class="road" style="top:0;bottom:0;left:620px;width:22px"></div>
+        <div class="pp" style="left:120px;top:60px"></div><div class="pp" style="left:420px;top:200px"></div><div class="pp" style="left:720px;top:90px"></div>
+        <div class="pp" style="left:300px;top:340px"></div><div class="pp" style="left:800px;top:300px"></div>
+      </div>
+      <div class="centro l3">…y que sus clientes<br><span class="grad">los encuentren.</span></div>
+    </section>
+
+    <section class="escena" id="p3">
+      <div class="etiqueta" style="position:absolute;left:0;right:0;top:180px;height:200px;text-align:center">
+        <div class="num" id="num" style="font-family:Anton;font-size:60px;color:var(--orange)">01</div>
+        <div class="cual" style="position:absolute;left:0;right:0;top:70px;height:160px;overflow:hidden">
+          <div id="c1" class="cl">Páginas web</div><div id="c2" class="cl">Google Maps</div><div id="c3" class="cl">Redes sociales</div><div id="c4" class="cl grad">Chatbot 24/7</div>
+        </div>
+      </div>
+      <div class="tel" id="tel2" style="top:470px;height:1140px">
+        <div class="notch"></div>
+        <div class="pant" id="pWeb">
+          <div class="nav"><div class="logo">TU NEGOCIO</div><div class="menu"></div></div>
+          <div class="hero"></div>
+          <div class="h1">Lo mejor<br>de tu ciudad</div>
+          <div class="lin" style="top:860px;width:440px"></div>
+          <div class="lin" style="top:900px;width:320px"></div>
+          <div class="cta">Escríbenos por WhatsApp</div>
+        </div>
+        <div class="pant" id="pMapa">
+          <svg viewBox="0 0 600 1140" width="600" height="1140"><rect width="600" height="1140" fill="#121418"/><g stroke="#262a31" stroke-width="34" fill="none" stroke-linecap="round"><path d="M-20 260 L620 200"/><path d="M-20 640 L620 700"/><path d="M180 -20 L140 1160"/><path d="M460 -20 L520 1160"/></g><g stroke="#1c1f25" stroke-width="16" fill="none"><path d="M-20 460 L620 430"/><path d="M320 -20 L300 1160"/><path d="M-20 880 L620 900"/></g><rect x="200" y="300" width="90" height="120" rx="10" fill="#1a1d23"/><rect x="40" y="480" width="80" height="120" rx="10" fill="#183022"/></svg>
+          <div id="sombra"></div><div id="pin"></div>
+          <div id="ficha"><div class="n">TU NEGOCIO</div><div class="a">Abierto ahora</div><div class="bts"><div>Cómo llegar</div><div>Llamar</div></div></div>
+        </div>
+        <div class="pant" id="pRedes">
+          <div class="perfil"><div class="avatar"></div><div><div class="nombreR">tunegocio</div><div class="bio"></div></div></div>
+          <div class="grid3"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div id="corazones">♥</div>
+          <div id="dm"><div class="ic"></div><div><div class="tt">Nuevo mensaje</div><div class="tx">"Hola, ¿cuánto cuesta?"</div></div></div>
+        </div>
+        <div class="pant" id="pChat">
+          <div class="top"><div class="av"></div><div class="nm">Tu Negocio</div><div class="st">en línea</div></div>
+          <div id="hora">3:07 AM</div>
+          <div class="burb yo" id="b1" style="top:300px">¿Abren mañana? Quiero una cita</div>
+          <div id="puntos"><i></i><i></i><i></i></div>
+          <div class="burb bot" id="b2" style="top:540px">¡Claro! Mañana abrimos a las 9. ¿Te aparto las 10:00?</div>
+          <div class="burb yo" id="b3" style="top:800px">Sí, por favor</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="escena" id="p4">
+      <div class="centro cab">ASÍ TRABAJAMOS</div>
+      <div class="paso" id="s1" style="top:420px"><div class="n">1</div><div class="t">Boceto <span class="grad">gratis</span></div></div>
+      <div class="paso" id="s2" style="top:700px"><div class="n">2</div><div class="t">Tú lo ves</div></div>
+      <div class="paso" id="s3" style="top:980px"><div class="n">3</div><div class="t">Decides</div></div>
+      <div class="centro display sin grad">Sin compromiso</div>
+    </section>
+
+    <section class="escena" id="p5">
+      <div class="centro display l1">Estés donde<br><span style="color:#ff8a2a">estés</span></div>
+      <div class="canal" id="cWa">WhatsApp</div>
+      <div class="canal" id="cVid">Videollamada</div>
+      <div class="centro donde">Todo México</div>
+    </section>
+
+    <section class="escena" id="p6">
+      <div id="sol6"></div><div id="hor6"></div>
+      <div class="centro display nombre">Sky Studios</div>
+      <div class="centro nombre2">LABS</div>
+      <div class="centro display lema1">Tu negocio,</div>
+      <div class="centro display lema2 grad">en el mapa</div>
+      <div id="url">skystudioslabs.com</div>
+      <div class="centro nums">WhatsApp y llamadas<br>44 9288 9487 · 33 3028 2202</div>
+    </section>
+  </div>
+  <div class="vineta"></div>
+  <div id="progreso"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+  <div id="marca">SKY STUDIOS LABS</div>
+  <div id="barrido"></div>
+  <div id="flash"></div>
+</div>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../node_modules/gsap/dist/SplitText.min.js"></script>
+<script>
+gsap.registerPlugin(SplitText);
+window.LISTO = document.fonts.ready.then(() => {
+  const q = (s) => document.querySelector(s);
+  const RENDER = location.hash === "#render";
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
+  const SONIDOS = [];
+  const sfx = (t, tipo, vol = 1) => SONIDOS.push({ t: +t.toFixed(3), tipo, vol });
+
+  const GRAD = "linear-gradient(90deg,#ff4a1c,#ff8a2a)";
+  // Regla 1 · revelado con máscara; el degradado se reparte entre letras para que siga continuo
+  const chars = (sel) => {
+    const el = typeof sel === "string" ? q(sel) : sel;
+    const split = SplitText.create(el, { type: "lines,chars", mask: "lines", aria: "none" });
+    (split.masks || []).forEach((m) => { m.style.padding = ".16em 0 .06em"; m.style.margin = "-.16em 0 -.06em"; });
+    new Set(split.chars.map((c) => c.closest(".grad")).filter(Boolean)).forEach((g) => {
+      const r = g.getBoundingClientRect();
+      const esc = r.width / (g.offsetWidth || r.width) || 1;
+      split.chars.filter((c) => g.contains(c)).forEach((c) => {
+        const x = (c.getBoundingClientRect().left - r.left) / esc;
+        Object.assign(c.style, { backgroundImage: GRAD, backgroundSize: r.width / esc + "px 100%", backgroundPosition: -x + "px 0",
+          webkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" });
+      });
+      g.classList.remove("grad");
+    });
+    return split.chars;
+  };
+  const mostrar = (id, t) => tl.set(id, { visibility: "visible" }, t);
+  const ocultar = (id, t) => tl.set(id, { visibility: "hidden" }, t);
+  const flash = (t) => { tl.fromTo("#flash", { opacity: 0.85 }, { opacity: 0, duration: 0.35, ease: "power2.out", immediateRender: false }, t); sfx(t, "impacto"); };
+  // transición: un panel naranja barre la pantalla; la escena cambia justo cuando la cubre
+  const barrido = (t) => {
+    tl.fromTo("#barrido", { yPercent: 110 }, { yPercent: 0, duration: 0.25, ease: "power3.in", immediateRender: false }, t - 0.25)
+      .to("#barrido", { yPercent: -120, duration: 0.3, ease: "power3.out" }, t);
+    sfx(t - 0.3, "whoosh");
+    sfx(t, "impacto", 0.8);
+  };
+  // golpe de cámara: sacudida corta al caer una palabra
+  const golpe = (t, fuerza = 18) => {
+    tl.to("#camara", { keyframes: { x: [fuerza, -fuerza * 0.7, fuerza * 0.4, 0], y: [-fuerza * 0.5, fuerza * 0.4, 0, 0] }, duration: 0.28, ease: "none" }, t);
+  };
+  // palabra que entra de golpe: grande, borrosa, y aterriza
+  const aterriza = (sel, t) => {
+    tl.fromTo(sel, { scale: 2.4, opacity: 0, filter: "blur(24px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.32, ease: "expo.out", immediateRender: true }, t);
+    golpe(t + 0.2);
+    sfx(t + 0.18, "impacto");
+  };
+
+  gsap.set("#barrido", { yPercent: 110, skewY: -6 });
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 0);
+  // Tiempos tomados de la transcripción palabra por palabra de voz-presentacion.mp3 (Alejandro).
+  const DUR = 39.4;
+  tl.to("#rejilla", { backgroundPosition: "0px 1400px", duration: DUR, ease: "none" }, 0);
+
+  // 1 · "Somos Sky Studios Labs" (0 – 2.05)
+  mostrar("#p1", 0);
+  tl.from("#p1 .somos", { opacity: 0, letterSpacing: "40px", duration: 0.5 }, 0.0)
+    .from("#solP", { yPercent: 110, duration: 0.9, ease: "expo.out" }, 0.2)
+    .from("#horP", { scaleX: 0, duration: 0.7, ease: "expo.out" }, 0.3)
+    .from("#glow", { opacity: 0, duration: 0.8 }, 0)
+    .from(chars("#p1 .nombre"), { yPercent: 115, duration: 0.55, stagger: 0.03 }, 0.56)
+    .from("#p1 .nombre2", { opacity: 0, letterSpacing: "70px", duration: 0.6 }, 1.4)
+    .to("#camara", { scale: 1.06, duration: 2.1, ease: "none" }, 0);
+  sfx(0.56, "impacto", 0.7); sfx(1.44, "pop", 0.5);
+  ocultar("#p1", 2.05);
+
+  // 2 · "Una agencia digital que ayuda a negocios de todo México a que sus clientes los encuentren" (2.05 – 6.5)
+  barrido(2.05);
+  mostrar("#p2", 2.05);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 2.05)
+    .from("#p2 .agencia", { opacity: 0, y: 30, duration: 0.4 }, 2.2)
+    .from(chars("#p2 .l1"), { yPercent: 115, duration: 0.5, stagger: 0.025 }, 3.4);
+  aterriza("#p2 .l2", 4.0);
+  tl.from("#p2 .pins", { opacity: 0, y: 60, duration: 0.5 }, 4.6)
+    .from("#p2 .pp", { y: -400, opacity: 0, duration: 0.5, stagger: 0.12, ease: "bounce.out" }, 4.9)
+    .from("#p2 .l3", { opacity: 0, y: 40, duration: 0.45 }, 5.3)
+    .to("#camara", { scale: 1.05, duration: 4.4, ease: "none" }, 2.05);
+  [5.15, 5.27, 5.39, 5.51, 5.63].forEach((t) => sfx(t, "pop", 0.4));
+  ocultar("#p2", 6.5);
+
+  // 3 · servicios en el teléfono (6.5 – 22.45): web 6.56 · Google Maps 11.36 · redes 15.16 · chatbot 18.52
+  barrido(6.5);
+  mostrar("#p3", 6.5);
+  const T = [6.5, 11.3, 15.1, 18.45];
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 6.5)
+    .set(["#pMapa", "#pRedes", "#pChat"], { xPercent: 100 }, 6.5)
+    .set(["#c2", "#c3", "#c4"], { yPercent: 120 }, 6.5)
+    .from("#tel2", { yPercent: 30, rotation: 5, opacity: 0, duration: 0.5 }, 6.52)
+    .from("#c1", { yPercent: 120, duration: 0.45 }, 6.6)
+    .from("#num", { opacity: 0, y: 20, duration: 0.35 }, 6.6)
+    .to("#tel2", { rotation: -2, duration: 16, ease: "none" }, 6.5);
+  // web: "modernas" 7.52, "rápidas" 8.32, "celular" 9.6, "WhatsApp" 10.84
+  tl.from("#pWeb .hero", { scale: 0.85, opacity: 0, duration: 0.45 }, 7.5)
+    .from("#pWeb .h1", { y: 60, opacity: 0, duration: 0.4 }, 8.3)
+    .from("#pWeb .lin", { scaleX: 0, transformOrigin: "0 50%", duration: 0.35, stagger: 0.08 }, 9.0)
+    .from("#pWeb .cta", { y: 80, opacity: 0, duration: 0.4, ease: "back.out(1.7)" }, 10.7)
+    .to("#pWeb .cta", { scale: 1.06, duration: 0.2, repeat: 1, yoyo: true }, 11.0);
+  sfx(10.75, "pop", 0.6);
+  const pantallas = ["#pWeb", "#pMapa", "#pRedes", "#pChat"];
+  for (let i = 1; i < 4; i++) {
+    const t = T[i];
+    tl.to(pantallas[i - 1], { xPercent: -35, duration: 0.4, ease: "power3.inOut" }, t)
+      .to(pantallas[i], { xPercent: 0, duration: 0.4, ease: "power3.inOut" }, t)
+      .to("#c" + i, { yPercent: -120, duration: 0.35, ease: "power3.in" }, t)
+      .to("#c" + (i + 1), { yPercent: 0, duration: 0.45 }, t + 0.2);
+    sfx(t, "whoosh", 0.45);
+  }
+  // Maps: el pin cae con "Google Maps" (12.32) y la ficha con "cerca" (14.6)
+  tl.from("#pin", { y: -500, duration: 0.5, ease: "bounce.out" }, 12.2)
+    .from("#sombra", { scale: 0.2, opacity: 0, duration: 0.5, ease: "bounce.out" }, 12.2)
+    .from("#ficha", { y: 340, duration: 0.45 }, 14.4);
+  sfx(12.55, "impacto", 0.5);
+  // redes: publicaciones con "contenido" (16.64), mensaje con "te escriban" (17.84)
+  tl.from("#pRedes .grid3 i", { scale: 0.6, opacity: 0, duration: 0.3, stagger: 0.05 }, 16.5)
+    .from("#corazones", { scale: 0, opacity: 0, duration: 0.4, ease: "back.out(3)" }, 17.1)
+    .to("#corazones", { y: -60, opacity: 0, duration: 0.6 }, 17.5)
+    .from("#dm", { y: 200, opacity: 0, duration: 0.4, ease: "back.out(1.6)" }, 17.8);
+  sfx(17.85, "ding", 0.8);
+  // chatbot: pregunta y respuesta; "veinticuatro horas" (21.04) resalta la hora
+  tl.from("#b1", { scale: 0.6, opacity: 0, transformOrigin: "100% 100%", duration: 0.3, ease: "back.out(2)" }, 19.0)
+    .from("#puntos", { opacity: 0, duration: 0.15 }, 19.4)
+    .to("#puntos i", { y: -10, duration: 0.14, stagger: 0.07, repeat: 1, yoyo: true, ease: "sine.inOut" }, 19.4)
+    .to("#puntos", { opacity: 0, duration: 0.1 }, 19.85)
+    .from("#b2", { scale: 0.6, opacity: 0, transformOrigin: "0% 100%", duration: 0.3, ease: "back.out(2)" }, 19.85)
+    .to("#hora", { scale: 1.9, color: "#ff8a2a", duration: 0.3, ease: "back.out(2)" }, 21.0)
+    .from("#b3", { scale: 0.6, opacity: 0, transformOrigin: "100% 100%", duration: 0.3, ease: "back.out(2)" }, 21.6);
+  sfx(19.0, "burbuja"); sfx(19.85, "burbuja"); sfx(21.0, "pop", 0.6); sfx(21.6, "burbuja");
+  ocultar("#p3", 22.45);
+
+  // 4 · "Nuestra forma de trabajar es simple: boceto gratis, tú lo ves, y luego decides. Sin compromiso." (22.45 – 29.2)
+  barrido(22.45);
+  mostrar("#p4", 22.45);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 22.45)
+    .from("#p4 .cab", { opacity: 0, y: 30, duration: 0.4 }, 22.6)
+    .set(".paso", { opacity: 0.25 }, 22.45)
+    .from(".paso", { x: -80, duration: 0.5, stagger: 0.12 }, 23.0)
+    .to("#s1", { opacity: 1, duration: 0.2 }, 25.3)
+    .to("#s1", { borderColor: "#ff8a2a", boxShadow: "0 0 0 6px rgba(255,138,42,.15)", duration: 0.2 }, 25.3)
+    .to("#s2", { opacity: 1, duration: 0.2 }, 26.5)
+    .to("#s2", { borderColor: "#ff8a2a", boxShadow: "0 0 0 6px rgba(255,138,42,.15)", duration: 0.2 }, 26.5)
+    .to("#s3", { opacity: 1, duration: 0.2 }, 27.35)
+    .to("#s3", { borderColor: "#ff8a2a", boxShadow: "0 0 0 6px rgba(255,138,42,.15)", duration: 0.2 }, 27.35);
+  aterriza("#p4 .sin", 28.15);
+  tl.to("#camara", { scale: 1.04, duration: 6.7, ease: "none" }, 22.45);
+  sfx(25.3, "pop", 0.6); sfx(26.5, "pop", 0.6); sfx(27.35, "pop", 0.6);
+  ocultar("#p4", 29.2);
+
+  // 5 · "Trabajamos por WhatsApp y videollamada, estés donde estés." (29.2 – 32.65)
+  barrido(29.2);
+  mostrar("#p5", 29.2);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 29.2)
+    .from("#cWa", { scale: 0.5, opacity: 0, duration: 0.4, ease: "back.out(2)" }, 29.85)
+    .from("#cVid", { scale: 0.5, opacity: 0, duration: 0.4, ease: "back.out(2)" }, 30.45)
+    .from(chars("#p5 .l1"), { yPercent: 115, duration: 0.5, stagger: 0.025 }, 31.2)
+    .from("#p5 .donde", { opacity: 0, y: 40, duration: 0.4 }, 31.9);
+  sfx(29.9, "pop", 0.6); sfx(30.5, "pop", 0.6);
+  ocultar("#p5", 32.65);
+
+  // 6 · "Sky Studios Labs: tu negocio, en el mapa. Visítanos en skystudioslabs punto com." (32.65 – fin)
+  mostrar("#p6", 32.65); flash(32.65);
+  tl.set("#camara", { scale: 1, x: 0, y: 0 }, 32.65)
+    .from("#sol6", { yPercent: 110, duration: 0.8, ease: "expo.out" }, 32.65)
+    .from("#hor6", { scaleX: 0, duration: 0.6, ease: "expo.out" }, 32.7)
+    .from(chars("#p6 .nombre"), { yPercent: 115, duration: 0.5, stagger: 0.025 }, 32.72)
+    .from("#p6 .nombre2", { opacity: 0, letterSpacing: "60px", duration: 0.6 }, 33.3)
+    .from(chars("#p6 .lema1"), { yPercent: 115, duration: 0.45, stagger: 0.03 }, 34.0);
+  aterriza("#p6 .lema2", 34.85);
+  tl.from("#url", { scale: 0.6, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 36.2)
+    .to("#url", { scale: 1.05, duration: 0.35, repeat: 3, yoyo: true, ease: "sine.inOut" }, 37.0)
+    .from("#p6 .nums", { opacity: 0, y: 30, duration: 0.45 }, 36.6)
+    .to({}, { duration: 0.01 }, DUR);
+  sfx(36.25, "impacto", 0.6);
+
+  const cortes = [0, 2.05, 6.5, 22.45, 29.2, 32.65, DUR];
+  const barras = gsap.utils.toArray("#progreso b");
+  const pintarBarras = () => {
+    const t = tl.time();
+    const n = "0" + (1 + T.filter((x, i) => i > 0 && t >= x + 0.2).length);
+    if (q("#num").textContent !== n) q("#num").textContent = n;
+    barras.forEach((b, i) => { b.style.width = gsap.utils.clamp(0, 1, (t - cortes[i]) / (cortes[i + 1] - cortes[i])) * 100 + "%"; });
+  };
+  tl.eventCallback("onUpdate", pintarBarras);
+  window.SONIDOS = SONIDOS.sort((a, b) => a.t - b.t);
+  window.CORTES = cortes;
+  window.DURACION = tl.duration();
+  window.irA = (t) => { tl.seek(t, false); pintarBarras(); };
+  if (!RENDER) tl.play().eventCallback("onComplete", () => tl.restart());
+  return tl.duration();
+});
+</script>
+</body>
+</html>
