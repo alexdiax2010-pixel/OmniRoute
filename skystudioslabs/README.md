@@ -48,6 +48,8 @@ arrancar en producción** a menos que pongas `SKY_ALLOW_LOCAL_STORE=1` (solo par
 | `npm run typecheck` | Revisión de TypeScript |
 | `npm run check:images` | Falla si alguna imagen de `public/` o `clientes/` pesa más de 300 KB |
 | `npm run crm:importar [-- archivo.json]` | Importa prospectos (por defecto `data/crm-prospectos.json`). Se puede correr varias veces sin duplicar |
+| `npm run crm:desde-rama` | Arma `data/crm-prospectos.json` (171 prospectos reales) desde la rama de prospección, sin cambiar de rama. El archivo está en `.gitignore` |
+| `npm run crm:importar -- --local` / `--solo-nuevos` | `--local` importa al almacén local (pruebas); `--solo-nuevos` agrega solo los que no existen. Sin `--local` escribe en el Supabase de `.env.local` y avisa el destino antes |
 | `npm run crm:respaldo` | Exporta todas las tablas a `respaldos/<fecha>/*.json` |
 | `npm run sitio:nuevo -- <slug> <carpeta> [opciones]` | Copia un boceto a `clientes/<slug>/`, valida imágenes y registra el sitio |
 | `npm run sembrar:demo` | Registra los sitios de ejemplo |

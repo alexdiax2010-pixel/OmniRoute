@@ -1076,3 +1076,11 @@
   width: 20px;
   height: 20px;
 }
+
+/* Contactos del cierre: enlaces WhatsApp / Llamar con objetivo táctil ≥ 44px. */
+.contactosCierre a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 6px;
+}

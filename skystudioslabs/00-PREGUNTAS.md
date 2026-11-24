@@ -32,3 +32,10 @@
 - [ ] ¿Ya existe tu Perfil de Negocio de Google (área de servicio: todo México)? Si sí, pásame el enlace para enlazarlo.
 - [ ] Cuando tengas reseñas reales de Google, ¿las mostramos en el sitio?
 - [ ] El menú tiene "Clientes" (`/#clientes`): confirmar que se queda (hoy muestra el gimnasio Wellness Fitness 5AM).
+
+## Del subagente del CRM (C)
+- [ ] ¿Aplicamos la migración `0003_admin_correo_confirmado.sql` en Supabase? (refuerza que solo tu correo confirmado sea admin)
+- [ ] Los prospectos traen direcciones y textos ("mensaje", "guion") de Zapopan: ¿se quedan así? (son negocios de Zapopan reales)
+- [ ] 8 prospectos que vienen de bocetos no tienen puntaje (entran con 0): ¿les asignamos uno?
+- [ ] ¿Te parece bien el tope global de 30 códigos fallidos por hora? Si alguien lo provoca, el código se pausa una hora (el correo sigue funcionando).
+- [ ] Los mensajes y guiones dicen "[Tu nombre]": ¿lo cambio por tu nombre?

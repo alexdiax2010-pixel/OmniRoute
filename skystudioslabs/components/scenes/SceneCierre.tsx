@@ -29,7 +29,7 @@ export function SceneCierre() {
             >
               <span className="t-title">Escríbeme →</span>
             </a>
-            <div data-anim>
+            <div data-anim className={s.contactosCierre}>
               <Contactos />
             </div>
             {!whatsappConfigurado ? (

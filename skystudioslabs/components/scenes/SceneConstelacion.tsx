@@ -4,6 +4,9 @@ import { PORTAFOLIO, clientesSinSitio } from "@/config/portafolio";
 
 const MAX_ESTRELLAS = 48;
 
+/** Reseñas REALES y verificadas de clientes. Vacía a propósito: no se inventan. */
+const RESENAS: Array<{ texto: string; autor: string }> = [];
+
 /** Posiciones deterministas (espiral áurea dentro de una elipse) para que el HTML sea estable. */
 function estrellas(n: number) {
   const pts: Array<{ x: number; y: number; r: number }> = [];
@@ -123,21 +126,23 @@ export function SceneConstelacion({ activos }: { activos: number }) {
             ))}
           </ul>
         </div>
-        <div className={s.reviews}>
-          <h3 className="t-title" data-split>
-            Lo que dicen nuestros <em className="hl">clientes</em>
-          </h3>
-          <ul className="grid grid-3">
-            {[1, 2, 3].map((i) => (
-              <li key={i} className={`card ${s.reviewCard}`} data-anim>
-                <span className="placeholder">[RESEÑA REAL AQUÍ]</span>
-                <span className="muted">
-                  <span className="placeholder">[NOMBRE Y NEGOCIO]</span>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Reseñas: solo reales. Mientras la lista esté vacía no se muestra nada (nunca cajas
+            con marcadores en la portada). Agrega aquí reseñas verificadas: { texto, autor }. */}
+        {RESENAS.length > 0 ? (
+          <div className={s.reviews}>
+            <h3 className="t-title" data-split>
+              Lo que dicen nuestros <em className="hl">clientes</em>
+            </h3>
+            <ul className="grid grid-3">
+              {RESENAS.map((r) => (
+                <li key={r.autor} className={`card ${s.reviewCard}`} data-anim>
+                  <p>{r.texto}</p>
+                  <span className="muted">{r.autor}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
     </section>
   );

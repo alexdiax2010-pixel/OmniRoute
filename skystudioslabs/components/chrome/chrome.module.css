@@ -27,6 +27,7 @@
   text-transform: uppercase;
   white-space: nowrap;
   margin-right: auto;
+  min-height: 44px; /* objetivo táctil */
 }
 .logoSol {
   width: 26px;
@@ -161,8 +162,15 @@ details[open] > .summary::after { transform: translateY(2px) rotate(-135deg); }
   margin: 0;
   padding: 0;
 }
-.footerLista li + li { margin-top: 8px; }
-.footerLista a { text-decoration: none; }
+.footerLista li + li { margin-top: 2px; }
+/* Objetivo táctil ≥ 44px en celular sin cambiar el tamaño del texto. */
+.footerLista a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+}
+.footerLista li { line-height: 1.4; }
 .footerLista a:hover { color: var(--c-orange); text-decoration: underline; }
 .footerBase {
   position: relative;
