@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getRepo } from "@/lib/data";
+import { alternatesPara, INICIO } from "@/lib/seo/metadata";
 import { SceneIntro } from "@/components/scenes/SceneIntro";
 import { SceneProblema } from "@/components/scenes/SceneProblema";
 import { SceneTachado } from "@/components/scenes/SceneTachado";
@@ -17,11 +18,11 @@ import s from "@/components/scenes/scenes.module.css";
 /** El contador de sitios activos se refresca cada 5 minutos (ISR). */
 export const revalidate = 300;
 
+// Textos en lib/seo/metadata.ts (INICIO): los comparten <title>, Open Graph y Twitter.
 export const metadata: Metadata = {
-  title: { absolute: "Sky Studios Labs — Páginas web, Google Maps y chatbots en todo México" },
-  description:
-    "Páginas que venden, presencia en Google Maps, redes que trabajan por ti y un chatbot que responde a las 3 AM. Negocios de todo México: pide tu boceto gratis.",
-  alternates: { canonical: "/" },
+  title: { absolute: INICIO.titulo },
+  description: INICIO.descripcion,
+  alternates: alternatesPara("/"),
 };
 
 async function contarActivos(): Promise<number> {

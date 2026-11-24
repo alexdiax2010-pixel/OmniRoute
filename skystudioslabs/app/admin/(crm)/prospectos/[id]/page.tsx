@@ -7,7 +7,7 @@ import { PAQUETES, SERVICIOS, NOMBRE_SERVICIO } from "@/config/precios";
 import { fechaCorta, fechaHora, hoyMX } from "@/lib/crm/fechas";
 import { estadoSeguimiento } from "@/lib/crm/reglas";
 import { proximoCobro, serviciosPorOfrecer } from "@/lib/crm/metricas";
-import { linkWa } from "@/lib/crm/texto";
+import { carpetaDeBoceto, linkWa } from "@/lib/crm/texto";
 import { leerNotaPortal } from "@/lib/crm/notas";
 import { urlCliente, urlPropuesta } from "@/lib/crm/enlaces";
 import { carpetaExiste } from "@/lib/crm/carpetas";
@@ -29,6 +29,12 @@ export default async function Detalle({ params }: { params: Promise<{ id: string
   const wa = linkWa(p.whatsapp || p.telefono, p.mensaje);
   const seg = estadoSeguimiento(p.seguimiento, hoy);
   const cobro = proximoCobro(p.diaCobro, hoy);
+  const digitosTel = p.telefono.replace(/\D/g, "");
+  const tel = digitosTel.length >= 10 ? `tel:+${digitosTel.length === 10 ? `52${digitosTel}` : digitosTel}` : null;
+  const fuenteUrl = /^https?:\/\/[^\s]+$/i.test(p.fuente) ? p.fuente : null;
+  const carpetaBoceto = carpetaDeBoceto(p.boceto);
+  const bocetoListo = carpetaBoceto ? carpetaExiste(carpetaBoceto) : false;
+  const propuesta = sitios.find((x) => x.tipo === "propuesta" && x.activo);
 
   return (
     <>
@@ -45,8 +51,18 @@ export default async function Detalle({ params }: { params: Promise<{ id: string
       </div>
       <p className={s.muted}>
         {[p.giro, p.categoria, p.colonia].filter(Boolean).join(" · ") || "Sin giro"} · {p.puntaje} pts{p.top10 ? " · ★ Top 10" : ""}
-        {p.fuente ? ` · Fuente: ${p.fuente}` : ""}
+        {p.sesion ? ` · Sesión ${p.sesion}` : ""}
+        {p.fuente && !fuenteUrl ? ` · Fuente: ${p.fuente}` : ""}
+        {fuenteUrl && (
+          <>
+            {" · "}
+            <a href={fuenteUrl} target="_blank" rel="noopener noreferrer nofollow">
+              Ver fuente
+            </a>
+          </>
+        )}
       </p>
+      {p.direccion && <p className={s.muted}>{p.direccion}</p>}
 
       {p.alertas.length > 0 && (
         <div className={s.alertas} role="note" style={{ marginTop: 16 }}>
@@ -73,6 +89,11 @@ export default async function Detalle({ params }: { params: Promise<{ id: string
         <div className={s.fila} style={{ marginTop: 12 }}>
           <Copiar texto={p.mensaje} etiqueta="Copiar mensaje" />
           <Copiar texto={p.whatsapp || p.telefono} etiqueta="Copiar teléfono" />
+          {tel && (
+            <a href={tel} className={s.btn}>
+              Llamar
+            </a>
+          )}
           {wa ? (
             <a href={wa} target="_blank" rel="noopener noreferrer" className={`${s.btn} ${s.btnWa}`}>
               Abrir WhatsApp
@@ -162,6 +183,22 @@ export default async function Detalle({ params }: { params: Promise<{ id: string
         <h2 id="sitios" className={s.sub} style={{ marginTop: 0 }}>
           Propuesta y sitio
         </h2>
+        {p.boceto && (
+          <p style={{ marginBottom: 12 }}>
+            Boceto: <code>{p.boceto}</code>{" "}
+            {propuesta ? (
+              <a href={urlPropuesta(propuesta.slug)} target="_blank" rel="noopener noreferrer">
+                Abrir propuesta
+              </a>
+            ) : carpetaBoceto && bocetoListo ? (
+              <span className={s.ok}>listo en clientes/{carpetaBoceto} — usa “Crear propuesta” para tener el enlace.</span>
+            ) : (
+              <span className={s.muted}>
+                aún no está en <code>clientes/{carpetaBoceto ?? "…"}</code>.
+              </span>
+            )}
+          </p>
+        )}
         {sitios.length > 0 && (
           <ul className={s.notas} style={{ marginBottom: 12 }}>
             {sitios.map((x) => {

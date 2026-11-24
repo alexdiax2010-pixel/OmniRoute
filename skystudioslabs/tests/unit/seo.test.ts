@@ -2,7 +2,8 @@ import { describe, it, expect } from "vitest";
 import { PAGINAS_SEO, RUTAS_SEO } from "@/lib/seo/paginas";
 import { metadataSEO, schemasPagina } from "@/lib/seo/metadata";
 import { construirSitemap, construirRobots, RUTAS_PRIVADAS } from "@/lib/seo/sitemap";
-import { faqPage, professionalService, serializarJsonLd } from "@/lib/seo/schema";
+import { faqPage, professionalService, serializarJsonLd, webSite } from "@/lib/seo/schema";
+import { alternatesPara, INICIO } from "@/lib/seo/metadata";
 import type { Sitio } from "@/lib/types";
 
 const SITE = "https://skystudioslabs.com";
@@ -41,6 +42,8 @@ describe("páginas SEO", () => {
     expect(meta.description).toBe(p.descripcion);
     expect(meta.alternates?.canonical).toBe(`/${slug}`);
     expect(meta.openGraph).toBeTruthy();
+    expect(meta.alternates?.languages).toEqual({ "es-MX": `/${slug}`, "x-default": `/${slug}` });
+    expect(meta.twitter).toMatchObject({ card: "summary_large_image", description: p.descripcion });
     const schemas = schemasPagina(p, SITE);
     const tipos = schemas.map((s) => s["@type"]);
     expect(tipos).toEqual(expect.arrayContaining(["Service", "FAQPage", "BreadcrumbList"]));
@@ -142,5 +145,45 @@ describe("sitemap usa solo sitios públicos", () => {
     const src = readFileSync("app/sitemap.ts", "utf8");
     expect(src).toContain("listarSitiosPublicos()");
     expect(src).not.toMatch(/listarSitios\(\)/);
+  });
+});
+
+describe("metadatos y schema extra", () => {
+  it("hreflang es-MX + x-default", () => {
+    expect(alternatesPara("/")).toEqual({ canonical: "/", languages: { "es-MX": "/", "x-default": "/" } });
+  });
+  it("la portada declara el mismo título/descr. que usa OG", async () => {
+    const { readFileSync } = await import("node:fs");
+    const layout = readFileSync("app/(sitio)/layout.tsx", "utf8");
+    expect(layout).toContain("compartirPara(\"/\", INICIO.titulo, INICIO.descripcion)");
+    expect(INICIO.descripcion.length).toBeLessThanOrEqual(170);
+  });
+  it("ProfessionalService lista los 4 servicios reales sin ratings ni precios inventados", () => {
+    const ps = professionalService(SITE);
+    const cat = ps.hasOfferCatalog as { itemListElement: { itemOffered: { url: string } }[] };
+    expect(cat.itemListElement).toHaveLength(4);
+    for (const o of cat.itemListElement) expect(o.itemOffered.url.startsWith(`${SITE}/`)).toBe(true);
+    const txt = JSON.stringify(ps);
+    expect(txt).not.toMatch(/aggregateRating|"review"|"price"/);
+  });
+  it("WebSite en es-MX enlazado al negocio", () => {
+    const w = webSite(SITE);
+    expect(w).toMatchObject({ "@type": "WebSite", inLanguage: "es-MX", publisher: { "@id": `${SITE}/#negocio` } });
+  });
+  it("migas de JSON-LD usan el mismo texto que las visibles", () => {
+    for (const p of PAGINAS_SEO) {
+      const bc = schemasPagina(p, SITE).find((x) => x["@type"] === "BreadcrumbList") as { itemListElement: { name: string }[] };
+      expect(bc.itemListElement.map((i) => i.name)).toEqual(["Inicio", p.menu]);
+    }
+  });
+  it("next.config marca noindex en admin./portal./propuesta.", async () => {
+    const { default: cfg } = await import("../../next.config");
+    const reglas = await cfg.headers!();
+    const porHost = reglas.find((r) => r.has?.some((h) => h.type === "host"));
+    expect(porHost?.headers).toContainEqual({ key: "X-Robots-Tag", value: "noindex, nofollow" });
+    const re = new RegExp(`^${(porHost!.has![0] as { value: string }).value}$`);
+    for (const h of ["admin.skystudioslabs.com", "portal.skystudioslabs.com", "propuesta.skystudioslabs.com"]) expect(re.test(h)).toBe(true);
+    expect(re.test("skystudioslabs.com")).toBe(false);
+    expect(re.test("taller-ramirez.skystudioslabs.com")).toBe(false);
   });
 });

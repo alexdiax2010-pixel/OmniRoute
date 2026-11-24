@@ -1,8 +1,12 @@
 -- Prueba de RLS: un cliente del portal no puede ver ni escribir prospectos_internos.
--- Uso (PostgreSQL local vacío): psql -f 00_stubs_supabase.sql; psql -f ../migrations/0001_inicial.sql; psql -f rls.sql
+-- Uso (PostgreSQL local vacío): psql -f 00_stubs_supabase.sql; psql -f ../migrations/0001_inicial.sql;
+--   (opcional) psql -f ../migrations/0003_admin_correo_confirmado.sql; psql -f rls.sql
 \set ON_ERROR_STOP 0
 insert into public.admins values ('admin@sky.test');
 insert into auth.users values ('11111111-1111-1111-1111-111111111111','cliente@sky.test');
+insert into auth.users values ('22222222-2222-2222-2222-222222222222','admin@sky.test');
+-- Impostor: correo del admin sin confirmar (con 0003 NO debe ser admin)
+insert into auth.users values ('33333333-3333-3333-3333-333333333333','admin@sky.test',null);
 insert into public.prospectos(id,nombre,paquete,mensualidad,servicios,email) values ('1','Cliente Uno','estandar',500,'{web,maps}','cliente@sky.test'),('2','Otro Negocio',null,null,'{}',null);
 insert into public.prospectos_internos(id,telefono,whatsapp,razon,guion,notas,etapa) values ('1','3300000001','3300000001','razón secreta','guion secreto','[{"t":"x","txt":"nota secreta"}]','Ganado'),('2','3300000002','3300000002','otra','g','[]','Nuevo');
 insert into public.clientes_portal values ('11111111-1111-1111-1111-111111111111','1','cliente@sky.test');
@@ -34,6 +38,13 @@ select id,nombre,telefono,razon,etapa from public.prospectos_completo order by i
 update public.prospectos_internos set etapa='Contactado' where id='2';
 select public.agregar_nota('2','{"t":"z","txt":"nota admin"}');
 select id,etapa,notas from public.prospectos_internos where id='2';
+reset role;
+
+\echo '=== IMPOSTOR (correo admin sin confirmar; con 0003 debe dar false y 0 filas) ==='
+set role authenticated;
+select set_config('request.jwt.claims','{"sub":"33333333-3333-3333-3333-333333333333","email":"admin@sky.test"}',false);
+select public.is_admin() as impostor_es_admin;
+select count(*) as impostor_ve_internos from public.prospectos_internos;
 reset role;
 
 \echo '=== ANON ==='

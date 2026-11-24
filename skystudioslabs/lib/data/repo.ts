@@ -32,9 +32,13 @@ export interface Repo {
   // Portal
   prospectoIdPorEmail(email: string): Promise<string | null>;
   crearSolicitudCambio(s: Omit<SolicitudCambio, "id" | "creado">): Promise<SolicitudCambio>;
+  /** Solicitudes de UN prospecto, de la más reciente a la más vieja (el portal pasa el id de la sesión). */
+  listarSolicitudes(prospectoId: string): Promise<SolicitudCambio[]>;
 
   // Antispam: registra un envío y devuelve cuántos hubo desde `desde` (ISO) para esa IP (hash).
   registrarEnvio(ipHash: string, desde: string): Promise<number>;
+  /** Solo cuenta (sin registrar) los envíos de esa clave desde `desde`. */
+  contarEnvios(ipHash: string, desde: string): Promise<number>;
 
   // Notificaciones push del CRM (solo servidor)
   guardarSuscripcionPush(s: SuscripcionPush): Promise<void>;

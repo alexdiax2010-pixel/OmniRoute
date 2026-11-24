@@ -41,3 +41,16 @@ test("robots.txt bloquea /admin y /portal", async ({ request }) => {
   expect(txt).toMatch(/^Disallow: \/admin$/m);
   expect(txt).toMatch(/^Disallow: \/portal$/m);
 });
+
+test("portada: canonical, hreflang es-MX y OG coherente con el title", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
+  await expect(page.locator('link[rel="alternate"][hreflang="es-MX"]')).toHaveCount(1);
+  await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveCount(1);
+  const desc = await page.locator('meta[name="description"]').getAttribute("content");
+  expect(await page.locator('meta[property="og:description"]').getAttribute("content")).toBe(desc);
+  expect(await page.locator('meta[property="og:title"]').getAttribute("content")).toBe((await page.title()).trim());
+  const tipos = (await page.locator('script[type="application/ld+json"]').allTextContents()).map((b) => JSON.parse(b)["@type"]);
+  expect(tipos).toEqual(expect.arrayContaining(["ProfessionalService", "WebSite"]));
+  expect(await page.locator("h1").count()).toBe(1);
+});

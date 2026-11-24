@@ -12,3 +12,6 @@ respaldos/
 *.tsbuildinfo
 next-env.d.ts
 _artifacts/
+
+# Datos reales de prospectos: nunca al repo
+data/crm-prospectos.json

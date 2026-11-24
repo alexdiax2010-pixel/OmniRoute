@@ -15,9 +15,9 @@ import { adminPorCodigo } from "@/lib/auth-codigo";
  *    (los prospectos se leen de la vista prospectos_completo y se escriben repartidos entre
  *     prospectos [parte de cliente] y prospectos_internos [solo admins])
  *    listarProspectos, obtenerProspecto, upsertProspectos, actualizarProspecto, agregarNota,
- *    listarSitios, guardarSitio, crearSolicitudCambio
+ *    listarSitios, guardarSitio, crearSolicitudCambio, listarSolicitudes
  *  [SERVICE ROLE]  (solo servidor; el llamador ya validó con Zod / sesión)
- *    crearProspecto (formulario público), registrarEnvio (antispam), contarSitiosActivos (rpc),
+ *    crearProspecto (formulario público), registrarEnvio / contarEnvios (antispam), contarSitiosActivos (rpc),
  *    obtenerSitio / obtenerSitioPorDominio (servir páginas públicas de clientes),
  *    prospectoIdPorEmail (login/invitación), volcarTodo (respaldo)
  */
@@ -247,6 +247,23 @@ export function supabaseRepo(): Repo {
       const { data, error } = await db.from("solicitudes_cambio").insert(s).select("*").single();
       if (error) fallo("crearSolicitudCambio", error);
       return data as SolicitudCambio;
+    },
+    async listarSolicitudes(prospectoId) {
+      // RLS: el cliente solo ve las suyas; además filtramos por el id de la sesión.
+      const db = await rls();
+      const { data, error } = await db
+        .from("solicitudes_cambio")
+        .select("id, prospecto_id, texto, foto, creado")
+        .eq("prospecto_id", prospectoId)
+        .order("creado", { ascending: false })
+        .limit(50);
+      if (error) fallo("listarSolicitudes", error);
+      return (data ?? []) as SolicitudCambio[];
+    },
+    async contarEnvios(ipHash, desde) {
+      const { count, error } = await clienteServicio().from("envios").select("id", { count: "exact", head: true }).eq("ip_hash", ipHash).gte("t", desde);
+      if (error) fallo("contarEnvios", error);
+      return count ?? 0;
     },
     async registrarEnvio(ipHash, desde) {
       const db = clienteServicio();

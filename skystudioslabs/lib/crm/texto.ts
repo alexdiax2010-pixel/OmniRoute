@@ -43,13 +43,17 @@ export function linkWa(numero: string | null | undefined, mensaje: string): stri
 
 /**
  * Nombre de carpeta del boceto: acepta "taller-ramirez", "clientes/taller-ramirez",
- * "clientes/taller-ramirez/index.html" o "./taller-ramirez/". Devuelve null si no es seguro.
+ * "clientes/taller-ramirez/index.html", "./taller-ramirez/" o la ruta de la rama de bocetos
+ * "bocetos-zapopan/talleres/taller-ramirez" (se usa la última carpeta). Devuelve null si no es seguro.
  */
 export function carpetaDeBoceto(boceto: string | null | undefined): string | null {
   let s = (boceto ?? "").trim().replace(/\\/g, "/").replace(/^\.\//, "");
   if (!s || /^[a-z]+:\/\//i.test(s)) return null;
   s = s.replace(/^\/+/, "").replace(/^clientes\//, "");
-  const seg = s.split("/").filter(Boolean)[0];
-  if (!seg || seg === "." || seg === ".." || /\.html?$/i.test(seg)) return null;
+  const segs = s.split("/").filter(Boolean);
+  if (segs.some((x) => x === "." || x === "..")) return null;
+  if (segs.length && /\.html?$/i.test(segs[segs.length - 1])) segs.pop();
+  const seg = segs[segs.length - 1];
+  if (!seg) return null;
   return /^[a-zA-Z0-9._-]{1,80}$/.test(seg) ? seg : null;
 }

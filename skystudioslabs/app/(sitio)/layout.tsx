@@ -3,32 +3,22 @@ import { Header } from "@/components/chrome/Header";
 import { Footer } from "@/components/chrome/Footer";
 import { WhatsAppFab } from "@/components/chrome/WhatsAppFab";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { SITIO } from "@/config/sitio";
-import { professionalService } from "@/lib/seo/schema";
-import { IMAGEN_OG } from "@/lib/seo/url";
+import { alternatesPara, compartirPara, INICIO } from "@/lib/seo/metadata";
+import { professionalService, webSite } from "@/lib/seo/schema";
 
-const DESCRIPCION =
-  "Páginas web, Google Maps, redes sociales y chatbots de WhatsApp para negocios de todo México. Pide tu boceto gratis.";
-
+// Valores por defecto = portada. Las páginas SEO los reemplazan con metadataSEO().
+// OG/Twitter usan el mismo título y descripción que la portada (antes no coincidían).
 export const metadata: Metadata = {
-  description: DESCRIPCION,
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    locale: "es_MX",
-    siteName: SITIO.nombre,
-    url: "/",
-    title: "Sky Studios Labs — Páginas web para negocios en México",
-    description: DESCRIPCION,
-    images: [IMAGEN_OG],
-  },
-  twitter: { card: "summary_large_image" },
+  description: INICIO.descripcion,
+  alternates: alternatesPara("/"),
+  ...compartirPara("/", INICIO.titulo, INICIO.descripcion),
 };
 
 export default function SitioLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <JsonLd data={professionalService()} />
+      <JsonLd data={webSite()} />
       <a className="skip-link" href="#contenido">
         Saltar al contenido
       </a>

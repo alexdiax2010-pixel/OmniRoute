@@ -41,14 +41,15 @@ export function buildProceso(kit: Kit, section: HTMLElement, tl: gsap.core.Timel
       if (p) entry.add(rise(kit, p, 30), CHAIN);
       return;
     }
+    // Los pasos que aún no llegan se ven atenuados (número + texto), nunca como tarjeta vacía.
+    // Al llegar la cámara: la tarjeta se enciende, zoom al número y el título sale de su máscara.
+    gsap.set(step, { autoAlpha: 0.4 });
+    tl.to(step, { autoAlpha: 1, duration: 0.4 }, CHAIN);
     if (num) {
-      gsap.set(num, { scale: 0.4, autoAlpha: 0 });
-      // Zoom al protagonista (el número) y regreso.
-      tl.to(num, { scale: Math.min(1.25, kit.maxScale + 0.1), autoAlpha: 1, duration: 0.6, ease: "back.out(1.6)" }, CHAIN);
+      tl.fromTo(num, { scale: 1 }, { scale: Math.min(1.25, kit.maxScale + 0.1), duration: 0.5, ease: "back.out(1.6)", immediateRender: false }, "<");
       tl.to(num, { scale: 1, duration: 0.4 }, CHAIN);
     }
     if (h3) tl.add(maskReveal(kit, h3), "<");
-    if (p) tl.add(rise(kit, p, 30), CHAIN);
   });
   tl.to({}, { duration: 0.4 });
 }

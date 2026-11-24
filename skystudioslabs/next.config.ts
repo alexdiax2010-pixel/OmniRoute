@@ -42,6 +42,12 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // admin./portal./propuesta. se reescriben internamente: la regla por ruta no los cubre.
+        source: "/:path*",
+        has: [{ type: "host", value: "(admin|portal|propuesta)\\..*" }],
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
         source: "/(admin|portal)(.*)",
         headers: [
           { key: "X-Robots-Tag", value: "noindex, nofollow" },

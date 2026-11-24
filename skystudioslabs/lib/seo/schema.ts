@@ -2,6 +2,7 @@
  * Generadores de JSON-LD (schema.org). Devuelven objetos planos; se pintan con <JsonLd />.
  */
 import { NUMEROS, SITIO, whatsappConfigurado } from "@/config/sitio";
+import { PAGINAS_SERVICIO } from "./paginas";
 import { siteUrl as leerSiteUrl } from "./url";
 
 export type JsonLdObjeto = Record<string, unknown>;
@@ -38,11 +39,33 @@ export function professionalService(base: string = leerSiteUrl()): JsonLdObjeto 
       addressCountry: SITIO.pais,
     },
     sameAs: [`https://www.instagram.com/${SITIO.redes.instagram.replace(/^@/, "")}`],
+    // Catálogo real de servicios (las 4 páginas de servicio). Sin precios ni reseñas inventadas.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Servicios",
+      itemListElement: PAGINAS_SERVICIO.map((p) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: p.servicio.nombre, url: absoluta(`/${p.slug}`, base) },
+      })),
+    },
     knowsAbout: ["Diseño de páginas web", "Google Maps", "SEO local", "Redes sociales", "Chatbots de WhatsApp"],
     telephone: `+${SITIO.telefono}`,
     ...(whatsappConfigurado
       ? { contactPoint: NUMEROS.map((n) => ({ "@type": "ContactPoint", contactType: "sales", telephone: `+${n}`, areaServed: "MX", availableLanguage: "es" })) }
       : {}),
+  };
+}
+
+/** schema.org WebSite (portada): nombre, idioma y editor enlazado al negocio. */
+export function webSite(base: string = leerSiteUrl()): JsonLdObjeto {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${base}/#sitio`,
+    name: SITIO.nombre,
+    url: `${base}/`,
+    inLanguage: "es-MX",
+    publisher: { "@id": idNegocio(base) },
   };
 }
 

@@ -17,7 +17,10 @@ export function buildIntro(kit: Kit, section: HTMLElement, tl: gsap.core.Timelin
 
   if (sun) tl.to(sun, { yPercent: -45, scale: 1.25, duration: 1.4, ease: "power1.inOut" });
   cameraIn(kit, tl, camera, badge, 1.35, CHAIN, 0.55);
-  if (badge) tl.to(badge, { rotation: 120, duration: 1.2, ease: "none" }, "<");
+  // Gira el círculo interior, no el badge: el badge tiene su entrada CSS (scale/rotate) y si GSAP lo
+  // tocara a media animación "congelaría" scale 0 en su transform y el badge desaparecería.
+  const circle = badge ? $(badge, "[data-circle]") : null;
+  if (circle) tl.to(circle, { rotation: 120, duration: 1.2, ease: "none" }, "<");
   cameraOut(tl, camera);
   // El contenido sube un poco al salir, pero sigue legible hasta que entra la siguiente escena.
   if (content) tl.to(content, { yPercent: -10, duration: 0.6 }, "<");

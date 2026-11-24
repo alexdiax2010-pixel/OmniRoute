@@ -37,9 +37,12 @@ export async function enviarEnlacePortal(_prev: EstadoLogin, formData: FormData)
 }
 
 const LIMITE_CODIGO_HORA = 5;
+/** Tope GLOBAL de códigos fallidos por hora (todas las IPs): frena un ataque repartido entre muchas IPs. */
+const LIMITE_FALLOS_CODIGO_GLOBAL_HORA = 30;
+const CLAVE_FALLOS_GLOBAL = "codigo:fallos-global";
 const esquemaCodigo = z.object({ codigo: z.string().min(1).max(128) });
 
-/** Entrar al CRM con el código especial (ADMIN_CODIGO). 5 intentos por hora por IP. */
+/** Entrar al CRM con el código especial (ADMIN_CODIGO). 5 intentos por hora por IP y 30 fallos/hora en total. */
 export async function entrarConCodigo(_prev: EstadoLogin, formData: FormData): Promise<EstadoLogin> {
   const r = esquemaCodigo.safeParse({ codigo: String(formData.get("codigo") ?? "") });
   if (!r.success) return { mensaje: "Escribe el código.", error: true };
@@ -48,10 +51,15 @@ export async function entrarConCodigo(_prev: EstadoLogin, formData: FormData): P
   try {
     const repo = await getRepo();
     const ip = ipDeCabeceras(await headers());
-    const n = await repo.registrarEnvio(hashIp(`codigo:${ip}`, secreto()), new Date(Date.now() - 3600_000).toISOString());
+    const haceUnaHora = new Date(Date.now() - 3600_000).toISOString();
+    const claveGlobal = hashIp(CLAVE_FALLOS_GLOBAL, secreto());
+    if ((await repo.contarEnvios(claveGlobal, haceUnaHora)) >= LIMITE_FALLOS_CODIGO_GLOBAL_HORA)
+      return { mensaje: "El acceso con código está pausado por muchos intentos fallidos. Espera una hora o entra con el enlace a tu correo.", error: true };
+    const n = await repo.registrarEnvio(hashIp(`codigo:${ip}`, secreto()), haceUnaHora);
     if (n > LIMITE_CODIGO_HORA) return { mensaje: "Demasiados intentos. Espera una hora e inténtalo de nuevo.", error: true };
     ok = codigoCorrecto(r.data.codigo);
     if (ok) await crearSesionCodigo();
+    else await repo.registrarEnvio(claveGlobal, haceUnaHora);
   } catch (e) {
     console.error("[auth] entrar con código falló", e instanceof Error ? e.message : "");
     return { mensaje: "No se pudo entrar. Inténtalo de nuevo.", error: true };

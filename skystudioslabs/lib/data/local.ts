@@ -144,6 +144,12 @@ export const localRepo: Repo = {
       return fila;
     });
   },
+  async listarSolicitudes(prospectoId) {
+    return (await leer()).solicitudes.filter((x) => x.prospecto_id === prospectoId).sort((a, b) => (a.creado < b.creado ? 1 : -1));
+  },
+  async contarEnvios(ipHash, desde) {
+    return (await leer()).envios.filter((e) => e.ip === ipHash && e.t >= desde).length;
+  },
   registrarEnvio(ipHash, desde) {
     return mutar((db) => {
       const t = ahora();

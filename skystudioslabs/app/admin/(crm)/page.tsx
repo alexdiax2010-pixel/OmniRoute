@@ -3,9 +3,9 @@ import { requerirAdmin } from "@/lib/auth";
 import { getRepo } from "@/lib/data";
 import { ETAPAS } from "@/lib/types";
 import { calcularMetricas, formatoMXN, formatoTasa } from "@/lib/crm/metricas";
-import { seguimientosPendientes, estadoSeguimiento } from "@/lib/crm/reglas";
-import { hoyMX, fechaCorta } from "@/lib/crm/fechas";
-import { ORDENES, filtrarYOrdenar, leerFiltros, type FiltrosLista, type Orden } from "@/lib/crm/lista";
+import { seguimientosPendientes, seguimientosProximos, estadoSeguimiento } from "@/lib/crm/reglas";
+import { hoyMX, fechaCorta, sumarDias } from "@/lib/crm/fechas";
+import { ORDENES, aQuery, filtrarYOrdenar, hayFiltros, leerFiltros, type FiltrosLista, type Orden } from "@/lib/crm/lista";
 import s from "../admin.module.css";
 
 export const metadata = { title: "Prospectos" };
@@ -13,10 +13,7 @@ export const metadata = { title: "Prospectos" };
 const ETIQUETA: Record<Orden, string> = { puntaje: "Puntaje", nombre: "Nombre", etapa: "Etapa", seguimiento: "Seguimiento", colonia: "Colonia" };
 
 function url(f: FiltrosLista, cambios: Partial<Record<keyof FiltrosLista, string | null>>) {
-  const p = new URLSearchParams();
-  const v = { orden: f.orden, dir: f.dir, etapa: f.etapa, top10: f.top10 ? "1" : null, q: f.q || null, ...cambios };
-  for (const [k, x] of Object.entries(v)) if (x) p.set(k, String(x));
-  const qs = p.toString();
+  const qs = aQuery(f, cambios);
   return qs ? `/admin?${qs}` : "/admin";
 }
 
@@ -29,6 +26,9 @@ export default async function Prospectos({ searchParams }: { searchParams: Promi
   const lista = filtrarYOrdenar(todos, f);
   const m = calcularMetricas(todos, hoy);
   const pendientes = seguimientosPendientes(todos, hoy);
+  const proximos = seguimientosProximos(todos, hoy, sumarDias(hoy, 7));
+  const categorias = [...new Set(todos.map((p) => p.categoria).filter(Boolean))].sort((a, b) => a.localeCompare(b, "es"));
+  const filtrado = hayFiltros(f);
 
   return (
     <>
@@ -81,12 +81,32 @@ export default async function Prospectos({ searchParams }: { searchParams: Promi
         )}
       </section>
 
+      <section aria-labelledby="prox" className={s.card} style={{ marginTop: 16 }}>
+        <h2 id="prox" className={s.sub} style={{ marginTop: 0 }}>
+          Próximos seguimientos (7 días): {proximos.length}
+        </h2>
+        {proximos.length === 0 ? (
+          <p className={s.muted}>No hay seguimientos programados para esta semana. Al mover un prospecto a Contactado, Boceto enviado o Negociando se agenda uno a 3 días.</p>
+        ) : (
+          <ul className={s.notas}>
+            {proximos.map((p) => (
+              <li key={p.id} className={s.entre}>
+                <Link href={`/admin/prospectos/${encodeURIComponent(p.id)}`}>{p.nombre}</Link>
+                <span>
+                  <span className={s.badge}>{p.etapa}</span> <span className={s.muted}>{fechaCorta(p.seguimiento)}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
       <h2 className={s.sub}>Lista</h2>
       <form method="get" action="/admin" className={s.fila} role="search" style={{ marginBottom: 12 }}>
         <label className="sr-only" htmlFor="q">
           Buscar
         </label>
-        <input id="q" name="q" defaultValue={f.q} placeholder="Buscar nombre, giro o colonia" className={s.input} style={{ maxWidth: 320 }} />
+        <input id="q" name="q" defaultValue={f.q} placeholder="Buscar nombre, giro, colonia o dirección" className={s.input} style={{ maxWidth: 320 }} />
         <label className="sr-only" htmlFor="etapa">
           Etapa
         </label>
@@ -98,23 +118,51 @@ export default async function Prospectos({ searchParams }: { searchParams: Promi
             </option>
           ))}
         </select>
+        {categorias.length > 0 && (
+          <>
+            <label className="sr-only" htmlFor="categoria">
+              Categoría
+            </label>
+            <select id="categoria" name="categoria" defaultValue={f.categoria} className={s.select} style={{ maxWidth: 200 }}>
+              <option value="">Todas las categorías</option>
+              {categorias.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
+        <label className="sr-only" htmlFor="min">
+          Puntaje mínimo
+        </label>
+        <input id="min" name="min" type="number" min={0} max={100} defaultValue={f.min ?? ""} placeholder="Puntaje mín." className={s.input} style={{ maxWidth: 130 }} />
         <label className={s.check}>
           <input type="checkbox" name="top10" value="1" defaultChecked={f.top10} /> Top 10
+        </label>
+        <label className={s.check}>
+          <input type="checkbox" name="tel" value="1" defaultChecked={f.tel} /> Con teléfono
+        </label>
+        <label className={s.check}>
+          <input type="checkbox" name="boceto" value="1" defaultChecked={f.boceto} /> Con boceto
         </label>
         <input type="hidden" name="orden" value={f.orden} />
         <input type="hidden" name="dir" value={f.dir} />
         <button type="submit" className={s.btn}>
           Filtrar
         </button>
-        {(f.q || f.etapa || f.top10) && (
+        {filtrado && (
           <Link href="/admin" className={s.btn}>
             Limpiar
           </Link>
         )}
       </form>
 
-      <p className={s.muted} style={{ marginBottom: 8 }}>
-        {lista.length} de {todos.length}
+      <p className={`${s.muted} ${s.entre}`} style={{ marginBottom: 8 }}>
+        <span>
+          {lista.length} de {todos.length}
+        </span>
+        <a href={`/admin/exportar.csv${filtrado ? `?${aQuery(f)}` : ""}`}>{filtrado ? "Exportar esta vista (CSV)" : "Exportar todo (CSV)"}</a>
       </p>
       <div className={s.tablaWrap}>
         <table className={s.tabla}>
@@ -145,6 +193,12 @@ export default async function Prospectos({ searchParams }: { searchParams: Promi
                   </td>
                   <td>
                     <Link href={`/admin/prospectos/${encodeURIComponent(p.id)}`}>{p.nombre}</Link>
+                    {p.boceto && (
+                      <>
+                        {" "}
+                        <span className={s.badge}>Boceto</span>
+                      </>
+                    )}
                     {p.alertas.length > 0 && (
                       <>
                         {" "}
@@ -159,14 +213,25 @@ export default async function Prospectos({ searchParams }: { searchParams: Promi
                   </td>
                   <td className={est === "vencido" ? s.vencido : est === "hoy" ? s.hoy : undefined}>{fechaCorta(p.seguimiento)}</td>
                   <td>{p.colonia || "—"}</td>
-                  <td className={s.muted}>{p.giro || "—"}</td>
+                  <td className={s.muted}>
+                    {p.giro || "—"}
+                    {p.categoria && p.categoria.toLowerCase() !== p.giro.toLowerCase() ? ` · ${p.categoria}` : ""}
+                  </td>
                 </tr>
               );
             })}
             {lista.length === 0 && (
               <tr>
                 <td colSpan={6} className={s.muted}>
-                  No hay prospectos con esos filtros. Importa con <code>npm run crm:importar</code>.
+                  {todos.length === 0 ? (
+                    <>
+                      Aún no hay prospectos. Importa con <code>npm run crm:importar</code>.
+                    </>
+                  ) : (
+                    <>
+                      No hay prospectos con esos filtros. <Link href="/admin">Quitar filtros</Link>
+                    </>
+                  )}
                 </td>
               </tr>
             )}

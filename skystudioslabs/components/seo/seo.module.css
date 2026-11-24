@@ -54,6 +54,12 @@
   .heroInner > *:nth-child(3) { animation-delay: 0.1s; }
   .heroInner > *:nth-child(4) { animation-delay: 0.18s; }
   .heroInner > *:nth-child(5) { animation-delay: 0.26s; }
+  /* El h1 es el candidato a LCP: sólo se desplaza, sin partir de opacity 0 (no retrasa el LCP). */
+  .heroInner > .h1 { animation-name: subirVisible; }
+}
+@keyframes subirVisible {
+  from { transform: translateY(24px); }
+  to { transform: none; }
 }
 @keyframes subir {
   from { opacity: 0; transform: translateY(24px); }

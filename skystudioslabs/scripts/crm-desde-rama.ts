@@ -30,7 +30,7 @@ const git = (a: string[]) => execFileSync("git", a, { encoding: "utf8", maxBuffe
 
 let rutas: string[];
 try {
-  rutas = git(["ls-tree", "-r", "--name-only", rama, "--", DIR])
+  rutas = git(["ls-tree", "-r", "--full-tree", "--name-only", rama, "--", DIR])
     .split("\n")
     .filter((r) => r.endsWith(".json"));
 } catch {
@@ -66,4 +66,4 @@ try {
 const top = filas.filter((f) => f.top10).length;
 const sinTel = filas.filter((f) => !f.telefono && !f.whatsapp).length;
 console.log(`✓ ${filas.length} prospectos → ${path.relative(process.cwd(), salida)} (${top} top 10, ${sinTel} sin teléfono).`);
-console.log("  Siguiente paso: npm run crm:importar   (o: npm run crm:importar -- --solo-nuevos)");
+console.log("  Siguiente paso: npm run crm:importar   (o con -- --solo-nuevos; para probar sin Supabase: -- --local)");

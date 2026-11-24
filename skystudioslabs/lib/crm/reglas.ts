@@ -52,3 +52,10 @@ export function estadoSeguimiento(seguimiento: string | null, hoy: string): "ven
   if (seguimiento === hoy) return "hoy";
   return "futuro";
 }
+
+/** Próximos seguimientos (después de hoy y hasta `dias` días), del más cercano al más lejano. */
+export function seguimientosProximos<T extends Pick<Prospecto, "etapa" | "seguimiento">>(lista: T[], hoy: string, hasta: string): T[] {
+  return lista
+    .filter((p) => p.seguimiento && p.seguimiento > hoy && p.seguimiento <= hasta && !ETAPAS_CERRADAS.includes(p.etapa))
+    .sort((a, b) => (a.seguimiento! < b.seguimiento! ? -1 : a.seguimiento! > b.seguimiento! ? 1 : 0));
+}
