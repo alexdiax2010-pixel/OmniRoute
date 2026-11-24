@@ -1,5 +1,5 @@
 -- =============================================================================
--- PENDIENTE DE APROBACIÓN DEL DUEÑO — no aplicada en Supabase.
+-- Aprobada por el dueño y aplicada en Supabase el 24-nov-2026.
 --
 -- Endurece is_admin(): además de que el correo del JWT esté en public.admins, exige que el
 -- usuario exista en auth.users con ese correo CONFIRMADO. Así, si algún día se activa el registro

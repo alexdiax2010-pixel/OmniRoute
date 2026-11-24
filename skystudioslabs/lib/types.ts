@@ -5,6 +5,26 @@ export type Etapa = (typeof ETAPAS)[number];
 
 export type Nota = { t: string; txt: string };
 
+/* ---- Funciones de "Cartera": historial, tareas y plantillas de mensajes (solo admin) ---- */
+export const TIPOS_ACTIVIDAD = ["whatsapp", "llamada", "email", "instagram", "visita", "reunion", "nota"] as const;
+export type TipoActividad = (typeof TIPOS_ACTIVIDAD)[number];
+export const NOMBRE_ACTIVIDAD: Record<TipoActividad, string> = {
+  whatsapp: "WhatsApp", llamada: "Llamada", email: "Email", instagram: "Mensaje Instagram",
+  visita: "Visita", reunion: "Reunión", nota: "Nota",
+};
+export type Actividad = { id: string; prospecto_id: string; tipo: TipoActividad; texto: string; fecha: string; creado: string };
+
+export const PRIORIDADES = ["alta", "media", "baja"] as const;
+export type Prioridad = (typeof PRIORIDADES)[number];
+export type Tarea = {
+  id: string; titulo: string; vence: string | null; prioridad: Prioridad;
+  prospecto_id: string | null; hecha: boolean; hecha_en: string | null; creado: string;
+};
+
+export const CANALES = ["whatsapp", "email", "instagram"] as const;
+export type Canal = (typeof CANALES)[number];
+export type Plantilla = { id: string; titulo: string; canal: Canal; cuerpo: string; creado: string };
+
 export type Prospecto = {
   id: string;
   nombre: string;

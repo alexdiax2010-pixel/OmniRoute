@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requerirAdmin } from "@/lib/auth";
 import { getRepo } from "@/lib/data";
-import { ETAPAS } from "@/lib/types";
+import { ETAPAS, NOMBRE_ACTIVIDAD, PRIORIDADES, TIPOS_ACTIVIDAD } from "@/lib/types";
+import { rellenarPlantilla, numeroWhatsApp } from "@/lib/crm/plantillas";
 import { PAQUETES, SERVICIOS, NOMBRE_SERVICIO } from "@/config/precios";
 import { fechaCorta, fechaHora, hoyMX } from "@/lib/crm/fechas";
 import { estadoSeguimiento } from "@/lib/crm/reglas";
@@ -13,6 +14,8 @@ import { urlCliente, urlPropuesta } from "@/lib/crm/enlaces";
 import { carpetaExiste } from "@/lib/crm/carpetas";
 import { agregarNotaAccion, crearPropuesta, guardarDatos, guardarVenta, invitarPortal, moverEtapa, publicarSitio } from "../../acciones";
 import { Copiar } from "../../_componentes/Copiar";
+import { Redactor } from "../../_componentes/Redactor";
+import { registrarActividad, crearTareaAccion, alternarTarea } from "../../cartera";
 import { FormResultado } from "../../_componentes/FormResultado";
 import s from "../../../admin.module.css";
 
@@ -35,6 +38,16 @@ export default async function Detalle({ params }: { params: Promise<{ id: string
   const carpetaBoceto = carpetaDeBoceto(p.boceto);
   const bocetoListo = carpetaBoceto ? carpetaExiste(carpetaBoceto) : false;
   const propuesta = sitios.find((x) => x.tipo === "propuesta" && x.activo);
+  const [plantillas, miNombre, actividades, todasTareas] = await Promise.all([
+    repo.listarPlantillas(), repo.obtenerAjuste("mi_nombre"), repo.listarActividades(p.id), repo.listarTareas(),
+  ]);
+  const tareas = todasTareas.filter((t) => t.prospecto_id === p.id).sort((a, b) => Number(a.hecha) - Number(b.hecha) || (a.vence ?? "9999").localeCompare(b.vence ?? "9999"));
+  const enlaceBoceto = propuesta ? urlPropuesta(propuesta.slug) : "";
+  // Sin boceto publicado, las plantillas que piden {boceto} van al final (la primera sugerida es la de contacto).
+  const usaBoceto = (cuerpo: string) => cuerpo.includes("{boceto}");
+  const ordenadas = enlaceBoceto ? [...plantillas].sort((a, b) => Number(usaBoceto(b.cuerpo)) - Number(usaBoceto(a.cuerpo))) : [...plantillas].sort((a, b) => Number(usaBoceto(a.cuerpo)) - Number(usaBoceto(b.cuerpo)));
+  const opciones = ordenadas.map((pl) => ({ id: pl.id, titulo: pl.titulo, canal: pl.canal, texto: rellenarPlantilla(pl.cuerpo, p, { miNombre: miNombre ?? "", boceto: enlaceBoceto }) }));
+  const numeroWa = numeroWhatsApp(p.whatsapp, p.telefono);
 
   return (
     <>
@@ -178,6 +191,96 @@ export default async function Detalle({ params }: { params: Promise<{ id: string
           </ul>
         </section>
       </div>
+
+      <div className={s.grid2} style={{ marginTop: 16 }}>
+        <section className={s.card} aria-labelledby="captacion">
+          <h2 id="captacion" className={s.sub} style={{ marginTop: 0 }}>
+            Mensaje de captación
+          </h2>
+          <Redactor prospectoId={p.id} opciones={opciones} numeroWa={numeroWa} />
+          <p className={s.muted}>
+            <Link href="/admin/mensajes">Editar plantillas</Link>
+          </p>
+        </section>
+
+        <section className={s.card} aria-labelledby="tareas">
+          <h2 id="tareas" className={s.sub} style={{ marginTop: 0 }}>
+            Tareas
+          </h2>
+          <ul className={s.notas}>
+            {tareas.map((t) => (
+              <li key={t.id} className={s.nota}>
+                <form action={alternarTarea} className={s.fila}>
+                  <input type="hidden" name="id" value={t.id} />
+                  <input type="hidden" name="hecha" value={t.hecha ? "0" : "1"} />
+                  <input type="hidden" name="prospecto" value={p.id} />
+                  <button type="submit" className={s.btn} aria-label={t.hecha ? "Marcar como pendiente" : "Marcar como hecha"}>
+                    {t.hecha ? "↺" : "✓"}
+                  </button>
+                  <span style={t.hecha ? { textDecoration: "line-through", opacity: 0.6 } : undefined}>{t.titulo}</span>
+                  {t.vence && <span className={!t.hecha && t.vence < hoy ? s.vencido : s.muted}>{fechaCorta(t.vence)}</span>}
+                </form>
+              </li>
+            ))}
+            {tareas.length === 0 && <li className={s.muted}>Sin tareas.</li>}
+          </ul>
+          <form action={crearTareaAccion} className={s.form} style={{ marginTop: 12 }}>
+            <input type="hidden" name="prospecto" value={p.id} />
+            <input name="titulo" required maxLength={300} className={s.input} placeholder="Ej.: Llamar para seguimiento" aria-label="Nueva tarea" />
+            <div className={s.campos}>
+              <input type="date" name="vence" defaultValue={hoy} className={s.input} aria-label="Fecha límite" />
+              <select name="prioridad" defaultValue="media" className={s.input} aria-label="Prioridad">
+                {PRIORIDADES.map((x) => (
+                  <option key={x} value={x}>
+                    Prioridad {x}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <button type="submit" className={s.btn}>
+                + Añadir tarea
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <section className={s.card} style={{ marginTop: 16 }} aria-labelledby="historial">
+        <h2 id="historial" className={s.sub} style={{ marginTop: 0 }}>
+          Historial
+        </h2>
+        <form action={registrarActividad} className={s.form} style={{ marginBottom: 12 }}>
+          <input type="hidden" name="prospecto" value={p.id} />
+          <div className={s.campos}>
+            <select name="tipo" defaultValue="whatsapp" className={s.input} aria-label="Tipo de interacción">
+              {TIPOS_ACTIVIDAD.map((x) => (
+                <option key={x} value={x}>
+                  {NOMBRE_ACTIVIDAD[x]}
+                </option>
+              ))}
+            </select>
+            <input type="date" name="fecha" defaultValue={hoy} max={hoy} className={s.input} aria-label="Fecha" />
+          </div>
+          <textarea name="texto" required maxLength={4000} className={s.textarea} placeholder="¿Qué respondió? Próximos pasos…" aria-label="Detalle" />
+          <div>
+            <button type="submit" className={`${s.btn} ${s.btnPrimario}`}>
+              Registrar
+            </button>
+          </div>
+        </form>
+        <ul className={s.notas}>
+          {actividades.map((a) => (
+            <li key={a.id} className={s.nota}>
+              <div className={s.notaFecha}>
+                <strong>{NOMBRE_ACTIVIDAD[a.tipo]}</strong> · {fechaHora(a.fecha)}
+              </div>
+              <div className={s.pre}>{a.texto}</div>
+            </li>
+          ))}
+          {actividades.length === 0 && <li className={s.muted}>Aún no hay interacciones registradas.</li>}
+        </ul>
+      </section>
 
       <section className={s.card} style={{ marginTop: 16 }} aria-labelledby="sitios">
         <h2 id="sitios" className={s.sub} style={{ marginTop: 0 }}>

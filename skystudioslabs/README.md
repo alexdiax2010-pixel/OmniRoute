@@ -156,6 +156,18 @@ fecha indicada (30 días por defecto).
 
 ---
 
+## Secciones del CRM (estilo "Cartera")
+
+- **Panel** (`/admin/panel`): por contactar, en negociación, vendido del mes, ingreso recurrente, tareas vencidas,
+  embudo por etapa, próximas tareas, seguimientos de hoy y actividad reciente.
+- **Prospectos** (`/admin`) y **Tablero** (`/admin/tablero`, arrastrar entre etapas).
+- **Ficha del prospecto**: mensaje de captación con plantillas que se rellenan solas ({negocio}, {giro}, {colonia},
+  {boceto}, {mi_nombre}), botón **Abrir WhatsApp**, **Registrar como enviado**, tareas del negocio e **historial**
+  (WhatsApp, llamada, email, Instagram, visita, reunión, nota).
+- **Tareas** (`/admin/tareas`): vencidas, hoy, próximas y sin fecha, con prioridad y negocio.
+- **Mensajes** (`/admin/mensajes`): plantillas de captación y tu firma.
+- Tablas en Supabase: `actividades`, `tareas`, `plantillas`, `ajustes_crm` (migración `0004_cartera.sql`, solo admins).
+
 ## Entrar al CRM con código especial
 
 En `/admin` (o `admin.skystudioslabs.com`) escribe el código guardado en la variable `ADMIN_CODIGO`

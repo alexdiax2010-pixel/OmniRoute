@@ -1,7 +1,7 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Repo, NuevoProspecto } from "./repo";
-import type { Prospecto, Sitio, SolicitudCambio, Nota, Etapa, SuscripcionPush } from "@/lib/types";
+import type { Prospecto, Sitio, SolicitudCambio, Nota, Etapa, SuscripcionPush, Actividad, Tarea, Plantilla } from "@/lib/types";
 import type { Servicio } from "@/config/precios";
 import { prospectoBase } from "./base";
 import { clienteServicio, clienteSesionOServicio } from "@/lib/supabase/servidor";
@@ -289,10 +289,68 @@ export function supabaseRepo(): Repo {
       const { error } = await clienteServicio().from("push_suscripciones").delete().eq("endpoint", endpoint);
       if (error) fallo("borrarSuscripcionPush", error);
     },
+    async listarActividades(prospectoId, limite) {
+      let q = (await rls()).from("actividades").select("id, prospecto_id, tipo, texto, fecha, creado").order("fecha", { ascending: false });
+      if (prospectoId) q = q.eq("prospecto_id", prospectoId);
+      if (limite) q = q.limit(limite);
+      const { data, error } = await q;
+      if (error) fallo("listarActividades", error);
+      return (data ?? []) as Actividad[];
+    },
+    async crearActividad(a) {
+      const { data, error } = await (await rls()).from("actividades").insert(a).select("id, prospecto_id, tipo, texto, fecha, creado").single();
+      if (error) fallo("crearActividad", error);
+      return data as Actividad;
+    },
+    async listarTareas() {
+      const { data, error } = await (await rls()).from("tareas").select("*").order("vence", { ascending: true, nullsFirst: false });
+      if (error) fallo("listarTareas", error);
+      return (data ?? []).map((t) => ({ ...t, vence: fecha(t.vence) })) as Tarea[];
+    },
+    async crearTarea(t) {
+      const { data, error } = await (await rls()).from("tareas").insert(t).select("*").single();
+      if (error) fallo("crearTarea", error);
+      return { ...data, vence: fecha(data.vence) } as Tarea;
+    },
+    async actualizarTarea(id, cambios) {
+      const { error } = await (await rls()).from("tareas").update(cambios).eq("id", id);
+      if (error) fallo("actualizarTarea", error);
+    },
+    async borrarTarea(id) {
+      const { error } = await (await rls()).from("tareas").delete().eq("id", id);
+      if (error) fallo("borrarTarea", error);
+    },
+    async listarPlantillas() {
+      const { data, error } = await (await rls()).from("plantillas").select("*").order("titulo");
+      if (error) fallo("listarPlantillas", error);
+      return (data ?? []) as Plantilla[];
+    },
+    async guardarPlantilla(p) {
+      const db = await rls();
+      const fila = { titulo: p.titulo, canal: p.canal, cuerpo: p.cuerpo };
+      const { data, error } = p.id
+        ? await db.from("plantillas").update(fila).eq("id", p.id).select("*").single()
+        : await db.from("plantillas").insert(fila).select("*").single();
+      if (error) fallo("guardarPlantilla", error);
+      return data as Plantilla;
+    },
+    async borrarPlantilla(id) {
+      const { error } = await (await rls()).from("plantillas").delete().eq("id", id);
+      if (error) fallo("borrarPlantilla", error);
+    },
+    async obtenerAjuste(clave) {
+      const { data, error } = await (await rls()).from("ajustes_crm").select("valor").eq("clave", clave).maybeSingle();
+      if (error) fallo("obtenerAjuste", error);
+      return (data?.valor as string | undefined) ?? null;
+    },
+    async guardarAjuste(clave, valor) {
+      const { error } = await (await rls()).from("ajustes_crm").upsert({ clave, valor }, { onConflict: "clave" });
+      if (error) fallo("guardarAjuste", error);
+    },
     async volcarTodo() {
       const db = clienteServicio();
       const out: Record<string, unknown[]> = {};
-      for (const tabla of ["prospectos", "prospectos_internos", "sitios", "solicitudes_cambio", "clientes_portal", "admins"]) {
+      for (const tabla of ["prospectos", "prospectos_internos", "sitios", "solicitudes_cambio", "clientes_portal", "admins", "actividades", "tareas", "plantillas", "ajustes_crm"]) {
         const filas: unknown[] = [];
         for (let desde = 0; ; desde += 1000) {
           const { data, error } = await db.from(tabla).select("*").range(desde, desde + 999);

@@ -4,7 +4,8 @@ import path from "node:path";
 import { randomUUID } from "node:crypto";
 import type { Repo } from "./repo";
 import { prospectoBase } from "./base";
-import type { Prospecto, Sitio, SolicitudCambio, Nota, SuscripcionPush } from "@/lib/types";
+import type { Prospecto, Sitio, SolicitudCambio, Nota, SuscripcionPush, Actividad, Tarea, Plantilla } from "@/lib/types";
+import { PLANTILLAS_INICIALES } from "@/lib/crm/plantillas";
 import { notaPortal } from "@/lib/crm/notas";
 
 type DB = {
@@ -13,6 +14,10 @@ type DB = {
   solicitudes: SolicitudCambio[];
   envios: { ip: string; t: string }[];
   push?: SuscripcionPush[];
+  actividades?: Actividad[];
+  tareas?: Tarea[];
+  plantillas?: Plantilla[];
+  ajustes?: Record<string, string>;
 };
 
 const vacia = (): DB => ({ prospectos: [], sitios: [], solicitudes: [], envios: [] });
@@ -171,8 +176,72 @@ export const localRepo: Repo = {
       db.push = (db.push ?? []).filter((x) => x.endpoint !== endpoint);
     });
   },
+  async listarActividades(prospectoId, limite) {
+    const todas = ((await leer()).actividades ?? [])
+      .filter((a) => !prospectoId || a.prospecto_id === prospectoId)
+      .sort((a, b) => b.fecha.localeCompare(a.fecha));
+    return limite ? todas.slice(0, limite) : todas;
+  },
+  crearActividad(a) {
+    return mutar((db) => {
+      const nueva: Actividad = { ...a, id: randomUUID(), creado: ahora() };
+      db.actividades = [...(db.actividades ?? []), nueva];
+      return nueva;
+    });
+  },
+  async listarTareas() {
+    return (await leer()).tareas ?? [];
+  },
+  crearTarea(t) {
+    return mutar((db) => {
+      const nueva: Tarea = { ...t, id: randomUUID(), hecha: false, hecha_en: null, creado: ahora() };
+      db.tareas = [...(db.tareas ?? []), nueva];
+      return nueva;
+    });
+  },
+  actualizarTarea(id, cambios) {
+    return mutar((db) => {
+      db.tareas = (db.tareas ?? []).map((t) => (t.id === id ? { ...t, ...cambios } : t));
+    });
+  },
+  borrarTarea(id) {
+    return mutar((db) => {
+      db.tareas = (db.tareas ?? []).filter((t) => t.id !== id);
+    });
+  },
+  async listarPlantillas() {
+    const db = await leer();
+    const lista = db.plantillas ?? PLANTILLAS_INICIALES.map((p) => ({ ...p, creado: "2026-01-01T00:00:00.000Z" }));
+    return [...lista].sort((a, b) => a.titulo.localeCompare(b.titulo, "es"));
+  },
+  guardarPlantilla(p) {
+    return mutar((db) => {
+      const base = db.plantillas ?? PLANTILLAS_INICIALES.map((x) => ({ ...x, creado: "2026-01-01T00:00:00.000Z" }));
+      const previa = p.id ? base.find((x) => x.id === p.id) : undefined;
+      const guardada: Plantilla = { ...(previa ?? { creado: ahora() }), ...p, id: p.id ?? randomUUID() } as Plantilla;
+      db.plantillas = [...base.filter((x) => x.id !== guardada.id), guardada];
+      return guardada;
+    });
+  },
+  borrarPlantilla(id) {
+    return mutar((db) => {
+      const base = db.plantillas ?? PLANTILLAS_INICIALES.map((x) => ({ ...x, creado: "2026-01-01T00:00:00.000Z" }));
+      db.plantillas = base.filter((x) => x.id !== id);
+    });
+  },
+  async obtenerAjuste(clave) {
+    return (await leer()).ajustes?.[clave] ?? null;
+  },
+  guardarAjuste(clave, valor) {
+    return mutar((db) => {
+      db.ajustes = { ...(db.ajustes ?? {}), [clave]: valor };
+    });
+  },
   async volcarTodo() {
     const db = await leer();
-    return { prospectos: db.prospectos, sitios: db.sitios, solicitudes_cambio: db.solicitudes };
+    return {
+      prospectos: db.prospectos, sitios: db.sitios, solicitudes_cambio: db.solicitudes,
+      actividades: db.actividades ?? [], tareas: db.tareas ?? [], plantillas: db.plantillas ?? [],
+    };
   },
 };

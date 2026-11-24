@@ -1,4 +1,4 @@
-import type { Prospecto, Sitio, SolicitudCambio, Nota, SuscripcionPush } from "@/lib/types";
+import type { Prospecto, Sitio, SolicitudCambio, Nota, SuscripcionPush, Actividad, Tarea, Plantilla } from "@/lib/types";
 
 export type NuevoProspecto = Pick<Prospecto, "nombre" | "giro" | "whatsapp"> & Partial<Prospecto>;
 
@@ -44,6 +44,20 @@ export interface Repo {
   guardarSuscripcionPush(s: SuscripcionPush): Promise<void>;
   listarSuscripcionesPush(): Promise<SuscripcionPush[]>;
   borrarSuscripcionPush(endpoint: string): Promise<void>;
+
+  // Cartera (solo admin): historial, tareas, plantillas y ajustes
+  /** Actividades de un prospecto (o las más recientes de todos), de la más nueva a la más vieja. */
+  listarActividades(prospectoId?: string, limite?: number): Promise<Actividad[]>;
+  crearActividad(a: Omit<Actividad, "id" | "creado">): Promise<Actividad>;
+  listarTareas(): Promise<Tarea[]>;
+  crearTarea(t: Omit<Tarea, "id" | "creado" | "hecha" | "hecha_en">): Promise<Tarea>;
+  actualizarTarea(id: string, cambios: Partial<Omit<Tarea, "id" | "creado">>): Promise<void>;
+  borrarTarea(id: string): Promise<void>;
+  listarPlantillas(): Promise<Plantilla[]>;
+  guardarPlantilla(p: Omit<Plantilla, "id" | "creado"> & { id?: string }): Promise<Plantilla>;
+  borrarPlantilla(id: string): Promise<void>;
+  obtenerAjuste(clave: string): Promise<string | null>;
+  guardarAjuste(clave: string, valor: string): Promise<void>;
 
   // Respaldo
   volcarTodo(): Promise<Record<string, unknown[]>>;
