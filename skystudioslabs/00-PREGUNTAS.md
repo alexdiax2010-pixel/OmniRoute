@@ -1,8 +1,8 @@
 # Preguntas pendientes para Alex
 
 ## Para publicar (nada de esto se hizo; requiere tu aprobación)
-- [ ] ¿Publico en producción (skystudioslabs.com) los cambios de esta ronda cuando estén listos?
-- [ ] ¿Importo los 171 prospectos reales a la base de datos de producción (Supabase)? Queda listo el script, pero no lo ejecuté contra producción.
+- [x] Publicar en producción — aprobado y publicado el 24-nov-2026.
+- [x] Importar los 171 prospectos a Supabase de producción — aprobado e importado el 24-nov-2026 (sin sobrescribir los 2 existentes).
 
 ## Datos que faltan (no se inventaron)
 - [ ] Correo de contacto (en el pie aparece `[MI_CORREO]`).
@@ -43,3 +43,8 @@
 ## Del subagente de diseño (A)
 - [ ] Reseñas reales (texto + nombre y negocio, con permiso) para la portada; mientras no haya, el bloque no se muestra.
 - [ ] La constelación muestra 2 sitios activos (dato real) y deja espacio vacío: ¿la achicamos mientras haya pocos sitios?
+
+## Aparecer en Google
+- [ ] Dar de alta skystudioslabs.com en Google Search Console y pasarme el código de verificación (etiqueta HTML) para ponerlo en `GOOGLE_SITE_VERIFICATION`, o agregar el registro TXT en Vercel → Domains.
+- [ ] Enviar el sitemap `https://skystudioslabs.com/sitemap.xml` y solicitar indexación de la portada.
+- [ ] Crear el Perfil de Negocio de Google (empresa de servicios, área: todo México).
