@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 
 // Featured community skills (PPT Master, Paperclip, REA, ECC, VoiceStudio): the
 // install route accepts only a catalog id; repository, ref and directory are pinned
@@ -16,8 +17,34 @@ const core = await import("../../src/lib/db/core.ts");
 const settingsDb = await import("../../src/lib/db/settings.ts");
 const { skillRegistry } = await import("../../src/lib/skills/registry.ts");
 const { fetchSkillMd } = await import("../../src/lib/skills/skillssh.ts");
-const { FEATURED_SKILLS, getFeaturedSkill } =
+const { FEATURED_SKILLS, FEATURED_PROJECTS, getFeaturedSkill, filterFeaturedSkills } =
   await import("../../src/lib/skills/featuredSkills.ts");
+
+const HIGHLIGHTED_IDS = [
+  "ppt-master",
+  "paperclip",
+  "rea-reverse-engineer-anything",
+  "ecc-guide",
+  "ecc-security-review",
+  "ecc-tdd-workflow",
+  "ecc-verification-loop",
+  "voicestudio",
+];
+const PROJECT_COUNTS: Record<string, number> = {
+  "PPT Master": 1,
+  Paperclip: 9,
+  REA: 5,
+  "ECC (Everything Claude Code)": 328,
+  VoiceStudio: 2,
+};
+// Local clones the generator reads by default; CI has none, so --check is skipped there.
+const UPSTREAM_CLONES = [
+  "/home/user/hugohe3/ppt-master",
+  "/home/user/paperclipai/paperclip",
+  "/home/user/morluto/rea",
+  "/home/user/affaan-m/everything-claude-code",
+  "/home/user/debpalash/VoiceStudio",
+];
 const listRoute = await import("../../src/app/api/skills/featured/route.ts");
 const installRoute = await import("../../src/app/api/skills/featured/install/route.ts");
 
@@ -115,13 +142,105 @@ test("fetchSkillMd rejects a traversal ref or an unlisted directory before fetch
   assert.deepEqual(urls, []);
 });
 
-test("GET /api/skills/featured lists the catalog", async () => {
-  const res = await listRoute.GET(new Request("http://localhost/api/skills/featured"));
-  const data = (await res.json()) as { skills: Array<{ id: string; project: string }> };
-  assert.equal(res.status, 200);
-  assert.equal(data.skills.length, FEATURED_SKILLS.length);
-  assert.ok(data.skills.some((s) => s.id === "ppt-master" && s.project === "PPT Master"));
+test("catalog holds all 345 upstream skills with the expected per-project counts", () => {
+  assert.equal(FEATURED_SKILLS.length, 345);
+  assert.deepEqual([...FEATURED_PROJECTS], Object.keys(PROJECT_COUNTS));
+  for (const [project, count] of Object.entries(PROJECT_COUNTS)) {
+    assert.equal(
+      FEATURED_SKILLS.filter((s) => s.project === project).length,
+      count,
+      `${project} skill count`
+    );
+  }
+  assert.deepEqual(
+    FEATURED_SKILLS.filter((s) => s.highlighted).map((s) => s.id),
+    HIGHLIGHTED_IDS
+  );
+  for (const skill of FEATURED_SKILLS) {
+    assert.ok(skill.name.length > 0 && skill.name.length <= 64, `${skill.id} name length`);
+    assert.ok(skill.description.length > 0 && skill.description.length <= 300);
+  }
 });
+
+test("filterFeaturedSkills searches case-insensitively, filters by project, highlighted first", () => {
+  const all = filterFeaturedSkills();
+  assert.equal(all.length, 345);
+  assert.deepEqual(
+    all.slice(0, HIGHLIGHTED_IDS.length).map((s) => s.id),
+    HIGHLIGHTED_IDS
+  );
+
+  const paperclip = filterFeaturedSkills({ project: "Paperclip" });
+  assert.equal(paperclip.length, 9);
+  assert.equal(paperclip[0].id, "paperclip");
+
+  const pptx = filterFeaturedSkills({ q: "PPTX" });
+  assert.ok(pptx.some((s) => s.id === "ppt-master"));
+  assert.ok(
+    pptx.every((s) => /pptx/i.test(`${s.name} ${s.description} ${s.project} ${s.skillId}`))
+  );
+
+  assert.deepEqual(filterFeaturedSkills({ q: "zz-no-such-skill-zz" }), []);
+  assert.deepEqual(filterFeaturedSkills({ project: "Unknown" }), []);
+});
+
+test("GET /api/skills/featured lists the catalog with project counts", async () => {
+  const res = await listRoute.GET(new Request("http://localhost/api/skills/featured"));
+  const data = (await res.json()) as {
+    skills: Array<{ id: string; project: string; skillId: string; highlighted: boolean }>;
+    projects: Array<{ name: string; count: number }>;
+    total: number;
+  };
+  assert.equal(res.status, 200);
+  assert.equal(data.total, 345);
+  assert.equal(data.skills.length, 345);
+  assert.deepEqual(
+    data.projects,
+    Object.entries(PROJECT_COUNTS).map(([name, count]) => ({ name, count }))
+  );
+  const ppt = data.skills.find((s) => s.id === "ppt-master");
+  assert.equal(ppt?.project, "PPT Master");
+  assert.equal(ppt?.skillId, "ppt-master");
+  assert.equal(ppt?.highlighted, true);
+  assert.equal(data.skills[0].highlighted, true);
+});
+
+test("GET /api/skills/featured honours ?q= and ?project= but keeps full totals", async () => {
+  const res = await listRoute.GET(
+    new Request("http://localhost/api/skills/featured?project=REA&q=reverse")
+  );
+  const data = (await res.json()) as {
+    skills: Array<{ id: string; project: string }>;
+    projects: Array<{ name: string; count: number }>;
+    total: number;
+  };
+  assert.equal(res.status, 200);
+  assert.equal(data.total, 345);
+  assert.equal(data.projects.find((p) => p.name === "ECC (Everything Claude Code)")?.count, 328);
+  assert.ok(data.skills.length > 0);
+  assert.ok(data.skills.every((s) => s.project === "REA"));
+  assert.equal(data.skills[0].id, "rea-reverse-engineer-anything");
+
+  const long = await listRoute.GET(
+    new Request(`http://localhost/api/skills/featured?q=${"a".repeat(500)}`)
+  );
+  assert.equal(long.status, 200);
+  assert.equal(((await long.json()) as { skills: unknown[] }).skills.length, 0);
+});
+
+test(
+  "generator --check confirms featuredSkills.data.json matches the upstream clones",
+  { skip: !UPSTREAM_CLONES.every((p) => fs.existsSync(p)) && "upstream clones not present" },
+  () => {
+    const result = spawnSync(
+      process.execPath,
+      ["scripts/skills/generate-featured-skills.mjs", "--check"],
+      { encoding: "utf8" }
+    );
+    assert.equal(result.status, 0, result.stderr || result.stdout);
+    assert.match(result.stdout, /345 skills up to date/);
+  }
+);
 
 test("POST /api/skills/featured/install fetches the pinned SKILL.md and registers the skill", async () => {
   const urls: string[] = [];
