@@ -3364,7 +3364,8 @@
       "agent-deck": "ប្រព័ន្ធសម្របសម្រួលភ្នាក់ងារច្រើន Agent Deck",
       "5dive": "5dive — ក្រុមភ្នាក់ងារសរសេរកូដដែលបង្ហោះដោយខ្លួនឯង; កម្រងព័ត៌មានផ្ទៀងផ្ទាត់មួយតភ្ជាប់ពួកវាទាំងអស់ទៅ OmniRoute",
       "whycodes": "ភ្នាក់ងារ CLI ស្វយ័ត WhyCodes ជាមួយ base URL ដែលត្រូវគ្នានឹង OpenAI",
-      "zed": "កម្មវិធីកែកូដ Zed — ភ្នាក់ងារភ្ជាប់មកជាមួយ តាមរយៈអ្នកផ្តល់សេវាដែលត្រូវគ្នានឹង OpenAI"
+      "zed": "កម្មវិធីកែកូដ Zed — ភ្នាក់ងារភ្ជាប់មកជាមួយ តាមរយៈអ្នកផ្តល់សេវាដែលត្រូវគ្នានឹង OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "បិទភ្ជាប់ម៉ានីហ្វេស្តជំនាញជាទម្រង់ JSON ឬផ្ទុកឯកសារ .json ឡើង។",
     "uploadJson": "ផ្ទុក JSON ឡើង",
     "cancel": "បោះបង់",
-    "installSkill": "ដំឡើងជំនាញ"
+    "installSkill": "ដំឡើងជំនាញ",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "ច្រកគ្រប់គ្រងការដំណើរការព្រមគ្នា",

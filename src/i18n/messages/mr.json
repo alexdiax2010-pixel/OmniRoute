@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck मल्टी-एजंट ऑर्केस्ट्रेटर",
       "5dive": "5dive — स्वयं-होस्टेड कोडिंग एजंट्सचा ताफा; एक auth प्रोफाइल सर्वांना OmniRoute कडे निर्देशित करते",
       "whycodes": "OpenAI-सुसंगत base URL असलेला WhyCodes ऑटोनॉमस CLI एजंट",
-      "zed": "Zed कोड एडिटर — OpenAI-सुसंगत प्रदात्याद्वारे अंगभूत एजंट"
+      "zed": "Zed कोड एडिटर — OpenAI-सुसंगत प्रदात्याद्वारे अंगभूत एजंट",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "कौशल्य मॅनिफेस्ट JSON पेस्ट करा किंवा .json फाइल अपलोड करा.",
     "uploadJson": "JSON अपलोड करा",
     "cancel": "रद्द करा",
-    "installSkill": "कौशल्य स्थापित करा"
+    "installSkill": "कौशल्य स्थापित करा",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "समवर्ती कार्याचे गेट",

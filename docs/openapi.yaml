@@ -14894,6 +14894,35 @@ paths:
       responses:
         "200":
           description: OK
+  /api/skills/featured:
+    get:
+      tags:
+        - Skills
+      summary: "GET skills › featured"
+      parameters:
+        - name: q
+          in: query
+          description: Case-insensitive text filter over skill name, project and description.
+          required: false
+          schema:
+            type: string
+        - name: project
+          in: query
+          description: Only return skills of this project (e.g. `ECC (Everything Claude Code)`).
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /api/skills/featured/install:
+    post:
+      tags:
+        - Skills
+      summary: "POST skills › featured › install"
+      responses:
+        "200":
+          description: OK
   /api/skills/marketplace:
     get:
       tags:

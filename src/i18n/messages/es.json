@@ -3364,6 +3364,7 @@
       "agent-deck": "Orquestador multiagente Agent Deck",
       "5dive": "5dive — flota autoalojada de agentes de codificación; un perfil de autenticación los apunta todos a OmniRoute",
       "whycodes": "Agente CLI autónomo WhyCodes con URL base compatible con OpenAI",
+      "paperclip": "Paperclip — orquestación de código abierto para equipos de agentes de IA; apunta su conexión de IA tipo gateway a OmniRoute",
       "zed": "Editor de código Zed — agente integrado mediante un proveedor compatible con OpenAI"
     },
     "guides": {
@@ -5293,6 +5294,14 @@
     "offMode": "DESACTIVADO",
     "autoMode": "AUTOMÁTICO",
     "installSkillButton": "Instalar habilidad",
+    "featuredSkills": "Skills destacadas de la comunidad",
+    "featuredSkillsHint": "Las 345 skills de código abierto de cinco proyectos — PPT Master, Paperclip, REA, ECC y VoiceStudio. Un clic descarga el SKILL.md desde su repositorio de GitHub.",
+    "installed": "Instalada",
+    "featuredSearchPlaceholder": "Buscar skills destacadas…",
+    "featuredAllProjects": "Todas",
+    "featuredShowMore": "Mostrar más",
+    "featuredNoResults": "Ninguna skill destacada coincide.",
+    "featuredCount": "{shown} de {total} skills",
     "installSkillModalTitle": "Instalar habilidad",
     "installJsonPlaceholder": "Pega aquí el JSON del manifiesto de la habilidad...",
     "installing": "Instalando...",

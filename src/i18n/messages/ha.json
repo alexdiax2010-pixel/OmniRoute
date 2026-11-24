@@ -3364,7 +3364,8 @@
       "agent-deck": "Mai tsara ayyukan wakilai da yawa na Agent Deck",
       "5dive": "5dive — rundunar wakilan shirye-shirye da ake ɗaukar nauyinsu da kai; bayanin martabar tantancewa guda ɗaya yana karkatar da su duka zuwa OmniRoute",
       "whycodes": "Wakilin CLI mai cin gashin kansa na WhyCodes tare da base URL mai dacewa da OpenAI",
-      "zed": "Editan lamba na Zed — wakili na ciki ta hanyar mai bayarwa mai dacewa da OpenAI"
+      "zed": "Editan lamba na Zed — wakili na ciki ta hanyar mai bayarwa mai dacewa da OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "Manna JSON na bayanin ƙwarewa ko loda fayil ɗin .json.",
     "uploadJson": "Loda JSON",
     "cancel": "Soke",
-    "installSkill": "Shigar da Ƙwarewa"
+    "installSkill": "Shigar da Ƙwarewa",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "Ƙofofin gudanarwa a lokaci guda",

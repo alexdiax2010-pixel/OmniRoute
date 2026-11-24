@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck мултиагентен оркестратор",
       "5dive": "5dive — самостоятелно хостван флот от кодиращи агенти; един auth профил насочва всички към OmniRoute",
       "whycodes": "WhyCodes автономен CLI агент с OpenAI-съвместим base URL",
-      "zed": "Редактор на код Zed — вграден агент чрез OpenAI-съвместим доставчик"
+      "zed": "Редактор на код Zed — вграден агент чрез OpenAI-съвместим доставчик",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "Поставете JSON манифест на умение или качете .json файл.",
     "uploadJson": "Качване на JSON",
     "cancel": "Отказ",
-    "installSkill": "Инсталиране на умения"
+    "installSkill": "Инсталиране на умения",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "Ограничители на паралелността",

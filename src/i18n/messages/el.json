@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck ενορχηστρωτής πολλαπλών πρακτόρων",
       "5dive": "5dive — αυτοφιλοξενούμενος στόλος πρακτόρων προγραμματισμού· ένα προφίλ ελέγχου ταυτότητας τους κατευθύνει όλους στο OmniRoute",
       "whycodes": "Αυτόνομος πράκτορας CLI WhyCodes με βασικό URL συμβατό με OpenAI",
-      "zed": "Επεξεργαστής κώδικα Zed — ενσωματωμένος πράκτορας μέσω παρόχου συμβατού με OpenAI"
+      "zed": "Επεξεργαστής κώδικα Zed — ενσωματωμένος πράκτορας μέσω παρόχου συμβατού με OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "Επικολλήστε ένα manifest δεξιότητας σε μορφή JSON ή ανεβάστε ένα αρχείο .json.",
     "uploadJson": "Ανέβασμα JSON",
     "cancel": "Ακύρωση",
-    "installSkill": "Εγκατάσταση δεξιότητας"
+    "installSkill": "Εγκατάσταση δεξιότητας",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "Πύλες ταυτόχρονης εκτέλεσης",

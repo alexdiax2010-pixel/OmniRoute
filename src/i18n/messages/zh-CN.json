@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck 多智能体编排器",
       "5dive": "5dive — 自托管的编码智能体集群；一个认证配置即可将全部指向 OmniRoute",
       "whycodes": "WhyCodes 自主 CLI 智能体,使用兼容 OpenAI 的 Base URL",
-      "zed": "Zed 代码编辑器 — 通过 OpenAI 兼容提供者使用内置智能体"
+      "zed": "Zed 代码编辑器 — 通过 OpenAI 兼容提供者使用内置智能体",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "粘贴技能清单 JSON 或上传 .json 文件。",
     "uploadJson": "上传 JSON",
     "cancel": "取消",
-    "installSkill": "安装技能"
+    "installSkill": "安装技能",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "并发门控",

@@ -94,13 +94,41 @@ export async function searchSkillsSh(
   }
 }
 
+/** Git ref (branch or tag) a SKILL.md is read from: one plain path segment. */
+export const SkillsShRefSchema = z
+  .string()
+  .min(1)
+  .max(100)
+  .refine((ref) => GITHUB_PATH_SEGMENT.test(ref) && ref !== "." && ref !== "..", {
+    message: "ref must be a branch or tag using letters, digits, '_', '.' or '-'",
+  });
+
+/**
+ * Directories a repository may keep its skills under. A closed allowlist — the
+ * value becomes part of the GitHub raw URL, so it is never caller-free text.
+ */
+export const SKILLS_DIRS = ["skills", ".agents/skills"] as const;
+export type SkillsDir = (typeof SKILLS_DIRS)[number];
+
+export interface FetchSkillMdOptions {
+  /** Branch or tag (default `main`). */
+  ref?: string;
+  /** Skills directory inside the repository (default `skills`). */
+  skillsDir?: SkillsDir;
+}
+
 /**
  * Fetch SKILL.md content from GitHub for a skills.sh skill.
  *
  * @param source - GitHub "owner/repo" (e.g. "supabase/agent-skills")
  * @param skillId - Skill name (last segment of the full id, e.g. "supabase-postgres-best-practices")
+ * @param options - Optional ref / skills directory for repos that do not use `main` + `skills/`
  */
-export async function fetchSkillMd(source: string, skillId: string): Promise<string> {
+export async function fetchSkillMd(
+  source: string,
+  skillId: string,
+  options: FetchSkillMdOptions = {}
+): Promise<string> {
   // Re-validate at the fetch boundary so callers that bypass the install route
   // (CLI, tools, tests) cannot pivot the request to another GitHub path. The
   // messages deliberately do not echo the rejected input.
@@ -110,7 +138,15 @@ export async function fetchSkillMd(source: string, skillId: string): Promise<str
   if (!SkillsShSkillIdSchema.safeParse(skillId).success) {
     throw new Error("Invalid skills.sh skill id: expected letters, digits, '_' or '-'");
   }
-  const url = `${GITHUB_RAW_BASE}/${source}/main/skills/${skillId}/SKILL.md`;
+  const ref = options.ref ?? "main";
+  if (!SkillsShRefSchema.safeParse(ref).success) {
+    throw new Error("Invalid skills.sh ref: expected a branch or tag name");
+  }
+  const skillsDir = options.skillsDir ?? "skills";
+  if (!(SKILLS_DIRS as readonly string[]).includes(skillsDir)) {
+    throw new Error("Invalid skills directory");
+  }
+  const url = `${GITHUB_RAW_BASE}/${source}/${ref}/${skillsDir}/${skillId}/SKILL.md`;
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 

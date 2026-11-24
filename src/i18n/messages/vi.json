@@ -3364,6 +3364,7 @@
       "agent-deck": "Trình điều phối đa tác nhân Agent Deck",
       "5dive": "5dive — hạm đội tác nhân lập trình tự lưu trữ; một hồ sơ xác thực trỏ tất cả về OmniRoute",
       "whycodes": "Tác nhân CLI tự trị WhyCodes với base URL tương thích OpenAI",
+      "paperclip": "Paperclip — nền tảng mã nguồn mở điều phối các nhóm tác tử AI; trỏ kết nối AI dạng gateway của nó tới OmniRoute",
       "zed": "Trình soạn thảo mã Zed — tác nhân tích hợp sẵn qua nhà cung cấp tương thích OpenAI"
     },
     "guides": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "Dán tệp kê khai JSON của kỹ năng hoặc tải tệp .json lên.",
     "uploadJson": "Tải JSON lên",
     "cancel": "Hủy",
-    "installSkill": "Cài đặt kỹ năng"
+    "installSkill": "Cài đặt kỹ năng",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "Cổng kiểm soát đồng thời",

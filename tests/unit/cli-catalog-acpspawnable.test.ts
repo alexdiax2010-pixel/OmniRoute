@@ -49,6 +49,7 @@ const NOT_ACP_SPAWNABLE_IDS = [
   "pi",
   "hermes-agent",
   "agent-deck",
+  "paperclip",
   "custom",
 ];
 

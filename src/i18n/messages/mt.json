@@ -3364,7 +3364,8 @@
       "agent-deck": "Orkestratur ta’ diversi aġenti Agent Deck",
       "5dive": "5dive — flotta awtoospitata ta’ aġenti tal-kodifikazzjoni; profil wieħed tal-awtentikazzjoni jidderiġihom kollha lejn OmniRoute",
       "whycodes": "Aġent CLI awtonomu WhyCodes b'URL bażi kompatibbli ma' OpenAI",
-      "zed": "Editur tal-kodiċi Zed — aġent integrat permezz ta' fornitur kompatibbli ma' OpenAI"
+      "zed": "Editur tal-kodiċi Zed — aġent integrat permezz ta' fornitur kompatibbli ma' OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "Waħħal manifest tal-ħila f'format JSON jew tella' fajl .json.",
     "uploadJson": "Tella' JSON",
     "cancel": "Ikkanċella",
-    "installSkill": "Installa l-Ħila"
+    "installSkill": "Installa l-Ħila",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "Bibien tal-konkorrenza",

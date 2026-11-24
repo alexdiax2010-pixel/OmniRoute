@@ -3364,7 +3364,8 @@
       "agent-deck": "ارکستراتور چندعاملی Agent Deck",
       "5dive": "5dive — ناوگان خودمیزبان از عامل‌های کدنویسی؛ یک پروفایل احراز هویت همه را به OmniRoute هدایت می‌کند",
       "whycodes": "عامل خودکار CLI ‏WhyCodes با URL پایه سازگار با OpenAI",
-      "zed": "ویرایشگر کد Zed — عامل داخلی از طریق ارائه‌دهنده سازگار با OpenAI"
+      "zed": "ویرایشگر کد Zed — عامل داخلی از طریق ارائه‌دهنده سازگار با OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "مانیفست JSON مهارت را جایگذاری کنید یا یک فایل .json بارگذاری کنید.",
     "uploadJson": "بارگذاری JSON",
     "cancel": "لغو",
-    "installSkill": "Skill را نصب کنید"
+    "installSkill": "Skill را نصب کنید",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "دروازه‌های هم‌زمانی",

@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck, onye nhazi ọtụtụ ndị nnọchi anya",
       "5dive": "5dive — ìgwè ndị nnọchi anya ide koodu a na-akwado n'onwe gị; otu profaịlụ nkwenye na-ejikọ ha niile na OmniRoute",
       "whycodes": "WhyCodes, onye nnọchi anya CLI na-arụ ọrụ n'onwe ya nwere base URL dakọtara na OpenAI",
-      "zed": "Ihe ndezi koodu Zed — onye nnọchi anya arụnyere n'ime site n'aka onye na-enye ọrụ dakọtara na OpenAI"
+      "zed": "Ihe ndezi koodu Zed — onye nnọchi anya arụnyere n'ime site n'aka onye na-enye ọrụ dakọtara na OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "Mado manifest JSON nke nkà ma ọ bụ bulite faịlụ .json.",
     "uploadJson": "Bulite JSON",
     "cancel": "Kagbuo",
-    "installSkill": "Wụnye Nkà"
+    "installSkill": "Wụnye Nkà",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "Ọnụ ụzọ ọrụ n’otu oge",

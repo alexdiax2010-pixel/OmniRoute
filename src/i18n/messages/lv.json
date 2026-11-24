@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck vairāku aģentu orķestrētājs",
       "5dive": "5dive — pašmitināta kodēšanas aģentu flote; viens autentifikācijas profils tos visus novirza uz OmniRoute",
       "whycodes": "WhyCodes autonoms CLI aģents ar OpenAI saderīgu bāzes URL",
-      "zed": "Zed koda redaktors — iebūvēts aģents, izmantojot ar OpenAI saderīgu nodrošinātāju"
+      "zed": "Zed koda redaktors — iebūvēts aģents, izmantojot ar OpenAI saderīgu nodrošinātāju",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "Ielīmējiet prasmju manifesta JSON vai augšupielādējiet .json failu.",
     "uploadJson": "Augšupielādēt JSON",
     "cancel": "Atcelt",
-    "installSkill": "Instalēt prasmi"
+    "installSkill": "Instalēt prasmi",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "Vienlaicīguma ierobežotāji",

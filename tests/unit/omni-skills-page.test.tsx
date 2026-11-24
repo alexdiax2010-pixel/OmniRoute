@@ -309,6 +309,26 @@ describe("OmniMarketplaceTab.tsx", () => {
     expect(src.includes("skillsProvider"), "must accept skillsProvider prop").toBe(true);
     expect(src.includes("onRefreshSkills"), "must accept onRefreshSkills prop").toBe(true);
   });
+
+  it("featured section searches, filters by project and paginates", () => {
+    expect(src.includes("/api/skills/featured"), "must call /api/skills/featured").toBe(true);
+    expect(src.includes('params.set("q"'), "must refetch with ?q=").toBe(true);
+    expect(src.includes('params.set("project"'), "must refetch with ?project=").toBe(true);
+    expect(src.includes("FEATURED_PAGE_SIZE = 24"), "must page 24 skills at a time").toBe(true);
+    expect(src.includes('t("featuredShowMore")'), "must offer Show more").toBe(true);
+    expect(src.includes('t("featuredNoResults")'), "must render an empty state").toBe(true);
+    expect(src.includes('t("featuredCount"'), "must render a count line").toBe(true);
+  });
+
+  it("featured section is accessible and drops stale responses", () => {
+    expect(src.includes("aria-pressed={active}"), "project chips expose aria-pressed").toBe(true);
+    expect(src.includes('aria-label={t("featuredSearchPlaceholder")}')).toBe(true);
+    expect(
+      src.includes("requestId !== featuredRequestId.current"),
+      "stale featured responses must be ignored"
+    ).toBe(true);
+    expect(src.includes("skill.highlighted"), "highlighted skills get a marker").toBe(true);
+  });
 });
 
 // ─── E2E test update ──────────────────────────────────────────────────────────

@@ -1155,6 +1155,7 @@ If only OpenRouter is configured, use `openrouter/deepgram/nova-3`.
 - `nvidia/` (Parakeet, Canary)
 - `huggingface/` (whisper variants)
 - `qwen/`
+- `voicestudio/` (local [VoiceStudio](https://github.com/debpalash/VoiceStudio) backend on `http://localhost:3900`, no key — `whisper-1` uses its active ASR engine; also serves `/v1/audio/translations`)
 
 **Text-to-Speech (`POST /v1/audio/speech`)** providers:
 
@@ -1172,6 +1173,7 @@ If only OpenRouter is configured, use `openrouter/deepgram/nova-3`.
 - `xiaomi-mimo/`
 - `coqui/`, `tortoise/`
 - `qwen/`
+- `voicestudio/` (local VoiceStudio, no key — `tts-1`; `voice` takes an OpenAI stock name or a saved VoiceStudio profile id from `GET http://localhost:3900/v1/audio/voices`)
 
 Supported audio formats for transcription: `mp3`, `wav`, `m4a`, `flac`, `ogg`, `webm`. TTS output formats depend on the provider (mp3, wav, opus, pcm, mulaw).
 

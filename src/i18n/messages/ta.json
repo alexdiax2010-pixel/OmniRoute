@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck பல-முகவர் ஒருங்கிணைப்பாளர்",
       "5dive": "5dive — சுய-ஹோஸ்ட் செய்யப்பட்ட குறியீட்டு முகவர்களின் கூட்டம்; ஒரு auth சுயவிவரம் அனைத்தையும் OmniRoute-க்கு திருப்புகிறது",
       "whycodes": "OpenAI-இணக்கமான base URL கொண்ட WhyCodes தன்னாட்சி CLI முகவர்",
-      "zed": "Zed குறியீட்டு எடிட்டர் — OpenAI-இணக்கமான வழங்குநர் மூலம் உள்ளமைந்த முகவர்"
+      "zed": "Zed குறியீட்டு எடிட்டர் — OpenAI-இணக்கமான வழங்குநர் மூலம் உள்ளமைந்த முகவர்",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "திறன் மேனிஃபெஸ்ட் JSON-ஐ ஒட்டவும் அல்லது .json கோப்பைப் பதிவேற்றவும்.",
     "uploadJson": "JSON-ஐப் பதிவேற்று",
     "cancel": "ரத்துசெய்",
-    "installSkill": "திறமையை நிறுவவும்"
+    "installSkill": "திறமையை நிறுவவும்",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "ஒரேநேர செயலாக்க வாயில்கள்",

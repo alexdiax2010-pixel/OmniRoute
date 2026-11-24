@@ -3364,7 +3364,8 @@
       "agent-deck": "Agent Deck, orkestrator več agentov",
       "5dive": "5dive — samostojno gostovana flota programskih agentov; en profil za preverjanje pristnosti jih vse usmeri v OmniRoute",
       "whycodes": "WhyCodes, avtonomni CLI agent z osnovnim URL-jem, združljivim z OpenAI",
-      "zed": "Urejevalnik kode Zed — vgrajeni agent prek ponudnika, združljivega z OpenAI"
+      "zed": "Urejevalnik kode Zed — vgrajeni agent prek ponudnika, združljivega z OpenAI",
+      "paperclip": "Paperclip — open-source orchestration for teams of AI agents; point its gateway AI connection at OmniRoute"
     },
     "guides": {
       "cursor": {
@@ -5318,7 +5319,15 @@
     "installSkillModalDesc": "Prilepite manifest veščine v obliki JSON ali naložite datoteko .json.",
     "uploadJson": "Naloži JSON",
     "cancel": "Prekliči",
-    "installSkill": "Namesti veščino"
+    "installSkill": "Namesti veščino",
+    "featuredSkills": "Featured community skills",
+    "featuredSkillsHint": "Curated open-source skills — PPT Master, Paperclip, REA, ECC and VoiceStudio. One click fetches the SKILL.md from its GitHub repository.",
+    "installed": "Installed",
+    "featuredSearchPlaceholder": "Search featured skills…",
+    "featuredAllProjects": "All",
+    "featuredShowMore": "Show more",
+    "featuredNoResults": "No featured skills match.",
+    "featuredCount": "{shown} of {total} skills"
   },
   "health": {
     "queuesTitle": "Omejevalniki sočasnosti",
