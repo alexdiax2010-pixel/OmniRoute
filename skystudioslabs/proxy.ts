@@ -81,6 +81,6 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     // Todo excepto assets internos de Next y archivos de metadatos.
-    "/((?!_next/static|_next/image|favicon.ico|icon|apple-icon|opengraph-image|robots.txt|sitemap.xml|sw.js|crm.webmanifest).*)",
+    "/((?!_next/static|_next/image|favicon.ico|icon|apple-icon|opengraph-image|robots.txt|sitemap.xml|sw.js|crm.webmanifest|google[0-9a-f]+\.html).*)",
   ],
 };
