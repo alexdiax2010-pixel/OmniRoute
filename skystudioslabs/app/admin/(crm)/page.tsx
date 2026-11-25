@@ -102,7 +102,7 @@ export default async function Prospectos({ searchParams }: { searchParams: Promi
       </section>
 
       <h2 className={s.sub}>Lista</h2>
-      <form method="get" action="/admin" className={s.fila} role="search" style={{ marginBottom: 12 }}>
+      <form method="get" action="/admin" className={`${s.fila} ${s.filtros}`} role="search" style={{ marginBottom: 12 }}>
         <label className="sr-only" htmlFor="q">
           Buscar
         </label>
@@ -164,7 +164,7 @@ export default async function Prospectos({ searchParams }: { searchParams: Promi
         </span>
         <a href={`/admin/exportar.csv${filtrado ? `?${aQuery(f)}` : ""}`}>{filtrado ? "Exportar esta vista (CSV)" : "Exportar todo (CSV)"}</a>
       </p>
-      <div className={s.tablaWrap}>
+      <div className={`${s.tablaWrap} ${s.tablaTarjetas}`}>
         <table className={s.tabla}>
           <thead>
             <tr>
@@ -211,7 +211,7 @@ export default async function Prospectos({ searchParams }: { searchParams: Promi
                   <td>
                     <span className={`${s.badge} ${p.etapa === "Ganado" ? s.badgeOk : ""}`}>{p.etapa}</span>
                   </td>
-                  <td className={est === "vencido" ? s.vencido : est === "hoy" ? s.hoy : undefined}>{fechaCorta(p.seguimiento)}</td>
+                  <td className={est === "vencido" ? s.vencido : est === "hoy" ? s.hoy : undefined}>{p.seguimiento ? fechaCorta(p.seguimiento) : <span className={s.sinDato}>—</span>}</td>
                   <td>{p.colonia || "—"}</td>
                   <td className={s.muted}>
                     {p.giro || "—"}
